@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<binding name="binding" package="wiseml.model">
+    <mapping abstract="true" type-name="wiseML" class="wiseml.model.WiseML" ordered="false">
+        <structure map-as="setup" field="setup" usage="optional" name="setup"/>
+        <structure field="scenario" usage="optional" name="scenario">
+            <value style="attribute" name="id" field="id"/>
+            <collection field="timestamp" usage="optional" create-type="java.util.ArrayList">
+                <structure map-as="timestamp" name="timestamp"/>
+            </collection>
+            <structure map-as="data" field="data" usage="optional"/>
+        </structure>
+        <structure field="trace" usage="optional" name="trace">
+            <value style="attribute" name="id" field="id"/>
+            <collection field="timestamp" usage="optional" create-type="java.util.ArrayList">
+                <structure map-as="timestamp" name="timestamp"/>
+            </collection>
+        </structure>
+    </mapping>
+    <mapping class="wiseml.model.WiseML" name="wiseml">
+        <structure map-as="wiseML"/>
+    </mapping>
+    <mapping abstract="true" type-name="setup" class="wiseml.model.setup.Setup" ordered="false">
+        <structure map-as="origin" field="origin" usage="optional" name="origin" ordered="false"/>
+        <structure map-as="timeInfo" field="timeinfo" usage="optional" name="timeinfo" ordered="false"/>
+        <value style="element" name="interpolation" field="interpolation" usage="optional" ordered="false"/>
+        <value style="element" name="description" field="description" usage="optional" ordered="false"/>
+        <structure map-as="defaults" field="defaults" usage="optional" name="defaults" ordered="false"/>
+        <collection field="nodes" usage="optional" create-type="java.util.ArrayList" ordered="false">
+            <structure map-as="node" name="node"/>
+        </collection>
+        <collection field="link" usage="optional" name="link" create-type="java.util.ArrayList" ordered="false">
+            <structure map-as="link" name="link"/>
+        </collection>
+    </mapping>
+    <mapping class="wiseml.model.setup.Setup" name="setup" ordered="false">
+        <structure map-as="setup"/>
+    </mapping>
+    <mapping abstract="true" type-name="timeInfo" class="wiseml.model.setup.TimeInfo" ordered="false">
+        <value style="element" name="start" field="start" usage="optional" ordered="false"/>
+        <value style="element" name="end" field="end" usage="optional" ordered="false"/>
+        <value style="element" name="duration" field="duration" usage="optional" ordered="false"/>
+        <value style="element" name="unit" field="unit" usage="optional" ordered="false"/>
+    </mapping>
+    <mapping abstract="true" type-name="origin" class="wiseml.model.setup.Origin" usage="optional" ordered="false">
+        <value style="element" name="x" field="x" usage="optional" ordered="false"/>
+        <value style="element" name="y" field="y" usage="optional" ordered="false"/>
+        <value style="element" name="z" field="z" usage="optional" ordered="false"/>
+        <value style="element" name="phi" field="phi" usage="optional" ordered="false"/>
+        <value style="element" name="theta" field="theta" usage="optional" ordered="false"/>
+    </mapping>
+    <mapping abstract="true" type-name="capability" class="wiseml.model.setup.Capability" usage="optional"
+             ordered="false">
+        <value style="element" name="name" field="name" usage="optional" ordered="false"/>
+        <value style="element" name="datatype" field="datatype" usage="optional" ordered="false"/>
+        <value style="element" name="unit" field="unit" usage="optional" ordered="false"/>
+        <value style="element" name="default" field="defaultvalue" usage="optional" ordered="false"/>
+    </mapping>
+    <mapping abstract="true" type-name="timestamp" class="wiseml.model.scenario.Timestamp" usage="optional"
+             ordered="false">
+        <value style="attribute" name="value" field="value" usage="optional" ordered="false"/>
+        <structure field="enableNode" usage="optional" name="enableNode" ordered="false">
+            <value style="attribute" name="id" field="id" ordered="false"/>
+        </structure>
+        <structure field="disableNode" usage="optional" name="disableNode" ordered="false">
+            <value style="attribute" name="id" field="id" usage="optional" ordered="false"/>
+        </structure>
+        <structure field="enableLink" usage="optional" name="enableLink">
+            <value style="element" name="source" field="source" usage="optional" ordered="false"/>
+            <value style="element" name="target" field="target" usage="optional" ordered="false"/>
+        </structure>
+        <structure field="disableLink" usage="optional" name="disableLink">
+            <value style="element" name="source" field="source" usage="optional" ordered="false"/>
+            <value style="element" name="target" field="target" usage="optional" ordered="false"/>
+        </structure>
+        <collection field="node" usage="optional" create-type="java.util.ArrayList" ordered="false">
+            <structure map-as="node" name="node"/>
+        </collection>
+        <collection field="message" usage="optional" create-type="java.util.ArrayList">
+            <structure map-as="message" name="message"/>
+        </collection>
+        <collection field="link" usage="optional" create-type="java.util.ArrayList" ordered="false">
+            <structure map-as="link" name="link"/>
+        </collection>
+    </mapping>
+    <mapping abstract="true" type-name="link" class="wiseml.model.setup.Link" usage="optional" ordered="false">
+        <value style="element" name="source" field="source" usage="optional" ordered="false"/>
+        <value style="element" name="target" field="target" usage="optional" ordered="false"/>
+        <value style="element" name="encrypted" field="encrypted" ordered="false" usage="optional"/>
+        <value style="element" name="virtual" field="virtual" ordered="false" usage="optional"/>
+        <collection field="capability" usage="optional" create-type="java.util.ArrayList" ordered="false">
+            <structure map-as="capability" name="capability" ordered="false"/>
+        </collection>
+        <structure field="rssi" usage="optional" name="rssi" ordered="false">
+            <value style="element" name="datatype" field="datatype" usage="optional" ordered="false"/>
+            <value style="element" name="unit" field="unit" usage="optional" ordered="false"/>
+        </structure>
+        <collection field="data" usage="optional" create-type="java.util.ArrayList" ordered="false">
+            <structure map-as="data" name="data" ordered="false"/>
+        </collection>
+    </mapping>
+    <mapping abstract="true" type-name="defaults" class="wiseml.model.setup.Defaults" usage="optional" ordered="false">
+        <structure map-as="node" field="node" usage="optional" name="node" ordered="false"/>
+        <structure map-as="link" field="link" usage="optional" name="link" ordered="false"/>
+    </mapping>
+    <mapping abstract="true" type-name="node" class="wiseml.model.setup.Node" usage="optional" ordered="false">
+        <value style="attribute" name="id" field="id" usage="optional" ordered="false"/>
+        <structure field="position" usage="optional" name="position" ordered="false">
+            <value style="element" name="x" field="x" usage="optional" ordered="false"/>
+            <value style="element" name="y" field="y" usage="optional" ordered="false"/>
+            <value style="element" name="z" field="z" usage="optional" ordered="false"/>
+            <value style="element" name="phi" field="phi" usage="optional" ordered="false"/>
+            <value style="element" name="theta" field="theta" usage="optional" ordered="false"/>
+        </structure>
+        <value style="element" name="gateway" field="gateway" usage="optional" ordered="false"/>
+        <value style="element" name="programDetails" field="programDetails" usage="optional" ordered="false"/>
+        <value style="element" name="nodeType" field="nodeType" usage="optional" ordered="false"/>
+        <value style="element" name="description" field="description" usage="optional" ordered="false"/>
+        <collection field="capabilities" usage="optional" create-type="java.util.ArrayList" ordered="false">
+            <structure map-as="capability" name="capability"/>
+        </collection>
+        <collection field="data" usage="optional" create-type="java.util.ArrayList" ordered="false">
+            <structure map-as="data" name="data" usage="optional"/>
+        </collection>
+        <structure map-as="message" field="message" usage="optional" name="message" ordered="false"/>
+    </mapping>
+    <mapping abstract="true" type-name="data" class="wiseml.model.setup.Data" usage="optional" ordered="false">
+        <value style="attribute" name="key" field="key" usage="optional" ordered="false"/>
+        <value style="element" name="value" field="value" usage="optional" ordered="false"/>
+        <structure map-as="message" field="message" usage="optional" name="message" ordered="false"/>
+    </mapping>
+    <mapping abstract="true" type-name="message" class="wiseml.model.trace.Message" usage="optional" ordered="false">
+        <value style="attribute" name="timestamp" field="timestamp" usage="optional" ordered="false"/>
+        <value style="element" name="id" field="id" usage="optional" ordered="false"/>
+        <value style="element" name="data" field="data" usage="optional" ordered="false"/>
+    </mapping>
+</binding>
