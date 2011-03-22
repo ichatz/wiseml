@@ -5,11 +5,10 @@ import eu.wisebed.wiseml.model.setup.Setup;
 import eu.wisebed.wiseml.model.trace.Trace;
 
 /**
- * This is a persistant class for the object wiseml that has the
+ * This is a persistent class for the object wiseml that has the
  * properties of a wiseml. In the class there are
  * getter and setter methods for the properties.
  */
-
 public class WiseML {
 
     /**
