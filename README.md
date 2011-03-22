@@ -11,6 +11,11 @@ What do I need?
 flexible in binding XML structures to objects.
 
 
+Latest stable version
+---------------
+
+The latest stable version is available from [Hudson](http://ru1.cti.gr/hudson/job/wiseml/), the continuous integration tool.
+
 
 Simple execution:
 ======
