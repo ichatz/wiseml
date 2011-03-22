@@ -9,6 +9,15 @@ flexible in binding XML structures to objects.
 http://www.ibm.com/developerworks/library/x-databdopt2/
 
 
+Simple execution:
+----------------------------------------
+mvn clean
+mvn package
+java -cp target/wiseml-1.0-SNAPSHOT-jar-with-dependencies.jar:target/test-classes wiseml.test.SetupNewNode marshal
+
+and then check out file "output.xml"
+
+
 Contact:
 ----------------------------------------
 Any feedback will be greatly appreciated, at the GitHub project page
