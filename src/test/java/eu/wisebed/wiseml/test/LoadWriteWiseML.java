@@ -7,7 +7,7 @@ import org.jibx.runtime.JiBXException;
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
 import eu.wisebed.wiseml.model.setup.Setup;
- 
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -82,7 +82,7 @@ public class LoadWriteWiseML {
          WiseMLController cnt = new WiseMLController();
          WiseML stp = cnt.loadWiseMLFromFile(fis);
          System.out.println(stp.getTrace().getTimestamp().size());
-         
+
 
 
     }

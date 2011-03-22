@@ -1,5 +1,6 @@
 package eu.wisebed.wiseml.test;
 
+import eu.wisebed.wiseml.controller.WiseMLController;
 import org.jibx.runtime.BindingDirectory;
 import org.jibx.runtime.IBindingFactory;
 import org.jibx.runtime.IMarshallingContext;
@@ -13,6 +14,7 @@ import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Position;
 import eu.wisebed.wiseml.model.setup.Setup;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.sql.Connection;
@@ -461,26 +463,14 @@ public class ReadCitysenseForScenario {
         try {
 
             if (args[0].equals(num1) && args[1].equals(num2)) {
-
-                // marshal object back out to file (with nice indentation, as UTF-8)...
-                IBindingFactory bfact = BindingDirectory.getFactory(WiseML.class);
-
-                IMarshallingContext mctx = bfact.createMarshallingContext();
-                mctx.setIndent(5);
-                FileOutputStream output = new FileOutputStream("scenario-citysense.xml");
-                mctx.setOutput(output, null);
-                mctx.marshalDocument(readS.getRootNode());
+                WiseMLController wiseMLctrl = new WiseMLController();
+                wiseMLctrl.writeWiseMLAsFile(readS.getRootNode(), new File("scenario-citysense.xml"));
             }
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            System.exit(1);
-
-        } catch (JiBXException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
         }
-
     }
 
 }

@@ -1,5 +1,6 @@
 package eu.wisebed.wiseml.test;
 
+import eu.wisebed.wiseml.controller.WiseMLController;
 import org.jibx.runtime.BindingDirectory;
 import org.jibx.runtime.IBindingFactory;
 import org.jibx.runtime.IMarshallingContext;
@@ -9,6 +10,7 @@ import eu.wisebed.wiseml.model.scenario.Timestamp;
 import eu.wisebed.wiseml.model.setup.*;
 import eu.wisebed.wiseml.model.trace.Trace;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.sql.*;
@@ -426,14 +428,12 @@ public class ReadCitysenseForTrace {
                     data1.setKey("urn:wisebed:node:capability:" + rs4.getString("RealMeasurements.Name"));
                     data1.setValue(rs4.getString("RealMeasurements.Value"));
                     listData.add(data1);
-
                 }
 
                 rs4.close();
             }
 
             rs2.close();
-
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -447,37 +447,18 @@ public class ReadCitysenseForTrace {
     }
 
     public static void main(final String[] args) {
-
-     
-
-
         ReadCitysenseForTrace readCFT = new ReadCitysenseForTrace(startRecord, endRecord);
 
         try {
-
             if (true) {
-
-                // marshal object back out to file (with nice indentation, as UTF-8)...
-                IBindingFactory bfact = BindingDirectory.getFactory(WiseML.class);
-                IMarshallingContext mctx = bfact.createMarshallingContext();
-                mctx.setIndent(5);
-                FileOutputStream output = new FileOutputStream("trace-citysense.xml");
-                mctx.setOutput(output, null);
-                mctx.marshalDocument(readCFT.getRootNode());
-
-
+                WiseMLController wiseMLctrl = new WiseMLController();
+                wiseMLctrl.writeWiseMLAsFile(readCFT.getRootNode(), new File("trace-citysense.xml"));
             }
         }
-        catch (FileNotFoundException e) {
+        catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
         }
-        catch (JiBXException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
-
-
     }
 }
 
