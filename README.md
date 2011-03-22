@@ -1,6 +1,6 @@
 WiseML
 ======
-WiseML parser based on [JibX] bindings.
+WiseML parser based on JibX bindings.
 
 What do I need?
 ---------------
@@ -9,7 +9,7 @@ What do I need?
 (check out this performance test). Furthermore, it is very
 flexible in binding XML structures to objects.
 
-[http://www.ibm.com/developerworks/library/x-databdopt2/]
+http://www.ibm.com/developerworks/library/x-databdopt2/
 
 
 Simple execution:
