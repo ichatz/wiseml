@@ -149,29 +149,38 @@
                 </executions>
             </plugin>
 
-<!--
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.1</version>
-                <executions>
-                    <execution>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>java</goal>
-                        </goals>
-
-                        <configuration>
-                            <mainClass>wiseml.test.SetupNewNode</mainClass>
-                            &lt;!&ndash;<workingDirectory>/tmp</workingDirectory>&ndash;&gt;
-                            <arguments>
-                                <argument>marshal</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                </executions>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <show>private</show>
+                </configuration>
             </plugin>
--->
+
+            <!--
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>exec-maven-plugin</artifactId>
+                            <version>1.1</version>
+                            <executions>
+                                <execution>
+                                    <phase>test</phase>
+                                    <goals>
+                                        <goal>java</goal>
+                                    </goals>
+
+                                    <configuration>
+                                        <mainClass>wiseml.test.SetupNewNode</mainClass>
+                                        &lt;!&ndash;<workingDirectory>/tmp</workingDirectory>&ndash;&gt;
+                                        <arguments>
+                                            <argument>marshal</argument>
+                                        </arguments>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+            -->
 
         </plugins>
     </build>
@@ -226,6 +235,15 @@
                 <version>2.6</version>
                 <configuration>
                     <configlocation>sun_checks.xml</configlocation>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <show>public</show>
                 </configuration>
             </plugin>
 

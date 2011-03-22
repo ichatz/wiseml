@@ -1,11 +1,6 @@
 package eu.wisebed.wiseml.test;
 
-import org.jibx.runtime.BindingDirectory;
-import org.jibx.runtime.IBindingFactory;
-import org.jibx.runtime.IMarshallingContext;
-import org.jibx.runtime.IUnmarshallingContext;
-import org.jibx.runtime.JiBXException;
-import org.joda.time.DateTime;
+import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
 import eu.wisebed.wiseml.model.scenario.DisableLink;
 import eu.wisebed.wiseml.model.scenario.DisableNode;
@@ -23,10 +18,11 @@ import eu.wisebed.wiseml.model.setup.Rssi;
 import eu.wisebed.wiseml.model.setup.Setup;
 import eu.wisebed.wiseml.model.setup.TimeInfo;
 import eu.wisebed.wiseml.model.trace.Trace;
+import org.joda.time.DateTime;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -276,30 +272,21 @@ public class SetupNewNode {
             rootNode.setScenario(scen);
             rootNode.setTrace(trace);
 
-            IBindingFactory bfact = BindingDirectory.getFactory(WiseML.class);
+            WiseMLController wiseMLctrl = new WiseMLController();
 
             if (args[0].equals("unmarshal")) {
                 // unmarshal node information from file...
-                IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
                 FileInputStream in = new FileInputStream("output.xml");
-                rootNode = (WiseML) uctx.unmarshalDocument(in, null);
+                rootNode = wiseMLctrl.loadWiseMLFromFile(in);
                 System.out.println(scen.getId());
                 System.out.println(timeInfo1.getStart());
 
             } else if (args[0].equals("marshal")) {
                 // marshal object back out to file (with nice indentation, as UTF-8)...
-                IMarshallingContext mctx = bfact.createMarshallingContext();
-                mctx.setIndent(5);
-                FileOutputStream out = new FileOutputStream("output.xml");
-                mctx.setOutput(out, null);
-                mctx.marshalDocument(rootNode);
+                wiseMLctrl.writeWiseMLAsFile(rootNode, new File("output.xml"));
             }
 
-
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            System.exit(1);
-        } catch (JiBXException e) {
             e.printStackTrace();
             System.exit(1);
         }
