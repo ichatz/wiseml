@@ -15,7 +15,9 @@ flexible in binding XML structures to objects.
 Simple execution:
 ======
 mvn clean
+
 mvn package
+
 java -cp target/wiseml-1.0-SNAPSHOT-jar-with-dependencies.jar:target/test-classes eu.wisebed.wiseml.test.SetupNewNode marshal
 
 and then check out file "output.xml"
