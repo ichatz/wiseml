@@ -281,7 +281,7 @@ public class SetupNewNode {
             if (args[0].equals("unmarshal")) {
                 // unmarshal node information from file...
                 IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
-                FileInputStream in = new FileInputStream("C:/Code/easysense/trunk/output.xml");
+                FileInputStream in = new FileInputStream("output.xml");
                 rootNode = (WiseML) uctx.unmarshalDocument(in, null);
                 System.out.println(scen.getId());
                 System.out.println(timeInfo1.getStart());
