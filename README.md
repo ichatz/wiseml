@@ -1,7 +1,13 @@
 WiseML
 ======
-WiseML parser based on [JibX](http://www.ibm.com/developerworks/library/x-databdopt2/) bindings.
+The repository contains the following packages:
 
+ * WiseML parser based on [JibX](http://www.ibm.com/developerworks/library/x-databdopt2/) bindings.
+
+
+Related links:
+
+ * http://www.wisebed.eu/images/stories/deliverables/d4.2.pdf
 
 What do I need?
 ---------------
