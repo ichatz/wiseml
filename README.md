@@ -7,7 +7,8 @@ The repository contains the following packages:
 
 Related links:
 
- * http://www.wisebed.eu/images/stories/deliverables/d4.2.pdf
+ * [WISEBED D4.1 Using WiseML to produce testbed traces](http://www.wisebed.eu/images/stories/deliverables/d4.1.pdf)
+ * [WISEBED D4.2 Updates to the WiseML standard](http://www.wisebed.eu/images/stories/deliverables/d4.2.pdf)
 
 What do I need?
 ---------------
