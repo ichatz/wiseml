@@ -39,6 +39,43 @@ java -cp target/wiseml-1.0-SNAPSHOT-jar-with-dependencies.jar:target/test-classe
 
 and then check out file "output.xml"
 
+Use in your Maven project
+======
+
+Add the following dependency to your pom.xml:
+	
+		<dependency>
+			<groupId>ichatz</groupId>
+			<artifactId>wiseml</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		<dependency>
+
+Add the following repositories to your pom.xml:
+
+	<repositories>
+		<repository>
+			<id>itm-maven-repository-releases</id>
+			<url>http://www.itm.uni-luebeck.de/projects/maven/releases/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>itm-maven-repository-snapshots</id>
+			<url>http://www.itm.uni-luebeck.de/projects/maven/snapshots/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
 
 Contact:
 ======
