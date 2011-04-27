@@ -23,11 +23,11 @@ Latest stable version
 
 The latest stable version is available from [Hudson](http://ru1.cti.gr/hudson/job/wiseml/), the continuous integration tool.
 
-  * [wiseml-1.0-SNAPSHOT-jar-with-dependencies.jar](http://ru1.cti.gr/hudson/job/wiseml/lastSuccessfulBuild/artifact/target/wiseml-1.0-SNAPSHOT-jar-with-dependencies.jar)
+  * [wiseml-1.1-SNAPSHOT-jar-with-dependencies.jar](http://ru1.cti.gr/hudson/job/wiseml/lastSuccessfulBuild/artifact/target/wiseml-1.1-SNAPSHOT-jar-with-dependencies.jar)
 
-  * [wiseml-1.0-SNAPSHOT-javadoc.jar](http://ru1.cti.gr/hudson/job/wiseml/lastSuccessfulBuild/artifact/target/wiseml-1.0-SNAPSHOT-javadoc.jar)
+  * [wiseml-1.1-SNAPSHOT-javadoc.jar](http://ru1.cti.gr/hudson/job/wiseml/lastSuccessfulBuild/artifact/target/wiseml-1.1-SNAPSHOT-javadoc.jar)
 
-  * [wiseml-1.0-SNAPSHOT.jar](http://ru1.cti.gr/hudson/job/wiseml/lastSuccessfulBuild/artifact/target/wiseml-1.0-SNAPSHOT.jar)
+  * [wiseml-1.1-SNAPSHOT.jar](http://ru1.cti.gr/hudson/job/wiseml/lastSuccessfulBuild/artifact/target/wiseml-1.1-SNAPSHOT.jar)
 
 Simple execution:
 ======
