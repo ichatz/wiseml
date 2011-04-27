@@ -1,19 +1,20 @@
 package eu.wisebed.wiseml.controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+
 import org.jibx.runtime.BindingDirectory;
 import org.jibx.runtime.IBindingFactory;
 import org.jibx.runtime.IMarshallingContext;
 import org.jibx.runtime.IUnmarshallingContext;
 import org.jibx.runtime.JiBXException;
+
 import eu.wisebed.wiseml.model.WiseML;
 import eu.wisebed.wiseml.model.setup.Setup;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 
 
 public class WiseMLController {
@@ -21,16 +22,16 @@ public class WiseMLController {
     /**
      * this method loads a wiseml from file.
      *
-     * @param file
+     * @param inputStream
      * @return wiseml
      */
-    public WiseML loadWiseMLFromFile(FileInputStream file) {
+    public WiseML loadWiseMLFromFile(InputStream inputStream) {
         WiseML wiseml = new WiseML();
         try {
             // unmarshal wiseml information from file...
             IBindingFactory bfact = BindingDirectory.getFactory(WiseML.class);
             IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
-            wiseml = (WiseML) uctx.unmarshalDocument(file, null);
+            wiseml = (WiseML) uctx.unmarshalDocument(inputStream, null);
 
         } catch (JiBXException e) {
             e.printStackTrace();
@@ -42,16 +43,16 @@ public class WiseMLController {
     /**
      * this method loads setup from file.
      *
-     * @param file
+     * @param inputStream
      * @return setup
      */
-    public Setup loadSetupFromFile(FileInputStream file) {
+    public Setup loadSetupFromFile(InputStream inputStream) {
         Setup setup = new Setup();
         try {
             // unmarshal setup information from file...
             IBindingFactory bfact = BindingDirectory.getFactory(Setup.class);
             IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
-            setup = (Setup) uctx.unmarshalDocument(file, null);
+            setup = (Setup) uctx.unmarshalDocument(inputStream, null);
 
         } catch (JiBXException e) {
             e.printStackTrace();
