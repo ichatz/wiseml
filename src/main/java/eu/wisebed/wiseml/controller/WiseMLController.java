@@ -1,12 +1,12 @@
 package eu.wisebed.wiseml.controller;
 
+import eu.wisebed.wiseml.model.WiseML;
+import eu.wisebed.wiseml.model.setup.Setup;
 import org.jibx.runtime.BindingDirectory;
 import org.jibx.runtime.IBindingFactory;
 import org.jibx.runtime.IMarshallingContext;
 import org.jibx.runtime.IUnmarshallingContext;
 import org.jibx.runtime.JiBXException;
-import eu.wisebed.wiseml.model.WiseML;
-import eu.wisebed.wiseml.model.setup.Setup;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -14,9 +14,31 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 
 
 public class WiseMLController {
+
+    /**
+     * this method loads a wiseml from file.
+     *
+     * @param file
+     * @return wiseml
+     */
+    public WiseML loadWiseML(InputStream file) {
+        WiseML wiseml = new WiseML();
+        try {
+            // unmarshal wiseml information from file...
+            IBindingFactory bfact = BindingDirectory.getFactory(WiseML.class);
+            IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
+            wiseml = (WiseML) uctx.unmarshalDocument(file, null);
+
+        } catch (JiBXException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+        return wiseml;
+    }
 
     /**
      * this method loads a wiseml from file.
@@ -74,7 +96,7 @@ public class WiseMLController {
 
             IMarshallingContext mctx = bfact.createMarshallingContext();
             mctx.setIndent(5);
-            FileOutputStream output = new FileOutputStream("temp-wiseml.xml");
+            FileOutputStream output = new FileOutputStream(file);
             mctx.setOutput(output, null);
             mctx.marshalDocument(wiseml);
 

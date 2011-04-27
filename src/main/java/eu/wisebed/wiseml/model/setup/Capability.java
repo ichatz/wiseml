@@ -26,7 +26,7 @@ public class Capability {
     /**
      * the unit of the capability.
      */
-    private double defaultvalue;
+    private String defaultvalue;
 
     /**
      * this method returns the name of the capability.
@@ -82,11 +82,11 @@ public class Capability {
         this.unit = unit;
     }
 
-    public double getDefaultvalue() {
+    public String getDefaultvalue() {
         return defaultvalue;
     }
 
-    public void setDefaultvalue(double defaultvalue) {
+    public void setDefaultvalue(String defaultvalue) {
         this.defaultvalue = defaultvalue;
     }
 }

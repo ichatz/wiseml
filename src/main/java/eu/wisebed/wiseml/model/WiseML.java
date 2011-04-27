@@ -12,6 +12,16 @@ import eu.wisebed.wiseml.model.trace.Trace;
 public class WiseML {
 
     /**
+     * the version of the wiseml file.
+     */
+    private String version;
+
+    /**
+     * the url of the xmlns.
+     */
+    private String xmlns;
+
+    /**
      * setup nodes for the object Wiseml.
      */
     private Setup setup;
@@ -25,6 +35,42 @@ public class WiseML {
      * set trace for the object Wiseml.
      */
     private Trace trace;
+
+    /**
+     * this method returns the version of the wiseml.
+     *
+     * @return the version of the wiseml.
+     */
+    public String getVersion() {
+        return version;
+    }
+
+    /**
+     * this method sets the version of the wiseml.
+     *
+     * @param value the value of the wiseml.
+     */
+    public void setVersion(String value) {
+        this.version = value;
+    }
+
+    /**
+     * this method returns the url of the xmlns.
+     *
+     * @return a url.
+     */
+    public String getXmlns() {
+        return xmlns;
+    }
+
+    /**
+     * this method sets the url of the xmlns.
+     *
+     * @param value a url.
+     */
+    public void setXmlns(String value) {
+        this.xmlns = value;
+    }
 
     /**
      * this method returns the setup of a wiseml.
