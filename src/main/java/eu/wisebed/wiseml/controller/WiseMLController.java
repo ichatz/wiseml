@@ -25,19 +25,16 @@ public class WiseMLController {
      * 
      * @param file
      * @return wiseml
+     * @throws JiBXException 
      */
-    public WiseML loadWiseML(Reader data) {
+    public WiseML loadWiseML(Reader data) throws JiBXException {
         WiseML wiseml = new WiseML();
-        try {
-            // unmarshal wiseml information from file...
-            IBindingFactory bfact = BindingDirectory.getFactory(WiseML.class);
-            IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
-            wiseml = (WiseML) uctx.unmarshalDocument(data, null);
 
-        } catch (JiBXException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
+        // unmarshal wiseml information from file...
+        IBindingFactory bfact = BindingDirectory.getFactory(WiseML.class);
+        IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
+        wiseml = (WiseML) uctx.unmarshalDocument(data, null);
+
         return wiseml;
     }
 
@@ -46,8 +43,9 @@ public class WiseMLController {
      * 
      * @param file
      * @return wiseml
+     * @throws JiBXException 
      */
-    public WiseML loadWiseML(InputStream file) {
+    public WiseML loadWiseML(InputStream file) throws JiBXException {
         return loadWiseML(new InputStreamReader(file));
     }
 
