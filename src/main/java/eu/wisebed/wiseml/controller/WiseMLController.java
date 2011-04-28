@@ -1,37 +1,38 @@
 package eu.wisebed.wiseml.controller;
 
-import eu.wisebed.wiseml.model.WiseML;
-import eu.wisebed.wiseml.model.setup.Setup;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+
 import org.jibx.runtime.BindingDirectory;
 import org.jibx.runtime.IBindingFactory;
 import org.jibx.runtime.IMarshallingContext;
 import org.jibx.runtime.IUnmarshallingContext;
 import org.jibx.runtime.JiBXException;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-
+import eu.wisebed.wiseml.model.WiseML;
+import eu.wisebed.wiseml.model.setup.Setup;
 
 public class WiseMLController {
 
     /**
-     * this method loads a wiseml from file.
-     *
+     * This method loads a wiseml from file.
+     * 
      * @param file
      * @return wiseml
      */
-    public WiseML loadWiseML(InputStream file) {
+    public WiseML loadWiseML(Reader data) {
         WiseML wiseml = new WiseML();
         try {
             // unmarshal wiseml information from file...
             IBindingFactory bfact = BindingDirectory.getFactory(WiseML.class);
             IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
-            wiseml = (WiseML) uctx.unmarshalDocument(file, null);
+            wiseml = (WiseML) uctx.unmarshalDocument(data, null);
 
         } catch (JiBXException e) {
             e.printStackTrace();
@@ -42,11 +43,21 @@ public class WiseMLController {
 
     /**
      * this method loads a wiseml from file.
-     *
+     * 
      * @param file
      * @return wiseml
      */
-    public WiseML loadWiseMLFromFile(FileInputStream file) {
+    public WiseML loadWiseML(InputStream file) {
+        return loadWiseML(new InputStreamReader(file));
+    }
+
+    /**
+     * this method loads a wiseml from file.
+     * 
+     * @param file
+     * @return wiseml
+     */
+    public WiseML loadWiseMLFromFile(InputStream file) {
         WiseML wiseml = new WiseML();
         try {
             // unmarshal wiseml information from file...
@@ -63,11 +74,11 @@ public class WiseMLController {
 
     /**
      * this method loads setup from file.
-     *
+     * 
      * @param file
      * @return setup
      */
-    public Setup loadSetupFromFile(FileInputStream file) {
+    public Setup loadSetupFromFile(InputStream file) {
         Setup setup = new Setup();
         try {
             // unmarshal setup information from file...
@@ -85,7 +96,7 @@ public class WiseMLController {
 
     /**
      * this method writes wiseml in a file.
-     *
+     * 
      * @param wiseml
      * @param file
      */
@@ -111,7 +122,7 @@ public class WiseMLController {
 
     /**
      * this method writes setup in a file.
-     *
+     * 
      * @param setup
      * @param file
      */
@@ -136,10 +147,9 @@ public class WiseMLController {
         }
     }
 
-
     /**
      * this method writes wiseml as a string.
-     *
+     * 
      * @param wiseml
      * @return string of wiseml data
      */
@@ -166,7 +176,7 @@ public class WiseMLController {
 
     /**
      * this method writes setup as a string.
-     *
+     * 
      * @param setup
      * @return string of setup data
      */
@@ -187,7 +197,6 @@ public class WiseMLController {
             mctx.setOutput(buffer, null);
             mctx.marshalDocument(wiseml.getSetup());
 
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -197,7 +206,7 @@ public class WiseMLController {
 
     /**
      * this method loads setup from a string.
-     *
+     * 
      * @param stup
      * @return setup
      */
@@ -219,7 +228,7 @@ public class WiseMLController {
 
     /**
      * this method loads wiseml from a string.
-     *
+     * 
      * @param wisml
      * @return wiseml
      */
