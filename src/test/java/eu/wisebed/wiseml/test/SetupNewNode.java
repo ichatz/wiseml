@@ -268,6 +268,8 @@ public class SetupNewNode {
 
             //set to rootnode setup, scenario, trace and defaults...
             WiseML rootNode = new WiseML();
+            rootNode.setVersion("1.0");
+            //rootNode.setXmlns("http://wisebed.eu/ns/wiseml/1.0");
             rootNode.setSetup(setup);
             rootNode.setScenario(scen);
             rootNode.setTrace(trace);

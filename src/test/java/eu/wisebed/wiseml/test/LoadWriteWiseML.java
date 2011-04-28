@@ -1,12 +1,12 @@
 package eu.wisebed.wiseml.test;
 
+import eu.wisebed.wiseml.controller.WiseMLController;
+import eu.wisebed.wiseml.model.WiseML;
+import eu.wisebed.wiseml.model.setup.Setup;
 import org.jibx.runtime.BindingDirectory;
 import org.jibx.runtime.IBindingFactory;
 import org.jibx.runtime.IMarshallingContext;
 import org.jibx.runtime.JiBXException;
-import eu.wisebed.wiseml.controller.WiseMLController;
-import eu.wisebed.wiseml.model.WiseML;
-import eu.wisebed.wiseml.model.setup.Setup;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -76,15 +76,11 @@ public class LoadWriteWiseML {
         File file = new File("trace-citysense.xml");
         FileInputStream fis = null;
 
+        fis = new FileInputStream(file);
 
-         fis = new FileInputStream(file);
-
-         WiseMLController cnt = new WiseMLController();
-         WiseML stp = cnt.loadWiseMLFromFile(fis);
-         System.out.println(stp.getTrace().getTimestamp().size());
-
-
-
+        WiseMLController cnt = new WiseMLController();
+        WiseML stp = cnt.loadWiseMLFromFile(fis);
+        System.out.println(stp.getTrace().getTimestamp().size());
     }
 
     public static void main(String[] args) {

@@ -26,12 +26,12 @@ public class Origin {
     /**
      * the angle phi of system rotation.
      */
-    private int phi;
+    private float phi;
 
     /**
      * the angle theta of system rotation.
      */
-    private int theta;
+    private float theta;
 
     /**
      * this method returns the position x.
@@ -92,8 +92,17 @@ public class Origin {
      *
      * @return the phi angle.
      */
-    public int getPhi() {
+    public float getPhi() {
         return phi;
+    }
+
+    /**
+     * this method sets the angle phi.
+     *
+     * @param phi the phi angle.
+     */
+    public void setPhi(float phi) {
+        this.phi = phi;
     }
 
     /**
@@ -110,8 +119,17 @@ public class Origin {
      *
      * @return the theta angle.
      */
-    public int getTheta() {
+    public float getTheta() {
         return theta;
+    }
+
+    /**
+     * this method sets the angle theta.
+     *
+     * @param theta the theta angle.
+     */
+    public void setTheta(float theta) {
+        this.theta = theta;
     }
 
     /**
@@ -122,4 +140,5 @@ public class Origin {
     public void setTheta(int theta) {
         this.theta = theta;
     }
+
 }

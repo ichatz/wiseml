@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <binding name="binding" package="eu.wisebed.wiseml.model">
+    <namespace uri="http://wisebed.eu/ns/wiseml/1.0" prefix="" default="all"/>
     <mapping abstract="true" type-name="wiseML" class="eu.wisebed.wiseml.model.WiseML" ordered="false">
         <structure map-as="setup" field="setup" usage="optional" name="setup"/>
         <structure field="scenario" usage="optional" name="scenario">
@@ -18,12 +19,14 @@
     </mapping>
     <mapping class="eu.wisebed.wiseml.model.WiseML" name="wiseml">
         <structure map-as="wiseML"/>
+        <value style="attribute" name="version" field="version" usage="optional" ordered="false"/>
     </mapping>
     <mapping abstract="true" type-name="setup" class="eu.wisebed.wiseml.model.setup.Setup" ordered="false">
         <structure map-as="origin" field="origin" usage="optional" name="origin" ordered="false"/>
         <structure map-as="timeInfo" field="timeinfo" usage="optional" name="timeinfo" ordered="false"/>
         <value style="element" name="interpolation" field="interpolation" usage="optional" ordered="false"/>
         <value style="element" name="description" field="description" usage="optional" ordered="false"/>
+        <value style="element" name="coordinateType" field="coordinateType" usage="optional" ordered="false"/>
         <structure map-as="defaults" field="defaults" usage="optional" name="defaults" ordered="false"/>
         <collection field="nodes" usage="optional" create-type="java.util.ArrayList" ordered="false">
             <structure map-as="node" name="node"/>

@@ -31,6 +31,11 @@ public class Setup {
     private String description;
 
     /**
+     * the type of the coordinate system.
+     */
+    private String coordinateType;
+
+    /**
      * defaults for object Wiseml.
      */
     private Defaults defaults;
@@ -133,6 +138,24 @@ public class Setup {
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * this method returns the coordinate type used for describing the position of the nodes.
+     *
+     * @return the coordinate type
+     */
+    public String getCoordinateType() {
+        return coordinateType;
+    }
+
+    /**
+     * this method sets the coordinate type used for describing the position of the nodes.
+     *
+     * @param description the coordinate type
+     */
+    public void setCoordinateType(String description) {
+        this.coordinateType = description;
     }
 
     /**
