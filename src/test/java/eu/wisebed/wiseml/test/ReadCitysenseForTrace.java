@@ -1,21 +1,23 @@
 package eu.wisebed.wiseml.test;
 
-import eu.wisebed.wiseml.controller.WiseMLController;
-import org.jibx.runtime.BindingDirectory;
-import org.jibx.runtime.IBindingFactory;
-import org.jibx.runtime.IMarshallingContext;
-import org.jibx.runtime.JiBXException;
-import eu.wisebed.wiseml.model.WiseML;
-import eu.wisebed.wiseml.model.scenario.Timestamp;
-import eu.wisebed.wiseml.model.setup.*;
-import eu.wisebed.wiseml.model.trace.Trace;
-
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import eu.wisebed.wiseml.controller.WiseMLController;
+import eu.wisebed.wiseml.model.WiseML;
+import eu.wisebed.wiseml.model.scenario.Timestamp;
+import eu.wisebed.wiseml.model.setup.Capability;
+import eu.wisebed.wiseml.model.setup.Data;
+import eu.wisebed.wiseml.model.setup.Node;
+import eu.wisebed.wiseml.model.setup.Position;
+import eu.wisebed.wiseml.model.setup.Setup;
+import eu.wisebed.wiseml.model.trace.Trace;
 
 /**
  * This class setting up new nodes and creates a trace

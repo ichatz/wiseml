@@ -32,11 +32,11 @@ public class TraceController {
         //mapTr.put(trace.getTimestamp(), messages);
         //map.put(trace.getNode().getId(), mapTr);
 
-        List listTimestmps = new ArrayList();
+        List<Integer> listTimestmps = new ArrayList<Integer>();
         listTimestmps.addAll(mapTr.keySet());
         Collections.sort(listTimestmps);
 
-        List finalList = new ArrayList();
+        List<String> finalList = new ArrayList<String>();
         finalList.addAll(map.keySet());
         Collections.sort(finalList);
 
