@@ -47,7 +47,7 @@ Add the following dependency to your pom.xml:
 		<dependency>
 			<groupId>ichatz</groupId>
 			<artifactId>wiseml</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.1-SNAPSHOT</version>
 		</dependency>
 
 Add the following repositories to your pom.xml:
