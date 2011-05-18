@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<binding name="binding" package="eu.wisebed.wiseconfig.model">
+  <namespace uri="" default="elements"/>
+  <mapping abstract="true" type-name="tbed" class="eu.wisebed.wiseconfig.model.TestbedConfiguration">
+    <collection field="nodes" usage="optional" create-type="java.util.ArrayList">
+      <structure map-as="nodes" name="nodes"/>
+     </collection>
+  </mapping>
+
+
+
+    <mapping class="eu.wisebed.wiseconfig.model.TestbedConfiguration" name="testbed">
+      <structure map-as="tbed"/>
+    </mapping>
+
+
+    <mapping class="eu.wisebed.wiseconfig.model.Nodes" name="nodes">
+      <structure map-as="nodes"/>
+    </mapping>
+
+    <mapping abstract="true" type-name="nodes" class="eu.wisebed.wiseconfig.model.Nodes">
+      <value style="element" name="ID" field="ID" usage="optional"/>
+         <structure name="names">
+          <collection field="names" usage="optional" create-type="java.util.ArrayList">
+            <structure map-as="nodename" name="nodename"/>
+          </collection>
+        </structure>
+      <structure name="applications">
+          <collection field="applications" usage="optional" create-type="java.util.ArrayList">
+            <structure map-as="application" name="application"/>
+          </collection>
+      </structure>
+      <collection field="serverConnections" usage="optional" create-type="java.util.ArrayList">
+        <structure map-as="serverConnection" name="serverConnection"/>
+      </collection>
+    </mapping>
+
+  <mapping abstract="true" type-name="nodename" class="eu.wisebed.wiseconfig.model.Nodename">
+    <value style="element" name="name" field="name" usage="optional"/>
+    <value style="element" name="description" field="description" usage="optional"/>
+  </mapping>
+
+   <mapping class="eu.wisebed.wiseconfig.model.Nodename" name="nodename">
+      <structure map-as="nodename"/>
+   </mapping>
+
+
+  <mapping abstract="true" type-name="application" class="eu.wisebed.wiseconfig.model.Application">
+    <value style="element" name="factoryclass" field="factoryclass" usage="optional"/>
+    <value style="element" name="name" field="name" usage="optional"/>
+    <structure map-as="portalApp" field="portal" usage="optional" name="portalapp"/>
+    <structure map-as="wsnDevice" field="wsnDev" usage="optional" name="wsnDevice"/>
+  </mapping>
+
+  <mapping class="eu.wisebed.wiseconfig.model.Application" name="application">
+    <structure map-as="application"/>
+  </mapping>
+
+
+
+  <mapping abstract="true" type-name="portalApp" class="eu.wisebed.wiseconfig.model.PortalApp">
+    <structure map-as="webService" field="webSERVICE" usage="optional" name="webservice"/>
+  </mapping>
+
+
+  <mapping class="eu.wisebed.wiseconfig.model.PortalApp" name="portalApp">
+    <structure map-as="portalApp"/>
+  </mapping>
+
+
+  <mapping abstract="true" type-name="protobufInterface" class="eu.wisebed.wiseconfig.model.protobufInterface">
+    <value style="element" name="port" field="port" usage="optional"/>
+    <value style="element" name="ip" field="ip" usage="optional"/>
+  </mapping>
+
+  <mapping class="eu.wisebed.wiseconfig.model.protobufInterface" name="protobufinterface">
+    <structure map-as="protobufInterface"/>
+  </mapping>
+
+  <mapping abstract="true" type-name="serverConnection" class="eu.wisebed.wiseconfig.model.ServerConnection">
+    <value style="element" name="address" field="address" usage="optional"/>
+    <value style="element" name="type" field="type" usage="optional"/>
+  </mapping>
+
+  <mapping class="eu.wisebed.wiseconfig.model.ServerConnection" name="serverconnection">
+    <structure map-as="serverConnection"/>
+  </mapping>
+
+  <mapping abstract="true" type-name="webService" class="eu.wisebed.wiseconfig.model.webService">
+    <value style="element" name="urnprefix" field="urnPrefix" usage="optional"/>
+    <value style="element" name="sessionmanagementendpointurl" field="sessionManagementEndpointUrl" usage="optional"/>
+    <value style="element" name="wsninstancebaseurl" field="wsnInstancebaseUrl" usage="optional"/>
+    <value style="element" name="reservationendpointurl" field="reservationEndpointUrl" usage="optional"/>
+    <value style="element" name="snaaendpointurl" field="snaaEndpointUrl" usage="optional"/>
+    <value style="element" name="wisemlfilename" field="wisemlFilename" usage="optional"/>
+    <structure map-as="protobufInterface" field="protobufINT" usage="optional" name="protobufinterface"/>
+  </mapping>
+
+  <mapping class="eu.wisebed.wiseconfig.model.webService" name="webservice">
+    <structure map-as="webService"/>
+  </mapping>
+
+  <mapping abstract="true" type-name="wsnDevice" class="eu.wisebed.wiseconfig.model.wsnDevice">
+    <value style="element" name="urn" field="urn" usage="optional"/>
+    <value style="element" name="type" field="type" usage="optional"/>
+    <value style="element" name="serialinterface" field="serialinterface" usage="optional"/>
+  </mapping>
+
+  <mapping class="eu.wisebed.wiseconfig.model.wsnDevice" name="wsndevice">
+    <structure map-as="wsnDevice"/>
+  </mapping>
+</binding>
