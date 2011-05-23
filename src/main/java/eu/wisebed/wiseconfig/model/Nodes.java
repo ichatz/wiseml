@@ -49,4 +49,16 @@ public class Nodes {
     public void setServerConnections(List<ServerConnection> serverConnections) {
         this.serverConnections = serverConnections;
     }
+
+    public void addNodename(Nodename nodename){
+        this.names.add(nodename);
+    }
+
+    public void addApplication(Application app){
+        this.applications.add(app);
+    }
+
+    public void addServerConnection(ServerConnection con){
+        this.serverConnections.add(con);
+    }
 }

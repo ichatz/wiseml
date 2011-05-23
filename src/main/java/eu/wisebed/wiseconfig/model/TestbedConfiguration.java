@@ -31,8 +31,15 @@ public class TestbedConfiguration {
     public void setNodes(List<Nodes> nds) {
         this.nodes = nds;
     }
+    /**
+     * this method add a node in the configuration
+     *
+     * @param Nodes nd of the testbed configuration
+     */
 
-
+    public void addNodes(Nodes nd ){
+        this.nodes.add(nd);
+    }
 
 
 
