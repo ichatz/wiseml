@@ -11,7 +11,7 @@
             <structure map-as="data" field="data" usage="optional"/>
         </structure>
         <structure field="trace" usage="optional" name="trace">
-            <value style="attribute" name="id" field="id"/>
+            <value style="attribute" name="id" field="id" usage="optional"/>
             <collection field="timestamp" usage="optional" create-type="java.util.ArrayList">
                 <structure map-as="timestamp" name="timestamp"/>
             </collection>

@@ -34,7 +34,7 @@ public class TestbedConfiguration {
     /**
      * this method add a node in the configuration
      *
-     * @param Nodes nd of the testbed configuration
+     * @param nd of the testbed configuration
      */
 
     public void addNodes(Nodes nd ){
