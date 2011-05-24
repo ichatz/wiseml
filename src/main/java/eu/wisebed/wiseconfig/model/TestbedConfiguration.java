@@ -1,5 +1,6 @@
 package eu.wisebed.wiseconfig.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,6 +39,9 @@ public class TestbedConfiguration {
      */
 
     public void addNodes(Nodes nd ){
+        if(this.nodes==null){
+            this.nodes=new ArrayList<Nodes>();
+        }
         this.nodes.add(nd);
     }
 
