@@ -19,7 +19,7 @@
     </mapping>
 
     <mapping abstract="true" type-name="nodes" class="eu.wisebed.wiseconfig.model.Nodes">
-      <value style="element" name="ID" field="ID" usage="optional"/>
+      <value style="attribute" name="ID" field="ID" usage="optional"/>
          <structure name="names">
           <collection field="names" usage="optional" create-type="java.util.ArrayList">
             <structure map-as="nodename" name="nodename"/>
@@ -36,8 +36,8 @@
     </mapping>
 
   <mapping abstract="true" type-name="nodename" class="eu.wisebed.wiseconfig.model.Nodename">
-    <value style="element" name="name" field="name" usage="optional"/>
-    <value style="element" name="description" field="description" usage="optional"/>
+    <value style="attribute" name="name" field="name" usage="optional"/>
+    <value style="attribute" name="description" field="description" usage="optional"/>
   </mapping>
 
    <mapping class="eu.wisebed.wiseconfig.model.Nodename" name="nodename">
@@ -46,8 +46,8 @@
 
 
   <mapping abstract="true" type-name="application" class="eu.wisebed.wiseconfig.model.Application">
-    <value style="element" name="factoryclass" field="factoryclass" usage="optional"/>
-    <value style="element" name="name" field="name" usage="optional"/>
+    <value style="attribute" name="factoryclass" field="factoryclass" usage="optional"/>
+    <value style="attribute" name="name" field="name" usage="optional"/>
     <structure map-as="portalApp" field="portal" usage="optional" name="portalapp"/>
     <structure map-as="wsnDevice" field="wsnDev" usage="optional" name="wsnDevice"/>
   </mapping>
