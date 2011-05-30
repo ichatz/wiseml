@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <binding name="binding" package="eu.wisebed.wiseml.model">
-    <namespace uri="http://wisebed.eu/ns/wiseml/1.0" prefix="" default="all"/>
+    <namespace uri="http://wisebed.eu/ns/wiseml/1.0"  default="elements"/>
     <mapping abstract="true" type-name="wiseML" class="eu.wisebed.wiseml.model.WiseML" ordered="false">
         <structure map-as="setup" field="setup" usage="optional" name="setup"/>
         <structure field="scenario" usage="optional" name="scenario">
@@ -60,7 +60,7 @@
     </mapping>
     <mapping abstract="true" type-name="timestamp" class="eu.wisebed.wiseml.model.scenario.Timestamp" usage="optional"
              ordered="false">
-        <value style="attribute" name="value" field="value" usage="optional" ordered="false"/>
+        <value style="attribute" name="value" field="value"  ordered="false"/>
         <structure field="enableNode" usage="optional" name="enableNode" ordered="false">
             <value style="attribute" name="id" field="id" ordered="false"/>
         </structure>
