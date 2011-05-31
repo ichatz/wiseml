@@ -2,17 +2,21 @@ package eu.wisebed.wiseml.test;
 
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
+import eu.wisebed.wiseml.model.scenario.Timestamp;
+import eu.wisebed.wiseml.model.setup.Data;
+import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Setup;
+import eu.wisebed.wiseml.model.trace.Trace;
 import org.jibx.runtime.BindingDirectory;
 import org.jibx.runtime.IBindingFactory;
 import org.jibx.runtime.IMarshallingContext;
 import org.jibx.runtime.JiBXException;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.List;
 
 
 public class LoadWriteWiseML {
@@ -72,15 +76,33 @@ public class LoadWriteWiseML {
     }
 
     public void doAnotherTest() throws FileNotFoundException {
-        String newNetwork = "";
-        File file = new File("trace-citysense.xml");
-        FileInputStream fis = null;
+        FileInputStream fileML = null;
+           try {
+               fileML = new FileInputStream("webdust_short.wiseml");
+           } catch(Exception e){
+               System.err.println(e);
+           }
 
-        fis = new FileInputStream(file);
+           WiseMLController wmlcontroller = new WiseMLController();
+           WiseML wml = wmlcontroller.loadWiseMLFromFile(fileML);
+          Trace theTrace = wml.getTrace();
+          List<Timestamp> timestamps = theTrace.getTimestamp();
+          System.out.println("Timestamp Size:"+timestamps.size());
 
-        WiseMLController cnt = new WiseMLController();
-        WiseML stp = cnt.loadWiseMLFromFile(fis);
-        System.out.println(stp.getTrace().getTimestamp().size());
+          for(Timestamp timestamp : timestamps)
+          {
+              System.out.println("Timstamp:"+timestamp.getValue());
+               List<Node> nodes = timestamp.getNode();
+               System.out.println("Size:"+nodes.size());
+               for(Object msg : nodes.toArray()){
+                   Node msgg= (Node) msg;
+                   System.out.println("NodeID:"+msgg.getId());
+                   for (int i=0;i<msgg.getData().size();i++)
+                       System.out.println("\t"+( (Data) msgg.getData().get(i)).getValue() );
+               }
+
+          }
+
     }
 
     public static void main(String[] args) {

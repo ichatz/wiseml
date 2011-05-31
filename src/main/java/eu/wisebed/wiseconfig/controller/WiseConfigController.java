@@ -1,11 +1,9 @@
 package eu.wisebed.wiseconfig.controller;
 
 import eu.wisebed.wiseconfig.model.TestbedConfiguration;
-import org.jibx.runtime.BindingDirectory;
-import org.jibx.runtime.IBindingFactory;
-import org.jibx.runtime.IUnmarshallingContext;
-import org.jibx.runtime.JiBXException;
+import org.jibx.runtime.*;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
 public class WiseConfigController {
@@ -29,6 +27,31 @@ public class WiseConfigController {
             System.exit(1);
         }
         return config;
+    }
+
+
+
+    /**
+     * this method loads a TestbedConfiguration from file.
+     *
+     * @param config
+     * @return wiseml
+     */
+    public String getConfigurationFile(TestbedConfiguration config) {
+         final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        try {
+            // unmarshal wiseml information from file...
+            IBindingFactory bfact = BindingDirectory.getFactory(TestbedConfiguration.class);
+            IMarshallingContext mctx = bfact.createMarshallingContext();
+            mctx.setIndent(5);
+            mctx.setOutput(buffer, null);
+            mctx.marshalDocument(config);
+
+        } catch (JiBXException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+        return buffer.toString();
     }
 
 }

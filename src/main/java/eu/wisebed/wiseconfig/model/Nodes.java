@@ -1,5 +1,6 @@
 package eu.wisebed.wiseconfig.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,5 +49,26 @@ public class Nodes {
 
     public void setServerConnections(List<ServerConnection> serverConnections) {
         this.serverConnections = serverConnections;
+    }
+
+    public void addNodename(Nodename nodename){
+        if (this.names==null) {
+            this.names = new ArrayList<Nodename>();
+        }
+        this.names.add(nodename);
+    }
+
+    public void addApplication(Application app){
+        if (this.applications==null) {
+            this.applications = new ArrayList<Application>();
+        }
+        this.applications.add(app);
+    }
+
+    public void addServerConnection(ServerConnection con){
+        if (this.serverConnections==null) {
+            this.serverConnections = new ArrayList<ServerConnection>();
+        }
+        this.serverConnections.add(con);
     }
 }
