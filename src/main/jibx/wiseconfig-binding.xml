@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <binding name="binding" package="eu.wisebed.wiseconfig.model">
-  <namespace uri="" default="elements"/>
+
+
+
   <mapping abstract="true" type-name="tbed" class="eu.wisebed.wiseconfig.model.TestbedConfiguration">
     <collection field="nodes" usage="optional" create-type="java.util.ArrayList">
       <structure map-as="nodes" name="nodes"/>
@@ -10,6 +12,7 @@
 
 
     <mapping class="eu.wisebed.wiseconfig.model.TestbedConfiguration" name="testbed">
+     <namespace uri="http://itm.uniluebeck.de/tr/xml" prefix="ns2"  default="elements"/>
       <structure map-as="tbed"/>
     </mapping>
 
@@ -50,7 +53,9 @@
   <mapping abstract="true" type-name="application" class="eu.wisebed.wiseconfig.model.Application">
     <value style="attribute" name="factoryclass" field="factoryclass" usage="optional"/>
     <value style="attribute" name="name" field="name" usage="optional"/>
+
     <structure map-as="portalApp" field="portal" usage="optional" name="portalapp"/>
+
     <structure map-as="wsnDevice" field="wsnDev" usage="optional" name="wsnDevice"/>
   </mapping>
 
@@ -61,11 +66,12 @@
 
 
   <mapping abstract="true" type-name="portalApp" class="eu.wisebed.wiseconfig.model.PortalApp">
-    <structure map-as="webService" field="webSERVICE" usage="optional" name="webservice"/>
+      <structure map-as="webService" field="webSERVICE" usage="optional" name="webservice"/>
   </mapping>
 
 
   <mapping class="eu.wisebed.wiseconfig.model.PortalApp" name="portalApp">
+    <namespace uri="http://itm.uniluebeck.de/tr/runtime/portalapp/xml" prefix="ns3"  default="all"/>
     <structure map-as="portalApp"/>
   </mapping>
 
@@ -109,6 +115,7 @@
   </mapping>
 
   <mapping class="eu.wisebed.wiseconfig.model.wsnDevice" name="wsndevice">
+    <namespace uri="http://itm.uniluebeck.de/tr/runtime/wsnapp/xml" prefix="ns4"  default="all"/>
     <structure map-as="wsnDevice"/>
   </mapping>
 </binding>
