@@ -23,7 +23,7 @@ public class WiseMLController {
     /**
      * This method loads a wiseml from file.
      * 
-     * @param file
+     * @param data
      * @return wiseml
      * @throws JiBXException 
      */

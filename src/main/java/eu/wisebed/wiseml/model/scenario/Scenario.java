@@ -2,6 +2,7 @@ package eu.wisebed.wiseml.model.scenario;
 
 import eu.wisebed.wiseml.model.setup.Data;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -26,6 +27,27 @@ public class Scenario {
      * node data.
      */
     private Data data;
+
+    /**
+     * elements of stream.
+     */
+    private List children;
+
+    /**
+     * construct a new list.
+     * @return a new list instance.
+     */
+    private static List listFactory() {
+        return new LinkedList();
+    }
+
+    /**
+     * returns a LinkedList of objects nested in the scenario section.
+     * @return
+     */
+    public List getChildren() {
+        return children;
+    }
 
     /**
      * this method returns scenario id.
