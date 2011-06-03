@@ -1,19 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <binding name="binding" package="eu.wisebed.wiseml.model">
-    <namespace uri="http://wisebed.eu/ns/wiseml/1.0"  default="elements"/>
+    <namespace uri="http://wisebed.eu/ns/wiseml/1.0" default="elements"/>
     <mapping abstract="true" type-name="wiseML" class="eu.wisebed.wiseml.model.WiseML" ordered="false">
         <structure map-as="setup" field="setup" usage="optional" name="setup"/>
         <structure field="scenario" usage="optional" name="scenario">
             <value style="attribute" name="id" field="id"/>
-            <collection field="timestamp" usage="optional" create-type="java.util.ArrayList">
+<!--            <collection field="timestamp" usage="optional" create-type="java.util.ArrayList">
                 <structure map-as="timestamp" name="timestamp"/>
             </collection>
+            -->
             <structure map-as="data" field="data" usage="optional"/>
+            <collection field="children" usage="optional" factory="eu.wisebed.wiseml.model.trace.Trace.listFactory" allow-repeats="true" ordered="false">
+                <structure type="eu.wisebed.wiseml.model.scenario.Timestamp" usage="optional" name="timestamp" ordered="false" allow-repeats="true" >
+                    <value name="value" field="value" ordered="false" usage="optional"/>
+                </structure>
+                <structure map-as="node" name="node" usage="optional" ordered="false" allow-repeats="true" />
+                <structure type="eu.wisebed.wiseml.model.scenario.EnableNode" usage="optional" name="enableNode" ordered="false" allow-repeats="true">
+                    <value style="attribute" name="id" field="id" ordered="false"/>
+                </structure>
+                <structure type="eu.wisebed.wiseml.model.scenario.DisableNode" usage="optional" name="disableNode" ordered="false" allow-repeats="true">
+                    <value style="attribute" name="id" field="id" usage="optional" ordered="false"/>
+                </structure>
+                <structure map-as="link" name="link" usage="optional" ordered="false" allow-repeats="true" />
+                <structure type="eu.wisebed.wiseml.model.scenario.EnableLink" usage="optional" name="enableLink" ordered="false" allow-repeats="true" >
+                    <value style="attribute" name="source" field="source" usage="optional" ordered="false"/>
+                    <value style="attribute" name="target" field="target" usage="optional" ordered="false"/>
+                </structure>
+                <structure type="eu.wisebed.wiseml.model.scenario.DisableLink" usage="optional" name="disableLink" ordered="false">
+                    <value style="attribute" name="source" field="source" usage="optional" ordered="false"/>
+                    <value style="attribute" name="target" field="target" usage="optional" ordered="false"/>
+                </structure>
+                <structure map-as="message" name="message" usage="optional" ordered="false" allow-repeats="true"/>
+            </collection>
         </structure>
         <structure field="trace" usage="optional" name="trace">
             <value style="attribute" name="id" field="id" usage="optional"/>
-            <collection field="timestamp" usage="optional" create-type="java.util.ArrayList">
+<!--            <collection field="timestamp" usage="optional" create-type="java.util.ArrayList">
                 <structure map-as="timestamp" name="timestamp"/>
+            </collection>
+            -->
+            <collection field="children" usage="optional" factory="eu.wisebed.wiseml.model.trace.Trace.listFactory" allow-repeats="true" ordered="false">
+                <structure type="eu.wisebed.wiseml.model.scenario.Timestamp" usage="optional" name="timestamp" ordered="false" allow-repeats="true" >
+                    <value name="value" field="value" ordered="false" usage="optional"/>
+                </structure>
+                <structure map-as="node" name="node" usage="optional" ordered="false" allow-repeats="true" />
+                <structure type="eu.wisebed.wiseml.model.scenario.EnableNode" usage="optional" name="enableNode" ordered="false" allow-repeats="true">
+                    <value style="attribute" name="id" field="id" ordered="false"/>
+                </structure>
+                <structure type="eu.wisebed.wiseml.model.scenario.DisableNode" usage="optional" name="disableNode" ordered="false" allow-repeats="true">
+                    <value style="attribute" name="id" field="id" usage="optional" ordered="false"/>
+                </structure>
+                <structure map-as="link" name="link" usage="optional" ordered="false" allow-repeats="true" />
+                <structure type="eu.wisebed.wiseml.model.scenario.EnableLink" usage="optional" name="enableLink" ordered="false" allow-repeats="true" >
+                    <value style="attribute" name="source" field="source" usage="optional" ordered="false"/>
+                    <value style="attribute" name="target" field="target" usage="optional" ordered="false"/>
+                </structure>
+                <structure type="eu.wisebed.wiseml.model.scenario.DisableLink" usage="optional" name="disableLink" ordered="false">
+                    <value style="attribute" name="source" field="source" usage="optional" ordered="false"/>
+                    <value style="attribute" name="target" field="target" usage="optional" ordered="false"/>
+                </structure>
+                <structure map-as="message" name="message" usage="optional" ordered="false" allow-repeats="true"/>
             </collection>
         </structure>
     </mapping>
@@ -44,7 +90,8 @@
         <value style="element" name="duration" field="duration" usage="optional" ordered="false"/>
         <value style="element" name="unit" field="unit" usage="optional" ordered="false"/>
     </mapping>
-    <mapping abstract="true" type-name="origin" class="eu.wisebed.wiseml.model.setup.Origin" usage="optional" ordered="false">
+    <mapping abstract="true" type-name="origin" class="eu.wisebed.wiseml.model.setup.Origin" usage="optional"
+             ordered="false">
         <value style="element" name="x" field="x" usage="optional" ordered="false"/>
         <value style="element" name="y" field="y" usage="optional" ordered="false"/>
         <value style="element" name="z" field="z" usage="optional" ordered="false"/>
@@ -58,9 +105,10 @@
         <value style="element" name="unit" field="unit" usage="optional" ordered="false"/>
         <value style="element" name="default" field="defaultvalue" usage="optional" ordered="false"/>
     </mapping>
-    <mapping abstract="true" type-name="timestamp" class="eu.wisebed.wiseml.model.scenario.Timestamp" usage="optional"
+<!--    <mapping abstract="true" type-name="timestamp" class="eu.wisebed.wiseml.model.scenario.Timestamp" usage="optional"
              ordered="false">
-        <value style="attribute" name="value" field="value"  ordered="false"/>
+        <value style="attribute" name="value" field="value" ordered="false" usage="optional"/>
+        <value name="value" field="value" ordered="false" usage="optional"/>
         <structure field="enableNode" usage="optional" name="enableNode" ordered="false">
             <value style="attribute" name="id" field="id" ordered="false"/>
         </structure>
@@ -85,7 +133,9 @@
             <structure map-as="link" name="link"/>
         </collection>
     </mapping>
-    <mapping abstract="true" type-name="link" class="eu.wisebed.wiseml.model.setup.Link" usage="optional" ordered="false">
+    -->
+    <mapping abstract="true" type-name="link" class="eu.wisebed.wiseml.model.setup.Link" usage="optional"
+             ordered="false">
         <value style="element" name="source" field="source" usage="optional" ordered="false"/>
         <value style="element" name="target" field="target" usage="optional" ordered="false"/>
         <value style="element" name="encrypted" field="encrypted" ordered="false" usage="optional"/>
@@ -101,11 +151,13 @@
             <structure map-as="data" name="data" ordered="false"/>
         </collection>
     </mapping>
-    <mapping abstract="true" type-name="defaults" class="eu.wisebed.wiseml.model.setup.Defaults" usage="optional" ordered="false">
+    <mapping abstract="true" type-name="defaults" class="eu.wisebed.wiseml.model.setup.Defaults" usage="optional"
+             ordered="false">
         <structure map-as="node" field="node" usage="optional" name="node" ordered="false"/>
         <structure map-as="link" field="link" usage="optional" name="link" ordered="false"/>
     </mapping>
-    <mapping abstract="true" type-name="node" class="eu.wisebed.wiseml.model.setup.Node" usage="optional" ordered="false">
+    <mapping abstract="true" type-name="node" class="eu.wisebed.wiseml.model.setup.Node" usage="optional"
+             ordered="false">
         <value style="attribute" name="id" field="id" usage="optional" ordered="false"/>
         <structure field="position" usage="optional" name="position" ordered="false">
             <value style="element" name="x" field="x" usage="optional" ordered="false"/>
@@ -126,12 +178,14 @@
         </collection>
         <structure map-as="message" field="message" usage="optional" name="message" ordered="false"/>
     </mapping>
-    <mapping abstract="true" type-name="data" class="eu.wisebed.wiseml.model.setup.Data" usage="optional" ordered="false">
+    <mapping abstract="true" type-name="data" class="eu.wisebed.wiseml.model.setup.Data" usage="optional"
+             ordered="false">
         <value style="attribute" name="key" field="key" usage="optional" ordered="false"/>
         <value style="element" name="value" field="value" usage="optional" ordered="false"/>
         <structure map-as="message" field="message" usage="optional" name="message" ordered="false"/>
     </mapping>
-    <mapping abstract="true" type-name="message" class="eu.wisebed.wiseml.model.trace.Message" usage="optional" ordered="false">
+    <mapping abstract="true" type-name="message" class="eu.wisebed.wiseml.model.trace.Message" usage="optional"
+             ordered="false">
         <value style="attribute" name="timestamp" field="timestamp" usage="optional" ordered="false"/>
         <value style="element" name="id" field="id" usage="optional" ordered="false"/>
         <value style="element" name="data" field="data" usage="optional" ordered="false"/>

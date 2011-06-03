@@ -19,7 +19,7 @@ public class rdfTest {
            return;
 
         }
-        rdfController wiseClass;
+        //rdfController wiseClass;
         String dumpfilename = null;
         String dumpString = null;
         FileInputStream fileML = null;
@@ -36,9 +36,9 @@ public class rdfTest {
         WiseML wml = wmlcontroller.loadWiseMLFromFile(fileML);
 
 
-        wiseClass = new rdfController("http://www.wisebed.eu/wiseml2rdf/", wml);
-        wiseClass.createModel();
-        dumpString = wiseClass.returnAsSTring();
+        //wiseClass = new rdfController("http://www.wisebed.eu/wiseml2rdf/", wml);
+        //wiseClass.createModel();
+        //dumpString = wiseClass.returnAsSTring();
         System.out.println(dumpString);
      }
 }

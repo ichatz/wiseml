@@ -2,8 +2,12 @@ package eu.wisebed.wiseml.model.trace;
 
 import eu.wisebed.wiseml.model.scenario.Timestamp;
 
+import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Represents a trace element with tree of timestamps.
+ */
 public class Trace {
 
     /**
@@ -16,6 +20,18 @@ public class Trace {
      */
     private List<Timestamp> timestamp;
 
+    /**
+     * elements of stream.
+     */
+    private List children;
+
+    /**
+     * construct a new list.
+     * @return a new list instance.
+     */
+    private static List listFactory() {
+        return new LinkedList();
+    }
 
     /**
      * this method returns scenario id.
