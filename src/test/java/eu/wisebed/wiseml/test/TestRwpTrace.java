@@ -7,11 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 
 /**
- * Created by IntelliJ IDEA.
- * User: ichatz
- * Date: 6/3/11
- * Time: 3:20 AM
- * To change this template use File | Settings | File Templates.
+ * Test that the trace section is unmarshalled properly.
  */
 public class TestRwpTrace {
 
