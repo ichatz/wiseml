@@ -94,13 +94,13 @@
     <structure map-as="serverconnection"/>
   </mapping>
 
-  <mapping abstract="true" type-name="webService" class="eu.wisebed.wiseconfig.model.webService">
+  <mapping abstract="true" type-name="webService" class="eu.wisebed.wiseconfig.model.webService"  ordered="false">
     <value style="element" name="urnprefix" field="urnPrefix" usage="optional"/>
     <value style="element" name="sessionmanagementendpointurl" field="sessionManagementEndpointUrl" usage="optional"/>
     <value style="element" name="wsninstancebaseurl" field="wsnInstancebaseUrl" usage="optional"/>
     <value style="element" name="reservationendpointurl" field="reservationEndpointUrl" usage="optional"/>
     <value style="element" name="snaaendpointurl" field="snaaEndpointUrl" usage="optional"/>
-    <value style="element" name="wisemlfilename" field="wisemlfilename" usage="optional"/>
+    <value style="element" name="wisemlfilename" field="wisemlfilename"/>
     <structure map-as="protobufInterface" field="protobufINT" usage="optional" name="protobufinterface"/>
   </mapping>
 
