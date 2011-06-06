@@ -11,6 +11,7 @@ public class webService {
     private String snaaEndpointUrl;
     private String wisemlFilename;
     private protobufInterface protobufINT;
+    private String wisemlfilename;
 
 
     public String getUrnPrefix() {
@@ -67,5 +68,13 @@ public class webService {
 
     public void setProtobufINT(protobufInterface protobufINT) {
         this.protobufINT = protobufINT;
+    }
+
+    public String getWisemlfilename() {
+        return wisemlfilename;
+    }
+
+    public void setWisemlfilename(String wisemlfilename) {
+        this.wisemlfilename = wisemlfilename;
     }
 }
