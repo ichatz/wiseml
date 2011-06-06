@@ -100,7 +100,7 @@
     <value style="element" name="wsninstancebaseurl" field="wsnInstancebaseUrl" usage="optional"/>
     <value style="element" name="reservationendpointurl" field="reservationEndpointUrl" usage="optional"/>
     <value style="element" name="snaaendpointurl" field="snaaEndpointUrl" usage="optional"/>
-    <value style="element" name="wisemlfilename" field="wisemlfilename"/>
+    <value style="element" name="wisemlfilename" field="wisemlfilename" usage="optional"/>
     <structure map-as="protobufInterface" field="protobufINT" usage="optional" name="protobufinterface"/>
   </mapping>
 
