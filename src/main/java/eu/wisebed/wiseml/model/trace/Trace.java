@@ -16,9 +16,39 @@ public class Trace {
     private int id;
 
     /**
+     * timestamp for object scenario.
+     */
+    private List<Timestamp> timestamp;
+
+    /**
      * elements of stream.
      */
     private List children;
+
+    /**
+     * construct a new list.
+     * @return a new list instance.
+     */
+    private static List listFactory() {
+        return new LinkedList();
+    }
+
+    /**
+     * returns a LinkedList of objects nested in the trace section.
+     * @return
+     */
+    public List getChildren() {
+        return children;
+
+    }
+
+    /**
+         * sets a LinkedList of objects nested in the trace section.
+         * @return
+         */
+        public void setChildren(List l) {
+            children=l;
+        }
 
     /**
      * this method returns scenario id.
@@ -39,27 +69,21 @@ public class Trace {
     }
 
     /**
-     * construct a new list.
-     * @return a new list instance.
+     * this method returns a list of timestamp.
+     *
+     * @return list of timestamp.
      */
-    private static List listFactory() {
-        return new LinkedList();
+    public List<Timestamp> getTimestamp() {
+        return timestamp;
     }
 
     /**
-     * returns a LinkedList of objects nested in the trace section.
-     * @return
+     * this method sets a list of timestamp.
+     *
+     * @param timestamp
      */
-    public List getChildren() {
-        return children;
-    }
-
-    /**
-     * sets the list for the objects of the trace.
-     * @param children the new list instance.
-     */
-    public void setChildren(List children) {
-        this.children = children;
+    public void setTimestamp(List<Timestamp> timestamp) {
+        this.timestamp = timestamp;
     }
 
 }
