@@ -3,6 +3,9 @@ WiseML
 The repository contains the following packages:
 
  * WiseML parser based on [JibX](http://www.ibm.com/developerworks/library/x-databdopt2/) bindings.
+ * WiseConfig parser based on [JibX](http://www.ibm.com/developerworks/library/x-databdopt2/) bindings.
+ * WiseDB relational persistence based on [Hibernate](http://www.hibernate.org/) bindings.
+ * WiseRDF mappings based on [Jena](http://jena.sourceforge.net/) framework.
 
 
 Related links:
@@ -13,9 +16,8 @@ Related links:
 What do I need?
 ---------------
 
-  * [JibX](http://www.ibm.com/developerworks/library/x-databdopt2/) is one of the fastest XML object mapping frameworks out there
-(check out this performance test). Furthermore, it is very
-flexible in binding XML structures to objects.
+  * [JibX](http://www.ibm.com/developerworks/library/x-databdopt2/) is one of the fastest XML object mapping frameworks out there (check out this performance test). Furthermore, it is very flexible in binding XML structures to objects.
+  * [Hibernate](http://www.hibernate.org/) is probably the most well establish relational persistence framework for Java. Hibernate facilitates the storage and retrieval of Java domain objects via Object/Relational Mapping (ORM).
 
 
 Latest stable version
