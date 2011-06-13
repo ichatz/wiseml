@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="webdust.model.logic.DeviceNetwork" table="DEVICE_NETWORK">
+
+        <id name="ID" column="DEVICE_NETWORK_ID">
+            <generator class="native"/>
+        </id>
+        <property name="Name" not-null="true"/>
+        <property name="Description"/>
+        <property name="IsProgrammable" column="IS_PROGRAMMABLE" type="boolean"/>
+
+        <many-to-one name="EnclosingCoordinateTopLeft"
+                     column="ENCLOSING_COORDINATE_TOP_LEFT"
+                     class="webdust.model.geo.Coordinate"
+                     lazy="proxy"
+                     cascade="save-update,delete"
+                     not-null="true"/>
+
+        <many-to-one name="EnclosingCoordinateBottomRight"
+                     column="ENCLOSING_COORDINATE_BOTTOM_RIGHT"
+                     class="webdust.model.geo.Coordinate"
+                     lazy="proxy"
+                     cascade="save-update,delete"
+                     not-null="true"/>
+
+        <many-to-one name="Peer"
+                     column="PEER_ID"
+                     class="webdust.model.net.Peer"
+                     lazy="proxy"
+                     cascade="save-update,delete"
+                     not-null="true"/>
+
+        <bag name="devices" inverse="true">
+            <key column="DEVICE_NETWORK"/>
+            <one-to-many class="webdust.model.logic.Device"/>
+        </bag>
+
+        <set name="queries" inverse="true">
+            <key column="DEVICE_NETWORK"/>
+            <one-to-many class="webdust.model.queries.DeviceQuery"/>
+        </set>
+
+    </class>
+
+</hibernate-mapping>
