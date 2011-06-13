@@ -16,11 +16,6 @@ public class Testbed {
     private String name;
 
     /**
-     * URN prefix.
-     */
-    private String urnPrefix;
-
-    /**
      * Description of the testbed.
      */
     private String description;
@@ -29,6 +24,11 @@ public class Testbed {
      * Testbed url.
      */
     private String url;
+
+    /**
+     * URN prefix.
+     */
+    private String urnPrefix;
 
     /**
      * URL for SNAA endpoint.
@@ -48,7 +48,7 @@ public class Testbed {
     /**
      * If the testbed is federated.
      */
-    private boolean isFederated;
+    private boolean federated;
 
     /**
      * Get the Identity of the testbed.
@@ -194,8 +194,8 @@ public class Testbed {
      * Get if the testbed is federated.
      * @return true if the testbed is federated.
      */
-    public boolean isFederated() {
-        return isFederated;
+    public boolean getFederated() {
+        return federated;
     }
 
     /**
@@ -203,7 +203,7 @@ public class Testbed {
      * @param value true if the testbed is federated.
      */
     public void setFederated(final boolean value) {
-        isFederated = value;
+        federated = value;
     }
 
 }

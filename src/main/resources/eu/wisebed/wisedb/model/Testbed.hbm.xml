@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="eu.wisebed.wisedb.model.Testbed" table="TESTBEDS">
+
+        <id name="id" column="ID">
+            <generator class="native"/>
+        </id>
+        <property name="name" not-null="true"/>
+        <property name="description"/>
+        <property name="url"/>
+        <property name="urnPrefix"/>
+        <property name="federated" column="FEDERATED" type="boolean"/>
+        <property name="snaaUrl"/>
+        <property name="rsUrl"/>
+        <property name="sessionUrl"/>
+
+    </class>
+
+</hibernate-mapping>
