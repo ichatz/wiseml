@@ -1,6 +1,11 @@
 package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.model.Testbed;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
 
@@ -67,5 +72,20 @@ public class TestbedController extends AbstractController<Testbed> {
         return super.list(new Testbed());
     }
 
+    /**
+     * List al the Testbeds from the database that corresponds to the input
+     * parameters.
+     *
+     * @param urnPrefix the Urn prefix of the Testbed object.
+     * @return an Entity object.
+     */
+    @SuppressWarnings("unchecked")
+    public List<Testbed> listByUrnPrefix(final String urnPrefix) {
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(Testbed.class);
+        criteria.add(Restrictions.like("urnPrefix", urnPrefix, MatchMode.START));
+        criteria.addOrder(Order.asc("urnPrefix"));
+        return criteria.list();
+    }
 
 }
