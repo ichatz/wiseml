@@ -31,6 +31,8 @@ The latest stable version is available from [Hudson](http://ru1.cti.gr/hudson/jo
 
   * [wiseml-1.1-SNAPSHOT.jar](http://ru1.cti.gr/hudson/job/wiseml/lastSuccessfulBuild/artifact/target/wiseml-1.1-SNAPSHOT.jar)
 
+(testing the SCM polling mechanism of Hudson)
+
 Simple execution:
 ======
 mvn clean
