@@ -25,7 +25,7 @@
 			</application>
 		</applications>
 	</nodes>
-	<ns2:nodes id="blanco.cti.gr">
+	<nodes id="gold">
 		<names>
 			<nodename name="urn:wisebed:ctitestbed:0x6699"/>
 			<nodename name="urn:wisebed:ctitestbed:0x1cd0"/>
@@ -88,7 +88,7 @@
 				</ns4:wsnDevice>
 			</application>
 		</applications>
-	</ns2:nodes>
+	<nodes>
 	<nodes id="alix-8">
 		<names>
 			<nodename name="urn:wisebed:ctitestbed:0x0498"/>

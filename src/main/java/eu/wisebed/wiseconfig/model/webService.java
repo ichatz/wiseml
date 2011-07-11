@@ -9,8 +9,9 @@ public class webService {
     private String wsnInstancebaseUrl;
     private String reservationEndpointUrl;
     private String snaaEndpointUrl;
-    private String wisemlFilename;
+    private String wisemlfilename;
     private protobufInterface protobufINT;
+
 
 
     public String getUrnPrefix() {
@@ -53,19 +54,19 @@ public class webService {
         this.snaaEndpointUrl = snaaEndpointUrl;
     }
 
-    public String getWisemlFilename() {
-        return wisemlFilename;
-    }
-
-    public void setWisemlFilename(String wisemlFilename) {
-        this.wisemlFilename = wisemlFilename;
-    }
-
     public protobufInterface getProtobufINT() {
         return protobufINT;
     }
 
     public void setProtobufINT(protobufInterface protobufINT) {
         this.protobufINT = protobufINT;
+    }
+
+    public String getWisemlfilename() {
+        return wisemlfilename;
+    }
+
+    public void setWisemlfilename(String wisemlfilename) {
+        this.wisemlfilename = wisemlfilename;
     }
 }

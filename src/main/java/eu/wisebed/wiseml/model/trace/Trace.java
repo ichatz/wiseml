@@ -39,7 +39,16 @@ public class Trace {
      */
     public List getChildren() {
         return children;
+
     }
+
+    /**
+         * sets a LinkedList of objects nested in the trace section.
+         * @return
+         */
+        public void setChildren(List l) {
+            children=l;
+        }
 
     /**
      * this method returns scenario id.
