@@ -136,8 +136,8 @@
     -->
     <mapping abstract="true" type-name="link" class="eu.wisebed.wiseml.model.setup.Link" usage="optional"
              ordered="false">
-        <value style="element" name="source" field="source" usage="optional" ordered="false"/>
-        <value style="element" name="target" field="target" usage="optional" ordered="false"/>
+        <value style="attribute" name="source" field="source" usage="optional" ordered="false"/>
+        <value style="attribute" name="target" field="target" usage="optional" ordered="false"/>
         <value style="element" name="encrypted" field="encrypted" ordered="false" usage="optional"/>
         <value style="element" name="virtual" field="virtual" ordered="false" usage="optional"/>
         <collection field="capability" usage="optional" create-type="java.util.ArrayList" ordered="false">

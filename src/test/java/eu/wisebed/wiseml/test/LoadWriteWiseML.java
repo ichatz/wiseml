@@ -1,9 +1,11 @@
 package eu.wisebed.wiseml.test;
 
+import com.hp.hpl.jena.sparql.syntax.ElementService;
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
 import eu.wisebed.wiseml.model.scenario.Timestamp;
 import eu.wisebed.wiseml.model.setup.Data;
+import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Setup;
 import eu.wisebed.wiseml.model.trace.Trace;
@@ -34,7 +36,7 @@ public class LoadWriteWiseML {
 
             IMarshallingContext mctx = bfact.createMarshallingContext();
             mctx.setIndent(5);
-            FileOutputStream output = new FileOutputStream("temp-setup.xml");
+            FileOutputStream output = new FileOutputStream("telosB_short.wiseml");
             mctx.setOutput(output, null);
             mctx.marshalDocument(wiseml.getSetup());
 
@@ -78,7 +80,7 @@ public class LoadWriteWiseML {
     public void doAnotherTest() throws FileNotFoundException {
         FileInputStream fileML = null;
            try {
-               fileML = new FileInputStream("webdust_short.wiseml");
+               fileML = new FileInputStream("C:\\wiseml\\telosB_short.wiseml");
            } catch(Exception e){
                System.err.println(e);
            }
@@ -86,20 +88,23 @@ public class LoadWriteWiseML {
            WiseMLController wmlcontroller = new WiseMLController();
            WiseML wml = wmlcontroller.loadWiseMLFromFile(fileML);
           Trace theTrace = wml.getTrace();
-          List<Timestamp> timestamps = theTrace.getTimestamp();
-          System.out.println("Timestamp Size:"+timestamps.size());
+          List traceItems = theTrace.getChildren();
 
-          for(Timestamp timestamp : timestamps)
+          System.out.println("Timestamp Size:"+traceItems.size());
+
+          for(Object item : traceItems)
           {
-              System.out.println("Timstamp:"+timestamp.getValue());
-               List<Node> nodes = timestamp.getNode();
-               System.out.println("Size:"+nodes.size());
-               for(Object msg : nodes.toArray()){
-                   Node msgg= (Node) msg;
-                   System.out.println("NodeID:"+msgg.getId());
-                   for (int i=0;i<msgg.getData().size();i++)
-                       System.out.println("\t"+( (Data) msgg.getData().get(i)).getValue() );
-               }
+               if (item.getClass().equals(Timestamp.class)){
+                   Timestamp ts=(Timestamp) item;
+                   System.out.println("Timestamp"+ts.getValue());
+                }else if (item.getClass().equals(Node.class)){
+                   Node nd=(Node) item;
+                   System.out.println("Node"+nd.getId());
+              }else if (item.getClass().equals(Link.class)){
+                   Link ln=(Link) item;
+                   System.out.println("Link"+ln.getSource()+"-->"+ln.getTarget());
+            }
+
 
           }
 
