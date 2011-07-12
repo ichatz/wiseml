@@ -9,7 +9,7 @@ public class webService {
     private String wsnInstancebaseUrl;
     private String reservationEndpointUrl;
     private String snaaEndpointUrl;
-    private String wisemlFilename;
+    private String wisemlfilename;
     private protobufInterface protobufINT;
 
 
@@ -63,10 +63,10 @@ public class webService {
     }
 
     public String getWisemlfilename() {
-        return wisemlFilename;
+        return wisemlfilename;
     }
 
     public void setWisemlfilename(String wisemlFilename) {
-        this.wisemlFilename = wisemlFilename;
+        this.wisemlfilename = wisemlFilename;
     }
 }
