@@ -143,14 +143,19 @@
         <collection field="capability" usage="optional" create-type="java.util.ArrayList" ordered="false">
             <structure map-as="capability" name="capability" ordered="false"/>
         </collection>
-        <structure field="rssi" usage="optional" name="rssi" ordered="false">
-            <value style="element" name="datatype" field="datatype" usage="optional" ordered="false"/>
-            <value style="element" name="unit" field="unit" usage="optional" ordered="false"/>
-        </structure>
+        <structure map-as="rssi" field="rssi" usage="optional" name="rssi"/>
         <collection field="data" usage="optional" create-type="java.util.ArrayList" ordered="false">
             <structure map-as="data" name="data" ordered="false"/>
         </collection>
     </mapping>
+
+    <mapping abstract="true" type-name="rssi" class="eu.wisebed.wiseml.model.setup.Rssi" usage="optional"  >
+            <value style="attribute" name="datatype" field="datatype" usage="optional" ordered="false"/>
+            <value style="attribute" name="unit" field="unit" usage="optional" ordered="false"/>
+            <value style="text"  field="value"  ordered="true" />
+    </mapping>
+
+
     <mapping abstract="true" type-name="defaults" class="eu.wisebed.wiseml.model.setup.Defaults" usage="optional"
              ordered="false">
         <structure map-as="node" field="node" usage="optional" name="node" ordered="false"/>

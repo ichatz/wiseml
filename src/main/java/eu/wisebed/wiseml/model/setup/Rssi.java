@@ -18,10 +18,25 @@ public class Rssi {
      */
     private String unit;
 
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
     /**
-     * this method returns the datatype of the rssi.
+     * the unit of the object Rssi.
+     */
+    private String value;
+
+
+     /**
+     * this method returns the value of the rssi.
      *
-     * @return the datatype of the rssi.
+     * @return the value of the rssi.
      */
     public String getDatatype() {
         return datatype;

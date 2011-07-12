@@ -1,10 +1,8 @@
 package eu.wisebed.wiseml.test;
 
-import com.hp.hpl.jena.sparql.syntax.ElementService;
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
 import eu.wisebed.wiseml.model.scenario.Timestamp;
-import eu.wisebed.wiseml.model.setup.Data;
 import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Setup;
@@ -80,7 +78,7 @@ public class LoadWriteWiseML {
     public void doAnotherTest() throws FileNotFoundException {
         FileInputStream fileML = null;
            try {
-               fileML = new FileInputStream("C:\\wiseml\\telosB_short.wiseml");
+               fileML = new FileInputStream("/home/evangelos/workspace/wiseml/src/test/resources/telosB_short.xml");
            } catch(Exception e){
                System.err.println(e);
            }
@@ -103,6 +101,7 @@ public class LoadWriteWiseML {
               }else if (item.getClass().equals(Link.class)){
                    Link ln=(Link) item;
                    System.out.println("Link"+ln.getSource()+"-->"+ln.getTarget());
+                   System.out.println("Link"+ln.getRssi().getValue());
             }
 
 
