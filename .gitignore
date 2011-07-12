@@ -6,6 +6,7 @@ target
 *.log
 *.ipr
 *.iws
+*.idea
 **/.classpath
 **/*.log
 **/target
