@@ -4,6 +4,7 @@ import eu.wisebed.wiseml.model.trace.Message;
 
 import java.util.List;
 import java.util.Set;
+import java.util.HashMap;
 
 /**
  * This is a persistant class for the object node that has the

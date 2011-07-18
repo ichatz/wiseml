@@ -1,6 +1,8 @@
 package eu.wisebed.wiseml.model.trace;
 
 
+import java.io.Serializable;
+
 public class Message {
 
     /**

@@ -2,24 +2,18 @@ package eu.wisebed.wisedb.importer;
 
 import eu.wisebed.testbed.api.wsn.v22.SessionManagement;
 import eu.wisebed.wisedb.controller.CapabilityController;
-import eu.wisebed.wisedb.controller.NodeController;
 import eu.wisebed.wisedb.controller.SetupController;
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
-import eu.wisebed.wiseml.model.scenario.Scenario;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Setup;
 import eu.wisebed.wiseml.model.setup.Node;
-import eu.wisebed.wiseml.model.trace.Trace;
 import org.apache.log4j.Logger;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import java.io.*;
 
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
 
 public class SetupImporter {
     /**
@@ -38,6 +32,16 @@ public class SetupImporter {
     private SessionManagement sessionManagementService;
 
     /**
+     * WiseML source input stream.
+     */
+    private InputStream in;
+
+    /**
+     * WiseML Setup instance.
+     */
+    private Setup setup;
+
+    /**
      * Default constructor.
      */
     public SetupImporter() {
@@ -51,28 +55,42 @@ public class SetupImporter {
         // Connect to remote endpoint
         sessionManagementService = eu.wisebed.testbed.api.wsn.WSNServiceHelper
                 .getSessionManagementService(getEndpointUrl());
+        String wiseMl = getNetwork();
+        LOGGER.debug("Got WiseML from URI: " + endpointUrl);
+
+        // setting input stream
+        in = new ByteArrayInputStream(wiseMl.getBytes());
+        LOGGER.debug("Input stream comming from remote source.");
+    }
+
+    /**
+     * Open local WiseML file.
+     */
+    public void open(final String path){
+
+        try {
+            in = new FileInputStream(path);
+        } catch(Exception e){
+            System.err.println(e);
+            System.exit(-1);
+        }
+        LOGGER.debug("Input stream comming from local file.");
     }
 
     /**
      * Convert the WiseML document describing the records of the testbed into wisedb records.
      */
     public void convert() {
-        // Retrieve records
-        final String wiseml = getNetwork();
-
-        // Convert records into a WiseML document
-        WiseML stp = null;
-        LOGGER.debug("Got WiseML from URI: " + endpointUrl);
-        InputStream is = new ByteArrayInputStream(wiseml.getBytes());
+        WiseML root = null;
         try {
             final WiseMLController cnt = new WiseMLController();
-            stp = cnt.loadWiseMLFromFile(is);
-            LOGGER.debug(stp.getVersion());
+            root = cnt.loadWiseMLFromFile(in);
+            setup = root.getSetup();
+            LOGGER.debug(root.getVersion());
         } catch (Exception ex) {
             LOGGER.fatal("Error while unmarshalling WiseML document", ex);
             return;
         }
-        Setup setup = stp.getSetup();
 
         // insert capabilities
         Iterator<Node> it =setup.getNodes().iterator();

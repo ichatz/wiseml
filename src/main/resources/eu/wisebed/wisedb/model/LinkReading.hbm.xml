@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="eu.wisebed.wisedb.model.LinkReadings" table="LINK_READINGS">
+        <composite-id>
+            <key-property name="linkSource" column="LINK_SOURCE"/>
+            <key-property name="linkTarget" column="LINK_TARGET"/>
+            <key-property name="capId" column="CAP_ID"/>
+            <key-property name="timestamp" column="TIME" type="long"/>
+        </composite-id>
+        <property name="data" />
+    </class>
+
+</hibernate-mapping>

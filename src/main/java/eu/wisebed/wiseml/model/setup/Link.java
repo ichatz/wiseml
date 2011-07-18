@@ -1,5 +1,6 @@
 package eu.wisebed.wiseml.model.setup;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
@@ -9,12 +10,7 @@ import java.util.Set;
  * getter and setter methods for the properties.
  */
 
-public class Link {
-
-    /**
-     * an id number of a link
-     */
-    private int id;
+public class Link implements Serializable{
 
     /**
      * the source of an object Link.
@@ -55,23 +51,6 @@ public class Link {
      * this link belongs to a collection of setups.
      */
     private Set<Setup> setups;
-
-    /**
-     * this method returns the id of the link.
-     *
-     * @return the id of the link.
-     */
-    public int getId(){
-        return id;
-    }
-
-    /**
-     * this method sets the ide of the link.
-     * @param id
-     */
-    public void setId(final int id){
-        this.id = id;
-    }
 
     /**
      * this method returns the source of the link.

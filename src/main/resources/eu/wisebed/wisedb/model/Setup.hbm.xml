@@ -24,7 +24,7 @@
             <property name="unit" column="timeinfo_unit"/>
         </component>
 
-        <property name="description"/>
+        <property name="description" type="text"/>
         <property name="coordinateType"/>
 
         <list name="nodes" table="SETUP_NODES" cascade="all" lazy="false">
@@ -36,7 +36,10 @@
         <list name="link" table="SETUP_LINKS" cascade="all" lazy="false">
             <key column="SETUPID" />
             <list-index column="LINK_IDX"/>
-            <many-to-many column="LINKID" class="eu.wisebed.wiseml.model.setup.Link"/>
+            <many-to-many class="eu.wisebed.wiseml.model.setup.Link">
+                <column name="LINK_SOURCE" />
+                <column name="LINK_TARGET" />
+            </many-to-many>
         </list>
 
         <!-- defaults list -->

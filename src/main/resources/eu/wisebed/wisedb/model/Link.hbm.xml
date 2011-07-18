@@ -7,12 +7,10 @@
 
     <class name="eu.wisebed.wiseml.model.setup.Link" table="LINKS">
 
-        <id name="id" column="LINKID">
-            <generator class="native" />
-        </id>
-
-        <property name="source" />
-        <property name="target" />
+        <composite-id>
+            <key-property name="source" column="SOURCE"/>
+            <key-property name="target" column="TARGET"/>
+        </composite-id>
 
         <property name="encrypted">
             <column name="encrypted" sql-type="BOOLEAN" />
@@ -28,7 +26,10 @@
         </component>
 
         <set name="setups" table="SETUP_LINKS">
-            <key column="LINKID"/>
+            <key>
+                <column name="LINK_SOURCE"/>
+                <column name="LINK_TARGET"/>
+            </key>
             <many-to-many column="SETUPID" class="eu.wisebed.wiseml.model.setup.Setup"/>
         </set>
 

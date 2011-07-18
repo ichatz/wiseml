@@ -17,7 +17,7 @@
         </component>
 
         <property name="nodeType"/>
-        <property name="description"/>
+        <property name="description" type="string"/>
         <property name="gateway"/>
         <property name="programDetails"/>
 
@@ -29,6 +29,7 @@
         <list name="capabilities" table="NODE_CAPABILITIES" cascade="none">
             <key column="NODEID"/>
             <list-index column="CAP_IDX"/>
+
             <many-to-many column="CAPABILITYID" class="eu.wisebed.wiseml.model.setup.Capability"/>
         </list>
 

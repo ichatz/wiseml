@@ -1,0 +1,4501 @@
+<wiseml version="1.0" xmlns="http://wisebed.eu/ns/wiseml/1.0">
+  <setup>
+    <timeinfo>
+      <start>2008-10-31T18:48:04Z</start>
+      <end>2009-07-02T09:06:25Z</end>
+      <unit>seconds</unit>
+    </timeinfo>
+    <description>Conversion of the webdust database to WiseML.</description>
+    <node id="urn:wisebed:node:cti:1">
+      <position>
+        <x>46.1766694444444</x>
+        <y>6.13989166666667</y>
+        <z>385</z>
+      </position>
+      <nodeType>micaz</nodeType>
+      <description>micaz 0 @ TCS-Sensor Lab C1 </description>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:2">
+      <position>
+        <x>46.1766861111111</x>
+        <y>6.13986388888889</y>
+        <z>385</z>
+      </position>
+      <nodeType>micaz</nodeType>
+      <description>micaz 6 @ TCS-Sensor Lab C2</description>
+      <capability>
+        <name>MTS300-310CA Microphone</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Thermistor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Accelerometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Magnetometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>lux</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:3">
+      <position>
+        <x>46.1766372714837</x>
+        <y>6.13984906042023</y>
+        <z>385</z>
+      </position>
+      <nodeType>micaz</nodeType>
+      <description>micaz 4 @ TCS Lab C3</description>
+      <capability>
+        <name>MTS300-310CA Microphone</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Thermistor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Accelerometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Magnetometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>lux</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:4">
+      <position>
+        <x>46.1766643797337</x>
+        <y>6.13979682593598</y>
+        <z>385</z>
+      </position>
+      <nodeType>micaz</nodeType>
+      <description>micaz 44 @ TCS Lab C4</description>
+      <capability>
+        <name>MTS300-310CA Microphone</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Thermistor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Accelerometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Magnetometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>lux</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:5">
+      <position>
+        <x>41.8905523957266</x>
+        <y>12.5035625696182</y>
+        <z>0</z>
+      </position>
+      <nodeType>moteiv</nodeType>
+      <description>moteiv 8 @ Place 1, DIS, Via Ariosto, Rome</description>
+      <capability>
+        <name>TelosB Light sensor (PAR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:6">
+      <position>
+        <x>41.8906282700716</x>
+        <y>12.5037181377411</y>
+        <z>0</z>
+      </position>
+      <nodeType>moteiv</nodeType>
+      <description>moteiv 9 @ Place 2, DIS, Via Ariosto, Rome</description>
+      <capability>
+        <name>TelosB Light sensor (PAR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:7">
+      <position>
+        <x>41.8906522303724</x>
+        <y>12.5034713745117</y>
+        <z>0</z>
+      </position>
+      <nodeType>moteiv</nodeType>
+      <description>moteiv 13 @ Place 3, DIS, Via Ariosto, Rome</description>
+      <capability>
+        <name>TelosB Light sensor (PAR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:8">
+      <position>
+        <x>41.8906921641871</x>
+        <y>12.5035732984543</y>
+        <z>0</z>
+      </position>
+      <nodeType>moteiv</nodeType>
+      <description>moteiv 4 @ Place 4, DIS, Via Ariosto, Rome</description>
+      <capability>
+        <name>TelosB Light sensor (PAR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:9">
+      <position>
+        <x>41.8908079721084</x>
+        <y>12.5036269426346</y>
+        <z>0</z>
+      </position>
+      <nodeType>moteiv</nodeType>
+      <description>moteiv 10 @ Place 5, DIS, Via Ariosto, Rome</description>
+      <capability>
+        <name>TelosB Light sensor (PAR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:10">
+      <position>
+        <x>41.890859885936</x>
+        <y>12.503514289856</y>
+        <z>0</z>
+      </position>
+      <nodeType>moteiv</nodeType>
+      <description>moteiv 1 @ Place 6, DIS, Via Ariosto, Rome</description>
+      <capability>
+        <name>TelosB Light sensor (PAR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:11">
+      <position>
+        <x>41.8909477400097</x>
+        <y>12.5034606456757</y>
+        <z>0</z>
+      </position>
+      <nodeType>moteiv</nodeType>
+      <description>moteiv 7 @ Place 7, DIS, Via Ariosto, Rome</description>
+      <capability>
+        <name>TelosB Light sensor (PAR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:12">
+      <position>
+        <x>41.8910755275375</x>
+        <y>12.5034713745117</y>
+        <z>0</z>
+      </position>
+      <nodeType>moteiv</nodeType>
+      <description>moteiv 3 @ Place 8, DIS, Via Ariosto, Rome</description>
+      <capability>
+        <name>TelosB Light sensor (PAR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:13">
+      <position>
+        <x>41.8911394212055</x>
+        <y>12.5034767389297</y>
+        <z>0</z>
+      </position>
+      <nodeType>moteiv</nodeType>
+      <description>moteiv 6 @ Place 9, DIS, Via Ariosto, Rome</description>
+      <capability>
+        <name>TelosB Light sensor (PAR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:14">
+      <position>
+        <x>41.8911434145576</x>
+        <y>12.5033640861511</y>
+        <z>0</z>
+      </position>
+      <nodeType>moteiv</nodeType>
+      <description>moteiv 2 @ Place 10, DIS, Via Ariosto, Rome</description>
+      <capability>
+        <name>TelosB Light sensor (PAR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:15">
+      <position>
+        <x>41.8909078063548</x>
+        <y>12.5035893917084</y>
+        <z>0</z>
+      </position>
+      <nodeType>moteiv</nodeType>
+      <description>moteiv 5 @ Place 11, DIS, Via Ariosto, Rome</description>
+      <capability>
+        <name>TelosB Light sensor (PAR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:20">
+      <position>
+        <x>38.2913012569549</x>
+        <y>21.796753240291</y>
+        <z>0</z>
+      </position>
+      <nodeType>telosb</nodeType>
+      <description>Base Station (Computer Center) @ CTI Maritsas Building, Computing Center, Outer</description>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:21">
+      <position>
+        <x>38.2913345537127</x>
+        <y>21.7967949041636</y>
+        <z>0</z>
+      </position>
+      <nodeType>telosb</nodeType>
+      <description>Rack 1 @ CTI Maritsas Building, Computing Center, Inner Rack 1</description>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:22">
+      <position>
+        <x>38.291347999243</x>
+        <y>21.7968662576715</y>
+        <z>0</z>
+      </position>
+      <nodeType>telosb</nodeType>
+      <description>Rack 2 @ CTI Maritsas Building, Computing Center, Inner Rack 2</description>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:23">
+      <position>
+        <x>38.2913136102701</x>
+        <y>21.7968268698852</y>
+        <z>0</z>
+      </position>
+      <nodeType>telosb</nodeType>
+      <description>Rack 3 @ CTI Maritsas Building, Computing Center, Inner Rack 3</description>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <position>
+        <x>38.2911502745939</x>
+        <y>21.7965335359892</y>
+        <z>0</z>
+      </position>
+      <nodeType>telosb</nodeType>
+      <description>Base Station (Office O.II.7) @ CTI Maritsas Building Office 0.II.7</description>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <position>
+        <x>38.2910272367371</x>
+        <y>21.796475309165</y>
+        <z>0</z>
+      </position>
+      <nodeType>telosb</nodeType>
+      <description>Office O.I.1 @ CTI Maritsas Building Office 0.I.1</description>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <position>
+        <x>38.2909987288916</x>
+        <y>21.7964399570777</y>
+        <z>0</z>
+      </position>
+      <nodeType>telosb</nodeType>
+      <description>Office O.I.2 @ CTI Maritsas Building Office 0.I.2</description>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <position>
+        <x>38.2909667061385</x>
+        <y>21.7964046417404</y>
+        <z>0</z>
+      </position>
+      <nodeType>telosb</nodeType>
+      <description>Office O.I.3 @ CTI Maritsas Building Office 0.I.3</description>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:28">
+      <position>
+        <x>38.2910204539385</x>
+        <y>21.7965227601163</y>
+        <z>0</z>
+      </position>
+      <nodeType>telosb</nodeType>
+      <description>Office O.I.11 @ CTI Maritsas Building Office 0.I.11</description>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <position>
+        <x>38.2909922553449</x>
+        <y>21.7964926632249</y>
+        <z>0</z>
+      </position>
+      <nodeType>telosb</nodeType>
+      <description>Office O.I.12 @ CTI Maritsas Building Office 0.I.12</description>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <position>
+        <x>38.2911984382215</x>
+        <y>21.7965466708314</y>
+        <z>0</z>
+      </position>
+      <nodeType>telosb</nodeType>
+      <description>Office O.II.3 @ CTI Maritsas Building Office 0.II.3</description>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <position>
+        <x>38.2912241121983</x>
+        <y>21.7965233486535</y>
+        <z>0</z>
+      </position>
+      <nodeType>telosb</nodeType>
+      <description>Office O.II.4 @ CTI Maritsas Building Office 0.II.4</description>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <position>
+        <x>38.2911984861012</x>
+        <y>21.7964851982845</y>
+        <z>0</z>
+      </position>
+      <nodeType>telosb</nodeType>
+      <description>Office O.II.5 @ CTI Maritsas Building Office 0.II.5</description>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:33">
+      <position>
+        <x>38.2911767420045</x>
+        <y>21.7965081127106</y>
+        <z>0</z>
+      </position>
+      <nodeType>telosb</nodeType>
+      <description>Office O.II.6 @ CTI Maritsas Building Office 0.II.6</description>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <position>
+        <x>38.2911502745939</x>
+        <y>21.7965335359892</y>
+        <z>0</z>
+      </position>
+      <nodeType>telosb</nodeType>
+      <description>Office O.II.7 @ CTI Maritsas Building Office 0.II.7</description>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:37">
+      <position>
+        <x>38.2912376161435</x>
+        <y>21.7968213558197</y>
+        <z>8</z>
+      </position>
+      <nodeType>sunspot</nodeType>
+      <description>Office 3.III.3 @ CTI Maritsas Building Office 3.III.3</description>
+      <capability>
+        <name>SunSPOT Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Accelerometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:38">
+      <position>
+        <x>38.2912039331202</x>
+        <y>21.7967569828033</y>
+        <z>8</z>
+      </position>
+      <nodeType>sunspot</nodeType>
+      <description>Office 3.III.2 @ CTI Maritsas Building Office 3.III.2</description>
+      <capability>
+        <name>SunSPOT Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Accelerometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:39">
+      <position>
+        <x>38.291271299151</x>
+        <y>21.7968374490738</y>
+        <z>8</z>
+      </position>
+      <nodeType>sunspot</nodeType>
+      <description>Office 3.III.4 @ CTI Maritsas Building Office 3.III.4</description>
+      <capability>
+        <name>SunSPOT Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Accelerometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:40">
+      <position>
+        <x>38.2913597169715</x>
+        <y>21.7968159914017</y>
+        <z>8</z>
+      </position>
+      <nodeType>sunspot</nodeType>
+      <description>Office 3.III.6 @ CTI Maritsas Building Office 3.III.6</description>
+      <capability>
+        <name>SunSPOT Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Accelerometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:41">
+      <position>
+        <x>38.2913134028885</x>
+        <y>21.7969071865082</y>
+        <z>8</z>
+      </position>
+      <nodeType>sunspot</nodeType>
+      <description>Office 3.III.5 @ CTI Maritsas Building Office 3.III.5</description>
+      <capability>
+        <name>SunSPOT Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Accelerometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:42">
+      <position>
+        <x>38.2913176132609</x>
+        <y>21.7967784404755</y>
+        <z>8</z>
+      </position>
+      <nodeType>sunspot</nodeType>
+      <description>Office 3.III.7 @ CTI Maritsas Building Office 3.III.7</description>
+      <capability>
+        <name>SunSPOT Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Accelerometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:43">
+      <position>
+        <x>38.2834548222492</x>
+        <y>21.7892486547847</y>
+        <z>0</z>
+      </position>
+      <nodeType>mica2</nodeType>
+      <description>Base Station (Office P310) @ CTI PREFAB Building (nw)</description>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:44">
+      <position>
+        <x>38.2834548222492</x>
+        <y>21.7892486547847</y>
+        <z>0</z>
+      </position>
+      <nodeType>mica2</nodeType>
+      <description>Office P310 @ CTI PREFAB Building (nw)</description>
+      <capability>
+        <name>MTS300-310CA Microphone</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Thermistor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Accelerometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Magnetometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>lux</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:45">
+      <position>
+        <x>38.283395852274</x>
+        <y>21.7891670436135</y>
+        <z>0</z>
+      </position>
+      <nodeType>mica2</nodeType>
+      <description>Office P311 @ CTI PREFAB Building, Office P311</description>
+      <capability>
+        <name>MTS300-310CA Microphone</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Thermistor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Accelerometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Magnetometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>lux</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:46">
+      <position>
+        <x>38.2834301052878</x>
+        <y>21.7891410669033</y>
+        <z>0</z>
+      </position>
+      <nodeType>mica2</nodeType>
+      <description>Office P312 @ CTI PREFAB Building, Office P312</description>
+      <capability>
+        <name>MTS300-310CA Microphone</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Thermistor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Accelerometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Magnetometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>lux</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:47">
+      <position>
+        <x>38.2834548222492</x>
+        <y>21.7892486547847</y>
+        <z>0</z>
+      </position>
+      <nodeType>mica2</nodeType>
+      <description>Office P313 @ CTI PREFAB Building (nw)</description>
+      <capability>
+        <name>MTS300-310CA Microphone</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Thermistor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Accelerometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Magnetometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>lux</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:48">
+      <position>
+        <x>38.2912450775237</x>
+        <y>21.7967090354985</y>
+        <z>17</z>
+      </position>
+      <nodeType>mica2</nodeType>
+      <description>Office 4.III.1 (BaseStation) @ CTI Maritsas Building Office 4.III.1</description>
+      <capability>
+        <name>MTS101CA Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>lux</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS101CA Thermistor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:49">
+      <position>
+        <x>38.2912450775237</x>
+        <y>21.7967090354985</y>
+        <z>17</z>
+      </position>
+      <nodeType>mica2</nodeType>
+      <description>Office 4.III.1 @ CTI Maritsas Building Office 4.III.1</description>
+      <capability>
+        <name>MTS101CA Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>lux</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS101CA Thermistor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:50">
+      <position>
+        <x>38.2912806749861</x>
+        <y>21.7967463668933</y>
+        <z>17</z>
+      </position>
+      <nodeType>mica2</nodeType>
+      <description>Office 4.III.2 @ CTI Maritsas Building Office 4.III.2</description>
+      <capability>
+        <name>MTS101CA Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>lux</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS101CA Thermistor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:51">
+      <position>
+        <x>38.2844718383746</x>
+        <y>21.7878355391717</y>
+        <z>8</z>
+      </position>
+      <nodeType>mica2</nodeType>
+      <description>Office 205 @ University of Patras, CEID Building, Office 205</description>
+      <capability>
+        <name>MTS300-310CA Microphone</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Thermistor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Accelerometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Magnetometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>lux</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:52">
+      <position>
+        <x>38.2844363457756</x>
+        <y>21.7878842353821</y>
+        <z>8</z>
+      </position>
+      <nodeType>mica2</nodeType>
+      <description>Office 204 @ University of Patras, CEID Building, Office 204</description>
+      <capability>
+        <name>MTS300-310CA Microphone</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Thermistor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Accelerometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Magnetometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS300-310CA Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>lux</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:53">
+      <position>
+        <x>38.2844363457756</x>
+        <y>21.7878842353821</y>
+        <z>8</z>
+      </position>
+      <nodeType>mica2</nodeType>
+      <description>Base Station (Office 204) @ University of Patras, CEID Building, Office 204</description>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:54">
+      <position>
+        <x>39.6182487427141</x>
+        <y>20.8385272444776</y>
+        <z>0</z>
+      </position>
+      <nodeType>mica2</nodeType>
+      <description>mica2 1564 @ DMOD Lab 2 (Room B.15)</description>
+      <capability>
+        <name>MTS101CA Thermistor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:55">
+      <position>
+        <x>39.6182861490572</x>
+        <y>20.8387055864645</y>
+        <z>0</z>
+      </position>
+      <nodeType>mica2</nodeType>
+      <description>mica2 1609 @ Artificial Intelligence Lab (Room A.5)</description>
+      <capability>
+        <name>MTS101CA Thermistor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:56">
+      <position>
+        <x>39.6181867773264</x>
+        <y>20.8387116257052</y>
+        <z>0</z>
+      </position>
+      <nodeType>mica2</nodeType>
+      <description>mica2 1475 @ Grad Office 1 (Room B.1)</description>
+      <capability>
+        <name>MTS101CA Thermistor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:57">
+      <position>
+        <x>39.6182765547124</x>
+        <y>20.8385820108522</y>
+        <z>0</z>
+      </position>
+      <nodeType>mica2</nodeType>
+      <description>mica2 1551 @ DMOD Lab 1 (Room B.15)</description>
+      <capability>
+        <name>MTS101CA Thermistor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:58">
+      <position>
+        <x>39.6183094609308</x>
+        <y>20.8386821264362</y>
+        <z>0</z>
+      </position>
+      <nodeType>mica2</nodeType>
+      <description>mica2 1489 @ Grad Office 2 (Room B.5)</description>
+      <capability>
+        <name>MTS101CA Thermistor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:59">
+      <position>
+        <x>39.6179659694769</x>
+        <y>20.8387474901162</y>
+        <z>0</z>
+      </position>
+      <nodeType>mica2</nodeType>
+      <description>mica2 1496 @ Graphics Group (Room B.36)</description>
+      <capability>
+        <name>MTS101CA Thermistor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:60">
+      <position>
+        <x>38.2913138191949</x>
+        <y>21.7967850075145</y>
+        <z>17</z>
+      </position>
+      <nodeType>mica2</nodeType>
+      <description>Office 4.III.3 @ Node 3 Floor 4</description>
+      <capability>
+        <name>MTS101CA Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>lux</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS101CA Thermistor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:61">
+      <position>
+        <x>38.2913568627532</x>
+        <y>21.7968271585996</y>
+        <z>17</z>
+      </position>
+      <nodeType>mica2</nodeType>
+      <description>Office 4.III.4 @ Node 4 Floor 4</description>
+      <capability>
+        <name>MTS101CA Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>lux</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS101CA Thermistor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:62">
+      <position>
+        <x>38.2912867761263</x>
+        <y>21.7968136606978</y>
+        <z>17</z>
+      </position>
+      <nodeType>mica2</nodeType>
+      <description>Office 4.III.5 @ Node 5 Floor 4</description>
+      <capability>
+        <name>MTS101CA Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>lux</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>MTS101CA Thermistor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:63">
+      <position>
+        <x>38.29141</x>
+        <y>21.796736</y>
+        <z>0</z>
+      </position>
+      <nodeType>telosb</nodeType>
+      <description>telosb 10 @ CTI Maritsas Building, Computing Center (nw)</description>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:64">
+      <position>
+        <x>38.29141</x>
+        <y>21.796736</y>
+        <z>0</z>
+      </position>
+      <nodeType>telosb</nodeType>
+      <description>telosb 15 @ CTI Maritsas Building, Computing Center (nw)</description>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:65">
+      <position>
+        <x>38.29141</x>
+        <y>21.796736</y>
+        <z>0</z>
+      </position>
+      <nodeType>telosb</nodeType>
+      <description>telosb 16 @ CTI Maritsas Building, Computing Center (nw)</description>
+      <capability>
+        <name>Mica2 Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Light sensor (TSR)</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Humidity sensor</name>
+        <datatype>integer</datatype>
+        <unit>percentage</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>TelosB Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:66">
+      <position>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </position>
+      <nodeType>sunspot</nodeType>
+      <description>sunspot 0014.4F01.0000.4063 @ Unknown Coordinate</description>
+      <capability>
+        <name>SunSPOT Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Accelerometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:67">
+      <position>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </position>
+      <nodeType>sunspot</nodeType>
+      <description>sunspot 0014.4F01.0000.53F2 @ Unknown Coordinate</description>
+      <capability>
+        <name>SunSPOT Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Accelerometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:68">
+      <position>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </position>
+      <nodeType>sunspot</nodeType>
+      <description>sunspot 0014.4F01.0000.410C @ Unknown Coordinate</description>
+      <capability>
+        <name>SunSPOT Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Accelerometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:69">
+      <position>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </position>
+      <nodeType>sunspot</nodeType>
+      <description>sunspot 0014.4F01.0000.5F82 @ Unknown Coordinate</description>
+      <capability>
+        <name>SunSPOT Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Accelerometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:70">
+      <position>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </position>
+      <nodeType>sunspot</nodeType>
+      <description>sunspot 0014.4F01.0000.4AD7 @ Unknown Coordinate</description>
+      <capability>
+        <name>SunSPOT Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Accelerometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+    <node id="urn:wisebed:node:cti:71">
+      <position>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </position>
+      <nodeType>sunspot</nodeType>
+      <description>sunspot 0014.4F01.0000.4C9B @ Unknown Coordinate</description>
+      <capability>
+        <name>SunSPOT Light sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Temperature sensor</name>
+        <datatype>integer</datatype>
+        <unit>degrees</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Accelerometer</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+      <capability>
+        <name>SunSPOT Voltage Level sensor</name>
+        <datatype>integer</datatype>
+        <unit>raw</unit>
+        <default>0</default>
+      </capability>
+    </node>
+  </setup>
+  <trace id='0'>
+<timestamp value="0">
+    <node id="urn:wisebed:node:cti:35">
+      <data key="MTS300-310CA Magnetometer"><value> 170</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="25">
+    <node id="urn:wisebed:node:cti:36">
+      <data key="Mica2 Voltage Level sensor"><value> 0.359</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="176">
+    <node id="urn:wisebed:node:cti:35">
+      <data key="MTS300-310CA Light sensor"><value> 619</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="200">
+    <node id="urn:wisebed:node:cti:36">
+      <data key="MTS300-310CA Thermistor"><value> 27.7</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="1958">
+    <node id="urn:wisebed:node:cti:36">
+      <data key="MTS300-310CA Accelerometer"><value> 479</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="1976">
+    <node id="urn:wisebed:node:cti:37">
+      <data key="SunSPOT Light sensor"><value> 0</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:37">
+      <data key="SunSPOT Temperature sensor"><value> 31.75</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:37">
+      <data key="SunSPOT Accelerometer"><value> 31.75</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:37">
+      <data key="SunSPOT Voltage Level sensor"><value> 115</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="1978">
+    <node id="urn:wisebed:node:cti:44">
+      <data key="MTS300-310CA Magnetometer"><value> 234</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="1994">
+    <node id="urn:wisebed:node:cti:43">
+      <data key="Mica2 Voltage Level sensor"><value> 0.384</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="1996">
+    <node id="urn:wisebed:node:cti:46">
+      <data key="MTS300-310CA Microphone"><value> 474</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2018">
+    <node id="urn:wisebed:node:cti:45">
+      <data key="MTS300-310CA Accelerometer"><value> 176</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2027">
+    <node id="urn:wisebed:node:cti:47">
+      <data key="Mica2 Voltage Level sensor"><value> 0.479</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2036">
+    <node id="urn:wisebed:node:cti:37">
+      <data key="SunSPOT Voltage Level sensor"><value> 115</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:37">
+      <data key="SunSPOT Accelerometer"><value> 31.5</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:37">
+      <data key="SunSPOT Temperature sensor"><value> 31.5</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:37">
+      <data key="SunSPOT Light sensor"><value> 0</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:44">
+      <data key="MTS300-310CA Magnetometer"><value> 236</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2053">
+    <node id="urn:wisebed:node:cti:43">
+      <data key="Mica2 Voltage Level sensor"><value> 0.384</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:46">
+      <data key="MTS300-310CA Accelerometer"><value> 481</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2076">
+    <node id="urn:wisebed:node:cti:45">
+      <data key="MTS300-310CA Magnetometer"><value> 183</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2085">
+    <node id="urn:wisebed:node:cti:47">
+      <data key="MTS300-310CA Thermistor"><value> 25.1</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2094">
+    <node id="urn:wisebed:node:cti:44">
+      <data key="MTS300-310CA Light sensor"><value> 5</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2096">
+    <node id="urn:wisebed:node:cti:41">
+      <data key="SunSPOT Light sensor"><value> 0</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:41">
+      <data key="SunSPOT Light sensor"><value> 0</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:41">
+      <data key="SunSPOT Temperature sensor"><value> 30</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:41">
+      <data key="SunSPOT Temperature sensor"><value> 30</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:41">
+      <data key="SunSPOT Accelerometer"><value> 30</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:41">
+      <data key="SunSPOT Accelerometer"><value> 30</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:41">
+      <data key="SunSPOT Voltage Level sensor"><value> 61</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:41">
+      <data key="SunSPOT Voltage Level sensor"><value> 61</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2111">
+    <node id="urn:wisebed:node:cti:35">
+      <data key="MTS300-310CA Microphone"><value> 164</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:43">
+      <data key="Mica2 Voltage Level sensor"><value> 0.384</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2112">
+    <node id="urn:wisebed:node:cti:46">
+      <data key="MTS300-310CA Accelerometer"><value> 188</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2134">
+    <node id="urn:wisebed:node:cti:36">
+      <data key="MTS300-310CA Accelerometer"><value> 513</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2135">
+    <node id="urn:wisebed:node:cti:45">
+      <data key="MTS300-310CA Magnetometer"><value> 220</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2145">
+    <node id="urn:wisebed:node:cti:47">
+      <data key="MTS300-310CA Microphone"><value> 463</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2153">
+    <node id="urn:wisebed:node:cti:44">
+      <data key="Mica2 Voltage Level sensor"><value> 0.513</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2156">
+    <node id="urn:wisebed:node:cti:40">
+      <data key="SunSPOT Voltage Level sensor"><value> 98</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:40">
+      <data key="SunSPOT Accelerometer"><value> 33</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:40">
+      <data key="SunSPOT Temperature sensor"><value> 33</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:40">
+      <data key="SunSPOT Light sensor"><value> 0</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2170">
+    <node id="urn:wisebed:node:cti:43">
+      <data key="Mica2 Voltage Level sensor"><value> 0.383</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:46">
+      <data key="MTS300-310CA Magnetometer"><value> 181</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2193">
+    <node id="urn:wisebed:node:cti:45">
+      <data key="MTS300-310CA Light sensor"><value> 1</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2202">
+    <node id="urn:wisebed:node:cti:47">
+      <data key="MTS300-310CA Accelerometer"><value> 476</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2211">
+    <node id="urn:wisebed:node:cti:44">
+      <data key="MTS300-310CA Thermistor"><value> 24.6</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2216">
+    <node id="urn:wisebed:node:cti:40">
+      <data key="SunSPOT Light sensor"><value> 0</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:40">
+      <data key="SunSPOT Temperature sensor"><value> 33</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:40">
+      <data key="SunSPOT Accelerometer"><value> 33</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:40">
+      <data key="SunSPOT Voltage Level sensor"><value> 98</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2228">
+    <node id="urn:wisebed:node:cti:43">
+      <data key="Mica2 Voltage Level sensor"><value> 0.383</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2229">
+    <node id="urn:wisebed:node:cti:46">
+      <data key="MTS300-310CA Magnetometer"><value> 223</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2252">
+    <node id="urn:wisebed:node:cti:45">
+      <data key="Mica2 Voltage Level sensor"><value> 0.476</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2261">
+    <node id="urn:wisebed:node:cti:47">
+      <data key="MTS300-310CA Accelerometer"><value> 505</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2271">
+    <node id="urn:wisebed:node:cti:44">
+      <data key="MTS300-310CA Microphone"><value> 469</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2285">
+    <node id="urn:wisebed:node:cti:35">
+      <data key="MTS300-310CA Accelerometer"><value> 510</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2287">
+    <node id="urn:wisebed:node:cti:43">
+      <data key="Mica2 Voltage Level sensor"><value> 0.383</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2310">
+    <node id="urn:wisebed:node:cti:36">
+      <data key="MTS300-310CA Magnetometer"><value> 175</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:45">
+      <data key="MTS300-310CA Thermistor"><value> 25</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2319">
+    <node id="urn:wisebed:node:cti:47">
+      <data key="MTS300-310CA Magnetometer"><value> 219</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2328">
+    <node id="urn:wisebed:node:cti:44">
+      <data key="MTS300-310CA Accelerometer"><value> 503</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2345">
+    <node id="urn:wisebed:node:cti:43">
+      <data key="Mica2 Voltage Level sensor"><value> 0.384</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2346">
+    <node id="urn:wisebed:node:cti:46">
+      <data key="Mica2 Voltage Level sensor"><value> 0.499</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2370">
+    <node id="urn:wisebed:node:cti:45">
+      <data key="MTS300-310CA Microphone"><value> 469</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2378">
+    <node id="urn:wisebed:node:cti:47">
+      <data key="MTS300-310CA Magnetometer"><value> 221</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2387">
+    <node id="urn:wisebed:node:cti:44">
+      <data key="MTS300-310CA Accelerometer"><value> 502</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2396">
+    <node id="urn:wisebed:node:cti:39">
+      <data key="SunSPOT Voltage Level sensor"><value> 65</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:39">
+      <data key="SunSPOT Accelerometer"><value> 32</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:39">
+      <data key="SunSPOT Temperature sensor"><value> 32</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:39">
+      <data key="SunSPOT Light sensor"><value> 0</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:42">
+      <data key="SunSPOT Light sensor"><value> 0</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:42">
+      <data key="SunSPOT Temperature sensor"><value> 31</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:42">
+      <data key="SunSPOT Accelerometer"><value> 31</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:42">
+      <data key="SunSPOT Voltage Level sensor"><value> 100</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2403">
+    <node id="urn:wisebed:node:cti:43">
+      <data key="Mica2 Voltage Level sensor"><value> 0.384</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2404">
+    <node id="urn:wisebed:node:cti:46">
+      <data key="MTS300-310CA Thermistor"><value> 24.9</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2427">
+    <node id="urn:wisebed:node:cti:45">
+      <data key="MTS300-310CA Accelerometer"><value> 489</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2436">
+    <node id="urn:wisebed:node:cti:47">
+      <data key="MTS300-310CA Light sensor"><value> 849</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2445">
+    <node id="urn:wisebed:node:cti:44">
+      <data key="MTS300-310CA Magnetometer"><value> 235</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2456">
+    <node id="urn:wisebed:node:cti:38">
+      <data key="SunSPOT Voltage Level sensor"><value> 114</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:38">
+      <data key="SunSPOT Accelerometer"><value> 30.75</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:38">
+      <data key="SunSPOT Temperature sensor"><value> 30.75</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:38">
+      <data key="SunSPOT Light sensor"><value> 0</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:39">
+      <data key="SunSPOT Light sensor"><value> 0</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:39">
+      <data key="SunSPOT Temperature sensor"><value> 32</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:39">
+      <data key="SunSPOT Accelerometer"><value> 32</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:39">
+      <data key="SunSPOT Voltage Level sensor"><value> 65</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:42">
+      <data key="SunSPOT Voltage Level sensor"><value> 100</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:42">
+      <data key="SunSPOT Accelerometer"><value> 31.25</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:42">
+      <data key="SunSPOT Temperature sensor"><value> 31.25</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:42">
+      <data key="SunSPOT Light sensor"><value> 0</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2461">
+    <node id="urn:wisebed:node:cti:35">
+      <data key="MTS300-310CA Accelerometer"><value> 513</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2462">
+    <node id="urn:wisebed:node:cti:43">
+      <data key="Mica2 Voltage Level sensor"><value> 0.384</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2464">
+    <node id="urn:wisebed:node:cti:46">
+      <data key="MTS300-310CA Microphone"><value> 472</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2485">
+    <node id="urn:wisebed:node:cti:45">
+      <data key="MTS300-310CA Accelerometer"><value> 176</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2486">
+    <node id="urn:wisebed:node:cti:36">
+      <data key="MTS300-310CA Magnetometer"><value> 176</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2494">
+    <node id="urn:wisebed:node:cti:47">
+      <data key="Mica2 Voltage Level sensor"><value> 0.479</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2504">
+    <node id="urn:wisebed:node:cti:44">
+      <data key="MTS300-310CA Magnetometer"><value> 236</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2516">
+    <node id="urn:wisebed:node:cti:38">
+      <data key="SunSPOT Light sensor"><value> 0</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:38">
+      <data key="SunSPOT Temperature sensor"><value> 31</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:38">
+      <data key="SunSPOT Accelerometer"><value> 31</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:38">
+      <data key="SunSPOT Voltage Level sensor"><value> 114</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2520">
+    <node id="urn:wisebed:node:cti:43">
+      <data key="Mica2 Voltage Level sensor"><value> 0.383</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2521">
+    <node id="urn:wisebed:node:cti:46">
+      <data key="MTS300-310CA Accelerometer"><value> 481</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2544">
+    <node id="urn:wisebed:node:cti:45">
+      <data key="MTS300-310CA Magnetometer"><value> 183</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2553">
+    <node id="urn:wisebed:node:cti:47">
+      <data key="MTS300-310CA Thermistor"><value> 25.1</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2562">
+    <node id="urn:wisebed:node:cti:44">
+      <data key="MTS300-310CA Light sensor"><value> 5</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2576">
+    <node id="urn:wisebed:node:cti:37">
+      <data key="SunSPOT Voltage Level sensor"><value> 115</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:37">
+      <data key="SunSPOT Accelerometer"><value> 31.75</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:37">
+      <data key="SunSPOT Temperature sensor"><value> 31.75</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:37">
+      <data key="SunSPOT Light sensor"><value> 0</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:41">
+      <data key="SunSPOT Light sensor"><value> 0</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:41">
+      <data key="SunSPOT Temperature sensor"><value> 30.75</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:41">
+      <data key="SunSPOT Accelerometer"><value> 30.75</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:41">
+      <data key="SunSPOT Voltage Level sensor"><value> 61</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2579">
+    <node id="urn:wisebed:node:cti:43">
+      <data key="Mica2 Voltage Level sensor"><value> 0.384</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2580">
+    <node id="urn:wisebed:node:cti:46">
+      <data key="MTS300-310CA Accelerometer"><value> 188</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2602">
+    <node id="urn:wisebed:node:cti:45">
+      <data key="MTS300-310CA Magnetometer"><value> 220</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2612">
+    <node id="urn:wisebed:node:cti:47">
+      <data key="MTS300-310CA Microphone"><value> 464</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2620">
+    <node id="urn:wisebed:node:cti:44">
+      <data key="Mica2 Voltage Level sensor"><value> 0.514</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2636">
+    <node id="urn:wisebed:node:cti:37">
+      <data key="SunSPOT Voltage Level sensor"><value> 115</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:37">
+      <data key="SunSPOT Accelerometer"><value> 31.25</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:37">
+      <data key="SunSPOT Temperature sensor"><value> 31.25</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:37">
+      <data key="SunSPOT Light sensor"><value> 0</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2637">
+    <node id="urn:wisebed:node:cti:35">
+      <data key="MTS300-310CA Magnetometer"><value> 172</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:43">
+      <data key="Mica2 Voltage Level sensor"><value> 0.383</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2638">
+    <node id="urn:wisebed:node:cti:46">
+      <data key="MTS300-310CA Magnetometer"><value> 181</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2661">
+    <node id="urn:wisebed:node:cti:36">
+      <data key="MTS300-310CA Light sensor"><value> 677</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:45">
+      <data key="MTS300-310CA Light sensor"><value> 1</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2670">
+    <node id="urn:wisebed:node:cti:47">
+      <data key="MTS300-310CA Accelerometer"><value> 476</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2679">
+    <node id="urn:wisebed:node:cti:44">
+      <data key="MTS300-310CA Thermistor"><value> 24.6</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2696">
+    <node id="urn:wisebed:node:cti:43">
+      <data key="Mica2 Voltage Level sensor"><value> 0.384</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2697">
+    <node id="urn:wisebed:node:cti:46">
+      <data key="MTS300-310CA Magnetometer"><value> 223</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2719">
+    <node id="urn:wisebed:node:cti:45">
+      <data key="Mica2 Voltage Level sensor"><value> 0.476</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2728">
+    <node id="urn:wisebed:node:cti:47">
+      <data key="MTS300-310CA Accelerometer"><value> 505</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2739">
+    <node id="urn:wisebed:node:cti:44">
+      <data key="MTS300-310CA Microphone"><value> 469</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2754">
+    <node id="urn:wisebed:node:cti:43">
+      <data key="Mica2 Voltage Level sensor"><value> 0.383</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2756">
+    <node id="urn:wisebed:node:cti:40">
+      <data key="SunSPOT Light sensor"><value> 0</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:40">
+      <data key="SunSPOT Temperature sensor"><value> 33.25</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:40">
+      <data key="SunSPOT Accelerometer"><value> 33.25</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:40">
+      <data key="SunSPOT Voltage Level sensor"><value> 98</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:41">
+      <data key="SunSPOT Voltage Level sensor"><value> 61</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:41">
+      <data key="SunSPOT Accelerometer"><value> 30.5</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:41">
+      <data key="SunSPOT Temperature sensor"><value> 30.5</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:41">
+      <data key="SunSPOT Light sensor"><value> 0</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2778">
+    <node id="urn:wisebed:node:cti:45">
+      <data key="MTS300-310CA Thermistor"><value> 25</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2787">
+    <node id="urn:wisebed:node:cti:47">
+      <data key="MTS300-310CA Magnetometer"><value> 219</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2798">
+    <node id="urn:wisebed:node:cti:44">
+      <data key="MTS300-310CA Accelerometer"><value> 502</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2813">
+    <node id="urn:wisebed:node:cti:35">
+      <data key="MTS300-310CA Magnetometer"><value> 177</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2815">
+    <node id="urn:wisebed:node:cti:43">
+      <data key="Mica2 Voltage Level sensor"><value> 0.383</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2816">
+    <node id="urn:wisebed:node:cti:38">
+      <data key="SunSPOT Light sensor"><value> 0</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:38">
+      <data key="SunSPOT Temperature sensor"><value> 30.75</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:38">
+      <data key="SunSPOT Accelerometer"><value> 30.75</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:38">
+      <data key="SunSPOT Voltage Level sensor"><value> 114</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:39">
+      <data key="SunSPOT Voltage Level sensor"><value> 65</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:39">
+      <data key="SunSPOT Accelerometer"><value> 32</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:39">
+      <data key="SunSPOT Temperature sensor"><value> 32</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:39">
+      <data key="SunSPOT Light sensor"><value> 0</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:42">
+      <data key="SunSPOT Light sensor"><value> 0</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:42">
+      <data key="SunSPOT Temperature sensor"><value> 31.25</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:42">
+      <data key="SunSPOT Accelerometer"><value> 31.25</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:42">
+      <data key="SunSPOT Voltage Level sensor"><value> 100</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:46">
+      <data key="Mica2 Voltage Level sensor"><value> 0.499</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2837">
+    <node id="urn:wisebed:node:cti:36">
+      <data key="Mica2 Voltage Level sensor"><value> 0.358</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2840">
+    <node id="urn:wisebed:node:cti:45">
+      <data key="MTS300-310CA Microphone"><value> 472</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2847">
+    <node id="urn:wisebed:node:cti:47">
+      <data key="MTS300-310CA Magnetometer"><value> 221</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2857">
+    <node id="urn:wisebed:node:cti:44">
+      <data key="MTS300-310CA Accelerometer"><value> 503</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2873">
+    <node id="urn:wisebed:node:cti:43">
+      <data key="Mica2 Voltage Level sensor"><value> 0.384</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2874">
+    <node id="urn:wisebed:node:cti:46">
+      <data key="MTS300-310CA Thermistor"><value> 24.8</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2876">
+    <node id="urn:wisebed:node:cti:38">
+      <data key="SunSPOT Voltage Level sensor"><value> 114</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:38">
+      <data key="SunSPOT Accelerometer"><value> 30.75</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:38">
+      <data key="SunSPOT Temperature sensor"><value> 30.75</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:38">
+      <data key="SunSPOT Light sensor"><value> 0</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2897">
+    <node id="urn:wisebed:node:cti:45">
+      <data key="MTS300-310CA Accelerometer"><value> 489</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2906">
+    <node id="urn:wisebed:node:cti:47">
+      <data key="MTS300-310CA Light sensor"><value> 826</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2915">
+    <node id="urn:wisebed:node:cti:44">
+      <data key="MTS300-310CA Magnetometer"><value> 235</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2932">
+    <node id="urn:wisebed:node:cti:43">
+      <data key="Mica2 Voltage Level sensor"><value> 0.383</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2934">
+    <node id="urn:wisebed:node:cti:46">
+      <data key="MTS300-310CA Microphone"><value> 474</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2936">
+    <node id="urn:wisebed:node:cti:37">
+      <data key="SunSPOT Light sensor"><value> 0</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:37">
+      <data key="SunSPOT Temperature sensor"><value> 31.75</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:37">
+      <data key="SunSPOT Accelerometer"><value> 31.75</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:37">
+      <data key="SunSPOT Voltage Level sensor"><value> 115</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="2955">
+    <node id="urn:wisebed:node:cti:45">
+      <data key="MTS300-310CA Accelerometer"><value> 176</value></data>
+    </node>
+</timestamp>
+<timestamp value="21046320">
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Light sensor (TSR)"><value> 25000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Light sensor (TSR)"><value> 25000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Light sensor (TSR)"><value> 25000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Light sensor (TSR)"><value> 25000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Light sensor (TSR)"><value> 25000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Light sensor (TSR)"><value> 25000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Light sensor (TSR)"><value> 25000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Light sensor (TSR)"><value> 25000000</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046325">
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Temperature sensor"><value> 30.63</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Temperature sensor"><value> 30.63</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Temperature sensor"><value> 30.63</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Temperature sensor"><value> 30.63</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Temperature sensor"><value> 30.63</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Temperature sensor"><value> 30.63</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Temperature sensor"><value> 30.63</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Temperature sensor"><value> 30.63</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046328">
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Humidity sensor"><value> 43.58552</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Humidity sensor"><value> 43.58552</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Humidity sensor"><value> 43.58552</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Humidity sensor"><value> 43.58552</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Humidity sensor"><value> 43.58552</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Humidity sensor"><value> 43.58552</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Humidity sensor"><value> 43.58552</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Humidity sensor"><value> 43.58552</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046340">
+    <node id="urn:wisebed:node:cti:29">
+      <data key="Mica2 Voltage Level sensor"><value> 3.989</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="Mica2 Voltage Level sensor"><value> 3.989</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="Mica2 Voltage Level sensor"><value> 3.989</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="Mica2 Voltage Level sensor"><value> 3.989</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="Mica2 Voltage Level sensor"><value> 3.989</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="Mica2 Voltage Level sensor"><value> 3.989</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="Mica2 Voltage Level sensor"><value> 3.989</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="Mica2 Voltage Level sensor"><value> 3.989</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046349">
+    <node id="urn:wisebed:node:cti:27">
+      <data key="Mica2 Voltage Level sensor"><value> 4.003</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="Mica2 Voltage Level sensor"><value> 4.003</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="Mica2 Voltage Level sensor"><value> 4.003</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="Mica2 Voltage Level sensor"><value> 4.003</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="Mica2 Voltage Level sensor"><value> 4.003</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="Mica2 Voltage Level sensor"><value> 4.003</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="Mica2 Voltage Level sensor"><value> 4.003</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="Mica2 Voltage Level sensor"><value> 4.003</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046358">
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Humidity sensor"><value> 33.1408832</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Humidity sensor"><value> 33.1408832</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Humidity sensor"><value> 33.1408832</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Humidity sensor"><value> 33.1408832</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Humidity sensor"><value> 33.1408832</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Humidity sensor"><value> 33.1408832</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Humidity sensor"><value> 33.1408832</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Humidity sensor"><value> 33.1408832</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046363">
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Humidity sensor"><value> 26.8959808</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Humidity sensor"><value> 26.8959808</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Humidity sensor"><value> 26.8959808</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Humidity sensor"><value> 26.8959808</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Humidity sensor"><value> 26.8959808</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Humidity sensor"><value> 26.8959808</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Humidity sensor"><value> 26.8959808</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Humidity sensor"><value> 26.8959808</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046369">
+    <node id="urn:wisebed:node:cti:25">
+      <data key="Mica2 Voltage Level sensor"><value> 3.979</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="Mica2 Voltage Level sensor"><value> 3.979</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="Mica2 Voltage Level sensor"><value> 3.979</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="Mica2 Voltage Level sensor"><value> 3.979</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="Mica2 Voltage Level sensor"><value> 3.979</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="Mica2 Voltage Level sensor"><value> 3.979</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="Mica2 Voltage Level sensor"><value> 3.979</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="Mica2 Voltage Level sensor"><value> 3.979</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046378">
+    <node id="urn:wisebed:node:cti:24">
+      <data key="Mica2 Voltage Level sensor"><value> 4.095</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="Mica2 Voltage Level sensor"><value> 4.095</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="Mica2 Voltage Level sensor"><value> 4.095</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="Mica2 Voltage Level sensor"><value> 4.095</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="Mica2 Voltage Level sensor"><value> 4.095</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="Mica2 Voltage Level sensor"><value> 4.095</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="Mica2 Voltage Level sensor"><value> 4.095</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="Mica2 Voltage Level sensor"><value> 4.095</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="Mica2 Voltage Level sensor"><value> 3.926</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="Mica2 Voltage Level sensor"><value> 3.926</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="Mica2 Voltage Level sensor"><value> 3.926</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="Mica2 Voltage Level sensor"><value> 3.926</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="Mica2 Voltage Level sensor"><value> 3.926</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="Mica2 Voltage Level sensor"><value> 3.926</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="Mica2 Voltage Level sensor"><value> 3.926</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="Mica2 Voltage Level sensor"><value> 3.926</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046383">
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Humidity sensor"><value> 42.1829888</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Humidity sensor"><value> 42.1829888</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Humidity sensor"><value> 42.1829888</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Humidity sensor"><value> 42.1829888</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Humidity sensor"><value> 42.1829888</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Humidity sensor"><value> 42.1829888</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Humidity sensor"><value> 42.1829888</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Humidity sensor"><value> 42.1829888</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046387">
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Light sensor (TSR)"><value> 893750000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Light sensor (TSR)"><value> 893750000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Light sensor (TSR)"><value> 893750000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Light sensor (TSR)"><value> 893750000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Light sensor (TSR)"><value> 893750000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Light sensor (TSR)"><value> 893750000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Light sensor (TSR)"><value> 893750000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Light sensor (TSR)"><value> 893750000</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046399">
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046417">
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Light sensor (TSR)"><value> 75000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Light sensor (TSR)"><value> 75000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Light sensor (TSR)"><value> 75000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Light sensor (TSR)"><value> 75000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Light sensor (TSR)"><value> 75000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Light sensor (TSR)"><value> 75000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Light sensor (TSR)"><value> 75000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Light sensor (TSR)"><value> 75000000</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046428">
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Temperature sensor"><value> 33.48</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Temperature sensor"><value> 33.48</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Temperature sensor"><value> 33.48</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Temperature sensor"><value> 33.48</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Temperature sensor"><value> 33.48</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Temperature sensor"><value> 33.48</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Temperature sensor"><value> 33.48</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Temperature sensor"><value> 33.48</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046436">
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Temperature sensor"><value> 35.52</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046437">
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Temperature sensor"><value> 34.08</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Temperature sensor"><value> 34.08</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Temperature sensor"><value> 34.08</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Temperature sensor"><value> 34.08</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Temperature sensor"><value> 34.08</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Temperature sensor"><value> 34.08</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Temperature sensor"><value> 34.08</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Temperature sensor"><value> 34.08</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046442">
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Light sensor (TSR)"><value> 75000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Light sensor (TSR)"><value> 75000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Light sensor (TSR)"><value> 75000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Light sensor (TSR)"><value> 75000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Light sensor (TSR)"><value> 75000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Light sensor (TSR)"><value> 75000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Light sensor (TSR)"><value> 75000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Light sensor (TSR)"><value> 75000000</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046445">
+    <node id="urn:wisebed:node:cti:31">
+      <data key="Mica2 Voltage Level sensor"><value> 3.959</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="Mica2 Voltage Level sensor"><value> 3.959</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="Mica2 Voltage Level sensor"><value> 3.959</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="Mica2 Voltage Level sensor"><value> 3.959</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="Mica2 Voltage Level sensor"><value> 3.959</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="Mica2 Voltage Level sensor"><value> 3.959</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="Mica2 Voltage Level sensor"><value> 3.959</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="Mica2 Voltage Level sensor"><value> 3.959</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046457">
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Humidity sensor"><value> 31.6311532</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Humidity sensor"><value> 31.6311532</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Humidity sensor"><value> 31.6311532</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Humidity sensor"><value> 31.6311532</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Humidity sensor"><value> 31.6311532</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Humidity sensor"><value> 31.6311532</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Humidity sensor"><value> 31.6311532</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Humidity sensor"><value> 31.6311532</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046467">
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Humidity sensor"><value> 37.4022428</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Humidity sensor"><value> 37.4022428</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Humidity sensor"><value> 37.4022428</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Humidity sensor"><value> 37.4022428</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Humidity sensor"><value> 37.4022428</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Humidity sensor"><value> 37.4022428</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Humidity sensor"><value> 37.4022428</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Humidity sensor"><value> 37.4022428</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046475">
+    <node id="urn:wisebed:node:cti:26">
+      <data key="Mica2 Voltage Level sensor"><value> 3.984</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="Mica2 Voltage Level sensor"><value> 3.984</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="Mica2 Voltage Level sensor"><value> 3.984</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="Mica2 Voltage Level sensor"><value> 3.984</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="Mica2 Voltage Level sensor"><value> 3.984</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="Mica2 Voltage Level sensor"><value> 3.984</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="Mica2 Voltage Level sensor"><value> 3.984</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="Mica2 Voltage Level sensor"><value> 3.984</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046481">
+    <node id="urn:wisebed:node:cti:34">
+      <data key="Mica2 Voltage Level sensor"><value> 3.963</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="Mica2 Voltage Level sensor"><value> 3.963</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="Mica2 Voltage Level sensor"><value> 3.963</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="Mica2 Voltage Level sensor"><value> 3.963</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="Mica2 Voltage Level sensor"><value> 3.963</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="Mica2 Voltage Level sensor"><value> 3.963</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="Mica2 Voltage Level sensor"><value> 3.963</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="Mica2 Voltage Level sensor"><value> 3.963</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046486">
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Humidity sensor"><value> 34.39688</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Humidity sensor"><value> 34.39688</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Humidity sensor"><value> 34.39688</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Humidity sensor"><value> 34.39688</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Humidity sensor"><value> 34.39688</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Humidity sensor"><value> 34.39688</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Humidity sensor"><value> 34.39688</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Humidity sensor"><value> 34.39688</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046495">
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Humidity sensor"><value> 35.0221568</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Humidity sensor"><value> 35.0221568</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Humidity sensor"><value> 35.0221568</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Humidity sensor"><value> 35.0221568</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Humidity sensor"><value> 35.0221568</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Humidity sensor"><value> 35.0221568</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Humidity sensor"><value> 35.0221568</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Humidity sensor"><value> 35.0221568</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Humidity sensor"><value> 33.6301888</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Humidity sensor"><value> 33.6301888</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Humidity sensor"><value> 33.6301888</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Humidity sensor"><value> 33.6301888</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Humidity sensor"><value> 33.6301888</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Humidity sensor"><value> 33.6301888</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Humidity sensor"><value> 33.6301888</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Humidity sensor"><value> 33.6301888</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046500">
+    <node id="urn:wisebed:node:cti:30">
+      <data key="Mica2 Voltage Level sensor"><value> 3.922</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="Mica2 Voltage Level sensor"><value> 3.922</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="Mica2 Voltage Level sensor"><value> 3.922</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="Mica2 Voltage Level sensor"><value> 3.922</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="Mica2 Voltage Level sensor"><value> 3.922</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="Mica2 Voltage Level sensor"><value> 3.922</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="Mica2 Voltage Level sensor"><value> 3.922</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="Mica2 Voltage Level sensor"><value> 3.922</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046504">
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Temperature sensor"><value> 29.62</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Temperature sensor"><value> 29.62</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Temperature sensor"><value> 29.62</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Temperature sensor"><value> 29.62</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Temperature sensor"><value> 29.62</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Temperature sensor"><value> 29.62</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Temperature sensor"><value> 29.62</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Temperature sensor"><value> 29.62</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046525">
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Light sensor (TSR)"><value> 112500000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Light sensor (TSR)"><value> 112500000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Light sensor (TSR)"><value> 112500000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Light sensor (TSR)"><value> 112500000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Light sensor (TSR)"><value> 112500000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Light sensor (TSR)"><value> 112500000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Light sensor (TSR)"><value> 112500000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Light sensor (TSR)"><value> 112500000</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046534">
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Temperature sensor"><value> 35.71</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Temperature sensor"><value> 35.71</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Temperature sensor"><value> 35.71</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Temperature sensor"><value> 35.71</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Temperature sensor"><value> 35.71</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Temperature sensor"><value> 35.71</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Temperature sensor"><value> 35.71</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Temperature sensor"><value> 35.71</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046539">
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Temperature sensor"><value> 39.7</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Temperature sensor"><value> 39.7</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Temperature sensor"><value> 39.7</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Temperature sensor"><value> 39.7</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Temperature sensor"><value> 39.7</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Temperature sensor"><value> 39.7</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Temperature sensor"><value> 39.7</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Temperature sensor"><value> 39.7</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046545">
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Light sensor (TSR)"><value> 143750000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Light sensor (TSR)"><value> 143750000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Light sensor (TSR)"><value> 143750000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Light sensor (TSR)"><value> 143750000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Light sensor (TSR)"><value> 143750000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Light sensor (TSR)"><value> 143750000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Light sensor (TSR)"><value> 143750000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Light sensor (TSR)"><value> 143750000</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046553">
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Light sensor (TSR)"><value> 1037500000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Light sensor (TSR)"><value> 1037500000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Light sensor (TSR)"><value> 1037500000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Light sensor (TSR)"><value> 1037500000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Light sensor (TSR)"><value> 1037500000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Light sensor (TSR)"><value> 1037500000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Light sensor (TSR)"><value> 1037500000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Light sensor (TSR)"><value> 1037500000</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046554">
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Light sensor (TSR)"><value> 37500000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Light sensor (TSR)"><value> 37500000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Light sensor (TSR)"><value> 37500000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Light sensor (TSR)"><value> 37500000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Light sensor (TSR)"><value> 37500000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Light sensor (TSR)"><value> 37500000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Light sensor (TSR)"><value> 37500000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Light sensor (TSR)"><value> 37500000</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046559">
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Temperature sensor"><value> 30.54</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Temperature sensor"><value> 30.54</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Temperature sensor"><value> 30.54</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Temperature sensor"><value> 30.54</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Temperature sensor"><value> 30.54</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Temperature sensor"><value> 30.54</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Temperature sensor"><value> 30.54</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Temperature sensor"><value> 30.54</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046562">
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Humidity sensor"><value> 43.2858092</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Humidity sensor"><value> 43.2858092</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Humidity sensor"><value> 43.2858092</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Humidity sensor"><value> 43.2858092</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Humidity sensor"><value> 43.2858092</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Humidity sensor"><value> 43.2858092</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Humidity sensor"><value> 43.2858092</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Humidity sensor"><value> 43.2858092</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046574">
+    <node id="urn:wisebed:node:cti:29">
+      <data key="Mica2 Voltage Level sensor"><value> 3.995</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="Mica2 Voltage Level sensor"><value> 3.995</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="Mica2 Voltage Level sensor"><value> 3.995</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="Mica2 Voltage Level sensor"><value> 3.995</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="Mica2 Voltage Level sensor"><value> 3.995</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="Mica2 Voltage Level sensor"><value> 3.995</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="Mica2 Voltage Level sensor"><value> 3.995</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="Mica2 Voltage Level sensor"><value> 3.995</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046584">
+    <node id="urn:wisebed:node:cti:27">
+      <data key="Mica2 Voltage Level sensor"><value> 3.993</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="Mica2 Voltage Level sensor"><value> 3.993</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="Mica2 Voltage Level sensor"><value> 3.993</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="Mica2 Voltage Level sensor"><value> 3.993</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="Mica2 Voltage Level sensor"><value> 3.993</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="Mica2 Voltage Level sensor"><value> 3.993</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="Mica2 Voltage Level sensor"><value> 3.993</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="Mica2 Voltage Level sensor"><value> 3.993</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046592">
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Humidity sensor"><value> 33.2108512</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Humidity sensor"><value> 33.2108512</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Humidity sensor"><value> 33.2108512</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Humidity sensor"><value> 33.2108512</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Humidity sensor"><value> 33.2108512</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Humidity sensor"><value> 33.2108512</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Humidity sensor"><value> 33.2108512</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Humidity sensor"><value> 33.2108512</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046597">
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Humidity sensor"><value> 27.1117312</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Humidity sensor"><value> 27.1117312</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Humidity sensor"><value> 27.1117312</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Humidity sensor"><value> 27.1117312</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Humidity sensor"><value> 27.1117312</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Humidity sensor"><value> 27.1117312</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Humidity sensor"><value> 27.1117312</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:34">
+      <data key="TelosB Humidity sensor"><value> 27.1117312</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046606">
+    <node id="urn:wisebed:node:cti:25">
+      <data key="Mica2 Voltage Level sensor"><value> 3.984</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="Mica2 Voltage Level sensor"><value> 3.984</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="Mica2 Voltage Level sensor"><value> 3.984</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="Mica2 Voltage Level sensor"><value> 3.984</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="Mica2 Voltage Level sensor"><value> 3.984</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="Mica2 Voltage Level sensor"><value> 3.984</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="Mica2 Voltage Level sensor"><value> 3.984</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="Mica2 Voltage Level sensor"><value> 3.984</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046612">
+    <node id="urn:wisebed:node:cti:24">
+      <data key="Mica2 Voltage Level sensor"><value> 4.095</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="Mica2 Voltage Level sensor"><value> 4.095</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="Mica2 Voltage Level sensor"><value> 4.095</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="Mica2 Voltage Level sensor"><value> 4.095</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="Mica2 Voltage Level sensor"><value> 4.095</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="Mica2 Voltage Level sensor"><value> 4.095</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="Mica2 Voltage Level sensor"><value> 4.095</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="Mica2 Voltage Level sensor"><value> 4.095</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="Mica2 Voltage Level sensor"><value> 3.932</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="Mica2 Voltage Level sensor"><value> 3.932</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="Mica2 Voltage Level sensor"><value> 3.932</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="Mica2 Voltage Level sensor"><value> 3.932</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="Mica2 Voltage Level sensor"><value> 3.932</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="Mica2 Voltage Level sensor"><value> 3.932</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="Mica2 Voltage Level sensor"><value> 3.932</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="Mica2 Voltage Level sensor"><value> 3.932</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046618">
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Humidity sensor"><value> 42.5512732</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Humidity sensor"><value> 42.5512732</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Humidity sensor"><value> 42.5512732</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Humidity sensor"><value> 42.5512732</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Humidity sensor"><value> 42.5512732</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Humidity sensor"><value> 42.5512732</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Humidity sensor"><value> 42.5512732</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Humidity sensor"><value> 42.5512732</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046621">
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Light sensor (TSR)"><value> 750000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Light sensor (TSR)"><value> 750000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Light sensor (TSR)"><value> 750000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Light sensor (TSR)"><value> 750000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Light sensor (TSR)"><value> 750000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Light sensor (TSR)"><value> 750000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Light sensor (TSR)"><value> 750000000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="TelosB Light sensor (TSR)"><value> 750000000</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046633">
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.56</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.56</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.56</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.56</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.56</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.56</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.56</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Temperature sensor"><value> 35.56</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046651">
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Light sensor (TSR)"><value> 81250000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Light sensor (TSR)"><value> 81250000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Light sensor (TSR)"><value> 81250000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Light sensor (TSR)"><value> 81250000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Light sensor (TSR)"><value> 81250000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Light sensor (TSR)"><value> 81250000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Light sensor (TSR)"><value> 81250000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:26">
+      <data key="TelosB Light sensor (TSR)"><value> 81250000</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046662">
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Temperature sensor"><value> 33.41</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Temperature sensor"><value> 33.41</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Temperature sensor"><value> 33.41</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Temperature sensor"><value> 33.41</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Temperature sensor"><value> 33.41</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Temperature sensor"><value> 33.41</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Temperature sensor"><value> 33.41</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:25">
+      <data key="TelosB Temperature sensor"><value> 33.41</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046671">
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Temperature sensor"><value> 35.49</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Temperature sensor"><value> 35.49</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Temperature sensor"><value> 35.49</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Temperature sensor"><value> 35.49</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Temperature sensor"><value> 35.49</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Temperature sensor"><value> 35.49</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Temperature sensor"><value> 35.49</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:24">
+      <data key="TelosB Temperature sensor"><value> 35.49</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Temperature sensor"><value> 33.98</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Temperature sensor"><value> 33.98</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Temperature sensor"><value> 33.98</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Temperature sensor"><value> 33.98</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Temperature sensor"><value> 33.98</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Temperature sensor"><value> 33.98</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Temperature sensor"><value> 33.98</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:32">
+      <data key="TelosB Temperature sensor"><value> 33.98</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046676">
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Light sensor (TSR)"><value> 68750000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Light sensor (TSR)"><value> 68750000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Light sensor (TSR)"><value> 68750000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Light sensor (TSR)"><value> 68750000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Light sensor (TSR)"><value> 68750000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Light sensor (TSR)"><value> 68750000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Light sensor (TSR)"><value> 68750000</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:30">
+      <data key="TelosB Light sensor (TSR)"><value> 68750000</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046680">
+    <node id="urn:wisebed:node:cti:31">
+      <data key="Mica2 Voltage Level sensor"><value> 3.96</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="Mica2 Voltage Level sensor"><value> 3.96</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="Mica2 Voltage Level sensor"><value> 3.96</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="Mica2 Voltage Level sensor"><value> 3.96</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="Mica2 Voltage Level sensor"><value> 3.96</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="Mica2 Voltage Level sensor"><value> 3.96</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="Mica2 Voltage Level sensor"><value> 3.96</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:31">
+      <data key="Mica2 Voltage Level sensor"><value> 3.96</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046692">
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Humidity sensor"><value> 31.59592</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Humidity sensor"><value> 31.59592</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Humidity sensor"><value> 31.59592</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Humidity sensor"><value> 31.59592</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Humidity sensor"><value> 31.59592</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Humidity sensor"><value> 31.59592</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Humidity sensor"><value> 31.59592</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:29">
+      <data key="TelosB Humidity sensor"><value> 31.59592</value></data>
+    </node>
+</timestamp>
+
+<timestamp value="21046701">
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Humidity sensor"><value> 37.2306688</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Humidity sensor"><value> 37.2306688</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Humidity sensor"><value> 37.2306688</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Humidity sensor"><value> 37.2306688</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Humidity sensor"><value> 37.2306688</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Humidity sensor"><value> 37.2306688</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Humidity sensor"><value> 37.2306688</value></data>
+    </node>
+    <node id="urn:wisebed:node:cti:27">
+      <data key="TelosB Humidity sensor"><value> 37.2306688</value></data>
+    </node>
+  </timestamp> 
+  </trace>
+</wiseml>

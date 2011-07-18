@@ -1,0 +1,4935 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<wiseml version="1.0" xmlns="http://wisebed.eu/ns/wiseml/1.0">
+    <setup>
+        <origin>
+            <x>53.833836</x>
+            <y>10.704606</y>
+            <z>33.0</z>
+            <phi>-145.0</phi>
+            <theta>0.0</theta>
+        </origin>
+        <coordinateType>geographic</coordinateType>
+        <description>This is a dataset from the WISEBED UzL testbed in Luebeck, Germany containing 54 telosB sensor nodes. The nodes send all sensor values (temperature, light, irda and humidity) one time a minute and broadcast a message to all neighbours. This is a snapshot from our data from 2011.02.04 14:10:14 to 2011.02.04 17:02:17</description>
+	<node id="urn:wisebed:uzl1:0xfee3">
+            <position>
+                <x>4.5</x>
+                <y>1.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x5502">
+            <position>
+                <x>3.5</x>
+                <y>1.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0xd2fb">
+            <position>
+                <x>2.0</x>
+                <y>1.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x739d">
+            <position>
+                <x>25.5</x>
+                <y>14.0</y>
+                <z>2.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x435c">
+            <position>
+                <x>25.5</x>
+                <y>12.0</y>
+                <z>2.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x3eee">
+            <position>
+                <x>25.5</x>
+                <y>11.5</y>
+                <z>2.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x2891">
+            <position>
+                <x>17.0</x>
+                <y>0.5</y>
+                <z>0.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x58ca">
+            <position>
+                <x>20.5</x>
+                <y>1.5</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x012c">
+            <position>
+                <x>17.0</x>
+                <y>2.5</y>
+                <z>0.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0xaa70">
+            <position>
+                <x>17.0</x>
+                <y>13.5</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0xe3c2">
+            <position>
+                <x>14.5</x>
+                <y>13.5</y>
+                <z>2.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x8477">
+            <position>
+                <x>14.5</x>
+                <y>12.0</y>
+                <z>2.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0xb354">
+            <position>
+                <x>1.0</x>
+                <y>6.0</y>
+                <z>2.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x53fc">
+            <position>
+                <x>1.0</x>
+                <y>6.0</y>
+                <z>2.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x4056">
+            <position>
+                <x>1.0</x>
+                <y>6.0</y>
+                <z>2.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x2c26">
+            <position>
+                <x>31.0</x>
+                <y>6.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x0553">
+            <position>
+                <x>31.0</x>
+                <y>3.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x2ad3">
+            <position>
+                <x>28.5</x>
+                <y>1.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x2b37">
+            <position>
+                <x>6.0</x>
+                <y>1.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x55db">
+            <position>
+                <x>8.0</x>
+                <y>1.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x1327">
+            <position>
+                <x>10.0</x>
+                <y>1.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0xd1dd">
+            <position>
+                <x>2.5</x>
+                <y>14.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x17e9">
+            <position>
+                <x>1.0</x>
+                <y>14.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0xc26b">
+            <position>
+                <x>1.0</x>
+                <y>11.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x7b2d">
+            <position>
+                <x>27.5</x>
+                <y>2.5</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0xc251">
+            <position>
+                <x>27.5</x>
+                <y>1.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0xf9f3">
+            <position>
+                <x>25.5</x>
+                <y>1.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x7e56">
+            <position>
+                <x>1.0</x>
+                <y>11.0</y>
+                <z>2.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x73ba">
+            <position>
+                <x>1.0</x>
+                <y>12.5</y>
+                <z>2.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x746e">
+            <position>
+                <x>1.0</x>
+                <y>14.0</y>
+                <z>2.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x3f32">
+            <position>
+                <x>34.5</x>
+                <y>11.5</y>
+                <z>2.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x534d">
+            <position>
+                <x>34.5</x>
+                <y>10.5</y>
+                <z>2.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x543e">
+            <position>
+                <x>34.5</x>
+                <y>10.5</y>
+                <z>2.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x408b">
+            <position>
+                <x>31.5</x>
+                <y>12.0</y>
+                <z>2.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x3757">
+            <position>
+                <x>31.5</x>
+                <y>11.5</y>
+                <z>2.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0xf620">
+            <position>
+                <x>31.5</x>
+                <y>10.5</y>
+                <z>2.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0xf242">
+            <position>
+                <x>14.0</x>
+                <y>1.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0xe412">
+            <position>
+                <x>14.0</x>
+                <y>4.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x5680">
+            <position>
+                <x>14.0</x>
+                <y>5.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x0b15">
+            <position>
+                <x>25.0</x>
+                <y>3.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x30c3">
+            <position>
+                <x>25.0</x>
+                <y>2.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x8555">
+            <position>
+                <x>25.0</x>
+                <y>1.0</y>
+                <z>2.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x2b7a">
+            <position>
+                <x>8.5</x>
+                <y>7.0</y>
+                <z>2.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x390a">
+            <position>
+                <x>7.5</x>
+                <y>7.0</y>
+                <z>2.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x561d">
+            <position>
+                <x>6.0</x>
+                <y>7.0</y>
+                <z>2.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x436e">
+            <position>
+                <x>13.5</x>
+                <y>1.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x9815">
+            <position>
+                <x>10.5</x>
+                <y>3.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x5d3d">
+            <position>
+                <x>10.5</x>
+                <y>6.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x1bfc">
+            <position>
+                <x>23.0</x>
+                <y>10.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0xdedf">
+            <position>
+                <x>23.0</x>
+                <y>12.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0xddd3">
+            <position>
+                <x>23.0</x>
+                <y>14.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x2f2e">
+            <position>
+                <x>28.5</x>
+                <y>10.5</y>
+                <z>2.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x0fce">
+            <position>
+                <x>28.5</x>
+                <y>14.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+        <node id="urn:wisebed:uzl1:0x3ff3">
+            <position>
+                <x>31.5</x>
+                <y>14.0</y>
+                <z>1.0</z>
+            </position>
+            <gateway>true</gateway>
+            <nodeType>telosb</nodeType>
+            <description>Processor: MSP 430F1611 (Ram 10kB, Flash 48kB, op/sleep 22mA, 5myA) Radio: TI CC2420 IEEE 802.15.4(2,4 GHz)</description>
+            <capability>
+                <name>urn:wisebed:node:capability:temperature</name>
+                <datatype>integer</datatype>
+                <unit>degrees</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:light</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:ir</name>
+                <datatype>integer</datatype>
+                <unit>lux</unit>
+                <default>0</default>
+            </capability>
+            <capability>
+                <name>urn:wisebed:node:capability:humidity</name>
+                <datatype>integer</datatype>
+                <unit>raw</unit>
+                <default>0</default>
+            </capability>
+        </node>
+    </setup>
+<trace id="0">
+<timestamp>0</timestamp>
+<node id="urn:wisebed:uzl1:0x561d">
+	<data key="urn:wisebed:node:capability:humidity">36</data>
+</node>
+<node id="urn:wisebed:uzl1:0x739d">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">47</data>
+	<data key="urn:wisebed:node:capability:light">433</data>
+	<data key="urn:wisebed:node:capability:temperature">27.0</data>
+</node>
+<timestamp>1</timestamp>
+<node id="urn:wisebed:uzl1:0x561d">
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">311</data>
+	<data key="urn:wisebed:node:capability:temperature">27.6</data>
+</node>
+<timestamp>2</timestamp>
+<node id="urn:wisebed:uzl1:0xe412">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">79</data>
+	<data key="urn:wisebed:node:capability:light">665</data>
+	<data key="urn:wisebed:node:capability:temperature">30.1</data>
+</node>
+<timestamp>34</timestamp>
+<node id="urn:wisebed:uzl1:0x12c">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+</node>
+<node id="urn:wisebed:uzl1:0x553">
+	<data key="urn:wisebed:node:capability:humidity">28</data>
+	<data key="urn:wisebed:node:capability:ir">97</data>
+	<data key="urn:wisebed:node:capability:light">793</data>
+	<data key="urn:wisebed:node:capability:temperature">29.9</data>
+</node>
+<node id="urn:wisebed:uzl1:0xb15">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">34</data>
+	<data key="urn:wisebed:node:capability:light">140</data>
+	<data key="urn:wisebed:node:capability:temperature">27.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0xfce">
+	<data key="urn:wisebed:node:capability:ir">158</data>
+	<data key="urn:wisebed:node:capability:light">1068</data>
+	<data key="urn:wisebed:node:capability:temperature">30.3</data>
+</node>
+<node id="urn:wisebed:uzl1:0x1327">
+	<data key="urn:wisebed:node:capability:humidity">37</data>
+	<data key="urn:wisebed:node:capability:ir">97</data>
+	<data key="urn:wisebed:node:capability:light">549</data>
+	<data key="urn:wisebed:node:capability:temperature">27.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x1bfc">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">34</data>
+	<data key="urn:wisebed:node:capability:light">152</data>
+	<data key="urn:wisebed:node:capability:temperature">25.7</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2ad3">
+	<data key="urn:wisebed:node:capability:humidity">27</data>
+	<data key="urn:wisebed:node:capability:ir">116</data>
+	<data key="urn:wisebed:node:capability:light">1092</data>
+	<data key="urn:wisebed:node:capability:temperature">30.7</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2b37">
+	<data key="urn:wisebed:node:capability:humidity">36</data>
+	<data key="urn:wisebed:node:capability:ir">137</data>
+	<data key="urn:wisebed:node:capability:light">970</data>
+	<data key="urn:wisebed:node:capability:temperature">27.7</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2c26">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2f2e">
+	<data key="urn:wisebed:node:capability:humidity">29</data>
+	<data key="urn:wisebed:node:capability:ir">42</data>
+	<data key="urn:wisebed:node:capability:light">225</data>
+	<data key="urn:wisebed:node:capability:temperature">28.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0x390a">
+	<data key="urn:wisebed:node:capability:humidity">37</data>
+</node>
+<node id="urn:wisebed:uzl1:0x3eee">
+	<data key="urn:wisebed:node:capability:humidity">30</data>
+</node>
+<node id="urn:wisebed:uzl1:0x3f32">
+	<data key="urn:wisebed:node:capability:ir">43</data>
+	<data key="urn:wisebed:node:capability:light">201</data>
+	<data key="urn:wisebed:node:capability:temperature">28.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x3ff3">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">173</data>
+	<data key="urn:wisebed:node:capability:light">1043</data>
+	<data key="urn:wisebed:node:capability:temperature">27.0</data>
+</node>
+<node id="urn:wisebed:uzl1:0x4056">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">134</data>
+	<data key="urn:wisebed:node:capability:temperature">26.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0x435c">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">92</data>
+	<data key="urn:wisebed:node:capability:light">628</data>
+	<data key="urn:wisebed:node:capability:temperature">26.9</data>
+</node>
+<node id="urn:wisebed:uzl1:0x436e">
+	<data key="urn:wisebed:node:capability:humidity">38</data>
+	<data key="urn:wisebed:node:capability:ir">227</data>
+	<data key="urn:wisebed:node:capability:light">1452</data>
+	<data key="urn:wisebed:node:capability:temperature">26.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0x534d">
+	<data key="urn:wisebed:node:capability:humidity">27</data>
+</node>
+<node id="urn:wisebed:uzl1:0x53fc">
+	<data key="urn:wisebed:node:capability:humidity">35</data>
+	<data key="urn:wisebed:node:capability:ir">34</data>
+	<data key="urn:wisebed:node:capability:light">140</data>
+	<data key="urn:wisebed:node:capability:temperature">26.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0x543e">
+	<data key="urn:wisebed:node:capability:humidity">25</data>
+	<data key="urn:wisebed:node:capability:ir">44</data>
+	<data key="urn:wisebed:node:capability:light">238</data>
+	<data key="urn:wisebed:node:capability:temperature">29.7</data>
+</node>
+<node id="urn:wisebed:uzl1:0x5502">
+	<data key="urn:wisebed:node:capability:humidity">35</data>
+</node>
+<node id="urn:wisebed:uzl1:0x5680">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+</node>
+<node id="urn:wisebed:uzl1:0x5d3d">
+	<data key="urn:wisebed:node:capability:humidity">34</data>
+	<data key="urn:wisebed:node:capability:ir">75</data>
+	<data key="urn:wisebed:node:capability:light">543</data>
+	<data key="urn:wisebed:node:capability:temperature">27.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0x7e56">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">36</data>
+	<data key="urn:wisebed:node:capability:light">164</data>
+	<data key="urn:wisebed:node:capability:temperature">27.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0x8477">
+	<data key="urn:wisebed:node:capability:humidity">29</data>
+	<data key="urn:wisebed:node:capability:ir">30</data>
+	<data key="urn:wisebed:node:capability:light">122</data>
+	<data key="urn:wisebed:node:capability:temperature">27.0</data>
+</node>
+<node id="urn:wisebed:uzl1:0xaa70">
+	<data key="urn:wisebed:node:capability:humidity">35</data>
+	<data key="urn:wisebed:node:capability:ir">29</data>
+	<data key="urn:wisebed:node:capability:light">122</data>
+	<data key="urn:wisebed:node:capability:temperature">25.3</data>
+</node>
+<node id="urn:wisebed:uzl1:0xc251">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+</node>
+<node id="urn:wisebed:uzl1:0xc26b">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+</node>
+<node id="urn:wisebed:uzl1:0xd2fb">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">162</data>
+	<data key="urn:wisebed:node:capability:light">939</data>
+	<data key="urn:wisebed:node:capability:temperature">28.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0xddd3">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">44</data>
+	<data key="urn:wisebed:node:capability:light">213</data>
+	<data key="urn:wisebed:node:capability:temperature">25.9</data>
+</node>
+<node id="urn:wisebed:uzl1:0xdedf">
+	<data key="urn:wisebed:node:capability:ir">31</data>
+	<data key="urn:wisebed:node:capability:light">122</data>
+</node>
+<node id="urn:wisebed:uzl1:0xf242">
+	<data key="urn:wisebed:node:capability:humidity">36</data>
+	<data key="urn:wisebed:node:capability:ir">87</data>
+	<data key="urn:wisebed:node:capability:light">598</data>
+	<data key="urn:wisebed:node:capability:temperature">27.8</data>
+</node>
+<node id="urn:wisebed:uzl1:0xf9f3">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+</node>
+<node id="urn:wisebed:uzl1:0xfee3">
+	<data key="urn:wisebed:node:capability:humidity">37</data>
+	<data key="urn:wisebed:node:capability:ir">114</data>
+	<data key="urn:wisebed:node:capability:light">610</data>
+	<data key="urn:wisebed:node:capability:temperature">24.9</data>
+</node>
+<timestamp>35</timestamp>
+<node id="urn:wisebed:uzl1:0x12c">
+	<data key="urn:wisebed:node:capability:ir">31</data>
+	<data key="urn:wisebed:node:capability:light">122</data>
+	<data key="urn:wisebed:node:capability:temperature">27.7</data>
+</node>
+<node id="urn:wisebed:uzl1:0x17e9">
+	<data key="urn:wisebed:node:capability:ir">164</data>
+	<data key="urn:wisebed:node:capability:light">946</data>
+	<data key="urn:wisebed:node:capability:temperature">27.0</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2c26">
+	<data key="urn:wisebed:node:capability:ir">133</data>
+	<data key="urn:wisebed:node:capability:light">921</data>
+	<data key="urn:wisebed:node:capability:temperature">28.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0x3757">
+	<data key="urn:wisebed:node:capability:humidity">28</data>
+	<data key="urn:wisebed:node:capability:ir">51</data>
+	<data key="urn:wisebed:node:capability:light">268</data>
+	<data key="urn:wisebed:node:capability:temperature">29.0</data>
+</node>
+<node id="urn:wisebed:uzl1:0x390a">
+	<data key="urn:wisebed:node:capability:ir">31</data>
+	<data key="urn:wisebed:node:capability:light">128</data>
+	<data key="urn:wisebed:node:capability:temperature">27.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x3eee">
+	<data key="urn:wisebed:node:capability:ir">43</data>
+	<data key="urn:wisebed:node:capability:light">213</data>
+	<data key="urn:wisebed:node:capability:temperature">29.3</data>
+</node>
+<node id="urn:wisebed:uzl1:0x534d">
+	<data key="urn:wisebed:node:capability:ir">63</data>
+	<data key="urn:wisebed:node:capability:light">372</data>
+	<data key="urn:wisebed:node:capability:temperature">29.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0x5502">
+	<data key="urn:wisebed:node:capability:ir">183</data>
+	<data key="urn:wisebed:node:capability:light">1068</data>
+	<data key="urn:wisebed:node:capability:temperature">25.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0x55db">
+	<data key="urn:wisebed:node:capability:humidity">34</data>
+	<data key="urn:wisebed:node:capability:ir">110</data>
+	<data key="urn:wisebed:node:capability:light">817</data>
+	<data key="urn:wisebed:node:capability:temperature">30.0</data>
+</node>
+<node id="urn:wisebed:uzl1:0x5680">
+	<data key="urn:wisebed:node:capability:ir">72</data>
+	<data key="urn:wisebed:node:capability:light">433</data>
+	<data key="urn:wisebed:node:capability:temperature">29.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x58ca">
+	<data key="urn:wisebed:node:capability:humidity">30</data>
+	<data key="urn:wisebed:node:capability:ir">89</data>
+	<data key="urn:wisebed:node:capability:light">640</data>
+	<data key="urn:wisebed:node:capability:temperature">28.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x739d">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">45</data>
+	<data key="urn:wisebed:node:capability:light">250</data>
+	<data key="urn:wisebed:node:capability:temperature">26.8</data>
+</node>
+<node id="urn:wisebed:uzl1:0x7b2d">
+	<data key="urn:wisebed:node:capability:humidity">27</data>
+	<data key="urn:wisebed:node:capability:ir">71</data>
+	<data key="urn:wisebed:node:capability:light">415</data>
+	<data key="urn:wisebed:node:capability:temperature">30.0</data>
+</node>
+<node id="urn:wisebed:uzl1:0x8555">
+	<data key="urn:wisebed:node:capability:ir">148</data>
+	<data key="urn:wisebed:node:capability:light">830</data>
+	<data key="urn:wisebed:node:capability:temperature">25.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0xc251">
+	<data key="urn:wisebed:node:capability:ir">153</data>
+	<data key="urn:wisebed:node:capability:light">1043</data>
+	<data key="urn:wisebed:node:capability:temperature">25.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0xc26b">
+	<data key="urn:wisebed:node:capability:ir">170</data>
+	<data key="urn:wisebed:node:capability:light">988</data>
+	<data key="urn:wisebed:node:capability:temperature">27.9</data>
+</node>
+<node id="urn:wisebed:uzl1:0xe3c2">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">31</data>
+	<data key="urn:wisebed:node:capability:light">140</data>
+	<data key="urn:wisebed:node:capability:temperature">27.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0xf620">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">43</data>
+	<data key="urn:wisebed:node:capability:light">238</data>
+	<data key="urn:wisebed:node:capability:temperature">28.9</data>
+</node>
+<node id="urn:wisebed:uzl1:0xf9f3">
+	<data key="urn:wisebed:node:capability:ir">68</data>
+	<data key="urn:wisebed:node:capability:light">433</data>
+	<data key="urn:wisebed:node:capability:temperature">27.7</data>
+</node>
+<timestamp>36</timestamp>
+<node id="urn:wisebed:uzl1:0x561d">
+	<data key="urn:wisebed:node:capability:humidity">36</data>
+	<data key="urn:wisebed:node:capability:ir">31</data>
+	<data key="urn:wisebed:node:capability:light">122</data>
+	<data key="urn:wisebed:node:capability:temperature">27.4</data>
+</node>
+<timestamp>37</timestamp>
+<node id="urn:wisebed:uzl1:0x2891">
+	<data key="urn:wisebed:node:capability:humidity">20</data>
+	<data key="urn:wisebed:node:capability:ir">27</data>
+	<data key="urn:wisebed:node:capability:light">128</data>
+	<data key="urn:wisebed:node:capability:temperature">35.8</data>
+</node>
+<node id="urn:wisebed:uzl1:0x9815">
+	<data key="urn:wisebed:node:capability:humidity">30</data>
+	<data key="urn:wisebed:node:capability:ir">112</data>
+	<data key="urn:wisebed:node:capability:light">811</data>
+	<data key="urn:wisebed:node:capability:temperature">29.4</data>
+</node>
+<timestamp>38</timestamp>
+<node id="urn:wisebed:uzl1:0x30c3">
+	<data key="urn:wisebed:node:capability:humidity">28</data>
+	<data key="urn:wisebed:node:capability:ir">35</data>
+	<data key="urn:wisebed:node:capability:light">128</data>
+	<data key="urn:wisebed:node:capability:temperature">27.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0x408b">
+	<data key="urn:wisebed:node:capability:humidity">28</data>
+	<data key="urn:wisebed:node:capability:ir">109</data>
+	<data key="urn:wisebed:node:capability:light">811</data>
+	<data key="urn:wisebed:node:capability:temperature">30.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0x73ba">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+</node>
+<node id="urn:wisebed:uzl1:0x746e">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">36</data>
+	<data key="urn:wisebed:node:capability:light">158</data>
+	<data key="urn:wisebed:node:capability:temperature">28.9</data>
+</node>
+<node id="urn:wisebed:uzl1:0xe412">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">73</data>
+	<data key="urn:wisebed:node:capability:light">488</data>
+	<data key="urn:wisebed:node:capability:temperature">29.9</data>
+</node>
+<timestamp>39</timestamp>
+<node id="urn:wisebed:uzl1:0x73ba">
+	<data key="urn:wisebed:node:capability:ir">36</data>
+	<data key="urn:wisebed:node:capability:light">164</data>
+	<data key="urn:wisebed:node:capability:temperature">27.6</data>
+</node>
+<timestamp>94</timestamp>
+<node id="urn:wisebed:uzl1:0x12c">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+</node>
+<node id="urn:wisebed:uzl1:0x553">
+	<data key="urn:wisebed:node:capability:humidity">29</data>
+</node>
+<node id="urn:wisebed:uzl1:0xb15">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+</node>
+<node id="urn:wisebed:uzl1:0xfce">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">164</data>
+	<data key="urn:wisebed:node:capability:light">1208</data>
+	<data key="urn:wisebed:node:capability:temperature">30.3</data>
+</node>
+<node id="urn:wisebed:uzl1:0x1327">
+	<data key="urn:wisebed:node:capability:humidity">37</data>
+	<data key="urn:wisebed:node:capability:ir">91</data>
+	<data key="urn:wisebed:node:capability:light">695</data>
+	<data key="urn:wisebed:node:capability:temperature">27.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x1bfc">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2ad3">
+	<data key="urn:wisebed:node:capability:humidity">28</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2b37">
+	<data key="urn:wisebed:node:capability:humidity">36</data>
+	<data key="urn:wisebed:node:capability:ir">126</data>
+	<data key="urn:wisebed:node:capability:light">1013</data>
+	<data key="urn:wisebed:node:capability:temperature">27.7</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2b7a">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2f2e">
+	<data key="urn:wisebed:node:capability:humidity">29</data>
+	<data key="urn:wisebed:node:capability:ir">43</data>
+	<data key="urn:wisebed:node:capability:light">408</data>
+	<data key="urn:wisebed:node:capability:temperature">28.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0x3f32">
+	<data key="urn:wisebed:node:capability:humidity">29</data>
+</node>
+<node id="urn:wisebed:uzl1:0x3ff3">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+</node>
+<node id="urn:wisebed:uzl1:0x4056">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">34</data>
+	<data key="urn:wisebed:node:capability:light">317</data>
+	<data key="urn:wisebed:node:capability:temperature">26.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0x435c">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+</node>
+<node id="urn:wisebed:uzl1:0x436e">
+	<data key="urn:wisebed:node:capability:humidity">38</data>
+</node>
+<node id="urn:wisebed:uzl1:0x53fc">
+	<data key="urn:wisebed:node:capability:humidity">35</data>
+</node>
+<node id="urn:wisebed:uzl1:0x543e">
+	<data key="urn:wisebed:node:capability:humidity">25</data>
+</node>
+<node id="urn:wisebed:uzl1:0x5502">
+	<data key="urn:wisebed:node:capability:humidity">35</data>
+</node>
+<node id="urn:wisebed:uzl1:0x5d3d">
+	<data key="urn:wisebed:node:capability:humidity">34</data>
+	<data key="urn:wisebed:node:capability:ir">84</data>
+	<data key="urn:wisebed:node:capability:light">683</data>
+	<data key="urn:wisebed:node:capability:temperature">27.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0x7e56">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">38</data>
+	<data key="urn:wisebed:node:capability:light">347</data>
+	<data key="urn:wisebed:node:capability:temperature">27.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0x8477">
+	<data key="urn:wisebed:node:capability:humidity">29</data>
+</node>
+<node id="urn:wisebed:uzl1:0xaa70">
+	<data key="urn:wisebed:node:capability:humidity">35</data>
+	<data key="urn:wisebed:node:capability:ir">31</data>
+	<data key="urn:wisebed:node:capability:light">305</data>
+	<data key="urn:wisebed:node:capability:temperature">25.2</data>
+</node>
+<node id="urn:wisebed:uzl1:0xb354">
+	<data key="urn:wisebed:node:capability:ir">33</data>
+	<data key="urn:wisebed:node:capability:light">305</data>
+	<data key="urn:wisebed:node:capability:temperature">27.3</data>
+</node>
+<node id="urn:wisebed:uzl1:0xd2fb">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+</node>
+<node id="urn:wisebed:uzl1:0xddd3">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">47</data>
+	<data key="urn:wisebed:node:capability:light">402</data>
+	<data key="urn:wisebed:node:capability:temperature">25.9</data>
+</node>
+<node id="urn:wisebed:uzl1:0xdedf">
+	<data key="urn:wisebed:node:capability:humidity">30</data>
+	<data key="urn:wisebed:node:capability:ir">33</data>
+	<data key="urn:wisebed:node:capability:light">323</data>
+	<data key="urn:wisebed:node:capability:temperature">25.9</data>
+</node>
+<node id="urn:wisebed:uzl1:0xf242">
+	<data key="urn:wisebed:node:capability:humidity">36</data>
+</node>
+<node id="urn:wisebed:uzl1:0xf9f3">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+</node>
+<node id="urn:wisebed:uzl1:0xfee3">
+	<data key="urn:wisebed:node:capability:humidity">37</data>
+	<data key="urn:wisebed:node:capability:temperature">24.9</data>
+</node>
+<timestamp>95</timestamp>
+<node id="urn:wisebed:uzl1:0x12c">
+	<data key="urn:wisebed:node:capability:ir">33</data>
+	<data key="urn:wisebed:node:capability:light">311</data>
+	<data key="urn:wisebed:node:capability:temperature">27.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x553">
+	<data key="urn:wisebed:node:capability:ir">100</data>
+	<data key="urn:wisebed:node:capability:light">933</data>
+	<data key="urn:wisebed:node:capability:temperature">29.9</data>
+</node>
+<node id="urn:wisebed:uzl1:0xb15">
+	<data key="urn:wisebed:node:capability:ir">36</data>
+	<data key="urn:wisebed:node:capability:light">329</data>
+	<data key="urn:wisebed:node:capability:temperature">27.3</data>
+</node>
+<node id="urn:wisebed:uzl1:0x17e9">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">156</data>
+	<data key="urn:wisebed:node:capability:light">1074</data>
+	<data key="urn:wisebed:node:capability:temperature">27.0</data>
+</node>
+<node id="urn:wisebed:uzl1:0x1bfc">
+	<data key="urn:wisebed:node:capability:ir">36</data>
+	<data key="urn:wisebed:node:capability:light">360</data>
+	<data key="urn:wisebed:node:capability:temperature">25.7</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2ad3">
+	<data key="urn:wisebed:node:capability:ir">128</data>
+	<data key="urn:wisebed:node:capability:light">1153</data>
+	<data key="urn:wisebed:node:capability:temperature">30.7</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2b7a">
+	<data key="urn:wisebed:node:capability:ir">31</data>
+	<data key="urn:wisebed:node:capability:light">305</data>
+	<data key="urn:wisebed:node:capability:temperature">29.8</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2c26">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">125</data>
+	<data key="urn:wisebed:node:capability:light">1080</data>
+	<data key="urn:wisebed:node:capability:temperature">28.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0x3757">
+	<data key="urn:wisebed:node:capability:humidity">28</data>
+	<data key="urn:wisebed:node:capability:ir">51</data>
+	<data key="urn:wisebed:node:capability:light">469</data>
+	<data key="urn:wisebed:node:capability:temperature">29.0</data>
+</node>
+<node id="urn:wisebed:uzl1:0x390a">
+	<data key="urn:wisebed:node:capability:humidity">37</data>
+	<data key="urn:wisebed:node:capability:ir">33</data>
+	<data key="urn:wisebed:node:capability:light">311</data>
+	<data key="urn:wisebed:node:capability:temperature">27.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0x3eee">
+	<data key="urn:wisebed:node:capability:humidity">30</data>
+	<data key="urn:wisebed:node:capability:ir">45</data>
+	<data key="urn:wisebed:node:capability:light">408</data>
+	<data key="urn:wisebed:node:capability:temperature">29.2</data>
+</node>
+<node id="urn:wisebed:uzl1:0x3f32">
+	<data key="urn:wisebed:node:capability:ir">43</data>
+	<data key="urn:wisebed:node:capability:light">402</data>
+	<data key="urn:wisebed:node:capability:temperature">28.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0x3ff3">
+	<data key="urn:wisebed:node:capability:ir">181</data>
+	<data key="urn:wisebed:node:capability:light">1263</data>
+	<data key="urn:wisebed:node:capability:temperature">26.9</data>
+</node>
+<node id="urn:wisebed:uzl1:0x435c">
+	<data key="urn:wisebed:node:capability:ir">92</data>
+	<data key="urn:wisebed:node:capability:light">805</data>
+	<data key="urn:wisebed:node:capability:temperature">26.9</data>
+</node>
+<node id="urn:wisebed:uzl1:0x436e">
+	<data key="urn:wisebed:node:capability:ir">195</data>
+	<data key="urn:wisebed:node:capability:light">1477</data>
+	<data key="urn:wisebed:node:capability:temperature">26.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0x534d">
+	<data key="urn:wisebed:node:capability:humidity">27</data>
+	<data key="urn:wisebed:node:capability:ir">62</data>
+	<data key="urn:wisebed:node:capability:light">616</data>
+	<data key="urn:wisebed:node:capability:temperature">29.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0x53fc">
+	<data key="urn:wisebed:node:capability:ir">35</data>
+	<data key="urn:wisebed:node:capability:light">317</data>
+	<data key="urn:wisebed:node:capability:temperature">26.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0x543e">
+	<data key="urn:wisebed:node:capability:ir">46</data>
+	<data key="urn:wisebed:node:capability:light">445</data>
+	<data key="urn:wisebed:node:capability:temperature">29.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x5502">
+	<data key="urn:wisebed:node:capability:ir">155</data>
+	<data key="urn:wisebed:node:capability:light">1068</data>
+	<data key="urn:wisebed:node:capability:temperature">25.3</data>
+</node>
+<node id="urn:wisebed:uzl1:0x55db">
+	<data key="urn:wisebed:node:capability:humidity">34</data>
+	<data key="urn:wisebed:node:capability:ir">114</data>
+	<data key="urn:wisebed:node:capability:light">915</data>
+	<data key="urn:wisebed:node:capability:temperature">29.9</data>
+</node>
+<node id="urn:wisebed:uzl1:0x5680">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">69</data>
+	<data key="urn:wisebed:node:capability:light">646</data>
+	<data key="urn:wisebed:node:capability:temperature">29.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0x58ca">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">94</data>
+	<data key="urn:wisebed:node:capability:light">769</data>
+	<data key="urn:wisebed:node:capability:temperature">28.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x739d">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">48</data>
+	<data key="urn:wisebed:node:capability:light">439</data>
+	<data key="urn:wisebed:node:capability:temperature">26.8</data>
+</node>
+<node id="urn:wisebed:uzl1:0x7b2d">
+	<data key="urn:wisebed:node:capability:humidity">27</data>
+	<data key="urn:wisebed:node:capability:ir">68</data>
+	<data key="urn:wisebed:node:capability:light">616</data>
+	<data key="urn:wisebed:node:capability:temperature">30.0</data>
+</node>
+<node id="urn:wisebed:uzl1:0x8477">
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">317</data>
+	<data key="urn:wisebed:node:capability:temperature">27.0</data>
+</node>
+<node id="urn:wisebed:uzl1:0x8555">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">123</data>
+	<data key="urn:wisebed:node:capability:light">854</data>
+	<data key="urn:wisebed:node:capability:temperature">25.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0xc251">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">144</data>
+	<data key="urn:wisebed:node:capability:light">1104</data>
+	<data key="urn:wisebed:node:capability:temperature">25.2</data>
+</node>
+<node id="urn:wisebed:uzl1:0xc26b">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">164</data>
+	<data key="urn:wisebed:node:capability:light">1141</data>
+	<data key="urn:wisebed:node:capability:temperature">27.9</data>
+</node>
+<node id="urn:wisebed:uzl1:0xd1dd">
+	<data key="urn:wisebed:node:capability:ir">134</data>
+	<data key="urn:wisebed:node:capability:light">1055</data>
+</node>
+<node id="urn:wisebed:uzl1:0xd2fb">
+	<data key="urn:wisebed:node:capability:ir">136</data>
+	<data key="urn:wisebed:node:capability:light">970</data>
+	<data key="urn:wisebed:node:capability:temperature">28.3</data>
+</node>
+<node id="urn:wisebed:uzl1:0xe3c2">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">360</data>
+	<data key="urn:wisebed:node:capability:temperature">27.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0xf242">
+	<data key="urn:wisebed:node:capability:ir">87</data>
+	<data key="urn:wisebed:node:capability:light">750</data>
+	<data key="urn:wisebed:node:capability:temperature">27.8</data>
+</node>
+<node id="urn:wisebed:uzl1:0xf620">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">46</data>
+	<data key="urn:wisebed:node:capability:light">433</data>
+	<data key="urn:wisebed:node:capability:temperature">28.8</data>
+</node>
+<node id="urn:wisebed:uzl1:0xf9f3">
+	<data key="urn:wisebed:node:capability:ir">71</data>
+	<data key="urn:wisebed:node:capability:light">622</data>
+	<data key="urn:wisebed:node:capability:temperature">27.7</data>
+</node>
+<node id="urn:wisebed:uzl1:0xfee3">
+	<data key="urn:wisebed:node:capability:ir">106</data>
+	<data key="urn:wisebed:node:capability:light">738</data>
+</node>
+<timestamp>96</timestamp>
+<node id="urn:wisebed:uzl1:0x561d">
+	<data key="urn:wisebed:node:capability:humidity">36</data>
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">311</data>
+	<data key="urn:wisebed:node:capability:temperature">27.4</data>
+</node>
+<timestamp>97</timestamp>
+<node id="urn:wisebed:uzl1:0x9815">
+	<data key="urn:wisebed:node:capability:humidity">30</data>
+	<data key="urn:wisebed:node:capability:ir">108</data>
+	<data key="urn:wisebed:node:capability:light">994</data>
+	<data key="urn:wisebed:node:capability:temperature">29.4</data>
+</node>
+<timestamp>98</timestamp>
+<node id="urn:wisebed:uzl1:0x2891">
+	<data key="urn:wisebed:node:capability:humidity">20</data>
+	<data key="urn:wisebed:node:capability:ir">27</data>
+	<data key="urn:wisebed:node:capability:light">292</data>
+	<data key="urn:wisebed:node:capability:temperature">35.7</data>
+</node>
+<node id="urn:wisebed:uzl1:0x30c3">
+	<data key="urn:wisebed:node:capability:humidity">29</data>
+	<data key="urn:wisebed:node:capability:ir">36</data>
+	<data key="urn:wisebed:node:capability:light">317</data>
+	<data key="urn:wisebed:node:capability:temperature">27.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0x408b">
+	<data key="urn:wisebed:node:capability:humidity">28</data>
+	<data key="urn:wisebed:node:capability:ir">109</data>
+	<data key="urn:wisebed:node:capability:light">1043</data>
+	<data key="urn:wisebed:node:capability:temperature">30.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0x746e">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">39</data>
+	<data key="urn:wisebed:node:capability:light">360</data>
+	<data key="urn:wisebed:node:capability:temperature">28.8</data>
+</node>
+<node id="urn:wisebed:uzl1:0xe412">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+</node>
+<timestamp>99</timestamp>
+<node id="urn:wisebed:uzl1:0x73ba">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">38</data>
+	<data key="urn:wisebed:node:capability:light">354</data>
+	<data key="urn:wisebed:node:capability:temperature">27.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0xe412">
+	<data key="urn:wisebed:node:capability:ir">78</data>
+	<data key="urn:wisebed:node:capability:light">646</data>
+	<data key="urn:wisebed:node:capability:temperature">29.9</data>
+</node>
+<timestamp>154</timestamp>
+<node id="urn:wisebed:uzl1:0xfce">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:light">1263</data>
+	<data key="urn:wisebed:node:capability:temperature">30.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0x1327">
+	<data key="urn:wisebed:node:capability:humidity">37</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2b37">
+	<data key="urn:wisebed:node:capability:humidity">35</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2f2e">
+	<data key="urn:wisebed:node:capability:humidity">29</data>
+</node>
+<node id="urn:wisebed:uzl1:0x4056">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+</node>
+<node id="urn:wisebed:uzl1:0x5d3d">
+	<data key="urn:wisebed:node:capability:humidity">34</data>
+</node>
+<node id="urn:wisebed:uzl1:0x7e56">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+</node>
+<node id="urn:wisebed:uzl1:0x8477">
+	<data key="urn:wisebed:node:capability:humidity">29</data>
+</node>
+<node id="urn:wisebed:uzl1:0xaa70">
+	<data key="urn:wisebed:node:capability:humidity">35</data>
+</node>
+<node id="urn:wisebed:uzl1:0xb354">
+	<data key="urn:wisebed:node:capability:humidity">30</data>
+</node>
+<node id="urn:wisebed:uzl1:0xddd3">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+</node>
+<node id="urn:wisebed:uzl1:0xdedf">
+	<data key="urn:wisebed:node:capability:humidity">30</data>
+</node>
+<node id="urn:wisebed:uzl1:0xfee3">
+	<data key="urn:wisebed:node:capability:humidity">37</data>
+</node>
+<timestamp>155</timestamp>
+<node id="urn:wisebed:uzl1:0x12c">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">323</data>
+	<data key="urn:wisebed:node:capability:temperature">27.7</data>
+</node>
+<node id="urn:wisebed:uzl1:0x553">
+	<data key="urn:wisebed:node:capability:humidity">28</data>
+	<data key="urn:wisebed:node:capability:ir">108</data>
+	<data key="urn:wisebed:node:capability:light">915</data>
+	<data key="urn:wisebed:node:capability:temperature">30.0</data>
+</node>
+<node id="urn:wisebed:uzl1:0xb15">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">36</data>
+	<data key="urn:wisebed:node:capability:light">329</data>
+	<data key="urn:wisebed:node:capability:temperature">27.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0xfce">
+	<data key="urn:wisebed:node:capability:ir">167</data>
+</node>
+<node id="urn:wisebed:uzl1:0x1327">
+	<data key="urn:wisebed:node:capability:ir">89</data>
+	<data key="urn:wisebed:node:capability:light">750</data>
+	<data key="urn:wisebed:node:capability:temperature">27.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x1bfc">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">36</data>
+	<data key="urn:wisebed:node:capability:light">354</data>
+	<data key="urn:wisebed:node:capability:temperature">25.8</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2ad3">
+	<data key="urn:wisebed:node:capability:humidity">27</data>
+	<data key="urn:wisebed:node:capability:ir">117</data>
+	<data key="urn:wisebed:node:capability:light">1226</data>
+	<data key="urn:wisebed:node:capability:temperature">30.8</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2b37">
+	<data key="urn:wisebed:node:capability:ir">134</data>
+	<data key="urn:wisebed:node:capability:light">1007</data>
+	<data key="urn:wisebed:node:capability:temperature">27.7</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2b7a">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">31</data>
+	<data key="urn:wisebed:node:capability:light">305</data>
+	<data key="urn:wisebed:node:capability:temperature">29.9</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2c26">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">134</data>
+	<data key="urn:wisebed:node:capability:light">1031</data>
+	<data key="urn:wisebed:node:capability:temperature">28.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2f2e">
+	<data key="urn:wisebed:node:capability:ir">43</data>
+	<data key="urn:wisebed:node:capability:light">408</data>
+	<data key="urn:wisebed:node:capability:temperature">28.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x3757">
+	<data key="urn:wisebed:node:capability:humidity">28</data>
+	<data key="urn:wisebed:node:capability:ir">51</data>
+	<data key="urn:wisebed:node:capability:light">469</data>
+	<data key="urn:wisebed:node:capability:temperature">29.1</data>
+</node>
+<node id="urn:wisebed:uzl1:0x390a">
+	<data key="urn:wisebed:node:capability:humidity">37</data>
+	<data key="urn:wisebed:node:capability:ir">33</data>
+	<data key="urn:wisebed:node:capability:light">317</data>
+	<data key="urn:wisebed:node:capability:temperature">27.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x3eee">
+	<data key="urn:wisebed:node:capability:humidity">30</data>
+	<data key="urn:wisebed:node:capability:ir">46</data>
+	<data key="urn:wisebed:node:capability:light">408</data>
+	<data key="urn:wisebed:node:capability:temperature">29.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0x3f32">
+	<data key="urn:wisebed:node:capability:humidity">29</data>
+	<data key="urn:wisebed:node:capability:ir">43</data>
+	<data key="urn:wisebed:node:capability:light">402</data>
+	<data key="urn:wisebed:node:capability:temperature">28.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x3ff3">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">175</data>
+	<data key="urn:wisebed:node:capability:light">1232</data>
+	<data key="urn:wisebed:node:capability:temperature">27.1</data>
+</node>
+<node id="urn:wisebed:uzl1:0x4056">
+	<data key="urn:wisebed:node:capability:ir">34</data>
+	<data key="urn:wisebed:node:capability:light">311</data>
+	<data key="urn:wisebed:node:capability:temperature">26.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0x435c">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">87</data>
+	<data key="urn:wisebed:node:capability:light">817</data>
+	<data key="urn:wisebed:node:capability:temperature">27.0</data>
+</node>
+<node id="urn:wisebed:uzl1:0x436e">
+	<data key="urn:wisebed:node:capability:humidity">38</data>
+	<data key="urn:wisebed:node:capability:ir">206</data>
+	<data key="urn:wisebed:node:capability:light">1519</data>
+	<data key="urn:wisebed:node:capability:temperature">26.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0x534d">
+	<data key="urn:wisebed:node:capability:humidity">27</data>
+	<data key="urn:wisebed:node:capability:ir">62</data>
+	<data key="urn:wisebed:node:capability:light">598</data>
+	<data key="urn:wisebed:node:capability:temperature">29.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0x53fc">
+	<data key="urn:wisebed:node:capability:humidity">35</data>
+	<data key="urn:wisebed:node:capability:ir">35</data>
+	<data key="urn:wisebed:node:capability:light">317</data>
+	<data key="urn:wisebed:node:capability:temperature">26.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x543e">
+	<data key="urn:wisebed:node:capability:humidity">25</data>
+	<data key="urn:wisebed:node:capability:ir">46</data>
+	<data key="urn:wisebed:node:capability:light">451</data>
+	<data key="urn:wisebed:node:capability:temperature">29.7</data>
+</node>
+<node id="urn:wisebed:uzl1:0x5502">
+	<data key="urn:wisebed:node:capability:humidity">35</data>
+	<data key="urn:wisebed:node:capability:ir">166</data>
+	<data key="urn:wisebed:node:capability:light">1141</data>
+	<data key="urn:wisebed:node:capability:temperature">25.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0x55db">
+	<data key="urn:wisebed:node:capability:humidity">34</data>
+	<data key="urn:wisebed:node:capability:ir">108</data>
+	<data key="urn:wisebed:node:capability:light">976</data>
+	<data key="urn:wisebed:node:capability:temperature">30.1</data>
+</node>
+<node id="urn:wisebed:uzl1:0x5680">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">70</data>
+	<data key="urn:wisebed:node:capability:light">646</data>
+	<data key="urn:wisebed:node:capability:temperature">29.7</data>
+</node>
+<node id="urn:wisebed:uzl1:0x5d3d">
+	<data key="urn:wisebed:node:capability:ir">79</data>
+	<data key="urn:wisebed:node:capability:light">695</data>
+	<data key="urn:wisebed:node:capability:temperature">27.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0x7b2d">
+	<data key="urn:wisebed:node:capability:humidity">27</data>
+	<data key="urn:wisebed:node:capability:ir">68</data>
+	<data key="urn:wisebed:node:capability:light">622</data>
+	<data key="urn:wisebed:node:capability:temperature">30.1</data>
+</node>
+<node id="urn:wisebed:uzl1:0x7e56">
+	<data key="urn:wisebed:node:capability:ir">38</data>
+	<data key="urn:wisebed:node:capability:light">354</data>
+	<data key="urn:wisebed:node:capability:temperature">27.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0x8477">
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">317</data>
+	<data key="urn:wisebed:node:capability:temperature">27.1</data>
+</node>
+<node id="urn:wisebed:uzl1:0x8555">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">127</data>
+	<data key="urn:wisebed:node:capability:light">885</data>
+	<data key="urn:wisebed:node:capability:temperature">25.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0xaa70">
+	<data key="urn:wisebed:node:capability:ir">31</data>
+	<data key="urn:wisebed:node:capability:light">305</data>
+	<data key="urn:wisebed:node:capability:temperature">25.3</data>
+</node>
+<node id="urn:wisebed:uzl1:0xb354">
+	<data key="urn:wisebed:node:capability:ir">33</data>
+	<data key="urn:wisebed:node:capability:light">305</data>
+	<data key="urn:wisebed:node:capability:temperature">27.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0xc251">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">145</data>
+	<data key="urn:wisebed:node:capability:light">1165</data>
+	<data key="urn:wisebed:node:capability:temperature">25.3</data>
+</node>
+<node id="urn:wisebed:uzl1:0xc26b">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">170</data>
+	<data key="urn:wisebed:node:capability:light">1190</data>
+	<data key="urn:wisebed:node:capability:temperature">28.0</data>
+</node>
+<node id="urn:wisebed:uzl1:0xd1dd">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">131</data>
+	<data key="urn:wisebed:node:capability:light">1043</data>
+	<data key="urn:wisebed:node:capability:temperature">25.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0xd2fb">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">143</data>
+	<data key="urn:wisebed:node:capability:light">1013</data>
+	<data key="urn:wisebed:node:capability:temperature">28.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0xddd3">
+	<data key="urn:wisebed:node:capability:ir">46</data>
+	<data key="urn:wisebed:node:capability:light">396</data>
+	<data key="urn:wisebed:node:capability:temperature">26.0</data>
+</node>
+<node id="urn:wisebed:uzl1:0xdedf">
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">323</data>
+	<data key="urn:wisebed:node:capability:temperature">26.0</data>
+</node>
+<node id="urn:wisebed:uzl1:0xe3c2">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">354</data>
+	<data key="urn:wisebed:node:capability:temperature">27.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0xf242">
+	<data key="urn:wisebed:node:capability:humidity">36</data>
+	<data key="urn:wisebed:node:capability:ir">82</data>
+	<data key="urn:wisebed:node:capability:light">811</data>
+	<data key="urn:wisebed:node:capability:temperature">27.8</data>
+</node>
+<node id="urn:wisebed:uzl1:0xf620">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">46</data>
+	<data key="urn:wisebed:node:capability:light">445</data>
+	<data key="urn:wisebed:node:capability:temperature">28.9</data>
+</node>
+<node id="urn:wisebed:uzl1:0xf9f3">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">75</data>
+	<data key="urn:wisebed:node:capability:light">616</data>
+	<data key="urn:wisebed:node:capability:temperature">27.8</data>
+</node>
+<node id="urn:wisebed:uzl1:0xfee3">
+	<data key="urn:wisebed:node:capability:ir">107</data>
+	<data key="urn:wisebed:node:capability:light">787</data>
+	<data key="urn:wisebed:node:capability:temperature">25.0</data>
+</node>
+<timestamp>156</timestamp>
+<node id="urn:wisebed:uzl1:0x17e9">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">162</data>
+	<data key="urn:wisebed:node:capability:light">1116</data>
+	<data key="urn:wisebed:node:capability:temperature">27.1</data>
+</node>
+<node id="urn:wisebed:uzl1:0x561d">
+	<data key="urn:wisebed:node:capability:humidity">36</data>
+</node>
+<node id="urn:wisebed:uzl1:0x58ca">
+	<data key="urn:wisebed:node:capability:humidity">30</data>
+	<data key="urn:wisebed:node:capability:ir">97</data>
+	<data key="urn:wisebed:node:capability:light">769</data>
+	<data key="urn:wisebed:node:capability:temperature">28.7</data>
+</node>
+<node id="urn:wisebed:uzl1:0x739d">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">47</data>
+	<data key="urn:wisebed:node:capability:light">445</data>
+	<data key="urn:wisebed:node:capability:temperature">26.9</data>
+</node>
+<timestamp>157</timestamp>
+<node id="urn:wisebed:uzl1:0x561d">
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">311</data>
+	<data key="urn:wisebed:node:capability:temperature">27.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0x9815">
+	<data key="urn:wisebed:node:capability:humidity">30</data>
+	<data key="urn:wisebed:node:capability:ir">109</data>
+	<data key="urn:wisebed:node:capability:light">1007</data>
+	<data key="urn:wisebed:node:capability:temperature">29.5</data>
+</node>
+<timestamp>158</timestamp>
+<node id="urn:wisebed:uzl1:0x2891">
+	<data key="urn:wisebed:node:capability:humidity">20</data>
+	<data key="urn:wisebed:node:capability:ir">28</data>
+	<data key="urn:wisebed:node:capability:light">299</data>
+	<data key="urn:wisebed:node:capability:temperature">35.8</data>
+</node>
+<node id="urn:wisebed:uzl1:0x30c3">
+	<data key="urn:wisebed:node:capability:humidity">28</data>
+</node>
+<node id="urn:wisebed:uzl1:0x408b">
+	<data key="urn:wisebed:node:capability:humidity">28</data>
+	<data key="urn:wisebed:node:capability:ir">116</data>
+	<data key="urn:wisebed:node:capability:light">982</data>
+	<data key="urn:wisebed:node:capability:temperature">30.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x746e">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">38</data>
+	<data key="urn:wisebed:node:capability:light">360</data>
+	<data key="urn:wisebed:node:capability:temperature">29.0</data>
+</node>
+<timestamp>159</timestamp>
+<node id="urn:wisebed:uzl1:0x30c3">
+	<data key="urn:wisebed:node:capability:ir">36</data>
+	<data key="urn:wisebed:node:capability:light">323</data>
+	<data key="urn:wisebed:node:capability:temperature">27.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0x73ba">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">39</data>
+	<data key="urn:wisebed:node:capability:light">354</data>
+	<data key="urn:wisebed:node:capability:temperature">27.7</data>
+</node>
+<node id="urn:wisebed:uzl1:0xe412">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">74</data>
+	<data key="urn:wisebed:node:capability:light">683</data>
+	<data key="urn:wisebed:node:capability:temperature">30.0</data>
+</node>
+<timestamp>215</timestamp>
+<node id="urn:wisebed:uzl1:0x12c">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">317</data>
+	<data key="urn:wisebed:node:capability:temperature">27.7</data>
+</node>
+<node id="urn:wisebed:uzl1:0x553">
+	<data key="urn:wisebed:node:capability:humidity">28</data>
+	<data key="urn:wisebed:node:capability:ir">107</data>
+	<data key="urn:wisebed:node:capability:light">909</data>
+	<data key="urn:wisebed:node:capability:temperature">30.1</data>
+</node>
+<node id="urn:wisebed:uzl1:0xb15">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">36</data>
+	<data key="urn:wisebed:node:capability:light">329</data>
+	<data key="urn:wisebed:node:capability:temperature">27.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0xfce">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">158</data>
+	<data key="urn:wisebed:node:capability:light">1232</data>
+	<data key="urn:wisebed:node:capability:temperature">30.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0x1327">
+	<data key="urn:wisebed:node:capability:humidity">37</data>
+	<data key="urn:wisebed:node:capability:ir">88</data>
+	<data key="urn:wisebed:node:capability:light">720</data>
+	<data key="urn:wisebed:node:capability:temperature">27.7</data>
+</node>
+<node id="urn:wisebed:uzl1:0x1bfc">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">36</data>
+	<data key="urn:wisebed:node:capability:light">360</data>
+	<data key="urn:wisebed:node:capability:temperature">25.9</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2ad3">
+	<data key="urn:wisebed:node:capability:humidity">27</data>
+	<data key="urn:wisebed:node:capability:ir">118</data>
+	<data key="urn:wisebed:node:capability:light">1287</data>
+	<data key="urn:wisebed:node:capability:temperature">30.8</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2b37">
+	<data key="urn:wisebed:node:capability:humidity">35</data>
+	<data key="urn:wisebed:node:capability:ir">118</data>
+	<data key="urn:wisebed:node:capability:light">1037</data>
+	<data key="urn:wisebed:node:capability:temperature">27.8</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2b7a">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">31</data>
+	<data key="urn:wisebed:node:capability:light">305</data>
+	<data key="urn:wisebed:node:capability:temperature">30.0</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2c26">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2f2e">
+	<data key="urn:wisebed:node:capability:humidity">29</data>
+	<data key="urn:wisebed:node:capability:ir">45</data>
+	<data key="urn:wisebed:node:capability:light">402</data>
+	<data key="urn:wisebed:node:capability:temperature">28.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x3757">
+	<data key="urn:wisebed:node:capability:humidity">28</data>
+</node>
+<node id="urn:wisebed:uzl1:0x390a">
+	<data key="urn:wisebed:node:capability:humidity">37</data>
+</node>
+<node id="urn:wisebed:uzl1:0x3eee">
+	<data key="urn:wisebed:node:capability:humidity">29</data>
+	<data key="urn:wisebed:node:capability:ir">45</data>
+	<data key="urn:wisebed:node:capability:light">415</data>
+	<data key="urn:wisebed:node:capability:temperature">29.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0x3f32">
+	<data key="urn:wisebed:node:capability:humidity">29</data>
+	<data key="urn:wisebed:node:capability:ir">43</data>
+	<data key="urn:wisebed:node:capability:light">396</data>
+	<data key="urn:wisebed:node:capability:temperature">28.7</data>
+</node>
+<node id="urn:wisebed:uzl1:0x3ff3">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">167</data>
+	<data key="urn:wisebed:node:capability:light">1184</data>
+	<data key="urn:wisebed:node:capability:temperature">27.1</data>
+</node>
+<node id="urn:wisebed:uzl1:0x4056">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">33</data>
+	<data key="urn:wisebed:node:capability:light">317</data>
+	<data key="urn:wisebed:node:capability:temperature">26.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x435c">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">88</data>
+	<data key="urn:wisebed:node:capability:light">811</data>
+	<data key="urn:wisebed:node:capability:temperature">27.0</data>
+</node>
+<node id="urn:wisebed:uzl1:0x436e">
+	<data key="urn:wisebed:node:capability:humidity">38</data>
+	<data key="urn:wisebed:node:capability:ir">189</data>
+	<data key="urn:wisebed:node:capability:light">1361</data>
+	<data key="urn:wisebed:node:capability:temperature">26.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0x534d">
+	<data key="urn:wisebed:node:capability:humidity">27</data>
+	<data key="urn:wisebed:node:capability:temperature">29.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x53fc">
+	<data key="urn:wisebed:node:capability:humidity">35</data>
+	<data key="urn:wisebed:node:capability:ir">35</data>
+	<data key="urn:wisebed:node:capability:light">317</data>
+	<data key="urn:wisebed:node:capability:temperature">26.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x543e">
+	<data key="urn:wisebed:node:capability:humidity">25</data>
+	<data key="urn:wisebed:node:capability:ir">45</data>
+	<data key="urn:wisebed:node:capability:light">463</data>
+	<data key="urn:wisebed:node:capability:temperature">29.8</data>
+</node>
+<node id="urn:wisebed:uzl1:0x5502">
+	<data key="urn:wisebed:node:capability:humidity">35</data>
+	<data key="urn:wisebed:node:capability:ir">142</data>
+	<data key="urn:wisebed:node:capability:light">1013</data>
+	<data key="urn:wisebed:node:capability:temperature">25.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0x55db">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+</node>
+<node id="urn:wisebed:uzl1:0x5680">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+</node>
+<node id="urn:wisebed:uzl1:0x5d3d">
+	<data key="urn:wisebed:node:capability:humidity">34</data>
+	<data key="urn:wisebed:node:capability:ir">79</data>
+	<data key="urn:wisebed:node:capability:light">701</data>
+	<data key="urn:wisebed:node:capability:temperature">27.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x7b2d">
+	<data key="urn:wisebed:node:capability:humidity">27</data>
+</node>
+<node id="urn:wisebed:uzl1:0x7e56">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">38</data>
+	<data key="urn:wisebed:node:capability:light">347</data>
+	<data key="urn:wisebed:node:capability:temperature">27.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0x8477">
+	<data key="urn:wisebed:node:capability:humidity">29</data>
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">311</data>
+	<data key="urn:wisebed:node:capability:temperature">27.2</data>
+</node>
+<node id="urn:wisebed:uzl1:0x8555">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+</node>
+<node id="urn:wisebed:uzl1:0xaa70">
+	<data key="urn:wisebed:node:capability:humidity">35</data>
+	<data key="urn:wisebed:node:capability:ir">31</data>
+	<data key="urn:wisebed:node:capability:light">305</data>
+	<data key="urn:wisebed:node:capability:temperature">25.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0xb354">
+	<data key="urn:wisebed:node:capability:humidity">30</data>
+	<data key="urn:wisebed:node:capability:ir">33</data>
+	<data key="urn:wisebed:node:capability:light">311</data>
+	<data key="urn:wisebed:node:capability:temperature">27.4</data>
+</node>
+<node id="urn:wisebed:uzl1:0xc251">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+</node>
+<node id="urn:wisebed:uzl1:0xc26b">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+</node>
+<node id="urn:wisebed:uzl1:0xd1dd">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+</node>
+<node id="urn:wisebed:uzl1:0xd2fb">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">126</data>
+	<data key="urn:wisebed:node:capability:light">921</data>
+	<data key="urn:wisebed:node:capability:temperature">28.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0xddd3">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">46</data>
+	<data key="urn:wisebed:node:capability:light">402</data>
+	<data key="urn:wisebed:node:capability:temperature">26.1</data>
+</node>
+<node id="urn:wisebed:uzl1:0xdedf">
+	<data key="urn:wisebed:node:capability:humidity">30</data>
+	<data key="urn:wisebed:node:capability:ir">33</data>
+	<data key="urn:wisebed:node:capability:light">323</data>
+	<data key="urn:wisebed:node:capability:temperature">26.0</data>
+</node>
+<node id="urn:wisebed:uzl1:0xe3c2">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+</node>
+<node id="urn:wisebed:uzl1:0xf242">
+	<data key="urn:wisebed:node:capability:humidity">36</data>
+	<data key="urn:wisebed:node:capability:ir">89</data>
+	<data key="urn:wisebed:node:capability:light">750</data>
+	<data key="urn:wisebed:node:capability:temperature">27.9</data>
+</node>
+<node id="urn:wisebed:uzl1:0xf620">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+</node>
+<node id="urn:wisebed:uzl1:0xf9f3">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+</node>
+<node id="urn:wisebed:uzl1:0xfee3">
+	<data key="urn:wisebed:node:capability:humidity">37</data>
+	<data key="urn:wisebed:node:capability:ir">101</data>
+	<data key="urn:wisebed:node:capability:light">714</data>
+	<data key="urn:wisebed:node:capability:temperature">25.1</data>
+</node>
+<timestamp>216</timestamp>
+<node id="urn:wisebed:uzl1:0x17e9">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">166</data>
+	<data key="urn:wisebed:node:capability:light">1129</data>
+	<data key="urn:wisebed:node:capability:temperature">27.1</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2c26">
+	<data key="urn:wisebed:node:capability:ir">125</data>
+	<data key="urn:wisebed:node:capability:light">976</data>
+	<data key="urn:wisebed:node:capability:temperature">28.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x3757">
+	<data key="urn:wisebed:node:capability:ir">51</data>
+	<data key="urn:wisebed:node:capability:light">469</data>
+	<data key="urn:wisebed:node:capability:temperature">29.2</data>
+</node>
+<node id="urn:wisebed:uzl1:0x390a">
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">317</data>
+	<data key="urn:wisebed:node:capability:temperature">27.7</data>
+</node>
+<node id="urn:wisebed:uzl1:0x534d">
+	<data key="urn:wisebed:node:capability:ir">63</data>
+	<data key="urn:wisebed:node:capability:light">579</data>
+</node>
+<node id="urn:wisebed:uzl1:0x55db">
+	<data key="urn:wisebed:node:capability:ir">113</data>
+	<data key="urn:wisebed:node:capability:light">909</data>
+	<data key="urn:wisebed:node:capability:temperature">30.1</data>
+</node>
+<node id="urn:wisebed:uzl1:0x5680">
+	<data key="urn:wisebed:node:capability:ir">70</data>
+	<data key="urn:wisebed:node:capability:light">653</data>
+	<data key="urn:wisebed:node:capability:temperature">29.8</data>
+</node>
+<node id="urn:wisebed:uzl1:0x58ca">
+	<data key="urn:wisebed:node:capability:humidity">30</data>
+	<data key="urn:wisebed:node:capability:ir">83</data>
+	<data key="urn:wisebed:node:capability:light">817</data>
+	<data key="urn:wisebed:node:capability:temperature">28.8</data>
+</node>
+<node id="urn:wisebed:uzl1:0x739d">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">48</data>
+	<data key="urn:wisebed:node:capability:light">439</data>
+	<data key="urn:wisebed:node:capability:temperature">27.0</data>
+</node>
+<node id="urn:wisebed:uzl1:0x7b2d">
+	<data key="urn:wisebed:node:capability:ir">68</data>
+	<data key="urn:wisebed:node:capability:light">604</data>
+	<data key="urn:wisebed:node:capability:temperature">30.1</data>
+</node>
+<node id="urn:wisebed:uzl1:0x8555">
+	<data key="urn:wisebed:node:capability:ir">114</data>
+	<data key="urn:wisebed:node:capability:light">811</data>
+	<data key="urn:wisebed:node:capability:temperature">25.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0xc251">
+	<data key="urn:wisebed:node:capability:ir">145</data>
+	<data key="urn:wisebed:node:capability:light">1190</data>
+	<data key="urn:wisebed:node:capability:temperature">25.3</data>
+</node>
+<node id="urn:wisebed:uzl1:0xc26b">
+	<data key="urn:wisebed:node:capability:ir">171</data>
+	<data key="urn:wisebed:node:capability:light">1196</data>
+	<data key="urn:wisebed:node:capability:temperature">28.0</data>
+</node>
+<node id="urn:wisebed:uzl1:0xd1dd">
+	<data key="urn:wisebed:node:capability:ir">128</data>
+	<data key="urn:wisebed:node:capability:light">1019</data>
+	<data key="urn:wisebed:node:capability:temperature">25.7</data>
+</node>
+<node id="urn:wisebed:uzl1:0xe3c2">
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">354</data>
+	<data key="urn:wisebed:node:capability:temperature">27.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0xf620">
+	<data key="urn:wisebed:node:capability:ir">46</data>
+	<data key="urn:wisebed:node:capability:light">433</data>
+	<data key="urn:wisebed:node:capability:temperature">29.0</data>
+</node>
+<node id="urn:wisebed:uzl1:0xf9f3">
+	<data key="urn:wisebed:node:capability:ir">70</data>
+	<data key="urn:wisebed:node:capability:light">628</data>
+	<data key="urn:wisebed:node:capability:temperature">27.9</data>
+</node>
+<timestamp>217</timestamp>
+<node id="urn:wisebed:uzl1:0x561d">
+	<data key="urn:wisebed:node:capability:humidity">36</data>
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">311</data>
+	<data key="urn:wisebed:node:capability:temperature">27.6</data>
+</node>
+<timestamp>218</timestamp>
+<node id="urn:wisebed:uzl1:0x2891">
+	<data key="urn:wisebed:node:capability:humidity">20</data>
+	<data key="urn:wisebed:node:capability:ir">27</data>
+	<data key="urn:wisebed:node:capability:light">292</data>
+	<data key="urn:wisebed:node:capability:temperature">35.8</data>
+</node>
+<node id="urn:wisebed:uzl1:0x9815">
+	<data key="urn:wisebed:node:capability:humidity">30</data>
+	<data key="urn:wisebed:node:capability:ir">108</data>
+	<data key="urn:wisebed:node:capability:light">939</data>
+	<data key="urn:wisebed:node:capability:temperature">29.5</data>
+</node>
+<timestamp>219</timestamp>
+<node id="urn:wisebed:uzl1:0x30c3">
+	<data key="urn:wisebed:node:capability:humidity">28</data>
+	<data key="urn:wisebed:node:capability:ir">36</data>
+	<data key="urn:wisebed:node:capability:light">323</data>
+	<data key="urn:wisebed:node:capability:temperature">27.5</data>
+</node>
+<node id="urn:wisebed:uzl1:0x408b">
+	<data key="urn:wisebed:node:capability:humidity">28</data>
+	<data key="urn:wisebed:node:capability:ir">106</data>
+	<data key="urn:wisebed:node:capability:light">1019</data>
+	<data key="urn:wisebed:node:capability:temperature">30.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x73ba">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">38</data>
+	<data key="urn:wisebed:node:capability:light">354</data>
+	<data key="urn:wisebed:node:capability:temperature">27.8</data>
+</node>
+<node id="urn:wisebed:uzl1:0x746e">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">38</data>
+	<data key="urn:wisebed:node:capability:light">360</data>
+	<data key="urn:wisebed:node:capability:temperature">29.0</data>
+</node>
+<node id="urn:wisebed:uzl1:0xe412">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">76</data>
+	<data key="urn:wisebed:node:capability:light">671</data>
+	<data key="urn:wisebed:node:capability:temperature">30.1</data>
+</node>
+<timestamp>10266</timestamp>
+<node id="urn:wisebed:uzl1:0x58ca">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">31</data>
+	<data key="urn:wisebed:node:capability:light">305</data>
+	<data key="urn:wisebed:node:capability:temperature">28.8</data>
+</node>
+<link source="urn:wisebed:uzl1:0x58ca" target="urn:wisebed:uzl1:0x2891">
+	<rssi>169</rssi>
+	<data key="lqi">200</data>
+</link>
+<link source="urn:wisebed:uzl1:0x58ca" target="urn:wisebed:uzl1:0x30c3">
+	<rssi>171</rssi>
+	<data key="lqi">206</data>
+</link>
+<timestamp>10268</timestamp>
+<node id="urn:wisebed:uzl1:0x5680">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">311</data>
+	<data key="urn:wisebed:node:capability:temperature">29.6</data>
+</node>
+<link source="urn:wisebed:uzl1:0x5680" target="urn:wisebed:uzl1:0xe412">
+	<rssi>189</rssi>
+	<data key="lqi">210</data>
+</link>
+<timestamp>10272</timestamp>
+<node id="urn:wisebed:uzl1:0x12c">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:temperature">28.2</data>
+</node>
+<timestamp>10273</timestamp>
+<node id="urn:wisebed:uzl1:0x12c">
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">317</data>
+</node>
+<link source="urn:wisebed:uzl1:0x12c" target="urn:wisebed:uzl1:0x2891">
+	<rssi>167</rssi>
+	<data key="lqi">154</data>
+</link>
+<link source="urn:wisebed:uzl1:0x12c" target="urn:wisebed:uzl1:0x9815">
+	<rssi>172</rssi>
+	<data key="lqi">154</data>
+</link>
+<timestamp>10318</timestamp>
+<node id="urn:wisebed:uzl1:0xfce">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">33</data>
+	<data key="urn:wisebed:node:capability:light">317</data>
+	<data key="urn:wisebed:node:capability:temperature">30.0</data>
+</node>
+<link source="urn:wisebed:uzl1:0xfce" target="urn:wisebed:uzl1:0x435c">
+	<rssi>170</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0xfce" target="urn:wisebed:uzl1:0x553">
+	<rssi>165</rssi>
+	<data key="lqi">124</data>
+</link>
+<link source="urn:wisebed:uzl1:0xfce" target="urn:wisebed:uzl1:0xf620">
+	<rssi>177</rssi>
+	<data key="lqi">208</data>
+</link>
+<link source="urn:wisebed:uzl1:0xfce" target="urn:wisebed:uzl1:0x2f2e">
+	<rssi>182</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0xfce" target="urn:wisebed:uzl1:0x3f32">
+	<rssi>164</rssi>
+	<data key="lqi">150</data>
+</link>
+<link source="urn:wisebed:uzl1:0xfce" target="urn:wisebed:uzl1:0xdedf">
+	<rssi>166</rssi>
+	<data key="lqi">134</data>
+</link>
+<link source="urn:wisebed:uzl1:0xfce" target="urn:wisebed:uzl1:0x739d">
+	<rssi>164</rssi>
+	<data key="lqi">172</data>
+</link>
+<link source="urn:wisebed:uzl1:0xfce" target="urn:wisebed:uzl1:0x3ff3">
+	<rssi>171</rssi>
+	<data key="lqi">208</data>
+</link>
+<link source="urn:wisebed:uzl1:0xfce" target="urn:wisebed:uzl1:0x408b">
+	<rssi>178</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0xfce" target="urn:wisebed:uzl1:0xddd3">
+	<rssi>166</rssi>
+	<data key="lqi">192</data>
+</link>
+<link source="urn:wisebed:uzl1:0xfce" target="urn:wisebed:uzl1:0x543e">
+	<rssi>170</rssi>
+	<data key="lqi">210</data>
+</link>
+<node id="urn:wisebed:uzl1:0x1327">
+	<data key="urn:wisebed:node:capability:humidity">34</data>
+</node>
+<node id="urn:wisebed:uzl1:0x1bfc">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2b37">
+	<data key="urn:wisebed:node:capability:humidity">34</data>
+	<data key="urn:wisebed:node:capability:ir">33</data>
+	<data key="urn:wisebed:node:capability:light">317</data>
+	<data key="urn:wisebed:node:capability:temperature">26.6</data>
+</node>
+<link source="urn:wisebed:uzl1:0x2b37" target="urn:wisebed:uzl1:0x53fc">
+	<rssi>170</rssi>
+	<data key="lqi">186</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2b37" target="urn:wisebed:uzl1:0xd2fb">
+	<rssi>165</rssi>
+	<data key="lqi">176</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2b37" target="urn:wisebed:uzl1:0x5d3d">
+	<rssi>171</rssi>
+	<data key="lqi">206</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2b37" target="urn:wisebed:uzl1:0x2b7a">
+	<rssi>184</rssi>
+	<data key="lqi">190</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2b37" target="urn:wisebed:uzl1:0x4056">
+	<rssi>169</rssi>
+	<data key="lqi">200</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2b37" target="urn:wisebed:uzl1:0x5502">
+	<rssi>168</rssi>
+	<data key="lqi">170</data>
+</link>
+<node id="urn:wisebed:uzl1:0x3757">
+	<data key="urn:wisebed:node:capability:humidity">28</data>
+</node>
+<node id="urn:wisebed:uzl1:0x55db">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">317</data>
+	<data key="urn:wisebed:node:capability:temperature">28.8</data>
+</node>
+<link source="urn:wisebed:uzl1:0x55db" target="urn:wisebed:uzl1:0x561d">
+	<rssi>179</rssi>
+	<data key="lqi">206</data>
+</link>
+<node id="urn:wisebed:uzl1:0x746e">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+</node>
+<node id="urn:wisebed:uzl1:0xb354">
+	<data key="urn:wisebed:node:capability:humidity">30</data>
+	<data key="urn:wisebed:node:capability:ir">30</data>
+	<data key="urn:wisebed:node:capability:light">292</data>
+	<data key="urn:wisebed:node:capability:temperature">27.3</data>
+</node>
+<link source="urn:wisebed:uzl1:0xb354" target="urn:wisebed:uzl1:0xd2fb">
+	<rssi>169</rssi>
+	<data key="lqi">200</data>
+</link>
+<link source="urn:wisebed:uzl1:0xb354" target="urn:wisebed:uzl1:0x53fc">
+	<rssi>180</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0xb354" target="urn:wisebed:uzl1:0x7e56">
+	<rssi>170</rssi>
+	<data key="lqi">200</data>
+</link>
+<link source="urn:wisebed:uzl1:0xb354" target="urn:wisebed:uzl1:0x5502">
+	<rssi>170</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0xb354" target="urn:wisebed:uzl1:0x5d3d">
+	<rssi>163</rssi>
+	<data key="lqi">170</data>
+</link>
+<link source="urn:wisebed:uzl1:0xb354" target="urn:wisebed:uzl1:0xfee3">
+	<rssi>178</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0xb354" target="urn:wisebed:uzl1:0x4056">
+	<rssi>176</rssi>
+	<data key="lqi">214</data>
+</link>
+<node id="urn:wisebed:uzl1:0xddd3">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">33</data>
+	<data key="urn:wisebed:node:capability:light">323</data>
+	<data key="urn:wisebed:node:capability:temperature">26.3</data>
+</node>
+<link source="urn:wisebed:uzl1:0xddd3" target="urn:wisebed:uzl1:0x2f2e">
+	<rssi>169</rssi>
+	<data key="lqi">204</data>
+</link>
+<link source="urn:wisebed:uzl1:0xddd3" target="urn:wisebed:uzl1:0x739d">
+	<rssi>164</rssi>
+	<data key="lqi">178</data>
+</link>
+<link source="urn:wisebed:uzl1:0xddd3" target="urn:wisebed:uzl1:0xaa70">
+	<rssi>168</rssi>
+	<data key="lqi">156</data>
+</link>
+<link source="urn:wisebed:uzl1:0xddd3" target="urn:wisebed:uzl1:0xdedf">
+	<rssi>176</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0xddd3" target="urn:wisebed:uzl1:0x3eee">
+	<rssi>172</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0xddd3" target="urn:wisebed:uzl1:0x1bfc">
+	<rssi>173</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0xddd3" target="urn:wisebed:uzl1:0xfce">
+	<rssi>164</rssi>
+	<data key="lqi">180</data>
+</link>
+<timestamp>10319</timestamp>
+<node id="urn:wisebed:uzl1:0x553">
+	<data key="urn:wisebed:node:capability:humidity">28</data>
+	<data key="urn:wisebed:node:capability:ir">31</data>
+	<data key="urn:wisebed:node:capability:light">299</data>
+	<data key="urn:wisebed:node:capability:temperature">30.2</data>
+</node>
+<link source="urn:wisebed:uzl1:0x553" target="urn:wisebed:uzl1:0x2c26">
+	<rssi>176</rssi>
+	<data key="lqi">170</data>
+</link>
+<node id="urn:wisebed:uzl1:0xb15">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">317</data>
+	<data key="urn:wisebed:node:capability:temperature">27.6</data>
+</node>
+<link source="urn:wisebed:uzl1:0xb15" target="urn:wisebed:uzl1:0x12c">
+	<rssi>165</rssi>
+	<data key="lqi">162</data>
+</link>
+<link source="urn:wisebed:uzl1:0xb15" target="urn:wisebed:uzl1:0x2ad3">
+	<rssi>165</rssi>
+	<data key="lqi">158</data>
+</link>
+<link source="urn:wisebed:uzl1:0xb15" target="urn:wisebed:uzl1:0x5680">
+	<rssi>167</rssi>
+	<data key="lqi">158</data>
+</link>
+<link source="urn:wisebed:uzl1:0xb15" target="urn:wisebed:uzl1:0x30c3">
+	<rssi>178</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0xb15" target="urn:wisebed:uzl1:0xc251">
+	<rssi>170</rssi>
+	<data key="lqi">182</data>
+</link>
+<link source="urn:wisebed:uzl1:0xb15" target="urn:wisebed:uzl1:0xf9f3">
+	<rssi>170</rssi>
+	<data key="lqi">204</data>
+</link>
+<link source="urn:wisebed:uzl1:0xb15" target="urn:wisebed:uzl1:0x7b2d">
+	<rssi>169</rssi>
+	<data key="lqi">198</data>
+</link>
+<link source="urn:wisebed:uzl1:0xfce" target="urn:wisebed:uzl1:0x3757">
+	<rssi>173</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0xfce" target="urn:wisebed:uzl1:0x1bfc">
+	<rssi>167</rssi>
+	<data key="lqi">198</data>
+</link>
+<node id="urn:wisebed:uzl1:0x1327">
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">305</data>
+	<data key="urn:wisebed:node:capability:temperature">26.9</data>
+</node>
+<link source="urn:wisebed:uzl1:0x1327" target="urn:wisebed:uzl1:0x390a">
+	<rssi>176</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x1327" target="urn:wisebed:uzl1:0xd2fb">
+	<rssi>167</rssi>
+	<data key="lqi">200</data>
+</link>
+<link source="urn:wisebed:uzl1:0x1327" target="urn:wisebed:uzl1:0x55db">
+	<rssi>183</rssi>
+	<data key="lqi">166</data>
+</link>
+<link source="urn:wisebed:uzl1:0x1327" target="urn:wisebed:uzl1:0x5502">
+	<rssi>165</rssi>
+	<data key="lqi">188</data>
+</link>
+<link source="urn:wisebed:uzl1:0x1327" target="urn:wisebed:uzl1:0x2b37">
+	<rssi>180</rssi>
+	<data key="lqi">216</data>
+</link>
+<link source="urn:wisebed:uzl1:0x1327" target="urn:wisebed:uzl1:0x2b7a">
+	<rssi>170</rssi>
+	<data key="lqi">178</data>
+</link>
+<link source="urn:wisebed:uzl1:0x1327" target="urn:wisebed:uzl1:0x561d">
+	<rssi>177</rssi>
+	<data key="lqi">210</data>
+</link>
+<node id="urn:wisebed:uzl1:0x1bfc">
+	<data key="urn:wisebed:node:capability:ir">33</data>
+	<data key="urn:wisebed:node:capability:light">347</data>
+	<data key="urn:wisebed:node:capability:temperature">26.1</data>
+</node>
+<link source="urn:wisebed:uzl1:0x1bfc" target="urn:wisebed:uzl1:0xfce">
+	<rssi>166</rssi>
+	<data key="lqi">202</data>
+</link>
+<link source="urn:wisebed:uzl1:0x1bfc" target="urn:wisebed:uzl1:0xdedf">
+	<rssi>194</rssi>
+	<data key="lqi">216</data>
+</link>
+<link source="urn:wisebed:uzl1:0x1bfc" target="urn:wisebed:uzl1:0xddd3">
+	<rssi>175</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x1bfc" target="urn:wisebed:uzl1:0xaa70">
+	<rssi>171</rssi>
+	<data key="lqi">198</data>
+</link>
+<link source="urn:wisebed:uzl1:0x1bfc" target="urn:wisebed:uzl1:0x435c">
+	<rssi>170</rssi>
+	<data key="lqi">206</data>
+</link>
+<link source="urn:wisebed:uzl1:0x1bfc" target="urn:wisebed:uzl1:0x2f2e">
+	<rssi>172</rssi>
+	<data key="lqi">212</data>
+</link>
+<node id="urn:wisebed:uzl1:0x2891">
+	<data key="urn:wisebed:node:capability:humidity">20</data>
+	<data key="urn:wisebed:node:capability:ir">26</data>
+	<data key="urn:wisebed:node:capability:light">292</data>
+	<data key="urn:wisebed:node:capability:temperature">36.2</data>
+</node>
+<link source="urn:wisebed:uzl1:0x2891" target="urn:wisebed:uzl1:0x12c">
+	<rssi>167</rssi>
+	<data key="lqi">200</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2891" target="urn:wisebed:uzl1:0x58ca">
+	<rssi>172</rssi>
+	<data key="lqi">202</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2891" target="urn:wisebed:uzl1:0xf242">
+	<rssi>168</rssi>
+	<data key="lqi">162</data>
+</link>
+<node id="urn:wisebed:uzl1:0x2b7a">
+	<data key="urn:wisebed:node:capability:humidity">30</data>
+	<data key="urn:wisebed:node:capability:ir">30</data>
+	<data key="urn:wisebed:node:capability:light">299</data>
+	<data key="urn:wisebed:node:capability:temperature">29.8</data>
+</node>
+<link source="urn:wisebed:uzl1:0x2b7a" target="urn:wisebed:uzl1:0x55db">
+	<rssi>178</rssi>
+	<data key="lqi">202</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2b7a" target="urn:wisebed:uzl1:0x2b37">
+	<rssi>184</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2b7a" target="urn:wisebed:uzl1:0x1327">
+	<rssi>168</rssi>
+	<data key="lqi">192</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2b7a" target="urn:wisebed:uzl1:0x17e9">
+	<rssi>168</rssi>
+	<data key="lqi">194</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2b7a" target="urn:wisebed:uzl1:0x746e">
+	<rssi>171</rssi>
+	<data key="lqi">196</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2b7a" target="urn:wisebed:uzl1:0x561d">
+	<rssi>186</rssi>
+	<data key="lqi">216</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2b7a" target="urn:wisebed:uzl1:0xfee3">
+	<rssi>169</rssi>
+	<data key="lqi">182</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2b7a" target="urn:wisebed:uzl1:0x9815">
+	<rssi>167</rssi>
+	<data key="lqi">160</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2b7a" target="urn:wisebed:uzl1:0x436e">
+	<rssi>167</rssi>
+	<data key="lqi">160</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2b7a" target="urn:wisebed:uzl1:0x7e56">
+	<rssi>168</rssi>
+	<data key="lqi">182</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2b7a" target="urn:wisebed:uzl1:0xd2fb">
+	<rssi>168</rssi>
+	<data key="lqi">192</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2b7a" target="urn:wisebed:uzl1:0x73ba">
+	<rssi>167</rssi>
+	<data key="lqi">180</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2b7a" target="urn:wisebed:uzl1:0x5d3d">
+	<rssi>170</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2b7a" target="urn:wisebed:uzl1:0x53fc">
+	<rssi>171</rssi>
+	<data key="lqi">206</data>
+</link>
+<node id="urn:wisebed:uzl1:0x2f2e">
+	<data key="urn:wisebed:node:capability:humidity">29</data>
+	<data key="urn:wisebed:node:capability:ir">30</data>
+	<data key="urn:wisebed:node:capability:light">292</data>
+	<data key="urn:wisebed:node:capability:temperature">28.6</data>
+</node>
+<link source="urn:wisebed:uzl1:0x2f2e" target="urn:wisebed:uzl1:0x3757">
+	<rssi>166</rssi>
+	<data key="lqi">170</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2f2e" target="urn:wisebed:uzl1:0x435c">
+	<rssi>176</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2f2e" target="urn:wisebed:uzl1:0xf620">
+	<rssi>169</rssi>
+	<data key="lqi">198</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2f2e" target="urn:wisebed:uzl1:0xdedf">
+	<rssi>175</rssi>
+	<data key="lqi">208</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2f2e" target="urn:wisebed:uzl1:0x3ff3">
+	<rssi>178</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2f2e" target="urn:wisebed:uzl1:0xddd3">
+	<rssi>170</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2f2e" target="urn:wisebed:uzl1:0x1bfc">
+	<rssi>169</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2f2e" target="urn:wisebed:uzl1:0xfce">
+	<rssi>180</rssi>
+	<data key="lqi">216</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2f2e" target="urn:wisebed:uzl1:0x543e">
+	<rssi>167</rssi>
+	<data key="lqi">204</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2f2e" target="urn:wisebed:uzl1:0x408b">
+	<rssi>167</rssi>
+	<data key="lqi">190</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2f2e" target="urn:wisebed:uzl1:0x739d">
+	<rssi>172</rssi>
+	<data key="lqi">212</data>
+</link>
+<node id="urn:wisebed:uzl1:0x3757">
+	<data key="urn:wisebed:node:capability:ir">48</data>
+	<data key="urn:wisebed:node:capability:light">445</data>
+	<data key="urn:wisebed:node:capability:temperature">29.5</data>
+</node>
+<link source="urn:wisebed:uzl1:0x3757" target="urn:wisebed:uzl1:0x408b">
+	<rssi>176</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x3757" target="urn:wisebed:uzl1:0x3eee">
+	<rssi>177</rssi>
+	<data key="lqi">216</data>
+</link>
+<link source="urn:wisebed:uzl1:0x3757" target="urn:wisebed:uzl1:0x543e">
+	<rssi>182</rssi>
+	<data key="lqi">216</data>
+</link>
+<link source="urn:wisebed:uzl1:0x3757" target="urn:wisebed:uzl1:0xdedf">
+	<rssi>168</rssi>
+	<data key="lqi">194</data>
+</link>
+<link source="urn:wisebed:uzl1:0x3757" target="urn:wisebed:uzl1:0x534d">
+	<rssi>178</rssi>
+	<data key="lqi">216</data>
+</link>
+<link source="urn:wisebed:uzl1:0x3757" target="urn:wisebed:uzl1:0x739d">
+	<rssi>167</rssi>
+	<data key="lqi">188</data>
+</link>
+<link source="urn:wisebed:uzl1:0x3757" target="urn:wisebed:uzl1:0xf620">
+	<rssi>201</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0x3757" target="urn:wisebed:uzl1:0x435c">
+	<rssi>170</rssi>
+	<data key="lqi">196</data>
+</link>
+<node id="urn:wisebed:uzl1:0x390a">
+	<data key="urn:wisebed:node:capability:humidity">36</data>
+</node>
+<link source="urn:wisebed:uzl1:0x390a" target="urn:wisebed:uzl1:0x55db">
+	<rssi>176</rssi>
+	<data key="lqi">208</data>
+</link>
+<node id="urn:wisebed:uzl1:0x3eee">
+	<data key="urn:wisebed:node:capability:humidity">30</data>
+	<data key="urn:wisebed:node:capability:temperature">30.1</data>
+</node>
+<node id="urn:wisebed:uzl1:0x3f32">
+	<data key="urn:wisebed:node:capability:humidity">30</data>
+	<data key="urn:wisebed:node:capability:ir">40</data>
+	<data key="urn:wisebed:node:capability:light">384</data>
+	<data key="urn:wisebed:node:capability:temperature">29.6</data>
+</node>
+<link source="urn:wisebed:uzl1:0x3f32" target="urn:wisebed:uzl1:0x534d">
+	<rssi>179</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0x3f32" target="urn:wisebed:uzl1:0x3757">
+	<rssi>166</rssi>
+	<data key="lqi">170</data>
+</link>
+<link source="urn:wisebed:uzl1:0x3f32" target="urn:wisebed:uzl1:0x3eee">
+	<rssi>166</rssi>
+	<data key="lqi">194</data>
+</link>
+<link source="urn:wisebed:uzl1:0x3f32" target="urn:wisebed:uzl1:0xf620">
+	<rssi>171</rssi>
+	<data key="lqi">208</data>
+</link>
+<link source="urn:wisebed:uzl1:0x3f32" target="urn:wisebed:uzl1:0x543e">
+	<rssi>191</rssi>
+	<data key="lqi">216</data>
+</link>
+<link source="urn:wisebed:uzl1:0x3f32" target="urn:wisebed:uzl1:0x408b">
+	<rssi>173</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0x3f32" target="urn:wisebed:uzl1:0x739d">
+	<rssi>164</rssi>
+	<data key="lqi">166</data>
+</link>
+<node id="urn:wisebed:uzl1:0x408b">
+	<data key="urn:wisebed:node:capability:humidity">28</data>
+	<data key="urn:wisebed:node:capability:ir">105</data>
+	<data key="urn:wisebed:node:capability:light">982</data>
+	<data key="urn:wisebed:node:capability:temperature">31.0</data>
+</node>
+<link source="urn:wisebed:uzl1:0x408b" target="urn:wisebed:uzl1:0x3f32">
+	<rssi>171</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x408b" target="urn:wisebed:uzl1:0x543e">
+	<rssi>175</rssi>
+	<data key="lqi">216</data>
+</link>
+<link source="urn:wisebed:uzl1:0x408b" target="urn:wisebed:uzl1:0x3757">
+	<rssi>174</rssi>
+	<data key="lqi">202</data>
+</link>
+<link source="urn:wisebed:uzl1:0x408b" target="urn:wisebed:uzl1:0xfce">
+	<rssi>175</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x408b" target="urn:wisebed:uzl1:0x435c">
+	<rssi>167</rssi>
+	<data key="lqi">192</data>
+</link>
+<link source="urn:wisebed:uzl1:0x408b" target="urn:wisebed:uzl1:0xf620">
+	<rssi>182</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x408b" target="urn:wisebed:uzl1:0x2f2e">
+	<rssi>167</rssi>
+	<data key="lqi">200</data>
+</link>
+<link source="urn:wisebed:uzl1:0x408b" target="urn:wisebed:uzl1:0x739d">
+	<rssi>167</rssi>
+	<data key="lqi">208</data>
+</link>
+<node id="urn:wisebed:uzl1:0x435c">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">89</data>
+	<data key="urn:wisebed:node:capability:light">775</data>
+	<data key="urn:wisebed:node:capability:temperature">27.8</data>
+</node>
+<link source="urn:wisebed:uzl1:0x435c" target="urn:wisebed:uzl1:0xfce">
+	<rssi>167</rssi>
+	<data key="lqi">180</data>
+</link>
+<link source="urn:wisebed:uzl1:0x435c" target="urn:wisebed:uzl1:0xdedf">
+	<rssi>174</rssi>
+	<data key="lqi">206</data>
+</link>
+<link source="urn:wisebed:uzl1:0x435c" target="urn:wisebed:uzl1:0x3757">
+	<rssi>168</rssi>
+	<data key="lqi">190</data>
+</link>
+<link source="urn:wisebed:uzl1:0x435c" target="urn:wisebed:uzl1:0x1bfc">
+	<rssi>168</rssi>
+	<data key="lqi">208</data>
+</link>
+<link source="urn:wisebed:uzl1:0x435c" target="urn:wisebed:uzl1:0xf620">
+	<rssi>172</rssi>
+	<data key="lqi">208</data>
+</link>
+<link source="urn:wisebed:uzl1:0x435c" target="urn:wisebed:uzl1:0x3ff3">
+	<rssi>177</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x435c" target="urn:wisebed:uzl1:0x2f2e">
+	<rssi>176</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x435c" target="urn:wisebed:uzl1:0x543e">
+	<rssi>166</rssi>
+	<data key="lqi">202</data>
+</link>
+<link source="urn:wisebed:uzl1:0x435c" target="urn:wisebed:uzl1:0x408b">
+	<rssi>167</rssi>
+	<data key="lqi">200</data>
+</link>
+<link source="urn:wisebed:uzl1:0x435c" target="urn:wisebed:uzl1:0x739d">
+	<rssi>175</rssi>
+	<data key="lqi">214</data>
+</link>
+<node id="urn:wisebed:uzl1:0x436e">
+	<data key="urn:wisebed:node:capability:humidity">37</data>
+	<data key="urn:wisebed:node:capability:ir">36</data>
+	<data key="urn:wisebed:node:capability:light">341</data>
+	<data key="urn:wisebed:node:capability:temperature">26.2</data>
+</node>
+<link source="urn:wisebed:uzl1:0x436e" target="urn:wisebed:uzl1:0x390a">
+	<rssi>171</rssi>
+	<data key="lqi">180</data>
+</link>
+<link source="urn:wisebed:uzl1:0x436e" target="urn:wisebed:uzl1:0x9815">
+	<rssi>167</rssi>
+	<data key="lqi">164</data>
+</link>
+<link source="urn:wisebed:uzl1:0x436e" target="urn:wisebed:uzl1:0x2b7a">
+	<rssi>168</rssi>
+	<data key="lqi">176</data>
+</link>
+<link source="urn:wisebed:uzl1:0x436e" target="urn:wisebed:uzl1:0xe412">
+	<rssi>167</rssi>
+	<data key="lqi">158</data>
+</link>
+<link source="urn:wisebed:uzl1:0x436e" target="urn:wisebed:uzl1:0x5d3d">
+	<rssi>175</rssi>
+	<data key="lqi">212</data>
+</link>
+<node id="urn:wisebed:uzl1:0x534d">
+	<data key="urn:wisebed:node:capability:humidity">27</data>
+	<data key="urn:wisebed:node:capability:ir">59</data>
+	<data key="urn:wisebed:node:capability:light">585</data>
+	<data key="urn:wisebed:node:capability:temperature">30.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0x53fc">
+	<data key="urn:wisebed:node:capability:humidity">35</data>
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">305</data>
+	<data key="urn:wisebed:node:capability:temperature">26.5</data>
+</node>
+<link source="urn:wisebed:uzl1:0x53fc" target="urn:wisebed:uzl1:0xd1dd">
+	<rssi>168</rssi>
+	<data key="lqi">196</data>
+</link>
+<link source="urn:wisebed:uzl1:0x53fc" target="urn:wisebed:uzl1:0xd2fb">
+	<rssi>179</rssi>
+	<data key="lqi">216</data>
+</link>
+<link source="urn:wisebed:uzl1:0x53fc" target="urn:wisebed:uzl1:0x7e56">
+	<rssi>166</rssi>
+	<data key="lqi">174</data>
+</link>
+<link source="urn:wisebed:uzl1:0x53fc" target="urn:wisebed:uzl1:0x5d3d">
+	<rssi>166</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0x53fc" target="urn:wisebed:uzl1:0xfee3">
+	<rssi>176</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0x53fc" target="urn:wisebed:uzl1:0xb354">
+	<rssi>182</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0x53fc" target="urn:wisebed:uzl1:0x2b37">
+	<rssi>173</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x53fc" target="urn:wisebed:uzl1:0x4056">
+	<rssi>198</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0x53fc" target="urn:wisebed:uzl1:0x5502">
+	<rssi>181</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0x53fc" target="urn:wisebed:uzl1:0x2b7a">
+	<rssi>173</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x53fc" target="urn:wisebed:uzl1:0x1327">
+	<rssi>164</rssi>
+	<data key="lqi">134</data>
+</link>
+<link source="urn:wisebed:uzl1:0x53fc" target="urn:wisebed:uzl1:0xc26b">
+	<rssi>166</rssi>
+	<data key="lqi">170</data>
+</link>
+<node id="urn:wisebed:uzl1:0x543e">
+	<data key="urn:wisebed:node:capability:humidity">26</data>
+	<data key="urn:wisebed:node:capability:ir">42</data>
+	<data key="urn:wisebed:node:capability:light">433</data>
+	<data key="urn:wisebed:node:capability:temperature">30.8</data>
+</node>
+<link source="urn:wisebed:uzl1:0x543e" target="urn:wisebed:uzl1:0x3757">
+	<rssi>183</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0x543e" target="urn:wisebed:uzl1:0x435c">
+	<rssi>167</rssi>
+	<data key="lqi">192</data>
+</link>
+<link source="urn:wisebed:uzl1:0x543e" target="urn:wisebed:uzl1:0xf620">
+	<rssi>171</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0x543e" target="urn:wisebed:uzl1:0x3ff3">
+	<rssi>171</rssi>
+	<data key="lqi">206</data>
+</link>
+<link source="urn:wisebed:uzl1:0x543e" target="urn:wisebed:uzl1:0xfce">
+	<rssi>169</rssi>
+	<data key="lqi">200</data>
+</link>
+<link source="urn:wisebed:uzl1:0x543e" target="urn:wisebed:uzl1:0x2f2e">
+	<rssi>168</rssi>
+	<data key="lqi">196</data>
+</link>
+<link source="urn:wisebed:uzl1:0x543e" target="urn:wisebed:uzl1:0x3f32">
+	<rssi>192</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x543e" target="urn:wisebed:uzl1:0x408b">
+	<rssi>177</rssi>
+	<data key="lqi">216</data>
+</link>
+<link source="urn:wisebed:uzl1:0x543e" target="urn:wisebed:uzl1:0x739d">
+	<rssi>166</rssi>
+	<data key="lqi">190</data>
+</link>
+<node id="urn:wisebed:uzl1:0x5502">
+	<data key="urn:wisebed:node:capability:humidity">35</data>
+	<data key="urn:wisebed:node:capability:ir">35</data>
+	<data key="urn:wisebed:node:capability:light">341</data>
+	<data key="urn:wisebed:node:capability:temperature">25.1</data>
+</node>
+<link source="urn:wisebed:uzl1:0x5502" target="urn:wisebed:uzl1:0x4056">
+	<rssi>174</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0x5502" target="urn:wisebed:uzl1:0x561d">
+	<rssi>169</rssi>
+	<data key="lqi">152</data>
+</link>
+<link source="urn:wisebed:uzl1:0x5502" target="urn:wisebed:uzl1:0xfee3">
+	<rssi>175</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0x5502" target="urn:wisebed:uzl1:0x2b37">
+	<rssi>171</rssi>
+	<data key="lqi">206</data>
+</link>
+<link source="urn:wisebed:uzl1:0x5502" target="urn:wisebed:uzl1:0xb354">
+	<rssi>173</rssi>
+	<data key="lqi">190</data>
+</link>
+<link source="urn:wisebed:uzl1:0x5502" target="urn:wisebed:uzl1:0x1327">
+	<rssi>167</rssi>
+	<data key="lqi">168</data>
+</link>
+<link source="urn:wisebed:uzl1:0x5502" target="urn:wisebed:uzl1:0xd2fb">
+	<rssi>174</rssi>
+	<data key="lqi">216</data>
+</link>
+<link source="urn:wisebed:uzl1:0x5502" target="urn:wisebed:uzl1:0x5d3d">
+	<rssi>165</rssi>
+	<data key="lqi">194</data>
+</link>
+<link source="urn:wisebed:uzl1:0x5502" target="urn:wisebed:uzl1:0x53fc">
+	<rssi>182</rssi>
+	<data key="lqi">216</data>
+</link>
+<link source="urn:wisebed:uzl1:0x55db" target="urn:wisebed:uzl1:0x1327">
+	<rssi>186</rssi>
+	<data key="lqi">198</data>
+</link>
+<node id="urn:wisebed:uzl1:0x561d">
+	<data key="urn:wisebed:node:capability:humidity">34</data>
+	<data key="urn:wisebed:node:capability:ir">31</data>
+	<data key="urn:wisebed:node:capability:light">299</data>
+	<data key="urn:wisebed:node:capability:temperature">27.3</data>
+</node>
+<link source="urn:wisebed:uzl1:0x561d" target="urn:wisebed:uzl1:0x390a">
+	<rssi>187</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x561d" target="urn:wisebed:uzl1:0x1327">
+	<rssi>177</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x561d" target="urn:wisebed:uzl1:0xd1dd">
+	<rssi>165</rssi>
+	<data key="lqi">138</data>
+</link>
+<link source="urn:wisebed:uzl1:0x561d" target="urn:wisebed:uzl1:0x9815">
+	<rssi>170</rssi>
+	<data key="lqi">202</data>
+</link>
+<link source="urn:wisebed:uzl1:0x561d" target="urn:wisebed:uzl1:0xfee3">
+	<rssi>168</rssi>
+	<data key="lqi">164</data>
+</link>
+<link source="urn:wisebed:uzl1:0x561d" target="urn:wisebed:uzl1:0x2b37">
+	<rssi>172</rssi>
+	<data key="lqi">182</data>
+</link>
+<link source="urn:wisebed:uzl1:0x561d" target="urn:wisebed:uzl1:0x2b7a">
+	<rssi>187</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0x561d" target="urn:wisebed:uzl1:0x5502">
+	<rssi>166</rssi>
+	<data key="lqi">198</data>
+</link>
+<link source="urn:wisebed:uzl1:0x561d" target="urn:wisebed:uzl1:0xf242">
+	<rssi>168</rssi>
+	<data key="lqi">186</data>
+</link>
+<link source="urn:wisebed:uzl1:0x561d" target="urn:wisebed:uzl1:0xd2fb">
+	<rssi>171</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0x561d" target="urn:wisebed:uzl1:0x5d3d">
+	<rssi>177</rssi>
+	<data key="lqi">210</data>
+</link>
+<node id="urn:wisebed:uzl1:0x5d3d">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">31</data>
+	<data key="urn:wisebed:node:capability:light">311</data>
+	<data key="urn:wisebed:node:capability:temperature">27.6</data>
+</node>
+<link source="urn:wisebed:uzl1:0x5d3d" target="urn:wisebed:uzl1:0xd2fb">
+	<rssi>167</rssi>
+	<data key="lqi">196</data>
+</link>
+<link source="urn:wisebed:uzl1:0x5d3d" target="urn:wisebed:uzl1:0x5502">
+	<rssi>166</rssi>
+	<data key="lqi">178</data>
+</link>
+<link source="urn:wisebed:uzl1:0x5d3d" target="urn:wisebed:uzl1:0xe412">
+	<rssi>168</rssi>
+	<data key="lqi">168</data>
+</link>
+<link source="urn:wisebed:uzl1:0x5d3d" target="urn:wisebed:uzl1:0x561d">
+	<rssi>178</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0x5d3d" target="urn:wisebed:uzl1:0x4056">
+	<rssi>166</rssi>
+	<data key="lqi">196</data>
+</link>
+<link source="urn:wisebed:uzl1:0x5d3d" target="urn:wisebed:uzl1:0x2b37">
+	<rssi>174</rssi>
+	<data key="lqi">208</data>
+</link>
+<link source="urn:wisebed:uzl1:0x5d3d" target="urn:wisebed:uzl1:0x9815">
+	<rssi>176</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0x5d3d" target="urn:wisebed:uzl1:0xf242">
+	<rssi>168</rssi>
+	<data key="lqi">184</data>
+</link>
+<link source="urn:wisebed:uzl1:0x5d3d" target="urn:wisebed:uzl1:0x436e">
+	<rssi>178</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x5d3d" target="urn:wisebed:uzl1:0x5680">
+	<rssi>166</rssi>
+	<data key="lqi">130</data>
+</link>
+<link source="urn:wisebed:uzl1:0x5d3d" target="urn:wisebed:uzl1:0x2b7a">
+	<rssi>174</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0x5d3d" target="urn:wisebed:uzl1:0x53fc">
+	<rssi>167</rssi>
+	<data key="lqi">194</data>
+</link>
+<node id="urn:wisebed:uzl1:0x739d">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">46</data>
+	<data key="urn:wisebed:node:capability:light">427</data>
+	<data key="urn:wisebed:node:capability:temperature">27.4</data>
+</node>
+<link source="urn:wisebed:uzl1:0x739d" target="urn:wisebed:uzl1:0x408b">
+	<rssi>169</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0x739d" target="urn:wisebed:uzl1:0x543e">
+	<rssi>166</rssi>
+	<data key="lqi">190</data>
+</link>
+<link source="urn:wisebed:uzl1:0x739d" target="urn:wisebed:uzl1:0x435c">
+	<rssi>176</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0x739d" target="urn:wisebed:uzl1:0xddd3">
+	<rssi>166</rssi>
+	<data key="lqi">160</data>
+</link>
+<link source="urn:wisebed:uzl1:0x739d" target="urn:wisebed:uzl1:0xfce">
+	<rssi>164</rssi>
+	<data key="lqi">172</data>
+</link>
+<link source="urn:wisebed:uzl1:0x739d" target="urn:wisebed:uzl1:0x3757">
+	<rssi>167</rssi>
+	<data key="lqi">188</data>
+</link>
+<link source="urn:wisebed:uzl1:0x739d" target="urn:wisebed:uzl1:0xf620">
+	<rssi>170</rssi>
+	<data key="lqi">202</data>
+</link>
+<link source="urn:wisebed:uzl1:0x739d" target="urn:wisebed:uzl1:0x3ff3">
+	<rssi>169</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x739d" target="urn:wisebed:uzl1:0x2f2e">
+	<rssi>174</rssi>
+	<data key="lqi">212</data>
+</link>
+<node id="urn:wisebed:uzl1:0x73ba">
+	<data key="urn:wisebed:node:capability:humidity">34</data>
+	<data key="urn:wisebed:node:capability:ir">40</data>
+	<data key="urn:wisebed:node:capability:light">396</data>
+	<data key="urn:wisebed:node:capability:temperature">28.3</data>
+</node>
+<link source="urn:wisebed:uzl1:0x73ba" target="urn:wisebed:uzl1:0x4056">
+	<rssi>168</rssi>
+	<data key="lqi">200</data>
+</link>
+<link source="urn:wisebed:uzl1:0x73ba" target="urn:wisebed:uzl1:0x2b7a">
+	<rssi>167</rssi>
+	<data key="lqi">156</data>
+</link>
+<link source="urn:wisebed:uzl1:0x73ba" target="urn:wisebed:uzl1:0x17e9">
+	<rssi>175</rssi>
+	<data key="lqi">208</data>
+</link>
+<link source="urn:wisebed:uzl1:0x73ba" target="urn:wisebed:uzl1:0xd1dd">
+	<rssi>171</rssi>
+	<data key="lqi">200</data>
+</link>
+<link source="urn:wisebed:uzl1:0x73ba" target="urn:wisebed:uzl1:0xd2fb">
+	<rssi>166</rssi>
+	<data key="lqi">188</data>
+</link>
+<link source="urn:wisebed:uzl1:0x73ba" target="urn:wisebed:uzl1:0x746e">
+	<rssi>187</rssi>
+	<data key="lqi">216</data>
+</link>
+<link source="urn:wisebed:uzl1:0x73ba" target="urn:wisebed:uzl1:0x7e56">
+	<rssi>174</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0x73ba" target="urn:wisebed:uzl1:0xc26b">
+	<rssi>170</rssi>
+	<data key="lqi">202</data>
+</link>
+<node id="urn:wisebed:uzl1:0x746e">
+	<data key="urn:wisebed:node:capability:ir">41</data>
+	<data key="urn:wisebed:node:capability:light">384</data>
+	<data key="urn:wisebed:node:capability:temperature">29.5</data>
+</node>
+<link source="urn:wisebed:uzl1:0x746e" target="urn:wisebed:uzl1:0xd2fb">
+	<rssi>172</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0x746e" target="urn:wisebed:uzl1:0x2b7a">
+	<rssi>170</rssi>
+	<data key="lqi">196</data>
+</link>
+<link source="urn:wisebed:uzl1:0x746e" target="urn:wisebed:uzl1:0xc26b">
+	<rssi>172</rssi>
+	<data key="lqi">208</data>
+</link>
+<link source="urn:wisebed:uzl1:0x746e" target="urn:wisebed:uzl1:0x73ba">
+	<rssi>188</rssi>
+	<data key="lqi">216</data>
+</link>
+<link source="urn:wisebed:uzl1:0x746e" target="urn:wisebed:uzl1:0x53fc">
+	<rssi>163</rssi>
+	<data key="lqi">140</data>
+</link>
+<link source="urn:wisebed:uzl1:0x746e" target="urn:wisebed:uzl1:0x7e56">
+	<rssi>184</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x746e" target="urn:wisebed:uzl1:0x17e9">
+	<rssi>170</rssi>
+	<data key="lqi">204</data>
+</link>
+<link source="urn:wisebed:uzl1:0x746e" target="urn:wisebed:uzl1:0x4056">
+	<rssi>173</rssi>
+	<data key="lqi">212</data>
+</link>
+<node id="urn:wisebed:uzl1:0x8477">
+	<data key="urn:wisebed:node:capability:humidity">29</data>
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">317</data>
+	<data key="urn:wisebed:node:capability:temperature">27.3</data>
+</node>
+<link source="urn:wisebed:uzl1:0x8477" target="urn:wisebed:uzl1:0xaa70">
+	<rssi>173</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0x8477" target="urn:wisebed:uzl1:0xe3c2">
+	<rssi>169</rssi>
+	<data key="lqi">192</data>
+</link>
+<node id="urn:wisebed:uzl1:0xaa70">
+	<data key="urn:wisebed:node:capability:humidity">35</data>
+	<data key="urn:wisebed:node:capability:ir">31</data>
+	<data key="urn:wisebed:node:capability:light">305</data>
+	<data key="urn:wisebed:node:capability:temperature">24.9</data>
+</node>
+<link source="urn:wisebed:uzl1:0xaa70" target="urn:wisebed:uzl1:0x1bfc">
+	<rssi>167</rssi>
+	<data key="lqi">202</data>
+</link>
+<link source="urn:wisebed:uzl1:0xaa70" target="urn:wisebed:uzl1:0xddd3">
+	<rssi>166</rssi>
+	<data key="lqi">162</data>
+</link>
+<link source="urn:wisebed:uzl1:0xaa70" target="urn:wisebed:uzl1:0x8477">
+	<rssi>172</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0xb354" target="urn:wisebed:uzl1:0x746e">
+	<rssi>167</rssi>
+	<data key="lqi">176</data>
+</link>
+<link source="urn:wisebed:uzl1:0xb354" target="urn:wisebed:uzl1:0x1327">
+	<rssi>166</rssi>
+	<data key="lqi">176</data>
+</link>
+<node id="urn:wisebed:uzl1:0xc251">
+	<data key="urn:wisebed:node:capability:humidity">34</data>
+	<data key="urn:wisebed:node:capability:temperature">24.6</data>
+</node>
+<node id="urn:wisebed:uzl1:0xc26b">
+	<data key="urn:wisebed:node:capability:humidity">36</data>
+	<data key="urn:wisebed:node:capability:ir">63</data>
+	<data key="urn:wisebed:node:capability:light">598</data>
+	<data key="urn:wisebed:node:capability:temperature">27.0</data>
+</node>
+<link source="urn:wisebed:uzl1:0xc26b" target="urn:wisebed:uzl1:0x4056">
+	<rssi>165</rssi>
+	<data key="lqi">174</data>
+</link>
+<link source="urn:wisebed:uzl1:0xc26b" target="urn:wisebed:uzl1:0xd1dd">
+	<rssi>167</rssi>
+	<data key="lqi">186</data>
+</link>
+<link source="urn:wisebed:uzl1:0xc26b" target="urn:wisebed:uzl1:0x746e">
+	<rssi>173</rssi>
+	<data key="lqi">200</data>
+</link>
+<link source="urn:wisebed:uzl1:0xc26b" target="urn:wisebed:uzl1:0x7e56">
+	<rssi>172</rssi>
+	<data key="lqi">212</data>
+</link>
+<node id="urn:wisebed:uzl1:0xd2fb">
+	<data key="urn:wisebed:node:capability:humidity">32</data>
+	<data key="urn:wisebed:node:capability:ir">35</data>
+	<data key="urn:wisebed:node:capability:light">335</data>
+	<data key="urn:wisebed:node:capability:temperature">28.0</data>
+</node>
+<link source="urn:wisebed:uzl1:0xd2fb" target="urn:wisebed:uzl1:0x4056">
+	<rssi>179</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0xd2fb" target="urn:wisebed:uzl1:0x5502">
+	<rssi>173</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0xd2fb" target="urn:wisebed:uzl1:0x561d">
+	<rssi>172</rssi>
+	<data key="lqi">194</data>
+</link>
+<link source="urn:wisebed:uzl1:0xd2fb" target="urn:wisebed:uzl1:0x2b37">
+	<rssi>167</rssi>
+	<data key="lqi">164</data>
+</link>
+<link source="urn:wisebed:uzl1:0xd2fb" target="urn:wisebed:uzl1:0xb354">
+	<rssi>171</rssi>
+	<data key="lqi">176</data>
+</link>
+<link source="urn:wisebed:uzl1:0xd2fb" target="urn:wisebed:uzl1:0xfee3">
+	<rssi>167</rssi>
+	<data key="lqi">154</data>
+</link>
+<link source="urn:wisebed:uzl1:0xd2fb" target="urn:wisebed:uzl1:0x1327">
+	<rssi>168</rssi>
+	<data key="lqi">196</data>
+</link>
+<link source="urn:wisebed:uzl1:0xd2fb" target="urn:wisebed:uzl1:0x746e">
+	<rssi>173</rssi>
+	<data key="lqi">208</data>
+</link>
+<link source="urn:wisebed:uzl1:0xd2fb" target="urn:wisebed:uzl1:0x2b7a">
+	<rssi>170</rssi>
+	<data key="lqi">196</data>
+</link>
+<link source="urn:wisebed:uzl1:0xd2fb" target="urn:wisebed:uzl1:0x73ba">
+	<rssi>170</rssi>
+	<data key="lqi">184</data>
+</link>
+<link source="urn:wisebed:uzl1:0xd2fb" target="urn:wisebed:uzl1:0x5d3d">
+	<rssi>165</rssi>
+	<data key="lqi">198</data>
+</link>
+<link source="urn:wisebed:uzl1:0xd2fb" target="urn:wisebed:uzl1:0x53fc">
+	<rssi>179</rssi>
+	<data key="lqi">202</data>
+</link>
+<node id="urn:wisebed:uzl1:0xe3c2">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">354</data>
+	<data key="urn:wisebed:node:capability:temperature">27.7</data>
+</node>
+<link source="urn:wisebed:uzl1:0xe3c2" target="urn:wisebed:uzl1:0xaa70">
+	<rssi>172</rssi>
+	<data key="lqi">198</data>
+</link>
+<link source="urn:wisebed:uzl1:0xe3c2" target="urn:wisebed:uzl1:0x8477">
+	<rssi>172</rssi>
+	<data key="lqi">210</data>
+</link>
+<node id="urn:wisebed:uzl1:0xe412">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">30</data>
+	<data key="urn:wisebed:node:capability:light">292</data>
+	<data key="urn:wisebed:node:capability:temperature">30.0</data>
+</node>
+<link source="urn:wisebed:uzl1:0xe412" target="urn:wisebed:uzl1:0x9815">
+	<rssi>168</rssi>
+	<data key="lqi">196</data>
+</link>
+<link source="urn:wisebed:uzl1:0xe412" target="urn:wisebed:uzl1:0x5680">
+	<rssi>188</rssi>
+	<data key="lqi">216</data>
+</link>
+<link source="urn:wisebed:uzl1:0xe412" target="urn:wisebed:uzl1:0xf242">
+	<rssi>172</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0xe412" target="urn:wisebed:uzl1:0x5d3d">
+	<rssi>163</rssi>
+	<data key="lqi">166</data>
+</link>
+<node id="urn:wisebed:uzl1:0xf620">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">43</data>
+	<data key="urn:wisebed:node:capability:light">415</data>
+	<data key="urn:wisebed:node:capability:temperature">29.3</data>
+</node>
+<link source="urn:wisebed:uzl1:0xf620" target="urn:wisebed:uzl1:0xfce">
+	<rssi>174</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0xf620" target="urn:wisebed:uzl1:0x3757">
+	<rssi>201</rssi>
+	<data key="lqi">216</data>
+</link>
+<link source="urn:wisebed:uzl1:0xf620" target="urn:wisebed:uzl1:0xdedf">
+	<rssi>169</rssi>
+	<data key="lqi">198</data>
+</link>
+<link source="urn:wisebed:uzl1:0xf620" target="urn:wisebed:uzl1:0x3eee">
+	<rssi>171</rssi>
+	<data key="lqi">204</data>
+</link>
+<link source="urn:wisebed:uzl1:0xf620" target="urn:wisebed:uzl1:0x3ff3">
+	<rssi>176</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0xf620" target="urn:wisebed:uzl1:0x3f32">
+	<rssi>170</rssi>
+	<data key="lqi">208</data>
+</link>
+<link source="urn:wisebed:uzl1:0xf620" target="urn:wisebed:uzl1:0x534d">
+	<rssi>176</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0xf620" target="urn:wisebed:uzl1:0x435c">
+	<rssi>170</rssi>
+	<data key="lqi">204</data>
+</link>
+<link source="urn:wisebed:uzl1:0xf620" target="urn:wisebed:uzl1:0x543e">
+	<rssi>167</rssi>
+	<data key="lqi">208</data>
+</link>
+<link source="urn:wisebed:uzl1:0xf620" target="urn:wisebed:uzl1:0x408b">
+	<rssi>182</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0xf620" target="urn:wisebed:uzl1:0x739d">
+	<rssi>168</rssi>
+	<data key="lqi">196</data>
+</link>
+<node id="urn:wisebed:uzl1:0xfee3">
+	<data key="urn:wisebed:node:capability:humidity">37</data>
+	<data key="urn:wisebed:node:capability:ir">34</data>
+	<data key="urn:wisebed:node:capability:light">335</data>
+	<data key="urn:wisebed:node:capability:temperature">24.9</data>
+</node>
+<link source="urn:wisebed:uzl1:0xfee3" target="urn:wisebed:uzl1:0x390a">
+	<rssi>171</rssi>
+	<data key="lqi">194</data>
+</link>
+<link source="urn:wisebed:uzl1:0xfee3" target="urn:wisebed:uzl1:0x53fc">
+	<rssi>172</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0xfee3" target="urn:wisebed:uzl1:0x2b37">
+	<rssi>167</rssi>
+	<data key="lqi">142</data>
+</link>
+<link source="urn:wisebed:uzl1:0xfee3" target="urn:wisebed:uzl1:0x17e9">
+	<rssi>168</rssi>
+	<data key="lqi">180</data>
+</link>
+<link source="urn:wisebed:uzl1:0xfee3" target="urn:wisebed:uzl1:0x4056">
+	<rssi>165</rssi>
+	<data key="lqi">180</data>
+</link>
+<link source="urn:wisebed:uzl1:0xfee3" target="urn:wisebed:uzl1:0xb354">
+	<rssi>177</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0xfee3" target="urn:wisebed:uzl1:0x2b7a">
+	<rssi>168</rssi>
+	<data key="lqi">182</data>
+</link>
+<link source="urn:wisebed:uzl1:0xfee3" target="urn:wisebed:uzl1:0x5502">
+	<rssi>171</rssi>
+	<data key="lqi">206</data>
+</link>
+<link source="urn:wisebed:uzl1:0xfee3" target="urn:wisebed:uzl1:0xd2fb">
+	<rssi>165</rssi>
+	<data key="lqi">154</data>
+</link>
+<timestamp>10322</timestamp>
+<link source="urn:wisebed:uzl1:0x1327" target="urn:wisebed:uzl1:0x55db">
+	<rssi>184</rssi>
+	<data key="lqi">212</data>
+</link>
+<node id="urn:wisebed:uzl1:0x2ad3">
+	<data key="urn:wisebed:node:capability:humidity">27</data>
+</node>
+<node id="urn:wisebed:uzl1:0x2c26">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">317</data>
+	<data key="urn:wisebed:node:capability:temperature">28.7</data>
+</node>
+<link source="urn:wisebed:uzl1:0x2f2e" target="urn:wisebed:uzl1:0x3eee">
+	<rssi>168</rssi>
+	<data key="lqi">180</data>
+</link>
+<node id="urn:wisebed:uzl1:0x30c3">
+	<data key="urn:wisebed:node:capability:humidity">28</data>
+	<data key="urn:wisebed:node:capability:ir">31</data>
+	<data key="urn:wisebed:node:capability:light">305</data>
+	<data key="urn:wisebed:node:capability:temperature">27.5</data>
+</node>
+<link source="urn:wisebed:uzl1:0x30c3" target="urn:wisebed:uzl1:0x2c26">
+	<rssi>163</rssi>
+	<data key="lqi">164</data>
+</link>
+<link source="urn:wisebed:uzl1:0x30c3" target="urn:wisebed:uzl1:0x12c">
+	<rssi>169</rssi>
+	<data key="lqi">150</data>
+</link>
+<link source="urn:wisebed:uzl1:0x30c3" target="urn:wisebed:uzl1:0xc251">
+	<rssi>170</rssi>
+	<data key="lqi">194</data>
+</link>
+<link source="urn:wisebed:uzl1:0x30c3" target="urn:wisebed:uzl1:0x553">
+	<rssi>171</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x30c3" target="urn:wisebed:uzl1:0x8555">
+	<rssi>182</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0x30c3" target="urn:wisebed:uzl1:0x58ca">
+	<rssi>170</rssi>
+	<data key="lqi">178</data>
+</link>
+<node id="urn:wisebed:uzl1:0x390a">
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">311</data>
+	<data key="urn:wisebed:node:capability:temperature">27.4</data>
+</node>
+<link source="urn:wisebed:uzl1:0x390a" target="urn:wisebed:uzl1:0xfee3">
+	<rssi>171</rssi>
+	<data key="lqi">198</data>
+</link>
+<link source="urn:wisebed:uzl1:0x390a" target="urn:wisebed:uzl1:0x561d">
+	<rssi>186</rssi>
+	<data key="lqi">216</data>
+</link>
+<link source="urn:wisebed:uzl1:0x390a" target="urn:wisebed:uzl1:0x7e56">
+	<rssi>166</rssi>
+	<data key="lqi">156</data>
+</link>
+<link source="urn:wisebed:uzl1:0x390a" target="urn:wisebed:uzl1:0x436e">
+	<rssi>169</rssi>
+	<data key="lqi">172</data>
+</link>
+<link source="urn:wisebed:uzl1:0x390a" target="urn:wisebed:uzl1:0x5d3d">
+	<rssi>175</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0x390a" target="urn:wisebed:uzl1:0x2b7a">
+	<rssi>185</rssi>
+	<data key="lqi">216</data>
+</link>
+<link source="urn:wisebed:uzl1:0x390a" target="urn:wisebed:uzl1:0x1327">
+	<rssi>175</rssi>
+	<data key="lqi">208</data>
+</link>
+<link source="urn:wisebed:uzl1:0x390a" target="urn:wisebed:uzl1:0x2b37">
+	<rssi>175</rssi>
+	<data key="lqi">206</data>
+</link>
+<node id="urn:wisebed:uzl1:0x3eee">
+	<data key="urn:wisebed:node:capability:ir">42</data>
+	<data key="urn:wisebed:node:capability:light">396</data>
+</node>
+<link source="urn:wisebed:uzl1:0x3eee" target="urn:wisebed:uzl1:0x3ff3">
+	<rssi>170</rssi>
+	<data key="lqi">208</data>
+</link>
+<link source="urn:wisebed:uzl1:0x408b" target="urn:wisebed:uzl1:0x3eee">
+	<rssi>180</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0x435c" target="urn:wisebed:uzl1:0x534d">
+	<rssi>167</rssi>
+	<data key="lqi">184</data>
+</link>
+<link source="urn:wisebed:uzl1:0x435c" target="urn:wisebed:uzl1:0x3eee">
+	<rssi>182</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x534d" target="urn:wisebed:uzl1:0x543e">
+	<rssi>186</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0x534d" target="urn:wisebed:uzl1:0x3757">
+	<rssi>180</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x534d" target="urn:wisebed:uzl1:0x3ff3">
+	<rssi>166</rssi>
+	<data key="lqi">178</data>
+</link>
+<link source="urn:wisebed:uzl1:0x534d" target="urn:wisebed:uzl1:0x435c">
+	<rssi>169</rssi>
+	<data key="lqi">206</data>
+</link>
+<link source="urn:wisebed:uzl1:0x534d" target="urn:wisebed:uzl1:0x3f32">
+	<rssi>180</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0x534d" target="urn:wisebed:uzl1:0xf620">
+	<rssi>179</rssi>
+	<data key="lqi">216</data>
+</link>
+<link source="urn:wisebed:uzl1:0x534d" target="urn:wisebed:uzl1:0x3eee">
+	<rssi>169</rssi>
+	<data key="lqi">204</data>
+</link>
+<link source="urn:wisebed:uzl1:0x543e" target="urn:wisebed:uzl1:0x534d">
+	<rssi>186</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x543e" target="urn:wisebed:uzl1:0x3eee">
+	<rssi>170</rssi>
+	<data key="lqi">204</data>
+</link>
+<node id="urn:wisebed:uzl1:0x8555">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">34</data>
+	<data key="urn:wisebed:node:capability:light">311</data>
+	<data key="urn:wisebed:node:capability:temperature">25.3</data>
+</node>
+<link source="urn:wisebed:uzl1:0x8555" target="urn:wisebed:uzl1:0xb15">
+	<rssi>164</rssi>
+	<data key="lqi">138</data>
+</link>
+<link source="urn:wisebed:uzl1:0x8555" target="urn:wisebed:uzl1:0x58ca">
+	<rssi>167</rssi>
+	<data key="lqi">130</data>
+</link>
+<link source="urn:wisebed:uzl1:0x8555" target="urn:wisebed:uzl1:0xc251">
+	<rssi>168</rssi>
+	<data key="lqi">178</data>
+</link>
+<link source="urn:wisebed:uzl1:0x8555" target="urn:wisebed:uzl1:0x30c3">
+	<rssi>188</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x8555" target="urn:wisebed:uzl1:0x7b2d">
+	<rssi>170</rssi>
+	<data key="lqi">178</data>
+</link>
+<node id="urn:wisebed:uzl1:0xc251">
+	<data key="urn:wisebed:node:capability:ir">99</data>
+	<data key="urn:wisebed:node:capability:light">860</data>
+</node>
+<link source="urn:wisebed:uzl1:0xc251" target="urn:wisebed:uzl1:0x2ad3">
+	<rssi>163</rssi>
+	<data key="lqi">134</data>
+</link>
+<link source="urn:wisebed:uzl1:0xc251" target="urn:wisebed:uzl1:0xb15">
+	<rssi>168</rssi>
+	<data key="lqi">202</data>
+</link>
+<link source="urn:wisebed:uzl1:0xc251" target="urn:wisebed:uzl1:0xf9f3">
+	<rssi>174</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0xc251" target="urn:wisebed:uzl1:0x553">
+	<rssi>166</rssi>
+	<data key="lqi">182</data>
+</link>
+<link source="urn:wisebed:uzl1:0xc251" target="urn:wisebed:uzl1:0x30c3">
+	<rssi>171</rssi>
+	<data key="lqi">198</data>
+</link>
+<link source="urn:wisebed:uzl1:0xc251" target="urn:wisebed:uzl1:0x2c26">
+	<rssi>162</rssi>
+	<data key="lqi">142</data>
+</link>
+<link source="urn:wisebed:uzl1:0xc251" target="urn:wisebed:uzl1:0x8555">
+	<rssi>163</rssi>
+	<data key="lqi">170</data>
+</link>
+<link source="urn:wisebed:uzl1:0xc26b" target="urn:wisebed:uzl1:0x53fc">
+	<rssi>165</rssi>
+	<data key="lqi">170</data>
+</link>
+<link source="urn:wisebed:uzl1:0xc26b" target="urn:wisebed:uzl1:0x73ba">
+	<rssi>172</rssi>
+	<data key="lqi">204</data>
+</link>
+<node id="urn:wisebed:uzl1:0xd1dd">
+	<data key="urn:wisebed:node:capability:humidity">33</data>
+	<data key="urn:wisebed:node:capability:ir">54</data>
+	<data key="urn:wisebed:node:capability:light">543</data>
+	<data key="urn:wisebed:node:capability:temperature">27.2</data>
+</node>
+<link source="urn:wisebed:uzl1:0xd1dd" target="urn:wisebed:uzl1:0x17e9">
+	<rssi>183</rssi>
+	<data key="lqi">208</data>
+</link>
+<link source="urn:wisebed:uzl1:0xd1dd" target="urn:wisebed:uzl1:0x73ba">
+	<rssi>172</rssi>
+	<data key="lqi">200</data>
+</link>
+<link source="urn:wisebed:uzl1:0xd1dd" target="urn:wisebed:uzl1:0x4056">
+	<rssi>167</rssi>
+	<data key="lqi">184</data>
+</link>
+<link source="urn:wisebed:uzl1:0xd1dd" target="urn:wisebed:uzl1:0xc26b">
+	<rssi>167</rssi>
+	<data key="lqi">172</data>
+</link>
+<link source="urn:wisebed:uzl1:0xd1dd" target="urn:wisebed:uzl1:0x53fc">
+	<rssi>168</rssi>
+	<data key="lqi">206</data>
+</link>
+<link source="urn:wisebed:uzl1:0xd1dd" target="urn:wisebed:uzl1:0x7e56">
+	<rssi>171</rssi>
+	<data key="lqi">194</data>
+</link>
+<node id="urn:wisebed:uzl1:0xf242">
+	<data key="urn:wisebed:node:capability:humidity">36</data>
+	<data key="urn:wisebed:node:capability:ir">32</data>
+	<data key="urn:wisebed:node:capability:light">317</data>
+	<data key="urn:wisebed:node:capability:temperature">27.6</data>
+</node>
+<link source="urn:wisebed:uzl1:0xf242" target="urn:wisebed:uzl1:0x2891">
+	<rssi>167</rssi>
+	<data key="lqi">184</data>
+</link>
+<link source="urn:wisebed:uzl1:0xf242" target="urn:wisebed:uzl1:0x9815">
+	<rssi>177</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0xf242" target="urn:wisebed:uzl1:0x5680">
+	<rssi>177</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0xf242" target="urn:wisebed:uzl1:0x12c">
+	<rssi>176</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0xf242" target="urn:wisebed:uzl1:0x30c3">
+	<rssi>166</rssi>
+	<data key="lqi">162</data>
+</link>
+<link source="urn:wisebed:uzl1:0xf242" target="urn:wisebed:uzl1:0x561d">
+	<rssi>170</rssi>
+	<data key="lqi">154</data>
+</link>
+<link source="urn:wisebed:uzl1:0xf242" target="urn:wisebed:uzl1:0xe412">
+	<rssi>174</rssi>
+	<data key="lqi">204</data>
+</link>
+<link source="urn:wisebed:uzl1:0xf242" target="urn:wisebed:uzl1:0x58ca">
+	<rssi>168</rssi>
+	<data key="lqi">174</data>
+</link>
+<link source="urn:wisebed:uzl1:0xf242" target="urn:wisebed:uzl1:0x436e">
+	<rssi>179</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0xf242" target="urn:wisebed:uzl1:0x5d3d">
+	<rssi>165</rssi>
+	<data key="lqi">192</data>
+</link>
+<node id="urn:wisebed:uzl1:0xf9f3">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">68</data>
+	<data key="urn:wisebed:node:capability:light">585</data>
+	<data key="urn:wisebed:node:capability:temperature">27.8</data>
+</node>
+<link source="urn:wisebed:uzl1:0xf9f3" target="urn:wisebed:uzl1:0x7b2d">
+	<rssi>179</rssi>
+	<data key="lqi">196</data>
+</link>
+<timestamp>10323</timestamp>
+<node id="urn:wisebed:uzl1:0x2ad3">
+	<data key="urn:wisebed:node:capability:ir">29</data>
+	<data key="urn:wisebed:node:capability:light">311</data>
+	<data key="urn:wisebed:node:capability:temperature">31.1</data>
+</node>
+<link source="urn:wisebed:uzl1:0x2ad3" target="urn:wisebed:uzl1:0xb15">
+	<rssi>165</rssi>
+	<data key="lqi">154</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2ad3" target="urn:wisebed:uzl1:0x553">
+	<rssi>172</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2ad3" target="urn:wisebed:uzl1:0x2c26">
+	<rssi>167</rssi>
+	<data key="lqi">206</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2ad3" target="urn:wisebed:uzl1:0xf9f3">
+	<rssi>172</rssi>
+	<data key="lqi">210</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2ad3" target="urn:wisebed:uzl1:0x30c3">
+	<rssi>171</rssi>
+	<data key="lqi">208</data>
+</link>
+<link source="urn:wisebed:uzl1:0x2ad3" target="urn:wisebed:uzl1:0x7b2d">
+	<rssi>176</rssi>
+	<data key="lqi">206</data>
+</link>
+<link source="urn:wisebed:uzl1:0x30c3" target="urn:wisebed:uzl1:0x7b2d">
+	<rssi>170</rssi>
+	<data key="lqi">194</data>
+</link>
+<link source="urn:wisebed:uzl1:0x30c3" target="urn:wisebed:uzl1:0xb15">
+	<rssi>177</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x30c3" target="urn:wisebed:uzl1:0xf9f3">
+	<rssi>172</rssi>
+	<data key="lqi">214</data>
+</link>
+<link source="urn:wisebed:uzl1:0x30c3" target="urn:wisebed:uzl1:0x2ad3">
+	<rssi>168</rssi>
+	<data key="lqi">196</data>
+</link>
+<node id="urn:wisebed:uzl1:0x4056">
+	<data key="urn:wisebed:node:capability:humidity">31</data>
+	<data key="urn:wisebed:node:capability:ir">31</data>
+	<data key="urn:wisebed:node:capability:light">305</data>
+	<data key="urn:wisebed:node:capability:temperature">26.4</data>
+</node>
+<link source="urn:wisebed:uzl1:0x4056" target="urn:wisebed:uzl1:0x73ba">
+	<rssi>170</rssi>
+	<data key="lqi">200</data>
+</link>
+<link source="urn:wisebed:uzl1:0x4056" target="urn:wisebed:uzl1:0xfee3">
+	<rssi>168</rssi>
+	<data key="lqi">132</data>
+</link>
+<link source="urn:wisebed:uzl1:0x4056" target="urn:wisebed:uzl1:0xb354">
+	<rssi>176</rssi>
+	<data key="lqi">208</data>
+</link>
+<link source="urn:wisebed:uzl1:0x4056" target="urn:wisebed:uzl1:0xd1dd">
+	<rssi>166</rssi>
+	<data key="lqi">174</data>
+</link>
+<link source="urn:wisebed:uzl1:0x4056" target="urn:wisebed:uzl1:0x2b37">
+	<rssi>171</rssi>
+	<data key="lqi">192</data>
+</link>
+<link source="urn:wisebed:uzl1:0x4056" target="urn:wisebed:uzl1:0x5d3d">
+	<rssi>164</rssi>
+	<data key="lqi">190</data>
+</link>
+<link source="urn:wisebed:uzl1:0x4056" target="urn:wisebed:uzl1:0x53fc">
+	<rssi>202</rssi>
+	<data key="lqi">216</data>
+</link>
+<link source="urn:wisebed:uzl1:0x4056" target="urn:wisebed:uzl1:0xd2fb">
+	<rssi>178</rssi>
+	<data key="lqi">212</data>
+</link>
+<link source="urn:wisebed:uzl1:0x4056" target="urn:wisebed:uzl1:0x746e">
+	<rssi>175</rssi>
+	<data key="lqi">212</data>
+</link>
+</trace>
+</wiseml>
