@@ -4,13 +4,17 @@ import eu.wisebed.wiseml.model.trace.Message;
 
 import java.io.Serializable;
 
-public class LinkReadings extends Message implements Serializable {
+public class LinkReadings implements Serializable {
 
     private String linkSource;
 
     private String linkTarget;
 
     private String capId;
+
+    private long timestamp;
+
+    private double data;
 
     public LinkReadings(){}
 
@@ -36,5 +40,21 @@ public class LinkReadings extends Message implements Serializable {
 
     public void setCapId(final String capId){
         this.capId = capId;
+    }
+
+    public double getData(){
+        return data;
+    }
+
+    public void setData(final double data){
+        this.data = data;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 }

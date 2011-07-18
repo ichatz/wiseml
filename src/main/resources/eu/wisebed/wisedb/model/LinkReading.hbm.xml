@@ -12,7 +12,7 @@
             <key-property name="capId" column="CAP_ID"/>
             <key-property name="timestamp" column="TIME" type="long"/>
         </composite-id>
-        <property name="data" />
+        <property name="data" type="serializable"/>
     </class>
 
 </hibernate-mapping>

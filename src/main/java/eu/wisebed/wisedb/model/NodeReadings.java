@@ -4,11 +4,15 @@ import eu.wisebed.wiseml.model.trace.Message;
 
 import java.io.Serializable;
 
-public class NodeReadings extends Message implements Serializable{
+public class NodeReadings implements Serializable{
 
     private String nodeId;
 
     private String capId;
+
+    private long timestamp;
+
+    private double data;
 
     public NodeReadings(){}
 
@@ -26,5 +30,21 @@ public class NodeReadings extends Message implements Serializable{
 
     public void setCapId(final String capId){
         this.capId = capId;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public double getData() {
+        return data;
+    }
+
+    public void setData(double data) {
+        this.data = data;
     }
 }
