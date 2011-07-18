@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="eu.wisebed.wiseml.model.setup.Link" table="LINKS">
+
+        <id name="id" column="LINKID">
+            <generator class="native" />
+        </id>
+
+        <property name="source" />
+        <property name="target" />
+
+        <property name="encrypted">
+            <column name="encrypted" sql-type="BOOLEAN" />
+        </property>
+
+        <property name="virtual">
+            <column name="virtual" sql-type="BOOLEAN" />
+        </property>
+
+       <component name="rssi" class="eu.wisebed.wiseml.model.setup.Rssi">
+           <property name="unit" column="rssi_unit"/>
+           <property name="datatype" column="rssi_datatype" />
+        </component>
+
+        <set name="setups" table="SETUP_LINKS">
+            <key column="LINKID"/>
+            <many-to-many column="SETUPID" class="eu.wisebed.wiseml.model.setup.Setup"/>
+        </set>
+
+        <!--<list name="capabilities" cascade="all" inverse="true" lazy="true" fetch="select">-->
+            <!--<key column="NODEID" not-null="true"/>-->
+            <!--<list-index column="LINDEX"/>-->
+            <!--<one-to-many class="eu.wisebed.wiseml.model.setup.Capability"/>-->
+        <!--</list>-->
+     <!-- data -->
+
+    </class>
+
+</hibernate-mapping>

@@ -11,6 +11,11 @@ import java.util.List;
 public class Setup {
 
     /**
+     * id of setup.
+     */
+    private int id;
+
+    /**
      * the origin of node.
      */
     private Origin origin;
@@ -49,6 +54,25 @@ public class Setup {
      * information about links.
      */
     private List<Link> link;
+
+
+    /**
+     * this method returns the id of the setup.
+     *
+     * @return the id of the setup.
+     */
+    public int getId(){
+        return id;
+    }
+
+    /**
+     * this method sets the id of the setup.
+     *
+     * @param id
+     */
+    public void setId(final int id){
+        this.id = id;
+    }
 
     /**
      * this method returns a list of nodes.

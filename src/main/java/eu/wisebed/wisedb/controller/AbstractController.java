@@ -3,6 +3,7 @@ package eu.wisebed.wisedb.controller;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import java.util.List;
 
@@ -48,7 +49,9 @@ public abstract class AbstractController<E> {
      */
     public void add(final E entity) {
         final Session session = sessionFactory.getCurrentSession();
-        session.save(entity);
+        Transaction tx = session.beginTransaction();
+        session.saveOrUpdate(entity);
+        tx.commit();
     }
 
     /**
@@ -59,7 +62,9 @@ public abstract class AbstractController<E> {
      */
     public void update(final E entity) {
         final Session session = sessionFactory.getCurrentSession();
+        Transaction tx = session.beginTransaction();
         session.merge(entity);
+        tx.commit();
     }
 
     /**
@@ -67,13 +72,31 @@ public abstract class AbstractController<E> {
      * receives.
      *
      * @param entity   an Entity object that may be of every type of entity.
-     * @param entityID the id of the Entity object.
+     * @param entityID the (int) id of the Entity object.
      */
     public void delete(final E entity, final int entityID) {
         final Session session = sessionFactory.getCurrentSession();
         final Object entity2 = session.load(entity.getClass(), entityID);
+        Transaction tx = session.beginTransaction();
         session.delete(entity2);
+        tx.commit();
     }
+
+    /**
+     * deleting an entry into the database, according to the input object it
+     * receives.
+     *
+     * @param entity   an Entity object that may be of every type of entity.
+     * @param entityID the (String) id of the Entity object.
+     */
+    public void delete (final E entity,final String entityID) {
+        final Session session = sessionFactory.getCurrentSession();
+        final Object entity2 = session.load(entity.getClass(), entityID);
+        Transaction tx = session.beginTransaction();
+        session.delete(entity2);
+        tx.commit();
+    }
+
 
     /**
      * listing all the entries from the database related to the input object it
@@ -86,8 +109,11 @@ public abstract class AbstractController<E> {
     @SuppressWarnings("unchecked")
     protected List<E> list(final E entity) {
         final Session session = sessionFactory.getCurrentSession();
+        Transaction tx = session.beginTransaction();
         final Criteria criteria = session.createCriteria(entity.getClass());
-        return (List<E>) criteria.list();
+        List<E> entityList = criteria.list();
+        tx.commit();
+        return entityList;
 
     }
 
@@ -95,13 +121,33 @@ public abstract class AbstractController<E> {
      * get the entry from the database that corresponds to the input id.
      *
      * @param entity   an Entity object that may be of every type of entity.
-     * @param entityID the id of the Entity object.
+     * @param entityID the (int) id of the Entity object.
      * @return an Entity object.
      */
     @SuppressWarnings("unchecked")
     protected E getByID(final E entity, final int entityID) {
         final Session session = sessionFactory.getCurrentSession();
-        return (E) session.get(entity.getClass(), entityID);
+        Transaction tx = session.beginTransaction();
+        Object entityByID = session.get(entity.getClass(), entityID);
+        tx.commit();
+        return (E) entityByID;
+    }
+
+/**
+     * get the entry from the database that corresponds to the input id.
+     *
+     * @param entity   an Entity object that may be of every type of entity.
+     * @param entityID the (String) id of the Entity object.
+     * @return an Entity object.
+     */
+    @SuppressWarnings("unchecked")
+    protected E getByID(final E entity, final String entityID) {
+        final Session session = sessionFactory.getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        Object entityByID = session.get(entity.getClass(), entityID);
+        tx.commit();
+        return (E) entityByID;
+
     }
 
 }

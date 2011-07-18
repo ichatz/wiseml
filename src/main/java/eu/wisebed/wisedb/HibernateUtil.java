@@ -1,5 +1,8 @@
 package eu.wisebed.wisedb;
 
+import eu.wisebed.wisedb.controller.CapabilityController;
+import eu.wisebed.wisedb.controller.NodeController;
+import eu.wisebed.wisedb.controller.SetupController;
 import eu.wisebed.wisedb.controller.TestbedController;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
@@ -120,6 +123,9 @@ public class HibernateUtil {
 
         // main controllers
         TestbedController.getInstance().setSessionFactory(thisFactory);
+        CapabilityController.getInstance().setSessionFactory(thisFactory);
+        NodeController.getInstance().setSessionFactory(thisFactory);
+        SetupController.getInstance().setSessionFactory(thisFactory);
     }
 
 }

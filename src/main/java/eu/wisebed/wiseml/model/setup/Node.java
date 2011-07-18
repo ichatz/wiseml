@@ -3,6 +3,7 @@ package eu.wisebed.wiseml.model.setup;
 import eu.wisebed.wiseml.model.trace.Message;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * This is a persistant class for the object node that has the
@@ -57,6 +58,11 @@ public class Node {
      * node message.
      */
     private Message message;
+
+    /**
+     * this node belongs to a collection of setups
+     */
+    private Set<Setup> setups;
 
     /**
      * this method returns the id of a node.
@@ -218,5 +224,21 @@ public class Node {
      */
     public void setMessage(Message message) {
         this.message = message;
+    }
+
+    /**
+     * returns a collection of setups.
+     * @return
+     */
+    public Set<Setup> getSetups() {
+        return setups;
+    }
+
+    /**
+     * sets a collection of setups
+     * @param setups
+     */
+    public void setSetups(final Set<Setup> setups) {
+        this.setups = setups;
     }
 }

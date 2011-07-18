@@ -82,10 +82,13 @@ public class TestbedController extends AbstractController<Testbed> {
     @SuppressWarnings("unchecked")
     public List<Testbed> listByUrnPrefix(final String urnPrefix) {
         final Session session = getSessionFactory().getCurrentSession();
+        session.beginTransaction();
         final Criteria criteria = session.createCriteria(Testbed.class);
         criteria.add(Restrictions.like("urnPrefix", urnPrefix, MatchMode.START));
         criteria.addOrder(Order.asc("urnPrefix"));
-        return criteria.list();
+        List<Testbed> testbedList = criteria.list();
+        session.getTransaction().commit();
+        return testbedList;
     }
 
 }

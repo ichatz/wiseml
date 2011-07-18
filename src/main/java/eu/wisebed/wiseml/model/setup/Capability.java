@@ -1,5 +1,7 @@
 package eu.wisebed.wiseml.model.setup;
 
+import java.util.Set;
+
 /**
  * This is a persistant class for the object capability that has the
  * properties of a capability. In the class there are
@@ -27,6 +29,16 @@ public class Capability {
      * the unit of the capability.
      */
     private String defaultvalue;
+
+    /**
+     * set of nodes that have this capability.
+     */
+    private Set<Node> nodes;
+
+    /**
+     * set of links that have this capability.
+     */
+    private Set<Link> links;
 
     /**
      * this method returns the name of the capability.
@@ -88,5 +100,37 @@ public class Capability {
 
     public void setDefaultvalue(String defaultvalue) {
         this.defaultvalue = defaultvalue;
+    }
+
+    /**
+     * Returns nodes that have this capability.
+     * @return a node collection.
+     */
+    public Set<Node> getNodes() {
+        return nodes;
+    }
+
+    /**
+     * Sets the node collection that has this capability.
+     * @param nodes, a node collection.
+     */
+    public void setNodes(final Set<Node> nodes) {
+        this.nodes = nodes;
+    }
+
+    /**
+     * Returns links that have this capability.
+     * @return a link collection.
+     */
+    public Set<Link> getLinks() {
+        return links;
+    }
+
+    /**
+     * Sets the link collection that has this capability.
+     * @param links, a link collection.
+     */
+    public void setLinks(final Set<Link> links) {
+        this.links = links;
     }
 }

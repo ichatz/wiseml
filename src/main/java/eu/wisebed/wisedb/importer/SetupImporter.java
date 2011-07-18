@@ -1,26 +1,27 @@
 package eu.wisebed.wisedb.importer;
 
 import eu.wisebed.testbed.api.wsn.v22.SessionManagement;
-import eu.wisebed.wisedb.controller.TestbedController;
-import eu.wisebed.wisedb.model.Testbed;
+import eu.wisebed.wisedb.controller.CapabilityController;
+import eu.wisebed.wisedb.controller.NodeController;
+import eu.wisebed.wisedb.controller.SetupController;
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
+import eu.wisebed.wiseml.model.scenario.Scenario;
+import eu.wisebed.wiseml.model.setup.Capability;
+import eu.wisebed.wiseml.model.setup.Setup;
 import eu.wisebed.wiseml.model.setup.Node;
+import eu.wisebed.wiseml.model.trace.Trace;
 import org.apache.log4j.Logger;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
+
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.StringTokenizer;
 
-/**
- * Retrieves testbed records from the Session management endpoint and imports them into the wisedb.
- */
-public class TestbedImporter {
-
+public class SetupImporter {
     /**
      * a log4j logger to print messages.
      */
@@ -39,7 +40,7 @@ public class TestbedImporter {
     /**
      * Default constructor.
      */
-    public TestbedImporter() {
+    public SetupImporter() {
         // empty constructor.
     }
 
@@ -50,15 +51,6 @@ public class TestbedImporter {
         // Connect to remote endpoint
         sessionManagementService = eu.wisebed.testbed.api.wsn.WSNServiceHelper
                 .getSessionManagementService(getEndpointUrl());
-    }
-
-    /**
-     * Retrieve the records from the remote Session Management endpoint in WiseML format.
-     *
-     * @return a WiseML document containing the records of the testbed.
-     */
-    public String getNetwork() {
-        return getSessionManagementService().getNetwork();
     }
 
     /**
@@ -80,42 +72,47 @@ public class TestbedImporter {
             LOGGER.fatal("Error while unmarshalling WiseML document", ex);
             return;
         }
+        Setup setup = stp.getSetup();
 
-        // Extract urn prefix
-        final List<Node> nodes = stp.getSetup().getNodes();
-        Set<String> prefixes = new HashSet<String>();
-        for (final Node node : nodes) {
-            final String id = node.getId();
-            final String thisPrefix = id.substring(0, id.lastIndexOf(":"));
-            prefixes.add(thisPrefix);
+        // insert capabilities
+        Iterator<Node> it =setup.getNodes().iterator();
+        while(it.hasNext()) {
+            Node node = it.next();
+
+            if( node.getCapabilities() == null) // if node has not capabilities continue loop
+                continue;
+
+            LOGGER.debug("Node : " + node.getId() + " has " + node.getCapabilities().size() + " capabilities");
+            Iterator<Capability> itCap = node.getCapabilities().iterator();
+            while(itCap.hasNext()){
+                Capability capability = itCap.next();
+                if(capability.getNodes() == null)
+                    capability.setNodes(new HashSet<Node>());
+                capability.getNodes().add(node);
+                CapabilityController.getInstance().add(capability);           // saves or updates capability
+            }
         }
 
-        LOGGER.debug("Total prefixes found: " + prefixes.size());
-        LOGGER.debug("First prefix: " + prefixes.iterator().next());
+        // insert setup,nodes & links to db
+        SetupController.getInstance().add(setup);
+        LOGGER.debug("Setup added to DB");
+        Setup pSetup = SetupController.getInstance().getByID(setup.getId());
+        LOGGER.debug(pSetup.getNodes().size() + " nodes persisted");
+        LOGGER.debug(pSetup.getLink().size() + " links peristsed");
 
 
-        // Setting up the testbed entity
-        Testbed testbed = new Testbed();
-        testbed.setName("WISEBED CTI Testbed");
-        testbed.setUrnPrefix(prefixes.iterator().next());
-        testbed.setUrl("http://www.cti.gr");
-        testbed.setDescription("This is the description WiseML file of the RACTI testbed in Patras Greece containing iSense " +
-                "telosB and xbee sensor nodes equiped with temperature light infrared humidity Wind Speed Wind Direction" +
-                " and Air Quality Sensors");
-        testbed.setFederated(false);
-        testbed.setRsUrl("http://hercules.cti.gr:8888/rs");
-        testbed.setSnaaUrl("http://hercules.cti.gr:8890/snaa/shib1");
-        testbed.setSessionUrl("http://hercules.cti.gr:8888/sessions");
-
-        // adding testbed
-        TestbedController.getInstance().add(testbed);
-
-        // Check imported records
-        final List<Testbed> testbedList = TestbedController.getInstance().list();
-        LOGGER.debug("Testbed List : " + testbedList.size());
     }
 
     /**
+     * Retrieve the records from the remote Session Management endpoint in WiseML format.
+     *
+     * @return a WiseML document containing the records of the testbed.
+     */
+    public String getNetwork() {
+        return getSessionManagementService().getNetwork();
+    }
+
+        /**
      * Get the URL of the session management endpoint.
      *
      * @return the URL of the session management endpoint.
@@ -150,4 +147,5 @@ public class TestbedImporter {
     public void setSessionManagementService(final SessionManagement value) {
         this.sessionManagementService = value;
     }
+
 }

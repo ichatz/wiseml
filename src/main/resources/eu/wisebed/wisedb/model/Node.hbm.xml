@@ -1,0 +1,38 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="eu.wisebed.wiseml.model.setup.Node" table="NODES">
+
+        <id name="id" column="NODEID" />
+
+        <component name="position" class="eu.wisebed.wiseml.model.setup.Position">
+            <property name="x" column="position_x"/>
+            <property name="y" column="position_y"/>
+            <property name="z" column="position_z"/>
+            <property name="phi" column="position_phi"/>
+            <property name="theta" column="position_theta"/>
+        </component>
+
+        <property name="nodeType"/>
+        <property name="description"/>
+        <property name="gateway"/>
+        <property name="programDetails"/>
+
+         <set name="setups" table="SETUP_NODES">
+            <key column="NODEID" />
+            <many-to-many column="SETUPID" class="eu.wisebed.wiseml.model.setup.Setup"/>
+        </set>
+
+        <list name="capabilities" table="NODE_CAPABILITIES" cascade="none">
+            <key column="NODEID"/>
+            <list-index column="CAP_IDX"/>
+            <many-to-many column="CAPABILITYID" class="eu.wisebed.wiseml.model.setup.Capability"/>
+        </list>
+
+        <!-- data & message -->
+
+    </class>
+</hibernate-mapping>

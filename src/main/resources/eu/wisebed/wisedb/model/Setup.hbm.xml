@@ -1,0 +1,45 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="eu.wisebed.wiseml.model.setup.Setup" table="SETUP">
+
+        <id name="id" column="SETUPID">
+            <generator class="native" />
+        </id>
+
+        <component name="origin" class="eu.wisebed.wiseml.model.setup.Origin">
+            <property name="x" column="position_x"/>
+            <property name="y" column="position_y"/>
+            <property name="z" column="position_z"/>
+            <property name="phi" column="position_phi"/>
+            <property name="theta" column="position_theta"/>
+        </component>
+        <component name="timeinfo" class="eu.wisebed.wiseml.model.setup.TimeInfo">
+            <property name="start" column="timeinfo_start"/>
+            <property name="end" column="timeinfo_end"/>
+            <property name="duration" column="timeinfo_duration"/>
+            <property name="unit" column="timeinfo_unit"/>
+        </component>
+
+        <property name="description"/>
+        <property name="coordinateType"/>
+
+        <list name="nodes" table="SETUP_NODES" cascade="all" lazy="false">
+            <key column="SETUPID" />
+            <list-index column="NODE_IDX"/>
+            <many-to-many column="NODEID" class="eu.wisebed.wiseml.model.setup.Node"/>
+        </list>
+
+        <list name="link" table="SETUP_LINKS" cascade="all" lazy="false">
+            <key column="SETUPID" />
+            <list-index column="LINK_IDX"/>
+            <many-to-many column="LINKID" class="eu.wisebed.wiseml.model.setup.Link"/>
+        </list>
+
+        <!-- defaults list -->
+
+    </class>
+</hibernate-mapping>

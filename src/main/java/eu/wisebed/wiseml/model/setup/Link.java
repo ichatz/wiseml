@@ -1,6 +1,7 @@
 package eu.wisebed.wiseml.model.setup;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * This is a persistant class for the object link that has the
@@ -9,6 +10,11 @@ import java.util.List;
  */
 
 public class Link {
+
+    /**
+     * an id number of a link
+     */
+    private int id;
 
     /**
      * the source of an object Link.
@@ -40,7 +46,32 @@ public class Link {
      */
     private Rssi rssi;
 
+    /**
+     * list of data.
+     */
     private List<Data> data;
+
+    /**
+     * this link belongs to a collection of setups.
+     */
+    private Set<Setup> setups;
+
+    /**
+     * this method returns the id of the link.
+     *
+     * @return the id of the link.
+     */
+    public int getId(){
+        return id;
+    }
+
+    /**
+     * this method sets the ide of the link.
+     * @param id
+     */
+    public void setId(final int id){
+        this.id = id;
+    }
 
     /**
      * this method returns the source of the link.
@@ -156,5 +187,21 @@ public class Link {
 
     public void setData(List<Data> data) {
         this.data = data;
+    }
+
+    /**
+     * returns a collection of setups.
+     * @return
+     */
+    public Set<Setup> getSetups() {
+        return setups;
+    }
+
+    /**
+     * sets a collection of setups
+     * @param setups
+     */
+    public void setSetups(final Set<Setup> setups) {
+        this.setups = setups;
     }
 }
