@@ -1,26 +1,27 @@
 package eu.wisebed.wisedb.importer;
 
 import eu.wisebed.testbed.api.wsn.v22.SessionManagement;
-import eu.wisebed.wisedb.controller.CapabilityController;
-import eu.wisebed.wisedb.controller.SetupController;
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
-import eu.wisebed.wiseml.model.setup.Capability;
-import eu.wisebed.wiseml.model.setup.Setup;
-import eu.wisebed.wiseml.model.setup.Node;
+import eu.wisebed.wiseml.model.scenario.Timestamp;
+import eu.wisebed.wiseml.model.setup.Data;
+import eu.wisebed.wiseml.model.trace.Trace;
 import eu.wisebed.wiseml.model.setup.Link;
+import eu.wisebed.wiseml.model.setup.Node;
 import org.apache.log4j.Logger;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
+import java.io.InputStream;
 
-import java.util.HashSet;
-import java.util.Iterator;
+import java.security.Key;
+import java.util.List;
 
-public class SetupImporter {
+public class TraceImporter {
     /**
      * a log4j logger to print messages.
      */
-    private static final Logger LOGGER = Logger.getLogger(SetupImporter.class);
+    private static final Logger LOGGER = Logger.getLogger(TraceImporter.class);
 
     /**
      * The URL of the Session Management endpoint.
@@ -38,14 +39,14 @@ public class SetupImporter {
     private WiseML root;
 
     /**
-     * WiseML setup entity
+     * WiseML Trace entity
      */
-    private Setup setup;
+    private Trace trace;
 
     /**
      * Default constructor.
      */
-    public SetupImporter() {
+    public TraceImporter() {
         // empty constructor.
     }
 
@@ -88,58 +89,47 @@ public class SetupImporter {
      * Convert the WiseML document describing the records of the testbed into wisedb records.
      */
     public void convert() {
-        // insert and associate nodes/links & capabilities
-        if(setup.getNodes() != null) {
 
-            // insert node capabilities
-            Iterator<Node> nodeIt =setup.getNodes().iterator();
-            while(nodeIt.hasNext()) {
-                Node node = nodeIt.next();
+        // get trace items
+        List traceItems = trace.getChildren();
+        System.out.println("Trace items count :" + traceItems.size());
 
-                if( node.getCapabilities() == null) // if node has not capabilities continue loop
-                    continue;
 
-                LOGGER.debug("Node : " + node.getId() + " has " + node.getCapabilities().size() + " capabilities");
-                Iterator<Capability> capaIt = node.getCapabilities().iterator();
-                while(capaIt.hasNext()) {
-                    Capability capability = capaIt.next();
-                    if(capability.getNodes() == null)
-                        capability.setNodes(new HashSet<Node>());
-                    capability.getNodes().add(node);
-                    CapabilityController.getInstance().add(capability);           // saves or updates capability
+        // define last occured timestamp
+        long lastTimeStamp;
+
+        // iterate trace items. In case a node/link has not been set in the setup we set it
+        for(Object item : traceItems)
+        {
+            if (item.getClass().equals(Timestamp.class)){
+
+                // in case of a timestamp item . Just keep tha last timestamp to perist
+                Timestamp ts=(Timestamp) item;
+                System.out.println("Timestamp : "+ts.getValue());
+                if(ts.getValue() != null){
+                    lastTimeStamp = Long.parseLong(ts.getValue());
                 }
-            }
-        }
-        if(setup.getLink() != null) {
+            }else if (item.getClass().equals(Node.class)){
 
-            // insert link capabilities
-            Iterator<Link> linkIt = setup.getLink().iterator();
-            while(linkIt.hasNext()) {
-                Link link = linkIt.next();
-
-                if(link.getCapabilities() == null)
-                    continue;
-
-                LOGGER.debug("Link : [" + link.getSource() + "," + link.getTarget() + "] has " + link.getCapabilities().size());
-                Iterator<Capability> capaIt = link.getCapabilities().iterator();
-                while(capaIt.hasNext()) {
-                    Capability capability = capaIt.next();
-                    if(capability.getLinks() == null)
-                        capability.setLinks(new HashSet<Link>());
-                    capability.getLinks().add(link);
-                    CapabilityController.getInstance().add(capability);           // saves or updates capability
+                // in case of a node item , using the last timestamp persist the node and it's readings
+                Node nd=(Node) item;
+                System.out.println("Node : " + nd.getId());
+                System.out.println("Node has " + nd.getData().size() + " readings" );
+                for(Data d :nd.getData()) {
+                    System.out.println("\t\t" + d.getKey() + " : " + d.getValue() );
                 }
+            }else if (item.getClass().equals(Link.class)){
+
+                // in case of a link item , using the last timestamp persist the node and it's readings
+                Link ln=(Link) item;
+                System.out.println("Link : "+ ln.getSource() + "-->" + ln.getTarget());
+                System.out.println("Link has " + ln.getData().size()  + " readings");
+                for(Data d :ln.getData()) {
+                    System.out.println("\t\t" + d.getKey() + " : " + d.getValue() );
+                }
+                System.out.println("Link RSSI : "+ln.getRssi().getValue());
             }
-        }
-
-        // insert setup,nodes & links to db
-        SetupController.getInstance().add(setup);
-        LOGGER.debug("Setup added to DB");
-        Setup pSetup = SetupController.getInstance().getByID(setup.getId());
-        LOGGER.debug(pSetup.getNodes().size() + " nodes persisted");
-        LOGGER.debug(pSetup.getLink().size() + " links peristsed");
-
-
+}
     }
 
     /**
@@ -151,7 +141,7 @@ public class SetupImporter {
         return getSessionManagementService().getNetwork();
     }
 
-        /**
+    /**
      * Get the URL of the session management endpoint.
      *
      * @return the URL of the session management endpoint.
@@ -202,11 +192,12 @@ public class SetupImporter {
             LOGGER.debug(root.getVersion());
 
             // add setup found
-            setup = root.getSetup();
-            if(setup == null){
-                System.out.println("Setup instance cannot be null. Exiting");
+            trace = root.getTrace();
+            if(trace == null){
+                System.err.println("Trace cannot be null. Exiting");
                 System.exit(-1);
             }
+
 
 
         } catch (Exception ex) {

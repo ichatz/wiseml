@@ -22,9 +22,14 @@ public class LinkReadings implements Serializable {
     private long timestamp;
 
     /**
-     * Numeric value reading.
+     * Numeric value of a reading.
      */
     private double reading;
+
+    /**
+     * Numeric value of the current RSSI of the link.
+     */
+    private double rssiValue;
 
     /**
      * Constructor.
@@ -109,5 +114,17 @@ public class LinkReadings implements Serializable {
      */
     public void setTimestamp(final long timestamp) {
         this.timestamp = timestamp;
+    }
+
+    /**
+     * Return the rssi value of the link.
+      * @return rssi value of the link
+     */
+    public double getRssiValue(){
+       return rssiValue;
+    }
+
+    public void setRssiValue(final double rssiValue) {
+        this.rssiValue = rssiValue;
     }
 }

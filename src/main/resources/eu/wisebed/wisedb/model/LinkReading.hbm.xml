@@ -12,7 +12,8 @@
             <key-property name="capId" column="CAP_ID"/>
             <key-property name="timestamp" column="TIME" type="long"/>
         </composite-id>
-        <property name="reading" type="serializable"/>
+        <property name="reading" type="double"/>
+        <property name="rssiValue" type="double" />
     </class>
 
 </hibernate-mapping>
