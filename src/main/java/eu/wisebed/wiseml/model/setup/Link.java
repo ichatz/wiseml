@@ -35,7 +35,7 @@ public class Link implements Serializable{
     /**
      * a list of capabilities to add to the link.
      */
-    private List<Capability> capability;
+    private List<Capability> capabilities;
 
     /**
      * the Rssi value of the link.
@@ -129,17 +129,17 @@ public class Link implements Serializable{
      *
      * @return the list of capabilities.
      */
-    public List<Capability> getCapability() {
-        return capability;
+    public List<Capability> getCapabilities() {
+        return capabilities;
     }
 
     /**
      * this method sets the list of capabilities of the link.
      *
-     * @param capability the list of capabilities.
+     * @param capabilities the list of capabilities.
      */
-    public void setCapability(List<Capability> capability) {
-        this.capability = capability;
+    public void setCapabilities(List<Capability> capabilities) {
+        this.capabilities = capabilities;
     }
 
     /**

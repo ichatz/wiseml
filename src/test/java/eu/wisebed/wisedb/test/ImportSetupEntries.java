@@ -25,6 +25,7 @@ public class ImportSetupEntries {
         // list of testbeds
         List<Testbed> testbedList = TestbedController.getInstance().list();
         if(testbedList == null || testbedList.size() == 0) {
+            LOGGER.debug("No testbeds found persisted");
             System.exit(-1);
         }
         LOGGER.debug("Found : " + testbedList.size() +" testbeds");

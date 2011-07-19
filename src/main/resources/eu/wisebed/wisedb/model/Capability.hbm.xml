@@ -18,6 +18,14 @@
             <many-to-many column="NODEID" class="eu.wisebed.wiseml.model.setup.Node" />
         </set>
 
+        <set name="links" table="LINK_CAPABILITIES" inverse="true">
+            <key column="CAPABILITYID"/>
+            <many-to-many class="eu.wisebed.wiseml.model.setup.Link">
+                <column name="LINK_SOURCE" />
+                <column name="LINK_TARGET" />
+            </many-to-many>
+        </set>
+
     </class>
 
 </hibernate-mapping>

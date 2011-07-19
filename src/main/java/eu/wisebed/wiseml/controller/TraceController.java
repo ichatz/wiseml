@@ -26,7 +26,7 @@ public class TraceController {
         Set<String> messages = new TreeSet<String>();
 
         for (String message : messages) {
-            //messages.add(trace.getNode().getMessage().getData());
+            //messages.add(trace.getNode().getMessage().getReading());
         }
 
         //mapTr.put(trace.getTimestamp(), messages);

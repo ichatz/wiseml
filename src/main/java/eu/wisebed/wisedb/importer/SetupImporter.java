@@ -8,6 +8,7 @@ import eu.wisebed.wiseml.model.WiseML;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Setup;
 import eu.wisebed.wiseml.model.setup.Node;
+import eu.wisebed.wiseml.model.setup.Link;
 import org.apache.log4j.Logger;
 
 import java.io.*;
@@ -19,7 +20,7 @@ public class SetupImporter {
     /**
      * a log4j logger to print messages.
      */
-    private static final Logger LOGGER = Logger.getLogger(TestbedImporter.class);
+    private static final Logger LOGGER = Logger.getLogger(SetupImporter.class);
 
     /**
      * The URL of the Session Management endpoint.
@@ -32,12 +33,12 @@ public class SetupImporter {
     private SessionManagement sessionManagementService;
 
     /**
-     * WiseML source input stream.
+     * WiseML root entity.
      */
-    private InputStream in;
+    private WiseML root;
 
     /**
-     * WiseML Setup instance.
+     * WiseML setup entity
      */
     private Setup setup;
 
@@ -59,15 +60,18 @@ public class SetupImporter {
         LOGGER.debug("Got WiseML from URI: " + endpointUrl);
 
         // setting input stream
-        in = new ByteArrayInputStream(wiseMl.getBytes());
+        InputStream in = new ByteArrayInputStream(wiseMl.getBytes());
         LOGGER.debug("Input stream comming from remote source.");
+
+        // load wiseml from in
+        loadWiseMLFromFile(in);
     }
 
     /**
      * Open local WiseML file.
      */
     public void open(final String path){
-
+        InputStream in =null;
         try {
             in = new FileInputStream(path);
         } catch(Exception e){
@@ -75,39 +79,56 @@ public class SetupImporter {
             System.exit(-1);
         }
         LOGGER.debug("Input stream comming from local file.");
+
+        // load wiseml from in
+        loadWiseMLFromFile(in);
     }
 
     /**
      * Convert the WiseML document describing the records of the testbed into wisedb records.
      */
     public void convert() {
-        WiseML root = null;
-        try {
-            final WiseMLController cnt = new WiseMLController();
-            root = cnt.loadWiseMLFromFile(in);
-            setup = root.getSetup();
-            LOGGER.debug(root.getVersion());
-        } catch (Exception ex) {
-            LOGGER.fatal("Error while unmarshalling WiseML document", ex);
-            return;
+        // insert and associate nodes/links & capabilities
+        if(setup.getNodes() != null) {
+
+            // insert node capabilities
+            Iterator<Node> nodeIt =setup.getNodes().iterator();
+            while(nodeIt.hasNext()) {
+                Node node = nodeIt.next();
+
+                if( node.getCapabilities() == null) // if node has not capabilities continue loop
+                    continue;
+
+                LOGGER.debug("Node : " + node.getId() + " has " + node.getCapabilities().size() + " capabilities");
+                Iterator<Capability> capaIt = node.getCapabilities().iterator();
+                while(capaIt.hasNext()) {
+                    Capability capability = capaIt.next();
+                    if(capability.getNodes() == null)
+                        capability.setNodes(new HashSet<Node>());
+                    capability.getNodes().add(node);
+                    CapabilityController.getInstance().add(capability);           // saves or updates capability
+                }
+            }
         }
+        if(setup.getLink() != null) {
 
-        // insert capabilities
-        Iterator<Node> it =setup.getNodes().iterator();
-        while(it.hasNext()) {
-            Node node = it.next();
+            // insert link capabilities
+            Iterator<Link> linkIt = setup.getLink().iterator();
+            while(linkIt.hasNext()) {
+                Link link = linkIt.next();
 
-            if( node.getCapabilities() == null) // if node has not capabilities continue loop
-                continue;
+                if(link.getCapabilities() == null)
+                    continue;
 
-            LOGGER.debug("Node : " + node.getId() + " has " + node.getCapabilities().size() + " capabilities");
-            Iterator<Capability> itCap = node.getCapabilities().iterator();
-            while(itCap.hasNext()){
-                Capability capability = itCap.next();
-                if(capability.getNodes() == null)
-                    capability.setNodes(new HashSet<Node>());
-                capability.getNodes().add(node);
-                CapabilityController.getInstance().add(capability);           // saves or updates capability
+                LOGGER.debug("Link : [" + link.getSource() + "," + link.getTarget() + "] has " + link.getCapabilities().size());
+                Iterator<Capability> capaIt = link.getCapabilities().iterator();
+                while(capaIt.hasNext()) {
+                    Capability capability = capaIt.next();
+                    if(capability.getLinks() == null)
+                        capability.setLinks(new HashSet<Link>());
+                    capability.getLinks().add(link);
+                    CapabilityController.getInstance().add(capability);           // saves or updates capability
+                }
             }
         }
 
@@ -166,4 +187,28 @@ public class SetupImporter {
         this.sessionManagementService = value;
     }
 
+    /**
+     * Load WiseML entities from the XML.
+     *
+     * @param in an input stream.
+     */
+    private void loadWiseMLFromFile(final InputStream in){
+        try{
+            // set the controller
+            final WiseMLController cnt = new WiseMLController();
+
+            // load wiseml root element
+            root = cnt.loadWiseMLFromFile(in);
+            LOGGER.debug(root.getVersion());
+
+            // add setup found
+            setup = root.getSetup();
+
+
+        } catch (Exception ex) {
+            LOGGER.fatal("Error while unmarshalling WiseML document", ex);
+            System.err.println(ex);
+            System.exit(-1);
+        }
+    }
 }

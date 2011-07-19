@@ -117,7 +117,7 @@ public class SetupNewNode {
             link1.setEncrypted(true);
             link1.setVirtual(false);
             link1.setRssi(rssi);
-            link1.setCapability(capabilities);
+            link1.setCapabilities(capabilities);
 
             Link link2 = new Link();
             link2.setSource("urn:wisebed:node:tud:330020");
@@ -125,7 +125,7 @@ public class SetupNewNode {
             link2.setEncrypted(true);
             link2.setVirtual(false);
             link2.setRssi(rssi);
-            link2.setCapability(capabilities);
+            link2.setCapabilities(capabilities);
 
 
             //set all the values to node1...

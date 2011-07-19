@@ -21,7 +21,7 @@
         <property name="gateway"/>
         <property name="programDetails"/>
 
-         <set name="setups" table="SETUP_NODES">
+         <set name="setups" table="SETUP_NODES" inverse="true">
             <key column="NODEID" />
             <many-to-many column="SETUPID" class="eu.wisebed.wiseml.model.setup.Setup"/>
         </set>
@@ -33,7 +33,7 @@
             <many-to-many column="CAPABILITYID" class="eu.wisebed.wiseml.model.setup.Capability"/>
         </list>
 
-        <!-- data & message -->
+        <!-- reading & message -->
 
     </class>
 </hibernate-mapping>

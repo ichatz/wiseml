@@ -33,12 +33,16 @@
             <many-to-many column="SETUPID" class="eu.wisebed.wiseml.model.setup.Setup"/>
         </set>
 
-        <!--<list name="capabilities" cascade="all" inverse="true" lazy="true" fetch="select">-->
-            <!--<key column="NODEID" not-null="true"/>-->
-            <!--<list-index column="LINDEX"/>-->
-            <!--<one-to-many class="eu.wisebed.wiseml.model.setup.Capability"/>-->
-        <!--</list>-->
-     <!-- data -->
+        <list name="capabilities" table="LINK_CAPABILITIES" cascade="none">
+            <key>
+                <column name="LINK_SOURCE"/>
+                <column name="LINK_TARGET"/>
+            </key>
+            <list-index column="CAP_IDX"/>
+            <many-to-many column="CAPABILITYID" class="eu.wisebed.wiseml.model.setup.Capability"/>
+        </list>
+
+     <!-- reading -->
 
     </class>
 

@@ -65,7 +65,7 @@ public class SetupWiseMLDefaults {
             link.setEncrypted(true);
             link.setVirtual(false);
             link.setRssi(rssi);
-            link.setCapability(capabilities);
+            link.setCapabilities(capabilities);
 
             Defaults defaults = new Defaults();
             defaults.setNode(node);

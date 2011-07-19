@@ -1,7 +1,5 @@
 package eu.wisebed.wisedb.model;
 
-import eu.wisebed.wiseml.model.trace.Message;
-
 import java.io.Serializable;
 
 public class NodeReadings implements Serializable{
@@ -12,7 +10,7 @@ public class NodeReadings implements Serializable{
 
     private long timestamp;
 
-    private double data;
+    private double reading;
 
     public NodeReadings(){}
 
@@ -36,15 +34,15 @@ public class NodeReadings implements Serializable{
         return timestamp;
     }
 
-    public void setTimestamp(long timestamp) {
+    public void setTimestamp(final long timestamp) {
         this.timestamp = timestamp;
     }
 
-    public double getData() {
-        return data;
+    public double getReading() {
+        return reading;
     }
 
-    public void setData(double data) {
-        this.data = data;
+    public void setReading(final double reading) {
+        this.reading = reading;
     }
 }
