@@ -42,8 +42,6 @@
             <many-to-many column="CAPABILITYID" class="eu.wisebed.wiseml.model.setup.Capability"/>
         </list>
 
-     <!-- reading -->
-
     </class>
 
 </hibernate-mapping>

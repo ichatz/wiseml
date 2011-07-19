@@ -5,7 +5,7 @@
 
 <hibernate-mapping>
 
-    <class name="eu.wisebed.wisedb.model.NodeReadings" table="NODE_READINGS">
+    <class name="eu.wisebed.wisedb.model.NodeReading" table="NODE_READINGS">
         <composite-id>
             <key-property name="nodeId" column="NODE_ID"/>
             <key-property name="capId" column="CAP_ID"/>

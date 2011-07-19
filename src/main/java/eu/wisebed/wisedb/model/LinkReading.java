@@ -2,7 +2,7 @@ package eu.wisebed.wisedb.model;
 
 import java.io.Serializable;
 
-public class LinkReadings implements Serializable {
+public class LinkReading implements Serializable {
     /**
      * Source Node of the link.
      */
@@ -34,7 +34,7 @@ public class LinkReadings implements Serializable {
     /**
      * Constructor.
      */
-    public LinkReadings(){}
+    public LinkReading(){}
 
     /**
      * Returns link source.

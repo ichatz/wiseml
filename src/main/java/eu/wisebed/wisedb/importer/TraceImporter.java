@@ -1,6 +1,10 @@
 package eu.wisebed.wisedb.importer;
 
 import eu.wisebed.testbed.api.wsn.v22.SessionManagement;
+import eu.wisebed.wisedb.controller.LinkReadingController;
+import eu.wisebed.wisedb.controller.NodeReadingController;
+import eu.wisebed.wisedb.model.LinkReading;
+import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
 import eu.wisebed.wiseml.model.scenario.Timestamp;
@@ -14,7 +18,6 @@ import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
-import java.security.Key;
 import java.util.List;
 
 public class TraceImporter {
@@ -96,7 +99,7 @@ public class TraceImporter {
 
 
         // define last occured timestamp
-        long lastTimeStamp;
+        long lastTimeStamp = 0L;
 
         // iterate trace items. In case a node/link has not been set in the setup we set it
         for(Object item : traceItems)
@@ -117,17 +120,35 @@ public class TraceImporter {
                 System.out.println("Node has " + nd.getData().size() + " readings" );
                 for(Data d :nd.getData()) {
                     System.out.println("\t\t" + d.getKey() + " : " + d.getValue() );
+                    NodeReading nr1 = new NodeReading();
+                    nr1.setTimestamp(lastTimeStamp);
+                    nr1.setNodeId(nd.getId());
+                    nr1.setCapId(d.getKey());
+                    nr1.setReading(Double.parseDouble(d.getValue()));
+                    NodeReadingController.getInstance().add(nr1);
                 }
+
+                // (todo) use controller to persist them.
             }else if (item.getClass().equals(Link.class)){
 
                 // in case of a link item , using the last timestamp persist the node and it's readings
                 Link ln=(Link) item;
                 System.out.println("Link : "+ ln.getSource() + "-->" + ln.getTarget());
+                System.out.println("Link RSSI : "+ln.getRssi().getValue());
                 System.out.println("Link has " + ln.getData().size()  + " readings");
                 for(Data d :ln.getData()) {
                     System.out.println("\t\t" + d.getKey() + " : " + d.getValue() );
+                    LinkReading lr1 = new LinkReading();
+                    lr1.setTimestamp(lastTimeStamp);
+                    lr1.setLinkSource(ln.getSource());
+                    lr1.setLinkTarget(ln.getTarget());
+                    lr1.setCapId(d.getKey());
+                    lr1.setReading(Double.parseDouble(d.getValue()));
+                    lr1.setRssiValue(Double.parseDouble(ln.getRssi().getValue()));
+                    LinkReadingController.getInstance().add(lr1);
                 }
-                System.out.println("Link RSSI : "+ln.getRssi().getValue());
+
+                // (todo) use controller to persist them.
             }
 }
     }

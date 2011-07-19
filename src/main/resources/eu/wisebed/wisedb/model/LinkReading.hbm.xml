@@ -5,7 +5,7 @@
 
 <hibernate-mapping>
 
-    <class name="eu.wisebed.wisedb.model.LinkReadings" table="LINK_READINGS">
+    <class name="eu.wisebed.wisedb.model.LinkReading" table="LINK_READINGS">
         <composite-id>
             <key-property name="linkSource" column="LINK_SOURCE"/>
             <key-property name="linkTarget" column="LINK_TARGET"/>

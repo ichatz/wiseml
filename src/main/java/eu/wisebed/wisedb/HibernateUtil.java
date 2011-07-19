@@ -1,13 +1,12 @@
 package eu.wisebed.wisedb;
 
-import eu.wisebed.wisedb.controller.CapabilityController;
-import eu.wisebed.wisedb.controller.NodeController;
-import eu.wisebed.wisedb.controller.SetupController;
-import eu.wisebed.wisedb.controller.TestbedController;
+import eu.wisebed.wisedb.controller.*;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+
+import javax.swing.text.html.HTMLEditorKit;
 
 /**
  * Utility functions for accessing hibernate.
@@ -123,9 +122,12 @@ public class HibernateUtil {
 
         // main controllers
         TestbedController.getInstance().setSessionFactory(thisFactory);
-        CapabilityController.getInstance().setSessionFactory(thisFactory);
-        NodeController.getInstance().setSessionFactory(thisFactory);
         SetupController.getInstance().setSessionFactory(thisFactory);
+        NodeController.getInstance().setSessionFactory(thisFactory);
+        LinkController.getInstance().setSessionFactory(thisFactory);
+        CapabilityController.getInstance().setSessionFactory(thisFactory);
+        NodeReadingController.getInstance().setSessionFactory(thisFactory);
+        LinkReadingController.getInstance().setSessionFactory(thisFactory);
     }
 
 }

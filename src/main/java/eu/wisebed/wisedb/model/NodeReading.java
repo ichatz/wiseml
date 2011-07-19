@@ -2,7 +2,7 @@ package eu.wisebed.wisedb.model;
 
 import java.io.Serializable;
 
-public class NodeReadings implements Serializable{
+public class NodeReading implements Serializable{
     /**
      * Node id.
      */
@@ -26,7 +26,7 @@ public class NodeReadings implements Serializable{
     /**
      * Constructor
      */
-    public NodeReadings(){}
+    public NodeReading(){}
 
     /**
      *
