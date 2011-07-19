@@ -40,8 +40,9 @@
             </collection>
             -->
             <collection field="children" usage="optional" factory="eu.wisebed.wiseml.model.trace.Trace.listFactory" allow-repeats="true" ordered="false">
-                <structure type="eu.wisebed.wiseml.model.scenario.Timestamp" usage="optional" name="timestamp" ordered="false" allow-repeats="true" >
-                    <value name="value" field="value" ordered="false" usage="optional"/>
+                <structure type="eu.wisebed.wiseml.model.scenario.Timestamp" usage="optional" name="timestamp"    >
+                    <!-- <value name="value" field="value" ordered="false" usage="optional"/> -->
+                    <value style="text"  field="value"  ordered="true" />
                 </structure>
                 <structure map-as="node" name="node" usage="optional" ordered="false" allow-repeats="true" />
                 <structure type="eu.wisebed.wiseml.model.scenario.EnableNode" usage="optional" name="enableNode" ordered="false" allow-repeats="true">
