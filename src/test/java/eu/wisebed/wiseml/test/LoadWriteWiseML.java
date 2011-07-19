@@ -98,6 +98,7 @@ public class LoadWriteWiseML {
                 }else if (item.getClass().equals(Node.class)){
                    Node nd=(Node) item;
                    System.out.println("Node"+nd.getId());
+                   System.out.println("Node"+nd.getData().get(0).getValue());
               }else if (item.getClass().equals(Link.class)){
                    Link ln=(Link) item;
                    System.out.println("Link"+ln.getSource()+"-->"+ln.getTarget());
