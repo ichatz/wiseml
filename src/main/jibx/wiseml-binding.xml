@@ -185,9 +185,10 @@
         <structure map-as="message" field="message" usage="optional" name="message" ordered="false"/>
     </mapping>
     <mapping abstract="true" type-name="data" class="eu.wisebed.wiseml.model.setup.Data" usage="optional"
-             ordered="false">
+              >
         <value style="attribute" name="key" field="key" usage="optional" ordered="false"/>
-        <value style="element" name="value" field="value" usage="optional" ordered="false"/>
+        <value style="text"  field="value"  ordered="true" />
+        <!-- <value style="element" name="value" field="value" usage="optional" ordered="false"/> -->
         <structure map-as="message" field="message" usage="optional" name="message" ordered="false"/>
     </mapping>
     <mapping abstract="true" type-name="message" class="eu.wisebed.wiseml.model.trace.Message" usage="optional"
