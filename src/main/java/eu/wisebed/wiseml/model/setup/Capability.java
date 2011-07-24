@@ -1,5 +1,8 @@
 package eu.wisebed.wiseml.model.setup;
 
+import eu.wisebed.wisedb.model.NodeReading;
+import eu.wisebed.wisedb.model.LinkReading;
+
 import java.util.Set;
 
 /**
@@ -39,6 +42,16 @@ public class Capability {
      * set of links that have this capability.
      */
     private Set<Link> links;
+
+    /**
+     * Set of node readings for this capability.
+     */
+    private Set<NodeReading> nodeReadings;
+
+    /**
+     * Set of link readings for this capability.
+     */
+    private Set<LinkReading> linkReadings;
 
     /**
      * this method returns the name of the capability.
@@ -132,5 +145,65 @@ public class Capability {
      */
     public void setLinks(final Set<Link> links) {
         this.links = links;
+    }
+
+    /**
+     * Returns the set of node readings for this capability.
+     * @return nodeReadings
+     */
+    public Set<NodeReading> getNodeReadings(){
+        return nodeReadings;
+    }
+
+    /**
+     * Sets the set of node readings for this capability.
+     * @param nodeReadings , set of node readings
+     */
+    public void setNodeReadings(final Set<NodeReading> nodeReadings){
+        this.nodeReadings = nodeReadings;
+    }
+
+    /**
+     * Returns the set of link readings for this capability.
+     * @return linkReadings , set of link readings.
+     */
+    public Set<LinkReading> getLinkReadings(){
+        return linkReadings;
+    }
+
+    /**
+     * Returns the set of link readings for this capability.
+     * @param linkReadings , set of link readings.
+     */
+    public void setLinkReadings(final Set<LinkReading> linkReadings){
+        this.linkReadings = linkReadings;
+    }
+
+    /**
+     * Override of equals().
+     * @param obj , an object
+     * @return true if this is equal to obj
+     */
+    @Override
+    public boolean equals(final Object obj){
+        // if null return false
+        if(obj == null) return false;
+
+        // if same reference return true;
+        if(this == obj) return true;
+
+        // equility against name
+        Capability test = (Capability) obj;
+        if(test.name == null || test.getName() == null) return false;
+        return this.name.equals(test.getName());
+    }
+
+    /**
+     * Override of hashCode().
+     * @return identity hashcode
+     */
+    @Override
+    public int hashCode(){
+        return name == null?System.identityHashCode(this):name.hashCode();
     }
 }

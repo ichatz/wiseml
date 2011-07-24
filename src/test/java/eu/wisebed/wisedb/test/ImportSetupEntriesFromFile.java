@@ -1,6 +1,8 @@
 package eu.wisebed.wisedb.test;
 
 import eu.wisebed.wisedb.HibernateUtil;
+import eu.wisebed.wisedb.importer.CapabilityImporter;
+import eu.wisebed.wisedb.importer.NodeImporter;
 import eu.wisebed.wisedb.importer.SetupImporter;
 import org.apache.log4j.Logger;
 
@@ -18,8 +20,16 @@ public class ImportSetupEntriesFromFile {
         // Construct a SetupImporter
         final SetupImporter sImp = new SetupImporter();
 
-        // open and convert
-        sImp.open("/Developer/whantana.Projects/github/wiseml/src/test/resources/telosB_short.wiseml");
+        // open local file
+        try{
+            sImp.open("/Developer/whantana.Projects/github/wiseml/src/test/resources/telosB_short.wiseml");
+        }catch(Exception e){
+            LOGGER.fatal(e);
+            System.err.println(e.getMessage());
+            System.exit(-1);
+        }
+
+        // import to db
         sImp.convert();
     }
 }

@@ -2,16 +2,25 @@ package eu.wisebed.wisedb.model;
 
 import java.io.Serializable;
 
+import eu.wisebed.wiseml.model.setup.Capability;
+import eu.wisebed.wiseml.model.setup.Node;
+
 public class NodeReading implements Serializable{
-    /**
-     * Node id.
-     */
-    private String nodeId;
 
     /**
-     * Capability id.
+     * Reading ID.
      */
-    private String capId;
+    private int id;
+
+    /**
+     * Node reference.
+     */
+    private Node node;
+
+    /**
+     * Capability reference.
+     */
+    private Capability capability;
 
     /**
      * Timestamp
@@ -28,36 +37,44 @@ public class NodeReading implements Serializable{
      */
     public NodeReading(){}
 
-    /**
-     *
-     * @return
-     */
-    public String getNodeId(){
-        return nodeId;
+    public int getId(){
+        return id;
     }
 
-    /**
-     *
-     * @param nodeId
-     */
-    public void setNodeId(final String nodeId){
-        this.nodeId = nodeId;
+    public void setId(final int id){
+        this.id = id;
     }
 
     /**
      *
      * @return
      */
-    public String getCapId(){
-        return capId;
+    public Node getNode(){
+        return node;
     }
 
     /**
      *
-     * @param capId
+     * @param node
      */
-    public void setCapId(final String capId){
-        this.capId = capId;
+    public void setNode(final Node node){
+        this.node = node;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Capability getCapability(){
+        return capability;
+    }
+
+    /**
+     *
+     * @param capability
+     */
+    public void setCapability(final Capability capability){
+        this.capability = capability;
     }
 
     /**

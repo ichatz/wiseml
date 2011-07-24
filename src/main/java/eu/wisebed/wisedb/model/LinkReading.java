@@ -2,19 +2,46 @@ package eu.wisebed.wisedb.model;
 
 import java.io.Serializable;
 
+import eu.wisebed.wiseml.model.setup.Capability;
+import eu.wisebed.wiseml.model.setup.Link;
+
 public class LinkReading implements Serializable {
+
+    private int id;
+    public int getId(){
+        return id;
+    }
+    public void setId(final int id){
+        this.id = id;
+    }
+
     /**
-     * Source Node of the link.
+     * Link reference.
      */
-    private String linkSource;
+    private Link link;
+
+    public Link getLink() {
+        return link;
+    }
+
+    public void setLink(Link link) {
+        this.link = link;
+    }
+
+
+
     /**
-     * Target Node of the link.
+     * Capability reference.
      */
-    private String linkTarget;
-    /**
-     * Capability id of the reading.
-     */
-    private String capId;
+    private Capability capability;
+
+    public Capability getCapability() {
+        return capability;
+    }
+
+    public void setCapability(Capability capability) {
+        this.capability = capability;
+    }
 
     /**
      * Timestamp
@@ -35,54 +62,6 @@ public class LinkReading implements Serializable {
      * Constructor.
      */
     public LinkReading(){}
-
-    /**
-     * Returns link source.
-     * @return the link's source Node.
-     */
-    public String getLinkSource(){
-        return linkSource;
-    }
-
-    /**
-     * Set link source.
-     * @param linkSource sets the link source.
-     */
-    public void setLinkSource(final String linkSource){
-        this.linkSource = linkSource;
-    }
-
-    /**
-     * Returns link target
-     * @return the link's target Node.
-     */
-    public String getLinkTarget(){
-        return linkTarget;
-    }
-
-    /**
-     * Set link target
-     * @return the link's target Node.
-     */
-    public void setLinkTarget(final String linkTarget){
-        this.linkTarget = linkTarget;
-    }
-
-    /**
-     * Returns link's capability id.
-     * @return link's capability id.
-     */
-    public String getCapId(){
-        return capId;
-    }
-
-    /**
-     * Set link's capability id.
-     * @param capId capability id.
-     */
-    public void setCapId(final String capId){
-        this.capId = capId;
-    }
 
     /**
      * Returns capability reading.

@@ -5,9 +5,9 @@
 
 <hibernate-mapping>
 
-    <class name="eu.wisebed.wisedb.model.Testbed" table="TESTBEDS">
+    <class name="eu.wisebed.wisedb.model.Testbed" table="testbeds">
 
-        <id name="id" column="ID">
+        <id name="id" column="testbed_id">
             <generator class="native"/>
         </id>
 
@@ -15,7 +15,7 @@
         <property name="description"/>
         <property name="url"/>
         <property name="urnPrefix"/>
-        <property name="federated" column="FEDERATED" type="boolean"/>
+        <property name="federated" type="boolean"/>
         <property name="snaaUrl"/>
         <property name="rsUrl"/>
         <property name="sessionUrl"/>

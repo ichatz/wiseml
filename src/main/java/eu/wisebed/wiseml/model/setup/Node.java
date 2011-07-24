@@ -1,6 +1,8 @@
 package eu.wisebed.wiseml.model.setup;
 
+import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wiseml.model.trace.Message;
+import sun.tools.tree.ThisExpression;
 
 import java.util.List;
 import java.util.Set;
@@ -59,6 +61,11 @@ public class Node {
      * node message.
      */
     private Message message;
+
+    /**
+     * Set of capabilities readings for this Node.
+     */
+    private Set<NodeReading> readings;
 
     /**
      * this node belongs to a collection of setups
@@ -241,5 +248,21 @@ public class Node {
      */
     public void setSetups(final Set<Setup> setups) {
         this.setups = setups;
+    }
+
+    /**
+     * Returns a set of capability readings for this node.
+     * @return
+     */
+    public Set<NodeReading> getReadings(){
+        return readings;
+    }
+
+    /**
+     * Set capability readings for this node.
+     * @param readings , set
+     */
+    public void setReadings(final Set<NodeReading> readings){
+        this.readings = readings;
     }
 }

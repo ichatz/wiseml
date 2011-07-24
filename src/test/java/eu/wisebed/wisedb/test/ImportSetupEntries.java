@@ -19,6 +19,7 @@ public class ImportSetupEntries {
     private static final Logger LOGGER = Logger.getLogger(ImportSetupEntries.class);
 
     public static void main(String[] args) {
+
         // Initialize hibernate
         HibernateUtil.connectEntityManagers();
 
@@ -31,12 +32,19 @@ public class ImportSetupEntries {
         LOGGER.debug("Found : " + testbedList.size() +" testbeds");
         Testbed testbed = testbedList.iterator().next();
 
-        // Construct a SetupImporter
+        // Construct a SetupImporter and Node Importer
         final SetupImporter sImp = new SetupImporter();
         sImp.setEndpointUrl(testbed.getSessionUrl());
 
-        // Connect to remote endpoint
-        sImp.connect();
+        // Connect to remote endpoint (url already passed in the importer)
+        try{
+            sImp.connect();
+        }catch(Exception e){
+            LOGGER.fatal(e);
+            System.err.println(e.getMessage());
+            System.exit(-1);
+        }
+
         sImp.convert();
     }
 

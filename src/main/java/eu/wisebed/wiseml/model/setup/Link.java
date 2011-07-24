@@ -1,5 +1,7 @@
 package eu.wisebed.wiseml.model.setup;
 
+import eu.wisebed.wisedb.model.LinkReading;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
@@ -36,6 +38,10 @@ public class Link implements Serializable{
      * a list of capabilities to add to the link.
      */
     private List<Capability> capabilities;
+    /**
+     * Set of readings for this link.
+     */
+    private Set<LinkReading> readings;
 
     /**
      * the Rssi value of the link.
@@ -182,5 +188,45 @@ public class Link implements Serializable{
      */
     public void setSetups(final Set<Setup> setups) {
         this.setups = setups;
+    }
+
+    /**
+     * Returns all the capability readings for this link.
+     * @return readings , all capabilities readings for this link.
+     */
+    public Set<LinkReading> getReadings() {
+        return readings;
+    }
+
+    /**
+     * Sets the set of readings for all capability.
+     * @param readings , a set of capabiliteis readings for this link.
+     */
+    public void setReadings(Set<LinkReading> readings) {
+        this.readings = readings;
+    }
+
+    /**
+     * Override of Object's equals() method
+     * @param obj
+     * @return true or false on whether the objects are equal.
+     */
+    public boolean equals(final Object obj) {
+        if(this == obj)
+			return true;
+		if((obj == null) || (obj.getClass() != this.getClass()))
+			return false;
+
+        Link test = (Link) obj;
+
+        return source.equals(test.getSource()) && target.equals(test.getTarget());
+    }
+
+    /**
+     * Override of Object's hashCode() method
+     * @return hascode value
+     */
+    public int hashCode(){
+        return (source==null)?System.identityHashCode(this):source.hashCode();
     }
 }

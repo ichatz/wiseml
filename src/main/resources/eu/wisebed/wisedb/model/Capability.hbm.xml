@@ -5,25 +5,35 @@
 
 <hibernate-mapping>
 
-    <class name="eu.wisebed.wiseml.model.setup.Capability" table="CAPABILITIES">
+    <class name="eu.wisebed.wiseml.model.setup.Capability" table="capabilities">
 
-        <id name="name" column="CAPABILITYID"/>
+        <id name="name" column="capability_id"/>
 
-        <property name="datatype" />
+        <property name="datatype"/>
         <property name="unit" />
         <property name="defaultvalue" />
 
-        <set name="nodes" table="NODE_CAPABILITIES" inverse="true">
-            <key column="CAPABILITYID"/>
-            <many-to-many column="NODEID" class="eu.wisebed.wiseml.model.setup.Node" />
+        <set name="nodes" table="node_capabilities" inverse="true">
+            <key column="capability_id"/>
+            <many-to-many column="node_id" class="eu.wisebed.wiseml.model.setup.Node" />
         </set>
 
-        <set name="links" table="LINK_CAPABILITIES" inverse="true">
-            <key column="CAPABILITYID"/>
+        <set name="links" table="link_capabilities" inverse="true">
+            <key column="capability_id"/>
             <many-to-many class="eu.wisebed.wiseml.model.setup.Link">
-                <column name="LINK_SOURCE" />
-                <column name="LINK_TARGET" />
+                <column name="link_source" not-null="true"/>
+                <column name="link_target" not-null="true"/>
             </many-to-many>
+        </set>
+
+        <set name="nodeReadings" table="node_readings" inverse="true">
+            <key column="capability_id"/>
+            <one-to-many class="eu.wisebed.wisedb.model.NodeReading"/>
+        </set>
+
+        <set name="linkReadings" table="link_readings" inverse="true">
+            <key column="capability_id"/>
+            <one-to-many class="eu.wisebed.wisedb.model.LinkReading"/>
         </set>
 
     </class>

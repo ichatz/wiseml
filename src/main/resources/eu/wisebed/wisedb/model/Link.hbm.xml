@@ -5,11 +5,11 @@
 
 <hibernate-mapping>
 
-    <class name="eu.wisebed.wiseml.model.setup.Link" table="LINKS">
+    <class name="eu.wisebed.wiseml.model.setup.Link" table="links">
 
         <composite-id>
-            <key-property name="source" column="SOURCE"/>
-            <key-property name="target" column="TARGET"/>
+            <key-property name="source" column="link_source"/>
+            <key-property name="target" column="link_target"/>
         </composite-id>
 
         <property name="encrypted">
@@ -25,23 +25,31 @@
            <property name="datatype" column="rssi_datatype" />
         </component>
 
-        <set name="setups" table="SETUP_LINKS">
-            <key>
-                <column name="LINK_SOURCE"/>
-                <column name="LINK_TARGET"/>
-            </key>
-            <many-to-many column="SETUPID" class="eu.wisebed.wiseml.model.setup.Setup"/>
-        </set>
 
-        <list name="capabilities" table="LINK_CAPABILITIES" cascade="none">
+        <list name="capabilities" table="link_capabilities">
             <key>
-                <column name="LINK_SOURCE"/>
-                <column name="LINK_TARGET"/>
+                <column name="link_source"/>
+                <column name="link_target"/>
             </key>
-            <list-index column="CAP_IDX"/>
-            <many-to-many column="CAPABILITYID" class="eu.wisebed.wiseml.model.setup.Capability"/>
+            <list-index column="capability_index"/>
+            <many-to-many column="capability_id" class="eu.wisebed.wiseml.model.setup.Capability"/>
         </list>
 
-    </class>
+        <set name="readings" table="link_readings" inverse="true">
+            <key>
+                <column name="link_source"/>
+                <column name="link_target"/>
+            </key>
+            <one-to-many class="eu.wisebed.wisedb.model.LinkReading"/>
+        </set>
 
+        <set name="setups" table="setup_links" inverse="true">
+            <key>
+                <column name="link_source"/>
+                <column name="link_target"/>
+            </key>
+            <many-to-many column="setup_id" class="eu.wisebed.wiseml.model.setup.Setup"/>
+        </set>
+
+    </class>
 </hibernate-mapping>

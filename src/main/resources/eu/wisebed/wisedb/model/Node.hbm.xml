@@ -4,9 +4,9 @@
 
 <hibernate-mapping>
 
-    <class name="eu.wisebed.wiseml.model.setup.Node" table="NODES">
+    <class name="eu.wisebed.wiseml.model.setup.Node" table="nodes">
 
-        <id name="id" column="NODEID" />
+        <id name="id" column="node_id" />
 
         <component name="position" class="eu.wisebed.wiseml.model.setup.Position">
             <property name="x" column="position_x"/>
@@ -21,17 +21,21 @@
         <property name="gateway"/>
         <property name="programDetails"/>
 
-         <set name="setups" table="SETUP_NODES" inverse="true">
-            <key column="NODEID" />
-            <many-to-many column="SETUPID" class="eu.wisebed.wiseml.model.setup.Setup"/>
+        <list name="capabilities" table="node_capabilities" cascade="save-update" lazy="false">
+            <key column="node_id" not-null="true"/>
+            <list-index column="capability_index"/>
+            <many-to-many column="capability_id" class="eu.wisebed.wiseml.model.setup.Capability"/>
+        </list>
+
+        <set name="readings" table="node_readings" inverse="true" lazy="false">
+            <key column="node_id" not-null="true"/>
+            <one-to-many class="eu.wisebed.wisedb.model.NodeReading"/>
         </set>
 
-        <list name="capabilities" table="NODE_CAPABILITIES" cascade="none">
-            <key column="NODEID"/>
-            <list-index column="CAP_IDX"/>
-
-            <many-to-many column="CAPABILITYID" class="eu.wisebed.wiseml.model.setup.Capability"/>
-        </list>
+        <set name="setups" table="setup_nodes" inverse="true">
+            <key column="node_id" not-null="true"/>
+            <many-to-many column="setup_id" class="eu.wisebed.wiseml.model.setup.Setup"/>
+        </set>
 
     </class>
 </hibernate-mapping>

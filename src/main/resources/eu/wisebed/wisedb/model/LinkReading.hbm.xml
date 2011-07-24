@@ -5,15 +5,21 @@
 
 <hibernate-mapping>
 
-    <class name="eu.wisebed.wisedb.model.LinkReading" table="LINK_READINGS">
-        <composite-id>
-            <key-property name="linkSource" column="LINK_SOURCE"/>
-            <key-property name="linkTarget" column="LINK_TARGET"/>
-            <key-property name="capId" column="CAP_ID"/>
-            <key-property name="timestamp" column="TIME" type="long"/>
-        </composite-id>
+    <class name="eu.wisebed.wisedb.model.LinkReading" table="link_readings">
+
+        <id name="id" column="reading_id">
+            <generator class="native" />
+        </id>
+
+        <property name="timestamp" column="timestamp" type="long"/>
         <property name="reading" type="double"/>
         <property name="rssiValue" type="double" />
+
+        <many-to-one name="link" class="eu.wisebed.wiseml.model.setup.Link" not-null="true">
+            <column name="link_source"/>
+            <column name="link_target"/>
+        </many-to-one>
+        <many-to-one name="capability" column="capability_id" class="eu.wisebed.wiseml.model.setup.Capability" not-null="true"/>
     </class>
 
 </hibernate-mapping>

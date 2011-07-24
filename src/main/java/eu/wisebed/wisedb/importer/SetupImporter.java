@@ -1,46 +1,25 @@
 package eu.wisebed.wisedb.importer;
 
-import eu.wisebed.testbed.api.wsn.v22.SessionManagement;
 import eu.wisebed.wisedb.controller.CapabilityController;
 import eu.wisebed.wisedb.controller.SetupController;
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
 import eu.wisebed.wiseml.model.setup.Capability;
-import eu.wisebed.wiseml.model.setup.Setup;
-import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Link;
+import eu.wisebed.wiseml.model.setup.Node;
+import eu.wisebed.wiseml.model.setup.Setup;
 import org.apache.log4j.Logger;
+import org.hibernate.engine.CascadingAction;
 
-import java.io.*;
+import java.util.*;
 
-import java.util.HashSet;
-import java.util.Iterator;
 
-public class SetupImporter {
+public class SetupImporter extends AbstractImporter<Setup> {
+
     /**
      * a log4j logger to print messages.
      */
     private static final Logger LOGGER = Logger.getLogger(SetupImporter.class);
-
-    /**
-     * The URL of the Session Management endpoint.
-     */
-    private String endpointUrl;
-
-    /**
-     * The Session Management endpoint.
-     */
-    private SessionManagement sessionManagementService;
-
-    /**
-     * WiseML root entity.
-     */
-    private WiseML root;
-
-    /**
-     * WiseML setup entity
-     */
-    private Setup setup;
 
     /**
      * Default constructor.
@@ -50,169 +29,103 @@ public class SetupImporter {
     }
 
     /**
-     * Connect to the remote endpoint.
+     * Convert the WiseML setup to a WiseDB setup record.
      */
-    public void connect() {
-        // Connect to remote endpoint
-        sessionManagementService = eu.wisebed.testbed.api.wsn.WSNServiceHelper
-                .getSessionManagementService(getEndpointUrl());
-        String wiseMl = getNetwork();
-        LOGGER.debug("Got WiseML from URI: " + endpointUrl);
+    public void convert(){
 
-        // setting input stream
-        InputStream in = new ByteArrayInputStream(wiseMl.getBytes());
-        LOGGER.debug("Input stream comming from remote source.");
+        // retrieve setup record record from controllers InputStream
+        final WiseMLController cnt = new WiseMLController();
+        WiseML root = cnt.loadWiseMLFromFile(getWiseMlStream());
+        Setup setup = root.getSetup();
 
-        // load wiseml from in
-        loadWiseMLFromFile(in);
+        // if setup is null do nothing
+        if(setup == null) return;
+
+        // call convert(setup)
+        convert(setup);
     }
 
     /**
-     * Open local WiseML file.
+     * Convert the WiseML setup to a WiseDB setup record.
      */
-    public void open(final String path){
-        InputStream in =null;
-        try {
-            in = new FileInputStream(path);
-        } catch(Exception e){
-            System.err.println(e);
+
+    public void convert(final Setup setup){
+
+        if(setup == null){
+            LOGGER.fatal("Setup cannot be null");
             System.exit(-1);
         }
-        LOGGER.debug("Input stream comming from local file.");
 
-        // load wiseml from in
-        loadWiseMLFromFile(in);
+        // set this setup as entity
+        setEntity(setup);
+
+        // call convertCollection(list of setups)
+        convertCollection(Arrays.asList(setup));
     }
 
     /**
-     * Convert the WiseML document describing the records of the testbed into wisedb records.
+     * Convert the WiseML setup entries collection to a WiseDB setup records.
+     * @param collection , collection of setup entries.
      */
-    public void convert() {
-        // insert and associate nodes/links & capabilities
-        if(setup.getNodes() != null) {
+    public void convertCollection(final Collection<Setup> collection) {
 
-            // insert node capabilities
-            Iterator<Node> nodeIt =setup.getNodes().iterator();
-            while(nodeIt.hasNext()) {
-                Node node = nodeIt.next();
-
-                if( node.getCapabilities() == null) // if node has not capabilities continue loop
-                    continue;
-
-                LOGGER.debug("Node : " + node.getId() + " has " + node.getCapabilities().size() + " capabilities");
-                Iterator<Capability> capaIt = node.getCapabilities().iterator();
-                while(capaIt.hasNext()) {
-                    Capability capability = capaIt.next();
-                    if(capability.getNodes() == null)
-                        capability.setNodes(new HashSet<Node>());
-                    capability.getNodes().add(node);
-                    CapabilityController.getInstance().add(capability);           // saves or updates capability
-                }
-            }
-        }
-        if(setup.getLink() != null) {
-
-            // insert link capabilities
-            Iterator<Link> linkIt = setup.getLink().iterator();
-            while(linkIt.hasNext()) {
-                Link link = linkIt.next();
-
-                if(link.getCapabilities() == null)
-                    continue;
-
-                LOGGER.debug("Link : [" + link.getSource() + "," + link.getTarget() + "] has " + link.getCapabilities().size());
-                Iterator<Capability> capaIt = link.getCapabilities().iterator();
-                while(capaIt.hasNext()) {
-                    Capability capability = capaIt.next();
-                    if(capability.getLinks() == null)
-                        capability.setLinks(new HashSet<Link>());
-                    capability.getLinks().add(link);
-                    CapabilityController.getInstance().add(capability);           // saves or updates capability
-                }
-            }
-        }
-
-        // insert setup,nodes & links to db
-        SetupController.getInstance().add(setup);
-        LOGGER.debug("Setup added to DB");
-        Setup pSetup = SetupController.getInstance().getByID(setup.getId());
-        LOGGER.debug(pSetup.getNodes().size() + " nodes persisted");
-        LOGGER.debug(pSetup.getLink().size() + " links peristsed");
-
-
-    }
-
-    /**
-     * Retrieve the records from the remote Session Management endpoint in WiseML format.
-     *
-     * @return a WiseML document containing the records of the testbed.
-     */
-    public String getNetwork() {
-        return getSessionManagementService().getNetwork();
-    }
-
-        /**
-     * Get the URL of the session management endpoint.
-     *
-     * @return the URL of the session management endpoint.
-     */
-    public String getEndpointUrl() {
-        return endpointUrl;
-    }
-
-    /**
-     * Set the URL of the session management endpoint.
-     *
-     * @param value the URL of the session management endpoint.
-     */
-    public void setEndpointUrl(final String value) {
-        this.endpointUrl = value;
-    }
-
-    /**
-     * Get the Session Management endpoint.
-     *
-     * @return the Session Management endpoint.
-     */
-    public SessionManagement getSessionManagementService() {
-        return sessionManagementService;
-    }
-
-    /**
-     * Set the Session Management endpoint.
-     *
-     * @param value the Session Management endpoint.
-     */
-    public void setSessionManagementService(final SessionManagement value) {
-        this.sessionManagementService = value;
-    }
-
-    /**
-     * Load WiseML entities from the XML.
-     *
-     * @param in an input stream.
-     */
-    private void loadWiseMLFromFile(final InputStream in){
-        try{
-            // set the controller
-            final WiseMLController cnt = new WiseMLController();
-
-            // load wiseml root element
-            root = cnt.loadWiseMLFromFile(in);
-            LOGGER.debug(root.getVersion());
-
-            // add setup found
-            setup = root.getSetup();
-            if(setup == null){
-                System.out.println("Setup instance cannot be null. Exiting");
-                System.exit(-1);
-            }
-
-
-        } catch (Exception ex) {
-            LOGGER.fatal("Error while unmarshalling WiseML document", ex);
-            System.err.println(ex);
+        if(collection == null){
+            LOGGER.fatal("Collection cannot be null");
             System.exit(-1);
         }
+
+        // set entity collection
+        setEntities(collection);
+
+        // import records to db
+        for(Setup setup : getEntities()) {
+
+            // define set of all setup's capabilities with no duplicate entries
+            Set<Capability> capabilities = new HashSet<Capability>();
+            List<Node> nodes = setup.getNodes();
+            if(nodes != null && nodes.isEmpty() == false){
+                for(Node node: nodes){
+                    for(Capability capability : node.getCapabilities()){
+                        capabilities.add(capability);
+                    }
+                }
+            }
+            List<Link> links = setup.getLink();
+            if(links != null && links.isEmpty() == false){
+                for(Link link: links){
+                    for(Capability capability : link.getCapabilities()){
+                        capabilities.add(capability);
+                    }
+                }
+            }
+
+            // capabilities must be unique objects so nodes & links must point to the set's entities
+            Iterator<Capability> it = capabilities.iterator();
+            while(it.hasNext()){
+                Capability capability = it.next();
+                if(nodes != null && nodes.isEmpty() == false){
+                    for(Node node:nodes){
+                        List<Capability> nodeCapabilities = node.getCapabilities();
+                        if(nodeCapabilities.contains(capability)){
+                            nodeCapabilities.remove(capability);
+                            nodeCapabilities.add(capability);
+                        }
+                    }
+                }
+                if(links != null && links.isEmpty() == false){
+                    for(Link link:links){
+                        List<Capability> linkCapabilities = link.getCapabilities();
+                        if(linkCapabilities.contains(capability)){
+                            linkCapabilities.remove(capability);
+                            linkCapabilities.add(capability);
+                        }
+                    }
+                }
+            }
+
+            // import to db
+            SetupController.getInstance().add(setup);
+        }
+        LOGGER.debug("Setups imported to DB (" + collection.size() + ").");
     }
 }

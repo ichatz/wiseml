@@ -1,25 +1,23 @@
 package eu.wisebed.wisedb.importer;
 
 import eu.wisebed.testbed.api.wsn.v22.SessionManagement;
+import eu.wisebed.wisedb.controller.CapabilityController;
 import eu.wisebed.wisedb.controller.TestbedController;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
+import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Node;
 import org.apache.log4j.Logger;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.StringTokenizer;
+import java.util.*;
 
 /**
  * Retrieves testbed records from the Session management endpoint and imports them into the wisedb.
  */
-public class TestbedImporter {
+public class TestbedImporter extends AbstractImporter<Testbed> {
 
     /**
      * a log4j logger to print messages.
@@ -27,14 +25,44 @@ public class TestbedImporter {
     private static final Logger LOGGER = Logger.getLogger(TestbedImporter.class);
 
     /**
-     * The URL of the Session Management endpoint.
+     * Testbed name.
      */
-    private String endpointUrl;
+    private String testbedName;
 
     /**
-     * The Session Management endpoint.
+     * Testbed URN prefix.
      */
-    private SessionManagement sessionManagementService;
+    private String testbedUrnPrefix;
+
+    /**
+     * Web URL of Testbed
+     */
+    private String testbedUrl;
+
+    /**
+     * URL of Testbed.
+     */
+    private String testbedDescription;
+
+    /**
+     * True if testbed is federated.
+     */
+    private boolean isTestbedFederated;
+
+    /**
+     * SNAA URL of Testbed.
+     */
+    private String testbedSnaaUrl;
+
+    /**
+     * SNAA URL of Testbed.
+     */
+    private String testbedRsUrl;
+
+    /**
+     * SNAA URL of Testbed.
+     */
+    private String testbedSessionUrl;
 
     /**
      * Default constructor.
@@ -44,110 +72,202 @@ public class TestbedImporter {
     }
 
     /**
-     * Connect to the remote endpoint.
+     *
+     * @return
      */
-    public void connect() {
-        // Connect to remote endpoint
-        sessionManagementService = eu.wisebed.testbed.api.wsn.WSNServiceHelper
-                .getSessionManagementService(getEndpointUrl());
+    public String getTestbedName() {
+        return testbedName;
     }
 
     /**
-     * Retrieve the records from the remote Session Management endpoint in WiseML format.
      *
-     * @return a WiseML document containing the records of the testbed.
+     * @param testbedName
      */
-    public String getNetwork() {
-        return getSessionManagementService().getNetwork();
+    public void setTestbedName(String testbedName) {
+        this.testbedName = testbedName;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getTestbedUrnPrefix() {
+        return testbedUrnPrefix;
+    }
+
+    /**
+     *
+     * @param testbedUrnPrefix
+     */
+    public void setTestbedUrnPrefix(String testbedUrnPrefix) {
+        this.testbedUrnPrefix = testbedUrnPrefix;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getTestbedUrl() {
+        return testbedUrl;
+    }
+
+    /**
+     *
+     * @param testbedUrl
+     */
+    public void setTestbedUrl(final String testbedUrl) {
+        this.testbedUrl = testbedUrl;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getTestbedDescription() {
+        return testbedDescription;
+    }
+
+    /**
+     *
+     * @param testbedDescription
+     */
+    public void setTestbedDescription(final String testbedDescription) {
+        this.testbedDescription = testbedDescription;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean isTestbedFederated() {
+        return isTestbedFederated;
+    }
+
+    /**
+     *
+     * @param testbedFederated
+     */
+    public void setTestbedFederated(boolean testbedFederated) {
+        isTestbedFederated = testbedFederated;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getTestbedSnaaUrl() {
+        return testbedSnaaUrl;
+    }
+
+    /**
+     *
+     * @param testbedSnaaUrl
+     */
+    public void setTestbedSnaaUrl(String testbedSnaaUrl) {
+        this.testbedSnaaUrl = testbedSnaaUrl;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getTestbedRsUrl() {
+        return testbedRsUrl;
+    }
+
+    /**
+     *
+     * @param testbedRsUrl
+     */
+    public void setTestbedRsUrl(String testbedRsUrl) {
+        this.testbedRsUrl = testbedRsUrl;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getTestbedSessionUrl() {
+        return testbedSessionUrl;
+    }
+
+    /**
+     *
+     * @param testbedSessionUrl
+     */
+    public void setTestbedSessionUrl(String testbedSessionUrl) {
+        this.testbedSessionUrl = testbedSessionUrl;
     }
 
     /**
      * Convert the WiseML document describing the records of the testbed into wisedb records.
      */
     public void convert() {
-        // Retrieve records
-        final String wiseml = getNetwork();
-
-        // Convert records into a WiseML document
-        WiseML stp = null;
-        LOGGER.debug("Got WiseML from URI: " + endpointUrl);
-        InputStream is = new ByteArrayInputStream(wiseml.getBytes());
-        try {
-            final WiseMLController cnt = new WiseMLController();
-            stp = cnt.loadWiseMLFromFile(is);
-            LOGGER.debug(stp.getVersion());
-        } catch (Exception ex) {
-            LOGGER.fatal("Error while unmarshalling WiseML document", ex);
-            return;
-        }
-
-        // Extract urn prefix
-        final List<Node> nodes = stp.getSetup().getNodes();
-        Set<String> prefixes = new HashSet<String>();
-        for (final Node node : nodes) {
-            final String id = node.getId();
-            final String thisPrefix = id.substring(0, id.lastIndexOf(":"));
-            prefixes.add(thisPrefix);
-        }
-
-        LOGGER.debug("Total prefixes found: " + prefixes.size());
-        LOGGER.debug("First prefix: " + prefixes.iterator().next());
-
 
         // Setting up the testbed entity
         Testbed testbed = new Testbed();
-        testbed.setName("WISEBED CTI Testbed");
-        testbed.setUrnPrefix(prefixes.iterator().next());
-        testbed.setUrl("http://www.cti.gr");
-        testbed.setDescription("This is the description WiseML file of the RACTI testbed in Patras Greece containing iSense " +
-                "telosB and xbee sensor nodes equiped with temperature light infrared humidity Wind Speed Wind Direction" +
-                " and Air Quality Sensors");
-        testbed.setFederated(false);
-        testbed.setRsUrl("http://hercules.cti.gr:8888/rs");
-        testbed.setSnaaUrl("http://hercules.cti.gr:8890/snaa/shib1");
-        testbed.setSessionUrl("http://hercules.cti.gr:8888/sessions");
+        testbed.setName(getTestbedName());
+        testbed.setUrnPrefix(getTestbedUrl());
+        testbed.setUrl(getTestbedUrl());
+        testbed.setDescription(getTestbedDescription());
+        testbed.setFederated(isTestbedFederated());
+        testbed.setRsUrl(getTestbedRsUrl());
+        testbed.setSnaaUrl(getTestbedSnaaUrl());
+        testbed.setSessionUrl(getTestbedSessionUrl());
 
-        // adding testbed
+        // set this as it's entity
+        setEntity(testbed);
+
+        // persisting testbed
         TestbedController.getInstance().add(testbed);
+        LOGGER.debug("Testbed imported to DB (1)");
+    }
 
-        // Check imported records
-        final List<Testbed> testbedList = TestbedController.getInstance().list();
-        LOGGER.debug("Testbed List : " + testbedList.size());
+
+    /**
+     * Convert the WiseML document describing the records of the testbed into wisedb records.
+     *
+     * @param name , Name of testbed.
+     * @param urnPrefix , URN prefix of testbed.
+     * @param url , URL of testbed.
+     * @param description , Description of testbed.
+     * @param federated , Federated testbed (true/false)
+     * @param rsUrl , RS service endpoint url.
+     * @param snaaUrl , SNAA service endpoint url.
+     * @param sessionUrl , Session service endpoint url.
+     */
+    public void convert(final String name,final String urnPrefix, final String url,
+                        final String description,final boolean federated,
+                        final String rsUrl, final String snaaUrl, final String sessionUrl){
+
+        // use setter to pass those params
+        setTestbedName(name);
+        setTestbedUrnPrefix(urnPrefix);
+        setTestbedUrl(url);
+        setTestbedDescription(description);
+        setTestbedFederated(federated);
+        setTestbedRsUrl(rsUrl);
+        setTestbedSnaaUrl(snaaUrl);
+        setTestbedSessionUrl(sessionUrl);
+
+        // call params-less convert
+        convert();
     }
 
     /**
-     * Get the URL of the session management endpoint.
+     * Convert the WiseML Testbed entries collection to a WiseDB testbed records.
      *
-     * @return the URL of the session management endpoint.
+     * @param collection , collection of testbed
      */
-    public String getEndpointUrl() {
-        return endpointUrl;
-    }
+    public void convertCollection(final Collection<Testbed> collection) {
 
-    /**
-     * Set the URL of the session management endpoint.
-     *
-     * @param value the URL of the session management endpoint.
-     */
-    public void setEndpointUrl(final String value) {
-        this.endpointUrl = value;
-    }
+        // set entity collection
+        setEntities(collection);
 
-    /**
-     * Get the Session Management endpoint.
-     *
-     * @return the Session Management endpoint.
-     */
-    public SessionManagement getSessionManagementService() {
-        return sessionManagementService;
-    }
-
-    /**
-     * Set the Session Management endpoint.
-     *
-     * @param value the Session Management endpoint.
-     */
-    public void setSessionManagementService(final SessionManagement value) {
-        this.sessionManagementService = value;
+        // import records to db
+        for(Testbed testbed : getEntities()) {
+            TestbedController.getInstance().add(testbed);
+        }
+        LOGGER.debug("Testbeds imported to DB(" + collection.size() +").");
     }
 }

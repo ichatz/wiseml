@@ -4,9 +4,9 @@
 
 <hibernate-mapping>
 
-    <class name="eu.wisebed.wiseml.model.setup.Setup" table="SETUP">
+    <class name="eu.wisebed.wiseml.model.setup.Setup" table="setup">
 
-        <id name="id" column="SETUPID">
+        <id name="id" column="setup_id">
             <generator class="native" />
         </id>
 
@@ -27,22 +27,21 @@
         <property name="description" type="text"/>
         <property name="coordinateType"/>
 
-        <list name="nodes" table="SETUP_NODES" cascade="all" lazy="false">
-            <key column="SETUPID" />
-            <list-index column="NODE_IDX"/>
-            <many-to-many column="NODEID" class="eu.wisebed.wiseml.model.setup.Node"/>
+
+        <list name="nodes" table="setup_nodes" cascade="save-update">
+            <key column="setup_id" not-null="true"/>
+            <list-index column="node_index"/>
+            <many-to-many column="node_id" class="eu.wisebed.wiseml.model.setup.Node" />
         </list>
 
-        <list name="link" table="SETUP_LINKS" cascade="all" lazy="false">
-            <key column="SETUPID" />
-            <list-index column="LINK_IDX"/>
+        <list name="link" table="setup_links" cascade="save-update">
+            <key column="setup_id" not-null="true"/>
+            <list-index column="link_index"/>
             <many-to-many class="eu.wisebed.wiseml.model.setup.Link">
-                <column name="LINK_SOURCE" />
-                <column name="LINK_TARGET" />
+                <column name="link_source" />
+                <column name="link_target" />
             </many-to-many>
         </list>
-
-        <!-- defaults list -->
 
     </class>
 </hibernate-mapping>

@@ -5,13 +5,17 @@
 
 <hibernate-mapping>
 
-    <class name="eu.wisebed.wisedb.model.NodeReading" table="NODE_READINGS">
-        <composite-id>
-            <key-property name="nodeId" column="NODE_ID"/>
-            <key-property name="capId" column="CAP_ID"/>
-            <key-property name="timestamp" column="TIME" type="long"/>
-        </composite-id>
+    <class name="eu.wisebed.wisedb.model.NodeReading" table="node_readings">
+
+        <id name="id" column="reading_id">
+            <generator class="native" />
+        </id>
+
+        <property name="timestamp" column="time" type="long" />
         <property name="reading"/>
+
+        <many-to-one name="node" column="node_id" class="eu.wisebed.wiseml.model.setup.Node" />
+        <many-to-one name="capability" column="capability_id" class="eu.wisebed.wiseml.model.setup.Capability" />
     </class>
 
 </hibernate-mapping>

@@ -61,5 +61,4 @@ public class SetupController extends AbstractController<Setup> {
     public List<Setup> list() {
         return super.list(new Setup());
     }
-
 }

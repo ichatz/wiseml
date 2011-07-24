@@ -46,7 +46,7 @@ public class HibernateUtil {
 
         } catch (Exception ex) {
             // Make sure you log the exception, as it might be swallowed
-            LOGGER.error("Initial SessionFactory creation failed. " + ex);
+            LOGGER.error("Initial SessionFactory creation failed. " + ex.getMessage());
             throw new ExceptionInInitializerError(ex);
         }
     }
@@ -105,7 +105,7 @@ public class HibernateUtil {
 
         } catch (Exception ex) {
             // Make sure you log the exception, as it might be swallowed
-            LOGGER.debug("Initial SessionFactory creation failed. " + ex);
+            LOGGER.debug("Initial SessionFactory creation failed. " + ex.getMessage());
             throw new ExceptionInInitializerError(ex);
         }
 
