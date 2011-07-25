@@ -14,8 +14,12 @@
         <property name="timestamp" type="timestamp" />
         <property name="reading"/>
 
-        <many-to-one name="node" column="node_id" class="eu.wisebed.wiseml.model.setup.Node" />
-        <many-to-one name="capability" column="capability_id" class="eu.wisebed.wiseml.model.setup.Capability" />
+        <many-to-one name="node" class="eu.wisebed.wiseml.model.setup.Node">
+            <column name="node_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="capability" class="eu.wisebed.wiseml.model.setup.Capability">
+            <column name="capability_id" not-null="true"/>
+        </many-to-one>
     </class>
 
 </hibernate-mapping>

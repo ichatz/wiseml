@@ -14,12 +14,12 @@
         <property name="defaultvalue" />
 
         <set name="nodes" table="node_capabilities" inverse="true">
-            <key column="capability_id"/>
+            <key column="capability_id" not-null="true"/>
             <many-to-many column="node_id" class="eu.wisebed.wiseml.model.setup.Node" />
         </set>
 
         <set name="links" table="link_capabilities" inverse="true">
-            <key column="capability_id"/>
+            <key column="capability_id" not-null="true"/>
             <many-to-many class="eu.wisebed.wiseml.model.setup.Link">
                 <column name="link_source" not-null="true"/>
                 <column name="link_target" not-null="true"/>
@@ -27,12 +27,12 @@
         </set>
 
         <set name="nodeReadings" table="node_readings" inverse="true">
-            <key column="capability_id"/>
+            <key column="capability_id" not-null="true"/>
             <one-to-many class="eu.wisebed.wisedb.model.NodeReading"/>
         </set>
 
         <set name="linkReadings" table="link_readings" inverse="true">
-            <key column="capability_id"/>
+            <key column="capability_id" not-null="true"/>
             <one-to-many class="eu.wisebed.wisedb.model.LinkReading"/>
         </set>
 

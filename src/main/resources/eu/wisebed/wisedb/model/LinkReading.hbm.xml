@@ -15,11 +15,14 @@
         <property name="reading" type="double"/>
         <property name="rssiValue" type="double" />
 
-        <many-to-one name="link" class="eu.wisebed.wiseml.model.setup.Link" not-null="true">
-            <column name="link_source"/>
-            <column name="link_target"/>
+        <many-to-one name="link" class="eu.wisebed.wiseml.model.setup.Link">
+            <column name="link_source" not-null="true"/>
+            <column name="link_target" not-null="true"/>
         </many-to-one>
-        <many-to-one name="capability" column="capability_id" class="eu.wisebed.wiseml.model.setup.Capability" not-null="true"/>
+        <many-to-one name="capability" class="eu.wisebed.wiseml.model.setup.Capability">
+            <column name="capability_id" not-null="true"/>
+        </many-to-one>
+
     </class>
 
 </hibernate-mapping>

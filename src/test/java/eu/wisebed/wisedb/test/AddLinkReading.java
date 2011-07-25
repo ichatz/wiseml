@@ -1,6 +1,7 @@
 package eu.wisebed.wisedb.test;
 
 import eu.wisebed.wisedb.HibernateUtil;
+import eu.wisebed.wisedb.controller.LinkController;
 import eu.wisebed.wisedb.controller.LinkReadingController;
 import eu.wisebed.wisedb.controller.NodeController;
 import eu.wisebed.wisedb.controller.NodeReadingController;
@@ -11,6 +12,7 @@ import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
 import org.apache.log4j.Logger;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -39,14 +41,16 @@ public class AddLinkReading {
             link.setTarget(node2.getId());
             Capability lqi = new Capability();
             lqi.setName("lqi");
+            link.setCapabilities(Arrays.asList(lqi));
+            LinkController.getInstance().add(link);
 
             // make a new node reading entity
-            LinkReading reading = new LinkReading();
-            reading.setLink(link);
-            reading.setCapability(lqi);
-            reading.setReading(10.0);
-            reading.setTimestamp(new Date());
-            LinkReadingController.getInstance().add(reading);
+//            LinkReading reading = new LinkReading();
+//            reading.setLink(link);
+//            reading.setCapability(lqi);
+//            reading.setReading(10.0);
+//            reading.setTimestamp(new Date());
+//            LinkReadingController.getInstance().add(reading);
 
         }finally {
             // always close session

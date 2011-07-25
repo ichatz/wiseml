@@ -26,27 +26,27 @@
         </component>
 
 
-        <list name="capabilities" table="link_capabilities">
+        <list name="capabilities" table="link_capabilities" lazy="false">
             <key>
-                <column name="link_source"/>
-                <column name="link_target"/>
+                <column name="link_source" not-null="true"/>
+                <column name="link_target" not-null="true"/>
             </key>
             <list-index column="capability_index"/>
             <many-to-many column="capability_id" class="eu.wisebed.wiseml.model.setup.Capability"/>
         </list>
 
-        <set name="readings" table="link_readings" inverse="true">
+        <set name="readings" table="link_readings" inverse="true" lazy="false">
             <key>
-                <column name="link_source"/>
-                <column name="link_target"/>
+                <column name="link_source" not-null="true"/>
+                <column name="link_target" not-null="true"/>
             </key>
             <one-to-many class="eu.wisebed.wisedb.model.LinkReading"/>
         </set>
 
-        <set name="setups" table="setup_links" inverse="true">
+        <set name="setups" table="setup_links" inverse="true" lazy="false">
             <key>
-                <column name="link_source"/>
-                <column name="link_target"/>
+                <column name="link_source" not-null="true"/>
+                <column name="link_target" not-null="true"/>
             </key>
             <many-to-many column="setup_id" class="eu.wisebed.wiseml.model.setup.Setup"/>
         </set>

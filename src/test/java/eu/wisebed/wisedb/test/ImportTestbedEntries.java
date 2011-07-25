@@ -40,5 +40,4 @@ public class ImportTestbedEntries {
             HibernateUtil.getInstance().closeSession();
         }
     }
-
 }

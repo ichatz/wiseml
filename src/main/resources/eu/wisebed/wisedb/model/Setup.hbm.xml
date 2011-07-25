@@ -38,8 +38,8 @@
             <key column="setup_id" not-null="true"/>
             <list-index column="link_index"/>
             <many-to-many class="eu.wisebed.wiseml.model.setup.Link">
-                <column name="link_source" />
-                <column name="link_target" />
+                <column name="link_source" not-null="true"/>
+                <column name="link_target" not-null="true"/>
             </many-to-many>
         </list>
 
