@@ -1,6 +1,7 @@
 package eu.wisebed.wisedb.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Node;
@@ -8,7 +9,7 @@ import eu.wisebed.wiseml.model.setup.Node;
 public class NodeReading implements Serializable{
 
     /**
-     * Reading ID.
+     * Reading id.
      */
     private int id;
 
@@ -23,9 +24,9 @@ public class NodeReading implements Serializable{
     private Capability capability;
 
     /**
-     * Timestamp
+     * Timestamp.
      */
-    private long timestamp;
+    private Date timestamp;
 
     /**
      * Capability reading value for this node.
@@ -33,7 +34,7 @@ public class NodeReading implements Serializable{
     private double reading;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public NodeReading(){}
 
@@ -46,64 +47,64 @@ public class NodeReading implements Serializable{
     }
 
     /**
-     *
-     * @return
+     * Returns the node that indicated this reading.
+     * @return node persistent object.
      */
     public Node getNode(){
         return node;
     }
 
     /**
-     *
-     * @param node
+     * Sets the node that indicated this reading.
+     * @param node , must be persistent.
      */
     public void setNode(final Node node){
         this.node = node;
     }
 
     /**
-     *
-     * @return
+     * Returns the capability that indicated this reading.
+     * @return capability persistent object.
      */
     public Capability getCapability(){
         return capability;
     }
 
     /**
-     *
-     * @param capability
+     * Sets the capability that indicated this reading.
+     * @param capability , must be persistent.
      */
     public void setCapability(final Capability capability){
         this.capability = capability;
     }
 
     /**
-     *
-     * @return
+     * Returns the timestamp that this reading occured.
+     * @return timestamp of the reading.
      */
-    public long getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 
     /**
-     *
-     * @param timestamp
+     * Sets the timestamp that this reading occured.
+     * @param timestamp , timestamp of the reading.
      */
-    public void setTimestamp(final long timestamp) {
+    public void setTimestamp(final Date timestamp) {
         this.timestamp = timestamp;
     }
 
     /**
-     *
-     * @return
+     * Returns this reading value.
+     * @return this reading value.
      */
     public double getReading() {
         return reading;
     }
 
     /**
-     *
-     * @param reading
+     * Sets this reading value.
+     * @param reading , this reading value.
      */
     public void setReading(final double reading) {
         this.reading = reading;

@@ -11,7 +11,7 @@
             <generator class="native" />
         </id>
 
-        <property name="timestamp" column="timestamp" type="long"/>
+        <property name="timestamp" type="timestamp" />
         <property name="reading" type="double"/>
         <property name="rssiValue" type="double" />
 

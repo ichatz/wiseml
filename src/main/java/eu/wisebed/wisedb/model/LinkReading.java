@@ -1,52 +1,32 @@
 package eu.wisebed.wisedb.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
 
 public class LinkReading implements Serializable {
 
+    /**
+     * Reading id.
+     */
     private int id;
-    public int getId(){
-        return id;
-    }
-    public void setId(final int id){
-        this.id = id;
-    }
 
     /**
      * Link reference.
      */
     private Link link;
 
-    public Link getLink() {
-        return link;
-    }
-
-    public void setLink(Link link) {
-        this.link = link;
-    }
-
-
-
     /**
      * Capability reference.
      */
     private Capability capability;
 
-    public Capability getCapability() {
-        return capability;
-    }
-
-    public void setCapability(Capability capability) {
-        this.capability = capability;
-    }
-
     /**
      * Timestamp
      */
-    private long timestamp;
+    private Date timestamp;
 
     /**
      * Numeric value of a reading.
@@ -62,6 +42,22 @@ public class LinkReading implements Serializable {
      * Constructor.
      */
     public LinkReading(){}
+
+    /**
+     * Returns this reading id.
+     * @return this reading id.
+     */
+    public int getId(){
+        return id;
+    }
+
+    /**
+     * Sets this reading id.
+     * @param id
+     */
+    public void setId(final int id){
+        this.id = id;
+    }
 
     /**
      * Returns capability reading.
@@ -83,7 +79,7 @@ public class LinkReading implements Serializable {
      * Returns timestamp value.
      * @return Link's reading timestamp
      */
-    public long getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 
@@ -91,19 +87,40 @@ public class LinkReading implements Serializable {
      * Set timestamp value.
      * @param timestamp
      */
-    public void setTimestamp(final long timestamp) {
+    public void setTimestamp(final Date timestamp) {
         this.timestamp = timestamp;
     }
 
     /**
-     * Return the rssi value of the link.
-      * @return rssi value of the link
+     * Returns the rssi value of the link.
+     * @return rssi value of the link.
      */
     public double getRssiValue(){
        return rssiValue;
     }
 
+    /**
+     * Sets the rssi value of the link.
+     * @return rssi value of the link.
+     */
     public void setRssiValue(final double rssiValue) {
         this.rssiValue = rssiValue;
     }
+
+    public Link getLink() {
+        return link;
+    }
+
+    public void setLink(Link link) {
+        this.link = link;
+    }
+
+    public Capability getCapability() {
+        return capability;
+    }
+
+    public void setCapability(Capability capability) {
+        this.capability = capability;
+    }
+
 }

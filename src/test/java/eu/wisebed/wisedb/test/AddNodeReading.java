@@ -7,6 +7,7 @@ import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Node;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -18,10 +19,10 @@ import org.hibernate.Hibernate;
  */
 public class AddNodeReading {
 
-     /**
+    /**
      * a log4j logger to print messages.
      */
-    private static final Logger LOGGER = org.apache.log4j.Logger.getLogger(ImportSetupEntries.class);
+    private static final Logger LOGGER = org.apache.log4j.Logger.getLogger(AddNodeReading.class);
 
     public static void main(String args[]){
         try{
@@ -30,6 +31,7 @@ public class AddNodeReading {
 
             // List all nodes. get first one
             List<Node> nodes = NodeController.getInstance().list();
+            if(nodes == null || nodes.isEmpty()) return; // no nodes exit
             Node node = nodes.iterator().next();
             LOGGER.debug("Selected node : " +  node.getId());
 
@@ -43,7 +45,7 @@ public class AddNodeReading {
             reading.setNode(node);
             reading.setCapability(capability);
             reading.setReading(10.0);
-            reading.setTimestamp((long)100);
+            reading.setTimestamp(new Date());
             NodeReadingController.getInstance().add(reading);
 
             // check to see if reading was put

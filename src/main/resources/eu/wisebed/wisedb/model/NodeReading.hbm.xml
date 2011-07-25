@@ -11,7 +11,7 @@
             <generator class="native" />
         </id>
 
-        <property name="timestamp" column="time" type="long" />
+        <property name="timestamp" type="timestamp" />
         <property name="reading"/>
 
         <many-to-one name="node" column="node_id" class="eu.wisebed.wiseml.model.setup.Node" />
