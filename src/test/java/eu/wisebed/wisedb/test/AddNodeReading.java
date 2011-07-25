@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Hibernate;
 
 /**
  * Adds a node reading
@@ -23,24 +24,35 @@ public class AddNodeReading {
     private static final Logger LOGGER = org.apache.log4j.Logger.getLogger(ImportSetupEntries.class);
 
     public static void main(String args[]){
+        try{
+            // Initialize hibernate
+            HibernateUtil.connectEntityManagers();
 
-        // Initialize hibernate
-        HibernateUtil.connectEntityManagers();
+            // List all nodes. get first one
+            List<Node> nodes = NodeController.getInstance().list();
+            Node node = nodes.iterator().next();
+            LOGGER.debug("Selected node : " +  node.getId());
 
-        List<Node> nodes = NodeController.getInstance().list();
-        Node node = nodes.iterator().next();
-        LOGGER.debug("Selected node : " +  node.getId());
-        List<Capability> capabilities = node.getCapabilities();
-        Capability capability = capabilities.iterator().next();
-        LOGGER.debug("Selected Capability : " + capability.getName());
-        NodeReading reading = new NodeReading();
-        reading.setNode(node);
-        reading.setCapability(capability);
-        reading.setReading(10.0);
-        reading.setTimestamp((long)100);
-        NodeReadingController.getInstance().add(reading);
-        Set<NodeReading> readingsFromNode = node.getReadings();
-        LOGGER.debug("readingsFromNode size() : " + readingsFromNode.size());
-        LOGGER.debug(readingsFromNode.iterator().next().getReading());
+            // List all capabilities of this node
+            List<Capability> capabilities = node.getCapabilities();
+            Capability capability = capabilities.iterator().next();
+            LOGGER.debug("Selected Capability : " + capability.getName());
+
+            // make a new node reading entity
+            NodeReading reading = new NodeReading();
+            reading.setNode(node);
+            reading.setCapability(capability);
+            reading.setReading(10.0);
+            reading.setTimestamp((long)100);
+            NodeReadingController.getInstance().add(reading);
+
+            // check to see if reading was put
+            Set<NodeReading> readingsFromNode = node.getReadings();
+            LOGGER.debug("readingsFromNode size() : " + readingsFromNode.size());
+            LOGGER.debug(readingsFromNode.iterator().next().getReading());
+        }finally {
+            // always close session
+            HibernateUtil.getInstance().closeSession();
+        }
     }
 }

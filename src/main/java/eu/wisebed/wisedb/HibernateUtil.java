@@ -130,4 +130,16 @@ public class HibernateUtil {
         LinkReadingController.getInstance().setSessionFactory(thisFactory);
     }
 
+    /**
+     * Closes the current Session.
+     *
+     * @return the current Session
+     */
+    public void closeSession(){
+        Session ses = ourSessionFactory.getCurrentSession();
+
+        if (ses.isOpen()) {
+            ses.close();
+        }
+    }
 }

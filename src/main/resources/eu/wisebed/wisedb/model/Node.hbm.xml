@@ -32,7 +32,7 @@
             <one-to-many class="eu.wisebed.wisedb.model.NodeReading"/>
         </set>
 
-        <set name="setups" table="setup_nodes" inverse="true">
+        <set name="setups" table="setup_nodes" inverse="true" lazy="false">
             <key column="node_id" not-null="true"/>
             <many-to-many column="setup_id" class="eu.wisebed.wiseml.model.setup.Setup"/>
         </set>
