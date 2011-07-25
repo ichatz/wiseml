@@ -1,18 +1,10 @@
 package eu.wisebed.wisedb.importer;
 
-import eu.wisebed.testbed.api.wsn.v22.SessionManagement;
-import eu.wisebed.wisedb.controller.CapabilityController;
 import eu.wisebed.wisedb.controller.TestbedController;
 import eu.wisebed.wisedb.model.Testbed;
-import eu.wisebed.wiseml.controller.WiseMLController;
-import eu.wisebed.wiseml.model.WiseML;
-import eu.wisebed.wiseml.model.setup.Capability;
-import eu.wisebed.wiseml.model.setup.Node;
 import org.apache.log4j.Logger;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.*;
+import java.util.Collection;
 
 /**
  * Retrieves testbed records from the Session management endpoint and imports them into the wisedb.

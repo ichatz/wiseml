@@ -1,6 +1,7 @@
 package eu.wisebed.wisedb.importer;
 
-import eu.wisebed.testbed.api.wsn.v22.SessionManagement;
+import eu.wisebed.testbed.api.wsn.WSNServiceHelper;
+import eu.wisebed.api.sm.SessionManagement;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
@@ -145,8 +146,7 @@ public abstract class AbstractImporter<E> {
         }
 
         // set session managementService
-        setSessionManagementService(eu.wisebed.testbed.api.wsn.WSNServiceHelper
-                .getSessionManagementService(getEndpointUrl()));
+        setSessionManagementService(WSNServiceHelper.getSessionManagementService(getEndpointUrl()));
 
         // get wiseml in a string
         String wiseMl = getSessionManagementService().getNetwork();
