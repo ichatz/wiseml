@@ -117,7 +117,7 @@ public abstract class AbstractController<E> {
     }
 
     /**
-     * get the entry from the database that corresponds to the input id.
+     * Get the entry from the database that corresponds to the input id.
      *
      * @param entity   an Entity object that may be of every type of entity.
      * @param entityID the (int) id of the Entity object.
@@ -132,8 +132,8 @@ public abstract class AbstractController<E> {
         return (E) entityByID;
     }
 
-/**
-     * get the entry from the database that corresponds to the input id.
+    /**
+     * Get the entry from the database that corresponds to the input id.
      *
      * @param entity   an Entity object that may be of every type of entity.
      * @param entityID the (String) id of the Entity object.

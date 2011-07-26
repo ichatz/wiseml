@@ -1,6 +1,9 @@
 package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wiseml.model.setup.Link;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.LikeExpression;
 
 import java.util.List;
 
@@ -42,5 +45,23 @@ public class LinkController extends AbstractController<Link> {
      */
     public List<Link> list() {
         return super.list(new Link());
+    }
+
+    /**
+     * Get the entry from the link that corresponds to the input id, Source & Target node ids.
+     *
+     * @param linkSource , The node id of the link's source.
+     * @param linkTarget , The node id of the link's target.
+     * @return the link object persisted with the specific id
+     */
+    public Link getByID(final String linkSource , final String linkTarget) {
+        final Session session = this.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        Link linkWithId = new Link();
+        linkWithId.setSource(linkSource);
+        linkWithId.setTarget(linkTarget);
+        Link linkById = (Link) session.get(Link.class,linkWithId);
+        tx.commit();
+        return linkById;
     }
 }
