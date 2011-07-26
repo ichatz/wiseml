@@ -81,4 +81,11 @@ public class CapabilityController extends AbstractController<Capability> {
         return super.list(new Capability());
     }
 
+    /**
+     * Deleting a capability entry from the database.
+     * @param entityID
+     */
+    public void delete (final String entityID) {
+        super.delete(new Capability(),entityID);
+    }
 }

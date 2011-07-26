@@ -53,6 +53,15 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     }
 
     /**
+     * Delete the node reading from the database.
+     *
+     * @param readingId the id of the node tha we want to delete
+     */
+    public void delete(final String readingId) {
+        super.delete(new NodeReading(),readingId);
+    }
+
+    /**
      * Insert a node's reading from it's capabilities and make the appropriate relations
      * such as Node-Reading , Capability-reading
      *

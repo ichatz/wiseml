@@ -148,5 +148,4 @@ public abstract class AbstractController<E> {
         return (E) entityByID;
 
     }
-
 }

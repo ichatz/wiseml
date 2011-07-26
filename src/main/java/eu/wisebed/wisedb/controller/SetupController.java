@@ -53,6 +53,16 @@ public class SetupController extends AbstractController<Setup> {
         super.delete(value,value.getId());
     }
 
+
+    /**
+     * Delete the input Node from the database.
+     *
+     * @param setupId the Node tha we want to delete
+     */
+    public void delete(final int setupId) {
+        super.delete(new Setup(),setupId);
+    }
+
     /**
      * Listing all the Setups from the database.
      *

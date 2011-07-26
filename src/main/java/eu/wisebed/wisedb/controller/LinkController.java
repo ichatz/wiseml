@@ -64,4 +64,19 @@ public class LinkController extends AbstractController<Link> {
         tx.commit();
         return linkById;
     }
+
+    /**
+     * Deleting a link entry from the database
+     * @param sourceId
+     * @param targetId
+     */
+    public void delete (final String sourceId,final String targetId) {
+        final Session session = this.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        Link linkWithId = new Link();
+        linkWithId.setSource(sourceId);
+        linkWithId.setTarget(targetId);
+        session.delete(linkWithId);
+        tx.commit();
+    }
 }

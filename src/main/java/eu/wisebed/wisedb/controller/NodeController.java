@@ -53,10 +53,19 @@ public class NodeController extends AbstractController<Node> {
     /**
      * Delete the input Node from the database.
      *
-     * @param value the Node tha we want to delete
+     * @param node the Node tha we want to delete
      */
-    public void delete(final Node value) {
-        super.delete(value,value.getId());
+    public void delete(final Node node) {
+        super.delete(node,node.getId());
+    }
+
+    /**
+     * Delete the input Node from the database.
+     *
+     * @param nodeId the id of the node tha we want to delete
+     */
+    public void delete(final String nodeId) {
+        super.delete(new Node(),nodeId);
     }
 
     /**
