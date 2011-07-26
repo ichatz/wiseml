@@ -55,6 +55,14 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         return super.list(new LinkReading());
     }
 
+    /**
+     * Deleting an entry into the database.
+     * @param readingId
+     */
+    public void delete(final int readingId){
+        super.delete(new LinkReading(),readingId);
+    }
+
 
     /**
      * Insert a links's reading from it's capabilities and make the appropriate relations
