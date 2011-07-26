@@ -1,8 +1,14 @@
 package eu.wisebed.wisedb.controller;
 
+import eu.wisebed.wisedb.exception.UnknownCapabilityIdException;
+import eu.wisebed.wisedb.exception.UnknownNodeIdException;
 import eu.wisebed.wisedb.model.NodeReading;
+import eu.wisebed.wiseml.model.setup.Capability;
+import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Setup;
 
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 public class NodeReadingController extends AbstractController<NodeReading> {
@@ -44,5 +50,47 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      */
     public List<NodeReading> list() {
         return super.list(new NodeReading());
+    }
+
+    /**
+     * Insert a node's reading from it's capabilities and make the appropriate relations
+     * such as Node-Reading , Capability-reading
+     *
+     * @param nodeId , a node's id.
+     * @param capabilityId , a capability's id.
+     * @param readingValue , the readings value.
+     * @param timestamp , a timestamp for the time the reading took place
+     * @throws UnknownNodeIdException , exception when an unknown node id occurs.
+     * @throws UnknownCapabilityIdException ,  exception when an unknown capability id occurs.
+     */
+    public void insertReading(final String nodeId,final String capabilityId,final double readingValue,final Date timestamp)
+            throws UnknownNodeIdException, UnknownCapabilityIdException {
+
+        // get node if not found throw exception
+        Node node = NodeController.getInstance().getByID(nodeId);
+        if(node == null) throw new UnknownNodeIdException(nodeId);
+
+        Capability capability = CapabilityController.getInstance().getByID(capabilityId);
+        if(capability == null) throw new UnknownCapabilityIdException(capabilityId);
+
+        // make a new node reading entity
+        NodeReading reading = new NodeReading();
+        reading.setNode(node);
+        reading.setCapability(capability);
+        reading.setReading(readingValue);
+        reading.setTimestamp(timestamp);
+
+        // make association of the reading with the respected node and capability
+        if(node.getReadings() == null) {
+            node.setReadings(new HashSet<NodeReading>());
+        }
+        node.getReadings().add(reading);
+        if(capability.getNodeReadings() == null) {
+            capability.setNodeReadings(new HashSet<NodeReading>());
+        }
+        capability.getNodeReadings().add(reading);
+
+        // persist node
+        NodeReadingController.getInstance().add(reading);
     }
 }

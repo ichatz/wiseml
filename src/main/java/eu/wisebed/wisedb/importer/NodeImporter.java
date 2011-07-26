@@ -26,7 +26,7 @@ public class NodeImporter extends AbstractImporter<Node> {
         WiseML root = cnt.loadWiseMLFromFile(getWiseMlStream());
         List<Node> nodeList = root.getSetup().getNodes();
 
-        // check for null entry    todo util class for null checking
+        // check for null entry
         if(nodeList == null){
             LOGGER.debug("Could not find list of nodes while parsing the WiseML setup entry.");
             return;
