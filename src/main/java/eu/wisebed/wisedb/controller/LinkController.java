@@ -2,6 +2,8 @@ package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wiseml.model.setup.Link;
 
+import java.util.List;
+
 public class LinkController extends AbstractController<Link> {
     /**
      * static instance(ourInstance) initialized as null.
@@ -33,4 +35,12 @@ public class LinkController extends AbstractController<Link> {
         return ourInstance;
     }
 
+    /**
+     * Listing all the Links from the database.
+     *
+     * @return a list of all the entries that exist inside the table Link.
+     */
+    public List<Link> list() {
+        return super.list(new Link());
+    }
 }

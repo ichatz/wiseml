@@ -14,7 +14,7 @@
         <property name="timestamp" type="timestamp" />
         <property name="reading"/>
 
-        <many-to-one name="node" class="eu.wisebed.wiseml.model.setup.Node">
+        <many-to-one name="node" class="eu.wisebed.wiseml.model.setup.Node" cascade="save-update">
             <column name="node_id" not-null="true"/>
         </many-to-one>
         <many-to-one name="capability" class="eu.wisebed.wiseml.model.setup.Capability">

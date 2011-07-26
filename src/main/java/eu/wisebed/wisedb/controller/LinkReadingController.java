@@ -1,6 +1,9 @@
 package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.model.LinkReading;
+import eu.wisebed.wisedb.model.NodeReading;
+
+import java.util.List;
 
 public class LinkReadingController extends AbstractController<LinkReading> {
 
@@ -32,5 +35,14 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         }
 
         return ourInstance;
+    }
+
+    /**
+     * Listing all the LinkReadings from the database.
+     *
+     * @return a list of all the entries that exist inside the table LinkReadings.
+     */
+    public List<LinkReading> list() {
+        return super.list(new LinkReading());
     }
 }

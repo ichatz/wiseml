@@ -7,9 +7,7 @@ import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Node;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Hibernate;
@@ -46,12 +44,25 @@ public class AddNodeReading {
             reading.setCapability(capability);
             reading.setReading(10.0);
             reading.setTimestamp(new Date());
+            if(node.getReadings() == null) {
+                node.setReadings(new HashSet<NodeReading>());
+            }
+            node.getReadings().add(reading);
+            if(capability.getNodeReadings() == null) {
+                capability.setNodeReadings(new HashSet<NodeReading>());
+            }
+            capability.getNodeReadings().add(reading);
             NodeReadingController.getInstance().add(reading);
 
-            // check to see if reading was put
-            Set<NodeReading> readingsFromNode = node.getReadings();
-            LOGGER.debug("readingsFromNode size() : " + readingsFromNode.size());
-            LOGGER.debug(readingsFromNode.iterator().next().getReading());
+            // check to see if reading was set correctly
+            // NodeReadings table size
+            LOGGER.debug("There are " + NodeReadingController.getInstance().list().size() +" records in the database ");
+
+            // Node's readings size
+            LOGGER.debug("Node " + node.getId() + " has " + node.getReadings().size() + " readings");
+
+            // Capabilities's readings size
+            LOGGER.debug("Capability " + capability.getName() + " appears in " + capability.getNodeReadings().size() +  " readings");
         }finally {
             // always close session
             HibernateUtil.getInstance().closeSession();

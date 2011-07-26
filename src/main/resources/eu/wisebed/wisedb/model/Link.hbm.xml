@@ -26,7 +26,7 @@
         </component>
 
 
-        <list name="capabilities" table="link_capabilities" lazy="false">
+        <list name="capabilities" table="link_capabilities" cascade="save-update" lazy="false">
             <key>
                 <column name="link_source" not-null="true"/>
                 <column name="link_target" not-null="true"/>

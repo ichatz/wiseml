@@ -114,7 +114,6 @@ public abstract class AbstractController<E> {
         List<E> entityList = criteria.list();
         tx.commit();
         return entityList;
-
     }
 
     /**
