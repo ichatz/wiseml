@@ -33,6 +33,45 @@ The latest stable version is available from [Hudson](http://ru1.cti.gr/hudson/jo
 
 (testing the SCM polling mechanism of Hudson)
 
+Hibernate Configuration:
+======
+You can configure Hibernate by providing the appropriate configuration in your local Maven settings file `~/.m2/settings.xml`:
+
+	<settings>
+    	...
+		<profiles>
+        	<profile>
+				<id>inject-hibernate-details-wisedb</id>
+            	<properties>
+                	<hibernate.dialect>org.hibernate.dialect.MySQLDialect</hibernate.dialect>
+                	<jdbc.connection.driver_class>com.mysql.jdbc.Driver</jdbc.connection.driver_class>
+                	<jdbc.connection.url>jdbc:mysql://ip-on-remote-wisedb/wisdeb</jdbc.connection.url>
+                	<jdbc.connection.username>wisedb</jdbc.connection.username>
+                	<jdbc.connection.password>wisedbpassword</jdbc.connection.password>
+                	<jdbc.connection.pool_size>10</jdbc.connection.pool_size>
+            	</properties>
+        	</profile>
+			<profile>
+			<id>inject-hibernate-details-wisedb-test</id>
+				<properties>
+					<test.hibernate.dialect>org.hibernate.dialect.MySQLDialect</test.hibernate.dialect>
+					<test.jdbc.connection.driver_class>com.mysql.jdbc.Driver</test.jdbc.connection.driver_class>
+					<test.jdbc.connection.url>jdbc:mysql://localhost/wisedb</test.jdbc.connection.url>
+					<test.jdbc.connection.username>wisedb</test.jdbc.connection.username>
+					<test.jdbc.connection.password>wisedbpassword</test.jdbc.connection.password>
+					<test.jdbc.connection.pool_size>10</test.jdbc.connection.pool_size>
+				</properties>
+			</profile>
+		</profiles>
+		<activeProfiles>
+			<activeProfile>inject-hibernate-details-wisedb</activeProfile>
+			<activeProfile>inject-hibernate-details-wisedb-test</activeProfile>
+		</activeProfiles>
+		...
+	</settings>   
+
+Note that you should provide two profiles one for the main sources and one for the test resources.
+
 Simple execution:
 ======
 mvn clean
