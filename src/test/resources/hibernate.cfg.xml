@@ -5,11 +5,11 @@
 <hibernate-configuration>
     <session-factory>
 
-        <property name="hibernate.dialect">${hibernate.dialect}</property>
-        <property name="hibernate.connection.driver_class">${jdbc.connection.driver_class}</property>
-        <property name="hibernate.connection.url">${jdbc.connection.url}</property>
-        <property name="hibernate.connection.username">${jdbc.connection.username}</property>
-        <property name="hibernate.connection.password">${jdbc.connection.password}</property>
+        <property name="hibernate.dialect">${test.hibernate.dialect}</property>
+        <property name="hibernate.connection.driver_class">${test.jdbc.connection.driver_class}</property>
+        <property name="hibernate.connection.url">${test.jdbc.connection.url}</property>
+        <property name="hibernate.connection.username">${test.jdbc.connection.username}</property>
+        <property name="hibernate.connection.password">${test.jdbc.connection.password}</property>
         <property name="hibernate.connection.pool_size">10</property>
         <property name="hibernate.connection.autoReconnect">true</property>
 
