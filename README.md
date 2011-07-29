@@ -70,7 +70,7 @@ You can configure Hibernate by providing the appropriate configuration in your l
 		...
 	</settings>   
 
-Note that you should provide two profiles one for the main sources and one for the test resources.
+Note that you should provide two profiles one for the main sources and one for the test resources. Configuration is now stored in jar using `mvn package`.
 
 Simple execution:
 ======
