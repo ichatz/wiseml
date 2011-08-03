@@ -2,11 +2,9 @@ package eu.wisebed.wiseml.model.setup;
 
 import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wiseml.model.trace.Message;
-import sun.tools.tree.ThisExpression;
 
 import java.util.List;
 import java.util.Set;
-import java.util.HashMap;
 
 /**
  * This is a persistant class for the object node that has the
