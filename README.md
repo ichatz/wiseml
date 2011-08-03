@@ -8,7 +8,7 @@ The repository contains the following packages:
  * WiseRDF mappings based on [Jena](http://jena.sourceforge.net/) framework.
 
 
-Related links:
+Related links
 
  * [WISEBED D4.1 Using WiseML to produce testbed traces](http://www.wisebed.eu/images/stories/deliverables/d4.1.pdf)
  * [WISEBED D4.2 Updates to the WiseML standard](http://www.wisebed.eu/images/stories/deliverables/d4.2.pdf)
@@ -33,7 +33,7 @@ The latest stable version is available from [Hudson](http://ru1.cti.gr/hudson/jo
 
 (testing the SCM polling mechanism of Hudson)
 
-Hibernate Configuration:
+Hibernate Configuration
 ======
 You can configure Hibernate by providing the appropriate configuration in your local Maven settings file `~/.m2/settings.xml`:
 
@@ -72,7 +72,7 @@ You can configure Hibernate by providing the appropriate configuration in your l
 
 Note that you should provide two profiles one for the main sources and one for the test resources. Configuration is now stored in jar using `mvn package`.
 
-Simple execution:
+Simple execution
 ======
 mvn clean
 
@@ -93,7 +93,7 @@ Add the following dependency to your pom.xml:
 			<version>1.1-SNAPSHOT</version>
 		</dependency>
 
-Add the following repositories to your pom.xml:
+Add the following repositories to your pom.xml
 
 	<repositories>
 		<repository>
@@ -120,7 +120,7 @@ Add the following repositories to your pom.xml:
 	</repositories>
 
 
-Contact:
+Contact
 ======
 Any feedback will be greatly appreciated, at the GitHub project page
 (https://github.com/ichatz/wiseml) or by contacting
