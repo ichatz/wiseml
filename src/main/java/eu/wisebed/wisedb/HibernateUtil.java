@@ -83,6 +83,14 @@ public class HibernateUtil {
     }
 
     /**
+     * Returns current Hibernate configuration
+     * @return current configuration
+     */
+    public Configuration getConfiguration() {
+        return configuration;
+    }
+
+    /**
      * Returns the current Session factory.
      *
      * @return the current Session Factory.
