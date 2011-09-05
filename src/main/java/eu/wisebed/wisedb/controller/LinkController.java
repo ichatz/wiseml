@@ -2,8 +2,6 @@ package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wiseml.model.setup.Link;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.criterion.LikeExpression;
 
 import java.util.List;
 
@@ -22,9 +20,9 @@ public class LinkController extends AbstractController<Link> {
     }
 
     /**
-     * NodeController is loaded on the first execution of
-     * NodeController.getInstance() or the first access to
-     * NodeController.ourInstance, not before.
+     * LinkController is loaded on the first execution of
+     * LinkController.getInstance() or the first access to
+     * LinkController.ourInstance, not before.
      *
      * @return ourInstance
      */
@@ -50,33 +48,29 @@ public class LinkController extends AbstractController<Link> {
     /**
      * Get the entry from the link that corresponds to the input id, Source & Target node ids.
      *
-     * @param linkSource , The node id of the link's source.
-     * @param linkTarget , The node id of the link's target.
+     * @param sourceId , The node id of the link's source.
+     * @param targetId , The node id of the link's target.
      * @return the link object persisted with the specific id
      */
-    public Link getByID(final String linkSource , final String linkTarget) {
+    public Link getByID(final String sourceId , final String targetId) {
         final Session session = this.getSessionFactory().getCurrentSession();
-        Transaction tx = session.beginTransaction();
         Link linkWithId = new Link();
-        linkWithId.setSource(linkSource);
-        linkWithId.setTarget(linkTarget);
+        linkWithId.setSource(sourceId);
+        linkWithId.setTarget(targetId);
         Link linkById = (Link) session.get(Link.class,linkWithId);
-        tx.commit();
         return linkById;
     }
 
     /**
      * Deleting a link entry from the database
-     * @param sourceId
-     * @param targetId
+     * @param sourceId , The node id of the link's source.
+     * @param targetId , The node id of the link's target.
      */
-    public void delete (final String sourceId,final String targetId) {
+    public void delete(final String sourceId,final String targetId) {
         final Session session = this.getSessionFactory().getCurrentSession();
-        Transaction tx = session.beginTransaction();
         Link linkWithId = new Link();
         linkWithId.setSource(sourceId);
         linkWithId.setTarget(targetId);
         session.delete(linkWithId);
-        tx.commit();
     }
 }

@@ -5,7 +5,6 @@ import eu.wisebed.wisedb.exception.UnknownNodeIdException;
 import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Node;
-import eu.wisebed.wiseml.model.setup.Setup;
 
 import java.util.Date;
 import java.util.HashSet;

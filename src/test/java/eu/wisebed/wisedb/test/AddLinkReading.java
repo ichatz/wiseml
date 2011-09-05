@@ -1,13 +1,13 @@
 package eu.wisebed.wisedb.test;
 
 import eu.wisebed.wisedb.HibernateUtil;
-import eu.wisebed.wisedb.controller.*;
-import eu.wisebed.wisedb.model.LinkReading;
-import eu.wisebed.wiseml.model.setup.Capability;
-import eu.wisebed.wiseml.model.setup.Link;
+import eu.wisebed.wisedb.controller.CapabilityController;
+import eu.wisebed.wisedb.controller.LinkController;
+import eu.wisebed.wisedb.controller.LinkReadingController;
 import org.apache.log4j.Logger;
+import org.hibernate.Transaction;
 
-import java.util.*;
+import java.util.Date;
 
 public class AddLinkReading {
 
@@ -16,10 +16,13 @@ public class AddLinkReading {
      */
     private static final Logger LOGGER = org.apache.log4j.Logger.getLogger(AddLinkReading.class);
 
-    public static void main(String args[]){
-        try{
-            // Initialize hibernate
-            HibernateUtil.connectEntityManagers();
+    public static void main(String args[]) {
+
+        // Initialize hibernate
+        HibernateUtil.connectEntityManagers();
+        Transaction tx = HibernateUtil.getInstance().getSession().beginTransaction();
+
+        try {
 
             // source node id
             final String sourceId = "urn:wisebed:ctitestbed:0x995d";
@@ -30,8 +33,8 @@ public class AddLinkReading {
             // link capability name
             final String capabilityName = "status";
 
-            LOGGER.debug("Selected node : " +  sourceId);
-            LOGGER.debug("Selected node : " +  targetId);
+            LOGGER.debug("Selected node : " + sourceId);
+            LOGGER.debug("Selected node : " + targetId);
             LOGGER.debug("Capability for link : " + capabilityName);
 
 
@@ -41,7 +44,7 @@ public class AddLinkReading {
             final int beforeReadings = LinkReadingController.getInstance().list().size();
 
             // insert reading
-            LinkReadingController.getInstance().insertReading(sourceId,targetId,capabilityName,10.0,new Date());
+            LinkReadingController.getInstance().insertReading(sourceId, targetId, capabilityName, 10.0, new Date());
 
             // count of links, capabilities & readigns after link insertion
             final int afterLinks = LinkController.getInstance().list().size();
@@ -53,15 +56,17 @@ public class AddLinkReading {
             LOGGER.debug("After insertion of Link (Links) : " + afterLinks);
             LOGGER.debug("After insertion of Link (Capabilities) : " + afterCaps);
             LOGGER.debug("Before insertion of Reading (readings) : " + beforeReadings);
-            LOGGER.debug("After insertion of Reading (readings) : " + afterReadings );
+            LOGGER.debug("After insertion of Reading (readings) : " + afterReadings);
 //            LOGGER.debug("Link's readings after inseration : " + LinkController.getInstance().getByID(sourceId, targetId)
 //                    .getReadings().size());
 //            LOGGER.debug("Capability's readings after insertion : " + CapabilityController.getInstance().getByID(capabilityName)
 //                    .getLinkReadings().size());
-        }catch(Exception e){
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
             LOGGER.fatal(e.getMessage());
             System.exit(-1);
-        }finally {
+        } finally {
             // always close session
             HibernateUtil.getInstance().closeSession();
         }

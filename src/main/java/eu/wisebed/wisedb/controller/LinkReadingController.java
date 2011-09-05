@@ -3,7 +3,6 @@ package eu.wisebed.wisedb.controller;
 import eu.wisebed.wisedb.exception.UnknownCapabilityIdException;
 import eu.wisebed.wisedb.exception.UnknownNodeIdException;
 import eu.wisebed.wisedb.model.LinkReading;
-import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
@@ -57,7 +56,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
 
     /**
      * Deleting an entry into the database.
-     * @param readingId
+     * @param readingId , id of a reading entry
      */
     public void delete(final int readingId){
         super.delete(new LinkReading(),readingId);
@@ -68,13 +67,13 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      * Insert a links's reading from it's capabilities and make the appropriate relations
      * such as Link-Reading , Capability-reading
      *
-     * @param sourceId
-     * @param targetId
-     * @param capabilityName
-     * @param readingValue
-     * @param timestamp
-     * @throws UnknownNodeIdException
-     * @throws UnknownCapabilityIdException
+     * @param sourceId , link's source id.
+     * @param targetId , target's source id.
+     * @param capabilityName , capability's id
+     * @param readingValue , value of a sensor reading.
+     * @param timestamp , a timestamp.
+     * @throws UnknownNodeIdException , cannot find node by id exception.
+     * @throws UnknownCapabilityIdException , cannot find capability by id exception.
      */
     public void insertReading(final String sourceId,final String targetId ,final String capabilityName,
                               final double readingValue,final Date timestamp)
@@ -86,14 +85,14 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      * Insert a links's reading from it's capabilities and make the appropriate relations
      * such as Link-Reading , Capability-reading
      *
-     * @param sourceId
-     * @param targetId
-     * @param capabilityName
-     * @param readingValue
-     * @param rssiValue
-     * @param timestamp
-     * @throws UnknownNodeIdException
-     * @throws UnknownCapabilityIdException
+     * @param sourceId , link's source id.
+     * @param targetId , target's source id.
+     * @param capabilityName , capability's id.
+     * @param rssiValue , the RSSI value of the link.
+     * @param readingValue , value of a sensor reading.
+     * @param timestamp , a timestamp.
+     * @throws UnknownNodeIdException , cannot find node by id exception.
+     * @throws UnknownCapabilityIdException , cannot find capability by id exception.
      */
     public void insertReading(final String sourceId,final String targetId ,final String capabilityName,
                               final double readingValue,final double rssiValue,final Date timestamp)
@@ -142,7 +141,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         if(link.getCapabilities() == null){
             link.setCapabilities(new ArrayList<Capability>());
         }
-        if(link.getCapabilities().contains(capability) == false){
+        if(!link.getCapabilities().contains(capability)){
             link.getCapabilities().add(capability);
         }
         if(capability.getLinks() == null){
