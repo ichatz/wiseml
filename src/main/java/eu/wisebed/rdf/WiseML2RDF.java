@@ -66,7 +66,8 @@ public class WiseML2RDF extends WiseML {
    // creates an rdf dump file with the name "wisemlfile_dump.rdf" - returns the name
    String dumpFileName = wisemlFile;
    try {
-       model.write(new PrintWriter(new PrintStream(new FileOutputStream(wisemlFile))));
+       model.write(new PrintWriter(new PrintStream(new FileOutputStream(wisemlFile))),"N-TRIPLE");
+
        System.out.println("File dumped succesfully, filename: " + wisemlFile);
    } catch (Exception e) {
         System.out.println("Error in dumping to rdf file: " + e);

@@ -38,4 +38,19 @@ public class RDFExporter {
             System.err.println(e);
         }
     }
+
+     public Model modelRDF(){
+        try {
+            fileML = new FileInputStream(inwiseml);
+            WiseMLController wmlcontroller = new WiseMLController();
+            WiseML wml = wmlcontroller.loadWiseMLFromFile(fileML);
+            WiseML2RDF wmll= new WiseML2RDF(wml);
+            wmll.exportRDF(wiseModel, uri);
+        }
+        catch(Exception e){
+            System.err.println(e);
+        }
+         return wiseModel;
+    }
+
 }
