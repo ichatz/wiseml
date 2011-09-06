@@ -2,7 +2,6 @@ package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wiseml.model.setup.Capability;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import java.util.List;
 
@@ -44,13 +43,11 @@ public class CapabilityController extends AbstractController<Capability> {
 
     public void add(final Capability entity) {
         final Session session = getSessionFactory().getCurrentSession();
-        final Transaction tx = session.beginTransaction();
         final Capability entity2 = (Capability) session.get(Capability.class,entity.getName());
         if(entity2 == null )
             session.save(entity);
         else
             session.merge(entity2);
-        tx.commit();
     }
 
     /**
@@ -83,9 +80,9 @@ public class CapabilityController extends AbstractController<Capability> {
 
     /**
      * Deleting a capability entry from the database.
-     * @param entityID
+     * @param entityID the id of the Entity object.
      */
-    public void delete (final String entityID) {
+    public void delete(final String entityID) {
         super.delete(new Capability(),entityID);
     }
 }

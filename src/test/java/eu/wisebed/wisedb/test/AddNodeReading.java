@@ -4,11 +4,10 @@ import eu.wisebed.wisedb.HibernateUtil;
 import eu.wisebed.wisedb.controller.CapabilityController;
 import eu.wisebed.wisedb.controller.NodeController;
 import eu.wisebed.wisedb.controller.NodeReadingController;
-
-import java.util.*;
-
 import org.apache.log4j.Logger;
-import org.hibernate.Hibernate;
+
+import  org.hibernate.Transaction;
+import java.util.Date;
 
 /**
  * Adds a node reading
@@ -21,10 +20,12 @@ public class AddNodeReading {
     private static final Logger LOGGER = org.apache.log4j.Logger.getLogger(AddNodeReading.class);
 
     @SuppressWarnings({"deprecation"})
-    public static void main(String args[]){
-        try{
-            // Initialize hibernate
-            HibernateUtil.connectEntityManagers();
+    public static void main(String args[]) {
+
+        // Initialize hibernate
+        HibernateUtil.connectEntityManagers();
+        Transaction tx = HibernateUtil.getInstance().getSession().beginTransaction();
+        try {
 
             // a valid node id for cti's testbed
             final String nodeId = "urn:wisebed:ctitestbed:0x995d";
@@ -44,11 +45,11 @@ public class AddNodeReading {
             LOGGER.debug("Timestamp : " + timestamp.toGMTString());
 
             // insert reading
-            NodeReadingController.getInstance().insertReading(nodeId,capabilityName,readingValue,timestamp);
+            NodeReadingController.getInstance().insertReading(nodeId, capabilityName, readingValue, timestamp);
 
             // check to see if reading was set correctly
             // NodeReadings table size
-            LOGGER.debug("There are " + NodeReadingController.getInstance().list().size() +" node readings in the database ");
+            LOGGER.debug("There are " + NodeReadingController.getInstance().list().size() + " node readings in the database ");
 
             // Node's readings size
             LOGGER.debug("Node " + nodeId + " has " + NodeController.getInstance().getByID(nodeId).getReadings().size()
@@ -56,11 +57,13 @@ public class AddNodeReading {
 
             // Capabilities's readings size
             LOGGER.debug("Capability " + capabilityName + " appears in " + CapabilityController.getInstance()
-                    .getByID(capabilityName).getNodeReadings().size()+  " readings");
-        }catch(Exception e){
+                    .getByID(capabilityName).getNodeReadings().size() + " readings");
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
             LOGGER.fatal(e.getMessage());
             System.exit(-1);
-        }finally {
+        } finally {
             // always close session
             HibernateUtil.getInstance().closeSession();
         }

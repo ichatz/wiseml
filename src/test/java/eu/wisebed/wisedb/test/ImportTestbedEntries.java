@@ -3,6 +3,7 @@ package eu.wisebed.wisedb.test;
 import eu.wisebed.wisedb.HibernateUtil;
 import eu.wisebed.wisedb.importer.TestbedImporter;
 import org.apache.log4j.Logger;
+import org.hibernate.Transaction;
 
 /**
  * Retrieves Testbed data and inserts them in the db.
@@ -15,9 +16,12 @@ public class ImportTestbedEntries {
     private static final Logger LOGGER = Logger.getLogger(ImportTestbedEntries.class);
 
     public static void main(String[] args) {
-        try{
-            // Initialize hibernate
-            HibernateUtil.connectEntityManagers();
+
+        // Initialize hibernate
+        HibernateUtil.connectEntityManagers();
+        Transaction tx = HibernateUtil.getInstance().getSession().beginTransaction();
+
+        try {
 
             // Constructe a TestbedImporter
             final TestbedImporter tImp = new TestbedImporter();
@@ -35,7 +39,9 @@ public class ImportTestbedEntries {
 
             // import to db
             tImp.convert();
-        }finally{
+            tx.commit();
+        } finally {
+            tx.rollback();
             // always close session
             HibernateUtil.getInstance().closeSession();
         }

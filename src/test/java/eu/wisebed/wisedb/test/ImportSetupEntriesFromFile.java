@@ -1,10 +1,9 @@
 package eu.wisebed.wisedb.test;
 
 import eu.wisebed.wisedb.HibernateUtil;
-import eu.wisebed.wisedb.importer.CapabilityImporter;
-import eu.wisebed.wisedb.importer.NodeImporter;
 import eu.wisebed.wisedb.importer.SetupImporter;
 import org.apache.log4j.Logger;
+import org.hibernate.Transaction;
 
 public class ImportSetupEntriesFromFile {
 
@@ -14,17 +13,18 @@ public class ImportSetupEntriesFromFile {
     private static final Logger LOGGER = Logger.getLogger(ImportSetupEntriesFromFile.class);
 
     public static void main(String[] args) {
-        try{
-            // Initialize hibernate
-            HibernateUtil.connectEntityManagers();
 
+        // Initialize hibernate
+        HibernateUtil.connectEntityManagers();
+        Transaction tx = HibernateUtil.getInstance().getSession().beginTransaction();
+        try {
             // Construct a SetupImporter
             final SetupImporter sImp = new SetupImporter();
 
             // open local file
-            try{
+            try {
                 sImp.open("/Developer/whantana.Projects/github/wiseml/src/test/resources/telosB_short.wiseml");
-            }catch(Exception e){
+            } catch (Exception e) {
                 LOGGER.fatal(e);
                 System.err.println(e.getMessage());
                 System.exit(-1);
@@ -32,7 +32,9 @@ public class ImportSetupEntriesFromFile {
 
             // import to db
             sImp.convert();
-        }finally{
+            tx.commit();
+        } finally {
+            tx.rollback();
             // always close session
             HibernateUtil.getInstance().closeSession();
         }
