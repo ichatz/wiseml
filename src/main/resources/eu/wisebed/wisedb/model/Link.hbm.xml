@@ -26,7 +26,7 @@
         </component>
 
 
-        <list name="capabilities" table="link_capabilities" cascade="save-update" lazy="false">
+        <list name="capabilities" table="link_capabilities" cascade="save-update" lazy="true">
             <key>
                 <column name="link_source" not-null="true"/>
                 <column name="link_target" not-null="true"/>
@@ -35,7 +35,7 @@
             <many-to-many column="capability_id" class="eu.wisebed.wiseml.model.setup.Capability"/>
         </list>
 
-        <set name="readings" table="link_readings" inverse="true" lazy="false">
+        <set name="readings" table="link_readings" inverse="true" lazy="true">
             <key>
                 <column name="link_source" not-null="true"/>
                 <column name="link_target" not-null="true"/>
@@ -43,7 +43,7 @@
             <one-to-many class="eu.wisebed.wisedb.model.LinkReading"/>
         </set>
 
-        <set name="setups" table="setup_links" inverse="true" lazy="false">
+        <set name="setups" table="setup_links" inverse="true" lazy="true">
             <key>
                 <column name="link_source" not-null="true"/>
                 <column name="link_target" not-null="true"/>
