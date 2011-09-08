@@ -41,7 +41,6 @@ public class ImportTestbedEntries {
             tImp.convert();
             tx.commit();
         } finally {
-            tx.rollback();
             // always close session
             HibernateUtil.getInstance().closeSession();
         }

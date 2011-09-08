@@ -21,18 +21,18 @@
         <property name="gateway"/>
         <property name="programDetails"/>
 
-        <list name="capabilities" table="node_capabilities" cascade="save-update" lazy="false">
+        <list name="capabilities" table="node_capabilities" cascade="save-update" lazy="true">
             <key column="node_id" not-null="true"/>
             <list-index column="capability_index"/>
             <many-to-many column="capability_id" class="eu.wisebed.wiseml.model.setup.Capability"/>
         </list>
 
-        <set name="readings" table="node_readings" inverse="true" lazy="false">
+        <set name="readings" table="node_readings" inverse="true" lazy="true">
             <key column="node_id" not-null="true"/>
             <one-to-many class="eu.wisebed.wisedb.model.NodeReading"/>
         </set>
 
-        <set name="setups" table="setup_nodes" inverse="true" lazy="false">
+        <set name="setups" table="setup_nodes" inverse="true" lazy="true">
             <key column="node_id" not-null="true"/>
             <many-to-many column="setup_id" class="eu.wisebed.wiseml.model.setup.Setup"/>
         </set>
