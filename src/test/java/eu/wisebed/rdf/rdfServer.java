@@ -1,7 +1,7 @@
 package eu.wisebed.rdf;
 
 
-import com.hp.hpl.jena.query.Dataset;
+import com.hp.hpl.jena.query.*;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.sparql.core.DatasetGraph;
 import com.hp.hpl.jena.sparql.core.DatasetImpl;
@@ -32,5 +32,10 @@ public class rdfServer {
         SPARQLServer srv = new SPARQLServer(dg,"info",1281,true);
         srv.start();
 
-     }
+        QueryExecution qExec = QueryExecutionFactory.sparqlService("http://127.0.0.1:1281/info/query" , "SELECT * {?s ?p ?o}") ;
+        ResultSet rs = qExec.execSelect() ;
+        System.out.println(">>"+ResultSetFormatter.asXMLString(rs));
+        //int x = ResultSetFormatter.consume(rs) ;
+        //System.out.println(rs.getRowNumber());
+      }
 }
