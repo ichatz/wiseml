@@ -41,31 +41,31 @@ You can configure Hibernate by providing the appropriate configuration in your l
     	...
 		<profiles>
         	<profile>
-				<id>inject-hibernate-details-wisedb</id>
+				<id>wisedb-on-remote-host</id>
             	<properties>
-                	<hibernate.dialect>org.hibernate.dialect.MySQLDialect</hibernate.dialect>
-                	<jdbc.connection.driver_class>com.mysql.jdbc.Driver</jdbc.connection.driver_class>
-                	<jdbc.connection.url>jdbc:mysql://ip-on-remote-wisedb/wisdeb</jdbc.connection.url>
-                	<jdbc.connection.username>wisedb</jdbc.connection.username>
-                	<jdbc.connection.password>wisedbpassword</jdbc.connection.password>
-                	<jdbc.connection.pool_size>10</jdbc.connection.pool_size>
+                	<wisedb.hibernate.dialect>org.hibernate.dialect.MySQLDialect</wisedb.hibernate.dialect>
+                	<wisedb.jdbc.connection.driver_class>com.mysql.jdbc.Driver</wisedb.jdbc.connection.driver_class>
+                	<wisedb.jdbc.connection.url>jdbc:mysql://ip-on-remote-wisedb/wisdeb</wisedb.jdbc.connection.url>
+                	<wisedb.jdbc.connection.username>wisedb</wisedb.jdbc.connection.username>
+                	<wisedb.jdbc.connection.password>wisedbpassword</wisedb.jdbc.connection.password>
+                	<wisedb.jdbc.connection.pool_size>10</wisedb.jdbc.connection.pool_size>
             	</properties>
         	</profile>
 			<profile>
-			<id>inject-hibernate-details-wisedb-test</id>
+				<id>wisedb-on-local-host/id>
 				<properties>
-					<test.hibernate.dialect>org.hibernate.dialect.MySQLDialect</test.hibernate.dialect>
-					<test.jdbc.connection.driver_class>com.mysql.jdbc.Driver</test.jdbc.connection.driver_class>
-					<test.jdbc.connection.url>jdbc:mysql://localhost/wisedb</test.jdbc.connection.url>
-					<test.jdbc.connection.username>wisedb</test.jdbc.connection.username>
-					<test.jdbc.connection.password>wisedbpassword</test.jdbc.connection.password>
-					<test.jdbc.connection.pool_size>10</test.jdbc.connection.pool_size>
+					<local.wisedb.hibernate.dialect>org.hibernate.dialect.MySQLDialect</<local.wisedb.hibernate.dialect>
+					<local.wisedb.jdbc.connection.driver_class>com.mysql.jdbc.Driver</<local.wisedb.jdbc.connection.driver_class>
+					<local.wisedb.jdbc.connection.url>jdbc:mysql://localhost/wisedb</<local.wisedb.jdbc.connection.url>
+					<local.wisedb.jdbc.connection.username>wisedb</<local.wisedb.jdbc.connection.username>
+					<local.wisedb.jdbc.connection.password>wisedbpassword</<local.wisedb.jdbc.connection.password>
+					<local.wisedb.jdbc.connection.pool_size>10</<local.wisedb.jdbc.connection.pool_size>
 				</properties>
 			</profile>
 		</profiles>
 		<activeProfiles>
-			<activeProfile>inject-hibernate-details-wisedb</activeProfile>
-			<activeProfile>inject-hibernate-details-wisedb-test</activeProfile>
+			<activeProfile>wisedb-on-local-host</activeProfile>
+			<activeProfile>wisedb-on-remote-host</activeProfile>
 		</activeProfiles>
 		...
 	</settings>   
