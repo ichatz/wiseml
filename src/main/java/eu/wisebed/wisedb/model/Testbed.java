@@ -1,5 +1,10 @@
 package eu.wisebed.wisedb.model;
 
+import eu.wisebed.wiseml.model.setup.Setup;
+
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Represents a WSN testbed.
  */
@@ -49,6 +54,11 @@ public class Testbed {
      * If the testbed is federated.
      */
     private boolean federated;
+
+    /**
+     * Set of Setups belonging in Testbed
+     */
+    private Set<Setup> setups;
 
     /**
      * Get the Identity of the testbed.
@@ -204,6 +214,24 @@ public class Testbed {
      */
     public void setFederated(final boolean value) {
         federated = value;
+    }
+
+    /**
+     * Get the set of setups.
+     * @return
+     */
+    public Set<Setup> getSetups(){
+        if(setups == null)
+            setups = new HashSet<Setup>();
+        return setups;
+    }
+
+    /**
+     * Set the set of setups.
+     * @param setups
+     */
+    public void setSetups(final Set<Setup> setups){
+        this.setups = setups;
     }
 
 }

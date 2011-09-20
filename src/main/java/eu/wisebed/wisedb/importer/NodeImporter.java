@@ -44,6 +44,32 @@ public class NodeImporter extends AbstractImporter<Node> {
     }
 
     /**
+     * Update the WiseDB entries from the WiseML setup.
+     */
+    public void update() {
+        // retrieve setup record record from controllers InputStream
+        final WiseMLController cnt = new WiseMLController();
+        WiseML root = cnt.loadWiseMLFromFile(getWiseMlStream());
+        List<Node> nodeList = root.getSetup().getNodes();
+
+        // check for null entry
+        if(nodeList == null){
+            LOGGER.debug("Could not find list of nodes while parsing the WiseML setup entry.");
+            return;
+        }
+
+        // set as entities
+        setEntities(nodeList);
+        int count = 0;
+        // import records to db
+        for(Node node : nodeList) {
+            NodeController.getInstance().update(node);
+            LOGGER.debug("Node (" + node.getId() + ") update to db (" + nodeList.size() +")");
+        }
+        LOGGER.debug("Nodes update to DB (" + nodeList.size() + ").");
+    }
+
+    /**
      * Convert the WiseML Node entries collection to a WiseDB node records.
      * @param collection , collection of nodes
      */

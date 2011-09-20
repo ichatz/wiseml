@@ -2,6 +2,7 @@ package eu.wisebed.wisedb.importer;
 
 import eu.wisebed.wisedb.controller.CapabilityController;
 import eu.wisebed.wisedb.controller.SetupController;
+import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
 import eu.wisebed.wiseml.model.setup.Capability;
@@ -22,10 +23,32 @@ public class SetupImporter extends AbstractImporter<Setup> {
     private static final Logger LOGGER = Logger.getLogger(SetupImporter.class);
 
     /**
+     * the testbed this setup belongs to.
+     */
+    private Testbed testbed;
+
+    /**
      * Default constructor.
      */
     public SetupImporter() {
         // empty constructor.
+    }
+
+    /**
+     * Returns the testbed instance.
+     * @return ,the testbed instance.
+     */
+    public Testbed getTestbed(){
+        return testbed;
+    }
+
+    /**
+     * Sets the testbed instance and the endpoinurl to find the setup descriptions
+     * @param testbed, a testbed instance.
+     */
+    public void setTestbed(final Testbed testbed){
+        this.testbed = testbed;
+        setEndpointUrl(this.testbed.getSessionUrl());
     }
 
     /**
@@ -122,6 +145,10 @@ public class SetupImporter extends AbstractImporter<Setup> {
                     }
                 }
             }
+
+            // set the testbed setup relation
+            testbed.getSetups().add(setup);
+            setup.setTestbed(testbed);
 
             // import to db
             SetupController.getInstance().add(setup);

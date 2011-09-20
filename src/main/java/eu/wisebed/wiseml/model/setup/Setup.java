@@ -1,5 +1,7 @@
 package eu.wisebed.wiseml.model.setup;
 
+import eu.wisebed.wisedb.model.Testbed;
+
 import java.util.List;
 
 /**
@@ -54,6 +56,11 @@ public class Setup {
      * information about links.
      */
     private List<Link> link;
+
+    /**
+     * The testbed this setup belongs to.
+     */
+    private Testbed testbed;
 
 
     /**
@@ -218,4 +225,19 @@ public class Setup {
         this.defaults = defaults;
     }
 
+    /**
+     * Sets the testbed attribute.
+     * @param testbed
+     */
+    public void setTestbed(final Testbed testbed){
+        this.testbed = testbed;
+    }
+
+    /**
+     * Returns the testbed this setup belongs to.
+     * @return the testbed this setup belongs to.
+     */
+    public Testbed getTestbed(){
+        return testbed;
+    }
 }

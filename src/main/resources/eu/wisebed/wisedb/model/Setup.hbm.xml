@@ -43,5 +43,9 @@
             </many-to-many>
         </list>
 
+        <many-to-one name="testbed" class="eu.wisebed.wisedb.model.Testbed">
+            <column name="testbed_id" not-null="true"/>
+        </many-to-one>
+
     </class>
 </hibernate-mapping>
