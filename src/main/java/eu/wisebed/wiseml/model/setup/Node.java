@@ -1,6 +1,7 @@
 package eu.wisebed.wiseml.model.setup;
 
 import eu.wisebed.wisedb.model.NodeReading;
+import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.trace.Message;
 
 import java.util.List;
@@ -66,9 +67,9 @@ public class Node {
     private Set<NodeReading> readings;
 
     /**
-     * this node belongs to a collection of setups
+     * this node belongs to one testbed.
      */
-    private Set<Setup> setups;
+    private Testbed testbed;
 
     /**
      * this method returns the id of a node.
@@ -234,18 +235,18 @@ public class Node {
 
     /**
      * returns a collection of setups.
-     * @return
+     * @return testbed
      */
-    public Set<Setup> getSetups() {
-        return setups;
+    public Testbed getTestbed() {
+        return this.testbed;
     }
 
     /**
      * sets a collection of setups
-     * @param setups
+     * @param testbed
      */
-    public void setSetups(final Set<Setup> setups) {
-        this.setups = setups;
+    public void setTEstbed(final Testbed testbed) {
+        this.testbed = testbed;
     }
 
     /**

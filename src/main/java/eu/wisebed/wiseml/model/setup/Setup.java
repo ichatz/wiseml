@@ -13,11 +13,6 @@ import java.util.List;
 public class Setup {
 
     /**
-     * id of setup.
-     */
-    private int id;
-
-    /**
      * the origin of node.
      */
     private Origin origin;
@@ -56,30 +51,6 @@ public class Setup {
      * information about links.
      */
     private List<Link> link;
-
-    /**
-     * The testbed this setup belongs to.
-     */
-    private Testbed testbed;
-
-
-    /**
-     * this method returns the id of the setup.
-     *
-     * @return the id of the setup.
-     */
-    public int getId(){
-        return id;
-    }
-
-    /**
-     * this method sets the id of the setup.
-     *
-     * @param id
-     */
-    public void setId(final int id){
-        this.id = id;
-    }
 
     /**
      * this method returns a list of nodes.
@@ -223,21 +194,5 @@ public class Setup {
      */
     public void setDefaults(Defaults defaults) {
         this.defaults = defaults;
-    }
-
-    /**
-     * Sets the testbed attribute.
-     * @param testbed
-     */
-    public void setTestbed(final Testbed testbed){
-        this.testbed = testbed;
-    }
-
-    /**
-     * Returns the testbed this setup belongs to.
-     * @return the testbed this setup belongs to.
-     */
-    public Testbed getTestbed(){
-        return testbed;
     }
 }

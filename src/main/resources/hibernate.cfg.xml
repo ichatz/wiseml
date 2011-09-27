@@ -28,7 +28,6 @@
 
         <!-- Mapping files for read-only tables -->
         <mapping resource="eu/wisebed/wisedb/model/Testbed.hbm.xml"/>
-        <mapping resource="eu/wisebed/wisedb/model/Setup.hbm.xml"/>
         <mapping resource="eu/wisebed/wisedb/model/Node.hbm.xml"/>
         <mapping resource="eu/wisebed/wisedb/model/Capability.hbm.xml"/>
         <mapping resource="eu/wisebed/wisedb/model/Link.hbm.xml" />

@@ -19,12 +19,38 @@
         <property name="snaaUrl"/>
         <property name="rsUrl"/>
         <property name="sessionUrl"/>
+        <component name="setup" class="eu.wisebed.wiseml.model.setup.Setup">
+            <component name="origin" class="eu.wisebed.wiseml.model.setup.Origin">
+                <property name="x" column="position_x"/>
+                <property name="y" column="position_y"/>
+                <property name="z" column="position_z"/>
+                <property name="phi" column="position_phi"/>
+                <property name="theta" column="position_theta"/>
+            </component>
+            <component name="timeinfo" class="eu.wisebed.wiseml.model.setup.TimeInfo">
+                <property name="start" column="timeinfo_start"/>
+                <property name="end" column="timeinfo_end"/>
+                <property name="duration" column="timeinfo_duration"/>
+                <property name="unit" column="timeinfo_unit"/>
+            </component>
 
-        <set name="setups" table="testbed_setups" inverse="true" lazy="true">
-            <key column="testbed_id"/>
-            <one-to-many class="eu.wisebed.wiseml.model.setup.Setup"/>
-        </set>
+            <property name="description" type="text"/>
+            <property name="coordinateType"/>
 
+            <list name="nodes" table="testbed_nodes" cascade="save-update">
+                <key column="testbed_id" not-null="true"/>
+                <list-index column="node_index"/>
+                <many-to-many column="node_id" class="eu.wisebed.wiseml.model.setup.Node"/>
+            </list>
+
+            <list name="link" table="testbed_links" cascade="save-update">
+                <key column="testbed_id" not-null="true"/>
+                <list-index column="link_index"/>
+                <many-to-many class="eu.wisebed.wiseml.model.setup.Link">
+                    <column name="link_source" not-null="true"/>
+                    <column name="link_target" not-null="true"/>
+                </many-to-many>
+            </list>
+        </component>
     </class>
-
 </hibernate-mapping>

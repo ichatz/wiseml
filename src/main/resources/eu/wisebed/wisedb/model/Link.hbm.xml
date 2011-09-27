@@ -43,12 +43,12 @@
             <one-to-many class="eu.wisebed.wisedb.model.LinkReading"/>
         </set>
 
-        <set name="setups" table="setup_links" inverse="true" lazy="true">
+        <set name="setups" table="testbed_links" inverse="true" lazy="true">
             <key>
                 <column name="link_source" not-null="true"/>
                 <column name="link_target" not-null="true"/>
             </key>
-            <many-to-many column="setup_id" class="eu.wisebed.wiseml.model.setup.Setup"/>
+            <many-to-many column="testbed_id" class="eu.wisebed.wiseml.model.setup.Setup"/>
         </set>
 
     </class>
