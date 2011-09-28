@@ -1,0 +1,51 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="eu.wisebed.wiseml.model.setup.Setup" table="setup">
+
+        <id name="id" column="setup_id">
+            <generator class="native" />
+        </id>
+
+        <component name="origin" class="eu.wisebed.wiseml.model.setup.Origin">
+            <property name="x" column="position_x"/>
+            <property name="y" column="position_y"/>
+            <property name="z" column="position_z"/>
+            <property name="phi" column="position_phi"/>
+            <property name="theta" column="position_theta"/>
+        </component>
+        <component name="timeinfo" class="eu.wisebed.wiseml.model.setup.TimeInfo">
+            <property name="start" column="timeinfo_start"/>
+            <property name="end" column="timeinfo_end"/>
+            <property name="duration" column="timeinfo_duration"/>
+            <property name="unit" column="timeinfo_unit"/>
+        </component>
+
+        <property name="description" type="text"/>
+        <property name="coordinateType"/>
+
+
+        <list name="nodes" table="setup_nodes" cascade="save-update">
+            <key column="setup_id" not-null="true"/>
+            <list-index column="node_index"/>
+            <many-to-many column="node_id" class="eu.wisebed.wiseml.model.setup.Node" />
+        </list>
+
+        <list name="link" table="setup_links" cascade="save-update">
+            <key column="setup_id" not-null="true"/>
+            <list-index column="link_index"/>
+            <many-to-many class="eu.wisebed.wiseml.model.setup.Link">
+                <column name="link_source" not-null="true"/>
+                <column name="link_target" not-null="true"/>
+            </many-to-many>
+        </list>
+
+        <many-to-one name="testbed" class="eu.wisebed.wisedb.model.Testbed">
+            <column name="testbed_id" not-null="true"/>
+        </many-to-one>
+
+    </class>
+</hibernate-mapping>
