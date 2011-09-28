@@ -29,7 +29,7 @@ public class WiseDBUpdateSetupTestbed {
 
             // make relation
             setup.setTestbed(testbed);
-            testbed.getSetups().add(setup);
+            testbed.setSetup(setup);
 
             tx.commit();
         }catch (Exception e) {

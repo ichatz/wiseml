@@ -5,11 +5,11 @@
 <hibernate-configuration>
     <session-factory>
 
-        <property name="hibernate.dialect">${wisedb.hibernate.dialect}</property>
-        <property name="hibernate.connection.driver_class">${wisedb.jdbc.connection.driver_class}</property>
-        <property name="hibernate.connection.url">${wisedb.jdbc.connection.url}</property>
-        <property name="hibernate.connection.username">${wisedb.jdbc.connection.username}</property>
-        <property name="hibernate.connection.password">${wisedb.jdbc.connection.password}</property>
+        <property name="hibernate.dialect">${local.wisedb.hibernate.dialect}</property>
+        <property name="hibernate.connection.driver_class">${local.wisedb.jdbc.connection.driver_class}</property>
+        <property name="hibernate.connection.url">${local.wisedb.jdbc.connection.url}</property>
+        <property name="hibernate.connection.username">${local.wisedb.jdbc.connection.username}</property>
+        <property name="hibernate.connection.password">${local.wisedb.jdbc.connection.password}</property>
         <property name="hibernate.connection.pool_size">10</property>
         <property name="hibernate.connection.autoReconnect">true</property>
 

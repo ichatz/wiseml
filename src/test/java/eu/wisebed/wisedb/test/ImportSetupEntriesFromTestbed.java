@@ -34,7 +34,7 @@ public class ImportSetupEntriesFromTestbed {
             for(Testbed tb : testbedList){
 
                 // set the testbed of the setup to be imported
-                sImp.setTestbed(tb);
+                sImp.setEndpointUrl(tb.getSessionUrl());
 
                 // Connect to remote endpoint (url already passed in the importer)
                 sImp.connect();
@@ -46,7 +46,6 @@ public class ImportSetupEntriesFromTestbed {
         } catch (Exception e) {
             tx.rollback();
             LOGGER.fatal(e);
-            System.err.println(e.getMessage());
             System.exit(-1);
         }finally {
             // always close session

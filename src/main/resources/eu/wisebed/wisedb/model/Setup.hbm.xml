@@ -6,8 +6,11 @@
 
     <class name="eu.wisebed.wiseml.model.setup.Setup" table="setup">
 
-        <id name="id" column="setup_id">
-            <generator class="native" />
+        <id name="id"  type="integer">
+			<column name="setup_id" />
+			<generator class="foreign">
+				<param name="property">testbed</param>
+			</generator>
         </id>
 
         <component name="origin" class="eu.wisebed.wiseml.model.setup.Origin">
@@ -43,9 +46,7 @@
             </many-to-many>
         </list>
 
-        <many-to-one name="testbed" class="eu.wisebed.wisedb.model.Testbed">
-            <column name="testbed_id" not-null="true"/>
-        </many-to-one>
+        <one-to-one  name="testbed" class="eu.wisebed.wisedb.model.Testbed" constrained="true"/>
 
     </class>
 </hibernate-mapping>

@@ -1,8 +1,11 @@
 package eu.wisebed.wisedb.importer;
 
+import eu.wisebed.wisedb.controller.SetupController;
 import eu.wisebed.wisedb.controller.TestbedController;
 import eu.wisebed.wisedb.model.Testbed;
+import eu.wisebed.wiseml.model.setup.Setup;
 import org.apache.log4j.Logger;
+import org.apache.log4j.spi.LoggerRepository;
 
 import java.util.Collection;
 
@@ -56,6 +59,13 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
      */
     private String testbedSessionUrl;
 
+
+    /**
+     * Setup Importer
+     */
+    private SetupImporter sImp = new SetupImporter();
+
+
     /**
      * Default constructor.
      */
@@ -64,7 +74,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @return
      */
     public String getTestbedName() {
@@ -72,7 +81,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @param testbedName
      */
     public void setTestbedName(String testbedName) {
@@ -80,7 +88,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @return
      */
     public String getTestbedUrnPrefix() {
@@ -88,7 +95,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @param testbedUrnPrefix
      */
     public void setTestbedUrnPrefix(String testbedUrnPrefix) {
@@ -96,7 +102,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @return
      */
     public String getTestbedUrl() {
@@ -104,7 +109,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @param testbedUrl
      */
     public void setTestbedUrl(final String testbedUrl) {
@@ -112,7 +116,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @return
      */
     public String getTestbedDescription() {
@@ -120,7 +123,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @param testbedDescription
      */
     public void setTestbedDescription(final String testbedDescription) {
@@ -128,7 +130,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @return
      */
     public boolean isTestbedFederated() {
@@ -136,7 +137,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @param testbedFederated
      */
     public void setTestbedFederated(boolean testbedFederated) {
@@ -144,7 +144,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @return
      */
     public String getTestbedSnaaUrl() {
@@ -152,7 +151,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @param testbedSnaaUrl
      */
     public void setTestbedSnaaUrl(String testbedSnaaUrl) {
@@ -160,7 +158,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @return
      */
     public String getTestbedRsUrl() {
@@ -168,7 +165,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @param testbedRsUrl
      */
     public void setTestbedRsUrl(String testbedRsUrl) {
@@ -176,7 +172,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @return
      */
     public String getTestbedSessionUrl() {
@@ -184,20 +179,19 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @param testbedSessionUrl
      */
     public void setTestbedSessionUrl(String testbedSessionUrl) {
         this.testbedSessionUrl = testbedSessionUrl;
     }
 
-    /**
-     * Convert the WiseML document describing the records of the testbed into wisedb records.
+    /*/
+     *
      */
-    public void convert() {
+    public void convert(){
+        Testbed testbed = new Testbed();
 
         // Setting up the testbed entity
-        Testbed testbed = new Testbed();
         testbed.setName(getTestbedName());
         testbed.setUrnPrefix(getTestbedUrl());
         testbed.setUrl(getTestbedUrl());
@@ -207,30 +201,81 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
         testbed.setSnaaUrl(getTestbedSnaaUrl());
         testbed.setSessionUrl(getTestbedSessionUrl());
 
-        // set this as it's entity
-        setEntity(testbed);
+        convert(testbed);
+    }
 
+    /**
+     * Convert the WiseML document describing the records of the testbed into wisedb records.
+     */
+    public void convert(final Testbed testbed) {
+        // Connect to remote endpoint (url already passed in the importer)
+        try {
+            // set endpoint url
+            sImp.setEndpointUrl(testbed.getSessionUrl());
+            LOGGER.debug(testbed.getSessionUrl());
+            // connect
+            sImp.connect();
+            // import by the convert method
+            sImp.convert();
+            // set relation
+            sImp.getEntity().setTestbed(testbed);
+            testbed.setSetup(sImp.getEntity());
+            LOGGER.debug("Setup Imported");
+        } catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.fatal("Could not import setup");
+
+        }
         // persisting testbed
         TestbedController.getInstance().add(testbed);
         LOGGER.debug("Testbed imported to DB (1)");
     }
 
+    /**
+     * Update the testbed entries or it's setup
+     */
+    public void update(final Testbed testbed) {
+        // Connect to remote endpoint (url already passed in the importer)
+        try {
+            // set endpoint url
+            sImp.setEndpointUrl(testbed.getSessionUrl());
+            LOGGER.debug(testbed.getSessionUrl());
+            // connect
+            sImp.connect();
+            // import by the convert method
+            sImp.update(testbed.getSetup());
+
+            // set relation
+            testbed.setSetup(sImp.getEntity());
+            testbed.getSetup().setTestbed(testbed);
+            SetupController.getInstance().update(testbed.getSetup());
+
+            LOGGER.debug("Setup Updated");
+        } catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.fatal("Could not update setup");
+
+        }
+        // persisting testbed
+        TestbedController.getInstance().update(testbed);
+        LOGGER.debug("Testbed updated to DB");
+    }
 
     /**
      * Convert the WiseML document describing the records of the testbed into wisedb records.
      *
-     * @param name , Name of testbed.
-     * @param urnPrefix , URN prefix of testbed.
-     * @param url , URL of testbed.
+     * @param name        , Name of testbed.
+     * @param urnPrefix   , URN prefix of testbed.
+     * @param url         , URL of testbed.
      * @param description , Description of testbed.
-     * @param federated , Federated testbed (true/false)
-     * @param rsUrl , RS service endpoint url.
-     * @param snaaUrl , SNAA service endpoint url.
-     * @param sessionUrl , Session service endpoint url.
+     * @param federated   , Federated testbed (true/false)
+     * @param rsUrl       , RS service endpoint url.
+     * @param snaaUrl     , SNAA service endpoint url.
+     * @param sessionUrl  , Session service endpoint url.
      */
-    public void convert(final String name,final String urnPrefix, final String url,
-                        final String description,final boolean federated,
-                        final String rsUrl, final String snaaUrl, final String sessionUrl){
+    public void convert(final String name, final String urnPrefix, final String url,
+                        final String description, final boolean federated,
+                        final String rsUrl, final String snaaUrl, final String sessionUrl) {
 
         // use setter to pass those params
         setTestbedName(name);
@@ -246,20 +291,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
         convert();
     }
 
-    /**
-     * Convert the WiseML Testbed entries collection to a WiseDB testbed records.
-     *
-     * @param collection , collection of testbed
-     */
-    public void convertCollection(final Collection<Testbed> collection) {
-
-        // set entity collection
-        setEntities(collection);
-
-        // import records to db
-        for(Testbed testbed : getEntities()) {
-            TestbedController.getInstance().add(testbed);
-        }
-        LOGGER.debug("Testbeds imported to DB(" + collection.size() +").");
-    }
+        @Override
+    public void convertCollection(Collection<Testbed> records) {}
 }
