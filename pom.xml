@@ -118,13 +118,13 @@
         </repository>
 
         <repository>
-        <id>repo-jena</id>
-        <name>Jena Maven - Repository</name>
-        <layout>default</layout>
-        <url>http://openjena.org/repo</url>
-        <snapshots>
-        <enabled>false</enabled>
-        </snapshots>
+            <id>repo-jena</id>
+            <name>Jena Maven - Repository</name>
+            <layout>default</layout>
+            <url>http://openjena.org/repo</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
 
     </repositories>
@@ -154,9 +154,6 @@
             <artifactId>jena</artifactId>
             <version>2.5.5</version>
         </dependency>
-
-
-
 
 
         <!-- database related dependencies -->
@@ -350,18 +347,12 @@
     </build>
 
     <distributionManagement>
-
+        <!-- use the following if you're not using a snapshot version. -->
         <repository>
-            <id>itm-maven-repository-releases</id>
-            <name>ITM UzL Maven releases repository</name>
-            <url>scpexe://itm01.itm.uni-luebeck.de/www/itm/projects/maven/releases</url>
+            <id>repository.ru1</id>
+            <name>Ru1 Repo</name>
+            <url>scp://ru1.cti.gr/srv/maven</url>
         </repository>
-
-        <snapshotRepository>
-            <id>itm-maven-repository-snapshots</id>
-            <name>ITM UzL Maven snapshots repository</name>
-            <url>scpexe://itm01.itm.uni-luebeck.de/www/itm/projects/maven/snapshots</url>
-        </snapshotRepository>
 
     </distributionManagement>
 
