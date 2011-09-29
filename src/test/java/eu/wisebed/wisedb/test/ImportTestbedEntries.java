@@ -26,7 +26,6 @@ public class ImportTestbedEntries {
             // Constructe a TestbedImporter
             final TestbedImporter tImp = new TestbedImporter();
 
-
             // must set attributes before importing to db
             tImp.setTestbedName("CTI main testbed");
             tImp.setTestbedUrnPrefix("urn:wisebed:ctitestbed:");

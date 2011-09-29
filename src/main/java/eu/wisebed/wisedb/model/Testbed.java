@@ -56,9 +56,9 @@ public class Testbed {
     private boolean federated;
 
     /**
-     * Setup of the testbed
+     * Set of Setups belonging in Testbed
      */
-    private Setup setup;
+    private Set<Setup> setups;
 
     /**
      * Get the Identity of the testbed.
@@ -220,16 +220,18 @@ public class Testbed {
      * Get the set of setups.
      * @return
      */
-    public Setup getSetup(){
-        return setup;
+    public Set<Setup> getSetups(){
+        if(setups == null)
+            setups = new HashSet<Setup>();
+        return setups;
     }
 
     /**
      * Set the set of setups.
-     * @param setup
+     * @param setups
      */
-    public void setSetup(final Setup setup){
-        this.setup = setup;
+    public void setSetups(final Set<Setup> setups){
+        this.setups = setups;
     }
 
 }
