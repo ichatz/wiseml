@@ -87,7 +87,7 @@ public class LinkController extends AbstractController<Link> {
      */
     public List<Link> listTestbedNodes(final Testbed testbed){
         final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
-
+        // TODO FIXME
         // get testbed only setup
         Set<Setup> setups = testbed.getSetups();
 

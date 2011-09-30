@@ -24,10 +24,10 @@
         <list name="capabilities" table="node_capabilities" cascade="save-update" lazy="true">
             <key column="node_id" not-null="true"/>
             <list-index column="capability_index"/>
-            <many-to-many column="capability_id" class="eu.wisebed.wiseml.model.setup.Capability" order-by="lower(name) asc"/>
+            <many-to-many column="capability_id" class="eu.wisebed.wiseml.model.setup.Capability" order-by="lower(capability_id) asc"/>
         </list>
 
-        <set name="readings" table="node_readings" inverse="true" lazy="true" order-by="timestamp asc">
+        <set name="readings" table="node_readings" inverse="true" lazy="true" order-by="timestamp">
             <key column="node_id" not-null="true"/>
             <one-to-many class="eu.wisebed.wisedb.model.NodeReading"/>
         </set>

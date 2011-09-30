@@ -92,7 +92,7 @@ public class NodeController extends AbstractController<Node> {
      */
     public List<Node> listTestbedNodes(final Testbed testbed){
         final Session session = getSessionFactory().getCurrentSession();
-
+        // TODO FIXME
         // get testbed only setup
         Set<Setup> setups = testbed.getSetups();
 

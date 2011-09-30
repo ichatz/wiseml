@@ -31,13 +31,13 @@
         <list name="nodes" table="setup_nodes" cascade="save-update">
             <key column="setup_id" not-null="true"/>
             <list-index column="node_index"/>
-            <many-to-many column="node_id" class="eu.wisebed.wiseml.model.setup.Node" order-by="lower(id) asc"/>
+            <many-to-many column="node_id" class="eu.wisebed.wiseml.model.setup.Node" order-by="lower(node_id) asc"/>
         </list>
 
         <list name="link" table="setup_links" cascade="save-update">
             <key column="setup_id" not-null="true"/>
             <list-index column="link_index"/>
-            <many-to-many class="eu.wisebed.wiseml.model.setup.Link" order-by="lower(source) asc">
+            <many-to-many class="eu.wisebed.wiseml.model.setup.Link" order-by="lower(link_source) asc">
                 <column name="link_source" not-null="true"/>
                 <column name="link_target" not-null="true"/>
             </many-to-many>
