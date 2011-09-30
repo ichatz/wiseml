@@ -1,8 +1,16 @@
 package eu.wisebed.wisedb.controller;
 
+import eu.wisebed.wisedb.importer.SetupImporter;
+import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Node;
+import eu.wisebed.wiseml.model.setup.Setup;
+import org.hibernate.Criteria;
+import org.hibernate.classic.Session;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -75,6 +83,25 @@ public class NodeController extends AbstractController<Node> {
      */
     public List<Node> list() {
         return super.list(new Node());
+    }
+
+    /**
+     * Listing all the Nodes belonging to a testbed.
+     * @param testbed
+     * @return  a list of all the entries that much the criterias
+     */
+    public List<Node> listTestbedNodes(final Testbed testbed){
+        final Session session = getSessionFactory().getCurrentSession();
+
+        // get testbed only setup
+        Set<Setup> setups = testbed.getSetups();
+
+        Criteria criteria;
+        criteria = session.createCriteria(Node.class);
+        criteria.add(Restrictions.eq("setups",setups));
+        criteria.addOrder(Order.asc("id"));
+        return (List<Node>) criteria.list();
+
     }
 
 }

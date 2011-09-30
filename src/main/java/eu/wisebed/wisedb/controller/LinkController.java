@@ -1,9 +1,15 @@
 package eu.wisebed.wisedb.controller;
 
+import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Link;
+import eu.wisebed.wiseml.model.setup.Setup;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
+import java.util.Set;
 
 public class LinkController extends AbstractController<Link> {
     /**
@@ -72,5 +78,24 @@ public class LinkController extends AbstractController<Link> {
         linkWithId.setSource(sourceId);
         linkWithId.setTarget(targetId);
         session.delete(linkWithId);
+    }
+
+        /**
+     * Listing all the Nodes belonging to a testbed.
+     * @param testbed
+     * @return  a list of all the entries that much the criterias
+     */
+    public List<Link> listTestbedNodes(final Testbed testbed){
+        final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
+
+        // get testbed only setup
+        Set<Setup> setups = testbed.getSetups();
+
+        Criteria criteria;
+        criteria = session.createCriteria(Link.class);
+        criteria.add(Restrictions.eq("setups", setups));
+        criteria.addOrder(Order.asc("source"));
+        return (List<Link>) criteria.list();
+
     }
 }
