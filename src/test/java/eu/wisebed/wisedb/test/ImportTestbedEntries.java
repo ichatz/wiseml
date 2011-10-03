@@ -36,6 +36,7 @@ public class ImportTestbedEntries {
             tImp.setTestbedRsUrl("http://hercules.cti.gr:8888/rs");
             tImp.setTestbedSnaaUrl("http://hercules.cti.gr:8890/snaa/shib1");
             tImp.setTestbedSessionUrl("http://hercules.cti.gr:8888/sessions");
+            tImp.setTestbedUrnPrefix("urn:wisebed:ctitestbed:");
 
             // import to db
             tImp.convert();
