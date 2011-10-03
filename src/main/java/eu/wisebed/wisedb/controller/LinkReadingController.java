@@ -111,7 +111,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             // if link not found in db make it and store it
             link = new Link();
             link.setSource(sourceId);
-            link.setTarget(sourceId);
+            link.setTarget(targetId);
             link.setEncrypted(false); // todo provide those ?
             link.setVirtual(false);
             Rssi rssi = new Rssi();
@@ -119,6 +119,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             rssi.setUnit("unit");
             rssi.setValue("0.0");
             link.setRssi(rssi);
+            source.getSetup().getLink().add(link);
             link.setSetup(source.getSetup());
 
             // store it
