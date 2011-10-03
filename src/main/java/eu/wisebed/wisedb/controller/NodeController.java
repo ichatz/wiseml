@@ -94,11 +94,11 @@ public class NodeController extends AbstractController<Node> {
         final Session session = getSessionFactory().getCurrentSession();
         // TODO FIXME
         // get testbed only setup
-        Set<Setup> setups = testbed.getSetups();
+        Setup setup = testbed.getSetup();
 
         Criteria criteria;
         criteria = session.createCriteria(Node.class);
-        criteria.add(Restrictions.eq("setups",setups));
+        criteria.add(Restrictions.eq("setup",setup));
         criteria.addOrder(Order.asc("id"));
         return (List<Node>) criteria.list();
 

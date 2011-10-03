@@ -58,7 +58,7 @@ public class Testbed {
     /**
      * Set of Setups belonging in Testbed
      */
-    private Set<Setup> setups;
+    private Setup setup;
 
     /**
      * Get the Identity of the testbed.
@@ -220,18 +220,16 @@ public class Testbed {
      * Get the set of setups.
      * @return
      */
-    public Set<Setup> getSetups(){
-        if(setups == null)
-            setups = new HashSet<Setup>();
-        return setups;
+    public Setup getSetup(){
+        return setup;
     }
 
     /**
      * Set the set of setups.
-     * @param setups
+     * @param setup
      */
-    public void setSetups(final Set<Setup> setups){
-        this.setups = setups;
+    public void setSetup(final Setup setup){
+        this.setup = setup;
     }
 
 }

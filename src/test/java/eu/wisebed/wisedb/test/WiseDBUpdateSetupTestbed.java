@@ -4,6 +4,7 @@ package eu.wisebed.wisedb.test;
 import eu.wisebed.wisedb.HibernateUtil;
 import eu.wisebed.wisedb.controller.SetupController;
 import eu.wisebed.wisedb.controller.TestbedController;
+import eu.wisebed.wisedb.importer.SetupImporter;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Setup;
 import org.apache.log4j.Logger;
@@ -27,9 +28,12 @@ public class WiseDBUpdateSetupTestbed {
             List<Testbed> testbeds = TestbedController.getInstance().list();
             Testbed testbed = testbeds.get(0);
 
+            // set nodes and links
+            SetupImporter.setNodeLinkSetup(setup);
+
             // make relation
             setup.setTestbed(testbed);
-            testbed.getSetups().add(setup);
+            testbed.setSetup(setup);
 
             tx.commit();
         }catch (Exception e) {

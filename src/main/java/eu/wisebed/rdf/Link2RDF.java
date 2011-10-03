@@ -22,7 +22,7 @@ public class Link2RDF extends Link {
         this.setEncrypted(item.isEncrypted());
         this.setReadings(item.getReadings());
         this.setRssi(item.getRssi());
-        this.setSetups(item.getSetups());
+        this.setSetup(item.getSetup());
         this.setSource(item.getSource());
         this.setTarget(item.getTarget());
         this.setVirtual(item.isVirtual());

@@ -20,11 +20,6 @@
         <property name="rsUrl"/>
         <property name="sessionUrl"/>
 
-        <set name="setups" table="testbed_setups" inverse="true" lazy="true">
-            <key column="testbed_id"/>
-            <one-to-many class="eu.wisebed.wiseml.model.setup.Setup"/>
-        </set>
-
+        <one-to-one name="setup" class="eu.wisebed.wiseml.model.setup.Setup" cascade="save-update"/>
     </class>
-
 </hibernate-mapping>

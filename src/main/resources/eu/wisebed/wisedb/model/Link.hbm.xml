@@ -43,13 +43,16 @@
             <one-to-many class="eu.wisebed.wisedb.model.LinkReading"/>
         </set>
 
-        <set name="setups" table="setup_links" inverse="true" lazy="true">
-            <key>
-                <column name="link_source" not-null="true"/>
-                <column name="link_target" not-null="true"/>
-            </key>
-            <many-to-many column="setup_id" class="eu.wisebed.wiseml.model.setup.Setup"/>
-        </set>
+        <many-to-one name="setup" class="eu.wisebed.wiseml.model.setup.Setup"/>
+
+
+        <!--<set name="setups" table="setup_links" inverse="true" lazy="true">-->
+            <!--<key>-->
+                <!--<column name="link_source" not-null="true"/>-->
+                <!--<column name="link_target" not-null="true"/>-->
+            <!--</key>-->
+            <!--<many-to-many column="setup_id" class="eu.wisebed.wiseml.model.setup.Setup"/>-->
+        <!--</set>-->
 
     </class>
 </hibernate-mapping>

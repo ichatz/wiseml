@@ -68,7 +68,7 @@ public class Node {
     /**
      * this node belongs to a collection of setups
      */
-    private Set<Setup> setups;
+    private Setup setup;
 
     /**
      * this method returns the id of a node.
@@ -236,16 +236,16 @@ public class Node {
      * returns a collection of setups.
      * @return
      */
-    public Set<Setup> getSetups() {
-        return setups;
+    public Setup getSetup() {
+        return setup;
     }
 
     /**
      * sets a collection of setups
-     * @param setups
+     * @param setup
      */
-    public void setSetups(final Set<Setup> setups) {
-        this.setups = setups;
+    public void setSetup(final Setup setup) {
+        this.setup = setup;
     }
 
     /**

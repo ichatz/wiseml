@@ -32,7 +32,7 @@ public class Node2RDF extends Node {
         this.setPosition(nd.getPosition());
         this.setProgramDetails(nd.getProgramDetails());
         this.setReadings(nd.getReadings());
-        this.setSetups(nd.getSetups());
+        this.setSetup(nd.getSetup());
     }
 
     public Resource exportRDF(Model theModel, String uri, Setup theSetupOfNodes) {

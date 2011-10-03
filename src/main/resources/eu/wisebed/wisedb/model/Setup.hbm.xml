@@ -6,9 +6,15 @@
 
     <class name="eu.wisebed.wiseml.model.setup.Setup" table="setup">
 
-        <id name="id" column="setup_id">
-            <generator class="native" />
-        </id>
+        <id name="id" type="java.lang.Integer">
+			<column name="setup_id" />
+			<generator class="foreign">
+				<param name="property">testbed</param>
+			</generator>
+		</id>
+
+        <one-to-one name="testbed" class="eu.wisebed.wisedb.model.Testbed"
+			constrained="true"></one-to-one>
 
         <component name="origin" class="eu.wisebed.wiseml.model.setup.Origin">
             <property name="x" column="position_x"/>
@@ -28,24 +34,17 @@
         <property name="coordinateType"/>
 
 
-        <list name="nodes" table="setup_nodes" cascade="save-update">
+        <list name="nodes" table="nodes" cascade="save-update">
             <key column="setup_id" not-null="true"/>
             <list-index column="node_index"/>
-            <many-to-many column="node_id" class="eu.wisebed.wiseml.model.setup.Node" order-by="lower(node_id) asc"/>
+            <one-to-many class="eu.wisebed.wiseml.model.setup.Node"/>
         </list>
 
-        <list name="link" table="setup_links" cascade="save-update">
+        <list name="link" table="links" cascade="save-update">
             <key column="setup_id" not-null="true"/>
             <list-index column="link_index"/>
-            <many-to-many class="eu.wisebed.wiseml.model.setup.Link" order-by="lower(link_source) asc">
-                <column name="link_source" not-null="true"/>
-                <column name="link_target" not-null="true"/>
-            </many-to-many>
+            <one-to-many class="eu.wisebed.wiseml.model.setup.Link"/>
         </list>
-
-        <many-to-one name="testbed" class="eu.wisebed.wisedb.model.Testbed">
-            <column name="testbed_id" not-null="true"/>
-        </many-to-one>
 
     </class>
 </hibernate-mapping>
