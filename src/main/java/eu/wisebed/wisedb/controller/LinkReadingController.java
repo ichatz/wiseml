@@ -119,6 +119,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             rssi.setUnit("unit");
             rssi.setValue("0.0");
             link.setRssi(rssi);
+            link.setSetup(source.getSetup());
 
             // store it
             LinkController.getInstance().add(link);

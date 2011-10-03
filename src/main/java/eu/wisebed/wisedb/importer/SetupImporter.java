@@ -1,6 +1,7 @@
 package eu.wisebed.wisedb.importer;
 
 import eu.wisebed.wisedb.controller.SetupController;
+import eu.wisebed.wisedb.controller.TestbedController;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
@@ -112,7 +113,9 @@ public class SetupImporter extends AbstractImporter<Setup> {
             setup.setTestbed(testbed);
 
             // import to db
+            TestbedController.getInstance().update(testbed);
             SetupController.getInstance().add(setup);
+            LOGGER.debug("Testbed updated");
         }
         LOGGER.debug("Setups imported to DB (" + collection.size() + ").");
     }

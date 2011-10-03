@@ -66,7 +66,7 @@ public class Node {
     private Set<NodeReading> readings;
 
     /**
-     * this node belongs to a collection of setups
+     * this node belongs to a setup.
      */
     private Setup setup;
 
@@ -233,7 +233,7 @@ public class Node {
     }
 
     /**
-     * returns a collection of setups.
+     * returns the setup this node belongs to.
      * @return
      */
     public Setup getSetup() {
@@ -241,7 +241,7 @@ public class Node {
     }
 
     /**
-     * sets a collection of setups
+     * sets the setup this node belongs to.
      * @param setup
      */
     public void setSetup(final Setup setup) {

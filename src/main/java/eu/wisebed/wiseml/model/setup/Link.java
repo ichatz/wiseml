@@ -54,7 +54,7 @@ public class Link implements Serializable{
     private List<Data> data;
 
     /**
-     * this link belongs to a collection of setups.
+     * this link belongs to a setup.
      */
     private Setup setup;
 
@@ -183,7 +183,7 @@ public class Link implements Serializable{
     }
 
     /**
-     * sets a collection of setups
+     * sets the setup this link belongs to setups.
      * @param setup
      */
     public void setSetup(final Setup setup) {
