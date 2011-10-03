@@ -34,17 +34,15 @@
         <property name="coordinateType"/>
 
 
-        <list name="nodes" table="nodes" cascade="save-update">
+        <bag name="nodes" table="nodes" cascade="save-update" order-by="lower(node_id) asc">
             <key column="setup_id" not-null="true"/>
-            <list-index column="node_index"/>
             <one-to-many class="eu.wisebed.wiseml.model.setup.Node"/>
-        </list>
+        </bag>
 
-        <list name="link" table="links" cascade="save-update">
+        <bag name="link" table="links" cascade="save-update" order-by="lower(link_source) asc">
             <key column="setup_id" not-null="true"/>
-            <list-index column="link_index"/>
             <one-to-many class="eu.wisebed.wiseml.model.setup.Link"/>
-        </list>
+        </bag>
 
     </class>
 </hibernate-mapping>

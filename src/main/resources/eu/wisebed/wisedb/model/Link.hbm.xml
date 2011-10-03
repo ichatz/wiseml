@@ -32,7 +32,7 @@
                 <column name="link_target" not-null="true"/>
             </key>
             <list-index column="capability_index"/>
-            <many-to-many column="capability_id" class="eu.wisebed.wiseml.model.setup.Capability" order-by="lower(capability_id) asc"/>
+            <many-to-many column="capability_id" class="eu.wisebed.wiseml.model.setup.Capability"/>
         </list>
 
         <set name="readings" table="link_readings" inverse="true" lazy="true" order-by="timestamp asc">

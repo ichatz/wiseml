@@ -87,13 +87,12 @@ public class LinkController extends AbstractController<Link> {
      */
     public List<Link> listTestbedNodes(final Testbed testbed){
         final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
-        // TODO FIXME
         // get testbed only setup
         Setup setup = testbed.getSetup();
 
         Criteria criteria;
         criteria = session.createCriteria(Link.class);
-        criteria.add(Restrictions.eq("setups", setup));
+        criteria.add(Restrictions.eq("setup", setup));
         criteria.addOrder(Order.asc("source"));
         return (List<Link>) criteria.list();
 
