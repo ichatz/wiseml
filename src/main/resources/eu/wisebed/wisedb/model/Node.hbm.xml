@@ -21,13 +21,13 @@
         <property name="gateway" type="string"/>
         <property name="programDetails"/>
 
-        <list name="capabilities" table="node_capabilities" cascade="save-update" lazy="true">
+        <list name="capabilities" table="node_capabilities" inverse="true" cascade="save-update" lazy="true">
             <key column="node_id" not-null="true"/>
             <list-index column="capability_index"/>
             <many-to-many column="capability_id" class="eu.wisebed.wiseml.model.setup.Capability"/>
         </list>
 
-        <set name="readings" table="node_readings" inverse="true" lazy="true" order-by="timestamp">
+        <set name="readings" table="node_readings" lazy="true" order-by="timestamp">
             <key column="node_id" not-null="true"/>
             <one-to-many class="eu.wisebed.wisedb.model.NodeReading"/>
         </set>

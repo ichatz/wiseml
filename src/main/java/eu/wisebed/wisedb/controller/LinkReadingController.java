@@ -138,19 +138,22 @@ public class LinkReadingController extends AbstractController<LinkReading> {
 
             CapabilityController.getInstance().add(capability);
         }
-
-        // associate capability with link . Store association with a link update
-        if(link.getCapabilities() == null){
-            link.setCapabilities(new ArrayList<Capability>());
-        }
-        if(!link.getCapabilities().contains(capability)){
-            link.getCapabilities().add(capability);
-        }
-        if(capability.getLinks() == null){
-            capability.setLinks(new HashSet<Link>());
-        }
-        capability.getLinks().add(link);
-        LinkController.getInstance().update(link);
+// TODO check these stuff
+//        // associate capability with link . Store association with a link update
+//        if(link.getCapabilities() == null){
+//            link.setCapabilities(new ArrayList<Capability>());
+//        }
+//        if(!link.getCapabilities().contains(capability)){
+//            link.getCapabilities().add(capability);
+//        }
+//        LinkController.getInstance().update(link);
+//
+//        if(capability.getLinks() == null){
+//            capability.setLinks(new HashSet<Link>());
+//        }
+//        if(!capability.getLinks().contains(link)){
+//            capability.getLinks().add(link);
+//        }
 
         // make a new node reading entity
         LinkReading reading = new LinkReading();
@@ -159,14 +162,20 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         reading.setReading(readingValue);
         reading.setRssiValue(rssiValue);
         reading.setTimestamp(timestamp);
-        if(link.getReadings() == null){
-            link.setReadings(new HashSet<LinkReading>());
-        }
-        link.getReadings().add(reading);
-        if(capability.getLinkReadings() == null){
-            capability.setLinkReadings(new HashSet<LinkReading>());
-        }
-        capability.getLinkReadings().add(reading);
-        add(reading);
+
+// TODO check these stuff
+//        // associate reading with link
+//        if(link.getReadings() == null){
+//            link.setReadings(new HashSet<LinkReading>());
+//        }
+//        link.getReadings().add(reading);
+//
+//        // associate reading with capability
+//        if(capability.getLinkReadings() == null){
+//            capability.setLinkReadings(new HashSet<LinkReading>());
+//        }
+//        capability.getLinkReadings().add(reading);
+
+        LinkReadingController.getInstance().add(reading);
     }
 }

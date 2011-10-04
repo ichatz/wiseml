@@ -26,12 +26,12 @@
             </many-to-many>
         </set>
 
-        <set name="nodeReadings" table="node_readings" inverse="true" lazy="true">
+        <set name="nodeReadings" table="node_readings" lazy="true">
             <key column="capability_id" not-null="true"/>
             <one-to-many class="eu.wisebed.wisedb.model.NodeReading"/>
         </set>
 
-        <set name="linkReadings" table="link_readings" inverse="true" lazy="true">
+        <set name="linkReadings" table="link_readings" lazy="true">
             <key column="capability_id" not-null="true"/>
             <one-to-many class="eu.wisebed.wisedb.model.LinkReading"/>
         </set>
