@@ -97,13 +97,14 @@ public class NodeReadingController extends AbstractController<NodeReading> {
             node.setReadings(new HashSet<NodeReading>());
         }
         node.getReadings().add(reading);
+
         if (capability.getNodeReadings() == null) {
             capability.setNodeReadings(new HashSet<NodeReading>());
         }
         capability.getNodeReadings().add(reading);
 
         // persist node
-        NodeReadingController.getInstance().add(reading);
+        add(reading);
     }
 
     /**

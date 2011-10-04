@@ -167,6 +167,6 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             capability.setLinkReadings(new HashSet<LinkReading>());
         }
         capability.getLinkReadings().add(reading);
-        LinkReadingController.getInstance().add(reading);
+        add(reading);
     }
 }

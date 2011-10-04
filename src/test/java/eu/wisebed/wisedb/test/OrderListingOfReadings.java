@@ -22,23 +22,20 @@ public class OrderListingOfReadings {
         HibernateUtil.connectEntityManagers();
         Transaction trans = HibernateUtil.getInstance().getSession().beginTransaction();
 
-        for (int i = 0; i < 2; i++) {
-            // get first node
-            Node thisNode = NodeController.getInstance().list().get(i);
+        // get first node
+        Node thisNode = NodeController.getInstance().list().iterator().next();
 
-            // get nodes capability
-            for (Capability thisCap : thisNode.getCapabilities()) {
-                LOGGER.debug("Node : " + thisNode.getId() +" Capability : " + thisCap.getName());
-                // get node reading controller
-                NodeReadingController nrc = NodeReadingController.getInstance();
+        // get nodes capability
+        for (Capability thisCap : thisNode.getCapabilities()) {
+            LOGGER.debug("Node : " + thisNode.getId() + " Capability : " + thisCap.getName());
+            // get node reading controller
+            NodeReadingController nrc = NodeReadingController.getInstance();
 
-                List<NodeReading> myReadings = nrc.listReadings(thisNode, thisCap);
-                for (NodeReading myReading : myReadings) {
-                    LOGGER.debug("\t" + myReading.getTimestamp() + "\t" + myReading.getReading());
-                }
+            List<NodeReading> myReadings = nrc.listReadings(thisNode, thisCap);
+            for (NodeReading myReading : myReadings) {
+                LOGGER.debug("\t" + myReading.getTimestamp() + "\t" + myReading.getReading());
             }
         }
-        trans.rollback();
     }
 
 }

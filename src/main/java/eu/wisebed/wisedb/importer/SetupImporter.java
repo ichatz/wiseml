@@ -112,12 +112,14 @@ public class SetupImporter extends AbstractImporter<Setup> {
             testbed.setSetup(setup);
             setup.setTestbed(testbed);
 
-            // import to db
+            // update testbed db
             TestbedController.getInstance().update(testbed);
-            SetupController.getInstance().add(setup);
             LOGGER.debug("Testbed updated");
+
+            // import setup
+            SetupController.getInstance().add(setup);
+            LOGGER.debug("Setup imported to DB.");
         }
-        LOGGER.debug("Setups imported to DB (" + collection.size() + ").");
     }
 
     public static void setNodeLinkSetup(final Setup setup) {
@@ -135,6 +137,8 @@ public class SetupImporter extends AbstractImporter<Setup> {
 
         // define set of all setup's capabilities with no duplicate entries
         Set<Capability> capabilities = new HashSet<Capability>();
+
+        // get nodes and scan their capabilities
         List<Node> nodes = setup.getNodes();
         if (nodes != null && !nodes.isEmpty()) {
             for (Node node : nodes) {
@@ -143,6 +147,8 @@ public class SetupImporter extends AbstractImporter<Setup> {
                 }
             }
         }
+
+        // get links and scan their capabilities
         List<Link> links = setup.getLink();
         if (links != null && !links.isEmpty()) {
             for (Link link : links) {
