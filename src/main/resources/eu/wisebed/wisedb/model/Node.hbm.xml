@@ -27,12 +27,12 @@
             <many-to-many column="capability_id" class="eu.wisebed.wiseml.model.setup.Capability"/>
         </list>
 
-        <set name="readings" table="node_readings" lazy="true" order-by="timestamp">
+        <set name="readings" table="node_readings" inverse="true" lazy="true" order-by="timestamp">
             <key column="node_id" not-null="true"/>
             <one-to-many class="eu.wisebed.wisedb.model.NodeReading"/>
         </set>
 
-        <many-to-one name="setup" class="eu.wisebed.wiseml.model.setup.Setup" not-null="true"/>
+        <many-to-one name="setup" column="setup_id" class="eu.wisebed.wiseml.model.setup.Setup" not-null="true"/>
 
     </class>
 </hibernate-mapping>
