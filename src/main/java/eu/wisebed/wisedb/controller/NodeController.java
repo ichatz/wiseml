@@ -1,12 +1,15 @@
 package eu.wisebed.wisedb.controller;
 
+import com.hp.hpl.jena.ontology.Restriction;
 import eu.wisebed.wisedb.importer.SetupImporter;
+import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Setup;
 import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
@@ -92,6 +95,7 @@ public class NodeController extends AbstractController<Node> {
      */
     public List<Node> listTestbedNodes(final Testbed testbed){
         final Session session = getSessionFactory().getCurrentSession();
+
         // get testbed only setup
         Setup setup = testbed.getSetup();
 
@@ -101,6 +105,16 @@ public class NodeController extends AbstractController<Node> {
         criteria.addOrder(Order.asc("id"));
         return (List<Node>) criteria.list();
 
+    }
+
+    public List<NodeReading> getLatestNodeReading(final Node node){
+        final Session session = getSessionFactory().getCurrentSession();
+
+        Criteria criteria;
+        criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.eq("nodeId",node.getId()));
+        criteria.setProjection(Projections.max("timestamp"));
+        return (List<NodeReading>) criteria.list();
     }
 
 }
