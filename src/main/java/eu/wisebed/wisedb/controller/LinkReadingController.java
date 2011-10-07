@@ -7,6 +7,9 @@ import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Rssi;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -138,22 +141,6 @@ public class LinkReadingController extends AbstractController<LinkReading> {
 
             CapabilityController.getInstance().add(capability);
         }
-// TODO check these stuff
-//        // associate capability with link . Store association with a link update
-//        if(link.getCapabilities() == null){
-//            link.setCapabilities(new ArrayList<Capability>());
-//        }
-//        if(!link.getCapabilities().contains(capability)){
-//            link.getCapabilities().add(capability);
-//        }
-//        LinkController.getInstance().update(link);
-//
-//        if(capability.getLinks() == null){
-//            capability.setLinks(new HashSet<Link>());
-//        }
-//        if(!capability.getLinks().contains(link)){
-//            capability.getLinks().add(link);
-//        }
 
         // make a new node reading entity
         LinkReading reading = new LinkReading();
@@ -163,19 +150,24 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         reading.setRssiValue(rssiValue);
         reading.setTimestamp(timestamp);
 
-// TODO check these stuff
-//        // associate reading with link
-//        if(link.getReadings() == null){
-//            link.setReadings(new HashSet<LinkReading>());
-//        }
-//        link.getReadings().add(reading);
-//
-//        // associate reading with capability
-//        if(capability.getLinkReadings() == null){
-//            capability.setLinkReadings(new HashSet<LinkReading>());
-//        }
-//        capability.getLinkReadings().add(reading);
+
 
         LinkReadingController.getInstance().add(reading);
+    }
+
+        /**
+     * Returns the latest link reading date for a given link.
+     *
+     * @param link, a testbed link.
+     * @return the latest link reading date.
+     */
+    @SuppressWarnings("unchecked")
+    public List<Date> getLatestLinkReading(final Link link) {
+        final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
+
+        Criteria criteria = session.createCriteria(LinkReading.class);
+        criteria.add(Restrictions.eq("link", link));
+        criteria.setProjection(Projections.max("timestamp"));
+        return (List<Date>) criteria.list();
     }
 }

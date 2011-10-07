@@ -12,6 +12,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -88,33 +89,5 @@ public class NodeController extends AbstractController<Node> {
         return super.list(new Node());
     }
 
-    /**
-     * Listing all the Nodes belonging to a testbed.
-     * @param testbed
-     * @return  a list of all the entries that much the criterias
-     */
-    public List<Node> listTestbedNodes(final Testbed testbed){
-        final Session session = getSessionFactory().getCurrentSession();
-
-        // get testbed only setup
-        Setup setup = testbed.getSetup();
-
-        Criteria criteria;
-        criteria = session.createCriteria(Node.class);
-        criteria.add(Restrictions.eq("setup",setup));
-        criteria.addOrder(Order.asc("id"));
-        return (List<Node>) criteria.list();
-
-    }
-
-    public List<NodeReading> getLatestNodeReading(final Node node){
-        final Session session = getSessionFactory().getCurrentSession();
-
-        Criteria criteria;
-        criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq("nodeId",node.getId()));
-        criteria.setProjection(Projections.max("timestamp"));
-        return (List<NodeReading>) criteria.list();
-    }
 
 }

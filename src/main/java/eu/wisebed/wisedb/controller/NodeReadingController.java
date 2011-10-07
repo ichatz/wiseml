@@ -6,13 +6,15 @@ import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Node;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class NodeReadingController extends AbstractController<NodeReading> {
 
@@ -92,27 +94,15 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         reading.setReading(readingValue);
         reading.setTimestamp(timestamp);
 
-// TODO check these stuff
-//        // make association of the reading with the respected node and capability
-//        if (node.getReadings() == null) {
-//            node.setReadings(new HashSet<NodeReading>());
-//        }
-//        node.getReadings().add(reading);
-//
-//        if (capability.getNodeReadings() == null) {
-//            capability.setNodeReadings(new HashSet<NodeReading>());
-//        }
-//        capability.getNodeReadings().add(reading);
-
-        // persist node
         add(reading);
     }
 
     /**
-     * Return list of readings
-     * @param node
-     * @param capability
-     * @return
+     * Return list of readings for a selected node and capability.
+     *
+     * @param node       , node of a testbed.
+     * @param capability , capability of a node
+     * @return a list with nodereadings for a node/capability combination
      */
     @SuppressWarnings("unchecked")
     public List<NodeReading> listReadings(final Node node, final Capability capability) {
@@ -122,6 +112,35 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         criteria.add(Restrictions.eq("node", node));
         criteria.add(Restrictions.eq("capability", capability));
         criteria.addOrder(Order.asc("timestamp"));
+        return (List<NodeReading>) criteria.list();
+    }
+
+    /**
+     * Returns the latest node reading date for a given node.
+     *
+     * @param node, a testbed node.
+     * @return the latest node reading date
+     */
+    public Date getLatestNodeReadingDateAKRIBOPO(final Node node) {
+        final Session session = getSessionFactory().getCurrentSession();
+        String HQL_QUERY = "select max(timestamp) from NodeReading where node=:node";
+        Query query = session.createQuery(HQL_QUERY);
+        query.setParameter("node", node);
+        query.setMaxResults(1);
+        return (Date) query.uniqueResult();
+    }
+
+    /**
+     * Returns the latest node reading date for a given node.
+     * @return the latest node reading date
+     */
+    public List getLatestNodeReadingDateBOUSIS() {
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.setProjection( Projections.projectionList()
+                .add(Projections.max("timestamp"))
+                .add(Projections.rowCount())
+                .add(Projections.groupProperty("node")));
         return criteria.list();
     }
 

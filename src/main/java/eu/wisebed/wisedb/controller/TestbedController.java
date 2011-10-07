@@ -1,12 +1,18 @@
 package eu.wisebed.wisedb.controller;
 
+import eu.wisebed.wisedb.model.LinkReading;
 import eu.wisebed.wisedb.model.Testbed;
+import eu.wisebed.wiseml.model.setup.Link;
+import eu.wisebed.wiseml.model.setup.Node;
+import eu.wisebed.wiseml.model.setup.Setup;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -89,4 +95,41 @@ public class TestbedController extends AbstractController<Testbed> {
         return testbedList;
     }
 
+    /**
+     * Listing all the Nodes belonging to a testbed.
+     * @param testbed
+     * @return  a list of all the entries that much the criterias
+     */
+    @SuppressWarnings("unchecked")
+    public List<Node> listTestbedNodes(final Testbed testbed){
+        final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
+
+        // get testbed only setup
+        Setup setup = testbed.getSetup();
+
+        Criteria criteria = session.createCriteria(Node.class);
+        criteria.add(Restrictions.eq("setup",setup));
+        criteria.addOrder(Order.asc("id"));
+        return (List<Node>) criteria.list();
+    }
+
+        /**
+     * Listing all the Nodes belonging to a testbed.
+     *
+     * @param testbed
+     * @return a list of all the entries that much the criterias
+     */
+    @SuppressWarnings("unchecked")
+    public List<Link> listTestbedLinks(final Testbed testbed) {
+        final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
+        // get testbed only setup
+        Setup setup = testbed.getSetup();
+
+        Criteria criteria;
+        criteria = session.createCriteria(Link.class);
+        criteria.add(Restrictions.eq("setup", setup));
+        criteria.addOrder(Order.asc("source"));
+        return (List<Link>) criteria.list();
+
+    }
 }
