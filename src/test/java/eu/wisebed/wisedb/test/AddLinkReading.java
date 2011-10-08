@@ -28,6 +28,9 @@ public class AddLinkReading {
 
         try {
 
+            // a valid urnPrefix for CTI's testbed
+            final String urnPrefix = "urn:wisebed:ctitestbed:";
+
             // source node id
             Iterator<Node> nodeIt = NodeController.getInstance().list().iterator();
             Node source = nodeIt.next();
@@ -51,7 +54,7 @@ public class AddLinkReading {
             final int beforeReadings = LinkReadingController.getInstance().list().size();
 
             // insert reading
-            LinkReadingController.getInstance().insertReading(sourceId, targetId, capabilityName, 10.0, new Date());
+            LinkReadingController.getInstance().insertReading(sourceId, targetId, capabilityName, urnPrefix, 10.0, 0, new Date());
 
             // count of links, capabilities & readigns after link insertion
             final int afterLinks = LinkController.getInstance().list().size();
@@ -64,10 +67,7 @@ public class AddLinkReading {
             LOGGER.debug("After insertion of Link (Capabilities) : " + afterCaps);
             LOGGER.debug("Before insertion of Reading (readings) : " + beforeReadings);
             LOGGER.debug("After insertion of Reading (readings) : " + afterReadings);
-//            LOGGER.debug("Link's readings after inseration : " + LinkController.getInstance().getByID(sourceId, targetId)
-//                    .getReadings().size());
-//            LOGGER.debug("Capability's readings after insertion : " + CapabilityController.getInstance().getByID(capabilityName)
-//                    .getLinkReadings().size());
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();

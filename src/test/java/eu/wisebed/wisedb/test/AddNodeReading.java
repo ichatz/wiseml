@@ -27,11 +27,14 @@ public class AddNodeReading {
         Transaction tx = HibernateUtil.getInstance().getSession().beginTransaction();
         try {
 
+            // a valid urnPrefix for CTI's testbed
+            final String urnPrefix = "urn:wisebed:ctitestbed:";
+
             // a valid node id for cti's testbed
-            final String nodeId = "urn:wisebed:ctitestbed:0x995d";
+            final String nodeId = urnPrefix + "0x995d";
 
             // get that nodes capability name
-            final String capabilityName = "urn:wisebed:node:capability:temperature";
+            final String capabilityName = urnPrefix + "temperature";
 
             // reading value
             final double readingValue = 10.0;
@@ -45,7 +48,7 @@ public class AddNodeReading {
             LOGGER.debug("Timestamp : " + timestamp.toGMTString());
 
             // insert reading
-            NodeReadingController.getInstance().insertReading(nodeId, capabilityName, readingValue, timestamp);
+            NodeReadingController.getInstance().insertReading(nodeId, capabilityName, urnPrefix, readingValue, timestamp);
 
             // check to see if reading was set correctly
             // NodeReadings table size
