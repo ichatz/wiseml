@@ -1,8 +1,7 @@
 package eu.wisebed.wisedb.controller;
 
-import eu.wisebed.wisedb.exception.UnknownCapabilityIdException;
-import eu.wisebed.wisedb.exception.UnknownNodeIdException;
 import eu.wisebed.wisedb.model.NodeReading;
+import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Node;
 import org.hibernate.Criteria;
@@ -14,7 +13,6 @@ import org.hibernate.criterion.Restrictions;
 
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class NodeReadingController extends AbstractController<NodeReading> {
 
@@ -70,49 +68,63 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * Insert a node's reading from it's capabilities and make the appropriate relations
      * such as Node-Reading , Capability-reading
      *
-     * @param nodeId       , a node's id.
-     * @param capabilityId , a capability's id.
-     * @param readingValue , the readings value.
-     * @param timestamp    , a timestamp for the time the reading took place
-     * @throws UnknownNodeIdException       , exception when an unknown node id occurs.
-     * @throws UnknownCapabilityIdException ,  exception when an unknown capability id occurs.
+     * @param nodeId , a node id.
+     * @param capabilityName , a capability name.
+     * @param urnPrefix , a testbed urn prefix.
+     * @param readingValue , a reading value.
+     * @param timestamp , a timestamp.
      */
-    public void insertReading(final String nodeId, final String capabilityId, final double readingValue, final Date timestamp)
-            throws UnknownNodeIdException, UnknownCapabilityIdException {
+    public void insertReading(final String nodeId, final String capabilityName, final String urnPrefix,
+                              final double readingValue, final Date timestamp) {
+
+        // Retrieve testbed by urn
+        Testbed testbed = null;
+        if(urnPrefix != null)
+        {
+             testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
+        }
 
         // get node if not found throw exception
         Node node = NodeController.getInstance().getByID(nodeId);
-        if (node == null) throw new UnknownNodeIdException(nodeId);
+        if (node == null) {
+            // if node not found in db make it and store it
+            node = new Node();
+            node.setId(nodeId);
+            node.setDescription("description"); // todo provide those ?
+            node.setGateway("false");
+            node.setProgramDetails("program details");
+            if(testbed != null){
+                node.setSetup(testbed.getSetup());
+            }
+        }
 
-        Capability capability = CapabilityController.getInstance().getByID(capabilityId);
-        if (capability == null) throw new UnknownCapabilityIdException(capabilityId);
+        Capability capability = CapabilityController.getInstance().getByID(capabilityName);
+        if (capability == null) {
+            // if capability not found in db make it and store it
+            capability = new Capability();
+            capability.setName(capabilityName);
+            capability.setDatatype("datatype"); // todo provide those ?
+            capability.setDefaultvalue("default value");
+            capability.setUnit("unit");
+        }
+
+        // associate capability node
+        if(!node.getCapabilities().contains(capability)) {
+            node.getCapabilities().add(capability);
+        }
+        if(!capability.getNodes().contains(node)) {
+            capability.getNodes().add(node);
+        }
 
         // make a new node reading entity
         NodeReading reading = new NodeReading();
-        reading.setNode(node);
-        reading.setCapability(capability);
         reading.setReading(readingValue);
         reading.setTimestamp(timestamp);
+        reading.setNode(node);
+        reading.setCapability(capability);
 
+        // add reading
         add(reading);
-    }
-
-    /**
-     * Return list of readings for a selected node and capability.
-     *
-     * @param node       , node of a testbed.
-     * @param capability , capability of a node
-     * @return a list with nodereadings for a node/capability combination
-     */
-    @SuppressWarnings("unchecked")
-    public List<NodeReading> listReadings(final Node node, final Capability capability) {
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria;
-        criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq("node", node));
-        criteria.add(Restrictions.eq("capability", capability));
-        criteria.addOrder(Order.asc("timestamp"));
-        return (List<NodeReading>) criteria.list();
     }
 
     /**
@@ -132,16 +144,34 @@ public class NodeReadingController extends AbstractController<NodeReading> {
 
     /**
      * Returns the latest node reading date for a given node.
+     *
      * @return the latest node reading date
      */
     public List getLatestNodeReadingDateBOUSIS() {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.setProjection( Projections.projectionList()
+        criteria.setProjection(Projections.projectionList()
                 .add(Projections.max("timestamp"))
                 .add(Projections.rowCount())
                 .add(Projections.groupProperty("node")));
         return criteria.list();
     }
 
+    /**
+     * Return list of readings for a selected node and capability.
+     *
+     * @param node       , node of a testbed.
+     * @param capability , capability of a node
+     * @return a list with nodereadings for a node/capability combination
+     */
+    @SuppressWarnings("unchecked")
+    public List<NodeReading> listReadings(final Node node, final Capability capability) {
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria;
+        criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.eq("node", node));
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.addOrder(Order.asc("timestamp"));
+        return (List<NodeReading>) criteria.list();
+    }
 }

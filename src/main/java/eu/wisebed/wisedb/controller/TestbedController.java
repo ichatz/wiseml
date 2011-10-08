@@ -1,6 +1,5 @@
 package eu.wisebed.wisedb.controller;
 
-import eu.wisebed.wisedb.model.LinkReading;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
@@ -9,10 +8,8 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -79,44 +76,44 @@ public class TestbedController extends AbstractController<Testbed> {
     }
 
     /**
-     * List al the Testbeds from the database that corresponds to the input
-     * parameters.
+     * Return the Testbed from the database that has the given urn prefix.
      *
      * @param urnPrefix the Urn prefix of the Testbed object.
-     * @return an Entity object.
+     * @return a Testbed object.
      */
     @SuppressWarnings("unchecked")
-    public List<Testbed> listByUrnPrefix(final String urnPrefix) {
+    public Testbed getByUrnPrefix(final String urnPrefix) {
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Testbed.class);
         criteria.add(Restrictions.like("urnPrefix", urnPrefix, MatchMode.START));
         criteria.addOrder(Order.asc("urnPrefix"));
-        List<Testbed> testbedList = criteria.list();
-        return testbedList;
+        criteria.setMaxResults(1);
+        return (Testbed) criteria.uniqueResult();
     }
 
     /**
      * Listing all the Nodes belonging to a testbed.
-     * @param testbed
-     * @return  a list of all the entries that much the criterias
+     *
+     * @param testbed , a testbed instance.
+     * @return a list of all the entries that much the criterias
      */
     @SuppressWarnings("unchecked")
-    public List<Node> listTestbedNodes(final Testbed testbed){
+    public List<Node> listTestbedNodes(final Testbed testbed) {
         final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
 
         // get testbed only setup
         Setup setup = testbed.getSetup();
 
         Criteria criteria = session.createCriteria(Node.class);
-        criteria.add(Restrictions.eq("setup",setup));
+        criteria.add(Restrictions.eq("setup", setup));
         criteria.addOrder(Order.asc("id"));
         return (List<Node>) criteria.list();
     }
 
-        /**
+    /**
      * Listing all the Nodes belonging to a testbed.
      *
-     * @param testbed
+     * @param testbed , a testbed instance.
      * @return a list of all the entries that much the criterias
      */
     @SuppressWarnings("unchecked")

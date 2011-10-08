@@ -88,6 +88,4 @@ public class NodeController extends AbstractController<Node> {
     public List<Node> list() {
         return super.list(new Node());
     }
-
-
 }

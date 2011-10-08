@@ -1,19 +1,17 @@
 package eu.wisebed.wisedb.controller;
 
-import eu.wisebed.wisedb.exception.UnknownCapabilityIdException;
-import eu.wisebed.wisedb.exception.UnknownNodeIdException;
 import eu.wisebed.wisedb.model.LinkReading;
+import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Rssi;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.classic.Session;
 import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 
 public class LinkReadingController extends AbstractController<LinkReading> {
@@ -59,10 +57,11 @@ public class LinkReadingController extends AbstractController<LinkReading> {
 
     /**
      * Deleting an entry into the database.
+     *
      * @param readingId , id of a reading entry
      */
-    public void delete(final int readingId){
-        super.delete(new LinkReading(),readingId);
+    public void delete(final int readingId) {
+        super.delete(new LinkReading(), readingId);
     }
 
 
@@ -70,47 +69,53 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      * Insert a links's reading from it's capabilities and make the appropriate relations
      * such as Link-Reading , Capability-reading
      *
-     * @param sourceId , link's source id.
-     * @param targetId , target's source id.
-     * @param capabilityName , capability's id
-     * @param readingValue , value of a sensor reading.
-     * @param timestamp , a timestamp.
-     * @throws UnknownNodeIdException , cannot find node by id exception.
-     * @throws UnknownCapabilityIdException , cannot find capability by id exception.
-     */
-    public void insertReading(final String sourceId,final String targetId ,final String capabilityName,
-                              final double readingValue,final Date timestamp)
-            throws UnknownNodeIdException, UnknownCapabilityIdException {
-        insertReading(sourceId,targetId,capabilityName,readingValue,0,timestamp);   // todo 0 in rssi value indicates no RSSI given ?
-    }
-
-    /**
-     * Insert a links's reading from it's capabilities and make the appropriate relations
-     * such as Link-Reading , Capability-reading
-     *
-     * @param sourceId , link's source id.
-     * @param targetId , target's source id.
+     * @param sourceId       , link's source id.
+     * @param targetId       , target's source id.
      * @param capabilityName , capability's id.
-     * @param rssiValue , the RSSI value of the link.
-     * @param readingValue , value of a sensor reading.
-     * @param timestamp , a timestamp.
-     * @throws UnknownNodeIdException , cannot find node by id exception.
-     * @throws UnknownCapabilityIdException , cannot find capability by id exception.
+     * @param urnPrefix      , a testbed urn prefix.
+     * @param rssiValue      , the RSSI value of the link.
+     * @param readingValue   , value of a sensor reading.
+     * @param timestamp      , a timestamp.
      */
-    public void insertReading(final String sourceId,final String targetId ,final String capabilityName,
-                              final double readingValue,final double rssiValue,final Date timestamp)
-            throws UnknownNodeIdException, UnknownCapabilityIdException {
+    public void insertReading(final String sourceId, final String targetId, final String capabilityName,
+                              final String urnPrefix, final double readingValue, final double rssiValue,
+                              final Date timestamp){
 
-        // check for nodes if exist
+        // Retrieve testbed by urn
+        Testbed testbed = null;
+        if (urnPrefix != null) {
+            testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
+        }
+
+        // look for node and target
         Node source = NodeController.getInstance().getByID(sourceId);
-        if(source == null) throw new UnknownNodeIdException(sourceId);
+        if (source == null) {
+            // if source node not found in db make it and store it
+            source = new Node();
+            source.setId(sourceId);
+            source.setDescription("description"); // todo provide those ?
+            source.setGateway("false");
+            source.setProgramDetails("program details");
+            if (testbed != null) {
+                source.setSetup(testbed.getSetup());
+            }
+        }
         Node target = NodeController.getInstance().getByID(targetId);
-        if(target == null) throw new UnknownNodeIdException(targetId);
-
+        if (target == null) {
+            // if target node not found in db make it and store it
+            target = new Node();
+            target.setId(sourceId);
+            target.setDescription("description"); // todo provide those ?
+            target.setGateway("false");
+            target.setProgramDetails("program details");
+            if (testbed != null) {
+                target.setSetup(testbed.getSetup());
+            }
+        }
 
         // look for link
         Link link = LinkController.getInstance().getByID(sourceId, targetId);
-        if(link == null){
+        if (link == null) {
             // if link not found in db make it and store it
             link = new Link();
             link.setSource(sourceId);
@@ -123,7 +128,9 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             rssi.setValue("0.0");
             link.setRssi(rssi);
             source.getSetup().getLink().add(link);
-            link.setSetup(source.getSetup());
+            if(testbed != null) {
+                link.setSetup(testbed.getSetup());
+            }
 
             // store it
             LinkController.getInstance().add(link);
@@ -131,7 +138,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
 
         // look for capability
         Capability capability = CapabilityController.getInstance().getByID(capabilityName);
-        if(capability == null){
+        if (capability == null) {
             // if capability not found in db make it and store it
             capability = new Capability();
             capability.setName(capabilityName);
@@ -142,6 +149,17 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             CapabilityController.getInstance().add(capability);
         }
 
+        // associate Link with Capability
+        if (!link.getCapabilities().contains(capability)) {
+            // if link does not contain this capability add it
+            link.getCapabilities().add(capability);
+        }
+        if (!capability.getLinks().contains(link)) {
+            // if capability contains this link add it
+            capability.getLinks().add(link);
+        }
+
+
         // make a new node reading entity
         LinkReading reading = new LinkReading();
         reading.setLink(link);
@@ -150,24 +168,39 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         reading.setRssiValue(rssiValue);
         reading.setTimestamp(timestamp);
 
-
-
-        LinkReadingController.getInstance().add(reading);
+        // add reading
+        add(reading);
     }
 
-        /**
-     * Returns the latest link reading date for a given link.
+    /**
+     * Returns the latest link reading date for a given node.
      *
      * @param link, a testbed link.
-     * @return the latest link reading date.
+     * @return the latest node reading date
      */
-    @SuppressWarnings("unchecked")
-    public List<Date> getLatestLinkReading(final Link link) {
-        final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
+    public Date getLatestLinkReadingDateAKRIBOPO(final Link link) {
+        final Session session = getSessionFactory().getCurrentSession();
+        String HQL_QUERY = "select max(timestamp) from LinkReading where source=:source and target=:target";
+        Query query = session.createQuery(HQL_QUERY);
+        query.setParameter("source", link.getSource());
+        query.setParameter("target", link.getTarget());
+        query.setMaxResults(1);
+        return (Date) query.uniqueResult();
+    }
 
+    /**
+     * Returns the latest node reading date for a given node.
+     *
+     * @return the latest node reading date
+     */
+    public List getLatestLinkReadingDateBOUSIS() {
+        final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(LinkReading.class);
-        criteria.add(Restrictions.eq("link", link));
-        criteria.setProjection(Projections.max("timestamp"));
-        return (List<Date>) criteria.list();
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.max("timestamp"))
+                .add(Projections.rowCount())
+                .add(Projections.groupProperty("source"))
+                .add(Projections.groupProperty("target")));
+        return criteria.list();
     }
 }

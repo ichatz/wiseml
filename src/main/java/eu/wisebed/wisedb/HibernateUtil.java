@@ -103,7 +103,7 @@ public class HibernateUtil {
      * @return the SessionFactory
      */
     public SessionFactory createSessionFactory() {
-        SessionFactory sFactory = null;
+        SessionFactory sFactory;
 
         try {
             // Create the SessionFactory from hibernateMM.cfg.xml
@@ -138,8 +138,6 @@ public class HibernateUtil {
 
     /**
      * Closes the current Session.
-     *
-     * @return the current Session
      */
     public void closeSession(){
         Session ses = ourSessionFactory.getCurrentSession();
