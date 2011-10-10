@@ -203,4 +203,6 @@ public class LinkReadingController extends AbstractController<LinkReading> {
                 .add(Projections.groupProperty("target")));
         return criteria.list();
     }
+
+
 }

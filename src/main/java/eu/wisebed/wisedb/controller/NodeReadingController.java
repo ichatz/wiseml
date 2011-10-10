@@ -1,16 +1,16 @@
 package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.model.NodeReading;
+import eu.wisebed.wisedb.model.NodeReadingStat;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Node;
+import eu.wisebed.wiseml.model.setup.Setup;
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.classic.Session;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -68,20 +68,19 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * Insert a node's reading from it's capabilities and make the appropriate relations
      * such as Node-Reading , Capability-reading
      *
-     * @param nodeId , a node id.
+     * @param nodeId         , a node id.
      * @param capabilityName , a capability name.
-     * @param urnPrefix , a testbed urn prefix.
-     * @param readingValue , a reading value.
-     * @param timestamp , a timestamp.
+     * @param urnPrefix      , a testbed urn prefix.
+     * @param readingValue   , a reading value.
+     * @param timestamp      , a timestamp.
      */
     public void insertReading(final String nodeId, final String capabilityName, final String urnPrefix,
                               final double readingValue, final Date timestamp) {
 
         // Retrieve testbed by urn
         Testbed testbed = null;
-        if(urnPrefix != null)
-        {
-             testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
+        if (urnPrefix != null) {
+            testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
         }
 
         // get node if not found throw exception
@@ -93,7 +92,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
             node.setDescription("description"); // todo provide those ?
             node.setGateway("false");
             node.setProgramDetails("program details");
-            if(testbed != null){
+            if (testbed != null) {
                 node.setSetup(testbed.getSetup());
             }
         }
@@ -109,10 +108,10 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         }
 
         // associate capability node
-        if(!node.getCapabilities().contains(capability)) {
+        if (!node.getCapabilities().contains(capability)) {
             node.getCapabilities().add(capability);
         }
-        if(!capability.getNodes().contains(node)) {
+        if (!capability.getNodes().contains(node)) {
             capability.getNodes().add(node);
         }
 
@@ -125,36 +124,6 @@ public class NodeReadingController extends AbstractController<NodeReading> {
 
         // add reading
         add(reading);
-    }
-
-    /**
-     * Returns the latest node reading date for a given node.
-     *
-     * @param node, a testbed node.
-     * @return the latest node reading date
-     */
-    public Date getLatestNodeReadingDateAKRIBOPO(final Node node) {
-        final Session session = getSessionFactory().getCurrentSession();
-        String HQL_QUERY = "select max(timestamp) from NodeReading where node=:node";
-        Query query = session.createQuery(HQL_QUERY);
-        query.setParameter("node", node);
-        query.setMaxResults(1);
-        return (Date) query.uniqueResult();
-    }
-
-    /**
-     * Returns the latest node reading date for a given node.
-     *
-     * @return the latest node reading date
-     */
-    public List getLatestNodeReadingDateBOUSIS() {
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.setProjection(Projections.projectionList()
-                .add(Projections.max("timestamp"))
-                .add(Projections.rowCount())
-                .add(Projections.groupProperty("node")));
-        return criteria.list();
     }
 
     /**
@@ -173,5 +142,128 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         criteria.add(Restrictions.eq("capability", capability));
         criteria.addOrder(Order.asc("timestamp"));
         return (List<NodeReading>) criteria.list();
+    }
+
+    /**
+     * Returns the latest reading update (node,timestamp,row) of any node persisted.
+     *
+     * @return an object instance list with the rows of the query
+     */
+    public List<NodeReadingStat> getLatestNodeReadingUpdates() {
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.groupProperty("node"))
+                .add(Projections.max("timestamp"))
+                .add(Projections.max("reading"))
+                .add(Projections.min("reading"))
+                .add(Projections.rowCount())
+        );
+        List<NodeReadingStat> updates = new ArrayList<NodeReadingStat>();
+        for (Object obj : criteria.list()) {
+            Object[] row = (Object[]) obj;
+            updates.add(new NodeReadingStat((Node) row[0], (Date) row[1], (Double) row[2], (Double) row[3], (Long) row[4]));
+        }
+        return updates;
+    }
+
+    /**
+     * Returns the latest reading of all nodes of the provided testbed.
+     *
+     * @param testbed , a testbed instance
+     * @return an object instance list with the rows of the query
+     */
+    public List<NodeReadingStat> getLatestNodeReadingUpdates(final Testbed testbed) {
+        final Session session = getSessionFactory().getCurrentSession();
+
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.groupProperty("node"))
+                .add(Projections.max("timestamp"))
+                .add(Projections.max("reading"))
+                .add(Projections.min("reading"))
+                .add(Projections.rowCount())
+        );
+        Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
+
+        criteria.add(Restrictions.in("node", setup.getNodes()));
+
+        List<NodeReadingStat> updates = new ArrayList<NodeReadingStat>();
+        for (Object obj : criteria.list()) {
+            Object[] row = (Object[]) obj;
+            updates.add(new NodeReadingStat((Node) row[0], (Date) row[1], (Double) row[2], (Double) row[3], (Long) row[4]));
+        }
+        return updates;
+    }
+
+    /**
+     * Returns the latest reading of a specific node
+     *
+     * @param node , a node
+     * @return the latest node reading
+     */
+    public NodeReadingStat getLatestNodeReadingUpdate(final Node node) {
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.eq("node", node));
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.groupProperty("node"))
+                .add(Projections.max("timestamp"))
+                .add(Projections.max("reading"))
+                .add(Projections.min("reading"))
+                .add(Projections.rowCount())
+        );
+        criteria.setMaxResults(1);
+        Object[] row = (Object[]) criteria.uniqueResult();
+        return new NodeReadingStat((Node) row[0], (Date) row[1], (Double) row[2],
+                (Double) row[3], (Long) row[4]);
+    }
+
+    /**
+     * Returns the latest reading of a specific node
+     *
+     * @param capability
+     * @return
+     */
+    public NodeReadingStat getLatestNodeReadingUpdate(final Capability capability) {
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.groupProperty("node"))
+                .add(Projections.max("timestamp"))
+                .add(Projections.max("reading"))
+                .add(Projections.min("reading"))
+                .add(Projections.rowCount())
+        );
+        criteria.setMaxResults(1);
+        Object[] row = (Object[]) criteria.uniqueResult();
+        return new NodeReadingStat((Node) row[0], (Date) row[1], (Double) row[2],
+                (Double) row[3], (Long) row[4]);
+    }
+
+    /**
+     * Returns the latest reading of a specific node & capability.
+     *
+     * @param node
+     * @param capability
+     * @return
+     */
+    public NodeReadingStat getLatestNodeReadingUpdate(final Node node, final Capability capability) {
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.eq("node", node));
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.groupProperty("node"))
+                .add(Projections.max("timestamp"))
+                .add(Projections.max("reading"))
+                .add(Projections.min("reading"))
+                .add(Projections.rowCount())
+        );
+        criteria.setMaxResults(1);
+        Object[] row = (Object[]) criteria.uniqueResult();
+        return new NodeReadingStat((Node) row[0], (Date) row[1], (Double) row[2],
+                (Double) row[3], (Long) row[4]);
     }
 }

@@ -2,14 +2,13 @@ package eu.wisebed.wisedb.test;
 
 import eu.wisebed.wisedb.HibernateUtil;
 import eu.wisebed.wisedb.controller.*;
-import eu.wisebed.wisedb.model.NodeReading;
+import eu.wisebed.wisedb.model.NodeReadingStat;
+import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Node;
 import org.apache.log4j.Logger;
 import org.hibernate.Transaction;
 
-import java.util.Date;
 import java.util.List;
-
 
 public class TestHqlReadings {
     /**
@@ -26,29 +25,34 @@ public class TestHqlReadings {
 
         try {
 
-            List<Node> list = NodeController.getInstance().list();
 
-            // Akribopo
-            final long t1 = System.currentTimeMillis();
-            for (Node node : list) {
-                final Date date = NodeReadingController.getInstance().getLatestNodeReadingDateAKRIBOPO(node);
-                LOGGER.info(node.getId() + "," + date);
+            // get from first node
+            final Node node = NodeController.getInstance().list().iterator().next();
+            LOGGER.info("Node [" + node.getId() + "] (1)");
+            final NodeReadingStat update = NodeReadingController.getInstance().getLatestNodeReadingUpdate(node);
+            LOGGER.info(update.toString());
+
+            // get from all cti's nodes
+            final Testbed testbed = TestbedController.getInstance().getByUrnPrefix("urn:wisebed:ctitestbed:");
+            LOGGER.info("Testbed [" + testbed.getId() + "] (" + testbed.getSetup().getId() + "," + testbed.getSetup().getNodes().size() + ")");
+            final List<NodeReadingStat> updates = NodeReadingController.getInstance().
+                    getLatestNodeReadingUpdates(testbed);
+            for(NodeReadingStat up1 : updates){
+                LOGGER.info(up1.toString());
             }
-            LOGGER.info("Akribopo : " + (System.currentTimeMillis() - t1));
 
-            // Bousis
-            final long t2 = System.currentTimeMillis();
-            final List results = NodeReadingController.getInstance().getLatestNodeReadingDateBOUSIS();
-            for (Object obj : results) {
-                LOGGER.info(obj);
+            // get from all the nodes
+            LOGGER.info("All nodes");
+            final List<NodeReadingStat> updates1 = NodeReadingController.getInstance().
+                    getLatestNodeReadingUpdates();
+            for (NodeReadingStat up1 : updates1) {
+                LOGGER.info(up1.toString());
             }
-            LOGGER.info("Bousis : " + (System.currentTimeMillis() - t2));
-
 
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
-            LOGGER.fatal(e.getMessage());
+            LOGGER.fatal(e);
             System.exit(-1);
         } finally {
             // always close session

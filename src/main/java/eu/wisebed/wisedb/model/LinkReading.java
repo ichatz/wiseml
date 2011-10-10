@@ -53,7 +53,7 @@ public class LinkReading implements Serializable {
 
     /**
      * Sets this reading id.
-     * @param id
+     * @param id , reading id
      */
     public void setId(final int id){
         this.id = id;
@@ -69,7 +69,7 @@ public class LinkReading implements Serializable {
 
     /**
      * Set capability reading.
-     * @param reading
+     * @param reading , reading value.
      */
     public void setReading(final double reading){
         this.reading = reading;
@@ -84,8 +84,8 @@ public class LinkReading implements Serializable {
     }
 
     /**
-     * Set timestamp value.
-     * @param timestamp
+     * Sets the reading timestamp.
+     * @param timestamp , a Date instance.
      */
     public void setTimestamp(final Date timestamp) {
         this.timestamp = timestamp;
@@ -100,8 +100,8 @@ public class LinkReading implements Serializable {
     }
 
     /**
-     * Sets the rssi value of the link.
-     * @return rssi value of the link.
+     * Sets the rssi value
+     * @param rssiValue , the rssi value
      */
     public void setRssiValue(final double rssiValue) {
         this.rssiValue = rssiValue;

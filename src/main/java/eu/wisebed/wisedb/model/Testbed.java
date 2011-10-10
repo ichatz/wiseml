@@ -2,9 +2,6 @@ package eu.wisebed.wisedb.model;
 
 import eu.wisebed.wiseml.model.setup.Setup;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Represents a WSN testbed.
  */
@@ -217,16 +214,16 @@ public class Testbed {
     }
 
     /**
-     * Get the set of setups.
-     * @return
+     * Returns the testbed setup.
+     * @return the testbed setup.
      */
     public Setup getSetup(){
         return setup;
     }
 
     /**
-     * Set the set of setups.
-     * @param setup
+     * Sets the testbed setup
+     * @param setup , a setup instance
      */
     public void setSetup(final Setup setup){
         this.setup = setup;
