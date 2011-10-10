@@ -155,6 +155,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         criteria.setProjection(Projections.projectionList()
                 .add(Projections.groupProperty("node"))
                 .add(Projections.max("timestamp"))
+                .add(Projections.min("timestamp"))
                 .add(Projections.max("reading"))
                 .add(Projections.min("reading"))
                 .add(Projections.rowCount())
@@ -162,7 +163,39 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         List<NodeReadingStat> updates = new ArrayList<NodeReadingStat>();
         for (Object obj : criteria.list()) {
             Object[] row = (Object[]) obj;
-            updates.add(new NodeReadingStat((Node) row[0], (Date) row[1], (Double) row[2], (Double) row[3], (Long) row[4]));
+            final Node node = (Node) row[0];
+            final Date latestDate = (Date) row[1];
+            final Date earliestDate = (Date) row[2];
+            final Double maxReading = (Double) row[3];
+            final Double minReading = (Double) row[4];
+            final Long totalCount = (Long) row[5];
+
+            // reading of latest recording
+            Criteria criteria1 = session.createCriteria(NodeReading.class);
+            criteria1.setProjection(Projections.projectionList()
+                    .add(Projections.property("timestamp"))
+                    .add(Projections.property("reading"))
+            );
+            criteria1.add(Restrictions.eq("node", node));
+            criteria1.add(Restrictions.eq("timestamp", latestDate));
+            criteria1.setMaxResults(1);
+            Object[] row1 = (Object[]) criteria1.uniqueResult();
+            final Double latestDateReading = (Double) row1[1];
+
+            // reading of earliest recording
+            Criteria criteria2 = session.createCriteria(NodeReading.class);
+            criteria2.setProjection(Projections.projectionList()
+                    .add(Projections.property("timestamp"))
+                    .add(Projections.property("reading"))
+            );
+            criteria2.add(Restrictions.eq("node", node));
+            criteria2.add(Restrictions.eq("timestamp", earliestDate));
+            criteria2.setMaxResults(1);
+            Object[] row2 = (Object[]) criteria2.uniqueResult();
+            final Double earliestDateReading = (Double) row2[1];
+
+            updates.add(new NodeReadingStat(node, latestDate, latestDateReading, earliestDate, earliestDateReading,
+                    maxReading, minReading, totalCount));
         }
         return updates;
     }
@@ -180,6 +213,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         criteria.setProjection(Projections.projectionList()
                 .add(Projections.groupProperty("node"))
                 .add(Projections.max("timestamp"))
+                .add(Projections.min("timestamp"))
                 .add(Projections.max("reading"))
                 .add(Projections.min("reading"))
                 .add(Projections.rowCount())
@@ -191,7 +225,40 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         List<NodeReadingStat> updates = new ArrayList<NodeReadingStat>();
         for (Object obj : criteria.list()) {
             Object[] row = (Object[]) obj;
-            updates.add(new NodeReadingStat((Node) row[0], (Date) row[1], (Double) row[2], (Double) row[3], (Long) row[4]));
+
+            final Node node = (Node) row[0];
+            final Date latestDate = (Date) row[1];
+            final Date earliestDate = (Date) row[2];
+            final Double maxReading = (Double) row[3];
+            final Double minReading = (Double) row[4];
+            final Long totalCount = (Long) row[5];
+
+            // reading of latest recording
+            Criteria criteria1 = session.createCriteria(NodeReading.class);
+            criteria1.setProjection(Projections.projectionList()
+                    .add(Projections.property("timestamp"))
+                    .add(Projections.property("reading"))
+            );
+            criteria1.add(Restrictions.eq("node", node));
+            criteria1.add(Restrictions.eq("timestamp", latestDate));
+            criteria1.setMaxResults(1);
+            Object[] row1 = (Object[]) criteria1.uniqueResult();
+            final Double latestDateReading = (Double) row1[1];
+
+            // reading of earliest recording
+            Criteria criteria2 = session.createCriteria(NodeReading.class);
+            criteria2.setProjection(Projections.projectionList()
+                    .add(Projections.property("timestamp"))
+                    .add(Projections.property("reading"))
+            );
+            criteria2.add(Restrictions.eq("node", node));
+            criteria2.add(Restrictions.eq("timestamp", earliestDate));
+            criteria2.setMaxResults(1);
+            Object[] row2 = (Object[]) criteria2.uniqueResult();
+            final Double earliestDateReading = (Double) row2[1];
+
+            updates.add(new NodeReadingStat(node, latestDate, latestDateReading, earliestDate, earliestDateReading,
+                    maxReading, minReading, totalCount));
         }
         return updates;
     }
@@ -209,14 +276,46 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         criteria.setProjection(Projections.projectionList()
                 .add(Projections.groupProperty("node"))
                 .add(Projections.max("timestamp"))
+                .add(Projections.min("timestamp"))
                 .add(Projections.max("reading"))
                 .add(Projections.min("reading"))
                 .add(Projections.rowCount())
         );
         criteria.setMaxResults(1);
         Object[] row = (Object[]) criteria.uniqueResult();
-        return new NodeReadingStat((Node) row[0], (Date) row[1], (Double) row[2],
-                (Double) row[3], (Long) row[4]);
+        final Node nodeQ = (Node) row[0];
+        final Date latestDate = (Date) row[1];
+        final Date earliestDate = (Date) row[2];
+        final Double maxReading = (Double) row[3];
+        final Double minReading = (Double) row[4];
+        final Long totalCount = (Long) row[5];
+
+        // reading of latest recording
+        Criteria criteria1 = session.createCriteria(NodeReading.class);
+        criteria1.setProjection(Projections.projectionList()
+                .add(Projections.property("timestamp"))
+                .add(Projections.property("reading"))
+        );
+        criteria1.add(Restrictions.eq("node", nodeQ));
+        criteria1.add(Restrictions.eq("timestamp", latestDate));
+        criteria1.setMaxResults(1);
+        Object[] row1 = (Object[]) criteria1.uniqueResult();
+        final Double latestDateReading = (Double) row1[1];
+
+        // reading of earliest recording
+        Criteria criteria2 = session.createCriteria(NodeReading.class);
+        criteria2.setProjection(Projections.projectionList()
+                .add(Projections.property("timestamp"))
+                .add(Projections.property("reading"))
+        );
+        criteria2.add(Restrictions.eq("node", nodeQ));
+        criteria2.add(Restrictions.eq("timestamp", earliestDate));
+        criteria2.setMaxResults(1);
+        Object[] row2 = (Object[]) criteria2.uniqueResult();
+        final Double earliestDateReading = (Double) row2[1];
+
+        return new NodeReadingStat(nodeQ, latestDate, latestDateReading, earliestDate, earliestDateReading,
+                maxReading, minReading, totalCount);
     }
 
     /**
@@ -232,14 +331,47 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         criteria.setProjection(Projections.projectionList()
                 .add(Projections.groupProperty("node"))
                 .add(Projections.max("timestamp"))
+                .add(Projections.min("timestamp"))
                 .add(Projections.max("reading"))
                 .add(Projections.min("reading"))
                 .add(Projections.rowCount())
         );
         criteria.setMaxResults(1);
         Object[] row = (Object[]) criteria.uniqueResult();
-        return new NodeReadingStat((Node) row[0], (Date) row[1], (Double) row[2],
-                (Double) row[3], (Long) row[4]);
+
+        final Node node = (Node) row[0];
+        final Date latestDate = (Date) row[1];
+        final Date earliestDate = (Date) row[2];
+        final Double maxReading = (Double) row[3];
+        final Double minReading = (Double) row[4];
+        final Long totalCount = (Long) row[5];
+
+        // reading of latest recording
+        Criteria criteria1 = session.createCriteria(NodeReading.class);
+        criteria1.setProjection(Projections.projectionList()
+                .add(Projections.property("timestamp"))
+                .add(Projections.property("reading"))
+        );
+        criteria1.add(Restrictions.eq("node", node));
+        criteria1.add(Restrictions.eq("timestamp", latestDate));
+        criteria1.setMaxResults(1);
+        Object[] row1 = (Object[]) criteria1.uniqueResult();
+        final Double latestDateReading = (Double) row1[1];
+
+        // reading of earliest recording
+        Criteria criteria2 = session.createCriteria(NodeReading.class);
+        criteria2.setProjection(Projections.projectionList()
+                .add(Projections.property("timestamp"))
+                .add(Projections.property("reading"))
+        );
+        criteria2.add(Restrictions.eq("node", node));
+        criteria2.add(Restrictions.eq("timestamp", earliestDate));
+        criteria2.setMaxResults(1);
+        Object[] row2 = (Object[]) criteria2.uniqueResult();
+        final Double earliestDateReading = (Double) row2[1];
+
+        return new NodeReadingStat(node, latestDate, latestDateReading, earliestDate, earliestDateReading,
+                maxReading, minReading, totalCount);
     }
 
     /**
@@ -257,13 +389,45 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         criteria.setProjection(Projections.projectionList()
                 .add(Projections.groupProperty("node"))
                 .add(Projections.max("timestamp"))
+                .add(Projections.min("timestamp"))
                 .add(Projections.max("reading"))
                 .add(Projections.min("reading"))
                 .add(Projections.rowCount())
         );
         criteria.setMaxResults(1);
         Object[] row = (Object[]) criteria.uniqueResult();
-        return new NodeReadingStat((Node) row[0], (Date) row[1], (Double) row[2],
-                (Double) row[3], (Long) row[4]);
+        final Node nodeQ = (Node) row[0];
+        final Date latestDate = (Date) row[1];
+        final Date earliestDate = (Date) row[2];
+        final Double maxReading = (Double) row[3];
+        final Double minReading = (Double) row[4];
+        final Long totalCount = (Long) row[5];
+
+        // reading of latest recording
+        Criteria criteria1 = session.createCriteria(NodeReading.class);
+        criteria1.setProjection(Projections.projectionList()
+                .add(Projections.property("timestamp"))
+                .add(Projections.property("reading"))
+        );
+        criteria1.add(Restrictions.eq("node", nodeQ));
+        criteria1.add(Restrictions.eq("timestamp", latestDate));
+        criteria1.setMaxResults(1);
+        Object[] row1 = (Object[]) criteria1.uniqueResult();
+        final Double latestDateReading = (Double) row1[1];
+
+        // reading of earliest recording
+        Criteria criteria2 = session.createCriteria(NodeReading.class);
+        criteria2.setProjection(Projections.projectionList()
+                .add(Projections.property("timestamp"))
+                .add(Projections.property("reading"))
+        );
+        criteria2.add(Restrictions.eq("node", nodeQ));
+        criteria2.add(Restrictions.eq("timestamp", earliestDate));
+        criteria2.setMaxResults(1);
+        Object[] row2 = (Object[]) criteria2.uniqueResult();
+        final Double earliestDateReading = (Double) row2[1];
+
+        return new NodeReadingStat(nodeQ, latestDate, latestDateReading, earliestDate, earliestDateReading,
+                maxReading, minReading, totalCount);
     }
 }
