@@ -4,6 +4,7 @@ import com.hp.hpl.jena.ontology.Restriction;
 import eu.wisebed.wisedb.importer.SetupImporter;
 import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wisedb.model.Testbed;
+import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Setup;
 import org.hibernate.Criteria;
@@ -87,5 +88,18 @@ public class NodeController extends AbstractController<Node> {
      */
     public List<Node> list() {
         return super.list(new Node());
+    }
+
+    /**
+     * Listing all the nodes from the database belonging to a selected testbed.
+     *
+     * @param testbed , a selected testbed.
+     * @return a list of testbed links.
+     */
+    public List<Node> list(final Testbed testbed) {
+        final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(Node.class);
+        criteria.add(Restrictions.eq("setup", testbed.getSetup()));
+        return (List<Node>) criteria.list();
     }
 }

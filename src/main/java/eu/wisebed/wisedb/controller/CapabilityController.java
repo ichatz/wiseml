@@ -1,8 +1,11 @@
 package eu.wisebed.wisedb.controller;
 
+import com.hp.hpl.jena.ontology.Restriction;
+import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
-
+import org.hibernate.criterion.Restrictions;
 import java.util.List;
 
 
@@ -43,8 +46,8 @@ public class CapabilityController extends AbstractController<Capability> {
 
     public void add(final Capability entity) {
         final Session session = getSessionFactory().getCurrentSession();
-        final Capability entity2 = (Capability) session.get(Capability.class,entity.getName());
-        if(entity2 == null )
+        final Capability entity2 = (Capability) session.get(Capability.class, entity.getName());
+        if (entity2 == null)
             session.save(entity);
         else
             session.merge(entity2);
@@ -66,7 +69,16 @@ public class CapabilityController extends AbstractController<Capability> {
      * @param value the Capability tha we want to delete
      */
     public void delete(final Capability value) {
-        super.delete(value,value.getName());
+        super.delete(value, value.getName());
+    }
+
+    /**
+     * Deleting a capability entry from the database.
+     *
+     * @param entityID the id of the Entity object.
+     */
+    public void delete(final String entityID) {
+        super.delete(new Capability(), entityID);
     }
 
     /**
@@ -79,10 +91,21 @@ public class CapabilityController extends AbstractController<Capability> {
     }
 
     /**
-     * Deleting a capability entry from the database.
-     * @param entityID the id of the Entity object.
+     * Listing all the capabilities from the database belonging to a selected testbed.
+     * @param testbed , a selected testbed.
+     * @return a list of testbed capabilities.
      */
-    public void delete(final String entityID) {
-        super.delete(new Capability(),entityID);
+    public List<Capability> list(final Testbed testbed) {
+        final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(Capability.class);
+        criteria.createAlias("nodes","ns");
+        criteria.createAlias("links","ls");
+        criteria.add(Restrictions.or(
+                Restrictions.eq("ns.setup",testbed.getSetup()),
+                Restrictions.eq("ls.setup",testbed.getSetup()))
+        );
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+
+        return (List<Capability>) criteria.list();
     }
 }

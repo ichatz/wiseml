@@ -48,15 +48,6 @@ public class LinkController extends AbstractController<Link> {
     }
 
     /**
-     * Listing all the Links from the database.
-     *
-     * @return a list of all the entries that exist inside the table Link.
-     */
-    public List<Link> list() {
-        return super.list(new Link());
-    }
-
-    /**
      * Get the entry from the link that corresponds to the input id, Source & Target node ids.
      *
      * @param sourceId , The node id of the link's source.
@@ -84,5 +75,27 @@ public class LinkController extends AbstractController<Link> {
         linkWithId.setSource(sourceId);
         linkWithId.setTarget(targetId);
         session.delete(linkWithId);
+    }
+
+    /**
+     * Listing all the Links from the database.
+     *
+     * @return a list of all the entries that exist inside the table Link.
+     */
+    public List<Link> list() {
+        return super.list(new Link());
+    }
+
+    /**
+     * Listing all the links from the database belonging to a selected testbed.
+     *
+     * @param testbed , a selected testbed.
+     * @return a list of testbed links.
+     */
+    public List<Link> list(final Testbed testbed) {
+        final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(Link.class);
+        criteria.add(Restrictions.eq("setup", testbed.getSetup()));
+        return (List<Link>) criteria.list();
     }
 }
