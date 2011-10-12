@@ -1,6 +1,7 @@
 package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.model.LinkReading;
+import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
@@ -11,7 +12,9 @@ import org.hibernate.Query;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Projections;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 public class LinkReadingController extends AbstractController<LinkReading> {
@@ -79,14 +82,12 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      */
     public void insertReading(final String sourceId, final String targetId, final String capabilityName,
                               final String urnPrefix, final double readingValue, final double rssiValue,
-                              final Date timestamp){
+                              final Date timestamp) {
 
-        // Retrieve testbed by urn
-        Testbed testbed = null;
-        if (urnPrefix != null) {
-            testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
+        Testbed testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
+        if (testbed == null) {
+            return; // TODO throw an exception
         }
-
         // look for node and target
         Node source = NodeController.getInstance().getByID(sourceId);
         if (source == null) {
@@ -96,21 +97,23 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             source.setDescription("description"); // todo provide those ?
             source.setGateway("false");
             source.setProgramDetails("program details");
-            if (testbed != null) {
-                source.setSetup(testbed.getSetup());
-            }
+            source.setReadings(new HashSet<NodeReading>());
+            source.setCapabilities(new ArrayList<Capability>());
+            source.setSetup(testbed.getSetup());
+            NodeController.getInstance().add(source);
         }
         Node target = NodeController.getInstance().getByID(targetId);
         if (target == null) {
             // if target node not found in db make it and store it
             target = new Node();
-            target.setId(sourceId);
+            target.setId(targetId);
             target.setDescription("description"); // todo provide those ?
             target.setGateway("false");
             target.setProgramDetails("program details");
-            if (testbed != null) {
-                target.setSetup(testbed.getSetup());
-            }
+            target.setReadings(new HashSet<NodeReading>());
+            target.setCapabilities(new ArrayList<Capability>());
+            target.setSetup(testbed.getSetup());
+            NodeController.getInstance().add(target);
         }
 
         // look for link
@@ -127,12 +130,9 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             rssi.setUnit("unit");
             rssi.setValue("0.0");
             link.setRssi(rssi);
-            source.getSetup().getLink().add(link);
-            if(testbed != null) {
-                link.setSetup(testbed.getSetup());
-            }
-
-            // store it
+            link.setCapabilities(new ArrayList<Capability>());
+            link.setReadings(new HashSet<LinkReading>());
+            link.setSetup(testbed.getSetup());
             LinkController.getInstance().add(link);
         }
 
@@ -145,7 +145,10 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             capability.setDatatype("datatype"); // todo provide those ?
             capability.setDefaultvalue("default value");
             capability.setUnit("unit");
-
+            capability.setNodes(new HashSet<Node>());
+            capability.setNodeReadings(new HashSet<NodeReading>());
+            capability.setLinks(new HashSet<Link>());
+            capability.setLinkReadings(new HashSet<LinkReading>());
             CapabilityController.getInstance().add(capability);
         }
 
@@ -153,10 +156,12 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         if (!link.getCapabilities().contains(capability)) {
             // if link does not contain this capability add it
             link.getCapabilities().add(capability);
+            LinkController.getInstance().add(link);
         }
         if (!capability.getLinks().contains(link)) {
             // if capability contains this link add it
             capability.getLinks().add(link);
+            CapabilityController.getInstance().add(capability);
         }
 
 
@@ -171,38 +176,4 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         // add reading
         add(reading);
     }
-
-    /**
-     * Returns the latest link reading date for a given node.
-     *
-     * @param link, a testbed link.
-     * @return the latest node reading date
-     */
-    public Date getLatestLinkReadingDateAKRIBOPO(final Link link) {
-        final Session session = getSessionFactory().getCurrentSession();
-        String HQL_QUERY = "select max(timestamp) from LinkReading where source=:source and target=:target";
-        Query query = session.createQuery(HQL_QUERY);
-        query.setParameter("source", link.getSource());
-        query.setParameter("target", link.getTarget());
-        query.setMaxResults(1);
-        return (Date) query.uniqueResult();
-    }
-
-    /**
-     * Returns the latest node reading date for a given node.
-     *
-     * @return the latest node reading date
-     */
-    public List getLatestLinkReadingDateBOUSIS() {
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(LinkReading.class);
-        criteria.setProjection(Projections.projectionList()
-                .add(Projections.max("timestamp"))
-                .add(Projections.rowCount())
-                .add(Projections.groupProperty("source"))
-                .add(Projections.groupProperty("target")));
-        return criteria.list();
-    }
-
-
 }

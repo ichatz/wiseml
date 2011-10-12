@@ -1,18 +1,18 @@
 package eu.wisebed.wisedb.controller;
 
+import eu.wisebed.wisedb.model.LinkReading;
 import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wisedb.model.NodeReadingStat;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
+import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Setup;
 import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class NodeReadingController extends AbstractController<NodeReading> {
 
@@ -78,9 +78,9 @@ public class NodeReadingController extends AbstractController<NodeReading> {
                               final double readingValue, final Date timestamp) {
 
         // Retrieve testbed by urn
-        Testbed testbed = null;
-        if (urnPrefix != null) {
-            testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
+        Testbed testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
+        if (testbed == null) {
+            return; // TODO throw an exception
         }
 
         // get node if not found throw exception
@@ -92,9 +92,10 @@ public class NodeReadingController extends AbstractController<NodeReading> {
             node.setDescription("description"); // todo provide those ?
             node.setGateway("false");
             node.setProgramDetails("program details");
-            if (testbed != null) {
-                node.setSetup(testbed.getSetup());
-            }
+            node.setSetup(testbed.getSetup());
+            node.setCapabilities(new ArrayList<Capability>());
+            node.setReadings(new HashSet<NodeReading>());
+            NodeController.getInstance().add(node);
         }
 
         Capability capability = CapabilityController.getInstance().getByID(capabilityName);
@@ -105,14 +106,21 @@ public class NodeReadingController extends AbstractController<NodeReading> {
             capability.setDatatype("datatype"); // todo provide those ?
             capability.setDefaultvalue("default value");
             capability.setUnit("unit");
+            capability.setNodes(new HashSet<Node>());
+            capability.setNodeReadings(new HashSet<NodeReading>());
+            capability.setLinks(new HashSet<Link>());
+            capability.setLinkReadings(new HashSet<LinkReading>());
+            CapabilityController.getInstance().add(capability);
         }
 
         // associate capability node
         if (!node.getCapabilities().contains(capability)) {
             node.getCapabilities().add(capability);
+            NodeController.getInstance().update(node);
         }
         if (!capability.getNodes().contains(node)) {
             capability.getNodes().add(node);
+            CapabilityController.getInstance().update(capability);
         }
 
         // make a new node reading entity

@@ -31,16 +31,16 @@ public class AddNodeReading {
             final String urnPrefix = "urn:wisebed:ctitestbed:";
 
             // a valid node id for cti's testbed
-            final String nodeId = urnPrefix + "0x995d";
+            final String nodeId = urnPrefix + "NODETEST1";
 
             // get that nodes capability name
-            final String capabilityName = urnPrefix + "temperature";
+            final String capabilityName = urnPrefix + "CAPATEST";
 
             // reading value
-            final double readingValue = 10.0;
+            final double readingValue = -1337.0;
 
             // Occured time
-            final Date timestamp = new Date();
+            final Date timestamp = new Date(10);
 
             LOGGER.debug("Node : " + nodeId);
             LOGGER.debug("Capability : " + capabilityName);
@@ -50,21 +50,11 @@ public class AddNodeReading {
             // insert reading
             NodeReadingController.getInstance().insertReading(nodeId, capabilityName, urnPrefix, readingValue, timestamp);
 
-            // check to see if reading was set correctly
-            // NodeReadings table size
-            LOGGER.debug("There are " + NodeReadingController.getInstance().list().size() + " node readings in the database ");
-
-            // Node's readings size
-            LOGGER.debug("Node " + nodeId + " has " + NodeController.getInstance().getByID(nodeId).getReadings().size()
-                    + " readings");
-
-            // Capabilities's readings size
-            LOGGER.debug("Capability " + capabilityName + " appears in " + CapabilityController.getInstance()
-                    .getByID(capabilityName).getNodeReadings().size() + " readings");
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
-            LOGGER.fatal(e.getMessage());
+            LOGGER.fatal(e);
+            e.printStackTrace();
             System.exit(-1);
         } finally {
             // always close session

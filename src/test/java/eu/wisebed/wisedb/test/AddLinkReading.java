@@ -1,9 +1,6 @@
 package eu.wisebed.wisedb.test;
 
-import com.hp.hpl.jena.tdb.store.NodeId;
 import eu.wisebed.wisedb.HibernateUtil;
-import eu.wisebed.wisedb.controller.CapabilityController;
-import eu.wisebed.wisedb.controller.LinkController;
 import eu.wisebed.wisedb.controller.LinkReadingController;
 import eu.wisebed.wisedb.controller.NodeController;
 import eu.wisebed.wiseml.model.setup.Node;
@@ -41,37 +38,29 @@ public class AddLinkReading {
             final String targetId = target.getId();
 
             // link capability name
-            final String capabilityName = "status";
+            final String capabilityName = "status1";
+
+            // reading value
+            final double reading = -11.0;
+
+            // rssi
+            final double rssi = 0.0;
+
+            // timestamp
+            final Date timestamp = new Date();
 
             LOGGER.debug("Selected node : " + sourceId);
             LOGGER.debug("Selected node : " + targetId);
             LOGGER.debug("Capability for link : " + capabilityName);
 
-
-            // count of links, capabilities & readings before link insertion
-            final int beforeLinks = LinkController.getInstance().list().size();
-            final int beforeCaps = CapabilityController.getInstance().list().size();
-            final int beforeReadings = LinkReadingController.getInstance().list().size();
-
             // insert reading
-            LinkReadingController.getInstance().insertReading(sourceId, targetId, capabilityName, urnPrefix, 10.0, 0, new Date());
+            LinkReadingController.getInstance().insertReading(sourceId, targetId, capabilityName, urnPrefix, reading, rssi, timestamp);
 
-            // count of links, capabilities & readigns after link insertion
-            final int afterLinks = LinkController.getInstance().list().size();
-            final int afterCaps = CapabilityController.getInstance().list().size();
-            final int afterReadings = LinkReadingController.getInstance().list().size();
-
-            LOGGER.debug("Before insertion of Link (Links) : " + beforeLinks);
-            LOGGER.debug("Before insertion of Link (Capabilities) : " + beforeCaps);
-            LOGGER.debug("After insertion of Link (Links) : " + afterLinks);
-            LOGGER.debug("After insertion of Link (Capabilities) : " + afterCaps);
-            LOGGER.debug("Before insertion of Reading (readings) : " + beforeReadings);
-            LOGGER.debug("After insertion of Reading (readings) : " + afterReadings);
 
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
-            LOGGER.fatal(e.getMessage());
+            LOGGER.fatal(e);
             System.exit(-1);
         } finally {
             // always close session
