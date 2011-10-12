@@ -1,18 +1,18 @@
 package eu.wisebed.wisedb.controller;
 
-import com.hp.hpl.jena.ontology.Restriction;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
 /**
  * CRUD operations for Capability objects.
  */
-
 public class CapabilityController extends AbstractController<Capability> {
     /**
      * static instance(ourInstance) initialized as null.
@@ -96,16 +96,39 @@ public class CapabilityController extends AbstractController<Capability> {
      * @return a list of testbed capabilities.
      */
     public List<Capability> list(final Testbed testbed) {
+        List<Capability> capabilities = new ArrayList<Capability>();
+        List<Capability> nodeCapabilities = listNodeCapabilities(testbed);
+        List<Capability> linkCapabilities = listLinkCapabilities(testbed);
+        capabilities.addAll(nodeCapabilities);
+        capabilities.addAll(linkCapabilities);
+        return capabilities;
+    }
+
+    /**
+     * Listing all the capabilities associated with nodes from the database belonging to a selected testbed.
+     * @param testbed , a selected testbed.
+     * @return a list of testbed nodes capabilities.
+     */
+    public List<Capability> listNodeCapabilities(final Testbed testbed) {
         final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(Capability.class);
         criteria.createAlias("nodes","ns");
-        criteria.createAlias("links","ls");
-        criteria.add(Restrictions.or(
-                Restrictions.eq("ns.setup",testbed.getSetup()),
-                Restrictions.eq("ls.setup",testbed.getSetup()))
-        );
+        criteria.add(Restrictions.eq("ns.setup",testbed.getSetup()));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        return (List<Capability>) criteria.list();
+    }
 
+    /**
+     * Listing all the llink capabilities associated with nodes from the database belonging to a selected testbed.
+     * @param testbed , a selected testbed.
+     * @return a list of testbed link capabilities.
+     */
+    public List<Capability> listLinkCapabilities(final Testbed testbed) {
+        final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(Capability.class);
+        criteria.createAlias("links","ls");
+        criteria.add(Restrictions.eq("ls.setup",testbed.getSetup()));
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         return (List<Capability>) criteria.list();
     }
 }

@@ -10,16 +10,17 @@ import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class TestbedCapabilities {
+public class ListTestbedCapabilities {
 
     /**
      * a log4j logger to print messages.
      */
-    private static final Logger LOGGER = org.apache.log4j.Logger.getLogger(TestbedCapabilities.class);
+    private static final Logger LOGGER = org.apache.log4j.Logger.getLogger(ListTestbedCapabilities.class);
 
 
     public static void main(String[] args) {
-// Initialize hibernate
+
+        // Initialize hibernate
         HibernateUtil.connectEntityManagers();
         Transaction tx = HibernateUtil.getInstance().getSession().beginTransaction();
 
@@ -27,9 +28,11 @@ public class TestbedCapabilities {
             final Testbed testbed = TestbedController.getInstance().getByUrnPrefix("urn:wisebed:ctitestbed:");
             List<Capability> capabilities = CapabilityController.getInstance().list(testbed);
             for(Capability capability : capabilities){
-                LOGGER.info(capability.getName() + " " + capability.getNodes());
+                LOGGER.info(capability.getName() + " " + capability.getNodes() + " " + capability.getLinks());
             }
+            tx.commit();
         }catch(Exception e){
+            tx.rollback();
             LOGGER.fatal(e);
             System.exit(-1);
         } finally {
