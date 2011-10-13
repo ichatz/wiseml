@@ -26,7 +26,7 @@
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
         <mysql.connector.version>5.1.16</mysql.connector.version>
         <hibernate.version>3.5.6-Final</hibernate.version>
-        <slf4j.version>1.6.1</slf4j.version>
+        <slf4j.version>1.5.8</slf4j.version>
     </properties>
 
     <pluginRepositories>
@@ -190,10 +190,22 @@
         </dependency>
 
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.16</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>mysql</groupId>
@@ -223,6 +235,13 @@
             <groupId>com.hp.hpl.jena</groupId>
             <artifactId>arq</artifactId>
             <version>2.8.8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>2.4.6</version>
+            <type>pom</type>
         </dependency>
 
     </dependencies>
