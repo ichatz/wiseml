@@ -4,14 +4,17 @@ import com.hp.hpl.jena.ontology.Restriction;
 import eu.wisebed.wisedb.importer.SetupImporter;
 import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wisedb.model.Testbed;
+import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Setup;
 import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.dialect.Oracle10gDialect;
 
 import java.util.Date;
 import java.util.List;
@@ -97,9 +100,41 @@ public class NodeController extends AbstractController<Node> {
      * @return a list of testbed links.
      */
     public List<Node> list(final Testbed testbed) {
-        final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
+        final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(Node.class);
         criteria.add(Restrictions.eq("setup", testbed.getSetup()));
         return (List<Node>) criteria.list();
+    }
+
+    /**
+     * Returns the readings count for a node.
+     *
+     * @param node , a node .
+     * @return the count of this node.
+     */
+    public Long getReadingsCount(final Node node){
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.eq("node",node));
+        criteria.setProjection(Projections.count("node"));
+        criteria.setMaxResults(1);
+        return (Long) criteria.uniqueResult();
+    }
+
+    /**
+     * Returns the readings count for a node and a capability.
+     *
+     * @param node  , a node.
+     * @param capability , a capability
+     * @return the count of readings for this node and capability.
+     */
+    public Long getReadingsCount(final Node node,final Capability capability){
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.eq("node",node));
+        criteria.add(Restrictions.eq("capability",capability));
+        criteria.setProjection(Projections.count("node"));
+        criteria.setMaxResults(1);
+        return (Long) criteria.uniqueResult();
     }
 }

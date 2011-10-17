@@ -1,20 +1,14 @@
 package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.model.LinkReading;
-import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wisedb.model.Testbed;
+import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
-import eu.wisebed.wiseml.model.setup.Node;
-import eu.wisebed.wiseml.model.setup.Setup;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 public class LinkController extends AbstractController<Link> {
     /**
@@ -93,9 +87,43 @@ public class LinkController extends AbstractController<Link> {
      * @return a list of testbed links.
      */
     public List<Link> list(final Testbed testbed) {
-        final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
+        final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(Link.class);
         criteria.add(Restrictions.eq("setup", testbed.getSetup()));
         return (List<Link>) criteria.list();
+    }
+
+    /**
+     * Returns the readings count for a link.
+     *
+     * @param link , a node .
+     * @return the count of this node.
+     */
+    public Long getReadingsCount(final Link link){
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(LinkReading.class);
+        criteria.createCriteria("link","id");
+        criteria.add(Restrictions.eq("id.source",link.getSource()));
+        criteria.add(Restrictions.eq("id.target",link.getTarget()));
+        criteria.setProjection(Projections.count("link"));
+        criteria.setMaxResults(1);
+        return (Long) criteria.uniqueResult();
+    }
+
+    /**
+     * Returns the readings count for a link and a capability.
+     *
+     * @param link  , a link.
+     * @param capability , a capability
+     * @return the count of readings for this node and capability.
+     */
+    public Long getReadingsCount(final Link link,final Capability capability){
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(LinkReading.class);
+        criteria.add(Restrictions.eq("link",link));
+        criteria.add(Restrictions.eq("capability",capability));
+        criteria.setProjection(Projections.count("link"));
+        criteria.setMaxResults(1);
+        return (Long) criteria.uniqueResult();
     }
 }

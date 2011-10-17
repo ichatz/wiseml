@@ -1,5 +1,6 @@
 package eu.wisebed.wisedb.controller;
 
+import eu.wisebed.wisedb.exception.UnknownTestbedException;
 import eu.wisebed.wisedb.model.LinkReading;
 import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wisedb.model.NodeReadingStat;
@@ -75,12 +76,12 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @param timestamp      , a timestamp.
      */
     public void insertReading(final String nodeId, final String capabilityName, final String urnPrefix,
-                              final double readingValue, final Date timestamp) {
+                              final double readingValue, final Date timestamp) throws UnknownTestbedException{
 
         // Retrieve testbed by urn
         Testbed testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
         if (testbed == null) {
-            return; // TODO throw an exception
+            throw new UnknownTestbedException(urnPrefix);
         }
 
         // get node if not found throw exception
