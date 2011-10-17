@@ -27,6 +27,7 @@
         <mysql.connector.version>5.1.16</mysql.connector.version>
         <hibernate.version>3.5.6-Final</hibernate.version>
         <slf4j.version>1.5.8</slf4j.version>
+        <ehcache.version>2.4.6</ehcache.version>
     </properties>
 
     <pluginRepositories>
@@ -100,6 +101,17 @@
             <snapshots>
                 <enabled>true</enabled>
                 <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>terracotta-releases</id>
+            <url>http://www.terracotta.org/download/reflector/releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
             </snapshots>
         </repository>
 
@@ -239,11 +251,9 @@
 
         <dependency>
             <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
-            <version>2.4.6</version>
-            <type>pom</type>
+            <artifactId>ehcache-core</artifactId>
+            <version>${ehcache.version}</version>
         </dependency>
-
     </dependencies>
 
     <build>

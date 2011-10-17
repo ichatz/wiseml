@@ -26,14 +26,24 @@
         <!-- Drop and re-create the database schema on startup -->
         <property name="hibernate.hbm2ddl.auto">update</property>
 
+        <!-- Enable second level cache -->
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+
+        <!-- Hibernate query cache -->
+        <property name="hibernate.cache.use_query_cache">true</property>
+
+        <!-- Force Hibernate to use instances of Ehcache CacheManage -->
+        <property name="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory
+        </property>
+
         <!-- Mapping files for read-only tables -->
         <mapping resource="eu/wisebed/wisedb/model/Testbed.hbm.xml"/>
         <mapping resource="eu/wisebed/wisedb/model/Setup.hbm.xml"/>
         <mapping resource="eu/wisebed/wisedb/model/Node.hbm.xml"/>
         <mapping resource="eu/wisebed/wisedb/model/Capability.hbm.xml"/>
-        <mapping resource="eu/wisebed/wisedb/model/Link.hbm.xml" />
-        <mapping resource="eu/wisebed/wisedb/model/NodeReading.hbm.xml" />
-        <mapping resource="eu/wisebed/wisedb/model/LinkReading.hbm.xml" />
+        <mapping resource="eu/wisebed/wisedb/model/Link.hbm.xml"/>
+        <mapping resource="eu/wisebed/wisedb/model/NodeReading.hbm.xml"/>
+        <mapping resource="eu/wisebed/wisedb/model/LinkReading.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

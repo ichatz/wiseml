@@ -6,7 +6,9 @@
 
     <class name="eu.wisebed.wiseml.model.setup.Node" table="nodes">
 
-        <id name="id" column="node_id" />
+        <cache usage="read-write"/>
+
+        <id name="id" column="node_id"/>
 
         <component name="position" class="eu.wisebed.wiseml.model.setup.Position">
             <property name="x" column="position_x"/>
