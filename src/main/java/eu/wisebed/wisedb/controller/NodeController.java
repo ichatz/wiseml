@@ -105,36 +105,4 @@ public class NodeController extends AbstractController<Node> {
         criteria.add(Restrictions.eq("setup", testbed.getSetup()));
         return (List<Node>) criteria.list();
     }
-
-    /**
-     * Returns the readings count for a node.
-     *
-     * @param node , a node .
-     * @return the count of this node.
-     */
-    public Long getReadingsCount(final Node node){
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq("node",node));
-        criteria.setProjection(Projections.count("node"));
-        criteria.setMaxResults(1);
-        return (Long) criteria.uniqueResult();
-    }
-
-    /**
-     * Returns the readings count for a node and a capability.
-     *
-     * @param node  , a node.
-     * @param capability , a capability
-     * @return the count of readings for this node and capability.
-     */
-    public Long getReadingsCount(final Node node,final Capability capability){
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq("node",node));
-        criteria.add(Restrictions.eq("capability",capability));
-        criteria.setProjection(Projections.count("node"));
-        criteria.setMaxResults(1);
-        return (Long) criteria.uniqueResult();
-    }
 }

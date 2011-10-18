@@ -92,38 +92,4 @@ public class LinkController extends AbstractController<Link> {
         criteria.add(Restrictions.eq("setup", testbed.getSetup()));
         return (List<Link>) criteria.list();
     }
-
-    /**
-     * Returns the readings count for a link.
-     *
-     * @param link , a node .
-     * @return the count of this node.
-     */
-    public Long getReadingsCount(final Link link){
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(LinkReading.class);
-        criteria.createCriteria("link","id");
-        criteria.add(Restrictions.eq("id.source",link.getSource()));
-        criteria.add(Restrictions.eq("id.target",link.getTarget()));
-        criteria.setProjection(Projections.count("link"));
-        criteria.setMaxResults(1);
-        return (Long) criteria.uniqueResult();
-    }
-
-    /**
-     * Returns the readings count for a link and a capability.
-     *
-     * @param link  , a link.
-     * @param capability , a capability
-     * @return the count of readings for this node and capability.
-     */
-    public Long getReadingsCount(final Link link,final Capability capability){
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(LinkReading.class);
-        criteria.add(Restrictions.eq("link",link));
-        criteria.add(Restrictions.eq("capability",capability));
-        criteria.setProjection(Projections.count("link"));
-        criteria.setMaxResults(1);
-        return (Long) criteria.uniqueResult();
-    }
 }

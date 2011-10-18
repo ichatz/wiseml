@@ -3,11 +3,15 @@ package eu.wisebed.wisedb.test;
 
 import eu.wisebed.wisedb.HibernateUtil;
 import eu.wisebed.wisedb.controller.NodeController;
+import eu.wisebed.wisedb.controller.NodeReadingController;
 import eu.wisebed.wisedb.controller.TestbedController;
 import eu.wisebed.wisedb.model.Testbed;
+import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Node;
 import org.apache.log4j.Logger;
 import org.hibernate.Transaction;
+
+import java.util.Map;
 
 public class NodeReadingCount {
     /**
@@ -23,10 +27,19 @@ public class NodeReadingCount {
         try {
             final String urnPrefix = "urn:wisebed:ctitestbed:";
             final Testbed testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
-            final Node node = NodeController.getInstance().list(testbed).iterator().next();
+            final Node node = NodeController.getInstance().getByID(urnPrefix + "0x99c");
             LOGGER.info("Selected Node : " + node.getId());
-            Long readingsCount = NodeController.getInstance().getReadingsCount(node);
-            LOGGER.info("Selected Node : " + node.getId() + " readings count :" + readingsCount.intValue());
+            long now1 = System.currentTimeMillis();
+            Long readingsCount = NodeReadingController.getInstance().getReadingsCount(node);
+            long now2 = System.currentTimeMillis();
+            LOGGER.info("Selected Node : " + node.getId() + " readings count :" + readingsCount.intValue() + " (" + (now2-now1) + ")" );
+            now1 = System.currentTimeMillis();
+            Map<Capability,Long> map = NodeReadingController.getInstance().getReadingsCountPerCapability(node);
+            now2 = System.currentTimeMillis();
+            for(Capability key : map.keySet()){
+                LOGGER.info("Selected Node : " + node.getId() + " Selected Capability : " + key.getName() +  " readings count :" + map.get(key));
+            }
+            LOGGER.info("it took (" + (now2-now1) +").");
             tx.commit();
         } catch (Exception e) {
             tx.rollback();

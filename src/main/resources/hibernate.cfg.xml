@@ -12,29 +12,23 @@
         <property name="hibernate.connection.password">${wisedb.jdbc.connection.password}</property>
         <property name="hibernate.connection.pool_size">10</property>
         <property name="hibernate.connection.autoReconnect">true</property>
-
-        <!-- Enable Hibernate's automatic session context management -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="current_session_context_class">thread</property>
+        <property name="show_sql">true</property>
+        <property name="use_sql_comments">true</property>
+        <property name="format_sql">true</property>
 
         <!-- Disable the second-level cache  -->
         <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
 
-        <!-- Echo all executed SQL to stdout -->
-        <property name="show_sql">true</property>
-        <property name="use_sql_comments">true</property>
+        <!--&lt;!&ndash; Enable second level cache &ndash;&gt;-->
+        <!--<property name="hibernate.cache.use_second_level_cache">true</property>-->
 
-        <!-- Drop and re-create the database schema on startup -->
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <!--&lt;!&ndash; Hibernate query cache &ndash;&gt;-->
+        <!--<property name="hibernate.cache.use_query_cache">true</property>-->
 
-        <!-- Enable second level cache -->
-        <property name="hibernate.cache.use_second_level_cache">true</property>
-
-        <!-- Hibernate query cache -->
-        <property name="hibernate.cache.use_query_cache">true</property>
-
-        <!-- Force Hibernate to use instances of Ehcache CacheManage -->
-        <property name="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory
-        </property>
+        <!--&lt;!&ndash; Force Hibernate to use instances of Ehcache CacheManage &ndash;&gt;-->
+        <!--<property name="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory</property>-->
 
         <!-- Mapping files for read-only tables -->
         <mapping resource="eu/wisebed/wisedb/model/Testbed.hbm.xml"/>

@@ -3,7 +3,7 @@ package eu.wisebed.wisedb.test;
 
 import eu.wisebed.wisedb.HibernateUtil;
 import eu.wisebed.wisedb.controller.LinkController;
-import eu.wisebed.wisedb.controller.NodeController;
+import eu.wisebed.wisedb.controller.LinkReadingController;
 import eu.wisebed.wisedb.controller.TestbedController;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Link;
@@ -26,7 +26,7 @@ public class LinkReadingCount {
             final Testbed testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
             final Link link = LinkController.getInstance().list(testbed).iterator().next();
             LOGGER.info("Selected Link : [" + link.getSource() +"," + link.getTarget() + "]");
-            Long readingsCount = LinkController.getInstance().getReadingsCount(link);
+            Long readingsCount = LinkReadingController.getInstance().getReadingsCount(link);
             LOGGER.info("Selected Link : [" + link.getSource() +"," + link.getTarget() + "] readings count :" + readingsCount.intValue());
             tx.commit();
         } catch (Exception e) {

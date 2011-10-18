@@ -1,5 +1,6 @@
 package eu.wisebed.wisedb.controller;
 
+import com.hp.hpl.jena.ontology.Restriction;
 import eu.wisebed.wisedb.exception.UnknownTestbedException;
 import eu.wisebed.wisedb.model.LinkReading;
 import eu.wisebed.wisedb.model.NodeReading;
@@ -151,6 +152,62 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         criteria.add(Restrictions.eq("capability", capability));
         criteria.addOrder(Order.asc("timestamp"));
         return (List<NodeReading>) criteria.list();
+    }
+
+    /**
+     * Returns the readings count for a node.
+     *
+     * @param node , a node .
+     * @return the count of this node.
+     */
+    public Long getReadingsCount(final Node node){
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.eq("node",node));
+        criteria.setProjection(Projections.count("node"));
+        criteria.setMaxResults(1);
+        return (Long) criteria.uniqueResult();
+    }
+
+    /**
+     * Returns the readings count for a node per a capability.
+     *
+     * @param node , a node .
+     * @return a map containing readings of a node per capability
+     */
+    public Map<Capability,Long> getReadingsCountPerCapability(final Node node){
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.eq("node",node));
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.rowCount())
+                .add(Projections.property("capability"))
+                .add(Projections.groupProperty("capability"))
+        );
+        HashMap<Capability,Long> resultMap = new HashMap<Capability, Long>();
+        List<Object> results = criteria.list();
+        for(Object result : results){
+            Object[] row = (Object[]) result;
+            resultMap.put((Capability)row[1],(Long)row[0]);
+        }
+        return resultMap;
+    }
+
+    /**
+     * Returns the readings count for a node and a capability.
+     *
+     * @param node  , a node.
+     * @param capability , a capability
+     * @return the count of readings for this node and capability.
+     */
+    public Long getReadingsCount(final Node node,final Capability capability){
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.eq("node",node));
+        criteria.add(Restrictions.eq("capability",capability));
+        criteria.setProjection(Projections.count("node"));
+        criteria.setMaxResults(1);
+        return (Long) criteria.uniqueResult();
     }
 
     /**
