@@ -1,6 +1,5 @@
 package eu.wisebed.wisedb.controller;
 
-import com.hp.hpl.jena.ontology.Restriction;
 import eu.wisebed.wisedb.exception.UnknownTestbedException;
 import eu.wisebed.wisedb.model.LinkReading;
 import eu.wisebed.wisedb.model.NodeReading;
@@ -75,6 +74,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @param urnPrefix      , a testbed urn prefix.
      * @param readingValue   , a reading value.
      * @param timestamp      , a timestamp.
+     * @throws eu.wisebed.wisedb.exception.UnknownTestbedException , exception that occurs when the urnPrefix is unknown
      */
     public void insertReading(final String nodeId, final String capabilityName, final String urnPrefix,
                               final double readingValue, final Date timestamp) throws UnknownTestbedException{
@@ -175,6 +175,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @param node , a node .
      * @return a map containing readings of a node per capability
      */
+    @SuppressWarnings("unchecked")
     public Map<Capability,Long> getReadingsCountPerCapability(final Node node){
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(NodeReading.class);
@@ -385,10 +386,10 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     }
 
     /**
-     * Returns the latest reading of a specific node
+     * Returns the latest reading for a specific capability.
      *
-     * @param capability
-     * @return
+     * @param capability , a capability
+     * @return returns the latest node reading for a specific capability
      */
     public NodeReadingStat getLatestNodeReadingUpdate(final Capability capability) {
         final Session session = getSessionFactory().getCurrentSession();
@@ -441,11 +442,11 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     }
 
     /**
-     * Returns the latest reading of a specific node & capability.
+     * Returns the latest reading for a specific node & capability.
      *
-     * @param node
-     * @param capability
-     * @return
+     * @param node . a node.
+     * @param capability , a capability
+     * @return the latest reading for a specific node & capability.
      */
     public NodeReadingStat getLatestNodeReadingUpdate(final Node node, final Capability capability) {
         final Session session = getSessionFactory().getCurrentSession();
