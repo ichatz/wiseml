@@ -6,6 +6,7 @@ import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import java.util.List;
@@ -90,6 +91,7 @@ public class LinkController extends AbstractController<Link> {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(Link.class);
         criteria.add(Restrictions.eq("setup", testbed.getSetup()));
+        criteria.addOrder(Order.asc("source"));
         return (List<Link>) criteria.list();
     }
 }

@@ -103,6 +103,7 @@ public class NodeController extends AbstractController<Node> {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(Node.class);
         criteria.add(Restrictions.eq("setup", testbed.getSetup()));
+        criteria.addOrder(Order.asc("id"));
         return (List<Node>) criteria.list();
     }
 }

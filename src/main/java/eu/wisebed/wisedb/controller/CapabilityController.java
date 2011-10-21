@@ -1,13 +1,17 @@
 package eu.wisebed.wisedb.controller;
 
+import com.hp.hpl.jena.ontology.Restriction;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
+import eu.wisebed.wiseml.model.setup.Link;
+import eu.wisebed.wiseml.model.setup.Node;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -82,12 +86,41 @@ public class CapabilityController extends AbstractController<Capability> {
     }
 
     /**
-     * Listing all the Capabilities from the database.
+     * Listing all capabilities from the database.
      *
-     * @return a list of all the entries that exist inside the table Node.
+     * @return a list of all capabilities persisted.
      */
     public List<Capability> list() {
         return super.list(new Capability());
+    }
+
+    /**
+     * Listing all node capabilities from the database.
+     *
+     * @return a list of all node related capabilities persisted.
+     */
+    public List<Capability> listNodeCapabilities(){
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(Capability.class);
+        criteria.add(Restrictions.isNotNull("nodes"));
+        criteria.add(Restrictions.isNotEmpty("nodes"));
+        criteria.addOrder(Order.asc("name"));
+        return (List<Capability>) criteria.list();
+    }
+
+
+    /**
+     * Listing all link capabilities from the database.
+     *
+     * @return a list of all link related capabilities persisted.
+     */
+    public List<Capability> listLinkCapabilities(){
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(Capability.class);
+        criteria.add(Restrictions.isNotNull("links"));
+        criteria.add(Restrictions.isNotEmpty("links"));
+        criteria.addOrder(Order.asc("name"));
+        return (List<Capability>) criteria.list();
     }
 
     /**
@@ -110,25 +143,94 @@ public class CapabilityController extends AbstractController<Capability> {
      * @return a list of testbed nodes capabilities.
      */
     public List<Capability> listNodeCapabilities(final Testbed testbed) {
-        final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
+        final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(Capability.class);
         criteria.createAlias("nodes","ns");
         criteria.add(Restrictions.eq("ns.setup",testbed.getSetup()));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        criteria.addOrder(Order.asc("name"));
         return (List<Capability>) criteria.list();
     }
 
     /**
-     * Listing all the llink capabilities associated with nodes from the database belonging to a selected testbed.
+     * Listing all the link capabilities associated with nodes from the database belonging to a selected testbed.
+     *
      * @param testbed , a selected testbed.
      * @return a list of testbed link capabilities.
      */
     public List<Capability> listLinkCapabilities(final Testbed testbed) {
-        final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
+        final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(Capability.class);
         criteria.createAlias("links","ls");
         criteria.add(Restrictions.eq("ls.setup",testbed.getSetup()));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        criteria.addOrder(Order.asc("name"));
         return (List<Capability>) criteria.list();
     }
+
+    /**
+     * Listing all nodes that have the given capability.
+     *
+     * @param capability , a capability.
+     * @return a list of nodes that share the given capability.
+     */
+    public List<Node> listCapabilityNodes(final Capability capability){
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(Node.class);
+        criteria.createAlias("capabilities","caps")
+                .add(Restrictions.eq("caps.name",capability.getName()));
+        criteria.addOrder(Order.asc("id"));
+        return (List<Node>) criteria.list();
+    }
+
+    /**
+     * Listing all nodes that have the given capability.
+     *
+     * @param capability, a capability.
+     * @param testbed , a testbed.
+     * @return a list of nodes that share the given capability belonging to the same testbed.
+     */
+    public List<Node> listCapabilityNodes(final Capability capability, final Testbed testbed){
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(Node.class);
+        criteria.add(Restrictions.eq("setup",testbed.getSetup()));
+        criteria.createAlias("capabilities","caps")
+                .add(Restrictions.eq("caps.name", capability.getName()));
+        criteria.addOrder(Order.asc("id"));
+        return (List<Node>) criteria.list();
+    }
+
+    /**
+     * Listing all links that have the given capability.
+     *
+     * @param capability , a capability.
+     * @return a list of links that share the given capability.
+     */
+    public List<Link> listCapabilityLinks(final Capability capability){
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(Link.class);
+        criteria.createAlias("capabilities","caps")
+                .add(Restrictions.eq("caps.name",capability.getName()));
+        criteria.addOrder(Order.asc("source"));
+        return (List<Link>) criteria.list();
+    }
+
+    /**
+     * Listing all links that have the given capability.
+     *
+     * @param capability, a capability.
+     * @param testbed , a testbed.
+     * @return a list of links that share the given capability belonging to the same testbed.
+     */
+    public List<Link> listCapabilityLinks(final Capability capability, final Testbed testbed){
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(Link.class);
+        criteria.add(Restrictions.eq("setup",testbed.getSetup()));
+        criteria.createAlias("capabilities","caps")
+                .add(Restrictions.eq("caps.name", capability.getName()));
+        criteria.addOrder(Order.asc("source"));
+        return (List<Link>) criteria.list();
+    }
+
+
 }

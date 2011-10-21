@@ -5,6 +5,8 @@ import eu.wisebed.wisedb.controller.CapabilityController;
 import eu.wisebed.wisedb.controller.TestbedController;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
+import eu.wisebed.wiseml.model.setup.Link;
+import eu.wisebed.wiseml.model.setup.Node;
 import org.apache.log4j.Logger;
 import org.hibernate.Transaction;
 
@@ -25,14 +27,56 @@ public class ListTestbedCapabilities {
         Transaction tx = HibernateUtil.getInstance().getSession().beginTransaction();
 
         try {
-            final Testbed testbed = TestbedController.getInstance().getByUrnPrefix("urn:wisebed:ctitestbed:");
-            List<Capability> capabilities = CapabilityController.getInstance().list(testbed);
-            for(Capability capability : capabilities){
-                LOGGER.info(capability.getName() + " " + capability.getNodes() + " " + capability.getLinks());
+            final Testbed testbedCTI = TestbedController.getInstance().getByUrnPrefix("urn:wisebed:ctitestbed:");
+            final Testbed testbedSAN = TestbedController.getInstance().getByUrnPrefix("urn:wisebed:santander:");
+            final Capability capability1 = CapabilityController.getInstance().getByID("urn:wisebed:node:capability:temperature");
+            final Capability capability2 = CapabilityController.getInstance().getByID("urn:wisebed:node:capability:battery");
+            final Capability capability3 = CapabilityController.getInstance().getByID("status");
+
+            // 1st test
+            List<Capability> capabilities1 = CapabilityController.getInstance().list(testbedCTI);
+            for (Capability capability : capabilities1) {
+                LOGGER.info("CTI : " + capability.getName());
+            }
+            List<Capability> capabilities2 = CapabilityController.getInstance().list(testbedSAN);
+            for (Capability capability : capabilities2) {
+                LOGGER.info("SAN : " + capability.getName());
+            }
+
+            // 2nd test
+            List<Node> nodes = CapabilityController.getInstance().listCapabilityNodes(capability1);
+            for(Node node: nodes){
+                LOGGER.info(node.getId());
+            }
+
+            // 3rd test
+            List<Node> nodes1 = CapabilityController.getInstance().listCapabilityNodes(capability1, testbedCTI);
+            for (Node node : nodes1) {
+                LOGGER.info("1.CTI " + node.getId());
+            }
+            List<Node> nodes2 = CapabilityController.getInstance().listCapabilityNodes(capability2, testbedCTI);
+            for (Node node : nodes2) {
+                LOGGER.info("1.SAN " + node.getId()); // shouldnt be printed
+            }
+
+            nodes1 = CapabilityController.getInstance().listCapabilityNodes(capability1, testbedSAN);
+            for (Node node : nodes1) {
+                LOGGER.info("2.CTI " + node.getId());// shouldnt be printed
+            }
+            nodes2 = CapabilityController.getInstance().listCapabilityNodes(capability2, testbedSAN);
+            for (Node node : nodes2) {
+                LOGGER.info("2.SAN " + node.getId());
+            }
+
+            //4th test
+            List<Link> links = CapabilityController.getInstance().listCapabilityLinks(capability3, testbedCTI);
+            for (Link link: links){
+                LOGGER.info(link.getSource() + " -> " + link.getTarget());
             }
             tx.commit();
-        }catch(Exception e){
+        } catch (Exception e) {
             tx.rollback();
+            e.printStackTrace();
             LOGGER.fatal(e);
             System.exit(-1);
         } finally {
