@@ -1,17 +1,18 @@
 package eu.wisebed.wisedb.controller;
 
 import com.hp.hpl.jena.ontology.Restriction;
+import eu.wisebed.wisedb.model.LinkReading;
+import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
+import org.apache.commons.collections.map.LinkedMap;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 /**
@@ -99,7 +100,7 @@ public class CapabilityController extends AbstractController<Capability> {
      *
      * @return a list of all node related capabilities persisted.
      */
-    public List<Capability> listNodeCapabilities(){
+    public List<Capability> listNodeCapabilities() {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(Capability.class);
         criteria.add(Restrictions.isNotNull("nodes"));
@@ -114,7 +115,7 @@ public class CapabilityController extends AbstractController<Capability> {
      *
      * @return a list of all link related capabilities persisted.
      */
-    public List<Capability> listLinkCapabilities(){
+    public List<Capability> listLinkCapabilities() {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(Capability.class);
         criteria.add(Restrictions.isNotNull("links"));
@@ -125,6 +126,7 @@ public class CapabilityController extends AbstractController<Capability> {
 
     /**
      * Listing all the capabilities from the database belonging to a selected testbed.
+     *
      * @param testbed , a selected testbed.
      * @return a list of testbed capabilities.
      */
@@ -139,14 +141,15 @@ public class CapabilityController extends AbstractController<Capability> {
 
     /**
      * Listing all the capabilities associated with nodes from the database belonging to a selected testbed.
+     *
      * @param testbed , a selected testbed.
      * @return a list of testbed nodes capabilities.
      */
     public List<Capability> listNodeCapabilities(final Testbed testbed) {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(Capability.class);
-        criteria.createAlias("nodes","ns");
-        criteria.add(Restrictions.eq("ns.setup",testbed.getSetup()));
+        criteria.createAlias("nodes", "ns");
+        criteria.add(Restrictions.eq("ns.setup", testbed.getSetup()));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         criteria.addOrder(Order.asc("name"));
         return (List<Capability>) criteria.list();
@@ -161,8 +164,8 @@ public class CapabilityController extends AbstractController<Capability> {
     public List<Capability> listLinkCapabilities(final Testbed testbed) {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(Capability.class);
-        criteria.createAlias("links","ls");
-        criteria.add(Restrictions.eq("ls.setup",testbed.getSetup()));
+        criteria.createAlias("links", "ls");
+        criteria.add(Restrictions.eq("ls.setup", testbed.getSetup()));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         criteria.addOrder(Order.asc("name"));
         return (List<Capability>) criteria.list();
@@ -174,11 +177,11 @@ public class CapabilityController extends AbstractController<Capability> {
      * @param capability , a capability.
      * @return a list of nodes that share the given capability.
      */
-    public List<Node> listCapabilityNodes(final Capability capability){
+    public List<Node> listCapabilityNodes(final Capability capability) {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(Node.class);
-        criteria.createAlias("capabilities","caps")
-                .add(Restrictions.eq("caps.name",capability.getName()));
+        criteria.createAlias("capabilities", "caps")
+                .add(Restrictions.eq("caps.name", capability.getName()));
         criteria.addOrder(Order.asc("id"));
         return (List<Node>) criteria.list();
     }
@@ -187,14 +190,14 @@ public class CapabilityController extends AbstractController<Capability> {
      * Listing all nodes that have the given capability.
      *
      * @param capability, a capability.
-     * @param testbed , a testbed.
+     * @param testbed     , a testbed.
      * @return a list of nodes that share the given capability belonging to the same testbed.
      */
-    public List<Node> listCapabilityNodes(final Capability capability, final Testbed testbed){
+    public List<Node> listCapabilityNodes(final Capability capability, final Testbed testbed) {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(Node.class);
-        criteria.add(Restrictions.eq("setup",testbed.getSetup()));
-        criteria.createAlias("capabilities","caps")
+        criteria.add(Restrictions.eq("setup", testbed.getSetup()));
+        criteria.createAlias("capabilities", "caps")
                 .add(Restrictions.eq("caps.name", capability.getName()));
         criteria.addOrder(Order.asc("id"));
         return (List<Node>) criteria.list();
@@ -206,11 +209,11 @@ public class CapabilityController extends AbstractController<Capability> {
      * @param capability , a capability.
      * @return a list of links that share the given capability.
      */
-    public List<Link> listCapabilityLinks(final Capability capability){
+    public List<Link> listCapabilityLinks(final Capability capability) {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(Link.class);
-        criteria.createAlias("capabilities","caps")
-                .add(Restrictions.eq("caps.name",capability.getName()));
+        criteria.createAlias("capabilities", "caps")
+                .add(Restrictions.eq("caps.name", capability.getName()));
         criteria.addOrder(Order.asc("source"));
         return (List<Link>) criteria.list();
     }
@@ -219,18 +222,184 @@ public class CapabilityController extends AbstractController<Capability> {
      * Listing all links that have the given capability.
      *
      * @param capability, a capability.
-     * @param testbed , a testbed.
+     * @param testbed     , a testbed.
      * @return a list of links that share the given capability belonging to the same testbed.
      */
-    public List<Link> listCapabilityLinks(final Capability capability, final Testbed testbed){
+    public List<Link> listCapabilityLinks(final Capability capability, final Testbed testbed) {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(Link.class);
-        criteria.add(Restrictions.eq("setup",testbed.getSetup()));
-        criteria.createAlias("capabilities","caps")
+        criteria.add(Restrictions.eq("setup", testbed.getSetup()));
+        criteria.createAlias("capabilities", "caps")
                 .add(Restrictions.eq("caps.name", capability.getName()));
         criteria.addOrder(Order.asc("source"));
         return (List<Link>) criteria.list();
     }
 
+    /**
+     * Returns the node readings count for a capability.
+     *
+     * @param capability , a capability .
+     * @return total node readings count for a given capability.
+     */
+    public Long getNodeReadingsCount(final Capability capability) {
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.setProjection(Projections.count("capability"));
+        criteria.setMaxResults(1);
+        return (Long) criteria.uniqueResult();
+    }
 
+    /**
+     * Returns the node readings count for a capability in a testbed.
+     *
+     * @param capability , a capability .
+     * @param testbed    , a testbed .
+     * @return total node readings count for a given capability.
+     */
+    public Long getNodeReadingsCount(final Capability capability, final Testbed testbed) {
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.createAlias("node", "no");
+        criteria.add(Restrictions.eq("no.setup", testbed.getSetup()));
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.setProjection(Projections.count("capability"));
+        criteria.setMaxResults(1);
+        return (Long) criteria.uniqueResult();
+    }
+
+    /**
+     * Returns the node readings count for a capability.
+     *
+     * @param capability , a capability .
+     * @return total node readings count for a given capability.
+     */
+    public Long getLinkReadingsCount(final Capability capability) {
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(LinkReading.class);
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.setProjection(Projections.count("capability"));
+        criteria.setMaxResults(1);
+        return (Long) criteria.uniqueResult();
+    }
+
+    /**
+     * Returns the node readings count for a capability in a testbed.
+     *
+     * @param capability , a capability.
+     * @param testbed    , a testbed .
+     * @return total node readings count for a given capability.
+     */
+    public Long getLinkReadingsCount(final Capability capability, final Testbed testbed) {
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(LinkReading.class);
+        criteria.createAlias("link", "li");
+        criteria.add(Restrictions.eq("li.setup", testbed.getSetup()));
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.setProjection(Projections.count("capability"));
+        criteria.setMaxResults(1);
+        return (Long) criteria.uniqueResult();
+    }
+
+    /**
+     * Returns the readings count for a capability per node.
+     *
+     * @param capability , a capability .
+     * @return a map containing readings of a capability per node.
+     */
+    public Map<Node, Long> getReadingsCountPerNode(final Capability capability) {
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.rowCount())
+                .add(Projections.property("node"))
+                .add(Projections.groupProperty("node"))
+        );
+        HashMap<Node, Long> resultMap = new HashMap<Node, Long>();
+        List<Object> results = criteria.list();
+        for (Object result : results) {
+            Object[] row = (Object[]) result;
+            resultMap.put((Node) row[1], (Long) row[0]);
+        }
+        return resultMap;
+    }
+
+    /**
+     * Returns the readings count for a capability per link.
+     *
+     * @param capability , a capability .
+     * @return a map containing readings of a capability per link.
+     */
+    public Map<Link, Long> getReadingsCountPerLink(final Capability capability) {
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(LinkReading.class);
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.rowCount())
+                .add(Projections.property("link"))
+                .add(Projections.groupProperty("link"))
+        );
+        HashMap<Link, Long> resultMap = new HashMap<Link, Long>();
+        List<Object> results = criteria.list();
+        for (Object result : results) {
+            Object[] row = (Object[]) result;
+            resultMap.put((Link) row[1], (Long) row[0]);
+        }
+        return resultMap;
+    }
+
+    /**
+     * Returns the readings count for a capability per node in a testbed.
+     *
+     * @param capability , a capability .
+     * @param testbed , a testbed.
+     * @return a map containing readings of a capability per node.
+     */
+    public Map<Node, Long> getReadingsCountPerNode(final Capability capability, final Testbed testbed) {
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.createAlias("node","no");
+        criteria.add(Restrictions.eq("no.setup",testbed.getSetup()));
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.rowCount())
+                .add(Projections.property("node"))
+                .add(Projections.groupProperty("node"))
+        );
+        HashMap<Node, Long> resultMap = new HashMap<Node, Long>();
+        List<Object> results = criteria.list();
+        for (Object result : results) {
+            Object[] row = (Object[]) result;
+            resultMap.put((Node) row[1], (Long) row[0]);
+        }
+        return resultMap;
+    }
+
+    /**
+     * Returns the readings count for a capability per link in a testbed.
+     *
+     * @param capability , a capability .
+     * @param testbed , a testbed.
+     * @return a map containing readings of a capability per link.
+     */
+    public Map<Link, Long> getReadingsCountPerLink(final Capability capability, final Testbed testbed) {
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(LinkReading.class);
+        criteria.createAlias("link","li");
+        criteria.add(Restrictions.eq("li.setup",testbed.getSetup()));
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.rowCount())
+                .add(Projections.property("link"))
+                .add(Projections.groupProperty("link"))
+        );
+        HashMap<Link, Long> resultMap = new HashMap<Link, Long>();
+        List<Object> results = criteria.list();
+        for (Object result : results) {
+            Object[] row = (Object[]) result;
+            resultMap.put((Link) row[1], (Long) row[0]);
+        }
+        return resultMap;
+    }
 }
