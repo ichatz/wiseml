@@ -1,10 +1,7 @@
 package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.exception.UnknownTestbedException;
-import eu.wisebed.wisedb.model.LinkReading;
-import eu.wisebed.wisedb.model.LinkReadingStat;
-import eu.wisebed.wisedb.model.NodeReading;
-import eu.wisebed.wisedb.model.Testbed;
+import eu.wisebed.wisedb.model.*;
 import eu.wisebed.wiseml.model.setup.*;
 import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
@@ -76,7 +73,8 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      * @param rssiValue      , the RSSI value of the link.
      * @param readingValue   , value of a sensor reading.
      * @param timestamp      , a timestamp.
-     * @throws eu.wisebed.wisedb.exception.UnknownTestbedException , exception that occurs when the urnPrefix is unknown
+     * @throws eu.wisebed.wisedb.exception.UnknownTestbedException
+     *          , exception that occurs when the urnPrefix is unknown
      */
     public void insertReading(final String sourceId, final String targetId, final String capabilityName,
                               final String urnPrefix, final double readingValue, final double rssiValue,
@@ -173,6 +171,17 @@ public class LinkReadingController extends AbstractController<LinkReading> {
 
         // add reading
         add(reading);
+
+        // get last link reading for link and capability if not found create one
+        LastLinkReading lastLinkReading = LastLinkReadingController.getInstance().getByID(link, capability);
+        if (lastLinkReading == null) {
+            lastLinkReading = new LastLinkReading();
+        }
+        lastLinkReading.setReading(readingValue);
+        lastLinkReading.setTimestamp(timestamp);
+        lastLinkReading.setNode(link);
+        lastLinkReading.setCapability(capability);
+        LastLinkReadingController.getInstance().add(lastLinkReading);
     }
 
     /**
@@ -189,7 +198,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         criteria = session.createCriteria(LinkReading.class);
         criteria.createAlias("link", "id");
         criteria.add(Restrictions.eq("id.source", link.getSource()));
-        criteria.add(Restrictions.eq("id.target",link.getTarget()));
+        criteria.add(Restrictions.eq("id.target", link.getTarget()));
         criteria.add(Restrictions.eq("capability", capability));
         criteria.addOrder(Order.asc("timestamp"));
         return (List<LinkReading>) criteria.list();
@@ -201,12 +210,12 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      * @param link , a link .
      * @return the count of this link.
      */
-    public Long getReadingsCount(final Link link){
+    public Long getReadingsCount(final Link link) {
         final org.hibernate.Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(LinkReading.class);
         criteria.createAlias("link", "id");
         criteria.add(Restrictions.eq("id.source", link.getSource()));
-        criteria.add(Restrictions.eq("id.target",link.getTarget()));
+        criteria.add(Restrictions.eq("id.target", link.getTarget()));
         criteria.setProjection(Projections.count("id"));
         criteria.setMaxResults(1);
         return (Long) criteria.uniqueResult();
@@ -219,22 +228,22 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      * @return a map containing readings of a link per capability.
      */
     @SuppressWarnings("unchecked")
-    public Map<Capability,Long> getReadingsCountPerCapability(final Link link){
+    public Map<Capability, Long> getReadingsCountPerCapability(final Link link) {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(LinkReading.class);
         criteria.createAlias("link", "id");
         criteria.add(Restrictions.eq("id.source", link.getSource()));
-        criteria.add(Restrictions.eq("id.target",link.getTarget()));
+        criteria.add(Restrictions.eq("id.target", link.getTarget()));
         criteria.setProjection(Projections.projectionList()
                 .add(Projections.rowCount())
                 .add(Projections.property("capability"))
                 .add(Projections.groupProperty("capability"))
         );
-        HashMap<Capability,Long> resultMap = new HashMap<Capability, Long>();
+        HashMap<Capability, Long> resultMap = new HashMap<Capability, Long>();
         List<Object> results = criteria.list();
-        for(Object result : results){
+        for (Object result : results) {
             Object[] row = (Object[]) result;
-            resultMap.put((Capability)row[1],(Long)row[0]);
+            resultMap.put((Capability) row[1], (Long) row[0]);
         }
         return resultMap;
     }
@@ -242,17 +251,17 @@ public class LinkReadingController extends AbstractController<LinkReading> {
     /**
      * Returns the readings count for a link and a capability.
      *
-     * @param link  , a link.
+     * @param link       , a link.
      * @param capability , a capability
      * @return the count of readings for this node and capability.
      */
-    public Long getReadingsCount(final Link link,final Capability capability){
+    public Long getReadingsCount(final Link link, final Capability capability) {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(LinkReading.class);
         criteria.createAlias("link", "id");
         criteria.add(Restrictions.eq("id.source", link.getSource()));
-        criteria.add(Restrictions.eq("id.target",link.getTarget()));
-        criteria.add(Restrictions.eq("capability",capability));
+        criteria.add(Restrictions.eq("id.target", link.getTarget()));
+        criteria.add(Restrictions.eq("capability", capability));
         criteria.setProjection(Projections.count("link"));
         criteria.setMaxResults(1);
         return (Long) criteria.uniqueResult();
@@ -491,7 +500,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
     /**
      * Returns the latest reading for a specific link & capability.
      *
-     * @param link . a link.
+     * @param link       . a link.
      * @param capability , a capability
      * @return the latest reading for a specific link & capability.
      */
@@ -543,5 +552,89 @@ public class LinkReadingController extends AbstractController<LinkReading> {
 
         return new LinkReadingStat(linkQ, latestDate, latestDateReading, earliestDate, earliestDateReading,
                 maxReading, minReading, totalCount);
+    }
+
+    /**
+     * Returns the readings count for a capability per link.
+     *
+     * @param capability , a capability .
+     * @return a map containing readings of a capability per link.
+     */
+    public Map<Link, Long> getLinkCapabilityReadingsCountPerLink(final Capability capability) {
+        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(LinkReading.class);
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.rowCount())
+                .add(Projections.property("link"))
+                .add(Projections.groupProperty("link"))
+        );
+        HashMap<Link, Long> resultMap = new HashMap<Link, Long>();
+        List<Object> results = criteria.list();
+        for (Object result : results) {
+            Object[] row = (Object[]) result;
+            resultMap.put((Link) row[1], (Long) row[0]);
+        }
+        return resultMap;
+    }
+
+    /**
+     * Returns the readings count for a capability per link in a testbed.
+     *
+     * @param capability , a capability .
+     * @param testbed    , a testbed.
+     * @return a map containing readings of a capability per link.
+     */
+    public Map<Link, Long> getLinkCapabilityReadingsCountPerLink(final Capability capability, final Testbed testbed) {
+        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(LinkReading.class);
+        criteria.createAlias("link", "li");
+        criteria.add(Restrictions.eq("li.setup", testbed.getSetup()));
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.rowCount())
+                .add(Projections.property("link"))
+                .add(Projections.groupProperty("link"))
+        );
+        HashMap<Link, Long> resultMap = new HashMap<Link, Long>();
+        List<Object> results = criteria.list();
+        for (Object result : results) {
+            Object[] row = (Object[]) result;
+            resultMap.put((Link) row[1], (Long) row[0]);
+        }
+        return resultMap;
+    }
+
+    /**
+     * Returns the node readings count for a capability.
+     *
+     * @param capability , a capability .
+     * @return total node readings count for a given capability.
+     */
+    public Long getLinkCapabilityReadingsCount(final Capability capability) {
+        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(LinkReading.class);
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.setProjection(Projections.count("capability"));
+        criteria.setMaxResults(1);
+        return (Long) criteria.uniqueResult();
+    }
+
+    /**
+     * Returns the node readings count for a capability in a testbed.
+     *
+     * @param capability , a capability.
+     * @param testbed    , a testbed .
+     * @return total node readings count for a given capability.
+     */
+    public Long getLinkCapabilityReadingsCount(final Capability capability, final Testbed testbed) {
+        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(LinkReading.class);
+        criteria.createAlias("link", "li");
+        criteria.add(Restrictions.eq("li.setup", testbed.getSetup()));
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.setProjection(Projections.count("capability"));
+        criteria.setMaxResults(1);
+        return (Long) criteria.uniqueResult();
     }
 }

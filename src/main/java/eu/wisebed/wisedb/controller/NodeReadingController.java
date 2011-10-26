@@ -1,10 +1,7 @@
 package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.exception.UnknownTestbedException;
-import eu.wisebed.wisedb.model.LinkReading;
-import eu.wisebed.wisedb.model.NodeReading;
-import eu.wisebed.wisedb.model.NodeReadingStat;
-import eu.wisebed.wisedb.model.Testbed;
+import eu.wisebed.wisedb.model.*;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
@@ -74,10 +71,11 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @param urnPrefix      , a testbed urn prefix.
      * @param readingValue   , a reading value.
      * @param timestamp      , a timestamp.
-     * @throws eu.wisebed.wisedb.exception.UnknownTestbedException , exception that occurs when the urnPrefix is unknown
+     * @throws eu.wisebed.wisedb.exception.UnknownTestbedException
+     *          , exception that occurs when the urnPrefix is unknown
      */
     public void insertReading(final String nodeId, final String capabilityName, final String urnPrefix,
-                              final double readingValue, final Date timestamp) throws UnknownTestbedException{
+                              final double readingValue, final Date timestamp) throws UnknownTestbedException {
 
         // Retrieve testbed by urn
         Testbed testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
@@ -85,7 +83,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
             throw new UnknownTestbedException(urnPrefix);
         }
 
-        // get node if not found throw exception
+        // get node if not found create one
         Node node = NodeController.getInstance().getByID(nodeId);
         if (node == null) {
             // if node not found in db make it and store it
@@ -100,6 +98,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
             NodeController.getInstance().add(node);
         }
 
+        // get capability if not found create one
         Capability capability = CapabilityController.getInstance().getByID(capabilityName);
         if (capability == null) {
             // if capability not found in db make it and store it
@@ -134,6 +133,17 @@ public class NodeReadingController extends AbstractController<NodeReading> {
 
         // add reading
         add(reading);
+
+        // get lastNodeReading if not found create one
+        LastNodeReading lastNodeReading = LastNodeReadingController.getInstance().getByID(node, capability);
+        if (lastNodeReading == null) {
+            lastNodeReading = new LastNodeReading();
+        }
+        lastNodeReading.setReading(readingValue);
+        lastNodeReading.setTimestamp(timestamp);
+        lastNodeReading.setNode(node);
+        lastNodeReading.setCapability(capability);
+        LastNodeReadingController.getInstance().add(lastNodeReading);
     }
 
     /**
@@ -160,10 +170,10 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @param node , a node .
      * @return the count of this node.
      */
-    public Long getReadingsCount(final Node node){
+    public Long getReadingsCount(final Node node) {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq("node",node));
+        criteria.add(Restrictions.eq("node", node));
         criteria.setProjection(Projections.count("node"));
         criteria.setMaxResults(1);
         return (Long) criteria.uniqueResult();
@@ -176,20 +186,20 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @return a map containing readings of a node per capability
      */
     @SuppressWarnings("unchecked")
-    public Map<Capability,Long> getReadingsCountPerCapability(final Node node){
+    public Map<Capability, Long> getNodeCapabilityReadingsCountPerCapability(final Node node) {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq("node",node));
+        criteria.add(Restrictions.eq("node", node));
         criteria.setProjection(Projections.projectionList()
                 .add(Projections.rowCount())
                 .add(Projections.property("capability"))
                 .add(Projections.groupProperty("capability"))
         );
-        HashMap<Capability,Long> resultMap = new HashMap<Capability, Long>();
+        HashMap<Capability, Long> resultMap = new HashMap<Capability, Long>();
         List<Object> results = criteria.list();
-        for(Object result : results){
+        for (Object result : results) {
             Object[] row = (Object[]) result;
-            resultMap.put((Capability)row[1],(Long)row[0]);
+            resultMap.put((Capability) row[1], (Long) row[0]);
         }
         return resultMap;
     }
@@ -197,15 +207,15 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     /**
      * Returns the readings count for a node and a capability.
      *
-     * @param node  , a node.
+     * @param node       , a node.
      * @param capability , a capability
      * @return the count of readings for this node and capability.
      */
-    public Long getReadingsCount(final Node node,final Capability capability){
+    public Long getReadingsCount(final Node node, final Capability capability) {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq("node",node));
-        criteria.add(Restrictions.eq("capability",capability));
+        criteria.add(Restrictions.eq("node", node));
+        criteria.add(Restrictions.eq("capability", capability));
         criteria.setProjection(Projections.count("node"));
         criteria.setMaxResults(1);
         return (Long) criteria.uniqueResult();
@@ -444,7 +454,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     /**
      * Returns the latest reading for a specific node & capability.
      *
-     * @param node . a node.
+     * @param node       . a node.
      * @param capability , a capability
      * @return the latest reading for a specific node & capability.
      */
@@ -496,5 +506,89 @@ public class NodeReadingController extends AbstractController<NodeReading> {
 
         return new NodeReadingStat(nodeQ, latestDate, latestDateReading, earliestDate, earliestDateReading,
                 maxReading, minReading, totalCount);
+    }
+
+    /**
+     * Returns the readings count for a capability per node.
+     *
+     * @param capability , a capability .
+     * @return a map containing readings of a capability per node.
+     */
+    public Map<Node, Long> getNodeCapabilityReadingsCountPerNode(final Capability capability) {
+        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.rowCount())
+                .add(Projections.property("node"))
+                .add(Projections.groupProperty("node"))
+        );
+        HashMap<Node, Long> resultMap = new HashMap<Node, Long>();
+        List<Object> results = criteria.list();
+        for (Object result : results) {
+            Object[] row = (Object[]) result;
+            resultMap.put((Node) row[1], (Long) row[0]);
+        }
+        return resultMap;
+    }
+
+    /**
+     * Returns the readings count for a capability per node in a testbed.
+     *
+     * @param capability , a capability .
+     * @param testbed    , a testbed.
+     * @return a map containing readings of a capability per node.
+     */
+    public Map<Node, Long> getNodeCapabilityReadingsCountPerNode(final Capability capability, final Testbed testbed) {
+        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.createAlias("node", "no");
+        criteria.add(Restrictions.eq("no.setup", testbed.getSetup()));
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.rowCount())
+                .add(Projections.property("node"))
+                .add(Projections.groupProperty("node"))
+        );
+        HashMap<Node, Long> resultMap = new HashMap<Node, Long>();
+        List<Object> results = criteria.list();
+        for (Object result : results) {
+            Object[] row = (Object[]) result;
+            resultMap.put((Node) row[1], (Long) row[0]);
+        }
+        return resultMap;
+    }
+
+    /**
+     * Returns the node readings count for a capability.
+     *
+     * @param capability , a capability .
+     * @return total node readings count for a given capability.
+     */
+    public Long getNodeCapabilityReadingsCount(final Capability capability) {
+        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.setProjection(Projections.count("capability"));
+        criteria.setMaxResults(1);
+        return (Long) criteria.uniqueResult();
+    }
+
+    /**
+     * Returns the node readings count for a capability in a testbed.
+     *
+     * @param capability , a capability .
+     * @param testbed    , a testbed .
+     * @return total node readings count for a given capability.
+     */
+    public Long getNodeCapabilityReadingsCount(final Capability capability, final Testbed testbed) {
+        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.createAlias("node", "no");
+        criteria.add(Restrictions.eq("no.setup", testbed.getSetup()));
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.setProjection(Projections.count("capability"));
+        criteria.setMaxResults(1);
+        return (Long) criteria.uniqueResult();
     }
 }

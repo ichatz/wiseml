@@ -72,7 +72,7 @@ public class NodeController extends AbstractController<Node> {
      * @param node the Node tha we want to delete
      */
     public void delete(final Node node) {
-        super.delete(node,node.getId());
+        super.delete(node, node.getId());
     }
 
     /**
@@ -81,7 +81,7 @@ public class NodeController extends AbstractController<Node> {
      * @param nodeId the id of the node tha we want to delete
      */
     public void delete(final String nodeId) {
-        super.delete(new Node(),nodeId);
+        super.delete(new Node(), nodeId);
     }
 
     /**
@@ -103,6 +103,38 @@ public class NodeController extends AbstractController<Node> {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(Node.class);
         criteria.add(Restrictions.eq("setup", testbed.getSetup()));
+        criteria.addOrder(Order.asc("id"));
+        return (List<Node>) criteria.list();
+    }
+
+    /**
+     * Listing all nodes that have the given capability.
+     *
+     * @param capability , a capability.
+     * @return a list of nodes that share the given capability.
+     */
+    public List<Node> listCapabilityNodes(final Capability capability) {
+        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(Node.class);
+        criteria.createAlias("capabilities", "caps")
+                .add(Restrictions.eq("caps.name", capability.getName()));
+        criteria.addOrder(Order.asc("id"));
+        return (List<Node>) criteria.list();
+    }
+
+    /**
+     * Listing all nodes that have the given capability.
+     *
+     * @param capability, a capability.
+     * @param testbed     , a testbed.
+     * @return a list of nodes that share the given capability belonging to the same testbed.
+     */
+    public List<Node> listCapabilityNodes(final Capability capability, final Testbed testbed) {
+        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(Node.class);
+        criteria.add(Restrictions.eq("setup", testbed.getSetup()));
+        criteria.createAlias("capabilities", "caps")
+                .add(Restrictions.eq("caps.name", capability.getName()));
         criteria.addOrder(Order.asc("id"));
         return (List<Node>) criteria.list();
     }

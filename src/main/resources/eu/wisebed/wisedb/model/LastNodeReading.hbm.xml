@@ -1,0 +1,18 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="eu.wisebed.wisedb.model.LastNodeReading" table="last_node_capability_readings">
+
+        <composite-id>
+            <key-many-to-one name="node" column="node_id" class="eu.wisebed.wiseml.model.setup.Node"/>
+            <key-many-to-one name="capability" column="capability_id" class="eu.wisebed.wiseml.model.setup.Capability"/>
+        </composite-id>
+
+        <property name="timestamp" type="timestamp"/>
+
+        <property name="reading"/>
+
+    </class>
+</hibernate-mapping>

@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+
 import java.util.List;
 
 public class LinkController extends AbstractController<Link> {
@@ -91,6 +92,38 @@ public class LinkController extends AbstractController<Link> {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(Link.class);
         criteria.add(Restrictions.eq("setup", testbed.getSetup()));
+        criteria.addOrder(Order.asc("source"));
+        return (List<Link>) criteria.list();
+    }
+
+    /**
+     * Listing all links that have the given capability.
+     *
+     * @param capability , a capability.
+     * @return a list of links that share the given capability.
+     */
+    public List<Link> listCapabilityLinks(final Capability capability) {
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(Link.class);
+        criteria.createAlias("capabilities", "caps")
+                .add(Restrictions.eq("caps.name", capability.getName()));
+        criteria.addOrder(Order.asc("source"));
+        return (List<Link>) criteria.list();
+    }
+
+    /**
+     * Listing all links that have the given capability.
+     *
+     * @param capability, a capability.
+     * @param testbed     , a testbed.
+     * @return a list of links that share the given capability belonging to the same testbed.
+     */
+    public List<Link> listCapabilityLinks(final Capability capability, final Testbed testbed) {
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(Link.class);
+        criteria.add(Restrictions.eq("setup", testbed.getSetup()));
+        criteria.createAlias("capabilities", "caps")
+                .add(Restrictions.eq("caps.name", capability.getName()));
         criteria.addOrder(Order.asc("source"));
         return (List<Link>) criteria.list();
     }

@@ -38,6 +38,8 @@
         <mapping resource="eu/wisebed/wisedb/model/Link.hbm.xml"/>
         <mapping resource="eu/wisebed/wisedb/model/NodeReading.hbm.xml"/>
         <mapping resource="eu/wisebed/wisedb/model/LinkReading.hbm.xml"/>
+        <mapping resource="eu/wisebed/wisedb/model/LastNodeReading.hbm.xml"/>
+        <mapping resource="eu/wisebed/wisedb/model/LastLinkReading.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

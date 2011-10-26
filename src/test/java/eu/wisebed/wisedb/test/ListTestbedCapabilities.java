@@ -2,6 +2,8 @@ package eu.wisebed.wisedb.test;
 
 import eu.wisebed.wisedb.HibernateUtil;
 import eu.wisebed.wisedb.controller.CapabilityController;
+import eu.wisebed.wisedb.controller.LinkController;
+import eu.wisebed.wisedb.controller.NodeController;
 import eu.wisebed.wisedb.controller.TestbedController;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
@@ -44,32 +46,32 @@ public class ListTestbedCapabilities {
             }
 
             // 2nd test
-            List<Node> nodes = CapabilityController.getInstance().listCapabilityNodes(capability1);
+            List<Node> nodes = NodeController.getInstance().listCapabilityNodes(capability1);
             for(Node node: nodes){
                 LOGGER.info(node.getId());
             }
 
             // 3rd test
-            List<Node> nodes1 = CapabilityController.getInstance().listCapabilityNodes(capability1, testbedCTI);
+            List<Node> nodes1 = NodeController.getInstance().listCapabilityNodes(capability1, testbedCTI);
             for (Node node : nodes1) {
                 LOGGER.info("1.CTI " + node.getId());
             }
-            List<Node> nodes2 = CapabilityController.getInstance().listCapabilityNodes(capability2, testbedCTI);
+            List<Node> nodes2 = NodeController.getInstance().listCapabilityNodes(capability2, testbedCTI);
             for (Node node : nodes2) {
                 LOGGER.info("1.SAN " + node.getId()); // shouldnt be printed
             }
 
-            nodes1 = CapabilityController.getInstance().listCapabilityNodes(capability1, testbedSAN);
+            nodes1 = NodeController.getInstance().listCapabilityNodes(capability1, testbedSAN);
             for (Node node : nodes1) {
                 LOGGER.info("2.CTI " + node.getId());// shouldnt be printed
             }
-            nodes2 = CapabilityController.getInstance().listCapabilityNodes(capability2, testbedSAN);
+            nodes2 = NodeController.getInstance().listCapabilityNodes(capability2, testbedSAN);
             for (Node node : nodes2) {
                 LOGGER.info("2.SAN " + node.getId());
             }
 
             //4th test
-            List<Link> links = CapabilityController.getInstance().listCapabilityLinks(capability3, testbedCTI);
+            List<Link> links = LinkController.getInstance().listCapabilityLinks(capability3, testbedCTI);
             for (Link link: links){
                 LOGGER.info(link.getSource() + " -> " + link.getTarget());
             }

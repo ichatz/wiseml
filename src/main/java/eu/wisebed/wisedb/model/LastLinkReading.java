@@ -1,22 +1,25 @@
 package eu.wisebed.wisedb.model;
 
+import eu.wisebed.wiseml.model.setup.Capability;
+import eu.wisebed.wiseml.model.setup.Link;
+
 import java.io.Serializable;
 import java.util.Date;
 
-import eu.wisebed.wiseml.model.setup.Capability;
-import eu.wisebed.wiseml.model.setup.Node;
-
-public class NodeReading implements Serializable{
+public class LastLinkReading implements Serializable {
 
     /**
-     * Reading id.
+     * Link reference.
      */
-    private int id;
+    private Link link;
 
-    /**
-     * Node reference.
-     */
-    private Node node;
+    public Link getLink() {
+        return link;
+    }
+
+    public void setLink(Link link) {
+        this.link = link;
+    }
 
     /**
      * Capability reference.
@@ -36,32 +39,24 @@ public class NodeReading implements Serializable{
     /**
      * Constructor.
      */
-    public NodeReading(){
+    public LastLinkReading(){
         // empty constructor
     }
 
-    public int getId(){
-        return id;
-    }
-
-    public void setId(final int id){
-        this.id = id;
-    }
-
     /**
-     * Returns the node that indicated this reading.
-     * @return node persistent object.
+     * Returns the link that indicated this reading.
+     * @return link persistent object.
      */
-    public Node getNode(){
-        return node;
+    public Link getNode(){
+        return link;
     }
 
     /**
      * Sets the node that indicated this reading.
-     * @param node , must be persistent.
+     * @param link , must be persistent.
      */
-    public void setNode(final Node node){
-        this.node = node;
+    public void setNode(final Link link){
+        this.link = link;
     }
 
     /**
@@ -112,3 +107,5 @@ public class NodeReading implements Serializable{
         this.reading = reading;
     }
 }
+
+

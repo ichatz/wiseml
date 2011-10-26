@@ -134,6 +134,8 @@ public class HibernateUtil {
         CapabilityController.getInstance().setSessionFactory(thisFactory);
         NodeReadingController.getInstance().setSessionFactory(thisFactory);
         LinkReadingController.getInstance().setSessionFactory(thisFactory);
+        LastNodeReadingController.getInstance().setSessionFactory(thisFactory);
+        LastLinkReadingController.getInstance().setSessionFactory(thisFactory);
     }
 
     /**

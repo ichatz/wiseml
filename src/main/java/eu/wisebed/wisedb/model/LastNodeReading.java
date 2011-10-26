@@ -1,17 +1,12 @@
 package eu.wisebed.wisedb.model;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Node;
 
-public class NodeReading implements Serializable{
+import java.io.Serializable;
+import java.util.Date;
 
-    /**
-     * Reading id.
-     */
-    private int id;
+public class LastNodeReading implements Serializable {
 
     /**
      * Node reference.
@@ -36,16 +31,8 @@ public class NodeReading implements Serializable{
     /**
      * Constructor.
      */
-    public NodeReading(){
+    public LastNodeReading(){
         // empty constructor
-    }
-
-    public int getId(){
-        return id;
-    }
-
-    public void setId(final int id){
-        this.id = id;
     }
 
     /**
