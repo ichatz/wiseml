@@ -1,10 +1,8 @@
 package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.model.LastLinkReading;
-import eu.wisebed.wisedb.model.LastNodeReading;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
-import eu.wisebed.wiseml.model.setup.Node;
 import org.hibernate.Session;
 
 public class LastLinkReadingController extends AbstractController<LastLinkReading> {
