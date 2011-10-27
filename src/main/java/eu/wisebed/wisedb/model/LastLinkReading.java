@@ -13,14 +13,6 @@ public class LastLinkReading implements Serializable {
      */
     private Link link;
 
-    public Link getLink() {
-        return link;
-    }
-
-    public void setLink(Link link) {
-        this.link = link;
-    }
-
     /**
      * Capability reference.
      */
@@ -39,44 +31,47 @@ public class LastLinkReading implements Serializable {
     /**
      * Constructor.
      */
-    public LastLinkReading(){
+    public LastLinkReading() {
         // empty constructor
     }
 
     /**
-     * Returns the link that indicated this reading.
-     * @return link persistent object.
+     * Returns links
+     * @return  link
      */
-    public Link getNode(){
+    public Link getLink() {
         return link;
     }
 
     /**
-     * Sets the node that indicated this reading.
-     * @param link , must be persistent.
+     * Sets link
+     * @param link , a link
      */
-    public void setNode(final Link link){
+    public void setLink(final Link link) {
         this.link = link;
     }
 
     /**
      * Returns the capability that indicated this reading.
+     *
      * @return capability persistent object.
      */
-    public Capability getCapability(){
+    public Capability getCapability() {
         return capability;
     }
 
     /**
      * Sets the capability that indicated this reading.
+     *
      * @param capability , must be persistent.
      */
-    public void setCapability(final Capability capability){
+    public void setCapability(final Capability capability) {
         this.capability = capability;
     }
 
     /**
      * Returns the timestamp that this reading occured.
+     *
      * @return timestamp of the reading.
      */
     public Date getTimestamp() {
@@ -85,6 +80,7 @@ public class LastLinkReading implements Serializable {
 
     /**
      * Sets the timestamp that this reading occured.
+     *
      * @param timestamp , timestamp of the reading.
      */
     public void setTimestamp(final Date timestamp) {
@@ -93,6 +89,7 @@ public class LastLinkReading implements Serializable {
 
     /**
      * Returns this reading value.
+     *
      * @return this reading value.
      */
     public double getReading() {
@@ -101,6 +98,7 @@ public class LastLinkReading implements Serializable {
 
     /**
      * Sets this reading value.
+     *
      * @param reading , this reading value.
      */
     public void setReading(final double reading) {

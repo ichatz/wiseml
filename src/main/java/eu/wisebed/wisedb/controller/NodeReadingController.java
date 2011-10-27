@@ -154,7 +154,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @return a list with nodereadings for a node/capability combination
      */
     @SuppressWarnings("unchecked")
-    public List<NodeReading> listReadings(final Node node, final Capability capability) {
+    public List<NodeReading> listNodeReadings(final Node node, final Capability capability) {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria;
         criteria = session.createCriteria(NodeReading.class);
@@ -170,7 +170,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @param node , a node .
      * @return the count of this node.
      */
-    public Long getReadingsCount(final Node node) {
+    public Long getNodeReadingsCount(final Node node) {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(NodeReading.class);
         criteria.add(Restrictions.eq("node", node));
@@ -180,13 +180,30 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     }
 
     /**
-     * Returns the readings count for a node per a capability.
+     * Returns the readings count for a node and a capability.
+     *
+     * @param node       , a node.
+     * @param capability , a capability
+     * @return the count of readings for this node and capability.
+     */
+    public Long getNodeReadingsCount(final Node node, final Capability capability) {
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.eq("node", node));
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.setProjection(Projections.count("node"));
+        criteria.setMaxResults(1);
+        return (Long) criteria.uniqueResult();
+    }
+
+    /**
+     * Returns the readings count for a node per capability.
      *
      * @param node , a node .
      * @return a map containing readings of a node per capability
      */
     @SuppressWarnings("unchecked")
-    public Map<Capability, Long> getNodeCapabilityReadingsCountPerCapability(final Node node) {
+    public Map<Capability, Long> getNodeReadingsCountMap(final Node node) {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(NodeReading.class);
         criteria.add(Restrictions.eq("node", node));
@@ -204,311 +221,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         return resultMap;
     }
 
-    /**
-     * Returns the readings count for a node and a capability.
-     *
-     * @param node       , a node.
-     * @param capability , a capability
-     * @return the count of readings for this node and capability.
-     */
-    public Long getReadingsCount(final Node node, final Capability capability) {
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq("node", node));
-        criteria.add(Restrictions.eq("capability", capability));
-        criteria.setProjection(Projections.count("node"));
-        criteria.setMaxResults(1);
-        return (Long) criteria.uniqueResult();
-    }
-
-    /**
-     * Returns the latest reading update (node,timestamp,row) of any node persisted.
-     *
-     * @return an object instance list with the rows of the query
-     */
-    public List<NodeReadingStat> getLatestNodeReadingUpdates() {
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.setProjection(Projections.projectionList()
-                .add(Projections.groupProperty("node"))
-                .add(Projections.max("timestamp"))
-                .add(Projections.min("timestamp"))
-                .add(Projections.max("reading"))
-                .add(Projections.min("reading"))
-                .add(Projections.rowCount())
-        );
-        List<NodeReadingStat> updates = new ArrayList<NodeReadingStat>();
-        for (Object obj : criteria.list()) {
-            Object[] row = (Object[]) obj;
-            final Node node = (Node) row[0];
-            final Date latestDate = (Date) row[1];
-            final Date earliestDate = (Date) row[2];
-            final Double maxReading = (Double) row[3];
-            final Double minReading = (Double) row[4];
-            final Long totalCount = (Long) row[5];
-
-            // reading of latest recording
-            Criteria criteria1 = session.createCriteria(NodeReading.class);
-            criteria1.setProjection(Projections.projectionList()
-                    .add(Projections.property("timestamp"))
-                    .add(Projections.property("reading"))
-            );
-            criteria1.add(Restrictions.eq("node", node));
-            criteria1.add(Restrictions.eq("timestamp", latestDate));
-            criteria1.setMaxResults(1);
-            Object[] row1 = (Object[]) criteria1.uniqueResult();
-            final Double latestDateReading = (Double) row1[1];
-
-            // reading of earliest recording
-            Criteria criteria2 = session.createCriteria(NodeReading.class);
-            criteria2.setProjection(Projections.projectionList()
-                    .add(Projections.property("timestamp"))
-                    .add(Projections.property("reading"))
-            );
-            criteria2.add(Restrictions.eq("node", node));
-            criteria2.add(Restrictions.eq("timestamp", earliestDate));
-            criteria2.setMaxResults(1);
-            Object[] row2 = (Object[]) criteria2.uniqueResult();
-            final Double earliestDateReading = (Double) row2[1];
-
-            updates.add(new NodeReadingStat(node, latestDate, latestDateReading, earliestDate, earliestDateReading,
-                    maxReading, minReading, totalCount));
-        }
-        return updates;
-    }
-
-    /**
-     * Returns the latest reading of all nodes of the provided testbed.
-     *
-     * @param testbed , a testbed instance
-     * @return an object instance list with the rows of the query
-     */
-    public List<NodeReadingStat> getLatestNodeReadingUpdates(final Testbed testbed) {
-        final Session session = getSessionFactory().getCurrentSession();
-
-        Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.setProjection(Projections.projectionList()
-                .add(Projections.groupProperty("node"))
-                .add(Projections.max("timestamp"))
-                .add(Projections.min("timestamp"))
-                .add(Projections.max("reading"))
-                .add(Projections.min("reading"))
-                .add(Projections.rowCount())
-        );
-        Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
-
-        criteria.add(Restrictions.in("node", setup.getNodes()));
-
-        List<NodeReadingStat> updates = new ArrayList<NodeReadingStat>();
-        for (Object obj : criteria.list()) {
-            Object[] row = (Object[]) obj;
-
-            final Node node = (Node) row[0];
-            final Date latestDate = (Date) row[1];
-            final Date earliestDate = (Date) row[2];
-            final Double maxReading = (Double) row[3];
-            final Double minReading = (Double) row[4];
-            final Long totalCount = (Long) row[5];
-
-            // reading of latest recording
-            Criteria criteria1 = session.createCriteria(NodeReading.class);
-            criteria1.setProjection(Projections.projectionList()
-                    .add(Projections.property("timestamp"))
-                    .add(Projections.property("reading"))
-            );
-            criteria1.add(Restrictions.eq("node", node));
-            criteria1.add(Restrictions.eq("timestamp", latestDate));
-            criteria1.setMaxResults(1);
-            Object[] row1 = (Object[]) criteria1.uniqueResult();
-            final Double latestDateReading = (Double) row1[1];
-
-            // reading of earliest recording
-            Criteria criteria2 = session.createCriteria(NodeReading.class);
-            criteria2.setProjection(Projections.projectionList()
-                    .add(Projections.property("timestamp"))
-                    .add(Projections.property("reading"))
-            );
-            criteria2.add(Restrictions.eq("node", node));
-            criteria2.add(Restrictions.eq("timestamp", earliestDate));
-            criteria2.setMaxResults(1);
-            Object[] row2 = (Object[]) criteria2.uniqueResult();
-            final Double earliestDateReading = (Double) row2[1];
-
-            updates.add(new NodeReadingStat(node, latestDate, latestDateReading, earliestDate, earliestDateReading,
-                    maxReading, minReading, totalCount));
-        }
-        return updates;
-    }
-
-    /**
-     * Returns the latest reading of a specific node
-     *
-     * @param node , a node
-     * @return the latest node reading
-     */
-    public NodeReadingStat getLatestNodeReadingUpdate(final Node node) {
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq("node", node));
-        criteria.setProjection(Projections.projectionList()
-                .add(Projections.groupProperty("node"))
-                .add(Projections.max("timestamp"))
-                .add(Projections.min("timestamp"))
-                .add(Projections.max("reading"))
-                .add(Projections.min("reading"))
-                .add(Projections.rowCount())
-        );
-        criteria.setMaxResults(1);
-        Object[] row = (Object[]) criteria.uniqueResult();
-        final Node nodeQ = (Node) row[0];
-        final Date latestDate = (Date) row[1];
-        final Date earliestDate = (Date) row[2];
-        final Double maxReading = (Double) row[3];
-        final Double minReading = (Double) row[4];
-        final Long totalCount = (Long) row[5];
-
-        // reading of latest recording
-        Criteria criteria1 = session.createCriteria(NodeReading.class);
-        criteria1.setProjection(Projections.projectionList()
-                .add(Projections.property("timestamp"))
-                .add(Projections.property("reading"))
-        );
-        criteria1.add(Restrictions.eq("node", nodeQ));
-        criteria1.add(Restrictions.eq("timestamp", latestDate));
-        criteria1.setMaxResults(1);
-        Object[] row1 = (Object[]) criteria1.uniqueResult();
-        final Double latestDateReading = (Double) row1[1];
-
-        // reading of earliest recording
-        Criteria criteria2 = session.createCriteria(NodeReading.class);
-        criteria2.setProjection(Projections.projectionList()
-                .add(Projections.property("timestamp"))
-                .add(Projections.property("reading"))
-        );
-        criteria2.add(Restrictions.eq("node", nodeQ));
-        criteria2.add(Restrictions.eq("timestamp", earliestDate));
-        criteria2.setMaxResults(1);
-        Object[] row2 = (Object[]) criteria2.uniqueResult();
-        final Double earliestDateReading = (Double) row2[1];
-
-        return new NodeReadingStat(nodeQ, latestDate, latestDateReading, earliestDate, earliestDateReading,
-                maxReading, minReading, totalCount);
-    }
-
-    /**
-     * Returns the latest reading for a specific capability.
-     *
-     * @param capability , a capability
-     * @return returns the latest node reading for a specific capability
-     */
-    public NodeReadingStat getLatestNodeReadingUpdate(final Capability capability) {
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq("capability", capability));
-        criteria.setProjection(Projections.projectionList()
-                .add(Projections.groupProperty("node"))
-                .add(Projections.max("timestamp"))
-                .add(Projections.min("timestamp"))
-                .add(Projections.max("reading"))
-                .add(Projections.min("reading"))
-                .add(Projections.rowCount())
-        );
-        criteria.setMaxResults(1);
-        Object[] row = (Object[]) criteria.uniqueResult();
-
-        final Node node = (Node) row[0];
-        final Date latestDate = (Date) row[1];
-        final Date earliestDate = (Date) row[2];
-        final Double maxReading = (Double) row[3];
-        final Double minReading = (Double) row[4];
-        final Long totalCount = (Long) row[5];
-
-        // reading of latest recording
-        Criteria criteria1 = session.createCriteria(NodeReading.class);
-        criteria1.setProjection(Projections.projectionList()
-                .add(Projections.property("timestamp"))
-                .add(Projections.property("reading"))
-        );
-        criteria1.add(Restrictions.eq("node", node));
-        criteria1.add(Restrictions.eq("timestamp", latestDate));
-        criteria1.setMaxResults(1);
-        Object[] row1 = (Object[]) criteria1.uniqueResult();
-        final Double latestDateReading = (Double) row1[1];
-
-        // reading of earliest recording
-        Criteria criteria2 = session.createCriteria(NodeReading.class);
-        criteria2.setProjection(Projections.projectionList()
-                .add(Projections.property("timestamp"))
-                .add(Projections.property("reading"))
-        );
-        criteria2.add(Restrictions.eq("node", node));
-        criteria2.add(Restrictions.eq("timestamp", earliestDate));
-        criteria2.setMaxResults(1);
-        Object[] row2 = (Object[]) criteria2.uniqueResult();
-        final Double earliestDateReading = (Double) row2[1];
-
-        return new NodeReadingStat(node, latestDate, latestDateReading, earliestDate, earliestDateReading,
-                maxReading, minReading, totalCount);
-    }
-
-    /**
-     * Returns the latest reading for a specific node & capability.
-     *
-     * @param node       . a node.
-     * @param capability , a capability
-     * @return the latest reading for a specific node & capability.
-     */
-    public NodeReadingStat getLatestNodeReadingUpdate(final Node node, final Capability capability) {
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq("node", node));
-        criteria.add(Restrictions.eq("capability", capability));
-        criteria.setProjection(Projections.projectionList()
-                .add(Projections.groupProperty("node"))
-                .add(Projections.max("timestamp"))
-                .add(Projections.min("timestamp"))
-                .add(Projections.max("reading"))
-                .add(Projections.min("reading"))
-                .add(Projections.rowCount())
-        );
-        criteria.setMaxResults(1);
-        Object[] row = (Object[]) criteria.uniqueResult();
-        final Node nodeQ = (Node) row[0];
-        final Date latestDate = (Date) row[1];
-        final Date earliestDate = (Date) row[2];
-        final Double maxReading = (Double) row[3];
-        final Double minReading = (Double) row[4];
-        final Long totalCount = (Long) row[5];
-
-        // reading of latest recording
-        Criteria criteria1 = session.createCriteria(NodeReading.class);
-        criteria1.setProjection(Projections.projectionList()
-                .add(Projections.property("timestamp"))
-                .add(Projections.property("reading"))
-        );
-        criteria1.add(Restrictions.eq("node", nodeQ));
-        criteria1.add(Restrictions.eq("timestamp", latestDate));
-        criteria1.setMaxResults(1);
-        Object[] row1 = (Object[]) criteria1.uniqueResult();
-        final Double latestDateReading = (Double) row1[1];
-
-        // reading of earliest recording
-        Criteria criteria2 = session.createCriteria(NodeReading.class);
-        criteria2.setProjection(Projections.projectionList()
-                .add(Projections.property("timestamp"))
-                .add(Projections.property("reading"))
-        );
-        criteria2.add(Restrictions.eq("node", nodeQ));
-        criteria2.add(Restrictions.eq("timestamp", earliestDate));
-        criteria2.setMaxResults(1);
-        Object[] row2 = (Object[]) criteria2.uniqueResult();
-        final Double earliestDateReading = (Double) row2[1];
-
-        return new NodeReadingStat(nodeQ, latestDate, latestDateReading, earliestDate, earliestDateReading,
-                maxReading, minReading, totalCount);
-    }
-
-    /**
+        /**
      * Returns the readings count for a capability per node.
      *
      * @param capability , a capability .
@@ -590,5 +303,170 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         criteria.setProjection(Projections.count("capability"));
         criteria.setMaxResults(1);
         return (Long) criteria.uniqueResult();
+    }
+
+    /**
+     * Returns node reading stats of any node persisted.
+     *
+     * @return a list of NodeReadingStat objects
+     */
+    public List<NodeReadingStat> getNodeReadingStats() {
+        final Session session = getSessionFactory().getCurrentSession();
+
+        // get max/min reading for a node
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.groupProperty("node"))
+                .add(Projections.max("reading"))
+                .add(Projections.min("reading"))
+                .add(Projections.rowCount())
+        );
+
+        // making the NodeReadingStat list
+        List<NodeReadingStat> stats = new ArrayList<NodeReadingStat>();
+        for (Object obj : criteria.list()) {
+            Object[] row = (Object[]) obj;
+            final Node node = (Node) row[0];
+            final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(node);
+            final Double maxReading = (Double) row[1];
+            final Double minReading = (Double) row[2];
+            final Long totalCount = (Long) row[3];
+
+            stats.add(new NodeReadingStat(node, lnr.getTimestamp(), lnr.getReading(), maxReading,
+                    minReading, totalCount));
+        }
+        return stats;
+    }
+
+    /**
+     * Returns node reading stats of any node belonging to the given testbed.
+     *
+     * @param testbed , a testbed instance
+     * @return a list of NodeReadingStat objects
+     */
+    public List<NodeReadingStat> getNodeReadingStats(final Testbed testbed) {
+        final Session session = getSessionFactory().getCurrentSession();
+
+        // retrieve testbed setup
+        Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
+
+        // get max/min reading for a node
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.in("node", setup.getNodes()));
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.groupProperty("node"))
+                .add(Projections.max("reading"))
+                .add(Projections.min("reading"))
+                .add(Projections.rowCount())
+        );
+
+        // making the NodeReadingStat list
+        List<NodeReadingStat> stats = new ArrayList<NodeReadingStat>();
+        for (Object obj : criteria.list()) {
+            Object[] row = (Object[]) obj;
+            final Node node = (Node) row[0];
+            final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(node);
+            final Double maxReading = (Double) row[1];
+            final Double minReading = (Double) row[2];
+            final Long totalCount = (Long) row[3];
+
+            stats.add(new NodeReadingStat(node, lnr.getTimestamp(), lnr.getReading(), maxReading,minReading, totalCount));
+        }
+        return stats;
+    }
+
+    /**
+     * Returns node reading stats for the given node.
+     *
+     * @param node , a node
+     * @return a NodeReadingStat instance.
+     */
+    public NodeReadingStat getNodeReadingStats(final Node node) {
+        final Session session = getSessionFactory().getCurrentSession();
+
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.eq("node", node));
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.groupProperty("node"))
+                .add(Projections.max("reading"))
+                .add(Projections.min("reading"))
+                .add(Projections.rowCount())
+        );
+
+        criteria.setMaxResults(1);
+        Object[] row = (Object[]) criteria.uniqueResult();
+        final Node nodeQ = (Node) row[0];
+        final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(nodeQ);
+        final Double maxReading = (Double) row[3];
+        final Double minReading = (Double) row[4];
+        final Long totalCount = (Long) row[5];
+
+        return new NodeReadingStat(node, lnr.getTimestamp(), lnr.getReading(), maxReading,
+                minReading, totalCount);
+    }
+
+    /**
+     * Returns node reading stats for the given capability.
+     *
+     * @param capability , a capability
+     * @return returns a list of node reading stats for a specific capability.
+     */
+    public List<NodeReadingStat> getNodeReadingStats(final Capability capability) {
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.groupProperty("node"))
+                .add(Projections.max("reading"))
+                .add(Projections.min("reading"))
+                .add(Projections.rowCount())
+        );
+
+        // making the NodeReadingStat list
+        List<NodeReadingStat> stats = new ArrayList<NodeReadingStat>();
+        for (Object obj : criteria.list()) {
+            Object[] row = (Object[]) obj;
+            final Node node = (Node) row[0];
+            final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(capability);
+            final Double maxReading = (Double) row[1];
+            final Double minReading = (Double) row[2];
+            final Long totalCount = (Long) row[3];
+
+            stats.add(new NodeReadingStat(node, lnr.getTimestamp(), lnr.getReading(), maxReading,
+                    minReading, totalCount));
+        }
+        return stats;
+    }
+
+    /**
+     * Returns the latest reading for a specific node & capability.
+     *
+     * @param node       . a node.
+     * @param capability , a capability
+     * @return the latest reading for a specific node & capability.
+     */
+    public NodeReadingStat getNodeReadingStats(final Node node, final Capability capability) {
+
+        final Session session = getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.eq("node", node));
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.groupProperty("node"))
+                .add(Projections.max("reading"))
+                .add(Projections.min("reading"))
+                .add(Projections.rowCount())
+        );
+
+        criteria.setMaxResults(1);
+        Object[] row = (Object[]) criteria.uniqueResult();
+        final Node nodeQ = (Node) row[0];
+        final LastNodeReading lnr = LastNodeReadingController.getInstance().getByID(node, capability);
+        final Double maxReading = (Double) row[1];
+        final Double minReading = (Double) row[2];
+        final Long totalCount = (Long) row[3];
+
+
+        return new NodeReadingStat(nodeQ, lnr.getTimestamp(), lnr.getReading(),maxReading, minReading, totalCount);
     }
 }

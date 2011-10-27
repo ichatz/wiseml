@@ -31,7 +31,7 @@ public class OrderListingOfReadings {
             // get node reading controller
             NodeReadingController nrc = NodeReadingController.getInstance();
 
-            List<NodeReading> myReadings = nrc.listReadings(thisNode, thisCap);
+            List<NodeReading> myReadings = nrc.listNodeReadings(thisNode, thisCap);
             for (NodeReading myReading : myReadings) {
                 LOGGER.debug("\t" + myReading.getTimestamp() + "\t" + myReading.getReading());
             }

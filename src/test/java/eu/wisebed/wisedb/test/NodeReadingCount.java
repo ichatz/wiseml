@@ -30,11 +30,11 @@ public class NodeReadingCount {
             final Node node = NodeController.getInstance().getByID(urnPrefix + "0x99c");
             LOGGER.info("Selected Node : " + node.getId());
             long now1 = System.currentTimeMillis();
-            Long readingsCount = NodeReadingController.getInstance().getReadingsCount(node);
+            Long readingsCount = NodeReadingController.getInstance().getNodeReadingsCount(node);
             long now2 = System.currentTimeMillis();
             LOGGER.info("Selected Node : " + node.getId() + " readings count :" + readingsCount.intValue() + " (" + (now2-now1) + ")" );
             now1 = System.currentTimeMillis();
-            Map<Capability,Long> map = NodeReadingController.getInstance().getNodeCapabilityReadingsCountPerCapability(node);
+            Map<Capability,Long> map = NodeReadingController.getInstance().getNodeReadingsCountMap(node);
             now2 = System.currentTimeMillis();
             for(Capability key : map.keySet()){
                 LOGGER.info("Selected Node : " + node.getId() + " Selected Capability : " + key.getName() +  " readings count :" + map.get(key));

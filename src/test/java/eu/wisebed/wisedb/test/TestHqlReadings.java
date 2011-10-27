@@ -29,14 +29,13 @@ public class TestHqlReadings {
             // get from first node
             final Node node = NodeController.getInstance().list().iterator().next();
             LOGGER.info("Node [" + node.getId() + "] (1)");
-            final NodeReadingStat update = NodeReadingController.getInstance().getLatestNodeReadingUpdate(node);
+            final NodeReadingStat update = NodeReadingController.getInstance().getNodeReadingStats(node);
             LOGGER.info(update.toString());
 
             // get from all cti's nodes
             final Testbed testbed = TestbedController.getInstance().getByUrnPrefix("urn:wisebed:ctitestbed:");
             LOGGER.info("Testbed [" + testbed.getId() + "] (" + testbed.getSetup().getId() + "," + testbed.getSetup().getNodes().size() + ")");
-            final List<NodeReadingStat> updates = NodeReadingController.getInstance().
-                    getLatestNodeReadingUpdates(testbed);
+            final List<NodeReadingStat> updates = NodeReadingController.getInstance().getNodeReadingStats(testbed);
             for(NodeReadingStat up1 : updates){
                 LOGGER.info(up1.toString());
             }
@@ -44,7 +43,7 @@ public class TestHqlReadings {
             // get from all the nodes
             LOGGER.info("All nodes");
             final List<NodeReadingStat> updates1 = NodeReadingController.getInstance().
-                    getLatestNodeReadingUpdates();
+                    getNodeReadingStats();
             for (NodeReadingStat up1 : updates1) {
                 LOGGER.info(up1.toString());
             }

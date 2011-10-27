@@ -6,10 +6,8 @@ import java.util.Date;
 public class NodeReadingStat {
 
     private Node node;
-    private Date latestTimestamp;
-    private Double latestReading;
-    private Date firstTimestamp;
-    private Double firstReading;
+    private Date lastTimestamp;
+    private Double lastReading;
     private Double maxReading;
     private Double minReading;
     private Long totalCount;
@@ -18,14 +16,11 @@ public class NodeReadingStat {
         //empty constructor
     }
 
-    public NodeReadingStat(final Node node, final Date latestTimestamp, final Double latestReading,
-                           final Date firstTimestamp, final Double firstReading,
+    public NodeReadingStat(final Node node, final Date lastTimestamp, final Double lastReading,
                            final Double maxReading, final Double minReading, final Long totalCount) {
         this.node = node;
-        this.latestTimestamp = latestTimestamp;
-        this.latestReading = latestReading;
-        this.firstTimestamp = firstTimestamp;
-        this.firstReading = firstReading;
+        this.lastTimestamp = lastTimestamp;
+        this.lastReading = lastReading;
         this.maxReading = maxReading;
         this.minReading = minReading;
         this.totalCount = totalCount;
@@ -37,14 +32,6 @@ public class NodeReadingStat {
 
     public void setNode(Node node) {
         this.node = node;
-    }
-
-    public Date getLatestTimestamp() {
-        return latestTimestamp;
-    }
-
-    public void setLatestTimestamp(final Date latestTimestamp) {
-        this.latestTimestamp = latestTimestamp;
     }
 
     public double getMaxReading() {
@@ -71,33 +58,24 @@ public class NodeReadingStat {
         this.totalCount = totalCount;
     }
 
-        public Double getLatestReading() {
-        return latestReading;
+    public Date getLastTimestamp(){
+        return lastTimestamp;
     }
 
-    public void setLatestReading(Double latestReading) {
-        this.latestReading = latestReading;
+    public void setLastTimestamp(final Date lastTimestamp){
+        this.lastTimestamp = lastTimestamp;
     }
 
-    public Date getFirstTimestamp() {
-        return firstTimestamp;
+    public Double getLastReading() {
+        return lastReading;
     }
 
-    public void setFirstTimestamp(Date firstTimestamp) {
-        this.firstTimestamp = firstTimestamp;
+    public void setLastReading(final Double lastReading) {
+        this.lastReading = lastReading;
     }
-
-    public Double getFirstReading() {
-        return firstReading;
-    }
-
-    public void setFirstReading(Double firstReading) {
-        this.firstReading = firstReading;
-    }
-
 
     public String toString(){
-        return "[" + node.getId()+ "] : "+ latestTimestamp + " " + latestReading + " " + firstTimestamp + " " + firstReading
-                + " " + maxReading +" " + minReading + " "+ totalCount;
+        return "[" + node.getId()+ "] : "+ lastTimestamp + " " + lastReading + " " + maxReading +" "
+                + minReading + " "+ totalCount;
     }
 }
