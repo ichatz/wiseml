@@ -5,10 +5,12 @@ import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Node;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 public class LastNodeReadingController extends AbstractController<LastNodeReading> {
@@ -96,12 +98,12 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
         criteria.add(Restrictions.eq("node",node));
         criteria.setProjection(Projections.max("timestamp"));
         criteria.setMaxResults(1);
-        long maxTimestamp = ((Timestamp) criteria.uniqueResult()).getTime();
+        long maxTimestamp = (Long) criteria.uniqueResult();
 
         // get latest node reading by comparing it with max timestamp
         criteria = session.createCriteria(LastNodeReading.class);
         criteria.add(Restrictions.eq("node",node));
-        criteria.add(Restrictions.eq("timestamp", maxTimestamp));
+        criteria.add(Restrictions.eq("timestamp",maxTimestamp));
         criteria.setMaxResults(1);
         return (LastNodeReading) criteria.uniqueResult();
     }
@@ -119,7 +121,7 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
         criteria.add(Restrictions.eq("capability",capability));
         criteria.setProjection(Projections.max("timestamp"));
         criteria.setMaxResults(1);
-        long maxTimestamp = ((Timestamp) criteria.uniqueResult()).getTime();
+        long maxTimestamp = (Long) criteria.uniqueResult();
 
         // get latest node reading by comparing it with max timestamp
         criteria = session.createCriteria(LastNodeReading.class);
