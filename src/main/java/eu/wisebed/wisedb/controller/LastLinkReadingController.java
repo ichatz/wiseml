@@ -118,7 +118,7 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
         criteria.add(Restrictions.eq("capability",capability));
         criteria.setProjection(Projections.max("timestamp"));
         criteria.setMaxResults(1);
-        long maxTimestamp = (Long) criteria.uniqueResult();
+        Timestamp maxTimestamp = (Timestamp) criteria.uniqueResult();
 
         // get latest link reading by comparing it with max timestamp
         criteria = session.createCriteria(LastLinkReading.class);

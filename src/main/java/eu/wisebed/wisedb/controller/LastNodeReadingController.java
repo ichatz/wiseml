@@ -98,7 +98,7 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
         criteria.add(Restrictions.eq("node",node));
         criteria.setProjection(Projections.max("timestamp"));
         criteria.setMaxResults(1);
-        long maxTimestamp = (Long) criteria.uniqueResult();
+        Timestamp maxTimestamp = (Timestamp) criteria.uniqueResult();
 
         // get latest node reading by comparing it with max timestamp
         criteria = session.createCriteria(LastNodeReading.class);
@@ -121,7 +121,7 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
         criteria.add(Restrictions.eq("capability",capability));
         criteria.setProjection(Projections.max("timestamp"));
         criteria.setMaxResults(1);
-        long maxTimestamp = (Long) criteria.uniqueResult();
+        Timestamp maxTimestamp = (Timestamp) criteria.uniqueResult();
 
         // get latest node reading by comparing it with max timestamp
         criteria = session.createCriteria(LastNodeReading.class);
