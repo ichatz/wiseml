@@ -180,23 +180,6 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     }
 
     /**
-     * Returns the readings count for a node and a capability.
-     *
-     * @param node       , a node.
-     * @param capability , a capability
-     * @return the count of readings for this node and capability.
-     */
-    public Long getNodeReadingsCount(final Node node, final Capability capability) {
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq("node", node));
-        criteria.add(Restrictions.eq("capability", capability));
-        criteria.setProjection(Projections.count("node"));
-        criteria.setMaxResults(1);
-        return (Long) criteria.uniqueResult();
-    }
-
-    /**
      * Returns the readings count for a node per capability.
      *
      * @param node , a node .
@@ -217,30 +200,6 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         for (Object result : results) {
             Object[] row = (Object[]) result;
             resultMap.put((Capability) row[1], (Long) row[0]);
-        }
-        return resultMap;
-    }
-
-        /**
-     * Returns the readings count for a capability per node.
-     *
-     * @param capability , a capability .
-     * @return a map containing readings of a capability per node.
-     */
-    public Map<Node, Long> getNodeCapabilityReadingsCountPerNode(final Capability capability) {
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq("capability", capability));
-        criteria.setProjection(Projections.projectionList()
-                .add(Projections.rowCount())
-                .add(Projections.property("node"))
-                .add(Projections.groupProperty("node"))
-        );
-        HashMap<Node, Long> resultMap = new HashMap<Node, Long>();
-        List<Object> results = criteria.list();
-        for (Object result : results) {
-            Object[] row = (Object[]) result;
-            resultMap.put((Node) row[1], (Long) row[0]);
         }
         return resultMap;
     }
@@ -270,21 +229,6 @@ public class NodeReadingController extends AbstractController<NodeReading> {
             resultMap.put((Node) row[1], (Long) row[0]);
         }
         return resultMap;
-    }
-
-    /**
-     * Returns the node readings count for a capability.
-     *
-     * @param capability , a capability .
-     * @return total node readings count for a given capability.
-     */
-    public Long getNodeCapabilityReadingsCount(final Capability capability) {
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq("capability", capability));
-        criteria.setProjection(Projections.count("capability"));
-        criteria.setMaxResults(1);
-        return (Long) criteria.uniqueResult();
     }
 
     /**
@@ -366,11 +310,17 @@ public class NodeReadingController extends AbstractController<NodeReading> {
             Object[] row = (Object[]) obj;
             final Node node = (Node) row[0];
             final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(node);
+            Date lastTimestamp = null;
+            Double lastReading = null;
+            if (lnr != null) {
+                lastTimestamp = lnr.getTimestamp();
+                lastReading = lnr.getReading();
+            }
             final Double maxReading = (Double) row[1];
             final Double minReading = (Double) row[2];
             final Long totalCount = (Long) row[3];
 
-            stats.add(new NodeReadingStat(node, lnr.getTimestamp(), lnr.getReading(), maxReading,minReading, totalCount));
+            stats.add(new NodeReadingStat(node, lastTimestamp, lastReading, maxReading, minReading, totalCount));
         }
         return stats;
     }
@@ -396,77 +346,17 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         criteria.setMaxResults(1);
         Object[] row = (Object[]) criteria.uniqueResult();
         final Node nodeQ = (Node) row[0];
-        final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(nodeQ);
+        final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(node);
+        Date lastTimestamp = null;
+        Double lastReading = null;
+        if (lnr != null) {
+            lastTimestamp = lnr.getTimestamp();
+            lastReading = lnr.getReading();
+        }
         final Double maxReading = (Double) row[3];
         final Double minReading = (Double) row[4];
         final Long totalCount = (Long) row[5];
 
-        return new NodeReadingStat(node, lnr.getTimestamp(), lnr.getReading(), maxReading,
-                minReading, totalCount);
-    }
-
-    /**
-     * Returns node reading stats for the given capability.
-     *
-     * @param capability , a capability
-     * @return returns a list of node reading stats for a specific capability.
-     */
-    public List<NodeReadingStat> getNodeReadingStats(final Capability capability) {
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq("capability", capability));
-        criteria.setProjection(Projections.projectionList()
-                .add(Projections.groupProperty("node"))
-                .add(Projections.max("reading"))
-                .add(Projections.min("reading"))
-                .add(Projections.rowCount())
-        );
-
-        // making the NodeReadingStat list
-        List<NodeReadingStat> stats = new ArrayList<NodeReadingStat>();
-        for (Object obj : criteria.list()) {
-            Object[] row = (Object[]) obj;
-            final Node node = (Node) row[0];
-            final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(capability);
-            final Double maxReading = (Double) row[1];
-            final Double minReading = (Double) row[2];
-            final Long totalCount = (Long) row[3];
-
-            stats.add(new NodeReadingStat(node, lnr.getTimestamp(), lnr.getReading(), maxReading,
-                    minReading, totalCount));
-        }
-        return stats;
-    }
-
-    /**
-     * Returns the latest reading for a specific node & capability.
-     *
-     * @param node       . a node.
-     * @param capability , a capability
-     * @return the latest reading for a specific node & capability.
-     */
-    public NodeReadingStat getNodeReadingStats(final Node node, final Capability capability) {
-
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq("node", node));
-        criteria.add(Restrictions.eq("capability", capability));
-        criteria.setProjection(Projections.projectionList()
-                .add(Projections.groupProperty("node"))
-                .add(Projections.max("reading"))
-                .add(Projections.min("reading"))
-                .add(Projections.rowCount())
-        );
-
-        criteria.setMaxResults(1);
-        Object[] row = (Object[]) criteria.uniqueResult();
-        final Node nodeQ = (Node) row[0];
-        final LastNodeReading lnr = LastNodeReadingController.getInstance().getByID(node, capability);
-        final Double maxReading = (Double) row[1];
-        final Double minReading = (Double) row[2];
-        final Long totalCount = (Long) row[3];
-
-
-        return new NodeReadingStat(nodeQ, lnr.getTimestamp(), lnr.getReading(),maxReading, minReading, totalCount);
+        return new NodeReadingStat(nodeQ, lastTimestamp, lastReading, maxReading,minReading, totalCount);
     }
 }

@@ -58,6 +58,14 @@ public class LinkReadingStat {
         this.totalCount = totalCount;
     }
 
+    public Date getLastTimestamp(){
+        return lastTimestamp;
+    }
+
+    public void setLastTimestamp(final Date lastTimestamp){
+        this.lastTimestamp = lastTimestamp;
+    }
+
     public Double getLastReading() {
         return lastReading;
     }

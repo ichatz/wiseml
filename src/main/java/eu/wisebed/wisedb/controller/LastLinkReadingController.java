@@ -1,13 +1,16 @@
 package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.model.LastLinkReading;
+import eu.wisebed.wisedb.model.LastNodeReading;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Setup;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 
 import java.sql.Timestamp;
@@ -114,17 +117,15 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
     public LastLinkReading getLatestLinkReading(final Link link) {
         final Session session = this.getSessionFactory().getCurrentSession();
 
-        // get max timestamp
-        Criteria criteria = session.createCriteria(LastLinkReading.class);
-        criteria.add(Restrictions.eq("link", link));
-        criteria.setProjection(Projections.max("timestamp"));
-        criteria.setMaxResults(1);
-        Timestamp maxTimestamp = (Timestamp) criteria.uniqueResult();
+        // a detached criteria for max timestamp for last node readings in testbed and capability
+        DetachedCriteria maxTimestamp = DetachedCriteria.forClass(LastLinkReading.class)
+                .add(Restrictions.eq("link",link))
+                .setProjection(Projections.max("timestamp"));
 
         // get latest node reading by comparing it with max timestamp
-        criteria = session.createCriteria(LastLinkReading.class);
+        Criteria criteria = session.createCriteria(LastLinkReading.class);
         criteria.add(Restrictions.eq("link", link));
-        criteria.add(Restrictions.eq("timestamp", maxTimestamp));
+        criteria.add(Property.forName("timestamp").eq(maxTimestamp));
         criteria.setMaxResults(1);
         return (LastLinkReading) criteria.uniqueResult();
     }
@@ -138,17 +139,15 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
     public LastLinkReading getLatestLinkReading(final Capability capability) {
         final Session session = this.getSessionFactory().getCurrentSession();
 
-        // get max timestamp
-        Criteria criteria = session.createCriteria(LastLinkReading.class);
-        criteria.add(Restrictions.eq("capability", capability));
-        criteria.setProjection(Projections.max("timestamp"));
-        criteria.setMaxResults(1);
-        Timestamp maxTimestamp = (Timestamp) criteria.uniqueResult();
+        // a detached criteria for max timestamp for last node readings in testbed and capability
+        DetachedCriteria maxTimestamp = DetachedCriteria.forClass(LastLinkReading.class)
+                .add(Restrictions.eq("capability",capability))
+                .setProjection(Projections.max("timestamp"));
 
         // get latest link reading by comparing it with max timestamp
-        criteria = session.createCriteria(LastLinkReading.class);
+        Criteria criteria = session.createCriteria(LastLinkReading.class);
         criteria.add(Restrictions.eq("capability", capability));
-        criteria.add(Restrictions.eq("timestamp", maxTimestamp));
+        criteria.add(Property.forName("timestamp").eq(maxTimestamp));
         criteria.setMaxResults(1);
         return (LastLinkReading) criteria.uniqueResult();
     }
@@ -167,19 +166,17 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
 
         final Session session = this.getSessionFactory().getCurrentSession();
 
-        // get max timestamp
+        // a detached criteria for max timestamp for last node readings in testbed and capability
+        DetachedCriteria maxTimestamp = DetachedCriteria.forClass(LastLinkReading.class)
+                .add(Restrictions.in("link",setup.getLink()))
+                .add(Restrictions.eq("capability",capability))
+                .setProjection(Projections.max("timestamp"));
+
+        // get latest link reading by comparing it with max timestamp
         Criteria criteria = session.createCriteria(LastLinkReading.class);
         criteria.add(Restrictions.in("link", setup.getLink()));
         criteria.add(Restrictions.eq("capability", capability));
-        criteria.setProjection(Projections.max("timestamp"));
-        criteria.setMaxResults(1);
-        Timestamp maxTimestamp = (Timestamp) criteria.uniqueResult();
-
-        // get latest link reading by comparing it with max timestamp
-        criteria = session.createCriteria(LastLinkReading.class);
-        criteria.add(Restrictions.in("link", setup.getLink()));
-        criteria.add(Restrictions.eq("capability", capability));
-        criteria.add(Restrictions.eq("timestamp", maxTimestamp));
+        criteria.add(Property.forName("timestamp").eq(maxTimestamp));
         criteria.setMaxResults(1);
         return (LastLinkReading) criteria.uniqueResult();
     }

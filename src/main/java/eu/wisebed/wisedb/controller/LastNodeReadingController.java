@@ -7,10 +7,11 @@ import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Setup;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 public class LastNodeReadingController extends AbstractController<LastNodeReading> {
@@ -111,17 +112,15 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
     public LastNodeReading getLatestNodeReading(final Node node){
         final Session session = this.getSessionFactory().getCurrentSession();
 
-        // get max timestamp
-        Criteria criteria = session.createCriteria(LastNodeReading.class);
-        criteria.add(Restrictions.eq("node",node));
-        criteria.setProjection(Projections.max("timestamp"));
-        criteria.setMaxResults(1);
-        Timestamp maxTimestamp = (Timestamp) criteria.uniqueResult();
+        // a detached criteria for max timestamp for last node readings in testbed and capability
+        DetachedCriteria maxTimestamp = DetachedCriteria.forClass(LastNodeReading.class)
+                .add(Restrictions.eq("node",node))
+                .setProjection(Projections.max("timestamp"));
 
         // get latest node reading by comparing it with max timestamp
-        criteria = session.createCriteria(LastNodeReading.class);
+        Criteria criteria = session.createCriteria(LastNodeReading.class);
         criteria.add(Restrictions.eq("node",node));
-        criteria.add(Restrictions.eq("timestamp",maxTimestamp));
+        criteria.add(Property.forName("timestamp").eq(maxTimestamp));
         criteria.setMaxResults(1);
         return (LastNodeReading) criteria.uniqueResult();
     }
@@ -134,17 +133,15 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
     public LastNodeReading getLatestNodeReading(final Capability capability){
         final Session session = this.getSessionFactory().getCurrentSession();
 
-        // get max timestamp
-        Criteria criteria = session.createCriteria(LastNodeReading.class);
-        criteria.add(Restrictions.eq("capability",capability));
-        criteria.setProjection(Projections.max("timestamp"));
-        criteria.setMaxResults(1);
-        Timestamp maxTimestamp = (Timestamp) criteria.uniqueResult();
+        // a detached criteria for max timestamp for last node readings in testbed and capability
+        DetachedCriteria maxTimestamp = DetachedCriteria.forClass(LastNodeReading.class)
+                .add(Restrictions.eq("capability",capability))
+                .setProjection(Projections.max("timestamp"));
 
         // get latest node reading by comparing it with max timestamp
-        criteria = session.createCriteria(LastNodeReading.class);
+        Criteria criteria = session.createCriteria(LastNodeReading.class);
         criteria.add(Restrictions.eq("capability",capability));
-        criteria.add(Restrictions.eq("timestamp",maxTimestamp));
+        criteria.add(Property.forName("timestamp").eq(maxTimestamp));
         criteria.setMaxResults(1);
         return (LastNodeReading) criteria.uniqueResult();
     }
@@ -162,20 +159,19 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
 
         final Session session = this.getSessionFactory().getCurrentSession();
 
-        // get max timestamp
-        Criteria criteria = session.createCriteria(LastNodeReading.class);
-        criteria.add(Restrictions.in("node",setup.getNodes()));
-        criteria.add(Restrictions.eq("capability", capability));
-        criteria.setProjection(Projections.max("timestamp"));
-        criteria.setMaxResults(1);
-        Timestamp maxTimestamp = (Timestamp) criteria.uniqueResult();
+        // a detached criteria for max timestamp for last node readings in testbed and capability
+        DetachedCriteria maxTimestamp = DetachedCriteria.forClass(LastNodeReading.class)
+                .add(Restrictions.in("node",setup.getNodes()))
+                .add(Restrictions.eq("capability",capability))
+                .setProjection(Projections.max("timestamp"));
 
         // get latest node reading by comparing it with max timestamp
-        criteria = session.createCriteria(LastNodeReading.class);
-        criteria.add(Restrictions.in("node",setup.getNodes()));
+        Criteria criteria = session.createCriteria(LastNodeReading.class);
+        criteria.add(Restrictions.in("node", setup.getNodes()));
         criteria.add(Restrictions.eq("capability",capability));
-        criteria.add(Restrictions.eq("timestamp",maxTimestamp));
+        criteria.add(Property.forName("timestamp").eq(maxTimestamp));
         criteria.setMaxResults(1);
+
         return (LastNodeReading) criteria.uniqueResult();
     }
 }
