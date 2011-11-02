@@ -228,7 +228,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @return a map containing readings of a capability per node.
      */
     public Map<Node, Long> getNodeCapabilityReadingsCountPerNode(final Capability capability) {
-        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+        final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(NodeReading.class);
         criteria.add(Restrictions.eq("capability", capability));
         criteria.setProjection(Projections.projectionList()
@@ -253,7 +253,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @return a map containing readings of a capability per node.
      */
     public Map<Node, Long> getNodeCapabilityReadingsCountPerNode(final Capability capability, final Testbed testbed) {
-        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+        final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(NodeReading.class);
         criteria.createAlias("node", "no");
         criteria.add(Restrictions.eq("no.setup", testbed.getSetup()));
@@ -279,7 +279,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @return total node readings count for a given capability.
      */
     public Long getNodeCapabilityReadingsCount(final Capability capability) {
-        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+        final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(NodeReading.class);
         criteria.add(Restrictions.eq("capability", capability));
         criteria.setProjection(Projections.count("capability"));
@@ -295,7 +295,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @return total node readings count for a given capability.
      */
     public Long getNodeCapabilityReadingsCount(final Capability capability, final Testbed testbed) {
-        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+        final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(NodeReading.class);
         criteria.createAlias("node", "no");
         criteria.add(Restrictions.eq("no.setup", testbed.getSetup()));

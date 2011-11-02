@@ -1,16 +1,16 @@
 package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.model.LastNodeReading;
+import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Node;
+import eu.wisebed.wiseml.model.setup.Setup;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 public class LastNodeReadingController extends AbstractController<LastNodeReading> {
@@ -86,6 +86,24 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
     }
 
     /**
+     * Returns a list of last reading rows inserted in the persistence for a specific capability.
+     * @param testbed , a testbed
+     * @param capability , a capability.
+     * @return a list of last node reading rows for each capability. Nodes belong to a specific testbed.
+     */
+    public List<LastNodeReading> getByCapability(final Testbed testbed, final Capability capability){
+
+        // retrieve testbed setup
+        Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
+
+        final Session session = this.getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(LastNodeReading.class);
+        criteria.add(Restrictions.in("node", setup.getNodes()));
+        criteria.add(Restrictions.eq("capability",capability));
+        return (List<LastNodeReading>) criteria.list();
+    }
+
+    /**
      * Returns the latest node reading fo the LastNodeReadings of all capabilities.
      * @param node , a node.
      * @return a LastNodeReading entry
@@ -111,7 +129,7 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
     /**
      * Returns the latest node reading fo the LastNodeReadings of all capabilities.
      * @param capability , a capability.
-     * @return a LastNodeReading entry
+     * @return a last reading for a node.
      */
     public LastNodeReading getLatestNodeReading(final Capability capability){
         final Session session = this.getSessionFactory().getCurrentSession();
@@ -125,6 +143,36 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
 
         // get latest node reading by comparing it with max timestamp
         criteria = session.createCriteria(LastNodeReading.class);
+        criteria.add(Restrictions.eq("capability",capability));
+        criteria.add(Restrictions.eq("timestamp",maxTimestamp));
+        criteria.setMaxResults(1);
+        return (LastNodeReading) criteria.uniqueResult();
+    }
+
+    /**
+     * Returns the latest node reading fo the LastNodeReadings of all capabilities
+     * @param testbed , a testbed.
+     * @param capability , a capability.
+     * @return a last reading for a node belonging to a testbed.
+     */
+    public LastNodeReading getLatestNodeReading(final Testbed testbed,final Capability capability){
+
+        // retrieve testbed setup
+        Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
+
+        final Session session = this.getSessionFactory().getCurrentSession();
+
+        // get max timestamp
+        Criteria criteria = session.createCriteria(LastNodeReading.class);
+        criteria.add(Restrictions.in("node",setup.getNodes()));
+        criteria.add(Restrictions.eq("capability", capability));
+        criteria.setProjection(Projections.max("timestamp"));
+        criteria.setMaxResults(1);
+        Timestamp maxTimestamp = (Timestamp) criteria.uniqueResult();
+
+        // get latest node reading by comparing it with max timestamp
+        criteria = session.createCriteria(LastNodeReading.class);
+        criteria.add(Restrictions.in("node",setup.getNodes()));
         criteria.add(Restrictions.eq("capability",capability));
         criteria.add(Restrictions.eq("timestamp",maxTimestamp));
         criteria.setMaxResults(1);
