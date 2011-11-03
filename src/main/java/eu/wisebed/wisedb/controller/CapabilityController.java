@@ -1,13 +1,9 @@
 package eu.wisebed.wisedb.controller;
 
-import com.hp.hpl.jena.ontology.Restriction;
-import eu.wisebed.wisedb.model.LinkReading;
-import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
-import org.apache.commons.collections.map.LinkedMap;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.*;
@@ -93,6 +89,30 @@ public class CapabilityController extends AbstractController<Capability> {
      */
     public List<Capability> list() {
         return super.list(new Capability());
+    }
+
+    /**
+     * Returns all nodes of a capability.
+     *
+     * @param capability , a capability
+     * @return returns a set of nodes that have this capability
+     */
+    public Set<Node> listNodes(final Capability capability) {
+        final Session session = getSessionFactory().getCurrentSession();
+        Capability fetchedCapability = (Capability) session.get(Capability.class, capability.getName());
+        return fetchedCapability.getNodes();
+    }
+
+    /**
+     * Returns all nodes of a capability.
+     *
+     * @param capability , a capability
+     * @return returns a set of links that have this capability
+     */
+    public Set<Link> listLinks(final Capability capability) {
+        final Session session = getSessionFactory().getCurrentSession();
+        Capability fetchedCapability = (Capability) session.get(Capability.class, capability.getName());
+        return fetchedCapability.getLinks();
     }
 
     /**
