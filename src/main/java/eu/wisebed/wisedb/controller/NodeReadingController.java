@@ -223,7 +223,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
                 .add(Projections.groupProperty("node"))
         );
         HashMap<Node, Long> resultMap = new HashMap<Node, Long>();
-        List<Object> results = criteria.list();
+        List results = criteria.list();
         for (Object result : results) {
             Object[] row = (Object[]) result;
             resultMap.put((Node) row[1], (Long) row[0]);

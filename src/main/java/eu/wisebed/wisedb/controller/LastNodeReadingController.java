@@ -63,6 +63,23 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
     }
 
     /**
+     * Returns a list of last node reading entries for the nodes of a testbed
+     *
+     * @param testbed
+     * @return a list last node readings from a testbed's nodes
+     */
+    public List<LastNodeReading> getByTestbed(final Testbed testbed){
+
+        // retrieve testbed setup
+        Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
+
+        final Session session = this.getSessionFactory().getCurrentSession();
+        Criteria criteria = session.createCriteria(LastNodeReading.class);
+        criteria.add(Restrictions.in("node", setup.getNodes()));
+        return (List<LastNodeReading>) criteria.list();
+    }
+
+    /**
      * Returns a list of last reading rows inserted in the persistence for a specific node
      * @param node , a node.
      * @return a list of last reading rows for each capability.
@@ -171,7 +188,6 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
         criteria.add(Restrictions.eq("capability",capability));
         criteria.add(Property.forName("timestamp").eq(maxTimestamp));
         criteria.setMaxResults(1);
-
         return (LastNodeReading) criteria.uniqueResult();
     }
 }

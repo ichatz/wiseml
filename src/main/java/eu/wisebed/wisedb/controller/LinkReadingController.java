@@ -246,7 +246,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
                 .add(Projections.groupProperty("link"))
         );
         HashMap<Link, Long> resultMap = new HashMap<Link, Long>();
-        List<Object> results = criteria.list();
+        List results = criteria.list();
         for (Object result : results) {
             Object[] row = (Object[]) result;
             resultMap.put((Link) row[1], (Long) row[0]);
