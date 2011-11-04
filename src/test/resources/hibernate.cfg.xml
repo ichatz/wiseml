@@ -5,30 +5,43 @@
 <hibernate-configuration>
     <session-factory>
 
+        <!-- Dialect -->
         <property name="hibernate.dialect">${wisedb.hibernate.dialect}</property>
+
+        <!-- Driver class -->
         <property name="hibernate.connection.driver_class">${wisedb.jdbc.connection.driver_class}</property>
+
+        <!-- Connection URL -->
         <property name="hibernate.connection.url">${wisedb.jdbc.connection.url}</property>
+
+        <!-- Connection Username/Password -->
         <property name="hibernate.connection.username">${wisedb.jdbc.connection.username}</property>
         <property name="hibernate.connection.password">${wisedb.jdbc.connection.password}</property>
+
+        <!-- Connection pool size -->
         <property name="hibernate.connection.pool_size">10</property>
+
+        <!-- Auto reconnect when losing connections -->
         <property name="hibernate.connection.autoReconnect">true</property>
+
+        <!-- Update on schema creatation . Should be removed in production -->
         <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- thread level sessions -->
         <property name="current_session_context_class">thread</property>
+
+        <!-- Print SQL -->
         <property name="show_sql">true</property>
+
+        <!-- Print "pretty" SQL statements -->
         <property name="use_sql_comments">true</property>
         <property name="format_sql">true</property>
 
-        <!-- Disable the second-level cache  -->
-        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+        <!-- Enable second level cache -->
+        <property name="hibernate.cache.use_second_level_cache">true</property>
 
-        <!--&lt;!&ndash; Enable second level cache &ndash;&gt;-->
-        <!--<property name="hibernate.cache.use_second_level_cache">true</property>-->
-
-        <!--&lt;!&ndash; Hibernate query cache &ndash;&gt;-->
-        <!--<property name="hibernate.cache.use_query_cache">true</property>-->
-
-        <!--&lt;!&ndash; Force Hibernate to use instances of Ehcache CacheManage &ndash;&gt;-->
-        <!--<property name="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory</property>-->
+        <!-- Force Hibernate to use instances of Ehcache CacheManage -->
+        <property name="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory</property>
 
         <!-- Mapping files for read-only tables -->
         <mapping resource="eu/wisebed/wisedb/model/Testbed.hbm.xml"/>

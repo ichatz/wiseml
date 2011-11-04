@@ -7,6 +7,7 @@
 
     <class name="eu.wisebed.wiseml.model.setup.Capability" table="capabilities"
            dynamic-insert="true" dynamic-update="false">
+        <cache usage="read-write" />
 
         <id name="name" column="capability_id"/>
 

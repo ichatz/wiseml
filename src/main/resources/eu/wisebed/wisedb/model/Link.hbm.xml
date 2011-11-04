@@ -7,6 +7,7 @@
 
     <class name="eu.wisebed.wiseml.model.setup.Link" table="links"
            dynamic-insert="true" dynamic-update="true">
+        <cache usage="read-write" />
 
         <composite-id>
             <key-property name="source" column="link_source"/>
