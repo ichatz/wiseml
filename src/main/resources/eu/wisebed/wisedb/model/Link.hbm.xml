@@ -5,7 +5,8 @@
 
 <hibernate-mapping>
 
-    <class name="eu.wisebed.wiseml.model.setup.Link" table="links">
+    <class name="eu.wisebed.wiseml.model.setup.Link" table="links"
+           dynamic-insert="true" dynamic-update="true">
 
         <composite-id>
             <key-property name="source" column="link_source"/>

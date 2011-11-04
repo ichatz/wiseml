@@ -4,7 +4,8 @@
 
 <hibernate-mapping>
 
-    <class name="eu.wisebed.wiseml.model.setup.Setup" table="setup">
+    <class name="eu.wisebed.wiseml.model.setup.Setup" table="setup"
+           dynamic-update="true" dynamic-insert="true">
 
         <id name="id" type="java.lang.Integer">
 			<column name="setup_id" />

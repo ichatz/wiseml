@@ -5,7 +5,8 @@
 
 <hibernate-mapping>
 
-    <class name="eu.wisebed.wisedb.model.Testbed" table="testbeds">
+    <class name="eu.wisebed.wisedb.model.Testbed" table="testbeds"
+           dynamic-insert="true" dynamic-update="true">
 
         <id name="id" column="testbed_id">
             <generator class="native"/>

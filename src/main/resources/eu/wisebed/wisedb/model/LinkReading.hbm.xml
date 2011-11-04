@@ -5,7 +5,8 @@
 
 <hibernate-mapping>
 
-    <class name="eu.wisebed.wisedb.model.LinkReading" table="link_readings">
+    <class name="eu.wisebed.wisedb.model.LinkReading" table="link_readings"
+           dynamic-update="true" dynamic-insert="true">
 
         <id name="id" column="reading_id">
             <generator class="native" />

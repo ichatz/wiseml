@@ -3,7 +3,8 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="eu.wisebed.wisedb.model.LastLinkReading" table="last_link_capability_readings">
+    <class name="eu.wisebed.wisedb.model.LastLinkReading" table="last_link_capability_readings"
+           dynamic-insert="true" dynamic-update="true">
 
         <composite-id>
             <key-many-to-one name="link" class="eu.wisebed.wiseml.model.setup.Link">
