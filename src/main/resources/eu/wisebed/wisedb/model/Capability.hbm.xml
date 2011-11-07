@@ -7,17 +7,17 @@
 
     <class name="eu.wisebed.wiseml.model.setup.Capability" table="capabilities"
            dynamic-insert="true" dynamic-update="false">
-        <cache usage="read-write" />
+        <cache usage="read-write"/>
 
         <id name="name" column="capability_id"/>
 
         <property name="datatype"/>
-        <property name="unit" />
-        <property name="defaultvalue" />
+        <property name="unit"/>
+        <property name="defaultvalue"/>
 
         <set name="nodes" table="node_capabilities" inverse="true" lazy="true" order-by="lower(node_id) asc">
             <key column="capability_id" not-null="true"/>
-            <many-to-many column="node_id" class="eu.wisebed.wiseml.model.setup.Node" />
+            <many-to-many column="node_id" class="eu.wisebed.wiseml.model.setup.Node"/>
         </set>
 
         <set name="links" table="link_capabilities" inverse="true" lazy="true" order-by="lower(link_source) asc">

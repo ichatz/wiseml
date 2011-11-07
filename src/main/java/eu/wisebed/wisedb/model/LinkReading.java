@@ -1,10 +1,10 @@
 package eu.wisebed.wisedb.model;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
+
+import java.io.Serializable;
+import java.util.Date;
 
 public class LinkReading implements Serializable {
 
@@ -41,42 +41,48 @@ public class LinkReading implements Serializable {
     /**
      * Constructor.
      */
-    public LinkReading(){}
+    public LinkReading() {
+    }
 
     /**
      * Returns this reading id.
+     *
      * @return this reading id.
      */
-    public int getId(){
+    public int getId() {
         return id;
     }
 
     /**
      * Sets this reading id.
+     *
      * @param id , reading id
      */
-    public void setId(final int id){
+    public void setId(final int id) {
         this.id = id;
     }
 
     /**
      * Returns capability reading.
+     *
      * @return Link's capability reading
      */
-    public double getReading(){
+    public double getReading() {
         return reading;
     }
 
     /**
      * Set capability reading.
+     *
      * @param reading , reading value.
      */
-    public void setReading(final double reading){
+    public void setReading(final double reading) {
         this.reading = reading;
     }
 
     /**
      * Returns timestamp value.
+     *
      * @return Link's reading timestamp
      */
     public Date getTimestamp() {
@@ -85,6 +91,7 @@ public class LinkReading implements Serializable {
 
     /**
      * Sets the reading timestamp.
+     *
      * @param timestamp , a Date instance.
      */
     public void setTimestamp(final Date timestamp) {
@@ -93,14 +100,16 @@ public class LinkReading implements Serializable {
 
     /**
      * Returns the rssi value of the link.
+     *
      * @return rssi value of the link.
      */
-    public double getRssiValue(){
-       return rssiValue;
+    public double getRssiValue() {
+        return rssiValue;
     }
 
     /**
      * Sets the rssi value
+     *
      * @param rssiValue , the rssi value
      */
     public void setRssiValue(final double rssiValue) {

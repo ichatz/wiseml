@@ -47,7 +47,7 @@ public class ListTestbedCapabilities {
 
             // 2nd test
             List<Node> nodes = NodeController.getInstance().listCapabilityNodes(capability1);
-            for(Node node: nodes){
+            for (Node node : nodes) {
                 LOGGER.info(node.getId());
             }
 
@@ -72,7 +72,7 @@ public class ListTestbedCapabilities {
 
             //4th test
             List<Link> links = LinkController.getInstance().listCapabilityLinks(capability3, testbedCTI);
-            for (Link link: links){
+            for (Link link : links) {
                 LOGGER.info(link.getSource() + " -> " + link.getTarget());
             }
             tx.commit();

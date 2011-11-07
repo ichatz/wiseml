@@ -1,9 +1,5 @@
 package eu.wisebed.wiseml.test.uth;
 
-import org.jibx.runtime.BindingDirectory;
-import org.jibx.runtime.IBindingFactory;
-import org.jibx.runtime.IMarshallingContext;
-import org.jibx.runtime.JiBXException;
 import eu.wisebed.wiseml.model.WiseML;
 import eu.wisebed.wiseml.model.scenario.Timestamp;
 import eu.wisebed.wiseml.model.setup.Capability;
@@ -14,6 +10,10 @@ import eu.wisebed.wiseml.model.setup.Position;
 import eu.wisebed.wiseml.model.setup.Setup;
 import eu.wisebed.wiseml.model.setup.TimeInfo;
 import eu.wisebed.wiseml.model.trace.Trace;
+import org.jibx.runtime.BindingDirectory;
+import org.jibx.runtime.IBindingFactory;
+import org.jibx.runtime.IMarshallingContext;
+import org.jibx.runtime.JiBXException;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -55,7 +55,7 @@ public class ReadFileData {
     public void constructData(final String key, String value, final List<Data> list) {
         // construct new data for each value of node...
         Data thisData = new Data();
-        value=value.replace(',','.');
+        value = value.replace(',', '.');
         thisData.setKey(key);
         thisData.setValue(value);
         if (value.length() > 0) {
@@ -132,7 +132,7 @@ public class ReadFileData {
         list.add(cap3);
         list.add(cap4);
         list.add(cap5);
-        list.add(cap6);        
+        list.add(cap6);
 
 
         // create node 1...

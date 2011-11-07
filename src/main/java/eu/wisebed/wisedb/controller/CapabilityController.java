@@ -6,9 +6,12 @@ import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.*;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -41,21 +44,26 @@ public class CapabilityController extends AbstractController<Capability> {
                 ourInstance = new CapabilityController();
             }
         }
-
         return ourInstance;
     }
 
+    /**
+     * Stores the capability provided in the parameters.
+     *
+     * @param entity, a Capability object.
+     */
     public void add(final Capability entity) {
         final Session session = getSessionFactory().getCurrentSession();
         final Capability entity2 = (Capability) session.get(Capability.class, entity.getName());
-        if (entity2 == null)
+        if (entity2 == null) {
             session.save(entity);
-        else
+        } else {
             session.merge(entity2);
+        }
     }
 
     /**
-     * get the Capabilities from the database that corresponds to the input id.
+     * Retrieve the Capabilities from the database that corresponds to the input id.
      *
      * @param entityID the id of the Entity object.
      * @return an Entity object.

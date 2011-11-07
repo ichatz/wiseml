@@ -1,12 +1,10 @@
 package eu.wisebed.wisedb.test;
 
 import eu.wisebed.wisedb.HibernateUtil;
-import eu.wisebed.wisedb.controller.CapabilityController;
-import eu.wisebed.wisedb.controller.NodeController;
 import eu.wisebed.wisedb.controller.NodeReadingController;
 import org.apache.log4j.Logger;
+import org.hibernate.Transaction;
 
-import  org.hibernate.Transaction;
 import java.util.Date;
 
 /**

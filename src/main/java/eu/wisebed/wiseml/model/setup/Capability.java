@@ -1,7 +1,7 @@
 package eu.wisebed.wiseml.model.setup;
 
-import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wisedb.model.LinkReading;
+import eu.wisebed.wisedb.model.NodeReading;
 
 import java.util.Set;
 
@@ -117,6 +117,7 @@ public class Capability {
 
     /**
      * Returns nodes that have this capability.
+     *
      * @return a node collection.
      */
     public Set<Node> getNodes() {
@@ -125,6 +126,7 @@ public class Capability {
 
     /**
      * Sets the node collection that has this capability.
+     *
      * @param nodes, a node collection.
      */
     public void setNodes(final Set<Node> nodes) {
@@ -133,6 +135,7 @@ public class Capability {
 
     /**
      * Returns links that have this capability.
+     *
      * @return a link collection.
      */
     public Set<Link> getLinks() {
@@ -141,6 +144,7 @@ public class Capability {
 
     /**
      * Sets the link collection that has this capability.
+     *
      * @param links, a link collection.
      */
     public void setLinks(final Set<Link> links) {
@@ -149,61 +153,67 @@ public class Capability {
 
     /**
      * Returns the set of node readings for this capability.
+     *
      * @return nodeReadings
      */
-    public Set<NodeReading> getNodeReadings(){
+    public Set<NodeReading> getNodeReadings() {
         return nodeReadings;
     }
 
     /**
      * Sets the set of node readings for this capability.
+     *
      * @param nodeReadings , set of node readings
      */
-    public void setNodeReadings(final Set<NodeReading> nodeReadings){
+    public void setNodeReadings(final Set<NodeReading> nodeReadings) {
         this.nodeReadings = nodeReadings;
     }
 
     /**
      * Returns the set of link readings for this capability.
+     *
      * @return linkReadings , set of link readings.
      */
-    public Set<LinkReading> getLinkReadings(){
+    public Set<LinkReading> getLinkReadings() {
         return linkReadings;
     }
 
     /**
      * Returns the set of link readings for this capability.
+     *
      * @param linkReadings , set of link readings.
      */
-    public void setLinkReadings(final Set<LinkReading> linkReadings){
+    public void setLinkReadings(final Set<LinkReading> linkReadings) {
         this.linkReadings = linkReadings;
     }
 
     /**
      * Override of equals().
+     *
      * @param obj , an object
      * @return true if this is equal to obj
      */
     @Override
-    public boolean equals(final Object obj){
+    public boolean equals(final Object obj) {
         // if null return false
-        if(obj == null) return false;
+        if (obj == null) return false;
 
         // if same reference return true;
-        if(this == obj) return true;
+        if (this == obj) return true;
 
         // equility against name
         Capability test = (Capability) obj;
-        if(test.name == null || test.getName() == null) return false;
+        if (test.name == null || test.getName() == null) return false;
         return this.name.equals(test.getName());
     }
 
     /**
      * Override of hashCode().
+     *
      * @return identity hashcode
      */
     @Override
-    public int hashCode(){
-        return name == null?System.identityHashCode(this):name.hashCode();
+    public int hashCode() {
+        return name == null ? System.identityHashCode(this) : name.hashCode();
     }
 }

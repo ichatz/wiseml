@@ -1,6 +1,7 @@
 package eu.wisebed.wisedb.model;
 
 import eu.wisebed.wiseml.model.setup.Link;
+
 import java.util.Date;
 
 public class LinkReadingStat {
@@ -12,7 +13,7 @@ public class LinkReadingStat {
     private Double minReading;
     private Long totalCount;
 
-    public LinkReadingStat(){
+    public LinkReadingStat() {
         //empty constructor
     }
 
@@ -58,11 +59,11 @@ public class LinkReadingStat {
         this.totalCount = totalCount;
     }
 
-    public Date getLastTimestamp(){
+    public Date getLastTimestamp() {
         return lastTimestamp;
     }
 
-    public void setLastTimestamp(final Date lastTimestamp){
+    public void setLastTimestamp(final Date lastTimestamp) {
         this.lastTimestamp = lastTimestamp;
     }
 
@@ -74,8 +75,8 @@ public class LinkReadingStat {
         this.lastReading = lastReading;
     }
 
-    public String toString(){
-        return "[" + link.getSource()+ "," + link.getTarget()+ "] : "+ lastTimestamp + " " + lastReading
-                + " " + maxReading +" " + minReading + " "+ totalCount;
+    public String toString() {
+        return "[" + link.getSource() + "," + link.getTarget() + "] : " + lastTimestamp + " " + lastReading
+                + " " + maxReading + " " + minReading + " " + totalCount;
     }
 }

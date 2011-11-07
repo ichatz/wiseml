@@ -1,348 +1,350 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns2:testbed xmlns:ns2="http://itm.uniluebeck.de/tr/xml" xmlns:ns4="http://itm.uniluebeck.de/tr/runtime/wsnapp/xml" xmlns:ns3="http://itm.uniluebeck.de/tr/runtime/portalapp/xml">
-	<nodes id="hercules">
-		<names>
-			<nodename name="hercules.cti.gr"/>
-		</names>
-		<serverconnections>
-			<serverconnection address="hercules.cti.gr:8880" type="tcp"/>
-		</serverconnections>
-		<applications>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.portalapp.PortalServerFactory" name="Portal">
-				<ns3:portalapp>
-					<webservice>
-						<urnprefix>urn:wisebed:ctitestbed:</urnprefix>
-						<sessionmanagementendpointurl>http://hercules.cti.gr:8888/sessions</sessionmanagementendpointurl>
-						<wsninstancebaseurl>http://hercules.cti.gr:8888/iwsn</wsninstancebaseurl>
-						<reservationendpointurl>http://hercules.cti.gr:8889/rs</reservationendpointurl>
-						<wisemlfilename>../conf/tr.iwsn-wiseml.xml</wisemlfilename>
-						<protobufinterface>
-							<port>8885</port>
-						<ip>0.0.0.0</ip>
-					</protobufinterface>
-					</webservice>
-				</ns3:portalapp>
-			</application>
-		</applications>
-	</nodes>
-	<nodes id="gold">
-		<names>
-			<nodename name="urn:wisebed:ctitestbed:0x6699"/>
-			<nodename name="urn:wisebed:ctitestbed:0x1cd0"/>
-			<nodename name="urn:wisebed:ctitestbed:0x1b85"/>
-			<nodename name="urn:wisebed:ctitestbed:0x1b70"/>
-			<nodename name="urn:wisebed:ctitestbed:0x1b71"/>
-			<nodename name="urn:wisebed:ctitestbed:0x1ccd"/>
-			<nodename name="urn:wisebed:ctitestbed:0xddba"/>
-		</names>
-		<serverconnections>
-			<serverconnection address="150.140.5.11:8880" type="tcp"/>
-		</serverconnections>
-		<applications>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x6699</urn>
-					<type>isense</type>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x1cd0</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x1b85</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x1b70</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x1b71</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x1ccd</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0xddba</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-		</applications>
-	<nodes>
-	<nodes id="alix-8">
-		<names>
-			<nodename name="urn:wisebed:ctitestbed:0x0498"/>
-			<nodename name="urn:wisebed:ctitestbed:0x1bbf"/>
-			<nodename name="urn:wisebed:ctitestbed:0x14e6"/>
-			<nodename name="urn:wisebed:ctitestbed:0x995a"/>
-			<nodename name="urn:wisebed:ctitestbed:0x1bc1"/>
-		</names>
-		<serverconnections>
-			<serverconnection address="150.140.5.51:8880" type="tcp"/>
-		</serverconnections>
-		<applications>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x0498</urn>
-					<type>isense</type>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x1bbf</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x14e6</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x995a</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x1bc1</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-		</applications>
-	</nodes>
-	<nodes id="alix-10">
-		<names>
-			<nodename name="urn:wisebed:ctitestbed:0x0497"/>
-			<nodename name="urn:wisebed:ctitestbed:0x997a"/>
-			<nodename name="urn:wisebed:ctitestbed:0x995d"/>
-			<nodename name="urn:wisebed:ctitestbed:0x152f"/>
-			<nodename name="urn:wisebed:ctitestbed:0x1538"/>
-			<nodename name="urn:wisebed:ctitestbed:0x997f"/>
-			<nodename name="urn:wisebed:ctitestbed:0x997c"/>
-			<nodename name="urn:wisebed:ctitestbed:0x1b96"/>
-		</names>
-		<serverconnections>
-			<serverconnection address="150.140.5.53:8880" type="tcp"/>
-		</serverconnections>
-		<applications>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x0497</urn>
-					<type>isense</type>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x997a</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x995d</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x152f</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x1538</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x997f</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x997c</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x1b96</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-		</applications>
-	</nodes>
-	<nodes id="alix-9">
-		<names>
-			<nodename name="urn:wisebed:ctitestbed:0x0496"/>
-			<nodename name="urn:wisebed:ctitestbed:0x14d9"/>
-			<nodename name="urn:wisebed:ctitestbed:0x1b8a"/>
-			<nodename name="urn:wisebed:ctitestbed:0x9977"/>
-			<nodename name="urn:wisebed:ctitestbed:0x9978"/>
-			<nodename name="urn:wisebed:ctitestbed:0x14ea"/>
-			<nodename name="urn:wisebed:ctitestbed:0x1539"/>
-			<nodename name="urn:wisebed:ctitestbed:0x997d"/>
-		</names>
-		<serverconnections>
-			<serverconnection address="150.140.5.52:8880" type="tcp"/>
-		</serverconnections>
-		<applications>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x0496</urn>
-					<type>isense</type>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x14d9</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x1b8a</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x9977</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x9978</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x14ea</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x1539</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x997d</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-		</applications>
-	</nodes>
-	<nodes id="alix-7">
-		<names>
-			<nodename name="urn:wisebed:ctitestbed:0x0495"/>
-			<nodename name="urn:wisebed:ctitestbed:0x1c96"/>
-			<nodename name="urn:wisebed:ctitestbed:0x1bbd"/>
-			<nodename name="urn:wisebed:ctitestbed:0x14d4"/>
-			<nodename name="urn:wisebed:ctitestbed:0x1cd6"/>
-			<nodename name="urn:wisebed:ctitestbed:0x1bc4"/>
-			<nodename name="urn:wisebed:ctitestbed:0x1b76"/>
-		</names>
-		<serverconnections>
-			<serverconnection address="150.140.5.50:8880" type="tcp"/>
-		</serverconnections>
-		<applications>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x0495</urn>
-					<type>isense</type>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x1c96</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x1bbd</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x14d4</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x1cd6</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x1bc4</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-			<application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
-				<ns4:wsnDevice>
-					<urn>urn:wisebed:ctitestbed:0x1b76</urn>
-					<type>isense-motap</type>
-					<usbchipid>isense</usbchipid>
-				</ns4:wsnDevice>
-			</application>
-		</applications>
-	</nodes>
+<ns2:testbed xmlns:ns2="http://itm.uniluebeck.de/tr/xml" xmlns:ns4="http://itm.uniluebeck.de/tr/runtime/wsnapp/xml"
+             xmlns:ns3="http://itm.uniluebeck.de/tr/runtime/portalapp/xml">
+    <nodes id="hercules">
+        <names>
+            <nodename name="hercules.cti.gr"/>
+        </names>
+        <serverconnections>
+            <serverconnection address="hercules.cti.gr:8880" type="tcp"/>
+        </serverconnections>
+        <applications>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.portalapp.PortalServerFactory" name="Portal">
+                <ns3:portalapp>
+                    <webservice>
+                        <urnprefix>urn:wisebed:ctitestbed:</urnprefix>
+                        <sessionmanagementendpointurl>http://hercules.cti.gr:8888/sessions
+                        </sessionmanagementendpointurl>
+                        <wsninstancebaseurl>http://hercules.cti.gr:8888/iwsn</wsninstancebaseurl>
+                        <reservationendpointurl>http://hercules.cti.gr:8889/rs</reservationendpointurl>
+                        <wisemlfilename>../conf/tr.iwsn-wiseml.xml</wisemlfilename>
+                        <protobufinterface>
+                            <port>8885</port>
+                            <ip>0.0.0.0</ip>
+                        </protobufinterface>
+                    </webservice>
+                </ns3:portalapp>
+            </application>
+        </applications>
+    </nodes>
+    <nodes id="gold">
+    <names>
+        <nodename name="urn:wisebed:ctitestbed:0x6699"/>
+        <nodename name="urn:wisebed:ctitestbed:0x1cd0"/>
+        <nodename name="urn:wisebed:ctitestbed:0x1b85"/>
+        <nodename name="urn:wisebed:ctitestbed:0x1b70"/>
+        <nodename name="urn:wisebed:ctitestbed:0x1b71"/>
+        <nodename name="urn:wisebed:ctitestbed:0x1ccd"/>
+        <nodename name="urn:wisebed:ctitestbed:0xddba"/>
+    </names>
+    <serverconnections>
+        <serverconnection address="150.140.5.11:8880" type="tcp"/>
+    </serverconnections>
+    <applications>
+        <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+            <ns4:wsnDevice>
+                <urn>urn:wisebed:ctitestbed:0x6699</urn>
+                <type>isense</type>
+            </ns4:wsnDevice>
+        </application>
+        <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+            <ns4:wsnDevice>
+                <urn>urn:wisebed:ctitestbed:0x1cd0</urn>
+                <type>isense-motap</type>
+                <usbchipid>isense</usbchipid>
+            </ns4:wsnDevice>
+        </application>
+        <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+            <ns4:wsnDevice>
+                <urn>urn:wisebed:ctitestbed:0x1b85</urn>
+                <type>isense-motap</type>
+                <usbchipid>isense</usbchipid>
+            </ns4:wsnDevice>
+        </application>
+        <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+            <ns4:wsnDevice>
+                <urn>urn:wisebed:ctitestbed:0x1b70</urn>
+                <type>isense-motap</type>
+                <usbchipid>isense</usbchipid>
+            </ns4:wsnDevice>
+        </application>
+        <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+            <ns4:wsnDevice>
+                <urn>urn:wisebed:ctitestbed:0x1b71</urn>
+                <type>isense-motap</type>
+                <usbchipid>isense</usbchipid>
+            </ns4:wsnDevice>
+        </application>
+        <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+            <ns4:wsnDevice>
+                <urn>urn:wisebed:ctitestbed:0x1ccd</urn>
+                <type>isense-motap</type>
+                <usbchipid>isense</usbchipid>
+            </ns4:wsnDevice>
+        </application>
+        <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+            <ns4:wsnDevice>
+                <urn>urn:wisebed:ctitestbed:0xddba</urn>
+                <type>isense-motap</type>
+                <usbchipid>isense</usbchipid>
+            </ns4:wsnDevice>
+        </application>
+    </applications>
+    <nodes>
+    <nodes id="alix-8">
+        <names>
+            <nodename name="urn:wisebed:ctitestbed:0x0498"/>
+            <nodename name="urn:wisebed:ctitestbed:0x1bbf"/>
+            <nodename name="urn:wisebed:ctitestbed:0x14e6"/>
+            <nodename name="urn:wisebed:ctitestbed:0x995a"/>
+            <nodename name="urn:wisebed:ctitestbed:0x1bc1"/>
+        </names>
+        <serverconnections>
+            <serverconnection address="150.140.5.51:8880" type="tcp"/>
+        </serverconnections>
+        <applications>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x0498</urn>
+                    <type>isense</type>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x1bbf</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x14e6</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x995a</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x1bc1</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+        </applications>
+    </nodes>
+    <nodes id="alix-10">
+        <names>
+            <nodename name="urn:wisebed:ctitestbed:0x0497"/>
+            <nodename name="urn:wisebed:ctitestbed:0x997a"/>
+            <nodename name="urn:wisebed:ctitestbed:0x995d"/>
+            <nodename name="urn:wisebed:ctitestbed:0x152f"/>
+            <nodename name="urn:wisebed:ctitestbed:0x1538"/>
+            <nodename name="urn:wisebed:ctitestbed:0x997f"/>
+            <nodename name="urn:wisebed:ctitestbed:0x997c"/>
+            <nodename name="urn:wisebed:ctitestbed:0x1b96"/>
+        </names>
+        <serverconnections>
+            <serverconnection address="150.140.5.53:8880" type="tcp"/>
+        </serverconnections>
+        <applications>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x0497</urn>
+                    <type>isense</type>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x997a</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x995d</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x152f</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x1538</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x997f</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x997c</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x1b96</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+        </applications>
+    </nodes>
+    <nodes id="alix-9">
+        <names>
+            <nodename name="urn:wisebed:ctitestbed:0x0496"/>
+            <nodename name="urn:wisebed:ctitestbed:0x14d9"/>
+            <nodename name="urn:wisebed:ctitestbed:0x1b8a"/>
+            <nodename name="urn:wisebed:ctitestbed:0x9977"/>
+            <nodename name="urn:wisebed:ctitestbed:0x9978"/>
+            <nodename name="urn:wisebed:ctitestbed:0x14ea"/>
+            <nodename name="urn:wisebed:ctitestbed:0x1539"/>
+            <nodename name="urn:wisebed:ctitestbed:0x997d"/>
+        </names>
+        <serverconnections>
+            <serverconnection address="150.140.5.52:8880" type="tcp"/>
+        </serverconnections>
+        <applications>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x0496</urn>
+                    <type>isense</type>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x14d9</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x1b8a</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x9977</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x9978</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x14ea</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x1539</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x997d</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+        </applications>
+    </nodes>
+    <nodes id="alix-7">
+        <names>
+            <nodename name="urn:wisebed:ctitestbed:0x0495"/>
+            <nodename name="urn:wisebed:ctitestbed:0x1c96"/>
+            <nodename name="urn:wisebed:ctitestbed:0x1bbd"/>
+            <nodename name="urn:wisebed:ctitestbed:0x14d4"/>
+            <nodename name="urn:wisebed:ctitestbed:0x1cd6"/>
+            <nodename name="urn:wisebed:ctitestbed:0x1bc4"/>
+            <nodename name="urn:wisebed:ctitestbed:0x1b76"/>
+        </names>
+        <serverconnections>
+            <serverconnection address="150.140.5.50:8880" type="tcp"/>
+        </serverconnections>
+        <applications>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x0495</urn>
+                    <type>isense</type>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x1c96</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x1bbd</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x14d4</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x1cd6</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x1bc4</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+            <application factoryclass="de.uniluebeck.itm.tr.runtime.wsnapp.WSNDeviceAppFactory" name="WSNDeviceApp">
+                <ns4:wsnDevice>
+                    <urn>urn:wisebed:ctitestbed:0x1b76</urn>
+                    <type>isense-motap</type>
+                    <usbchipid>isense</usbchipid>
+                </ns4:wsnDevice>
+            </application>
+        </applications>
+    </nodes>
 </ns2:testbed>

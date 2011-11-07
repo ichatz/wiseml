@@ -32,19 +32,19 @@ public class TestbedConfiguration {
     public void setNodes(List<Nodes> nds) {
         this.nodes = nds;
     }
+
     /**
      * this method add a node in the configuration
      *
      * @param nd of the testbed configuration
      */
 
-    public void addNodes(Nodes nd ){
-        if(this.nodes==null){
-            this.nodes=new ArrayList<Nodes>();
+    public void addNodes(Nodes nd) {
+        if (this.nodes == null) {
+            this.nodes = new ArrayList<Nodes>();
         }
         this.nodes.add(nd);
     }
-
 
 
 }

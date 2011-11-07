@@ -1,7 +1,11 @@
 package eu.wisebed.wiseconfig.controller;
 
 import eu.wisebed.wiseconfig.model.TestbedConfiguration;
-import org.jibx.runtime.*;
+import org.jibx.runtime.BindingDirectory;
+import org.jibx.runtime.IBindingFactory;
+import org.jibx.runtime.IMarshallingContext;
+import org.jibx.runtime.IUnmarshallingContext;
+import org.jibx.runtime.JiBXException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -10,7 +14,7 @@ public class WiseConfigController {
 
     /**
      * this method loads a wiseml from file.
-     * 
+     *
      * @param file
      * @return wiseml
      */
@@ -30,7 +34,6 @@ public class WiseConfigController {
     }
 
 
-
     /**
      * this method loads a TestbedConfiguration from file.
      *
@@ -38,7 +41,7 @@ public class WiseConfigController {
      * @return wiseml
      */
     public String getConfigurationFile(TestbedConfiguration config) {
-         final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         try {
             // unmarshal wiseml information from file...
             IBindingFactory bfact = BindingDirectory.getFactory(TestbedConfiguration.class);

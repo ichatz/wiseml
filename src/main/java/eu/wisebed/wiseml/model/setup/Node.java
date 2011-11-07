@@ -234,6 +234,7 @@ public class Node {
 
     /**
      * returns the setup this node belongs to.
+     *
      * @return
      */
     public Setup getSetup() {
@@ -242,6 +243,7 @@ public class Node {
 
     /**
      * sets the setup this node belongs to.
+     *
      * @param setup
      */
     public void setSetup(final Setup setup) {
@@ -250,17 +252,19 @@ public class Node {
 
     /**
      * Returns a set of capability readings for this node.
+     *
      * @return
      */
-    public Set<NodeReading> getReadings(){
+    public Set<NodeReading> getReadings() {
         return readings;
     }
 
     /**
      * Set capability readings for this node.
+     *
      * @param readings , set
      */
-    public void setReadings(final Set<NodeReading> readings){
+    public void setReadings(final Set<NodeReading> readings) {
         this.readings = readings;
     }
 }

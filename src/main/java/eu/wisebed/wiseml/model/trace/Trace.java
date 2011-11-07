@@ -27,6 +27,7 @@ public class Trace {
 
     /**
      * construct a new list.
+     *
      * @return a new list instance.
      */
     private static List listFactory() {
@@ -35,6 +36,7 @@ public class Trace {
 
     /**
      * returns a LinkedList of objects nested in the trace section.
+     *
      * @return
      */
     public List getChildren() {
@@ -43,12 +45,13 @@ public class Trace {
     }
 
     /**
-         * sets a LinkedList of objects nested in the trace section.
-         * @return
-         */
-        public void setChildren(List l) {
-            children=l;
-        }
+     * sets a LinkedList of objects nested in the trace section.
+     *
+     * @return
+     */
+    public void setChildren(List l) {
+        children = l;
+    }
 
     /**
      * this method returns scenario id.

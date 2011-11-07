@@ -25,9 +25,9 @@ public class LinkReadingCount {
             final String urnPrefix = "urn:wisebed:ctitestbed:";
             final Testbed testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
             final Link link = LinkController.getInstance().list(testbed).iterator().next();
-            LOGGER.info("Selected Link : [" + link.getSource() +"," + link.getTarget() + "]");
+            LOGGER.info("Selected Link : [" + link.getSource() + "," + link.getTarget() + "]");
             Long readingsCount = LinkReadingController.getInstance().getLinkReadingsCount(link);
-            LOGGER.info("Selected Link : [" + link.getSource() +"," + link.getTarget() + "] readings count :" + readingsCount.intValue());
+            LOGGER.info("Selected Link : [" + link.getSource() + "," + link.getTarget() + "] readings count :" + readingsCount.intValue());
             tx.commit();
         } catch (Exception e) {
             tx.rollback();

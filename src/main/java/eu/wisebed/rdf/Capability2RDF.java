@@ -10,8 +10,7 @@ import eu.wisebed.wiseml.model.setup.Capability;
 public class Capability2RDF extends Capability {
 
 
-
-    public     Capability2RDF(Capability ca){
+    public Capability2RDF(Capability ca) {
         this.setDatatype(ca.getDatatype());
         this.setDefaultvalue(ca.getDefaultvalue());
         this.setLinkReadings(ca.getLinkReadings());
@@ -22,33 +21,25 @@ public class Capability2RDF extends Capability {
         this.setUnit(ca.getUnit());
     }
 
-    private Model model;
+    public Resource exportRDF(final Model model, final String uri) {
+        // initialize resource and properties
+        Resource resCapability = model.createResource(uri + "Capability");
 
-    public Resource exportRDF(Model theModel, String uri)
-    {
-       // set the Jena model reference
-       model = theModel;
+        model.createProperty(uri + "capability_Name");
+        final Property capDatatype = model.createProperty(uri + "capability_Datatype");
+        final Property capUnit = model.createProperty(uri + "capability_Unit");
+        final Property capDefault = model.createProperty(uri + "capability_Default");
 
-       // initialize resource and properties
-       Resource resCapability = model.createResource(uri + "Capability");
+        model.add(resCapability, RDF.type, RDFS.Class);
+        final Resource newCap = model.createResource(uri + "Capability" + "/" + this.getName().replace(" ", "_").replace("(", "_").replace(")", "_"));
 
-       Property capability_Name = model.createProperty(uri + "capability_Name");
-       Property capability_Datatype = model.createProperty(uri + "capability_Datatype");
-       Property capability_Unit = model.createProperty(uri + "capability_Unit");
-       Property capability_Default = model.createProperty(uri + "capability_Default");
+        newCap.addLiteral(capDatatype, this.getDatatype());
+        newCap.addLiteral(capDefault, this.getDefaultvalue());
+        newCap.addLiteral(capUnit, this.getUnit());
 
+        model.add(newCap, RDF.type, resCapability);
 
-
-       model.add(resCapability, RDF.type, RDFS.Class);
-       Resource newCap = model.createResource(uri + "Capability" + "/" + this.getName().replace(" ", "_").replace("(", "_").replace(")", "_"));
-
-       newCap.addLiteral(capability_Datatype, this.getDatatype());
-       newCap.addLiteral(capability_Default, this.getDefaultvalue() );
-       newCap.addLiteral(capability_Unit, this.getUnit());
-
-       model.add(newCap, RDF.type, resCapability);
-
-       return newCap;
+        return newCap;
 
     }
 

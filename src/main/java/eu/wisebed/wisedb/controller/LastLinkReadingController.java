@@ -1,7 +1,6 @@
 package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.model.LastLinkReading;
-import eu.wisebed.wisedb.model.LastNodeReading;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
@@ -13,9 +12,11 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 
-import java.sql.Timestamp;
 import java.util.List;
 
+/**
+ * CRUD operations for LastLinkReading objects.
+ */
 public class LastLinkReadingController extends AbstractController<LastLinkReading> {
 
     /**
@@ -49,7 +50,7 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
     }
 
     /**
-     * Returns the last reading inserted in the persistence for a specific link & capability
+     * Returns the last reading inserted in the persistence for a specific link & capability.
      *
      * @param link       , a link.
      * @param capability , a capability.
@@ -64,7 +65,7 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
     }
 
     /**
-     * Returns a list of last reading rows inserted in the persistence for a specific link
+     * Returns a list of last reading rows inserted in the persistence for a specific link.
      *
      * @param link , a link.
      * @return a list of last reading rows for each capability.
@@ -77,9 +78,9 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
     }
 
     /**
-     * Returns a list of last node reading entries for the nodes of a testbed
+     * Returns a list of last node reading entries for the nodes of a testbed.
      *
-     * @param testbed
+     * @param testbed , a testbed instance.
      * @return a list last node readings from a testbed's nodes
      */
     public List<LastLinkReading> getByTestbed(final Testbed testbed) {
@@ -94,7 +95,7 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
     }
 
     /**
-     * Returns a list of last reading rows inserted in the persistence for a specific capability
+     * Returns a list of last reading rows inserted in the persistence for a specific capability.
      *
      * @param capability , a capability.
      * @return a list of last reading rows for each capability.
@@ -107,9 +108,9 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
     }
 
     /**
-     * Returns a list of last reading rows inserted in the persistence for a specific capability
+     * Returns a list of last reading rows inserted in the persistence for a specific capability.
      *
-     * @param testbed,   a testbed.
+     * @param testbed    ,  a testbed.
      * @param capability , a capability.
      * @return a list of last reading rows for each capability.
      */
@@ -126,7 +127,7 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
     }
 
     /**
-     * Returns the latest node reading fo the LastNodeReadings of all capabilities
+     * Returns the latest node reading fo the LastNodeReadings of all capabilities.
      *
      * @param link , a link.
      * @return a LastNodeReading entry
@@ -148,7 +149,7 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
     }
 
     /**
-     * Returns the latest link reading fo the LastNodeReadings of all capabilities
+     * Returns the latest link reading fo the LastNodeReadings of all capabilities.
      *
      * @param capability , a capability.
      * @return a last reading for a link.
@@ -170,9 +171,9 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
     }
 
     /**
-     * Returns the latest link reading fo the LastNodeReadings of all capabilities
+     * Returns the latest link reading fo the LastNodeReadings of all capabilities.
      *
-     * @param testbed,   a testbed.
+     * @param testbed    , a testbed.
      * @param capability , a capability.
      * @return a last reading for a link belonging to a testbed.
      */

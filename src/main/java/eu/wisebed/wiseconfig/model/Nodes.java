@@ -51,22 +51,22 @@ public class Nodes {
         this.serverConnections = serverConnections;
     }
 
-    public void addNodename(Nodename nodename){
-        if (this.names==null) {
+    public void addNodename(Nodename nodename) {
+        if (this.names == null) {
             this.names = new ArrayList<Nodename>();
         }
         this.names.add(nodename);
     }
 
-    public void addApplication(Application app){
-        if (this.applications==null) {
+    public void addApplication(Application app) {
+        if (this.applications == null) {
             this.applications = new ArrayList<Application>();
         }
         this.applications.add(app);
     }
 
-    public void addServerConnection(ServerConnection con){
-        if (this.serverConnections==null) {
+    public void addServerConnection(ServerConnection con) {
+        if (this.serverConnections == null) {
             this.serverConnections = new ArrayList<ServerConnection>();
         }
         this.serverConnections.add(con);

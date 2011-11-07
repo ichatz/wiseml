@@ -1,7 +1,7 @@
 package eu.wisebed.wiseml.model.scenario;
 
-import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Link;
+import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.trace.Message;
 
 import java.util.List;

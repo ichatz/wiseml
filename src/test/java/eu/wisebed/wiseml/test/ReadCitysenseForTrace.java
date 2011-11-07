@@ -1,14 +1,5 @@
 package eu.wisebed.wiseml.test;
 
-import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
 import eu.wisebed.wiseml.model.scenario.Timestamp;
@@ -18,6 +9,15 @@ import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Position;
 import eu.wisebed.wiseml.model.setup.Setup;
 import eu.wisebed.wiseml.model.trace.Trace;
+
+import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class setting up new nodes and creates a trace
@@ -375,17 +375,16 @@ public class ReadCitysenseForTrace {
             Statement statement2 = connection.createStatement();
             Statement statement3 = connection.createStatement();
             Statement statement4 = connection.createStatement();
-               int cnt=0;
+            int cnt = 0;
             // retrieve timestamps for trace...
             ResultSet rs2 = statement2.executeQuery(" SELECT id, Timestamp, sensors_id " +
                     " FROM SensorOutputTable" +
-                    " WHERE year(Timestamp) >=2010 and month(Timestamp)=1 order by Timestamp") ;//+
-
+                    " WHERE year(Timestamp) >=2010 and month(Timestamp)=1 order by Timestamp");//+
 
 
             while (rs2.next()) {
 
-                   if (cnt%100==0) System.out.println(cnt);
+                if (cnt % 100 == 0) System.out.println(cnt);
                 cnt++;
                 // Create new Timestamp...
                 Timestamp timest = new Timestamp();
@@ -456,8 +455,7 @@ public class ReadCitysenseForTrace {
                 WiseMLController wiseMLctrl = new WiseMLController();
                 wiseMLctrl.writeWiseMLAsFile(readCFT.getRootNode(), new File("trace-citysense.xml"));
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
         }

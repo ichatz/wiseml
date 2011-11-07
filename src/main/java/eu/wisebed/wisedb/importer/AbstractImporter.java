@@ -1,7 +1,7 @@
 package eu.wisebed.wisedb.importer;
 
-import eu.wisebed.testbed.api.wsn.WSNServiceHelper;
 import eu.wisebed.api.sm.SessionManagement;
+import eu.wisebed.testbed.api.wsn.WSNServiceHelper;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
@@ -42,7 +42,8 @@ public abstract class AbstractImporter<E> {
 
     /**
      * Returns entity instance
-     * @return  entity instance
+     *
+     * @return entity instance
      */
     public E getEntity() {
         return entity;
@@ -50,6 +51,7 @@ public abstract class AbstractImporter<E> {
 
     /**
      * Sets entity
+     *
      * @param entity
      */
     public void setEntity(final E entity) {
@@ -58,6 +60,7 @@ public abstract class AbstractImporter<E> {
 
     /**
      * Returns entities instances.
+     *
      * @return entities
      */
     public Collection<E> getEntities() {
@@ -66,6 +69,7 @@ public abstract class AbstractImporter<E> {
 
     /**
      * Set entities instances.
+     *
      * @param entities
      */
     public void setEntities(final Collection<E> entities) {
@@ -74,6 +78,7 @@ public abstract class AbstractImporter<E> {
 
     /**
      * Returns the endpoint url of the Session Managment Service endpoint.
+     *
      * @return
      */
     public String getEndpointUrl() {
@@ -82,6 +87,7 @@ public abstract class AbstractImporter<E> {
 
     /**
      * Returns the endpoint url of the Session Managment Service endpoint.
+     *
      * @param endpointUrl , Session managment service endpoint url
      */
     public void setEndpointUrl(final String endpointUrl) {
@@ -90,6 +96,7 @@ public abstract class AbstractImporter<E> {
 
     /**
      * Returns a Session Managment Service instance.
+     *
      * @return a Session Managment Service instance
      */
     public SessionManagement getSessionManagementService() {
@@ -98,6 +105,7 @@ public abstract class AbstractImporter<E> {
 
     /**
      * Sets a Session Managment Service instance.
+     *
      * @param sessionManagementService
      */
     public void setSessionManagementService(final SessionManagement sessionManagementService) {
@@ -106,6 +114,7 @@ public abstract class AbstractImporter<E> {
 
     /**
      * Returns the WiseML InputStream instance.
+     *
      * @return a wiseml input stream instance
      */
     public InputStream getWiseMlStream() {
@@ -114,6 +123,7 @@ public abstract class AbstractImporter<E> {
 
     /**
      * Sets the WiseMl InputStream instance.
+     *
      * @param wiseMlStream , an input stream.
      */
     public void setWiseMlStream(final InputStream wiseMlStream) {
@@ -122,6 +132,7 @@ public abstract class AbstractImporter<E> {
 
     /**
      * Returns the path of the WiseML document.
+     *
      * @return the path of the WiseML document.
      */
     public String getWiseMlPath() {
@@ -130,6 +141,7 @@ public abstract class AbstractImporter<E> {
 
     /**
      * Sets the path of the WiseML document.
+     *
      * @param wiseMlPath , the path of the WiseML document.
      */
     public void setWiseMlPath(String wiseMlPath) {
@@ -139,9 +151,9 @@ public abstract class AbstractImporter<E> {
     /**
      * Connect to the remote Session Managment Service.
      */
-    public void connect() throws Exception{
+    public void connect() throws Exception {
 
-        if(getEndpointUrl() == null) {
+        if (getEndpointUrl() == null) {
             throw new Exception("Remote Session Management Service endpoint is null");
         }
 
@@ -157,10 +169,11 @@ public abstract class AbstractImporter<E> {
 
     /**
      * Connect to the remote Session Managment Service via the url in params.
+     *
      * @param url
      * @throws Exception
      */
-    public void connect(final String url) throws Exception{
+    public void connect(final String url) throws Exception {
 
         // set endpoint url
         setEndpointUrl(url);
@@ -169,9 +182,10 @@ public abstract class AbstractImporter<E> {
 
     /**
      * Open local WiseML document file in the path.
+     *
      * @param path, a path to a WiseML document file.
      */
-    public void open(final String path) throws Exception{
+    public void open(final String path) throws Exception {
 
         // set path to open
         setWiseMlPath(path);
@@ -181,11 +195,11 @@ public abstract class AbstractImporter<E> {
     /**
      * Open local WiseML document file in the wiseMlpath.
      */
-    public void open() throws Exception{
+    public void open() throws Exception {
         try {
             wiseMlStream = new FileInputStream(getWiseMlPath());
-        } catch(Exception e){
-            throw new Exception("Could not open input stream to open file from path (" + getWiseMlPath() +")");
+        } catch (Exception e) {
+            throw new Exception("Could not open input stream to open file from path (" + getWiseMlPath() + ")");
         }
     }
 

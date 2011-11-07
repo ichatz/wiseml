@@ -9,15 +9,13 @@ import com.hp.hpl.jena.query.ResultSetFormatter;
 
 public class rdfServerClientUpdate {
 
-    public static void main (String args[])   {
+    public static void main(String args[]) {
 
 
-        QueryExecution qExec = QueryExecutionFactory.sparqlService("http://127.0.0.1:1281/info/query", "SELECT * {?s ?p ?o}") ;
-        ResultSet rs = qExec.execSelect() ;
-        System.out.println(">>"+ ResultSetFormatter.asXMLString(rs));
+        QueryExecution qExec = QueryExecutionFactory.sparqlService("http://127.0.0.1:1281/info/query", "SELECT * {?s ?p ?o}");
+        ResultSet rs = qExec.execSelect();
+        System.out.println(">>" + ResultSetFormatter.asXMLString(rs));
 
 
-
-
-      }
+    }
 }

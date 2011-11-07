@@ -18,7 +18,7 @@ public class WiseDBUpdateSetupTestbed {
      */
     private static final Logger LOGGER = Logger.getLogger(WiseDBUpdateSetupTestbed.class);
 
-    public static void main(String args[]){
+    public static void main(String args[]) {
         // Initialize hibernate
         HibernateUtil.connectEntityManagers();
         Transaction tx = HibernateUtil.getInstance().getSession().beginTransaction();
@@ -36,12 +36,12 @@ public class WiseDBUpdateSetupTestbed {
             testbed.setSetup(setup);
 
             tx.commit();
-        }catch (Exception e) {
+        } catch (Exception e) {
             tx.rollback();
             LOGGER.fatal(e);
             System.err.println(e.getMessage());
             System.exit(-1);
-        }finally {
+        } finally {
             // always close session
             HibernateUtil.getInstance().closeSession();
         }

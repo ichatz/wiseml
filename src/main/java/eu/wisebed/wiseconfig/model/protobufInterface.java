@@ -4,8 +4,8 @@ package eu.wisebed.wiseconfig.model;
 public class protobufInterface {
 
 
-    private String port ;
-    private String ip ;
+    private String port;
+    private String ip;
 
     public String getPort() {
         return port;

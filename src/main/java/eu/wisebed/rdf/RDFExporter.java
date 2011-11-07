@@ -14,43 +14,41 @@ public class RDFExporter {
     private String inwiseml;
     private String outrdf;
 
-    public RDFExporter(String theURI, String inputWiseml,String outputRDF){
+    public RDFExporter(String theURI, String inputWiseml, String outputRDF) {
         uri = theURI;
         wiseModel = ModelFactory.createDefaultModel();
         wiseModel.setNsPrefix("rdfs", "http://www.w3.org/2000/01/rdf-schema#");
         wiseModel.setNsPrefix("wiserdf", uri);
-        this.inwiseml=inputWiseml;
-        this.outrdf=outputRDF;
+        this.inwiseml = inputWiseml;
+        this.outrdf = outputRDF;
 
     }
 
 
-    public void createRDF(){
+    public void createRDF() {
         try {
             fileML = new FileInputStream(inwiseml);
             WiseMLController wmlcontroller = new WiseMLController();
             WiseML wml = wmlcontroller.loadWiseMLFromFile(fileML);
-            WiseML2RDF wmll= new WiseML2RDF(wml);
+            WiseML2RDF wmll = new WiseML2RDF(wml);
             wmll.exportRDF(wiseModel, uri);
             wmll.dump(outrdf);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.err.println(e);
         }
     }
 
-     public Model modelRDF(){
+    public Model modelRDF() {
         try {
             fileML = new FileInputStream(inwiseml);
             WiseMLController wmlcontroller = new WiseMLController();
             WiseML wml = wmlcontroller.loadWiseMLFromFile(fileML);
-            WiseML2RDF wmll= new WiseML2RDF(wml);
+            WiseML2RDF wmll = new WiseML2RDF(wml);
             wmll.exportRDF(wiseModel, uri);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.err.println(e);
         }
-         return wiseModel;
+        return wiseModel;
     }
 
 }

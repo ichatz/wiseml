@@ -37,7 +37,8 @@ public class LastLinkReading implements Serializable {
 
     /**
      * Returns links
-     * @return  link
+     *
+     * @return link
      */
     public Link getLink() {
         return link;
@@ -45,6 +46,7 @@ public class LastLinkReading implements Serializable {
 
     /**
      * Sets link
+     *
      * @param link , a link
      */
     public void setLink(final Link link) {

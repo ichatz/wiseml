@@ -1,5 +1,13 @@
 package eu.wisebed.wiseml.controller;
 
+import eu.wisebed.wiseml.model.WiseML;
+import eu.wisebed.wiseml.model.setup.Setup;
+import org.jibx.runtime.BindingDirectory;
+import org.jibx.runtime.IBindingFactory;
+import org.jibx.runtime.IMarshallingContext;
+import org.jibx.runtime.IUnmarshallingContext;
+import org.jibx.runtime.JiBXException;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -9,23 +17,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
-import org.jibx.runtime.BindingDirectory;
-import org.jibx.runtime.IBindingFactory;
-import org.jibx.runtime.IMarshallingContext;
-import org.jibx.runtime.IUnmarshallingContext;
-import org.jibx.runtime.JiBXException;
-
-import eu.wisebed.wiseml.model.WiseML;
-import eu.wisebed.wiseml.model.setup.Setup;
-
 public class WiseMLController {
 
     /**
      * This method loads a wiseml from file.
-     * 
+     *
      * @param data
      * @return wiseml
-     * @throws JiBXException 
+     * @throws JiBXException
      */
     public WiseML loadWiseML(Reader data) throws JiBXException {
         WiseML wiseml = new WiseML();
@@ -40,10 +39,10 @@ public class WiseMLController {
 
     /**
      * this method loads a wiseml from file.
-     * 
+     *
      * @param file
      * @return wiseml
-     * @throws JiBXException 
+     * @throws JiBXException
      */
     public WiseML loadWiseML(InputStream file) throws JiBXException {
         return loadWiseML(new InputStreamReader(file));
@@ -51,7 +50,7 @@ public class WiseMLController {
 
     /**
      * this method loads a wiseml from file.
-     * 
+     *
      * @param file
      * @return wiseml
      */
@@ -72,7 +71,7 @@ public class WiseMLController {
 
     /**
      * this method loads setup from file.
-     * 
+     *
      * @param file
      * @return setup
      */
@@ -94,7 +93,7 @@ public class WiseMLController {
 
     /**
      * this method writes wiseml in a file.
-     * 
+     *
      * @param wiseml
      * @param file
      */
@@ -120,7 +119,7 @@ public class WiseMLController {
 
     /**
      * this method writes setup in a file.
-     * 
+     *
      * @param setup
      * @param file
      */
@@ -147,7 +146,7 @@ public class WiseMLController {
 
     /**
      * this method writes wiseml as a string.
-     * 
+     *
      * @param wiseml
      * @return string of wiseml data
      */
@@ -174,7 +173,7 @@ public class WiseMLController {
 
     /**
      * this method writes setup as a string.
-     * 
+     *
      * @param setup
      * @return string of setup data
      */
@@ -204,7 +203,7 @@ public class WiseMLController {
 
     /**
      * this method loads setup from a string.
-     * 
+     *
      * @param stup
      * @return setup
      */
@@ -226,7 +225,7 @@ public class WiseMLController {
 
     /**
      * this method loads wiseml from a string.
-     * 
+     *
      * @param wisml
      * @return wiseml
      */

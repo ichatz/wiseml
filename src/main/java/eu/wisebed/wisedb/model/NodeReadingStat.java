@@ -1,6 +1,7 @@
 package eu.wisebed.wisedb.model;
 
 import eu.wisebed.wiseml.model.setup.Node;
+
 import java.util.Date;
 
 public class NodeReadingStat {
@@ -12,7 +13,7 @@ public class NodeReadingStat {
     private Double minReading;
     private Long totalCount;
 
-    public NodeReadingStat(){
+    public NodeReadingStat() {
         //empty constructor
     }
 
@@ -58,11 +59,11 @@ public class NodeReadingStat {
         this.totalCount = totalCount;
     }
 
-    public Date getLastTimestamp(){
+    public Date getLastTimestamp() {
         return lastTimestamp;
     }
 
-    public void setLastTimestamp(final Date lastTimestamp){
+    public void setLastTimestamp(final Date lastTimestamp) {
         this.lastTimestamp = lastTimestamp;
     }
 
@@ -74,8 +75,8 @@ public class NodeReadingStat {
         this.lastReading = lastReading;
     }
 
-    public String toString(){
-        return "[" + node.getId()+ "] : "+ lastTimestamp + " " + lastReading + " " + maxReading +" "
-                + minReading + " "+ totalCount;
+    public String toString() {
+        return "[" + node.getId() + "] : " + lastTimestamp + " " + lastReading + " " + maxReading + " "
+                + minReading + " " + totalCount;
     }
 }

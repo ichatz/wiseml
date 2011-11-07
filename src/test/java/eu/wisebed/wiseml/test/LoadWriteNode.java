@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 
 public class LoadWriteNode {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         NodeController nodeC = new NodeController();
         Node node = new Node();
@@ -21,7 +21,7 @@ public class LoadWriteNode {
         node.setProgramDetails("blinkfast.tnode");
 
         File file = new File("data.xml");
-        
+
         FileInputStream fileIn = null;
 
 
@@ -32,11 +32,10 @@ public class LoadWriteNode {
             System.exit(1);
         }
 
-        nodeC.write(node,file);
+        nodeC.write(node, file);
         nodeC.load(fileIn);
         System.out.println(node.getId());
     }
-
 
 
 }

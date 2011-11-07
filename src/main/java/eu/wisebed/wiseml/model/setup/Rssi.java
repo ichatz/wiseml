@@ -33,7 +33,7 @@ public class Rssi {
     private String value;
 
 
-     /**
+    /**
      * this method returns the value of the rssi.
      *
      * @return the value of the rssi.

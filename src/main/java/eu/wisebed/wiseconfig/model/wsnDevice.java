@@ -4,9 +4,9 @@ package eu.wisebed.wiseconfig.model;
 public class wsnDevice {
 
 
-    private String urn ;
-    private String type ;
-    private String serialinterface ;
+    private String urn;
+    private String type;
+    private String serialinterface;
     private String usbchipid;
 
     public String getUrn() {

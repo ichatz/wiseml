@@ -34,6 +34,7 @@ public abstract class AbstractController<E> {
 
     /**
      * Returns the current Session factory.
+     *
      * @return the current Session Factory.
      */
     public SessionFactory getSessionFactory() {
@@ -82,7 +83,7 @@ public abstract class AbstractController<E> {
      * @param entity   an Entity object that may be of every type of entity.
      * @param entityID the (String) id of the Entity object.
      */
-    public void delete (final E entity,final String entityID) {
+    public void delete(final E entity, final String entityID) {
         final Session session = sessionFactory.getCurrentSession();
         final Object entity2 = session.load(entity.getClass(), entityID);
         session.delete(entity2);

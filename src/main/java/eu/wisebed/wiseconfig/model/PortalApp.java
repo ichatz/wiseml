@@ -7,7 +7,6 @@ public class PortalApp {
     private webService webSERVICE;
 
 
-
     public webService getWebSERVICE() {
         return webSERVICE;
     }

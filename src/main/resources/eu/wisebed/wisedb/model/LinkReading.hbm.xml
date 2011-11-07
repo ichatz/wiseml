@@ -9,12 +9,12 @@
            dynamic-update="true" dynamic-insert="true">
 
         <id name="id" column="reading_id">
-            <generator class="native" />
+            <generator class="native"/>
         </id>
 
-        <property name="timestamp" type="timestamp" />
+        <property name="timestamp" type="timestamp"/>
         <property name="reading" type="double"/>
-        <property name="rssiValue" type="double" />
+        <property name="rssiValue" type="double"/>
 
         <many-to-one name="link" class="eu.wisebed.wiseml.model.setup.Link">
             <column name="link_source" not-null="true"/>

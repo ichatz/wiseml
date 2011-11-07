@@ -7,7 +7,7 @@
 
     <class name="eu.wisebed.wiseml.model.setup.Link" table="links"
            dynamic-insert="true" dynamic-update="true">
-        <cache usage="read-write" />
+        <cache usage="read-write"/>
 
         <composite-id>
             <key-property name="source" column="link_source"/>
@@ -15,16 +15,16 @@
         </composite-id>
 
         <property name="encrypted">
-            <column name="encrypted" sql-type="BOOLEAN" />
+            <column name="encrypted" sql-type="BOOLEAN"/>
         </property>
 
         <property name="virtual">
-            <column name="virtual" sql-type="BOOLEAN" />
+            <column name="virtual" sql-type="BOOLEAN"/>
         </property>
 
-       <component name="rssi" class="eu.wisebed.wiseml.model.setup.Rssi">
-           <property name="unit" column="rssi_unit"/>
-           <property name="datatype" column="rssi_datatype" />
+        <component name="rssi" class="eu.wisebed.wiseml.model.setup.Rssi">
+            <property name="unit" column="rssi_unit"/>
+            <property name="datatype" column="rssi_datatype"/>
         </component>
 
 

@@ -1,12 +1,8 @@
 package eu.wisebed.wiseml.test.uth;
 
-import org.jibx.runtime.BindingDirectory;
-import org.jibx.runtime.IBindingFactory;
-import org.jibx.runtime.IMarshallingContext;
-import org.jibx.runtime.JiBXException;
 import eu.wisebed.wiseml.model.WiseML;
-import eu.wisebed.wiseml.model.scenario.Timestamp;
 import eu.wisebed.wiseml.model.scenario.Scenario;
+import eu.wisebed.wiseml.model.scenario.Timestamp;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Data;
 import eu.wisebed.wiseml.model.setup.Node;
@@ -14,6 +10,10 @@ import eu.wisebed.wiseml.model.setup.Origin;
 import eu.wisebed.wiseml.model.setup.Position;
 import eu.wisebed.wiseml.model.setup.Setup;
 import eu.wisebed.wiseml.model.setup.TimeInfo;
+import org.jibx.runtime.BindingDirectory;
+import org.jibx.runtime.IBindingFactory;
+import org.jibx.runtime.IMarshallingContext;
+import org.jibx.runtime.JiBXException;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -28,7 +28,7 @@ import java.util.Scanner;
 
 /**
  * This class reads a file that has nodes, timestamps and capabilities values and
- * creates an xml file of setup these nodes and a scenario of these timestamps. 
+ * creates an xml file of setup these nodes and a scenario of these timestamps.
  */
 public class ReadFileAsScenario {
 
@@ -195,9 +195,10 @@ public class ReadFileAsScenario {
 
     /**
      * Construct new data.
-     * @param key data key
+     *
+     * @param key   data key
      * @param value data value
-     * @param list a list of data
+     * @param list  a list of data
      */
     public void constructData(final String key, final String value, final List<Data> list) {
         // Construct new data for each value of node...
@@ -436,7 +437,7 @@ public class ReadFileAsScenario {
         }
     }
 
-     public static void main(String[] args) {
+    public static void main(String[] args) {
 
 
         try {

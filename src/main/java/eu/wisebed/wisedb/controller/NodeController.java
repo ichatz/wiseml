@@ -1,24 +1,14 @@
 package eu.wisebed.wisedb.controller;
 
-import com.hp.hpl.jena.ontology.Restriction;
-import eu.wisebed.wisedb.importer.SetupImporter;
-import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
-import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
-import eu.wisebed.wiseml.model.setup.Setup;
 import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projection;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.dialect.Oracle10gDialect;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 
 /**

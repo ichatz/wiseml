@@ -2,8 +2,8 @@ package eu.wisebed.wiseml.test;
 
 import eu.wisebed.wiseml.controller.TraceController;
 import eu.wisebed.wiseml.model.setup.Node;
-import eu.wisebed.wiseml.model.trace.Trace;
 import eu.wisebed.wiseml.model.trace.Message;
+import eu.wisebed.wiseml.model.trace.Trace;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -38,7 +38,7 @@ public class LoadWriteTrace {
             System.exit(1);
         }
 
-        traceC.writeTraceAsFile(trace,file);
+        traceC.writeTraceAsFile(trace, file);
 
     }
 }

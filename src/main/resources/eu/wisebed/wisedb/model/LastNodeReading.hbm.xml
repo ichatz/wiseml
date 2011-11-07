@@ -4,7 +4,7 @@
 
 <hibernate-mapping>
     <class name="eu.wisebed.wisedb.model.LastNodeReading" table="last_node_capability_readings"
-            dynamic-insert="true" dynamic-update="true">
+           dynamic-insert="true" dynamic-update="true">
 
         <composite-id>
             <key-many-to-one name="node" column="node_id" class="eu.wisebed.wiseml.model.setup.Node"/>

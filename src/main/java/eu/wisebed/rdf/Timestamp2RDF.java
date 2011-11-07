@@ -8,9 +8,13 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
 import eu.wisebed.wiseml.model.scenario.Timestamp;
-import eu.wisebed.wiseml.model.setup.*;
+import eu.wisebed.wiseml.model.setup.Defaults;
+import eu.wisebed.wiseml.model.setup.Link;
+import eu.wisebed.wiseml.model.setup.Node;
+import eu.wisebed.wiseml.model.setup.Rssi;
+import eu.wisebed.wiseml.model.setup.Setup;
 
-public class Timestamp2RDF  extends Timestamp {
+public class Timestamp2RDF extends Timestamp {
     // *** RDF *** //
     private Model model;
     private String uri;
@@ -47,10 +51,10 @@ public class Timestamp2RDF  extends Timestamp {
         return newTS;
     }
 
-    public void printDBG(){
-        Bag nodesOfTS =    model.getBag(uri + "NodesOfTimeStamp" + "_" + this.getValue());
+    public void printDBG() {
+        Bag nodesOfTS = model.getBag(uri + "NodesOfTimeStamp" + "_" + this.getValue());
         System.out.println("TimeStamp: " + this.getValue());
-        System.out.println("Readings: " +nodesOfTS.size());
+        System.out.println("Readings: " + nodesOfTS.size());
 
     }
 
@@ -120,7 +124,8 @@ public class Timestamp2RDF  extends Timestamp {
                     nodeBag.addLiteral(positionTheta, defTheta);
                 } else {
                     nodeBag.addLiteral(positionTheta, theNodetoAdd.getPosition().getTheta());
-                };
+                }
+                ;
             }
             if (theNodetoAdd.getPosition().getPhi() == 0) {
                 if (defPhi != 0) {
@@ -149,7 +154,7 @@ public class Timestamp2RDF  extends Timestamp {
             }
         }
 
-            addNodesHere.add(nodeBag);
+        addNodesHere.add(nodeBag);
 
     }
 
@@ -194,7 +199,7 @@ public class Timestamp2RDF  extends Timestamp {
             }
         }
 
-            addLinksHere.add(linkBag);
+        addLinksHere.add(linkBag);
 
 
     }

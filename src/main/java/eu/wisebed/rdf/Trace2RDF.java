@@ -8,17 +8,21 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
 import eu.wisebed.wiseml.model.scenario.Timestamp;
-import eu.wisebed.wiseml.model.setup.*;
+import eu.wisebed.wiseml.model.setup.Defaults;
+import eu.wisebed.wiseml.model.setup.Link;
+import eu.wisebed.wiseml.model.setup.Node;
+import eu.wisebed.wiseml.model.setup.Rssi;
+import eu.wisebed.wiseml.model.setup.Setup;
 import eu.wisebed.wiseml.model.trace.Trace;
 
 import java.util.List;
 
 public class Trace2RDF extends Trace {
 
-     private static Model model;
+    private static Model model;
     //private ArrayList theRDFNodes;
 
-    public Trace2RDF(Trace tra){
+    public Trace2RDF(Trace tra) {
         this.setChildren(tra.getChildren());
         this.setId(tra.getId());
         this.setTimestamp(tra.getTimestamp());
@@ -54,21 +58,21 @@ public class Trace2RDF extends Trace {
                 String defRssiValue = defRssi.getValue();
             }
         }
-       List listOfChildren = this.getChildren();
-       Timestamp2RDF currentTS=null;
-       Object lastItem=null;
-       for(Object item : listOfChildren) {
-           if (item.getClass().equals(Timestamp.class)) {
-               if (lastItem!=null) {
-                      Resource resCurrentTS = currentTS.exportRDF(model, uri);
-                      Bag nodesOfTS =resCurrentTS.getModel().getBag(uri + "NodesOfTimeStamp" + "_" + ((Timestamp) lastItem).getValue());
-                      System.out.println("TimeStamp: " + ((Timestamp) lastItem).getValue());
-                     System.out.println("Readings: " +nodesOfTS.size());
-               }
-               currentTS = new Timestamp2RDF((Timestamp) item);
-               Resource resCurrentTS = currentTS.exportRDF(model, uri);
-               traceTimestamps.add(resCurrentTS);
-               lastItem=item;
+        List listOfChildren = this.getChildren();
+        Timestamp2RDF currentTS = null;
+        Object lastItem = null;
+        for (Object item : listOfChildren) {
+            if (item.getClass().equals(Timestamp.class)) {
+                if (lastItem != null) {
+                    Resource resCurrentTS = currentTS.exportRDF(model, uri);
+                    Bag nodesOfTS = resCurrentTS.getModel().getBag(uri + "NodesOfTimeStamp" + "_" + ((Timestamp) lastItem).getValue());
+                    System.out.println("TimeStamp: " + ((Timestamp) lastItem).getValue());
+                    System.out.println("Readings: " + nodesOfTS.size());
+                }
+                currentTS = new Timestamp2RDF((Timestamp) item);
+                Resource resCurrentTS = currentTS.exportRDF(model, uri);
+                traceTimestamps.add(resCurrentTS);
+                lastItem = item;
             }
             if (item.getClass().equals(Node.class)) {
                 Node2RDF tempNode = new Node2RDF((Node) item);
@@ -76,9 +80,9 @@ public class Trace2RDF extends Trace {
                 tempNode.addTimeStamp(Integer.parseInt(currentTS.getValue()), uri);
             }
             if (item.getClass().equals(Link.class)) {
-               Link2RDF tempLink = new Link2RDF((Link) item);
-               currentTS.addRDFLink(tempLink, model, uri, theSetup);
-               tempLink.addTimeStamp(Integer.parseInt(currentTS.getValue()), uri, model);
+                Link2RDF tempLink = new Link2RDF((Link) item);
+                currentTS.addRDFLink(tempLink, model, uri, theSetup);
+                tempLink.addTimeStamp(Integer.parseInt(currentTS.getValue()), uri, model);
             }
         }
         return newTrace;

@@ -12,7 +12,7 @@ import java.util.Set;
  * getter and setter methods for the properties.
  */
 
-public class Link implements Serializable{
+public class Link implements Serializable {
 
     /**
      * the source of an object Link.
@@ -176,6 +176,7 @@ public class Link implements Serializable{
 
     /**
      * returns a collection of setups.
+     *
      * @return
      */
     public Setup getSetup() {
@@ -184,6 +185,7 @@ public class Link implements Serializable{
 
     /**
      * sets the setup this link belongs to setups.
+     *
      * @param setup
      */
     public void setSetup(final Setup setup) {
@@ -192,6 +194,7 @@ public class Link implements Serializable{
 
     /**
      * Returns all the capability readings for this link.
+     *
      * @return readings , all capabilities readings for this link.
      */
     public Set<LinkReading> getReadings() {
@@ -200,6 +203,7 @@ public class Link implements Serializable{
 
     /**
      * Sets the set of readings for all capability.
+     *
      * @param readings , a set of capabiliteis readings for this link.
      */
     public void setReadings(Set<LinkReading> readings) {
@@ -208,14 +212,15 @@ public class Link implements Serializable{
 
     /**
      * Override of Object's equals() method
+     *
      * @param obj
      * @return true or false on whether the objects are equal.
      */
     public boolean equals(final Object obj) {
-        if(this == obj)
-			return true;
-		if((obj == null) || (obj.getClass() != this.getClass()))
-			return false;
+        if (this == obj)
+            return true;
+        if ((obj == null) || (obj.getClass() != this.getClass()))
+            return false;
 
         Link test = (Link) obj;
 
@@ -224,9 +229,10 @@ public class Link implements Serializable{
 
     /**
      * Override of Object's hashCode() method
+     *
      * @return hascode value
      */
-    public int hashCode(){
-        return (source==null)?System.identityHashCode(this):source.hashCode();
+    public int hashCode() {
+        return (source == null) ? System.identityHashCode(this) : source.hashCode();
     }
 }

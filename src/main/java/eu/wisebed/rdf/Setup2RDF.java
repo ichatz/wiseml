@@ -17,23 +17,23 @@ import java.util.List;
 public class Setup2RDF extends Setup {
 
 
-    public Setup2RDF(Setup set){
-       this.setCoordinateType(set.getCoordinateType());
-       this.setDefaults(set.getDefaults());
-       this.setDescription(set.getDescription());
-       this.setId(set.getId());
-       this.setInterpolation(set.getInterpolation());
-       this.setLink(set.getLink());
-       this.setNodes(set.getNodes());
-       this.setOrigin(set.getOrigin());
+    public Setup2RDF(Setup set) {
+        this.setCoordinateType(set.getCoordinateType());
+        this.setDefaults(set.getDefaults());
+        this.setDescription(set.getDescription());
+        this.setId(set.getId());
+        this.setInterpolation(set.getInterpolation());
+        this.setLink(set.getLink());
+        this.setNodes(set.getNodes());
+        this.setOrigin(set.getOrigin());
         this.setTimeinfo(set.getTimeinfo());
     }
 
-     public TimeInfo2RDF getTimeinfo2RDF() {
+    public TimeInfo2RDF getTimeinfo2RDF() {
         return (TimeInfo2RDF) this.getTimeinfo();
     }
 
-     public Origin2RDF getOrigin2RDF() {
+    public Origin2RDF getOrigin2RDF() {
         return new Origin2RDF(this.getOrigin());
     }
 

@@ -77,36 +77,35 @@ public class LoadWriteWiseML {
 
     public void doAnotherTest() throws FileNotFoundException {
         FileInputStream fileML = null;
-           try {
-               fileML = new FileInputStream("/home/evangelos/workspace/easysense/wiseml2rdf/WiseNew4/telosB_short.wiseml");
-           } catch(Exception e){
-               System.err.println(e);
-           }
+        try {
+            fileML = new FileInputStream("/home/evangelos/workspace/easysense/wiseml2rdf/WiseNew4/telosB_short.wiseml");
+        } catch (Exception e) {
+            System.err.println(e);
+        }
 
-           WiseMLController wmlcontroller = new WiseMLController();
-           WiseML wml = wmlcontroller.loadWiseMLFromFile(fileML);
-          Trace theTrace = wml.getTrace();
-          List traceItems = theTrace.getChildren();
+        WiseMLController wmlcontroller = new WiseMLController();
+        WiseML wml = wmlcontroller.loadWiseMLFromFile(fileML);
+        Trace theTrace = wml.getTrace();
+        List traceItems = theTrace.getChildren();
 
-          System.out.println("Timestamp Size:"+traceItems.size());
+        System.out.println("Timestamp Size:" + traceItems.size());
 
-          for(Object item : traceItems)
-          {
-               if (item.getClass().equals(Timestamp.class)){
-                   Timestamp ts=(Timestamp) item;
-                   System.out.println("Timestamp"+ts.getValue());
-                }else if (item.getClass().equals(Node.class)){
-                   Node nd=(Node) item;
-                   System.out.println("Node"+nd.getId());
-                   System.out.println("Node"+nd.getData().get(0).getValue());
-              }else if (item.getClass().equals(Link.class)){
-                   Link ln=(Link) item;
-                   System.out.println("Link"+ln.getSource()+"-->"+ln.getTarget());
-                   System.out.println("Link"+ln.getRssi().getValue());
+        for (Object item : traceItems) {
+            if (item.getClass().equals(Timestamp.class)) {
+                Timestamp ts = (Timestamp) item;
+                System.out.println("Timestamp" + ts.getValue());
+            } else if (item.getClass().equals(Node.class)) {
+                Node nd = (Node) item;
+                System.out.println("Node" + nd.getId());
+                System.out.println("Node" + nd.getData().get(0).getValue());
+            } else if (item.getClass().equals(Link.class)) {
+                Link ln = (Link) item;
+                System.out.println("Link" + ln.getSource() + "-->" + ln.getTarget());
+                System.out.println("Link" + ln.getRssi().getValue());
             }
 
 
-          }
+        }
 
     }
 

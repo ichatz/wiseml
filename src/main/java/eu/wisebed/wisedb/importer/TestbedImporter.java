@@ -64,7 +64,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @return
      */
     public String getTestbedName() {
@@ -72,7 +71,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @param testbedName
      */
     public void setTestbedName(String testbedName) {
@@ -80,7 +78,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @return
      */
     public String getTestbedUrnPrefix() {
@@ -88,7 +85,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @param testbedUrnPrefix
      */
     public void setTestbedUrnPrefix(String testbedUrnPrefix) {
@@ -96,7 +92,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @return
      */
     public String getTestbedUrl() {
@@ -104,7 +99,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @param testbedUrl
      */
     public void setTestbedUrl(final String testbedUrl) {
@@ -112,7 +106,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @return
      */
     public String getTestbedDescription() {
@@ -120,7 +113,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @param testbedDescription
      */
     public void setTestbedDescription(final String testbedDescription) {
@@ -128,7 +120,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @return
      */
     public boolean isTestbedFederated() {
@@ -136,7 +127,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @param testbedFederated
      */
     public void setTestbedFederated(boolean testbedFederated) {
@@ -144,7 +134,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @return
      */
     public String getTestbedSnaaUrl() {
@@ -152,7 +141,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @param testbedSnaaUrl
      */
     public void setTestbedSnaaUrl(String testbedSnaaUrl) {
@@ -160,7 +148,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @return
      */
     public String getTestbedRsUrl() {
@@ -168,7 +155,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @param testbedRsUrl
      */
     public void setTestbedRsUrl(String testbedRsUrl) {
@@ -176,7 +162,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @return
      */
     public String getTestbedSessionUrl() {
@@ -184,7 +169,6 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     *
      * @param testbedSessionUrl
      */
     public void setTestbedSessionUrl(String testbedSessionUrl) {
@@ -219,18 +203,18 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     /**
      * Convert the WiseML document describing the records of the testbed into wisedb records.
      *
-     * @param name , Name of testbed.
-     * @param urnPrefix , URN prefix of testbed.
-     * @param url , URL of testbed.
+     * @param name        , Name of testbed.
+     * @param urnPrefix   , URN prefix of testbed.
+     * @param url         , URL of testbed.
      * @param description , Description of testbed.
-     * @param federated , Federated testbed (true/false)
-     * @param rsUrl , RS service endpoint url.
-     * @param snaaUrl , SNAA service endpoint url.
-     * @param sessionUrl , Session service endpoint url.
+     * @param federated   , Federated testbed (true/false)
+     * @param rsUrl       , RS service endpoint url.
+     * @param snaaUrl     , SNAA service endpoint url.
+     * @param sessionUrl  , Session service endpoint url.
      */
-    public void convert(final String name,final String urnPrefix, final String url,
-                        final String description,final boolean federated,
-                        final String rsUrl, final String snaaUrl, final String sessionUrl){
+    public void convert(final String name, final String urnPrefix, final String url,
+                        final String description, final boolean federated,
+                        final String rsUrl, final String snaaUrl, final String sessionUrl) {
 
         // use setter to pass those params
         setTestbedName(name);
@@ -257,9 +241,9 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
         setEntities(collection);
 
         // import records to db
-        for(Testbed testbed : getEntities()) {
+        for (Testbed testbed : getEntities()) {
             TestbedController.getInstance().add(testbed);
         }
-        LOGGER.debug("Testbeds imported to DB(" + collection.size() +").");
+        LOGGER.debug("Testbeds imported to DB(" + collection.size() + ").");
     }
 }

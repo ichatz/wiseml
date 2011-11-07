@@ -44,7 +44,8 @@
         <property name="hibernate.cache.use_query_cache">false</property>
 
         <!-- Force Hibernate to use instances of Ehcache CacheManage -->
-        <property name="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory</property>
+        <property name="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory
+        </property>
 
         <!-- Mapping files for read-only tables -->
         <mapping resource="eu/wisebed/wisedb/model/Testbed.hbm.xml"/>

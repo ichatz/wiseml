@@ -32,14 +32,14 @@ public class NodeReadingCount {
             long now1 = System.currentTimeMillis();
             Long readingsCount = NodeReadingController.getInstance().getNodeReadingsCount(node);
             long now2 = System.currentTimeMillis();
-            LOGGER.info("Selected Node : " + node.getId() + " readings count :" + readingsCount.intValue() + " (" + (now2-now1) + ")" );
+            LOGGER.info("Selected Node : " + node.getId() + " readings count :" + readingsCount.intValue() + " (" + (now2 - now1) + ")");
             now1 = System.currentTimeMillis();
-            Map<Capability,Long> map = NodeReadingController.getInstance().getNodeReadingsCountMap(node);
+            Map<Capability, Long> map = NodeReadingController.getInstance().getNodeReadingsCountMap(node);
             now2 = System.currentTimeMillis();
-            for(Capability key : map.keySet()){
-                LOGGER.info("Selected Node : " + node.getId() + " Selected Capability : " + key.getName() +  " readings count :" + map.get(key));
+            for (Capability key : map.keySet()) {
+                LOGGER.info("Selected Node : " + node.getId() + " Selected Capability : " + key.getName() + " readings count :" + map.get(key));
             }
-            LOGGER.info("it took (" + (now2-now1) +").");
+            LOGGER.info("it took (" + (now2 - now1) + ").");
             tx.commit();
         } catch (Exception e) {
             tx.rollback();

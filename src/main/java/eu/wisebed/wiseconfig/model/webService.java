@@ -4,14 +4,13 @@ package eu.wisebed.wiseconfig.model;
 public class webService {
 
 
-    private String urnPrefix ;
+    private String urnPrefix;
     private String sessionManagementEndpointUrl;
     private String wsnInstancebaseUrl;
     private String reservationEndpointUrl;
     private String snaaEndpointUrl;
     private String wisemlfilename;
     private protobufInterface protobufINT;
-
 
 
     public String getUrnPrefix() {

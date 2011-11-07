@@ -25,12 +25,12 @@ public class ImportSetupEntriesFromTestbed {
         try {
 
             // Retrieve list of available Testbeds in wisedb
-            List<Testbed> testbedList =  TestbedController.getInstance().list();
+            List<Testbed> testbedList = TestbedController.getInstance().list();
 
             // Construct a SetupImporter
             final SetupImporter sImp = new SetupImporter();
 
-            for(Testbed tb : testbedList){
+            for (Testbed tb : testbedList) {
 
                 // set the testbed of the setup to be imported
                 sImp.setTestbed(tb);
@@ -47,7 +47,7 @@ public class ImportSetupEntriesFromTestbed {
             LOGGER.fatal(e);
             System.err.println(e.getMessage());
             System.exit(-1);
-        }finally {
+        } finally {
             // always close session
             HibernateUtil.getInstance().closeSession();
         }

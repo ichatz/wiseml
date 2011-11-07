@@ -14,44 +14,43 @@ import java.io.PrintWriter;
 public class WiseML2RDF extends WiseML {
 
 
-   private Model model;
+    private Model model;
 
-    public WiseML2RDF(WiseML wml){
+    public WiseML2RDF(WiseML wml) {
         this.setSetup(wml.getSetup());
         this.setTrace(wml.getTrace());
         this.setVersion(wml.getVersion());
     }
 
-    public Resource exportRDF(Model theModel, String uri)
-    {
-       model = theModel;
+    public Resource exportRDF(Model theModel, String uri) {
+        model = theModel;
 
 
-       // initialize resource and propertiesProperty hasScenario = model.createProperty(uri + "hasScenario");
-       Resource resWISEML = model.createResource(uri + "WISEML");
-       Property hasScenario = model.createProperty(uri + "hasScenario");
-       Property hasSetup = model.createProperty(uri + "hasSetup");
-       Property hasTrace = model.createProperty(uri + "hasTrace");
-       Property theVersion = model.createProperty(uri + "wiseml_version");
-       Property theXmlns = model.createProperty(uri + "xmlns");
+        // initialize resource and propertiesProperty hasScenario = model.createProperty(uri + "hasScenario");
+        Resource resWISEML = model.createResource(uri + "WISEML");
+        Property hasScenario = model.createProperty(uri + "hasScenario");
+        Property hasSetup = model.createProperty(uri + "hasSetup");
+        Property hasTrace = model.createProperty(uri + "hasTrace");
+        Property theVersion = model.createProperty(uri + "wiseml_version");
+        Property theXmlns = model.createProperty(uri + "xmlns");
 
-       model.add(resWISEML, RDF.type, RDFS.Class);
+        model.add(resWISEML, RDF.type, RDFS.Class);
 
-       Resource newWISEML = model.createResource(uri + "WISEML" + "/" + this.getVersion().replace(" ", "_")); //this.getXmlns().replace(" ", "_"));
+        Resource newWISEML = model.createResource(uri + "WISEML" + "/" + this.getVersion().replace(" ", "_")); //this.getXmlns().replace(" ", "_"));
 
 
-       //newWISEML.addProperty(theXmlns, this.getXmlns());
-       newWISEML.addProperty(theVersion, this.getVersion());
+        //newWISEML.addProperty(theXmlns, this.getXmlns());
+        newWISEML.addProperty(theVersion, this.getVersion());
 
-       // need to communicate the nodes of the experiment between the setup
-       // and the trace
+        // need to communicate the nodes of the experiment between the setup
+        // and the trace
 
         // adding the setup
         Setup2RDF newSetup = new Setup2RDF(this.getSetup());
         Resource resSetup = newSetup.exportRDF(model, uri);
         newWISEML.addProperty(hasSetup, resSetup);
 
-       // adding the trace
+        // adding the trace
         Trace2RDF newTrace = new Trace2RDF(this.getTrace());
         Resource resTrace = newTrace.exportRDF(model, uri, newSetup);
         newWISEML.addProperty(hasTrace, resTrace);
@@ -59,22 +58,22 @@ public class WiseML2RDF extends WiseML {
         // adding the wiseml to the model
         model.add(newWISEML, RDF.type, resWISEML);
 
-       return newWISEML;
+        return newWISEML;
     }
 
-   public String dump (String wisemlFile){
-   // creates an rdf dump file with the name "wisemlfile_dump.rdf" - returns the name
-   String dumpFileName = wisemlFile;
-   try {
-       model.write(new PrintWriter(new PrintStream(new FileOutputStream(wisemlFile))),"N-TRIPLE");
+    public String dump(String wisemlFile) {
+        // creates an rdf dump file with the name "wisemlfile_dump.rdf" - returns the name
+        String dumpFileName = wisemlFile;
+        try {
+            model.write(new PrintWriter(new PrintStream(new FileOutputStream(wisemlFile))), "N-TRIPLE");
 
-       System.out.println("File dumped succesfully, filename: " + wisemlFile);
-   } catch (Exception e) {
-        System.out.println("Error in dumping to rdf file: " + e);
-   }
+            System.out.println("File dumped succesfully, filename: " + wisemlFile);
+        } catch (Exception e) {
+            System.out.println("Error in dumping to rdf file: " + e);
+        }
 
-  return wisemlFile;
-  }
+        return wisemlFile;
+    }
 
 
 }

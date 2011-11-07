@@ -1,16 +1,27 @@
 package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.exception.UnknownTestbedException;
-import eu.wisebed.wisedb.model.*;
+import eu.wisebed.wisedb.model.LastNodeReading;
+import eu.wisebed.wisedb.model.LinkReading;
+import eu.wisebed.wisedb.model.NodeReading;
+import eu.wisebed.wisedb.model.NodeReadingStat;
+import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Setup;
 import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
-import org.hibernate.criterion.*;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 
 public class NodeReadingController extends AbstractController<NodeReading> {
 
@@ -357,6 +368,6 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         final Double minReading = (Double) row[4];
         final Long totalCount = (Long) row[5];
 
-        return new NodeReadingStat(nodeQ, lastTimestamp, lastReading, maxReading,minReading, totalCount);
+        return new NodeReadingStat(nodeQ, lastTimestamp, lastReading, maxReading, minReading, totalCount);
     }
 }

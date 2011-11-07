@@ -40,8 +40,7 @@ public class WiseDBUpdateNodeEntries {
             LOGGER.fatal(e);
             System.err.println(e.getMessage());
             System.exit(-1);
-        }
-        finally {
+        } finally {
             // always close session
             HibernateUtil.getInstance().closeSession();
         }

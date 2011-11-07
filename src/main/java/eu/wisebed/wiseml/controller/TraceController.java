@@ -1,10 +1,10 @@
 package eu.wisebed.wiseml.controller;
 
+import eu.wisebed.wiseml.model.trace.Trace;
 import org.jibx.runtime.BindingDirectory;
 import org.jibx.runtime.IBindingFactory;
 import org.jibx.runtime.IMarshallingContext;
 import org.jibx.runtime.JiBXException;
-import eu.wisebed.wiseml.model.trace.Trace;
 
 import java.io.File;
 import java.io.FileNotFoundException;

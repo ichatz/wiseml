@@ -68,7 +68,7 @@ public class Setup {
      *
      * @return the id of the setup.
      */
-    public int getId(){
+    public int getId() {
         return id;
     }
 
@@ -77,7 +77,7 @@ public class Setup {
      *
      * @param id
      */
-    public void setId(final int id){
+    public void setId(final int id) {
         this.id = id;
     }
 
@@ -227,17 +227,19 @@ public class Setup {
 
     /**
      * Sets the testbed attribute.
+     *
      * @param testbed
      */
-    public void setTestbed(final Testbed testbed){
+    public void setTestbed(final Testbed testbed) {
         this.testbed = testbed;
     }
 
     /**
      * Returns the testbed this setup belongs to.
+     *
      * @return the testbed this setup belongs to.
      */
-    public Testbed getTestbed(){
+    public Testbed getTestbed() {
         return testbed;
     }
 }

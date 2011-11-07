@@ -1,7 +1,9 @@
 package eu.wisebed.wisedb.test;
 
 import eu.wisebed.wisedb.HibernateUtil;
-import eu.wisebed.wisedb.controller.*;
+import eu.wisebed.wisedb.controller.NodeController;
+import eu.wisebed.wisedb.controller.NodeReadingController;
+import eu.wisebed.wisedb.controller.TestbedController;
 import eu.wisebed.wisedb.model.NodeReadingStat;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Node;
@@ -36,7 +38,7 @@ public class TestHqlReadings {
             final Testbed testbed = TestbedController.getInstance().getByUrnPrefix("urn:wisebed:ctitestbed:");
             LOGGER.info("Testbed [" + testbed.getId() + "] (" + testbed.getSetup().getId() + "," + testbed.getSetup().getNodes().size() + ")");
             final List<NodeReadingStat> updates = NodeReadingController.getInstance().getNodeReadingStats(testbed);
-            for(NodeReadingStat up1 : updates){
+            for (NodeReadingStat up1 : updates) {
                 LOGGER.info(up1.toString());
             }
 

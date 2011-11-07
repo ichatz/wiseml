@@ -1,6 +1,14 @@
 package eu.wisebed.wisedb;
 
-import eu.wisebed.wisedb.controller.*;
+import eu.wisebed.wisedb.controller.CapabilityController;
+import eu.wisebed.wisedb.controller.LastLinkReadingController;
+import eu.wisebed.wisedb.controller.LastNodeReadingController;
+import eu.wisebed.wisedb.controller.LinkController;
+import eu.wisebed.wisedb.controller.LinkReadingController;
+import eu.wisebed.wisedb.controller.NodeController;
+import eu.wisebed.wisedb.controller.NodeReadingController;
+import eu.wisebed.wisedb.controller.SetupController;
+import eu.wisebed.wisedb.controller.TestbedController;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,7 +17,7 @@ import org.hibernate.cfg.Configuration;
 /**
  * Utility functions for accessing hibernate.
  */
-public class HibernateUtil {
+public final class HibernateUtil {
 
     /**
      * a log4j logger to print messages.
@@ -50,7 +58,7 @@ public class HibernateUtil {
     }
 
     /**
-     * HibernateUtil is loaded on the first execution of HibernateUtili.getInstance()
+     * HibernateUtil is loaded on the first execution of HibernateUtili.getInstance().
      * or the first access to HibernateUtili.ourInstance, not before.
      *
      * @return ourInstance
@@ -81,8 +89,9 @@ public class HibernateUtil {
     }
 
     /**
-     * Returns current Hibernate configuration
-     * @return current configuration
+     * Returns current Hibernate configuration.
+     *
+     * @return current configuration.
      */
     public Configuration getConfiguration() {
         return configuration;
@@ -119,7 +128,7 @@ public class HibernateUtil {
     }
 
     /**
-     * Connect entity managers to Hibernate SessionFactory
+     * Connect entity managers to Hibernate SessionFactory.
      */
     public static void connectEntityManagers() {
         // Set the session factories to all managers
@@ -141,7 +150,7 @@ public class HibernateUtil {
     /**
      * Closes the current Session.
      */
-    public void closeSession(){
+    public void closeSession() {
         Session ses = ourSessionFactory.getCurrentSession();
 
         if (ses.isOpen()) {

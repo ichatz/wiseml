@@ -35,6 +35,7 @@ public class Scenario {
 
     /**
      * construct a new list.
+     *
      * @return a new list instance.
      */
     private static List listFactory() {
@@ -43,6 +44,7 @@ public class Scenario {
 
     /**
      * returns a LinkedList of objects nested in the scenario section.
+     *
      * @return
      */
     public List getChildren() {

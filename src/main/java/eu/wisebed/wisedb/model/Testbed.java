@@ -158,6 +158,7 @@ public class Testbed {
 
     /**
      * Set the URL of the SNAA endpoint.
+     *
      * @param value the URL of the SNAA endpoint.
      */
     public void setSnaaUrl(final String value) {
@@ -175,6 +176,7 @@ public class Testbed {
 
     /**
      * Set the the URL of the Reservation endpoint.
+     *
      * @param value the URL of the Reservation endpoint.
      */
     public void setRsUrl(final String value) {
@@ -183,7 +185,8 @@ public class Testbed {
 
     /**
      * Get the URL of the Session Management endpoint.
-      * @return the URL of the Session Management endpoint.
+     *
+     * @return the URL of the Session Management endpoint.
      */
     public String getSessionUrl() {
         return sessionUrl;
@@ -191,6 +194,7 @@ public class Testbed {
 
     /**
      * Set the URL of the Session Management endpoint.
+     *
      * @param value the URL of the Session Management endpoint.
      */
     public void setSessionUrl(final String value) {
@@ -199,6 +203,7 @@ public class Testbed {
 
     /**
      * Get if the testbed is federated.
+     *
      * @return true if the testbed is federated.
      */
     public boolean getFederated() {
@@ -207,6 +212,7 @@ public class Testbed {
 
     /**
      * Set if the testbed is federated.
+     *
      * @param value true if the testbed is federated.
      */
     public void setFederated(final boolean value) {
@@ -215,17 +221,19 @@ public class Testbed {
 
     /**
      * Returns the testbed setup.
+     *
      * @return the testbed setup.
      */
-    public Setup getSetup(){
+    public Setup getSetup() {
         return setup;
     }
 
     /**
      * Sets the testbed setup
+     *
      * @param setup , a setup instance
      */
-    public void setSetup(final Setup setup){
+    public void setSetup(final Setup setup) {
         this.setup = setup;
     }
 

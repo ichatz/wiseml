@@ -1,14 +1,27 @@
 package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.exception.UnknownTestbedException;
-import eu.wisebed.wisedb.model.*;
-import eu.wisebed.wiseml.model.setup.*;
+import eu.wisebed.wisedb.model.LastLinkReading;
+import eu.wisebed.wisedb.model.LinkReading;
+import eu.wisebed.wisedb.model.LinkReadingStat;
+import eu.wisebed.wisedb.model.NodeReading;
+import eu.wisebed.wisedb.model.Testbed;
+import eu.wisebed.wiseml.model.setup.Capability;
+import eu.wisebed.wiseml.model.setup.Link;
+import eu.wisebed.wiseml.model.setup.Node;
+import eu.wisebed.wiseml.model.setup.Rssi;
+import eu.wisebed.wiseml.model.setup.Setup;
 import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 
 public class LinkReadingController extends AbstractController<LinkReading> {
 
@@ -307,7 +320,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             final Double minReading = (Double) row[2];
             final Long totalCount = (Long) row[3];
 
-            updates.add(new LinkReadingStat(link, lastTimestamp, lastReading, maxReading,minReading, totalCount));
+            updates.add(new LinkReadingStat(link, lastTimestamp, lastReading, maxReading, minReading, totalCount));
         }
         return updates;
     }

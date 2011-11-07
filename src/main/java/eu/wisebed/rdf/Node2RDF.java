@@ -1,6 +1,10 @@
 package eu.wisebed.rdf;
 
-import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.rdf.model.Bag;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.Seq;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
 import eu.wisebed.wiseml.model.setup.Capability;
@@ -14,14 +18,13 @@ import java.util.List;
 
 public class Node2RDF extends Node {
 
-     private static Model model;
+    private static Model model;
     //private Resource theRDFNode;
     private boolean initialized = false;
     private Seq timestampAppearences;
 
 
-
-    public Node2RDF(Node nd){
+    public Node2RDF(Node nd) {
         this.setCapabilities(nd.getCapabilities());
         this.setData(nd.getData());
         this.setDescription(nd.getDescription());
@@ -92,7 +95,7 @@ public class Node2RDF extends Node {
             }
         }
 
-       List<Capability> nodesCaps = null;
+        List<Capability> nodesCaps = null;
 
         // if null capabilities
         // the default capabilities will be used

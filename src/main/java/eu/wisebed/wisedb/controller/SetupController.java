@@ -49,7 +49,7 @@ public class SetupController extends AbstractController<Setup> {
      * @param value the Node tha we want to delete
      */
     public void delete(final Setup value) {
-        super.delete(value,value.getId());
+        super.delete(value, value.getId());
     }
 
 
@@ -59,7 +59,7 @@ public class SetupController extends AbstractController<Setup> {
      * @param setupId the Node tha we want to delete
      */
     public void delete(final int setupId) {
-        super.delete(new Setup(),setupId);
+        super.delete(new Setup(), setupId);
     }
 
     /**

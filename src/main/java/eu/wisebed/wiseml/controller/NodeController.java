@@ -1,9 +1,17 @@
 package eu.wisebed.wiseml.controller;
 
 import eu.wisebed.wiseml.model.setup.Node;
-import org.jibx.runtime.*;
+import org.jibx.runtime.BindingDirectory;
+import org.jibx.runtime.IBindingFactory;
+import org.jibx.runtime.IMarshallingContext;
+import org.jibx.runtime.IUnmarshallingContext;
+import org.jibx.runtime.JiBXException;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 
 public class NodeController {
@@ -28,15 +36,15 @@ public class NodeController {
 
     }
 
-     public Node load(String stup) {
+    public Node load(String stup) {
 
-       Node node = new Node();
-       final ByteArrayInputStream buffer = new ByteArrayInputStream(stup.getBytes());
+        Node node = new Node();
+        final ByteArrayInputStream buffer = new ByteArrayInputStream(stup.getBytes());
         try {
 
             IBindingFactory bfact = BindingDirectory.getFactory(Node.class);
             IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
-                 node = (Node) uctx.unmarshalDocument(buffer, null);
+            node = (Node) uctx.unmarshalDocument(buffer, null);
         } catch (JiBXException e) {
             e.printStackTrace();
         }
