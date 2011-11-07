@@ -28,7 +28,7 @@ public class LastNodeReadingListener extends DefaultSaveOrUpdateEventListener {
 
             final NodeReading thisReading = (NodeReading) event.getObject();
 
-            LOGGER.debug(new StringBuilder().append(thisReading.getNode().getId()).append(": ").append(thisReading.getCapability().getName()).toString());
+            LOGGER.info(new StringBuilder().append(thisReading.getNode().getId()).append(": ").append(thisReading.getCapability().getName()).toString());
 
             //Forward the event to LastNodeReadingObservable
             LastNodeReadingObservable.getInstance().addNodeReading(thisReading);
