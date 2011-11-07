@@ -60,7 +60,7 @@
 
         <event type="save-update">
             <listener class="eu.wisebed.wisedb.listeners.LastNodeReadingListener"/>
-            <listener class="org.hibernate.event.SaveOrUpdateEventListener"/>
+            <listener class="org.hibernate.event.def.DefaultSaveOrUpdateEventListener"/>
         </event>
     </session-factory>
 </hibernate-configuration>
