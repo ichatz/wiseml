@@ -5,9 +5,9 @@ import eu.wisebed.wisedb.model.NodeReading;
 import java.util.Observable;
 
 /**
- * Notifies observers with the last NodeReading
+ * Notifies observers with the last NodeReading.
  */
-public class LastNodeReadingObservable extends Observable {
+public final class LastNodeReadingObservable extends Observable {
 
     /**
      * static instance(ourInstance) initialized as null.
