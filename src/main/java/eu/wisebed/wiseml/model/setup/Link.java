@@ -11,8 +11,9 @@ import java.util.Set;
  * properties of a link. In the class there are
  * getter and setter methods for the properties.
  */
+public class Link implements Serializable{
 
-public class Link implements Serializable {
+    private static final long serialVersionUID = -393203811928650579L;
 
     /**
      * the source of an object Link.
@@ -175,9 +176,9 @@ public class Link implements Serializable {
     }
 
     /**
-     * returns a collection of setups.
+     * Returns a collection of setups.
      *
-     * @return
+     * @return  the related setup instance
      */
     public Setup getSetup() {
         return setup;
@@ -186,7 +187,7 @@ public class Link implements Serializable {
     /**
      * sets the setup this link belongs to setups.
      *
-     * @param setup
+     * @param setup , a setup instance
      */
     public void setSetup(final Setup setup) {
         this.setup = setup;
@@ -213,17 +214,28 @@ public class Link implements Serializable {
     /**
      * Override of Object's equals() method
      *
-     * @param obj
+     * @param obj , an object instance
      * @return true or false on whether the objects are equal.
      */
+    @Override
     public boolean equals(final Object obj) {
-        if (this == obj)
-            return true;
-        if ((obj == null) || (obj.getClass() != this.getClass()))
+
+        // if null return false
+        if (obj == null){
             return false;
+        }
 
+        if (!(obj instanceof Link)){
+            return false;
+        }
+
+        // if same reference return true;
+        if (this == obj){
+            return true;
+        }
+
+        // equility against name
         Link test = (Link) obj;
-
         return source.equals(test.getSource()) && target.equals(test.getTarget());
     }
 
@@ -232,6 +244,7 @@ public class Link implements Serializable {
      *
      * @return hascode value
      */
+    @Override
     public int hashCode() {
         return (source == null) ? System.identityHashCode(this) : source.hashCode();
     }

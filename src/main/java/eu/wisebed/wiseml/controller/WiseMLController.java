@@ -2,6 +2,7 @@ package eu.wisebed.wiseml.controller;
 
 import eu.wisebed.wiseml.model.WiseML;
 import eu.wisebed.wiseml.model.setup.Setup;
+import org.apache.log4j.Logger;
 import org.jibx.runtime.BindingDirectory;
 import org.jibx.runtime.IBindingFactory;
 import org.jibx.runtime.IMarshallingContext;
@@ -19,14 +20,17 @@ import java.io.Reader;
 
 public class WiseMLController {
 
+    private static final Logger LOGGER = Logger.getLogger(WiseMLController.class);
+
+
     /**
      * This method loads a wiseml from file.
      *
-     * @param data
-     * @return wiseml
-     * @throws JiBXException
+     * @param data , a Reader instance.
+     * @return wiseml , returns a WiseML instance
+     * @throws JiBXException exception
      */
-    public WiseML loadWiseML(Reader data) throws JiBXException {
+    public WiseML loadWiseML(final Reader data) throws JiBXException {
         WiseML wiseml = new WiseML();
 
         // unmarshal wiseml information from file...
@@ -44,7 +48,7 @@ public class WiseMLController {
      * @return wiseml
      * @throws JiBXException
      */
-    public WiseML loadWiseML(InputStream file) throws JiBXException {
+    public WiseML loadWiseML(final InputStream file) throws JiBXException {
         return loadWiseML(new InputStreamReader(file));
     }
 
@@ -54,7 +58,7 @@ public class WiseMLController {
      * @param file
      * @return wiseml
      */
-    public WiseML loadWiseMLFromFile(InputStream file) {
+    public WiseML loadWiseMLFromFile(final InputStream file) throws JiBXException {
         WiseML wiseml = new WiseML();
         try {
             // unmarshal wiseml information from file...
@@ -63,8 +67,8 @@ public class WiseMLController {
             wiseml = (WiseML) uctx.unmarshalDocument(file, null);
 
         } catch (JiBXException e) {
-            e.printStackTrace();
-            System.exit(1);
+            LOGGER.fatal(e);
+            throw e;
         }
         return wiseml;
     }
@@ -75,7 +79,7 @@ public class WiseMLController {
      * @param file
      * @return setup
      */
-    public Setup loadSetupFromFile(InputStream file) {
+    public Setup loadSetupFromFile(final InputStream file) throws JiBXException {
         Setup setup = new Setup();
         try {
             // unmarshal setup information from file...
@@ -84,8 +88,8 @@ public class WiseMLController {
             setup = (Setup) uctx.unmarshalDocument(file, null);
 
         } catch (JiBXException e) {
-            e.printStackTrace();
-            System.exit(1);
+            LOGGER.fatal(e);
+            throw e;
         }
         return setup;
 
@@ -97,7 +101,7 @@ public class WiseMLController {
      * @param wiseml
      * @param file
      */
-    public void writeWiseMLAsFile(WiseML wiseml, File file) {
+    public void writeWiseMLAsFile(final WiseML wiseml,final File file) throws FileNotFoundException, JiBXException {
         try {
             // marshal object back out to file (with nice indentation, as UTF-8)...
             IBindingFactory bfact = BindingDirectory.getFactory(WiseML.class);
@@ -109,11 +113,11 @@ public class WiseMLController {
             mctx.marshalDocument(wiseml);
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            System.exit(1);
+            LOGGER.fatal(e);
+            throw e;
         } catch (JiBXException e) {
-            e.printStackTrace();
-            System.exit(1);
+            LOGGER.fatal(e);
+            throw e;
         }
     }
 
@@ -123,7 +127,7 @@ public class WiseMLController {
      * @param setup
      * @param file
      */
-    public void writeSetupAsFile(Setup setup, File file) {
+    public void writeSetupAsFile(final Setup setup,final File file) throws FileNotFoundException, JiBXException {
 
         try {
             // marshal object back out to file (with nice indentation, as UTF-8)...
@@ -136,11 +140,11 @@ public class WiseMLController {
             mctx.marshalDocument(setup);
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            System.exit(1);
+            LOGGER.fatal(e);
+            throw e;
         } catch (JiBXException e) {
-            e.printStackTrace();
-            System.exit(1);
+            LOGGER.fatal(e);
+            throw e;
         }
     }
 
@@ -150,7 +154,7 @@ public class WiseMLController {
      * @param wiseml
      * @return string of wiseml data
      */
-    public String writeWiseMLAsSTring(WiseML wiseml) {
+    public String writeWiseMLAsSTring(final WiseML wiseml) throws JiBXException {
 
         final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 
@@ -165,7 +169,9 @@ public class WiseMLController {
             mctx.marshalDocument(wiseml);
 
         } catch (JiBXException e) {
-            e.printStackTrace();
+            LOGGER.fatal(e);
+            throw e;
+
 
         }
         return buffer.toString();
@@ -177,7 +183,7 @@ public class WiseMLController {
      * @param setup
      * @return string of setup data
      */
-    public String writeSetupAsString(Setup setup) {
+    public String writeSetupAsString(final Setup setup) throws Exception {
 
         WiseML wiseml = new WiseML();
         wiseml.setSetup(setup);
@@ -195,7 +201,8 @@ public class WiseMLController {
             mctx.marshalDocument(wiseml.getSetup());
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.fatal(e);
+            throw e;
         }
         return buffer.toString();
 
@@ -207,7 +214,7 @@ public class WiseMLController {
      * @param stup
      * @return setup
      */
-    public Setup loadSetupFromString(String stup) {
+    public Setup loadSetupFromString(final String stup) throws JiBXException {
         Setup setup = new Setup();
         final ByteArrayInputStream buffer = new ByteArrayInputStream(stup.getBytes());
 
@@ -218,7 +225,8 @@ public class WiseMLController {
             setup = (Setup) uctx.unmarshalDocument(buffer, null);
 
         } catch (JiBXException e) {
-            e.printStackTrace();
+            LOGGER.fatal(e);
+            throw e;
         }
         return setup;
     }
@@ -229,7 +237,7 @@ public class WiseMLController {
      * @param wisml
      * @return wiseml
      */
-    public Setup loadSetupFromWiseMLString(String wisml) {
+    public Setup loadSetupFromWiseMLString(final String wisml) throws JiBXException {
         WiseML wsml = new WiseML();
         final ByteArrayInputStream buffer = new ByteArrayInputStream(wisml.getBytes());
 
@@ -240,7 +248,8 @@ public class WiseMLController {
             wsml = (WiseML) uctx.unmarshalDocument(buffer, null);
 
         } catch (JiBXException e) {
-            e.printStackTrace();
+            LOGGER.fatal(e);
+            throw e;
         }
         return wsml.getSetup();
     }

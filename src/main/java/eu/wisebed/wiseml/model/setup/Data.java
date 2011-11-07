@@ -2,13 +2,17 @@ package eu.wisebed.wiseml.model.setup;
 
 import eu.wisebed.wiseml.model.trace.Message;
 
+import java.io.Serializable;
+
 /**
  * This is a persistant class for the object data that has the
  * properties of a data. In the class there are
  * getter and setter methods for the properties.
  */
 
-public class Data {
+public class Data implements Serializable{
+
+    private static final long serialVersionUID = 8036404050506823239L;
 
     /**
      * key id.

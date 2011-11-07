@@ -14,13 +14,15 @@ import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Rssi;
 import eu.wisebed.wiseml.model.setup.Setup;
 import eu.wisebed.wiseml.model.trace.Trace;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
 public class Trace2RDF extends Trace {
 
     private static Model model;
-    //private ArrayList theRDFNodes;
+    private static Logger LOGGER = Logger.getLogger(Trace2RDF.class);
+
 
     public Trace2RDF(Trace tra) {
         this.setChildren(tra.getChildren());
@@ -66,8 +68,8 @@ public class Trace2RDF extends Trace {
                 if (lastItem != null) {
                     Resource resCurrentTS = currentTS.exportRDF(model, uri);
                     Bag nodesOfTS = resCurrentTS.getModel().getBag(uri + "NodesOfTimeStamp" + "_" + ((Timestamp) lastItem).getValue());
-                    System.out.println("TimeStamp: " + ((Timestamp) lastItem).getValue());
-                    System.out.println("Readings: " + nodesOfTS.size());
+                    LOGGER.info("TimeStamp: " + ((Timestamp) lastItem).getValue());
+                    LOGGER.info("Readings: " + nodesOfTS.size());
                 }
                 currentTS = new Timestamp2RDF((Timestamp) item);
                 Resource resCurrentTS = currentTS.exportRDF(model, uri);

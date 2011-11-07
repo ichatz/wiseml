@@ -12,7 +12,7 @@ public class ImportSetupEntriesFromFile {
      */
     private static final Logger LOGGER = Logger.getLogger(ImportSetupEntriesFromFile.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         // Initialize hibernate
         HibernateUtil.connectEntityManagers();

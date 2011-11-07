@@ -4,10 +4,14 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
+import org.apache.log4j.Logger;
 
 import java.io.FileInputStream;
 
 public class RDFExporter {
+
+    private static Logger LOGGER = Logger.getLogger(RDFExporter.class);
+
     private FileInputStream fileML = null;
     private Model wiseModel;
     private String uri;
@@ -34,7 +38,7 @@ public class RDFExporter {
             wmll.exportRDF(wiseModel, uri);
             wmll.dump(outrdf);
         } catch (Exception e) {
-            System.err.println(e);
+            LOGGER.error(e);
         }
     }
 
@@ -46,7 +50,7 @@ public class RDFExporter {
             WiseML2RDF wmll = new WiseML2RDF(wml);
             wmll.exportRDF(wiseModel, uri);
         } catch (Exception e) {
-            System.err.println(e);
+            LOGGER.error(e);
         }
         return wiseModel;
     }

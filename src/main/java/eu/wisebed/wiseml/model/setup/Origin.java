@@ -1,12 +1,16 @@
 package eu.wisebed.wiseml.model.setup;
 
+import java.io.Serializable;
+
 /**
  * This is a persistant class for the object origin that has the
  * properties of an origin. In the class there are
  * getter and setter methods for the properties.
  */
 
-public class Origin {
+public class Origin implements Serializable{
+
+    private static final long serialVersionUID = -6275211639454458482L;
 
     /**
      * the global position x in the local system.

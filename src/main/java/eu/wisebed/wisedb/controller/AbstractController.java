@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @param <E> Generic type of AbstractController
  */
-public abstract class AbstractController<E> {
+public class AbstractController<E> {
 
     /**
      * the session factory which opens a new session.
@@ -115,8 +115,7 @@ public abstract class AbstractController<E> {
     @SuppressWarnings("unchecked")
     protected E getByID(final E entity, final int entityID) {
         final Session session = sessionFactory.getCurrentSession();
-        Object entityByID = session.get(entity.getClass(), entityID);
-        return (E) entityByID;
+        return (E)  session.get(entity.getClass(), entityID);
     }
 
     /**
@@ -129,8 +128,7 @@ public abstract class AbstractController<E> {
     @SuppressWarnings("unchecked")
     protected E getByID(final E entity, final String entityID) {
         final Session session = sessionFactory.getCurrentSession();
-        Object entityByID = session.get(entity.getClass(), entityID);
-        return (E) entityByID;
+        return (E) session.get(entity.getClass(), entityID);
 
     }
 }

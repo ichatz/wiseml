@@ -4,6 +4,7 @@ import eu.wisebed.wisedb.controller.LinkController;
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
 import eu.wisebed.wiseml.model.setup.Link;
+import org.jibx.runtime.JiBXException;
 
 import java.util.Collection;
 import java.util.List;
@@ -18,7 +19,7 @@ public class LinkImporter extends AbstractImporter<Link> {
     /**
      * Convert the WiseML setup to a WiseDB setup record.
      */
-    public void convert() {
+    public void convert() throws JiBXException {
         // retrieve setup record record from controllers InputStream
         final WiseMLController cnt = new WiseMLController();
         WiseML root = cnt.loadWiseMLFromFile(getWiseMlStream());

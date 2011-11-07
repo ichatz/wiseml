@@ -2,6 +2,7 @@ package eu.wisebed.wiseconfig.test;
 
 import eu.wisebed.wiseconfig.controller.WiseConfigController;
 import eu.wisebed.wiseconfig.model.TestbedConfiguration;
+import org.jibx.runtime.JiBXException;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,7 +11,7 @@ import java.io.FileNotFoundException;
 
 public class LoadWriteWiseConfig {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JiBXException {
 
         try {
             System.out.println(args[0]);

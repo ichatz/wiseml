@@ -43,6 +43,14 @@ public class Scenario {
     }
 
     /**
+     * Sets the children list.
+     * @param children
+     */
+    public void setChildren(final List children){
+        this.children = children;
+    }
+
+    /**
      * returns a LinkedList of objects nested in the scenario section.
      *
      * @return

@@ -1,7 +1,7 @@
 package eu.wisebed.wiseconfig.model;
 
 
-public class wsnDevice {
+public class WsnDevice {
 
 
     private String urn;

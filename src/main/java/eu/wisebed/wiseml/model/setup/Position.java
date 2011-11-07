@@ -1,12 +1,16 @@
 package eu.wisebed.wiseml.model.setup;
 
+import java.io.Serializable;
+
 /**
  * This is a persistant class for the object position that has the
  * properties of a position. In the class there are
  * getter and setter methods for the properties.
  */
 
-public class Position {
+public class Position implements Serializable{
+
+    private static final long serialVersionUID = -3009012883407990409L;
 
     /**
      * point x in the position.

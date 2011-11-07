@@ -18,6 +18,7 @@ import eu.wisebed.wiseml.model.setup.Rssi;
 import eu.wisebed.wiseml.model.setup.Setup;
 import eu.wisebed.wiseml.model.setup.TimeInfo;
 import eu.wisebed.wiseml.model.trace.Trace;
+import org.jibx.runtime.JiBXException;
 import org.joda.time.DateTime;
 
 import java.io.File;
@@ -31,7 +32,7 @@ import java.util.List;
  */
 public class SetupNewNode {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JiBXException {
 
 
         try {

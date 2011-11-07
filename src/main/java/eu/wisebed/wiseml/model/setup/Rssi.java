@@ -1,12 +1,16 @@
 package eu.wisebed.wiseml.model.setup;
 
+import java.io.Serializable;
+
 /**
  * This is a persistant class for the object rssi that has the
  * properties of a rssi. In the class there are
  * getter and setter methods for the properties.
  */
 
-public class Rssi {
+public class Rssi implements Serializable{
+
+    private static final long serialVersionUID = -756196992494151059L;
 
     /**
      * the datatype of the object Rssi.

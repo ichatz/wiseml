@@ -7,6 +7,7 @@ import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
 import org.apache.log4j.Logger;
+import org.jibx.runtime.JiBXException;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -24,7 +25,7 @@ public class CapabilityImporter extends AbstractImporter<Capability> {
     /**
      * Convert the WiseML Capability entries to a WiseDB capability records.
      */
-    public void convert() {
+    public void convert() throws JiBXException {
 
         // retrieve records from controllers InputStream
         final WiseMLController cnt = new WiseMLController();

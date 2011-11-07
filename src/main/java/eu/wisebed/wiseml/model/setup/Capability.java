@@ -3,6 +3,7 @@ package eu.wisebed.wiseml.model.setup;
 import eu.wisebed.wisedb.model.LinkReading;
 import eu.wisebed.wisedb.model.NodeReading;
 
+import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -11,7 +12,9 @@ import java.util.Set;
  * getter and setter methods for the properties.
  */
 
-public class Capability {
+public class Capability implements Serializable{
+
+    private static final long serialVersionUID = -3419203591130581062L;
 
     /**
      * the name of the object Capability.
@@ -195,16 +198,24 @@ public class Capability {
      */
     @Override
     public boolean equals(final Object obj) {
+
         // if null return false
-        if (obj == null) return false;
+        if (obj == null){
+            return false;
+        }
+
+        if (!(obj instanceof Capability)){
+            return false;
+        }
 
         // if same reference return true;
-        if (this == obj) return true;
+        if (this == obj){
+            return true;
+        }
 
         // equility against name
         Capability test = (Capability) obj;
-        if (test.name == null || test.getName() == null) return false;
-        return this.name.equals(test.getName());
+        return (test.name == null || test.getName() == null) ? (false) : (this.name.equals(test.getName()));
     }
 
     /**
@@ -214,6 +225,6 @@ public class Capability {
      */
     @Override
     public int hashCode() {
-        return name == null ? System.identityHashCode(this) : name.hashCode();
+        return (name == null) ? (System.identityHashCode(this)) : (name.hashCode());
     }
 }

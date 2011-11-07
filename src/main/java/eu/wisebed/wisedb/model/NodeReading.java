@@ -8,6 +8,8 @@ import java.util.Date;
 
 public class NodeReading implements Serializable {
 
+    private static final long serialVersionUID = -1984083831602799368L;
+
     /**
      * Reading id.
      */

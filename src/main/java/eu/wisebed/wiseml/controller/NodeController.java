@@ -1,6 +1,7 @@
 package eu.wisebed.wiseml.controller;
 
 import eu.wisebed.wiseml.model.setup.Node;
+import org.apache.log4j.Logger;
 import org.jibx.runtime.BindingDirectory;
 import org.jibx.runtime.IBindingFactory;
 import org.jibx.runtime.IMarshallingContext;
@@ -16,44 +17,38 @@ import java.io.FileOutputStream;
 
 public class NodeController {
 
-    public Node load(FileInputStream file) {
+    private static final Logger LOGGER = Logger.getLogger(NodeController.class);
 
-        Node node = new Node();
+    public Node load(FileInputStream file) throws JiBXException {
 
         try {
 
             // unmarshal node information from file...
             IBindingFactory bfact = BindingDirectory.getFactory(Node.class);
             IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
-            node = (Node) uctx.unmarshalDocument(file, null);
+            return (Node) uctx.unmarshalDocument(file, null);
 
         } catch (JiBXException e) {
-            e.printStackTrace();
-            System.exit(1);
+            LOGGER.fatal(e);
+            throw e;
         }
-
-        return node;
-
     }
 
-    public Node load(String stup) {
+    public Node load(String stup) throws JiBXException{
 
-        Node node = new Node();
         final ByteArrayInputStream buffer = new ByteArrayInputStream(stup.getBytes());
         try {
 
             IBindingFactory bfact = BindingDirectory.getFactory(Node.class);
             IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
-            node = (Node) uctx.unmarshalDocument(buffer, null);
+            return (Node) uctx.unmarshalDocument(buffer, null);
         } catch (JiBXException e) {
-            e.printStackTrace();
+            LOGGER.fatal(e);
+            throw e;
         }
-
-        return node;
-
     }
 
-    public Node write(Node node, File file) {
+    public Node write(Node node, File file) throws JiBXException, FileNotFoundException {
 
         try {
 
@@ -66,13 +61,12 @@ public class NodeController {
             mctx.marshalDocument(node);
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            System.exit(1);
+            LOGGER.fatal(e);
+            throw e;
         } catch (JiBXException e) {
-            e.printStackTrace();
-            System.exit(1);
+            LOGGER.fatal(e);
+            throw e;
         }
-
         return node;
     }
 

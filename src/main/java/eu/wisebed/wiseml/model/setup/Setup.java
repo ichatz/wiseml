@@ -2,6 +2,7 @@ package eu.wisebed.wiseml.model.setup;
 
 import eu.wisebed.wisedb.model.Testbed;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +11,9 @@ import java.util.List;
  * getter and setter methods for the properties.
  */
 
-public class Setup {
+public class Setup implements Serializable{
+
+    private static final long serialVersionUID = -8742610512262219055L;
 
     /**
      * id of setup.

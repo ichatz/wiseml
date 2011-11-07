@@ -53,8 +53,7 @@ public class LinkController extends AbstractController<Link> {
         Link linkWithId = new Link();
         linkWithId.setSource(sourceId);
         linkWithId.setTarget(targetId);
-        Link linkById = (Link) session.get(Link.class, linkWithId);
-        return linkById;
+        return (Link) session.get(Link.class, linkWithId);
     }
 
     /**
@@ -86,6 +85,7 @@ public class LinkController extends AbstractController<Link> {
      * @param testbed , a selected testbed.
      * @return a list of testbed links.
      */
+    @SuppressWarnings({"unchecked"})
     public List<Link> list(final Testbed testbed) {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(Link.class);
@@ -97,25 +97,11 @@ public class LinkController extends AbstractController<Link> {
     /**
      * Listing all links that have the given capability.
      *
-     * @param capability , a capability.
-     * @return a list of links that share the given capability.
-     */
-    public List<Link> listCapabilityLinks(final Capability capability) {
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(Link.class);
-        criteria.createAlias("capabilities", "caps")
-                .add(Restrictions.eq("caps.name", capability.getName()));
-        criteria.addOrder(Order.asc("source"));
-        return (List<Link>) criteria.list();
-    }
-
-    /**
-     * Listing all links that have the given capability.
-     *
      * @param capability, a capability.
      * @param testbed     , a testbed.
      * @return a list of links that share the given capability belonging to the same testbed.
      */
+    @SuppressWarnings({"unchecked"})
     public List<Link> listCapabilityLinks(final Capability capability, final Testbed testbed) {
         final Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(Link.class);

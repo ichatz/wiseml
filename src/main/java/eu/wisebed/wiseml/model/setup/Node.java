@@ -3,6 +3,7 @@ package eu.wisebed.wiseml.model.setup;
 import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wiseml.model.trace.Message;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
@@ -12,7 +13,9 @@ import java.util.Set;
  * getter and setter methods for the properties.
  */
 
-public class Node {
+public class Node implements Serializable{
+
+    private static final long serialVersionUID = -5422125775653598399L;
 
     /**
      * the id of an object Node.

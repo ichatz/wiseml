@@ -19,42 +19,42 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     /**
      * Testbed name.
      */
-    private String testbedName;
+    private String name;
 
     /**
      * Testbed URN prefix.
      */
-    private String testbedUrnPrefix;
+    private String urnPrefix;
 
     /**
      * Web URL of Testbed
      */
-    private String testbedUrl;
+    private String webPageUrl;
 
     /**
      * URL of Testbed.
      */
-    private String testbedDescription;
+    private String description;
 
     /**
      * True if testbed is federated.
      */
-    private boolean isTestbedFederated;
+    private boolean federated;
 
     /**
      * SNAA URL of Testbed.
      */
-    private String testbedSnaaUrl;
+    private String snaaUrl;
 
     /**
-     * SNAA URL of Testbed.
+     * RS URL of Testbed.
      */
-    private String testbedRsUrl;
+    private String rsUrl;
 
     /**
-     * SNAA URL of Testbed.
+     * SessionManagment URL of Testbed.
      */
-    private String testbedSessionUrl;
+    private String sessionUrl;
 
     /**
      * Default constructor.
@@ -66,113 +66,115 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     /**
      * @return
      */
-    public String getTestbedName() {
-        return testbedName;
+    public String getName() {
+        return name;
     }
 
     /**
-     * @param testbedName
+     * @param name
      */
-    public void setTestbedName(String testbedName) {
-        this.testbedName = testbedName;
-    }
-
-    /**
-     * @return
-     */
-    public String getTestbedUrnPrefix() {
-        return testbedUrnPrefix;
-    }
-
-    /**
-     * @param testbedUrnPrefix
-     */
-    public void setTestbedUrnPrefix(String testbedUrnPrefix) {
-        this.testbedUrnPrefix = testbedUrnPrefix;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
      * @return
      */
-    public String getTestbedUrl() {
-        return testbedUrl;
+    public String getUrnPrefix() {
+        return urnPrefix;
     }
 
     /**
-     * @param testbedUrl
+     * @param urnPrefix
      */
-    public void setTestbedUrl(final String testbedUrl) {
-        this.testbedUrl = testbedUrl;
-    }
-
-    /**
-     * @return
-     */
-    public String getTestbedDescription() {
-        return testbedDescription;
-    }
-
-    /**
-     * @param testbedDescription
-     */
-    public void setTestbedDescription(final String testbedDescription) {
-        this.testbedDescription = testbedDescription;
+    public void setUrnPrefix(String urnPrefix) {
+        this.urnPrefix = urnPrefix;
     }
 
     /**
      * @return
      */
-    public boolean isTestbedFederated() {
-        return isTestbedFederated;
+    public String getWebPageUrl() {
+        return webPageUrl;
     }
 
     /**
-     * @param testbedFederated
+     * @param webPageUrl
      */
-    public void setTestbedFederated(boolean testbedFederated) {
-        isTestbedFederated = testbedFederated;
-    }
-
-    /**
-     * @return
-     */
-    public String getTestbedSnaaUrl() {
-        return testbedSnaaUrl;
-    }
-
-    /**
-     * @param testbedSnaaUrl
-     */
-    public void setTestbedSnaaUrl(String testbedSnaaUrl) {
-        this.testbedSnaaUrl = testbedSnaaUrl;
+    public void setWebPageUrl(final String webPageUrl) {
+        this.webPageUrl = webPageUrl;
     }
 
     /**
      * @return
      */
-    public String getTestbedRsUrl() {
-        return testbedRsUrl;
+    public String getDescription() {
+        return description;
     }
 
     /**
-     * @param testbedRsUrl
+     * @param description
      */
-    public void setTestbedRsUrl(String testbedRsUrl) {
-        this.testbedRsUrl = testbedRsUrl;
+    public void setDescription(final String description) {
+        this.description = description;
+    }
+
+    /**
+     * Sets true/false whether the testbed is federated or not.
+     * @return
+     */
+    public void setFederated(final boolean federated) {
+        this.federated = federated;
+    }
+
+    /**
+     * Returns true if the testbed is federated or not.
+     * @return true/false.
+     */
+    public boolean getFederated() {
+        return federated;
     }
 
     /**
      * @return
      */
-    public String getTestbedSessionUrl() {
-        return testbedSessionUrl;
+    public String getSnaaUrl() {
+        return snaaUrl;
     }
 
     /**
-     * @param testbedSessionUrl
+     * @param snaaUrl
      */
-    public void setTestbedSessionUrl(String testbedSessionUrl) {
-        this.testbedSessionUrl = testbedSessionUrl;
+    public void setSnaaUrl(String snaaUrl) {
+        this.snaaUrl = snaaUrl;
+    }
+
+    /**
+     * @return
+     */
+    public String getRsUrl() {
+        return rsUrl;
+    }
+
+    /**
+     * @param rsUrl
+     */
+    public void setRsUrl(String rsUrl) {
+        this.rsUrl = rsUrl;
+    }
+
+    /**
+     * @return
+     */
+    public String getSessionUrl() {
+        return sessionUrl;
+    }
+
+    /**
+     * @param sessionUrl
+     */
+    public void setSessionUrl(String sessionUrl) {
+        this.sessionUrl = sessionUrl;
     }
 
     /**
@@ -182,17 +184,14 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
 
         // Setting up the testbed entity
         Testbed testbed = new Testbed();
-        testbed.setName(getTestbedName());
-        testbed.setUrnPrefix(getTestbedUrl());
-        testbed.setUrl(getTestbedUrl());
-        testbed.setDescription(getTestbedDescription());
-        testbed.setFederated(isTestbedFederated());
-        testbed.setRsUrl(getTestbedRsUrl());
-        testbed.setSnaaUrl(getTestbedSnaaUrl());
-        testbed.setSessionUrl(getTestbedSessionUrl());
-
-        // set this as it's entity
-        setEntity(testbed);
+        testbed.setName(getName());
+        testbed.setUrnPrefix(getWebPageUrl());
+        testbed.setUrl(getWebPageUrl());
+        testbed.setDescription(getDescription());
+        testbed.setFederated(getFederated());
+        testbed.setRsUrl(getRsUrl());
+        testbed.setSnaaUrl(getSnaaUrl());
+        testbed.setSessionUrl(getSessionUrl());
 
         // persisting testbed
         TestbedController.getInstance().add(testbed);
@@ -217,14 +216,14 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
                         final String rsUrl, final String snaaUrl, final String sessionUrl) {
 
         // use setter to pass those params
-        setTestbedName(name);
-        setTestbedUrnPrefix(urnPrefix);
-        setTestbedUrl(url);
-        setTestbedDescription(description);
-        setTestbedFederated(federated);
-        setTestbedRsUrl(rsUrl);
-        setTestbedSnaaUrl(snaaUrl);
-        setTestbedSessionUrl(sessionUrl);
+        setName(name);
+        setUrnPrefix(urnPrefix);
+        setWebPageUrl(url);
+        setDescription(description);
+        setFederated(federated);
+        setRsUrl(rsUrl);
+        setSnaaUrl(snaaUrl);
+        setSessionUrl(sessionUrl);
 
         // call params-less convert
         convert();

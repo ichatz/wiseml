@@ -1,7 +1,7 @@
 package eu.wisebed.wiseconfig.model;
 
 
-public class protobufInterface {
+public class ProtobufInterface {
 
 
     private String port;

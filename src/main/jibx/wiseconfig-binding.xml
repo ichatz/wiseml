@@ -65,12 +65,12 @@
     </mapping>
 
 
-    <mapping abstract="true" type-name="protobufInterface" class="eu.wisebed.wiseconfig.model.protobufInterface">
+    <mapping abstract="true" type-name="protobufInterface" class="eu.wisebed.wiseconfig.model.ProtobufInterface">
         <value style="element" name="port" field="port" usage="optional"/>
         <value style="element" name="ip" field="ip" usage="optional"/>
     </mapping>
 
-    <mapping class="eu.wisebed.wiseconfig.model.protobufInterface" name="protobufinterface">
+    <mapping class="eu.wisebed.wiseconfig.model.ProtobufInterface" name="protobufinterface">
         <structure map-as="protobufInterface"/>
     </mapping>
 
@@ -83,7 +83,7 @@
         <structure map-as="serverConnection"/>
     </mapping>
 
-    <mapping abstract="true" type-name="webService" class="eu.wisebed.wiseconfig.model.webService">
+    <mapping abstract="true" type-name="webService" class="eu.wisebed.wiseconfig.model.WebService">
         <value style="element" name="urnprefix" field="urnPrefix" usage="optional"/>
         <value style="element" name="sessionmanagementendpointurl" field="sessionManagementEndpointUrl"
                usage="optional"/>
@@ -94,17 +94,17 @@
         <structure map-as="protobufInterface" field="protobufINT" usage="optional" name="protobufinterface"/>
     </mapping>
 
-    <mapping class="eu.wisebed.wiseconfig.model.webService" name="webservice">
+    <mapping class="eu.wisebed.wiseconfig.model.WebService" name="webservice">
         <structure map-as="webService"/>
     </mapping>
 
-    <mapping abstract="true" type-name="wsnDevice" class="eu.wisebed.wiseconfig.model.wsnDevice">
+    <mapping abstract="true" type-name="wsnDevice" class="eu.wisebed.wiseconfig.model.WsnDevice">
         <value style="element" name="urn" field="urn" usage="optional"/>
         <value style="element" name="type" field="type" usage="optional"/>
         <value style="element" name="serialinterface" field="serialinterface" usage="optional"/>
     </mapping>
 
-    <mapping class="eu.wisebed.wiseconfig.model.wsnDevice" name="wsndevice">
+    <mapping class="eu.wisebed.wiseconfig.model.WsnDevice" name="wsndevice">
         <namespace uri="http://itm.uniluebeck.de/tr/runtime/wsnapp/xml" prefix="ns4" default="all"/>
         <structure map-as="wsnDevice"/>
     </mapping>

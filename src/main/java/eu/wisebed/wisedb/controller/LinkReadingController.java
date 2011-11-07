@@ -3,25 +3,20 @@ package eu.wisebed.wisedb.controller;
 import eu.wisebed.wisedb.exception.UnknownTestbedException;
 import eu.wisebed.wisedb.model.LastLinkReading;
 import eu.wisebed.wisedb.model.LinkReading;
-import eu.wisebed.wisedb.model.LinkReadingStat;
 import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Rssi;
-import eu.wisebed.wiseml.model.setup.Setup;
 import org.hibernate.Criteria;
-import org.hibernate.classic.Session;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 
 public class LinkReadingController extends AbstractController<LinkReading> {
 
@@ -75,6 +70,90 @@ public class LinkReadingController extends AbstractController<LinkReading> {
 
 
     /**
+     * Prepares and inserts a node to the testbed's setup with the id provided.
+     *
+     * @param testbed , a testbed instance.
+     * @param nodeId  , a node id.
+     *
+     * @return returns the inserted node instance.
+    */
+    private Node prepareInsertNode(final Testbed testbed, final String nodeId) {
+        final String DESCRIPTION = "DESCRIPTION"; // todo provide those ?
+        final String PROGRAM_DETAILS = "program details"; // todo provide those ?
+
+        final Node node = new Node();
+        node.setId(nodeId);
+        node.setDescription(DESCRIPTION);
+        node.setProgramDetails(PROGRAM_DETAILS);
+        node.setGateway("false");
+        node.setReadings(new HashSet<NodeReading>());
+        node.setCapabilities(new ArrayList<Capability>());
+        node.setSetup(testbed.getSetup());
+        NodeController.getInstance().add(node);
+
+        return node;
+    }
+
+    /**
+     * Prepares and inserts a link to the testbed's setup  with the provided ids as source and target.
+     *
+     * @param testbed  , a testbed instance.
+     * @param sourceId , a source node id.
+     * @param targetId , a target node id.
+     * @return returns the inserted link instance.
+     */
+    private Link prepareInsertLink(final Testbed testbed, final String sourceId, final String targetId) {
+        final String DATATYPE = "datatype"; // todo provide those ?
+        final String UNIT = "unit"; // todo provide those ?
+        final String ZERO = "0.0"; // todo provide those ?
+
+        final Rssi rssi = new Rssi();
+        rssi.setDatatype(DATATYPE);
+        rssi.setUnit(UNIT);
+        rssi.setValue(ZERO);
+
+        final Link link = new Link();
+        link.setSource(sourceId);
+        link.setTarget(targetId);
+        link.setEncrypted(false);
+        link.setVirtual(false);
+        link.setRssi(rssi);
+        link.setCapabilities(new ArrayList<Capability>());
+        link.setReadings(new HashSet<LinkReading>());
+        link.setSetup(testbed.getSetup());
+        LinkController.getInstance().add(link);
+
+        return link;
+    }
+
+    /**
+     * Prepares and inserts a capability to the persistnce with the provided capability name.
+     *
+     * @param capabilityName , a capability name.
+     * @return returns the inserted capability instance.
+     */
+    private Capability prepareInsertCapability(final String capabilityName) {
+        final Capability capability = new Capability();
+
+        final String DATATYPE = "datatype"; // todo provide those ?
+        final String UNIT = "unit"; // todo provide those ?
+        final String DEFAULT_VALUE = "default value"; // todo provide those ?
+
+        capability.setName(capabilityName);
+        capability.setDatatype(DATATYPE);
+        capability.setDefaultvalue(DEFAULT_VALUE);
+        capability.setUnit(UNIT);
+        capability.setNodes(new HashSet<Node>());
+        capability.setNodeReadings(new HashSet<NodeReading>());
+        capability.setLinks(new HashSet<Link>());
+        capability.setLinkReadings(new HashSet<LinkReading>());
+        CapabilityController.getInstance().add(capability);
+
+        return capability;
+    }
+
+
+    /**
      * Insert a links's reading from it's capabilities and make the appropriate relations
      * such as Link-Reading , Capability-reading
      *
@@ -92,6 +171,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
                               final String urnPrefix, final double readingValue, final double rssiValue,
                               final Date timestamp) throws UnknownTestbedException {
 
+        // look for testbed
         Testbed testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
         if (testbed == null) {
             throw new UnknownTestbedException(urnPrefix);
@@ -100,76 +180,37 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         Node source = NodeController.getInstance().getByID(sourceId);
         if (source == null) {
             // if source node not found in db make it and store it
-            source = new Node();
-            source.setId(sourceId);
-            source.setDescription("description"); // todo provide those ?
-            source.setGateway("false");
-            source.setProgramDetails("program details");
-            source.setReadings(new HashSet<NodeReading>());
-            source.setCapabilities(new ArrayList<Capability>());
-            source.setSetup(testbed.getSetup());
-            NodeController.getInstance().add(source);
+            prepareInsertNode(testbed, sourceId);
         }
         Node target = NodeController.getInstance().getByID(targetId);
         if (target == null) {
             // if target node not found in db make it and store it
-            target = new Node();
-            target.setId(targetId);
-            target.setDescription("description"); // todo provide those ?
-            target.setGateway("false");
-            target.setProgramDetails("program details");
-            target.setReadings(new HashSet<NodeReading>());
-            target.setCapabilities(new ArrayList<Capability>());
-            target.setSetup(testbed.getSetup());
-            NodeController.getInstance().add(target);
+            prepareInsertNode(testbed, targetId);
         }
 
         // look for link
         Link link = LinkController.getInstance().getByID(sourceId, targetId);
         if (link == null) {
             // if link not found in db make it and store it
-            link = new Link();
-            link.setSource(sourceId);
-            link.setTarget(targetId);
-            link.setEncrypted(false); // todo provide those ?
-            link.setVirtual(false);
-            Rssi rssi = new Rssi();
-            rssi.setDatatype("datatype");
-            rssi.setUnit("unit");
-            rssi.setValue("0.0");
-            link.setRssi(rssi);
-            link.setCapabilities(new ArrayList<Capability>());
-            link.setReadings(new HashSet<LinkReading>());
-            link.setSetup(testbed.getSetup());
-            LinkController.getInstance().add(link);
+            link = prepareInsertLink(testbed, sourceId, targetId);
         }
 
         // look for capability
         Capability capability = CapabilityController.getInstance().getByID(capabilityName);
         if (capability == null) {
-            // if capability not found in db make it and store it
-            capability = new Capability();
-            capability.setName(capabilityName);
-            capability.setDatatype("datatype"); // todo provide those ?
-            capability.setDefaultvalue("default value");
-            capability.setUnit("unit");
-            capability.setNodes(new HashSet<Node>());
-            capability.setNodeReadings(new HashSet<NodeReading>());
-            capability.setLinks(new HashSet<Link>());
-            capability.setLinkReadings(new HashSet<LinkReading>());
-            CapabilityController.getInstance().add(capability);
+            capability = prepareInsertCapability(capabilityName);
         }
 
         // associate Link with Capability
         if (!link.getCapabilities().contains(capability)) {
             // if link does not contain this capability add it
             link.getCapabilities().add(capability);
-            LinkController.getInstance().add(link);
+            LinkController.getInstance().update(link);
         }
         if (!capability.getLinks().contains(link)) {
             // if capability contains this link add it
             capability.getLinks().add(link);
-            CapabilityController.getInstance().add(capability);
+            CapabilityController.getInstance().update(capability);
         }
 
 
@@ -212,117 +253,4 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         criteria.setMaxResults(1);
         return (Long) criteria.uniqueResult();
     }
-
-    /**
-     * Returns the readings count for a link  per a capability.
-     *
-     * @param link, a link.
-     * @return a map containing readings of a link per capability.
-     */
-    @SuppressWarnings("unchecked")
-    public Map<Capability, Long> getLinkReadingsCountMap(final Link link) {
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(LinkReading.class);
-        criteria.createAlias("link", "id");
-        criteria.add(Restrictions.eq("id.source", link.getSource()));
-        criteria.add(Restrictions.eq("id.target", link.getTarget()));
-        criteria.setProjection(Projections.projectionList()
-                .add(Projections.rowCount())
-                .add(Projections.property("capability"))
-                .add(Projections.groupProperty("capability"))
-        );
-        HashMap<Capability, Long> resultMap = new HashMap<Capability, Long>();
-        List<Object> results = criteria.list();
-        for (Object result : results) {
-            Object[] row = (Object[]) result;
-            resultMap.put((Capability) row[1], (Long) row[0]);
-        }
-        return resultMap;
-    }
-
-    /**
-     * Returns the readings count for a capability per link in a testbed.
-     *
-     * @param capability , a capability .
-     * @param testbed    , a testbed.
-     * @return a map containing readings of a capability per link.
-     */
-    public Map<Link, Long> getLinkCapabilityReadingsCountPerLink(final Capability capability, final Testbed testbed) {
-        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(LinkReading.class);
-        criteria.createAlias("link", "li");
-        criteria.add(Restrictions.eq("li.setup", testbed.getSetup()));
-        criteria.add(Restrictions.eq("capability", capability));
-        criteria.setProjection(Projections.projectionList()
-                .add(Projections.rowCount())
-                .add(Projections.property("link"))
-                .add(Projections.groupProperty("link"))
-        );
-        HashMap<Link, Long> resultMap = new HashMap<Link, Long>();
-        List results = criteria.list();
-        for (Object result : results) {
-            Object[] row = (Object[]) result;
-            resultMap.put((Link) row[1], (Long) row[0]);
-        }
-        return resultMap;
-    }
-
-    /**
-     * Returns the node readings count for a capability in a testbed.
-     *
-     * @param capability , a capability.
-     * @param testbed    , a testbed .
-     * @return total node readings count for a given capability.
-     */
-    public Long getLinkCapabilityReadingsCount(final Capability capability, final Testbed testbed) {
-        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(LinkReading.class);
-        criteria.createAlias("link", "li");
-        criteria.add(Restrictions.eq("li.setup", testbed.getSetup()));
-        criteria.add(Restrictions.eq("capability", capability));
-        criteria.setProjection(Projections.count("capability"));
-        criteria.setMaxResults(1);
-        return (Long) criteria.uniqueResult();
-    }
-
-    /**
-     * Returns the latest reading of all links of the provided testbed.
-     *
-     * @param testbed , a testbed instance
-     * @return an object instance list with the rows of the query
-     */
-    public List<LinkReadingStat> getLinkReadingStats(final Testbed testbed) {
-        final Session session = getSessionFactory().getCurrentSession();
-
-        Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
-
-        Criteria criteria = session.createCriteria(LinkReading.class);
-        criteria.add(Restrictions.in("link", setup.getLink()));
-        criteria.setProjection(Projections.projectionList()
-                .add(Projections.groupProperty("link"))
-                .add(Projections.max("reading"))
-                .add(Projections.min("reading"))
-                .add(Projections.rowCount())
-        );
-
-        List<LinkReadingStat> updates = new ArrayList<LinkReadingStat>();
-        for (Object obj : criteria.list()) {
-            Object[] row = (Object[]) obj;
-            final Link link = (Link) row[0];
-            final LastLinkReading llr = LastLinkReadingController.getInstance().getLatestLinkReading(link);
-            Date lastTimestamp = null;
-            Double lastReading = null;
-            if (llr != null) {
-                lastTimestamp = llr.getTimestamp();
-                lastReading = llr.getReading();
-            }
-            final Double maxReading = (Double) row[1];
-            final Double minReading = (Double) row[2];
-            final Long totalCount = (Long) row[3];
-
-            updates.add(new LinkReadingStat(link, lastTimestamp, lastReading, maxReading, minReading, totalCount));
-        }
-        return updates;
-    }
-
 }

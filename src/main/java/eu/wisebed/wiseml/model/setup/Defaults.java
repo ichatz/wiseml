@@ -1,12 +1,16 @@
 package eu.wisebed.wiseml.model.setup;
 
+import java.io.Serializable;
+
 /**
  * This is a persistant class for the object defaults that has the
  * properties of defaults. In the class there are
  * getter and setter methods for the properties.
  */
 
-public class Defaults {
+public class Defaults implements Serializable{
+
+    private static final long serialVersionUID = -4369100001687471041L;
 
     /**
      * defaults for object Node.

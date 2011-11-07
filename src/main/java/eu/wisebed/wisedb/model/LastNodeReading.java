@@ -8,6 +8,8 @@ import java.util.Date;
 
 public class LastNodeReading implements Serializable {
 
+    private static final long serialVersionUID = 2824765230014359545L;
+
     /**
      * Node reference.
      */

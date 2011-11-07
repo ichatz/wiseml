@@ -14,8 +14,6 @@ import org.apache.log4j.Logger;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 
@@ -32,19 +30,16 @@ public class SetupImporter extends AbstractImporter<Setup> {
     private Testbed testbed;
 
     /**
+     * define set of all setup's capabilities (Nodes & Links) with no duplicate entries
+     */
+    private Set<Capability> capabilities;
+
+
+    /**
      * Default constructor.
      */
     public SetupImporter() {
-        // empty constructor.
-    }
-
-    /**
-     * Returns the testbed instance.
-     *
-     * @return , the testbed instance.
-     */
-    public Testbed getTestbed() {
-        return testbed;
+        capabilities = new HashSet<Capability>();
     }
 
     /**
@@ -60,7 +55,7 @@ public class SetupImporter extends AbstractImporter<Setup> {
     /**
      * Convert the WiseML setup to a WiseDB setup record.
      */
-    public void convert() {
+    public void convert() throws Exception {
 
         // retrieve setup record record from controllers InputStream
         final WiseMLController cnt = new WiseMLController();
@@ -68,7 +63,9 @@ public class SetupImporter extends AbstractImporter<Setup> {
         Setup setup = root.getSetup();
 
         // if setup is null do nothing
-        if (setup == null) return;
+        if (setup == null){
+            return;
+        }
 
         // call convert(setup)
         convert(setup);
@@ -76,17 +73,15 @@ public class SetupImporter extends AbstractImporter<Setup> {
 
     /**
      * Convert the WiseML setup to a WiseDB setup record.
+     * @param setup , a setup instance.
+     * @throws Exception , an exception
      */
-
-    public void convert(final Setup setup) {
+    public void convert(final Setup setup) throws Exception {
 
         if (setup == null) {
             LOGGER.fatal("Setup cannot be null");
-            System.exit(-1);
+            throw new Exception("Setup cannot be null");
         }
-
-        // set this setup as entity
-        setEntity(setup);
 
         // call convertCollection(list of setups)
         convertCollection(Arrays.asList(setup));
@@ -111,7 +106,10 @@ public class SetupImporter extends AbstractImporter<Setup> {
         for (Setup setup : getEntities()) {
 
             // set link,node, capabilities and setup
-            SetupImporter.setNodeLinkSetup(setup);
+            setNodeLinkSetup(setup);
+
+            // reset NodeLink Capabilities
+            resetNodeLinkCapabilities(setup);
 
             // set the testbed setup relation
             testbed.setSetup(setup);
@@ -127,61 +125,62 @@ public class SetupImporter extends AbstractImporter<Setup> {
         }
     }
 
-    public static void setNodeLinkSetup(final Setup setup) {
+    /**
+     * Sets setup for nodes and links.
+     * @param setup , a setup instance.
+     */
+    public void setNodeLinkSetup(final Setup setup) {
 
-        if (setup.getNodes() != null && !setup.getNodes().isEmpty()) {
+        if (setup.getNodes() != null) {
             for (Node node : setup.getNodes()) {
+
+                // set setup for this node
                 node.setSetup(setup);
+
+                // add this node capability to the capabilities set
+                for( Capability capability : node.getCapabilities()) {
+                    capabilities.add(capability);
+                }
             }
         }
-        if (setup.getLink() != null && !setup.getLink().isEmpty()) {
+
+        if (setup.getLink() != null) {
             for (Link link : setup.getLink()) {
+
+                // set setup for this link
                 link.setSetup(setup);
-            }
-        }
 
-        // define set of all setup's capabilities with no duplicate entries
-        Set<Capability> capabilities = new HashSet<Capability>();
-
-        // get nodes and scan their capabilities
-        List<Node> nodes = setup.getNodes();
-        if (nodes != null && !nodes.isEmpty()) {
-            for (Node node : nodes) {
-                for (Capability capability : node.getCapabilities()) {
+                // add this link's capabilities to the capabilities set
+                for( Capability capability : link.getCapabilities()) {
                     capabilities.add(capability);
                 }
             }
         }
+    }
 
-        // get links and scan their capabilities
-        List<Link> links = setup.getLink();
-        if (links != null && !links.isEmpty()) {
-            for (Link link : links) {
-                for (Capability capability : link.getCapabilities()) {
-                    capabilities.add(capability);
-                }
-            }
-        }
+    /**
+     * Reset the capabilities for links and nodes in order to match the unique capabilities set of this importer.
+     * @param setup , a setup instance
+     */
+    public void resetNodeLinkCapabilities(final Setup setup){
 
         // capabilities must be unique objects so nodes & links must point to the set's entities
-        Iterator<Capability> it = capabilities.iterator();
-        while (it.hasNext()) {
-            Capability capability = it.next();
-            if (nodes != null && !nodes.isEmpty()) {
-                for (Node node : nodes) {
-                    List<Capability> nodeCapabilities = node.getCapabilities();
-                    if (nodeCapabilities.contains(capability)) {
-                        nodeCapabilities.remove(capability);
-                        nodeCapabilities.add(capability);
+        for(Capability capability : capabilities){
+
+            if(setup.getNodes() != null){
+                for(Node node : setup.getNodes()) {
+                    if(node.getCapabilities() != null && node.getCapabilities().contains(capability)){
+                        node.getCapabilities().remove(capability);
+                        node.getCapabilities().add(capability);
                     }
                 }
             }
-            if (links != null && !links.isEmpty()) {
-                for (Link link : links) {
-                    List<Capability> linkCapabilities = link.getCapabilities();
-                    if (linkCapabilities.contains(capability)) {
-                        linkCapabilities.remove(capability);
-                        linkCapabilities.add(capability);
+
+            if(setup.getLink() != null){
+                for(Link link : setup.getLink()) {
+                    if(link.getCapabilities() != null && link.getCapabilities().contains(capability)){
+                        link.getCapabilities().remove(capability);
+                        link.getCapabilities().add(capability);
                     }
                 }
             }

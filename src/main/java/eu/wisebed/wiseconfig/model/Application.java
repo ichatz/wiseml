@@ -8,7 +8,7 @@ public class Application {
     private String name;
 
     private PortalApp portal;
-    private wsnDevice wsnDev;
+    private WsnDevice wsnDev;
 
     public String getFactoryclass() {
         return factoryclass;
@@ -26,11 +26,11 @@ public class Application {
         this.name = name;
     }
 
-    public wsnDevice getWsnDev() {
+    public WsnDevice getWsnDev() {
         return wsnDev;
     }
 
-    public void setWsnDev(wsnDevice wsnDev) {
+    public void setWsnDev(WsnDevice wsnDev) {
         this.wsnDev = wsnDev;
     }
 

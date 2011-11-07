@@ -1,6 +1,7 @@
 package eu.wisebed.wiseml.controller;
 
 import eu.wisebed.wiseml.model.trace.Trace;
+import org.apache.log4j.Logger;
 import org.jibx.runtime.BindingDirectory;
 import org.jibx.runtime.IBindingFactory;
 import org.jibx.runtime.IMarshallingContext;
@@ -18,7 +19,10 @@ import java.util.TreeSet;
 
 public class TraceController {
 
-    public Trace writeTraceAsFile(Trace trace, File file) {
+    private static final Logger LOGGER = Logger.getLogger(TraceController.class);
+
+
+    public Trace writeTraceAsFile(Trace trace, File file) throws FileNotFoundException, JiBXException {
 
 
         HashMap<Integer, Set<String>> mapTr = new HashMap<Integer, Set<String>>();
@@ -51,11 +55,11 @@ public class TraceController {
             mctx.marshalDocument(trace);
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            System.exit(1);
+            LOGGER.fatal(e);
+            throw e;
         } catch (JiBXException e) {
-            e.printStackTrace();
-            System.exit(1);
+            LOGGER.fatal(e);
+            throw e;
         }
 
         return trace;

@@ -75,7 +75,7 @@ public class LoadWriteWiseML {
         }
     }
 
-    public void doAnotherTest() throws FileNotFoundException {
+    public void doAnotherTest() throws FileNotFoundException, JiBXException {
         FileInputStream fileML = null;
         try {
             fileML = new FileInputStream("/home/evangelos/workspace/easysense/wiseml2rdf/WiseNew4/telosB_short.wiseml");
@@ -118,6 +118,8 @@ public class LoadWriteWiseML {
         try {
             testMe.doAnotherTest();
         } catch (FileNotFoundException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (JiBXException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
 

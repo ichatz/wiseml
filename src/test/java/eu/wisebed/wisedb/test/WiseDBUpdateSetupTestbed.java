@@ -29,7 +29,11 @@ public class WiseDBUpdateSetupTestbed {
             Testbed testbed = testbeds.get(0);
 
             // set nodes and links
-            SetupImporter.setNodeLinkSetup(setup);
+            SetupImporter sImp = new SetupImporter();
+            sImp.setTestbed(testbed);
+            sImp.setNodeLinkSetup(setup);
+            sImp.resetNodeLinkCapabilities(setup);
+
 
             // make relation
             setup.setTestbed(testbed);

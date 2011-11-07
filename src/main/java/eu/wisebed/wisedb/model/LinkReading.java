@@ -8,6 +8,8 @@ import java.util.Date;
 
 public class LinkReading implements Serializable {
 
+    private static final long serialVersionUID = -8617855105682730969L;
+
     /**
      * Reading id.
      */
@@ -42,6 +44,7 @@ public class LinkReading implements Serializable {
      * Constructor.
      */
     public LinkReading() {
+        // empty constructor
     }
 
     /**

@@ -4,14 +4,14 @@ package eu.wisebed.wiseconfig.model;
 public class PortalApp {
 
 
-    private webService webSERVICE;
+    private WebService webSERVICE;
 
 
-    public webService getWebSERVICE() {
+    public WebService getWebSERVICE() {
         return webSERVICE;
     }
 
-    public void setWebSERVICE(webService webSERVICE) {
+    public void setWebSERVICE(WebService webSERVICE) {
         this.webSERVICE = webSERVICE;
     }
 

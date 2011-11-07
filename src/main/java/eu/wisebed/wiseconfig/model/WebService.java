@@ -1,7 +1,7 @@
 package eu.wisebed.wiseconfig.model;
 
 
-public class webService {
+public class WebService {
 
 
     private String urnPrefix;
@@ -10,7 +10,7 @@ public class webService {
     private String reservationEndpointUrl;
     private String snaaEndpointUrl;
     private String wisemlfilename;
-    private protobufInterface protobufINT;
+    private ProtobufInterface protobufINT;
 
 
     public String getUrnPrefix() {
@@ -53,11 +53,11 @@ public class webService {
         this.snaaEndpointUrl = snaaEndpointUrl;
     }
 
-    public protobufInterface getProtobufINT() {
+    public ProtobufInterface getProtobufINT() {
         return protobufINT;
     }
 
-    public void setProtobufINT(protobufInterface protobufINT) {
+    public void setProtobufINT(ProtobufInterface protobufINT) {
         this.protobufINT = protobufINT;
     }
 

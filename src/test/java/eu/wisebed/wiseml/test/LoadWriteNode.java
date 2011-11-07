@@ -2,6 +2,7 @@ package eu.wisebed.wiseml.test;
 
 import eu.wisebed.wiseml.controller.NodeController;
 import eu.wisebed.wiseml.model.setup.Node;
+import org.jibx.runtime.JiBXException;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,7 +10,7 @@ import java.io.FileNotFoundException;
 
 public class LoadWriteNode {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JiBXException, FileNotFoundException {
 
         NodeController nodeC = new NodeController();
         Node node = new Node();

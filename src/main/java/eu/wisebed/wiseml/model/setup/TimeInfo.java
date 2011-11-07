@@ -1,12 +1,15 @@
 package eu.wisebed.wiseml.model.setup;
 
+import java.io.Serializable;
+
 /**
  * This is a persistant class for the object timeinfo that has the
  * properties of a timeinfo. In the class there are
  * getter and setter methods for the properties.
  */
+public class TimeInfo implements Serializable{
 
-public class TimeInfo {
+    private static final long serialVersionUID = 6916511608083049806L;
 
     /**
      * start time of the experiment.

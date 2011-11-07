@@ -20,7 +20,7 @@ public class TestSessionMgtService {
 //
 //        SessionManagement sessionManagementService =
 //                eu.wisebed.testbed.api.wsn.WSNServiceHelper
-//                        .getSessionManagementService(endpointUrl);
+//                        .getSessionManagement(endpointUrl);
 //
 //        String wiseml = sessionManagementService.getNetwork();
 //

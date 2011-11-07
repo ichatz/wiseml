@@ -13,11 +13,14 @@ import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Rssi;
 import eu.wisebed.wiseml.model.setup.Setup;
+import org.apache.log4j.Logger;
 
 public class Timestamp2RDF extends Timestamp {
-    // *** RDF *** //
+
     private Model model;
     private String uri;
+    private static Logger LOGGER = Logger.getLogger(Timestamp2RDF.class);
+
 
     public Timestamp2RDF(Timestamp item) {
         this.setDisableLink(item.getDisableLink());
@@ -43,7 +46,6 @@ public class Timestamp2RDF extends Timestamp {
         Property TShasNodes = model.createProperty(uri + "TShasNodes");
         Property TShasLinks = model.createProperty(uri + "TShasLinks");
         newTS.addProperty(TShasNodes, nodesOfTS);
-        //System.out.println("Adding property: " + TShasNodes + " With Value: " + nodesOfTS + " To Timestamp: " + this.getValue());
         newTS.addProperty(TShasLinks, linksOfTS);
         model.add(newTS, RDF.type, resTS);
 
@@ -53,8 +55,8 @@ public class Timestamp2RDF extends Timestamp {
 
     public void printDBG() {
         Bag nodesOfTS = model.getBag(uri + "NodesOfTimeStamp" + "_" + this.getValue());
-        System.out.println("TimeStamp: " + this.getValue());
-        System.out.println("Readings: " + nodesOfTS.size());
+        LOGGER.info("TimeStamp: " + this.getValue());
+        LOGGER.info("Readings: " + nodesOfTS.size());
 
     }
 
@@ -125,7 +127,6 @@ public class Timestamp2RDF extends Timestamp {
                 } else {
                     nodeBag.addLiteral(positionTheta, theNodetoAdd.getPosition().getTheta());
                 }
-                ;
             }
             if (theNodetoAdd.getPosition().getPhi() == 0) {
                 if (defPhi != 0) {

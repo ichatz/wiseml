@@ -8,6 +8,8 @@ import java.util.Date;
 
 public class LastLinkReading implements Serializable {
 
+    private static final long serialVersionUID = 8748551395278795210L;
+
     /**
      * Link reference.
      */

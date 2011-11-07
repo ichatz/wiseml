@@ -27,16 +27,16 @@ public class ImportTestbedEntries {
             final TestbedImporter tImp = new TestbedImporter();
 
             // must set attributes before importing to db
-            tImp.setTestbedName("CTI main testbed");
-            tImp.setTestbedUrnPrefix("urn:wisebed:ctitestbed:");
-            tImp.setTestbedDescription("This is the description WiseML file of the RACTI testbed in Patras Greece containing" +
+            tImp.setName("CTI main testbed");
+            tImp.setUrnPrefix("urn:wisebed:ctitestbed:");
+            tImp.setDescription("This is the description WiseML file of the RACTI testbed in Patras Greece containing" +
                     " iSense telosB and xbee sensor nodes equiped with temperature light infrared humidity Wind Speed Wind " +
                     "Direction and Air Quality Sensors");
-            tImp.setTestbedFederated(false);
-            tImp.setTestbedRsUrl("http://hercules.cti.gr:8888/rs");
-            tImp.setTestbedSnaaUrl("http://hercules.cti.gr:8890/snaa/shib1");
-            tImp.setTestbedSessionUrl("http://hercules.cti.gr:8888/sessions");
-            tImp.setTestbedUrnPrefix("urn:wisebed:ctitestbed:");
+            tImp.setFederated(false);
+            tImp.setRsUrl("http://hercules.cti.gr:8888/rs");
+            tImp.setSnaaUrl("http://hercules.cti.gr:8890/snaa/shib1");
+            tImp.setSessionUrl("http://hercules.cti.gr:8888/sessions");
+            tImp.setUrnPrefix("urn:wisebed:ctitestbed:");
 
             // import to db
             tImp.convert();
