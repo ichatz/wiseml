@@ -27,12 +27,8 @@ public class LastNodeReadingListener extends DefaultSaveOrUpdateEventListener {
         //Ignores all events which are not instances of the NodeReading class.
         if (event.getObject() instanceof NodeReading) {
 
-            final NodeReading thisReading = (NodeReading) event.getObject();
-
-            LOGGER.info(new StringBuilder().append(thisReading.getNode().getId()).append(": ").append(thisReading.getCapability().getName()).toString());
-
-            //Forward the event to LastNodeReadingObservable
-            LastNodeReadingObservable.getInstance().addNodeReading(thisReading);
+            //Forward the event to LastNodeReadingConsumer
+            LastNodeReadingConsumer.getInstance().addNodeReading((NodeReading) event.getObject());
         }
     }
 }
