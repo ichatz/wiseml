@@ -13,59 +13,59 @@ public class WebService {
     private ProtobufInterface protobufINT;
 
 
-    public String getUrnPrefix() {
+    public final String getUrnPrefix() {
         return urnPrefix;
     }
 
-    public void setUrnPrefix(String urnPrefix) {
+    public final void setUrnPrefix(final String urnPrefix) {
         this.urnPrefix = urnPrefix;
     }
 
-    public String getSessionManagementEndpointUrl() {
+    public final String getSessionManagementEndpointUrl() {
         return sessionManagementEndpointUrl;
     }
 
-    public void setSessionManagementEndpointUrl(String sessionManagementEndpointUrl) {
+    public final void setSessionManagementEndpointUrl(final String sessionManagementEndpointUrl) {
         this.sessionManagementEndpointUrl = sessionManagementEndpointUrl;
     }
 
-    public String getWsnInstancebaseUrl() {
+    public final String getWsnInstancebaseUrl() {
         return wsnInstancebaseUrl;
     }
 
-    public void setWsnInstancebaseUrl(String wsnInstancebaseUrl) {
+    public final void setWsnInstancebaseUrl(final String wsnInstancebaseUrl) {
         this.wsnInstancebaseUrl = wsnInstancebaseUrl;
     }
 
-    public String getReservationEndpointUrl() {
+    public final String getReservationEndpointUrl() {
         return reservationEndpointUrl;
     }
 
-    public void setReservationEndpointUrl(String reservationEndpointUrl) {
+    public final void setReservationEndpointUrl(final String reservationEndpointUrl) {
         this.reservationEndpointUrl = reservationEndpointUrl;
     }
 
-    public String getSnaaEndpointUrl() {
+    public final String getSnaaEndpointUrl() {
         return snaaEndpointUrl;
     }
 
-    public void setSnaaEndpointUrl(String snaaEndpointUrl) {
+    public final void setSnaaEndpointUrl(final String snaaEndpointUrl) {
         this.snaaEndpointUrl = snaaEndpointUrl;
     }
 
-    public ProtobufInterface getProtobufINT() {
+    public final ProtobufInterface getProtobufINT() {
         return protobufINT;
     }
 
-    public void setProtobufINT(ProtobufInterface protobufINT) {
+    public final void setProtobufINT(final ProtobufInterface protobufINT) {
         this.protobufINT = protobufINT;
     }
 
-    public String getWisemlfilename() {
+    public final String getWisemlfilename() {
         return wisemlfilename;
     }
 
-    public void setWisemlfilename(String wisemlFilename) {
+    public final void setWisemlfilename(final String wisemlFilename) {
         this.wisemlfilename = wisemlFilename;
     }
 }

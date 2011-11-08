@@ -151,7 +151,7 @@ public final class HibernateUtil {
      * Closes the current Session.
      */
     public void closeSession() {
-        Session ses = ourSessionFactory.getCurrentSession();
+        final Session ses = ourSessionFactory.getCurrentSession();
 
         if (ses.isOpen()) {
             ses.close();

@@ -58,7 +58,7 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
      */
     public LastLinkReading getByID(final Link link, final Capability capability) {
         final Session session = this.getSessionFactory().getCurrentSession();
-        LastLinkReading lastLinkReading = new LastLinkReading();
+        final LastLinkReading lastLinkReading = new LastLinkReading();
         lastLinkReading.setLink(link);
         lastLinkReading.setCapability(capability);
         return (LastLinkReading) session.get(LastLinkReading.class, lastLinkReading);
@@ -72,7 +72,7 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
      */
     public List<LastLinkReading> getByLink(final Link link) {
         final Session session = this.getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(LastLinkReading.class);
+        final Criteria criteria = session.createCriteria(LastLinkReading.class);
         criteria.add(Restrictions.eq("link", link));
         return (List<LastLinkReading>) criteria.list();
     }
@@ -86,10 +86,10 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
     public List<LastLinkReading> getByTestbed(final Testbed testbed) {
 
         // retrieve testbed setup
-        Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
+        final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
 
         final Session session = this.getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(LastLinkReading.class);
+        final Criteria criteria = session.createCriteria(LastLinkReading.class);
         criteria.add(Restrictions.in("link", setup.getLink()));
         return (List<LastLinkReading>) criteria.list();
     }
@@ -102,7 +102,7 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
      */
     public List<LastLinkReading> getByCapability(final Capability capability) {
         final Session session = this.getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(LastLinkReading.class);
+        final Criteria criteria = session.createCriteria(LastLinkReading.class);
         criteria.add(Restrictions.eq("capability", capability));
         return (List<LastLinkReading>) criteria.list();
     }
@@ -117,10 +117,10 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
     public List<LastLinkReading> getByCapability(final Testbed testbed, final Capability capability) {
 
         // retrieve testbed setup
-        Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
+        final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
 
         final Session session = this.getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(LastLinkReading.class);
+        final Criteria criteria = session.createCriteria(LastLinkReading.class);
         criteria.add(Restrictions.in("link", setup.getLink()));
         criteria.add(Restrictions.eq("capability", capability));
         return (List<LastLinkReading>) criteria.list();
@@ -136,12 +136,12 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
         final Session session = this.getSessionFactory().getCurrentSession();
 
         // a detached criteria for max timestamp for last node readings in testbed and capability
-        DetachedCriteria maxTimestamp = DetachedCriteria.forClass(LastLinkReading.class)
+        final DetachedCriteria maxTimestamp = DetachedCriteria.forClass(LastLinkReading.class)
                 .add(Restrictions.eq("link", link))
                 .setProjection(Projections.max("timestamp"));
 
         // get latest node reading by comparing it with max timestamp
-        Criteria criteria = session.createCriteria(LastLinkReading.class);
+        final Criteria criteria = session.createCriteria(LastLinkReading.class);
         criteria.add(Restrictions.eq("link", link));
         criteria.add(Property.forName("timestamp").eq(maxTimestamp));
         criteria.setMaxResults(1);
@@ -158,12 +158,12 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
         final Session session = this.getSessionFactory().getCurrentSession();
 
         // a detached criteria for max timestamp for last node readings in testbed and capability
-        DetachedCriteria maxTimestamp = DetachedCriteria.forClass(LastLinkReading.class)
+        final DetachedCriteria maxTimestamp = DetachedCriteria.forClass(LastLinkReading.class)
                 .add(Restrictions.eq("capability", capability))
                 .setProjection(Projections.max("timestamp"));
 
         // get latest link reading by comparing it with max timestamp
-        Criteria criteria = session.createCriteria(LastLinkReading.class);
+        final Criteria criteria = session.createCriteria(LastLinkReading.class);
         criteria.add(Restrictions.eq("capability", capability));
         criteria.add(Property.forName("timestamp").eq(maxTimestamp));
         criteria.setMaxResults(1);
@@ -180,18 +180,18 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
     public LastLinkReading getLatestLinkReading(final Testbed testbed, final Capability capability) {
 
         // retrieve testbed setup
-        Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
+        final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
 
         final Session session = this.getSessionFactory().getCurrentSession();
 
         // a detached criteria for max timestamp for last node readings in testbed and capability
-        DetachedCriteria maxTimestamp = DetachedCriteria.forClass(LastLinkReading.class)
+        final DetachedCriteria maxTimestamp = DetachedCriteria.forClass(LastLinkReading.class)
                 .add(Restrictions.in("link", setup.getLink()))
                 .add(Restrictions.eq("capability", capability))
                 .setProjection(Projections.max("timestamp"));
 
         // get latest link reading by comparing it with max timestamp
-        Criteria criteria = session.createCriteria(LastLinkReading.class);
+        final Criteria criteria = session.createCriteria(LastLinkReading.class);
         criteria.add(Restrictions.in("link", setup.getLink()));
         criteria.add(Restrictions.eq("capability", capability));
         criteria.add(Property.forName("timestamp").eq(maxTimestamp));

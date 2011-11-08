@@ -2,7 +2,9 @@ package eu.wisebed.wisedb.exception;
 
 public class UnknownNodeException extends Exception {
 
-    public UnknownNodeException(final String id) {
-        super("Unknown Node. Cannot find persisted node entity with id : " + id);
+    private static final long serialVersionUID = -5552569452258829527L;
+
+    public UnknownNodeException(final String nodeId) {
+        super("Unknown Node. Cannot find persisted node entity with id : " + nodeId);
     }
 }

@@ -34,8 +34,8 @@ public class WiseMLController {
         WiseML wiseml = new WiseML();
 
         // unmarshal wiseml information from file...
-        IBindingFactory bfact = BindingDirectory.getFactory(WiseML.class);
-        IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
+        final IBindingFactory bfact = BindingDirectory.getFactory(WiseML.class);
+        final IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
         wiseml = (WiseML) uctx.unmarshalDocument(data, null);
 
         return wiseml;
@@ -62,8 +62,8 @@ public class WiseMLController {
         WiseML wiseml = new WiseML();
         try {
             // unmarshal wiseml information from file...
-            IBindingFactory bfact = BindingDirectory.getFactory(WiseML.class);
-            IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
+            final IBindingFactory bfact = BindingDirectory.getFactory(WiseML.class);
+            final IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
             wiseml = (WiseML) uctx.unmarshalDocument(file, null);
 
         } catch (JiBXException e) {
@@ -83,8 +83,8 @@ public class WiseMLController {
         Setup setup = new Setup();
         try {
             // unmarshal setup information from file...
-            IBindingFactory bfact = BindingDirectory.getFactory(Setup.class);
-            IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
+            final IBindingFactory bfact = BindingDirectory.getFactory(Setup.class);
+            final IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
             setup = (Setup) uctx.unmarshalDocument(file, null);
 
         } catch (JiBXException e) {
@@ -104,11 +104,11 @@ public class WiseMLController {
     public void writeWiseMLAsFile(final WiseML wiseml,final File file) throws FileNotFoundException, JiBXException {
         try {
             // marshal object back out to file (with nice indentation, as UTF-8)...
-            IBindingFactory bfact = BindingDirectory.getFactory(WiseML.class);
+            final IBindingFactory bfact = BindingDirectory.getFactory(WiseML.class);
 
-            IMarshallingContext mctx = bfact.createMarshallingContext();
+            final IMarshallingContext mctx = bfact.createMarshallingContext();
             mctx.setIndent(5);
-            FileOutputStream output = new FileOutputStream(file);
+            final FileOutputStream output = new FileOutputStream(file);
             mctx.setOutput(output, null);
             mctx.marshalDocument(wiseml);
 
@@ -131,11 +131,11 @@ public class WiseMLController {
 
         try {
             // marshal object back out to file (with nice indentation, as UTF-8)...
-            IBindingFactory bfact = BindingDirectory.getFactory(Setup.class);
+            final IBindingFactory bfact = BindingDirectory.getFactory(Setup.class);
 
-            IMarshallingContext mctx = bfact.createMarshallingContext();
+            final IMarshallingContext mctx = bfact.createMarshallingContext();
             mctx.setIndent(5);
-            FileOutputStream output = new FileOutputStream(file.getName());
+            final FileOutputStream output = new FileOutputStream(file.getName());
             mctx.setOutput(output, null);
             mctx.marshalDocument(setup);
 
@@ -160,21 +160,19 @@ public class WiseMLController {
 
         try {
             // marshal object back out to file (with nice indentation, as UTF-8)...
-            IBindingFactory bfact = BindingDirectory.getFactory(WiseML.class);
+            final IBindingFactory bfact = BindingDirectory.getFactory(WiseML.class);
 
-            IMarshallingContext mctx = bfact.createMarshallingContext();
+            final IMarshallingContext mctx = bfact.createMarshallingContext();
             mctx.setIndent(5);
 
             mctx.setOutput(buffer, null);
             mctx.marshalDocument(wiseml);
 
+            return buffer.toString();
         } catch (JiBXException e) {
             LOGGER.fatal(e);
             throw e;
-
-
         }
-        return buffer.toString();
     }
 
     /**
@@ -185,27 +183,26 @@ public class WiseMLController {
      */
     public String writeSetupAsString(final Setup setup) throws Exception {
 
-        WiseML wiseml = new WiseML();
+        final WiseML wiseml = new WiseML();
         wiseml.setSetup(setup);
         final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 
         try {
             // marshal object back out to file (with nice indentation, as UTF-8)...
-            IBindingFactory bfact = BindingDirectory.getFactory(Setup.class);
+            final IBindingFactory bfact = BindingDirectory.getFactory(Setup.class);
 
-            IMarshallingContext mctx = bfact.createMarshallingContext();
+            final IMarshallingContext mctx = bfact.createMarshallingContext();
             mctx.setIndent(5);
 
             // initialize the output stream
             mctx.setOutput(buffer, null);
             mctx.marshalDocument(wiseml.getSetup());
 
+            return buffer.toString();
         } catch (Exception e) {
             LOGGER.fatal(e);
             throw e;
         }
-        return buffer.toString();
-
     }
 
     /**
@@ -215,20 +212,19 @@ public class WiseMLController {
      * @return setup
      */
     public Setup loadSetupFromString(final String stup) throws JiBXException {
-        Setup setup = new Setup();
+
         final ByteArrayInputStream buffer = new ByteArrayInputStream(stup.getBytes());
 
         try {
             // unmarshal setup information from file...
-            IBindingFactory bfact = BindingDirectory.getFactory(Setup.class);
-            IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
-            setup = (Setup) uctx.unmarshalDocument(buffer, null);
+            final IBindingFactory bfact = BindingDirectory.getFactory(Setup.class);
+            final IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
 
+            return (Setup) uctx.unmarshalDocument(buffer, null);
         } catch (JiBXException e) {
             LOGGER.fatal(e);
             throw e;
         }
-        return setup;
     }
 
     /**
@@ -238,20 +234,18 @@ public class WiseMLController {
      * @return wiseml
      */
     public Setup loadSetupFromWiseMLString(final String wisml) throws JiBXException {
-        WiseML wsml = new WiseML();
         final ByteArrayInputStream buffer = new ByteArrayInputStream(wisml.getBytes());
 
         try {
             // unmarshal setup information from file...
-            IBindingFactory bfact = BindingDirectory.getFactory(WiseML.class);
-            IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
-            wsml = (WiseML) uctx.unmarshalDocument(buffer, null);
+            final IBindingFactory bfact = BindingDirectory.getFactory(WiseML.class);
+            final IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
+            WiseML wsml = (WiseML) uctx.unmarshalDocument(buffer, null);
 
+            return wsml.getSetup();
         } catch (JiBXException e) {
             LOGGER.fatal(e);
             throw e;
         }
-        return wsml.getSetup();
     }
-
 }

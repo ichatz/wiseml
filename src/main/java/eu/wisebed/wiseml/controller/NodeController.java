@@ -22,10 +22,9 @@ public class NodeController {
     public Node load(FileInputStream file) throws JiBXException {
 
         try {
-
             // unmarshal node information from file...
-            IBindingFactory bfact = BindingDirectory.getFactory(Node.class);
-            IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
+            final IBindingFactory bfact = BindingDirectory.getFactory(Node.class);
+            final IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
             return (Node) uctx.unmarshalDocument(file, null);
 
         } catch (JiBXException e) {
@@ -38,9 +37,8 @@ public class NodeController {
 
         final ByteArrayInputStream buffer = new ByteArrayInputStream(stup.getBytes());
         try {
-
-            IBindingFactory bfact = BindingDirectory.getFactory(Node.class);
-            IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
+            final IBindingFactory bfact = BindingDirectory.getFactory(Node.class);
+            final IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
             return (Node) uctx.unmarshalDocument(buffer, null);
         } catch (JiBXException e) {
             LOGGER.fatal(e);
@@ -51,12 +49,11 @@ public class NodeController {
     public Node write(Node node, File file) throws JiBXException, FileNotFoundException {
 
         try {
-
             // marshal object back out to file (with nice indentation, as UTF-8)...
-            IBindingFactory bfact = BindingDirectory.getFactory(Node.class);
-            IMarshallingContext mctx = bfact.createMarshallingContext();
+            final IBindingFactory bfact = BindingDirectory.getFactory(Node.class);
+            final IMarshallingContext mctx = bfact.createMarshallingContext();
             mctx.setIndent(5);
-            FileOutputStream output = new FileOutputStream(file);
+            final FileOutputStream output = new FileOutputStream(file);
             mctx.setOutput(output, null);
             mctx.marshalDocument(node);
 

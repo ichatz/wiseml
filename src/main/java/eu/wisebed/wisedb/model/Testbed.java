@@ -206,7 +206,7 @@ public class Testbed {
      *
      * @return true if the testbed is federated.
      */
-    public boolean getFederated() {
+    public boolean isFederated() {
         return federated;
     }
 

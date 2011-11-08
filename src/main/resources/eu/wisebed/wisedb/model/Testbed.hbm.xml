@@ -17,7 +17,7 @@
         <property name="description"/>
         <property name="url"/>
         <property name="urnPrefix"/>
-        <property name="federated" type="boolean"/>
+        <property name="getIsFederated" type="boolean"/>
         <property name="snaaUrl"/>
         <property name="rsUrl"/>
         <property name="sessionUrl"/>

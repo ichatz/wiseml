@@ -235,7 +235,7 @@ public class Link implements Serializable{
         }
 
         // equility against name
-        Link test = (Link) obj;
+        final Link test = (Link) obj;
         return source.equals(test.getSource()) && target.equals(test.getTarget());
     }
 

@@ -17,6 +17,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -89,7 +90,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
                               final double readingValue, final Date timestamp) throws UnknownTestbedException {
 
         // Retrieve testbed by urn
-        Testbed testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
+        final Testbed testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
         if (testbed == null) {
             throw new UnknownTestbedException(urnPrefix);
         }
@@ -136,7 +137,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         }
 
         // make a new node reading entity
-        NodeReading reading = new NodeReading();
+        final NodeReading reading = new NodeReading();
         reading.setReading(readingValue);
         reading.setTimestamp(timestamp);
         reading.setNode(node);
@@ -167,8 +168,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     @SuppressWarnings("unchecked")
     public List<NodeReading> listNodeReadings(final Node node, final Capability capability) {
         final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria;
-        criteria = session.createCriteria(NodeReading.class);
+        final Criteria criteria = session.createCriteria(NodeReading.class);
         criteria.add(Restrictions.eq("node", node));
         criteria.add(Restrictions.eq("capability", capability));
         criteria.addOrder(Order.asc("timestamp"));
@@ -183,7 +183,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      */
     public Long getNodeReadingsCount(final Node node) {
         final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(NodeReading.class);
+        final Criteria criteria = session.createCriteria(NodeReading.class);
         criteria.add(Restrictions.eq("node", node));
         criteria.setProjection(Projections.count("node"));
         criteria.setMaxResults(1);
@@ -199,15 +199,15 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     @SuppressWarnings("unchecked")
     public Map<Capability, Long> getNodeReadingsCountMap(final Node node) {
         final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(NodeReading.class);
+        final Criteria criteria = session.createCriteria(NodeReading.class);
         criteria.add(Restrictions.eq("node", node));
         criteria.setProjection(Projections.projectionList()
                 .add(Projections.rowCount())
                 .add(Projections.property("capability"))
                 .add(Projections.groupProperty("capability"))
         );
-        HashMap<Capability, Long> resultMap = new HashMap<Capability, Long>();
-        List<Object> results = criteria.list();
+        final HashMap<Capability, Long> resultMap = new HashMap<Capability, Long>();
+        final List<Object> results = criteria.list();
         for (Object result : results) {
             Object[] row = (Object[]) result;
             resultMap.put((Capability) row[1], (Long) row[0]);
@@ -216,107 +216,32 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     }
 
     /**
-     * Returns the readings count for a capability per node in a testbed.
-     *
-     * @param capability , a capability .
-     * @param testbed    , a testbed.
-     * @return a map containing readings of a capability per node.
-     */
-    public Map<Node, Long> getNodeCapabilityReadingsCountPerNode(final Capability capability, final Testbed testbed) {
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.createAlias("node", "no");
-        criteria.add(Restrictions.eq("no.setup", testbed.getSetup()));
-        criteria.add(Restrictions.eq("capability", capability));
-        criteria.setProjection(Projections.projectionList()
-                .add(Projections.rowCount())
-                .add(Projections.property("node"))
-                .add(Projections.groupProperty("node"))
-        );
-        HashMap<Node, Long> resultMap = new HashMap<Node, Long>();
-        List results = criteria.list();
-        for (Object result : results) {
-            Object[] row = (Object[]) result;
-            resultMap.put((Node) row[1], (Long) row[0]);
-        }
-        return resultMap;
-    }
-
-    /**
-     * Returns the node readings count for a capability in a testbed.
-     *
-     * @param capability , a capability .
-     * @param testbed    , a testbed .
-     * @return total node readings count for a given capability.
-     */
-    public Long getNodeCapabilityReadingsCount(final Capability capability, final Testbed testbed) {
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.createAlias("node", "no");
-        criteria.add(Restrictions.eq("no.setup", testbed.getSetup()));
-        criteria.add(Restrictions.eq("capability", capability));
-        criteria.setProjection(Projections.count("capability"));
-        criteria.setMaxResults(1);
-        return (Long) criteria.uniqueResult();
-    }
-
-    /**
      * Returns node reading stats of any node persisted.
      *
      * @return a list of NodeReadingStat objects
      */
+    @SuppressWarnings({"unchecked"})
     public List<NodeReadingStat> getNodeReadingStats() {
         final Session session = getSessionFactory().getCurrentSession();
 
         // get max/min reading for a node
-        Criteria criteria = session.createCriteria(NodeReading.class);
+        final Criteria criteria = session.createCriteria(NodeReading.class);
         criteria.setProjection(Projections.projectionList()
                 .add(Projections.groupProperty("node"))
                 .add(Projections.max("reading"))
                 .add(Projections.min("reading"))
                 .add(Projections.rowCount())
         );
-
-        // making the NodeReadingStat list
-        List<NodeReadingStat> stats = new ArrayList<NodeReadingStat>();
-        for (Object obj : criteria.list()) {
-            Object[] row = (Object[]) obj;
-            final Node node = (Node) row[0];
-            final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(node);
-            final Double maxReading = (Double) row[1];
-            final Double minReading = (Double) row[2];
-            final Long totalCount = (Long) row[3];
-
-            stats.add(new NodeReadingStat(node, lnr.getTimestamp(), lnr.getReading(), maxReading,
-                    minReading, totalCount));
+        List<Object> results;
+        if(criteria.list() != null) {
+            results = criteria.list();
+        }else{
+            results = new ArrayList<Object>();
         }
-        return stats;
-    }
 
-    /**
-     * Returns node reading stats of any node belonging to the given testbed.
-     *
-     * @param testbed , a testbed instance
-     * @return a list of NodeReadingStat objects
-     */
-    public List<NodeReadingStat> getNodeReadingStats(final Testbed testbed) {
-        final Session session = getSessionFactory().getCurrentSession();
-
-        // retrieve testbed setup
-        Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
-
-        // get max/min reading for a node
-        Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.in("node", setup.getNodes()));
-        criteria.setProjection(Projections.projectionList()
-                .add(Projections.groupProperty("node"))
-                .add(Projections.max("reading"))
-                .add(Projections.min("reading"))
-                .add(Projections.rowCount())
-        );
-
-        // making the NodeReadingStat list
-        List<NodeReadingStat> stats = new ArrayList<NodeReadingStat>();
+        // parsing the result array to a node reading stat array
+        final NodeReadingStat[] statsArray = new NodeReadingStat[results.size()];
+        int index = 0;
         for (Object obj : criteria.list()) {
             Object[] row = (Object[]) obj;
             final Node node = (Node) row[0];
@@ -330,10 +255,71 @@ public class NodeReadingController extends AbstractController<NodeReading> {
             final Double maxReading = (Double) row[1];
             final Double minReading = (Double) row[2];
             final Long totalCount = (Long) row[3];
-
-            stats.add(new NodeReadingStat(node, lastTimestamp, lastReading, maxReading, minReading, totalCount));
+            statsArray[index].setNode(node);
+            statsArray[index].setLastTimestamp(lastTimestamp);
+            statsArray[index].setLastReading(lastReading);
+            statsArray[index].setMaxReading(maxReading);
+            statsArray[index].setMinReading(minReading);
+            statsArray[index].setTotalCount(totalCount);
+            index++;
         }
-        return stats;
+        return Arrays.asList(statsArray);
+    }
+
+    /**
+     * Returns node reading stats of any node belonging to the given testbed.
+     *
+     * @param testbed , a testbed instance
+     * @return a list of NodeReadingStat objects
+     */
+    @SuppressWarnings({"unchecked"})
+    public List<NodeReadingStat> getNodeReadingStats(final Testbed testbed) {
+        final Session session = getSessionFactory().getCurrentSession();
+
+        // retrieve testbed setup
+        final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
+
+        // get max/min reading for a node
+        final Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.in("node", setup.getNodes()));
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.groupProperty("node"))
+                .add(Projections.max("reading"))
+                .add(Projections.min("reading"))
+                .add(Projections.rowCount())
+        );
+        List<Object> results;
+        if(criteria.list() != null) {
+            results = criteria.list();
+        }else{
+            results = new ArrayList<Object>();
+        }
+
+        // parsing the result array to a node reading stat array
+        final NodeReadingStat[] statsArray = new NodeReadingStat[results.size()];
+        int index = 0;
+        for (Object obj : results) {
+            Object[] row = (Object[]) obj;
+            final Node node = (Node) row[0];
+            final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(node);
+            Date lastTimestamp = null;
+            Double lastReading = null;
+            if (lnr != null) {
+                lastTimestamp = lnr.getTimestamp();
+                lastReading = lnr.getReading();
+            }
+            final Double maxReading = (Double) row[1];
+            final Double minReading = (Double) row[2];
+            final Long totalCount = (Long) row[3];
+            statsArray[index].setNode(node);
+            statsArray[index].setLastTimestamp(lastTimestamp);
+            statsArray[index].setLastReading(lastReading);
+            statsArray[index].setMaxReading(maxReading);
+            statsArray[index].setMinReading(minReading);
+            statsArray[index].setTotalCount(totalCount);
+            index++;
+        }
+        return Arrays.asList(statsArray);
     }
 
     /**
@@ -345,7 +331,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     public NodeReadingStat getNodeReadingStats(final Node node) {
         final Session session = getSessionFactory().getCurrentSession();
 
-        Criteria criteria = session.createCriteria(NodeReading.class);
+        final Criteria criteria = session.createCriteria(NodeReading.class);
         criteria.add(Restrictions.eq("node", node));
         criteria.setProjection(Projections.projectionList()
                 .add(Projections.groupProperty("node"))
@@ -355,7 +341,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         );
 
         criteria.setMaxResults(1);
-        Object[] row = (Object[]) criteria.uniqueResult();
+        final Object[] row = (Object[]) criteria.uniqueResult();
         final Node nodeQ = (Node) row[0];
         final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(node);
         Date lastTimestamp = null;

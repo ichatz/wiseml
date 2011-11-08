@@ -42,21 +42,21 @@ public class CapabilityImporter extends AbstractImporter<Capability> {
         Set<Capability> capabilitySet = new HashSet<Capability>();
         if (nodeList != null) {
             for (Node node : nodeList) {
-                Iterator<Capability> it = node.getCapabilities().iterator();
-                it.next().setNodes(null);
-                it.next().setNodes(null);
-                while (it.hasNext()) {
-                    capabilitySet.add(it.next());
+                Iterator<Capability> capabilityIterator = node.getCapabilities().iterator();
+                capabilityIterator.next().setNodes(null);
+                capabilityIterator.next().setNodes(null);
+                while (capabilityIterator.hasNext()) {
+                    capabilitySet.add(capabilityIterator.next());
                 }
             }
         }
         if (linkList != null) {
             for (Link link : linkList) {
-                Iterator<Capability> it = link.getCapabilities().iterator();
-                it.next().setLinks(null);
-                it.next().setLinks(null);
-                while (it.hasNext()) {
-                    capabilitySet.add(it.next());
+                Iterator<Capability> capabilityIterator = link.getCapabilities().iterator();
+                capabilityIterator.next().setLinks(null);
+                capabilityIterator.next().setLinks(null);
+                while (capabilityIterator.hasNext()) {
+                    capabilitySet.add(capabilityIterator.next());
                 }
             }
         }

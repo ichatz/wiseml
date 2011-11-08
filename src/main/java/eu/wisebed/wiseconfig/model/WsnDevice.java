@@ -9,35 +9,35 @@ public class WsnDevice {
     private String serialinterface;
     private String usbchipid;
 
-    public String getUrn() {
+    public final String getUrn() {
         return urn;
     }
 
-    public void setUrn(String urn) {
+    public final void setUrn(String urn) {
         this.urn = urn;
     }
 
-    public String getType() {
+    public final String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public final void setType(String type) {
         this.type = type;
     }
 
-    public String getSerialinterface() {
+    public final String getSerialinterface() {
         return serialinterface;
     }
 
-    public void setSerialinterface(String serialinterface) {
+    public final void setSerialinterface(String serialinterface) {
         this.serialinterface = serialinterface;
     }
 
-    public String getUsbchipid() {
+    public final String getUsbchipid() {
         return usbchipid;
     }
 
-    public void setUsbchipid(String usbchipid) {
+    public final void setUsbchipid(String usbchipid) {
         this.usbchipid = usbchipid;
     }
 }

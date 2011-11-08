@@ -20,7 +20,7 @@ public class TestbedConfiguration {
      *
      * @return nodes of the testbed configuration
      */
-    public List<Nodes> getNodes() {
+    public final List<Nodes> getNodes() {
         return nodes;
     }
 
@@ -29,22 +29,20 @@ public class TestbedConfiguration {
      *
      * @param nds of the testbed configuration
      */
-    public void setNodes(List<Nodes> nds) {
+    public final void setNodes(List<Nodes> nds) {
         this.nodes = nds;
     }
 
     /**
      * this method add a node in the configuration
      *
-     * @param nd of the testbed configuration
+     * @param nodes of the testbed configuration
      */
 
-    public void addNodes(Nodes nd) {
+    public final void addNodes(final Nodes nodes) {
         if (this.nodes == null) {
             this.nodes = new ArrayList<Nodes>();
         }
-        this.nodes.add(nd);
+        this.nodes.add(nodes);
     }
-
-
 }

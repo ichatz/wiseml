@@ -13,7 +13,7 @@ import java.io.InputStream;
 
 public class WiseConfigController {
 
-    private static Logger LOGGER = Logger.getLogger(WiseConfigController.class);
+    private final static Logger LOGGER = Logger.getLogger(WiseConfigController.class);
 
     /**
      * this method loads a wiseml from file.
@@ -22,12 +22,12 @@ public class WiseConfigController {
      * @return testbed configuration instance.
      * @throws org.jibx.runtime.JiBXException , JiBX Exception.
      */
-    public TestbedConfiguration loadWiseMLFromFile(InputStream file) throws JiBXException{
+    public TestbedConfiguration loadWiseMLFromFile(final InputStream file) throws JiBXException{
         TestbedConfiguration config = new TestbedConfiguration();
         try {
             // unmarshal wiseml information from file...
-            IBindingFactory bfact = BindingDirectory.getFactory(TestbedConfiguration.class);
-            IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
+            final IBindingFactory bfact = BindingDirectory.getFactory(TestbedConfiguration.class);
+            final IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
             config = (TestbedConfiguration) uctx.unmarshalDocument(file, null);
 
         } catch (JiBXException e) {
@@ -43,14 +43,14 @@ public class WiseConfigController {
      *
      * @param config , a testbed configuration instance
      * @return wiseml , serialized wiseml.
-     * @throws org.jibx.runtime.JiBXException
+     * @throws org.jibx.runtime.JiBXException . JiBXException.
      */
-    public String getConfigurationFile(TestbedConfiguration config) throws JiBXException {
+    public String getConfigurationFile(final TestbedConfiguration config) throws JiBXException {
         final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         try {
             // unmarshal wiseml information from file...
-            IBindingFactory bfact = BindingDirectory.getFactory(TestbedConfiguration.class);
-            IMarshallingContext mctx = bfact.createMarshallingContext();
+            final IBindingFactory bfact = BindingDirectory.getFactory(TestbedConfiguration.class);
+            final IMarshallingContext mctx = bfact.createMarshallingContext();
             mctx.setIndent(5);
             mctx.setOutput(buffer, null);
             mctx.marshalDocument(config);

@@ -25,9 +25,9 @@ public class TraceController {
     public Trace writeTraceAsFile(Trace trace, File file) throws FileNotFoundException, JiBXException {
 
 
-        HashMap<Integer, Set<String>> mapTr = new HashMap<Integer, Set<String>>();
-        HashMap<String, HashMap<Integer, Set<String>>> map = new HashMap<String, HashMap<Integer, Set<String>>>();
-        Set<String> messages = new TreeSet<String>();
+        final HashMap<Integer, Set<String>> mapTr = new HashMap<Integer, Set<String>>();
+        final HashMap<String, HashMap<Integer, Set<String>>> map = new HashMap<String, HashMap<Integer, Set<String>>>();
+        final Set<String> messages = new TreeSet<String>();
 
         for (String message : messages) {
             //messages.add(trace.getNode().getMessage().getReading());
@@ -36,21 +36,21 @@ public class TraceController {
         //mapTr.put(trace.getTimestamp(), messages);
         //map.put(trace.getNode().getId(), mapTr);
 
-        List<Integer> listTimestmps = new ArrayList<Integer>();
+        final List<Integer> listTimestmps = new ArrayList<Integer>();
         listTimestmps.addAll(mapTr.keySet());
         Collections.sort(listTimestmps);
 
-        List<String> finalList = new ArrayList<String>();
+        final List<String> finalList = new ArrayList<String>();
         finalList.addAll(map.keySet());
         Collections.sort(finalList);
 
 
         try {
             // marshal object back out to file (with nice indentation, as UTF-8)...
-            IBindingFactory bfact = BindingDirectory.getFactory(Trace.class);
-            IMarshallingContext mctx = bfact.createMarshallingContext();
+            final IBindingFactory bfact = BindingDirectory.getFactory(Trace.class);
+            final IMarshallingContext mctx = bfact.createMarshallingContext();
             mctx.setIndent(5);
-            FileOutputStream output = new FileOutputStream(file);
+            final FileOutputStream output = new FileOutputStream(file);
             mctx.setOutput(output, null);
             mctx.marshalDocument(trace);
 

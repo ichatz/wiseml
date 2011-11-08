@@ -172,17 +172,17 @@ public class LinkReadingController extends AbstractController<LinkReading> {
                               final Date timestamp) throws UnknownTestbedException {
 
         // look for testbed
-        Testbed testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
+        final Testbed testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
         if (testbed == null) {
             throw new UnknownTestbedException(urnPrefix);
         }
         // look for node and target
-        Node source = NodeController.getInstance().getByID(sourceId);
+        final Node source = NodeController.getInstance().getByID(sourceId);
         if (source == null) {
             // if source node not found in db make it and store it
             prepareInsertNode(testbed, sourceId);
         }
-        Node target = NodeController.getInstance().getByID(targetId);
+        final Node target = NodeController.getInstance().getByID(targetId);
         if (target == null) {
             // if target node not found in db make it and store it
             prepareInsertNode(testbed, targetId);
@@ -215,7 +215,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
 
 
         // make a new link reading entity
-        LinkReading reading = new LinkReading();
+        final LinkReading reading = new LinkReading();
         reading.setLink(link);
         reading.setCapability(capability);
         reading.setReading(readingValue);
@@ -245,7 +245,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      */
     public Long getLinkReadingsCount(final Link link) {
         final org.hibernate.Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(LinkReading.class);
+        final Criteria criteria = session.createCriteria(LinkReading.class);
         criteria.createAlias("link", "id");
         criteria.add(Restrictions.eq("id.source", link.getSource()));
         criteria.add(Restrictions.eq("id.target", link.getTarget()));

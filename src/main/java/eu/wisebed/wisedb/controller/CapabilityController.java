@@ -2,8 +2,6 @@ package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
-import eu.wisebed.wiseml.model.setup.Link;
-import eu.wisebed.wiseml.model.setup.Node;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
@@ -11,7 +9,6 @@ import org.hibernate.criterion.Restrictions;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 
 /**
@@ -99,58 +96,6 @@ public class CapabilityController extends AbstractController<Capability> {
         return super.list(new Capability());
     }
 
-    /**
-     * Returns all nodes of a capability.
-     *
-     * @param capability , a capability
-     * @return returns a set of nodes that have this capability
-     */
-    public Set<Node> listNodes(final Capability capability) {
-        final Session session = getSessionFactory().getCurrentSession();
-        Capability fetchedCapability = (Capability) session.get(Capability.class, capability.getName());
-        return fetchedCapability.getNodes();
-    }
-
-    /**
-     * Returns all nodes of a capability.
-     *
-     * @param capability , a capability
-     * @return returns a set of links that have this capability
-     */
-    public Set<Link> listLinks(final Capability capability) {
-        final Session session = getSessionFactory().getCurrentSession();
-        Capability fetchedCapability = (Capability) session.get(Capability.class, capability.getName());
-        return fetchedCapability.getLinks();
-    }
-
-    /**
-     * Listing all node capabilities from the database.
-     *
-     * @return a list of all node related capabilities persisted.
-     */
-    public List<Capability> listNodeCapabilities() {
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(Capability.class);
-        criteria.add(Restrictions.isNotNull("nodes"));
-        criteria.add(Restrictions.isNotEmpty("nodes"));
-        criteria.addOrder(Order.asc("name"));
-        return (List<Capability>) criteria.list();
-    }
-
-
-    /**
-     * Listing all link capabilities from the database.
-     *
-     * @return a list of all link related capabilities persisted.
-     */
-    public List<Capability> listLinkCapabilities() {
-        final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(Capability.class);
-        criteria.add(Restrictions.isNotNull("links"));
-        criteria.add(Restrictions.isNotEmpty("links"));
-        criteria.addOrder(Order.asc("name"));
-        return (List<Capability>) criteria.list();
-    }
 
     /**
      * Listing all the capabilities from the database belonging to a selected testbed.
@@ -159,9 +104,9 @@ public class CapabilityController extends AbstractController<Capability> {
      * @return a list of testbed capabilities.
      */
     public List<Capability> list(final Testbed testbed) {
-        List<Capability> capabilities = new ArrayList<Capability>();
-        List<Capability> nodeCapabilities = listNodeCapabilities(testbed);
-        List<Capability> linkCapabilities = listLinkCapabilities(testbed);
+        final List<Capability> capabilities = new ArrayList<Capability>();
+        final List<Capability> nodeCapabilities = listNodeCapabilities(testbed);
+        final List<Capability> linkCapabilities = listLinkCapabilities(testbed);
         capabilities.addAll(nodeCapabilities);
         capabilities.addAll(linkCapabilities);
         return capabilities;
@@ -173,9 +118,10 @@ public class CapabilityController extends AbstractController<Capability> {
      * @param testbed , a selected testbed.
      * @return a list of testbed nodes capabilities.
      */
+    @SuppressWarnings({"unchecked"})
     public List<Capability> listNodeCapabilities(final Testbed testbed) {
         final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(Capability.class);
+        final Criteria criteria = session.createCriteria(Capability.class);
         criteria.createAlias("nodes", "ns");
         criteria.add(Restrictions.eq("ns.setup", testbed.getSetup()));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
@@ -189,9 +135,10 @@ public class CapabilityController extends AbstractController<Capability> {
      * @param testbed , a selected testbed.
      * @return a list of testbed link capabilities.
      */
+    @SuppressWarnings({"unchecked"})
     public List<Capability> listLinkCapabilities(final Testbed testbed) {
         final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(Capability.class);
+        final Criteria criteria = session.createCriteria(Capability.class);
         criteria.createAlias("links", "ls");
         criteria.add(Restrictions.eq("ls.setup", testbed.getSetup()));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);

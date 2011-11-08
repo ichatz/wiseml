@@ -91,7 +91,7 @@ public class NodeController extends AbstractController<Node> {
      */
     public List<Node> list(final Testbed testbed) {
         final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(Node.class);
+        final Criteria criteria = session.createCriteria(Node.class);
         criteria.add(Restrictions.eq("setup", testbed.getSetup()));
         criteria.addOrder(Order.asc("id"));
         return (List<Node>) criteria.list();
@@ -105,7 +105,7 @@ public class NodeController extends AbstractController<Node> {
      */
     public List<Node> listCapabilityNodes(final Capability capability) {
         final org.hibernate.Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(Node.class);
+        final Criteria criteria = session.createCriteria(Node.class);
         criteria.createAlias("capabilities", "caps")
                 .add(Restrictions.eq("caps.name", capability.getName()));
         criteria.addOrder(Order.asc("id"));
@@ -121,7 +121,7 @@ public class NodeController extends AbstractController<Node> {
      */
     public List<Node> listCapabilityNodes(final Capability capability, final Testbed testbed) {
         final org.hibernate.Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(Node.class);
+        final Criteria criteria = session.createCriteria(Node.class);
         criteria.add(Restrictions.eq("setup", testbed.getSetup()));
         criteria.createAlias("capabilities", "caps")
                 .add(Restrictions.eq("caps.name", capability.getName()));

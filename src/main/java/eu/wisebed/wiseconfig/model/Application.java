@@ -14,7 +14,7 @@ public class Application {
         return factoryclass;
     }
 
-    public void setFactoryclass(String factoryclass) {
+    public void setFactoryclass(final String factoryclass) {
         this.factoryclass = factoryclass;
     }
 
@@ -22,7 +22,7 @@ public class Application {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -30,7 +30,7 @@ public class Application {
         return wsnDev;
     }
 
-    public void setWsnDev(WsnDevice wsnDev) {
+    public void setWsnDev(final WsnDevice wsnDev) {
         this.wsnDev = wsnDev;
     }
 
@@ -38,7 +38,7 @@ public class Application {
         return portal;
     }
 
-    public void setPortal(PortalApp portal) {
+    public void setPortal(final PortalApp portal) {
         this.portal = portal;
     }
 }

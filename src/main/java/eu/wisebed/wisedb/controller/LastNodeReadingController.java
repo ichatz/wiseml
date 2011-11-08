@@ -58,7 +58,7 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
      */
     public LastNodeReading getByID(final Node node, final Capability capability) {
         final Session session = this.getSessionFactory().getCurrentSession();
-        LastNodeReading lastNodeReading = new LastNodeReading();
+        final LastNodeReading lastNodeReading = new LastNodeReading();
         lastNodeReading.setNode(node);
         lastNodeReading.setCapability(capability);
         return (LastNodeReading) session.get(LastNodeReading.class, lastNodeReading);
@@ -73,7 +73,7 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
     public List<LastNodeReading> getByTestbed(final Testbed testbed) {
 
         // retrieve testbed setup
-        Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
+        final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
 
         final Session session = this.getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(LastNodeReading.class);
@@ -89,7 +89,7 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
      */
     public List<LastNodeReading> getByNode(final Node node) {
         final Session session = this.getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(LastNodeReading.class);
+        final Criteria criteria = session.createCriteria(LastNodeReading.class);
         criteria.add(Restrictions.eq("node", node));
         return (List<LastNodeReading>) criteria.list();
     }
@@ -102,7 +102,7 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
      */
     public List<LastNodeReading> getByCapability(final Capability capability) {
         final Session session = this.getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(LastNodeReading.class);
+        final Criteria criteria = session.createCriteria(LastNodeReading.class);
         criteria.add(Restrictions.eq("capability", capability));
         return (List<LastNodeReading>) criteria.list();
     }
@@ -117,10 +117,10 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
     public List<LastNodeReading> getByCapability(final Testbed testbed, final Capability capability) {
 
         // retrieve testbed setup
-        Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
+        final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
 
         final Session session = this.getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(LastNodeReading.class);
+        final Criteria criteria = session.createCriteria(LastNodeReading.class);
         criteria.add(Restrictions.in("node", setup.getNodes()));
         criteria.add(Restrictions.eq("capability", capability));
         return (List<LastNodeReading>) criteria.list();
@@ -136,12 +136,12 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
         final Session session = this.getSessionFactory().getCurrentSession();
 
         // a detached criteria for max timestamp for last node readings in testbed and capability
-        DetachedCriteria maxTimestamp = DetachedCriteria.forClass(LastNodeReading.class)
+        final DetachedCriteria maxTimestamp = DetachedCriteria.forClass(LastNodeReading.class)
                 .add(Restrictions.eq("node", node))
                 .setProjection(Projections.max("timestamp"));
 
         // get latest node reading by comparing it with max timestamp
-        Criteria criteria = session.createCriteria(LastNodeReading.class);
+        final Criteria criteria = session.createCriteria(LastNodeReading.class);
         criteria.add(Restrictions.eq("node", node));
         criteria.add(Property.forName("timestamp").eq(maxTimestamp));
         criteria.setMaxResults(1);
@@ -158,12 +158,12 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
         final Session session = this.getSessionFactory().getCurrentSession();
 
         // a detached criteria for max timestamp for last node readings in testbed and capability
-        DetachedCriteria maxTimestamp = DetachedCriteria.forClass(LastNodeReading.class)
+        final DetachedCriteria maxTimestamp = DetachedCriteria.forClass(LastNodeReading.class)
                 .add(Restrictions.eq("capability", capability))
                 .setProjection(Projections.max("timestamp"));
 
         // get latest node reading by comparing it with max timestamp
-        Criteria criteria = session.createCriteria(LastNodeReading.class);
+        final Criteria criteria = session.createCriteria(LastNodeReading.class);
         criteria.add(Restrictions.eq("capability", capability));
         criteria.add(Property.forName("timestamp").eq(maxTimestamp));
         criteria.setMaxResults(1);
@@ -180,18 +180,18 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
     public LastNodeReading getLatestNodeReading(final Testbed testbed, final Capability capability) {
 
         // retrieve testbed setup
-        Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
+        final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
 
         final Session session = this.getSessionFactory().getCurrentSession();
 
         // a detached criteria for max timestamp for last node readings in testbed and capability
-        DetachedCriteria maxTimestamp = DetachedCriteria.forClass(LastNodeReading.class)
+        final DetachedCriteria maxTimestamp = DetachedCriteria.forClass(LastNodeReading.class)
                 .add(Restrictions.in("node", setup.getNodes()))
                 .add(Restrictions.eq("capability", capability))
                 .setProjection(Projections.max("timestamp"));
 
         // get latest node reading by comparing it with max timestamp
-        Criteria criteria = session.createCriteria(LastNodeReading.class);
+        final Criteria criteria = session.createCriteria(LastNodeReading.class);
         criteria.add(Restrictions.in("node", setup.getNodes()));
         criteria.add(Restrictions.eq("capability", capability));
         criteria.add(Property.forName("timestamp").eq(maxTimestamp));

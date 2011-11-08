@@ -7,19 +7,19 @@ public class ProtobufInterface {
     private String port;
     private String ip;
 
-    public String getPort() {
+    public final String getPort() {
         return port;
     }
 
-    public void setPort(String port) {
+    public final void setPort(final String port) {
         this.port = port;
     }
 
-    public String getIp() {
+    public final String getIp() {
         return ip;
     }
 
-    public void setIp(String ip) {
+    public final void setIp(final String ip) {
         this.ip = ip;
     }
 }

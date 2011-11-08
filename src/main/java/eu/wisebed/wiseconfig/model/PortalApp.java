@@ -11,9 +11,7 @@ public class PortalApp {
         return webSERVICE;
     }
 
-    public void setWebSERVICE(WebService webSERVICE) {
+    public void setWebSERVICE(final WebService webSERVICE) {
         this.webSERVICE = webSERVICE;
     }
-
-
 }

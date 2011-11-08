@@ -102,9 +102,9 @@ public class TestbedController extends AbstractController<Testbed> {
         final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
 
         // get testbed only setup
-        Setup setup = testbed.getSetup();
+        final Setup setup = testbed.getSetup();
 
-        Criteria criteria = session.createCriteria(Node.class);
+        final Criteria criteria = session.createCriteria(Node.class);
         criteria.add(Restrictions.eq("setup", setup));
         criteria.addOrder(Order.asc("id"));
         return (List<Node>) criteria.list();
@@ -120,9 +120,9 @@ public class TestbedController extends AbstractController<Testbed> {
     public List<Link> listTestbedLinks(final Testbed testbed) {
         final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
         // get testbed only setup
-        Setup setup = testbed.getSetup();
+        final Setup setup = testbed.getSetup();
 
-        Criteria criteria;
+        final Criteria criteria;
         criteria = session.createCriteria(Link.class);
         criteria.add(Restrictions.eq("setup", setup));
         criteria.addOrder(Order.asc("source"));

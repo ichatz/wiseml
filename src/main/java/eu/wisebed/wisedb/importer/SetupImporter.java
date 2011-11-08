@@ -32,7 +32,7 @@ public class SetupImporter extends AbstractImporter<Setup> {
     /**
      * define set of all setup's capabilities (Nodes & Links) with no duplicate entries
      */
-    private Set<Capability> capabilities;
+    private final Set<Capability> capabilities;
 
 
     /**
@@ -53,14 +53,30 @@ public class SetupImporter extends AbstractImporter<Setup> {
     }
 
     /**
+     * Returns testbed.
+     * @return returns testbed.
+     */
+    public Testbed getTestbed() {
+        return testbed;
+    }
+
+    /**
+     * Returns capabilities set
+     * @return returns capabilities set.
+     */
+    public Set<Capability> getCapabilities() {
+        return capabilities;
+    }
+
+    /**
      * Convert the WiseML setup to a WiseDB setup record.
      */
     public void convert() throws Exception {
 
         // retrieve setup record record from controllers InputStream
         final WiseMLController cnt = new WiseMLController();
-        WiseML root = cnt.loadWiseMLFromFile(getWiseMlStream());
-        Setup setup = root.getSetup();
+        final WiseML root = cnt.loadWiseMLFromFile(getWiseMlStream());
+        final Setup setup = root.getSetup();
 
         // if setup is null do nothing
         if (setup == null){
@@ -92,11 +108,12 @@ public class SetupImporter extends AbstractImporter<Setup> {
      *
      * @param collection , collection of setup entries.
      */
-    public void convertCollection(final Collection<Setup> collection) {
+    public void convertCollection(final Collection<Setup> collection) throws Exception {
 
         if (collection == null) {
             LOGGER.fatal("Collection cannot be null");
-            System.exit(-1);
+            throw new Exception("Collection cannot be null");
+
         }
 
         // set entity collection

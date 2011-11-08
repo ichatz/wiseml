@@ -23,7 +23,7 @@ public class Nodes {
         return ID;
     }
 
-    public void setID(String ID) {
+    public void setID(final String ID) {
         this.ID = ID;
     }
 
@@ -31,7 +31,7 @@ public class Nodes {
         return names;
     }
 
-    public void setNames(List<Nodename> namess) {
+    public void setNames(final List<Nodename> namess) {
         this.names = namess;
     }
 
@@ -39,7 +39,7 @@ public class Nodes {
         return applications;
     }
 
-    public void setApplications(List<Application> applications) {
+    public void setApplications(final List<Application> applications) {
         this.applications = applications;
     }
 
@@ -47,25 +47,25 @@ public class Nodes {
         return serverConnections;
     }
 
-    public void setServerConnections(List<ServerConnection> serverConnections) {
+    public void setServerConnections(final List<ServerConnection> serverConnections) {
         this.serverConnections = serverConnections;
     }
 
-    public void addNodename(Nodename nodename) {
+    public void addNodename(final Nodename nodename) {
         if (this.names == null) {
             this.names = new ArrayList<Nodename>();
         }
         this.names.add(nodename);
     }
 
-    public void addApplication(Application app) {
+    public void addApplication(final Application app) {
         if (this.applications == null) {
             this.applications = new ArrayList<Application>();
         }
         this.applications.add(app);
     }
 
-    public void addServerConnection(ServerConnection con) {
+    public void addServerConnection(final ServerConnection con) {
         if (this.serverConnections == null) {
             this.serverConnections = new ArrayList<ServerConnection>();
         }

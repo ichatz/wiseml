@@ -22,8 +22,8 @@ public class NodeImporter extends AbstractImporter<Node> {
     public void convert() throws JiBXException {
         // retrieve setup record record from controllers InputStream
         final WiseMLController cnt = new WiseMLController();
-        WiseML root = cnt.loadWiseMLFromFile(getWiseMlStream());
-        List<Node> nodeList = root.getSetup().getNodes();
+        final WiseML root = cnt.loadWiseMLFromFile(getWiseMlStream());
+        final List<Node> nodeList = root.getSetup().getNodes();
 
         // check for null entry
         if (nodeList == null) {
@@ -48,8 +48,8 @@ public class NodeImporter extends AbstractImporter<Node> {
     public void update() throws JiBXException {
         // retrieve setup record record from controllers InputStream
         final WiseMLController cnt = new WiseMLController();
-        WiseML root = cnt.loadWiseMLFromFile(getWiseMlStream());
-        List<Node> nodeList = root.getSetup().getNodes();
+        final WiseML root = cnt.loadWiseMLFromFile(getWiseMlStream());
+        final List<Node> nodeList = root.getSetup().getNodes();
 
         // check for null entry
         if (nodeList == null) {
@@ -59,7 +59,6 @@ public class NodeImporter extends AbstractImporter<Node> {
 
         // set as entities
         setEntities(nodeList);
-        int count = 0;
         // import records to db
         for (Node node : nodeList) {
             NodeController.getInstance().update(node);

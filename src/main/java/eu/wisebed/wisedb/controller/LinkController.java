@@ -50,7 +50,7 @@ public class LinkController extends AbstractController<Link> {
      */
     public Link getByID(final String sourceId, final String targetId) {
         final Session session = this.getSessionFactory().getCurrentSession();
-        Link linkWithId = new Link();
+        final Link linkWithId = new Link();
         linkWithId.setSource(sourceId);
         linkWithId.setTarget(targetId);
         return (Link) session.get(Link.class, linkWithId);
@@ -64,7 +64,7 @@ public class LinkController extends AbstractController<Link> {
      */
     public void delete(final String sourceId, final String targetId) {
         final Session session = this.getSessionFactory().getCurrentSession();
-        Link linkWithId = new Link();
+        final Link linkWithId = new Link();
         linkWithId.setSource(sourceId);
         linkWithId.setTarget(targetId);
         session.delete(linkWithId);
@@ -88,7 +88,7 @@ public class LinkController extends AbstractController<Link> {
     @SuppressWarnings({"unchecked"})
     public List<Link> list(final Testbed testbed) {
         final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(Link.class);
+        final Criteria criteria = session.createCriteria(Link.class);
         criteria.add(Restrictions.eq("setup", testbed.getSetup()));
         criteria.addOrder(Order.asc("source"));
         return (List<Link>) criteria.list();
@@ -104,7 +104,7 @@ public class LinkController extends AbstractController<Link> {
     @SuppressWarnings({"unchecked"})
     public List<Link> listCapabilityLinks(final Capability capability, final Testbed testbed) {
         final Session session = getSessionFactory().getCurrentSession();
-        Criteria criteria = session.createCriteria(Link.class);
+        final Criteria criteria = session.createCriteria(Link.class);
         criteria.add(Restrictions.eq("setup", testbed.getSetup()));
         criteria.createAlias("capabilities", "caps")
                 .add(Restrictions.eq("caps.name", capability.getName()));

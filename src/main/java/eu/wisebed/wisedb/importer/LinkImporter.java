@@ -22,8 +22,8 @@ public class LinkImporter extends AbstractImporter<Link> {
     public void convert() throws JiBXException {
         // retrieve setup record record from controllers InputStream
         final WiseMLController cnt = new WiseMLController();
-        WiseML root = cnt.loadWiseMLFromFile(getWiseMlStream());
-        List<Link> linkList = root.getSetup().getLink();
+        final WiseML root = cnt.loadWiseMLFromFile(getWiseMlStream());
+        final List<Link> linkList = root.getSetup().getLink();
 
         // check for null entry
         if (linkList == null) {

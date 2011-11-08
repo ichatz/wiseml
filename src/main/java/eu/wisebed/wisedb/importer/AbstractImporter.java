@@ -140,7 +140,7 @@ public abstract class AbstractImporter<E> {
         setSessionManagement(WSNServiceHelper.getSessionManagementService(getEndpointUrl()));
 
         // get wiseml in a string
-        String wiseMl = getSessionManagement().getNetwork();
+        final String wiseMl = getSessionManagement().getNetwork();
 
         // setting input stream
         setWiseMlStream(new ByteArrayInputStream(wiseMl.getBytes()));
@@ -183,6 +183,7 @@ public abstract class AbstractImporter<E> {
 
     /**
      * Abstract declaration of the convert method. Sub-classes must implement this method.
+     * @throws Exception , an exception
      */
     public abstract void convert() throws Exception;
 
@@ -190,6 +191,7 @@ public abstract class AbstractImporter<E> {
      * Abstract declareation of the convertCollection method. Sub-class must implement this metnod
      *
      * @param records , a collection of E instances.
+     * @throws Exception , an exception
      */
-    public abstract void convertCollection(Collection<E> records);
+    public abstract void convertCollection(Collection<E> records) throws Exception;
 }

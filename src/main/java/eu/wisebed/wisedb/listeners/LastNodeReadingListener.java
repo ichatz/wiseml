@@ -22,7 +22,6 @@ public class LastNodeReadingListener extends DefaultSaveOrUpdateEventListener {
      */
     @Override
     public void onSaveOrUpdate(final SaveOrUpdateEvent event) {
-
         //Ignores all events which are not instances of the NodeReading class.
         if (event.getObject() instanceof NodeReading) {
 

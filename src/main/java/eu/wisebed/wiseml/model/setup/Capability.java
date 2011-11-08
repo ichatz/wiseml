@@ -214,7 +214,7 @@ public class Capability implements Serializable{
         }
 
         // equility against name
-        Capability test = (Capability) obj;
+        final Capability test = (Capability) obj;
         return (test.name == null || test.getName() == null) ? (false) : (this.name.equals(test.getName()));
     }
 

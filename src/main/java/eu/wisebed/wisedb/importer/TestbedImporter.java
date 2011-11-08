@@ -131,7 +131,7 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
      * Returns true if the testbed is federated or not.
      * @return true/false.
      */
-    public boolean getFederated() {
+    public boolean isFederated() {
         return federated;
     }
 
@@ -183,12 +183,12 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     public void convert() {
 
         // Setting up the testbed entity
-        Testbed testbed = new Testbed();
+        final Testbed testbed = new Testbed();
         testbed.setName(getName());
         testbed.setUrnPrefix(getWebPageUrl());
         testbed.setUrl(getWebPageUrl());
         testbed.setDescription(getDescription());
-        testbed.setFederated(getFederated());
+        testbed.setFederated(isFederated());
         testbed.setRsUrl(getRsUrl());
         testbed.setSnaaUrl(getSnaaUrl());
         testbed.setSessionUrl(getSessionUrl());
