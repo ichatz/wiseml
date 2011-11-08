@@ -41,8 +41,8 @@ public final class LastNodeReadingObservable extends Observable {
      * @param nodeReading the Last NodeReading
      */
     public void addNodeReading(final NodeReading nodeReading) {
-        this.setChanged();
-        this.notifyObservers(nodeReading);
+        LastNodeReadingObservable.getInstance().setChanged();
+        LastNodeReadingObservable.getInstance().notifyObservers(nodeReading);
     }
 }
 
