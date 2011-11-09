@@ -109,9 +109,9 @@ public final class LastNodeReadingConsumer {
      * @param capabilityID the key
      * @return an ArrayLis
      */
-    protected AbstractNodeReadingListener[] getListener(final String capabilityID) {
+    protected Object[] getListener(final String capabilityID) {
         // a temporary array buffer
-        return (AbstractNodeReadingListener[]) listeners.get(capabilityID).toArray();
+        return listeners.get(capabilityID).toArray();
     }
 
     /**
