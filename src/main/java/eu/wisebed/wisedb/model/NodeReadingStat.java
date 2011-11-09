@@ -31,7 +31,7 @@ public class NodeReadingStat {
         return node;
     }
 
-    public void setNode(Node node) {
+    public void setNode(final Node node) {
         this.node = node;
     }
 

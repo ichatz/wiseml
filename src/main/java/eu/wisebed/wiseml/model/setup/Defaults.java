@@ -36,7 +36,7 @@ public class Defaults implements Serializable{
      *
      * @param node nodes defaults.
      */
-    public void setNode(Node node) {
+    public void setNode(final Node node) {
         this.node = node;
     }
 
@@ -54,7 +54,7 @@ public class Defaults implements Serializable{
      *
      * @param link links defaults.
      */
-    public void setLink(Link link) {
+    public void setLink(final Link link) {
         this.link = link;
     }
 }

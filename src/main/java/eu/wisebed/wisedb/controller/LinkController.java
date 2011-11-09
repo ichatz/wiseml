@@ -16,6 +16,10 @@ public class LinkController extends AbstractController<Link> {
      */
     private static LinkController ourInstance = null;
 
+    private final static String SOURCE = "source";
+    private final static String SETUP = "setup";
+    private final static String CAPABILITIES = "capabilities";
+
     /**
      * Public constructor .
      */
@@ -89,8 +93,8 @@ public class LinkController extends AbstractController<Link> {
     public List<Link> list(final Testbed testbed) {
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Link.class);
-        criteria.add(Restrictions.eq("setup", testbed.getSetup()));
-        criteria.addOrder(Order.asc("source"));
+        criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
+        criteria.addOrder(Order.asc(SOURCE));
         return (List<Link>) criteria.list();
     }
 
@@ -105,10 +109,10 @@ public class LinkController extends AbstractController<Link> {
     public List<Link> listCapabilityLinks(final Capability capability, final Testbed testbed) {
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Link.class);
-        criteria.add(Restrictions.eq("setup", testbed.getSetup()));
-        criteria.createAlias("capabilities", "caps")
+        criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
+        criteria.createAlias(CAPABILITIES, "caps")
                 .add(Restrictions.eq("caps.name", capability.getName()));
-        criteria.addOrder(Order.asc("source"));
+        criteria.addOrder(Order.asc(SOURCE));
         return (List<Link>) criteria.list();
     }
 }

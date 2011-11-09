@@ -70,7 +70,7 @@ public class Capability implements Serializable{
      *
      * @param name the name of the capability.
      */
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -88,7 +88,7 @@ public class Capability implements Serializable{
      *
      * @param datatype the datatype of the capability.
      */
-    public void setDatatype(String datatype) {
+    public void setDatatype(final String datatype) {
         this.datatype = datatype;
     }
 
@@ -106,15 +106,23 @@ public class Capability implements Serializable{
      *
      * @param unit the unit of the capability.
      */
-    public void setUnit(String unit) {
+    public void setUnit(final String unit) {
         this.unit = unit;
     }
 
+    /**
+     * Returns default value
+     * @return default value.
+     */
     public String getDefaultvalue() {
         return defaultvalue;
     }
 
-    public void setDefaultvalue(String defaultvalue) {
+    /**
+     * Sets default value.
+     * @param defaultvalue default value
+     */
+    public void setDefaultvalue(final String defaultvalue) {
         this.defaultvalue = defaultvalue;
     }
 

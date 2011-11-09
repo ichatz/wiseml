@@ -2,9 +2,11 @@ package eu.wisebed.wisedb.importer;
 
 import eu.wisebed.api.sm.SessionManagement;
 import eu.wisebed.testbed.api.wsn.WSNServiceHelper;
+import org.jibx.runtime.JiBXException;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
 
@@ -121,19 +123,19 @@ public abstract class AbstractImporter<E> {
      *
      * @param wiseMlPath , the path of the WiseML document.
      */
-    public void setWiseMlPath(String wiseMlPath) {
+    public void setWiseMlPath(final String wiseMlPath) {
         this.wiseMlPath = wiseMlPath;
     }
 
     /**
      * Connect to the remote Session Managment Service.
      *
-     * @throws Exception exception
+     * @throws NullPointerException exception
      */
-    public void connect() throws Exception {
+    public void connect() throws NullPointerException {
 
         if (getEndpointUrl() == null) {
-            throw new Exception("Remote Session Management Service endpoint is null");
+            throw new NullPointerException("Remote Session Management Service endpoint is null");
         }
 
         // set session managementService
@@ -152,7 +154,7 @@ public abstract class AbstractImporter<E> {
      * @param url , session managment service URL
      * @throws Exception exception
      */
-    public void connect(final String url) throws Exception {
+    public void connect(final String url) throws NullPointerException {
 
         // set endpoint url
         setEndpointUrl(url);
@@ -163,9 +165,9 @@ public abstract class AbstractImporter<E> {
      * Open local WiseML document file in the path.
      *
      * @param path, a path to a WiseML document file.
-     * @throws Exception exception
+     * @throws IOException exception
      */
-    public void open(final String path) throws Exception {
+    public void open(final String path) throws IOException {
 
         // set path to open
         setWiseMlPath(path);
@@ -175,23 +177,23 @@ public abstract class AbstractImporter<E> {
     /**
      * Open local WiseML document file in the wiseMlpath.
      *
-     * @throws Exception exception
+     * @throws IOException exception
      */
-    public void open() throws Exception {
+    public void open() throws IOException {
         wiseMlStream = new FileInputStream(getWiseMlPath());
     }
 
     /**
      * Abstract declaration of the convert method. Sub-classes must implement this method.
-     * @throws Exception , an exception
+     * @throws NullPointerException , an exception
      */
-    public abstract void convert() throws Exception;
+    public abstract void convert() throws JiBXException,NullPointerException;
 
     /**
      * Abstract declareation of the convertCollection method. Sub-class must implement this metnod
      *
      * @param records , a collection of E instances.
-     * @throws Exception , an exception
+     * @throws NullPointerException , an exception
      */
-    public abstract void convertCollection(Collection<E> records) throws Exception;
+    public abstract void convertCollection(final Collection<E> records) throws JiBXException,NullPointerException;
 }

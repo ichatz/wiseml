@@ -50,7 +50,7 @@ public class WiseML {
      *
      * @param value the value of the wiseml.
      */
-    public void setVersion(String value) {
+    public void setVersion(final String value) {
         this.version = value;
     }
 
@@ -68,7 +68,7 @@ public class WiseML {
      *
      * @param value a url.
      */
-    public void setXmlns(String value) {
+    public void setXmlns(final String value) {
         this.xmlns = value;
     }
 
@@ -86,7 +86,7 @@ public class WiseML {
      *
      * @param setup the wiseml setup.
      */
-    public void setSetup(Setup setup) {
+    public void setSetup(final Setup setup) {
         this.setup = setup;
     }
 
@@ -104,7 +104,7 @@ public class WiseML {
      *
      * @param scenario the wiseml scenario.
      */
-    public void setScenario(Scenario scenario) {
+    public void setScenario(final Scenario scenario) {
         this.scenario = scenario;
     }
 
@@ -122,7 +122,7 @@ public class WiseML {
      *
      * @param trace the wiseml trace.
      */
-    public void setTrace(Trace trace) {
+    public void setTrace(final Trace trace) {
         this.trace = trace;
     }
 

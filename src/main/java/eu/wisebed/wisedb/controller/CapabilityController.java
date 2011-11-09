@@ -20,6 +20,10 @@ public class CapabilityController extends AbstractController<Capability> {
      */
     private static CapabilityController ourInstance = null;
 
+    private final static String CAPABILITY_NAME = "name";
+    private final static String NODES = "nodes";
+    private final static String LINKS = "links";
+
     /**
      * Public constructor .
      */
@@ -122,10 +126,10 @@ public class CapabilityController extends AbstractController<Capability> {
     public List<Capability> listNodeCapabilities(final Testbed testbed) {
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Capability.class);
-        criteria.createAlias("nodes", "ns");
+        criteria.createAlias(NODES, "ns");
         criteria.add(Restrictions.eq("ns.setup", testbed.getSetup()));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-        criteria.addOrder(Order.asc("name"));
+        criteria.addOrder(Order.asc(CAPABILITY_NAME));
         return (List<Capability>) criteria.list();
     }
 
@@ -139,10 +143,10 @@ public class CapabilityController extends AbstractController<Capability> {
     public List<Capability> listLinkCapabilities(final Testbed testbed) {
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Capability.class);
-        criteria.createAlias("links", "ls");
+        criteria.createAlias(LINKS, "ls");
         criteria.add(Restrictions.eq("ls.setup", testbed.getSetup()));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-        criteria.addOrder(Order.asc("name"));
+        criteria.addOrder(Order.asc(CAPABILITY_NAME));
         return (List<Capability>) criteria.list();
     }
 }

@@ -209,7 +209,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         final HashMap<Capability, Long> resultMap = new HashMap<Capability, Long>();
         final List<Object> results = criteria.list();
         for (Object result : results) {
-            Object[] row = (Object[]) result;
+            final Object[] row = (Object[]) result;
             resultMap.put((Capability) row[1], (Long) row[0]);
         }
         return resultMap;
@@ -232,26 +232,17 @@ public class NodeReadingController extends AbstractController<NodeReading> {
                 .add(Projections.min("reading"))
                 .add(Projections.rowCount())
         );
-        List<Object> results;
-        if(criteria.list() != null) {
-            results = criteria.list();
-        }else{
-            results = new ArrayList<Object>();
-        }
+        List<Object> results = (criteria.list() != null) ? criteria.list() : (new ArrayList<Object>());
 
         // parsing the result array to a node reading stat array
         final NodeReadingStat[] statsArray = new NodeReadingStat[results.size()];
         int index = 0;
         for (Object obj : criteria.list()) {
-            Object[] row = (Object[]) obj;
+            final Object[] row = (Object[]) obj;
             final Node node = (Node) row[0];
             final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(node);
-            Date lastTimestamp = null;
-            Double lastReading = null;
-            if (lnr != null) {
-                lastTimestamp = lnr.getTimestamp();
-                lastReading = lnr.getReading();
-            }
+            final Date lastTimestamp = (lnr != null) ? lnr.getTimestamp() : null;
+            final Double lastReading = (lnr != null) ? lnr.getReading() : null;
             final Double maxReading = (Double) row[1];
             final Double minReading = (Double) row[2];
             final Long totalCount = (Long) row[3];
@@ -288,26 +279,18 @@ public class NodeReadingController extends AbstractController<NodeReading> {
                 .add(Projections.min("reading"))
                 .add(Projections.rowCount())
         );
-        List<Object> results;
-        if(criteria.list() != null) {
-            results = criteria.list();
-        }else{
-            results = new ArrayList<Object>();
-        }
+        List<Object> results = (criteria.list() != null) ? criteria.list() : (new ArrayList<Object>());
+
 
         // parsing the result array to a node reading stat array
         final NodeReadingStat[] statsArray = new NodeReadingStat[results.size()];
         int index = 0;
         for (Object obj : results) {
-            Object[] row = (Object[]) obj;
+            final Object[] row = (Object[]) obj;
             final Node node = (Node) row[0];
             final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(node);
-            Date lastTimestamp = null;
-            Double lastReading = null;
-            if (lnr != null) {
-                lastTimestamp = lnr.getTimestamp();
-                lastReading = lnr.getReading();
-            }
+            final Date lastTimestamp = (lnr != null) ? lnr.getTimestamp() : null;
+            final Double lastReading = (lnr != null) ? lnr.getReading() : null;
             final Double maxReading = (Double) row[1];
             final Double minReading = (Double) row[2];
             final Long totalCount = (Long) row[3];
@@ -344,12 +327,8 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         final Object[] row = (Object[]) criteria.uniqueResult();
         final Node nodeQ = (Node) row[0];
         final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(node);
-        Date lastTimestamp = null;
-        Double lastReading = null;
-        if (lnr != null) {
-            lastTimestamp = lnr.getTimestamp();
-            lastReading = lnr.getReading();
-        }
+        final Date lastTimestamp = (lnr != null) ? lnr.getTimestamp() : null;
+        final Double lastReading = (lnr != null) ? lnr.getReading() : null;
         final Double maxReading = (Double) row[3];
         final Double minReading = (Double) row[4];
         final Long totalCount = (Long) row[5];

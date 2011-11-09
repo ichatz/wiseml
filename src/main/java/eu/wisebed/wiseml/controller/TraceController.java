@@ -22,7 +22,7 @@ public class TraceController {
     private static final Logger LOGGER = Logger.getLogger(TraceController.class);
 
 
-    public Trace writeTraceAsFile(Trace trace, File file) throws FileNotFoundException, JiBXException {
+    public Trace writeTraceAsFile(final Trace trace,final File file) throws FileNotFoundException, JiBXException {
 
 
         final HashMap<Integer, Set<String>> mapTr = new HashMap<Integer, Set<String>>();

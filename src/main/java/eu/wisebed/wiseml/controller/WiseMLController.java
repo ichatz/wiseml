@@ -31,14 +31,12 @@ public class WiseMLController {
      * @throws JiBXException exception
      */
     public WiseML loadWiseML(final Reader data) throws JiBXException {
-        WiseML wiseml = new WiseML();
 
         // unmarshal wiseml information from file...
         final IBindingFactory bfact = BindingDirectory.getFactory(WiseML.class);
         final IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
-        wiseml = (WiseML) uctx.unmarshalDocument(data, null);
 
-        return wiseml;
+        return (WiseML) uctx.unmarshalDocument(data, null);
     }
 
     /**
@@ -59,18 +57,16 @@ public class WiseMLController {
      * @return wiseml
      */
     public WiseML loadWiseMLFromFile(final InputStream file) throws JiBXException {
-        WiseML wiseml = new WiseML();
         try {
-            // unmarshal wiseml information from file...
+            // unmarshal  information from file...
             final IBindingFactory bfact = BindingDirectory.getFactory(WiseML.class);
             final IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
-            wiseml = (WiseML) uctx.unmarshalDocument(file, null);
+            return (WiseML) uctx.unmarshalDocument(file, null);
 
         } catch (JiBXException e) {
             LOGGER.fatal(e);
             throw e;
         }
-        return wiseml;
     }
 
     /**
@@ -85,14 +81,12 @@ public class WiseMLController {
             // unmarshal setup information from file...
             final IBindingFactory bfact = BindingDirectory.getFactory(Setup.class);
             final IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
-            setup = (Setup) uctx.unmarshalDocument(file, null);
+            return (Setup) uctx.unmarshalDocument(file, null);
 
         } catch (JiBXException e) {
             LOGGER.fatal(e);
             throw e;
         }
-        return setup;
-
     }
 
     /**
@@ -181,7 +175,7 @@ public class WiseMLController {
      * @param setup
      * @return string of setup data
      */
-    public String writeSetupAsString(final Setup setup) throws Exception {
+    public String writeSetupAsString(final Setup setup) throws JiBXException {
 
         final WiseML wiseml = new WiseML();
         wiseml.setSetup(setup);
@@ -199,7 +193,7 @@ public class WiseMLController {
             mctx.marshalDocument(wiseml.getSetup());
 
             return buffer.toString();
-        } catch (Exception e) {
+        }catch (JiBXException e) {
             LOGGER.fatal(e);
             throw e;
         }
@@ -212,14 +206,11 @@ public class WiseMLController {
      * @return setup
      */
     public Setup loadSetupFromString(final String stup) throws JiBXException {
-
-        final ByteArrayInputStream buffer = new ByteArrayInputStream(stup.getBytes());
-
         try {
             // unmarshal setup information from file...
             final IBindingFactory bfact = BindingDirectory.getFactory(Setup.class);
             final IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
-
+            final ByteArrayInputStream buffer = new ByteArrayInputStream(stup.getBytes());
             return (Setup) uctx.unmarshalDocument(buffer, null);
         } catch (JiBXException e) {
             LOGGER.fatal(e);
@@ -228,21 +219,18 @@ public class WiseMLController {
     }
 
     /**
-     * this method loads wiseml from a string.
+     * this method loads wiseml setup from a string.
      *
-     * @param wisml
-     * @return wiseml
+     * @param wiseml
+     * @return setup
      */
-    public Setup loadSetupFromWiseMLString(final String wisml) throws JiBXException {
-        final ByteArrayInputStream buffer = new ByteArrayInputStream(wisml.getBytes());
-
+    public Setup loadSetupFromWiseMLString(final String wiseml) throws JiBXException {
         try {
             // unmarshal setup information from file...
             final IBindingFactory bfact = BindingDirectory.getFactory(WiseML.class);
             final IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
-            WiseML wsml = (WiseML) uctx.unmarshalDocument(buffer, null);
-
-            return wsml.getSetup();
+            final ByteArrayInputStream buffer = new ByteArrayInputStream(wiseml.getBytes());
+            return ((WiseML) uctx.unmarshalDocument(buffer, null)).getSetup();
         } catch (JiBXException e) {
             LOGGER.fatal(e);
             throw e;

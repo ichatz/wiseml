@@ -29,7 +29,7 @@ public class TestbedConfiguration {
      *
      * @param nds of the testbed configuration
      */
-    public final void setNodes(List<Nodes> nds) {
+    public final void setNodes(final List<Nodes> nds) {
         this.nodes = nds;
     }
 

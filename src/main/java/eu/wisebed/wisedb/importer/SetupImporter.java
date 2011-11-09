@@ -10,6 +10,7 @@ import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Setup;
 import org.apache.log4j.Logger;
+import org.jibx.runtime.JiBXException;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -30,16 +31,16 @@ public class SetupImporter extends AbstractImporter<Setup> {
     private Testbed testbed;
 
     /**
-     * define set of all setup's capabilities (Nodes & Links) with no duplicate entries
+     * define set of all setup's CAPABILITIES (Nodes & Links) with no duplicate entries
      */
-    private final Set<Capability> capabilities;
+    private final static Set<Capability> CAPABILITIES = new HashSet<Capability>();
 
 
     /**
      * Default constructor.
      */
     public SetupImporter() {
-        capabilities = new HashSet<Capability>();
+        // empty constructor
     }
 
     /**
@@ -61,27 +62,22 @@ public class SetupImporter extends AbstractImporter<Setup> {
     }
 
     /**
-     * Returns capabilities set
-     * @return returns capabilities set.
+     * Returns CAPABILITIES set
+     * @return returns CAPABILITIES set.
      */
     public Set<Capability> getCapabilities() {
-        return capabilities;
+        return CAPABILITIES;
     }
 
     /**
      * Convert the WiseML setup to a WiseDB setup record.
      */
-    public void convert() throws Exception {
+    public void convert() throws JiBXException,NullPointerException {
 
         // retrieve setup record record from controllers InputStream
         final WiseMLController cnt = new WiseMLController();
         final WiseML root = cnt.loadWiseMLFromFile(getWiseMlStream());
         final Setup setup = root.getSetup();
-
-        // if setup is null do nothing
-        if (setup == null){
-            return;
-        }
 
         // call convert(setup)
         convert(setup);
@@ -90,13 +86,13 @@ public class SetupImporter extends AbstractImporter<Setup> {
     /**
      * Convert the WiseML setup to a WiseDB setup record.
      * @param setup , a setup instance.
-     * @throws Exception , an exception
+     * @throws NullPointerException , an exception
      */
-    public void convert(final Setup setup) throws Exception {
+    public void convert(final Setup setup) throws JiBXException,NullPointerException {
 
         if (setup == null) {
             LOGGER.fatal("Setup cannot be null");
-            throw new Exception("Setup cannot be null");
+            throw new NullPointerException("Setup cannot be null");
         }
 
         // call convertCollection(list of setups)
@@ -108,12 +104,11 @@ public class SetupImporter extends AbstractImporter<Setup> {
      *
      * @param collection , collection of setup entries.
      */
-    public void convertCollection(final Collection<Setup> collection) throws Exception {
+    public void convertCollection(final Collection<Setup> collection) throws JiBXException,NullPointerException {
 
         if (collection == null) {
             LOGGER.fatal("Collection cannot be null");
-            throw new Exception("Collection cannot be null");
-
+            throw new NullPointerException("Collection cannot be null");
         }
 
         // set entity collection
@@ -122,7 +117,7 @@ public class SetupImporter extends AbstractImporter<Setup> {
         // import records to db
         for (Setup setup : getEntities()) {
 
-            // set link,node, capabilities and setup
+            // set link,node, CAPABILITIES and setup
             setNodeLinkSetup(setup);
 
             // reset NodeLink Capabilities
@@ -154,9 +149,9 @@ public class SetupImporter extends AbstractImporter<Setup> {
                 // set setup for this node
                 node.setSetup(setup);
 
-                // add this node capability to the capabilities set
+                // add this node capability to the CAPABILITIES set
                 for( Capability capability : node.getCapabilities()) {
-                    capabilities.add(capability);
+                    CAPABILITIES.add(capability);
                 }
             }
         }
@@ -167,22 +162,22 @@ public class SetupImporter extends AbstractImporter<Setup> {
                 // set setup for this link
                 link.setSetup(setup);
 
-                // add this link's capabilities to the capabilities set
+                // add this link's CAPABILITIES to the CAPABILITIES set
                 for( Capability capability : link.getCapabilities()) {
-                    capabilities.add(capability);
+                    CAPABILITIES.add(capability);
                 }
             }
         }
     }
 
     /**
-     * Reset the capabilities for links and nodes in order to match the unique capabilities set of this importer.
+     * Reset the CAPABILITIES for links and nodes in order to match the unique CAPABILITIES set of this importer.
      * @param setup , a setup instance
      */
     public void resetNodeLinkCapabilities(final Setup setup){
 
-        // capabilities must be unique objects so nodes & links must point to the set's entities
-        for(Capability capability : capabilities){
+        // CAPABILITIES must be unique objects so nodes & links must point to the set's entities
+        for(Capability capability : CAPABILITIES){
 
             if(setup.getNodes() != null){
                 for(Node node : setup.getNodes()) {

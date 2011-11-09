@@ -46,7 +46,7 @@ public class TimeInfo implements Serializable{
      *
      * @param start the start time
      */
-    public void setStart(String start) {
+    public void setStart(final String start) {
         this.start = start;
     }
 
@@ -64,7 +64,7 @@ public class TimeInfo implements Serializable{
      *
      * @param end the end time
      */
-    public void setEnd(String end) {
+    public void setEnd(final String end) {
         this.end = end;
     }
 
@@ -82,7 +82,7 @@ public class TimeInfo implements Serializable{
      *
      * @param unit the unit info.
      */
-    public void setUnit(String unit) {
+    public void setUnit(final String unit) {
         this.unit = unit;
     }
 
@@ -100,7 +100,7 @@ public class TimeInfo implements Serializable{
      *
      * @param duration the experiment duration.
      */
-    public void setDuration(int duration) {
+    public void setDuration(final int duration) {
         this.duration = duration;
     }
 }

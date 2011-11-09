@@ -51,7 +51,7 @@ public class Origin implements Serializable{
      *
      * @param x the position x.
      */
-    public void setX(float x) {
+    public void setX(final float x) {
         this.x = x;
     }
 
@@ -69,7 +69,7 @@ public class Origin implements Serializable{
      *
      * @param y the position y.
      */
-    public void setY(float y) {
+    public void setY(final float y) {
         this.y = y;
     }
 
@@ -87,7 +87,7 @@ public class Origin implements Serializable{
      *
      * @param z the position z.
      */
-    public void setZ(float z) {
+    public void setZ(final float z) {
         this.z = z;
     }
 
@@ -105,7 +105,7 @@ public class Origin implements Serializable{
      *
      * @param phi the phi angle.
      */
-    public void setPhi(float phi) {
+    public void setPhi(final float phi) {
         this.phi = phi;
     }
 
@@ -114,7 +114,7 @@ public class Origin implements Serializable{
      *
      * @param phi the phi angle.
      */
-    public void setPhi(int phi) {
+    public void setPhi(final int phi) {
         this.phi = phi;
     }
 
@@ -132,7 +132,7 @@ public class Origin implements Serializable{
      *
      * @param theta the theta angle.
      */
-    public void setTheta(float theta) {
+    public void setTheta(final float theta) {
         this.theta = theta;
     }
 
@@ -141,7 +141,7 @@ public class Origin implements Serializable{
      *
      * @param theta the theta angle.
      */
-    public void setTheta(int theta) {
+    public void setTheta(final int theta) {
         this.theta = theta;
     }
 

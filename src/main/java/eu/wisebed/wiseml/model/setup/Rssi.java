@@ -51,7 +51,7 @@ public class Rssi implements Serializable{
      *
      * @param datatype the datatype of the rssi.
      */
-    public void setDatatype(String datatype) {
+    public void setDatatype(final String datatype) {
         this.datatype = datatype;
     }
 
@@ -69,7 +69,7 @@ public class Rssi implements Serializable{
      *
      * @param unit the unit of the rssi.
      */
-    public void setUnit(String unit) {
+    public void setUnit(final String unit) {
         this.unit = unit;
     }
 }

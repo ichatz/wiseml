@@ -87,7 +87,7 @@ public class Node implements Serializable{
      *
      * @param id the id of the node.
      */
-    public void setId(String id) {
+    public void setId(final String id) {
         this.id = id;
     }
 
@@ -105,7 +105,7 @@ public class Node implements Serializable{
      *
      * @param nodeType the nodetype of the node.
      */
-    public void setNodeType(String nodeType) {
+    public void setNodeType(final String nodeType) {
         this.nodeType = nodeType;
     }
 
@@ -123,7 +123,7 @@ public class Node implements Serializable{
      *
      * @param programDetails the program details of the node.
      */
-    public void setProgramDetails(String programDetails) {
+    public void setProgramDetails(final String programDetails) {
         this.programDetails = programDetails;
     }
 
@@ -141,7 +141,7 @@ public class Node implements Serializable{
      *
      * @param description the description of the node.
      */
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 
@@ -159,7 +159,7 @@ public class Node implements Serializable{
      *
      * @param capabilities the capabilities of the node.
      */
-    public void setCapabilities(List<Capability> capabilities) {
+    public void setCapabilities(final List<Capability> capabilities) {
         this.capabilities = capabilities;
     }
 
@@ -177,7 +177,7 @@ public class Node implements Serializable{
      *
      * @param position the position of the node.
      */
-    public void setPosition(Position position) {
+    public void setPosition(final Position position) {
         this.position = position;
     }
 
@@ -195,7 +195,7 @@ public class Node implements Serializable{
      *
      * @param gateway the gateway of the node.
      */
-    public void setGateway(String gateway) {
+    public void setGateway(final String gateway) {
         this.gateway = gateway;
     }
 
@@ -213,7 +213,7 @@ public class Node implements Serializable{
      *
      * @param data the data of the node.
      */
-    public void setData(List<Data> data) {
+    public void setData(final List<Data> data) {
         this.data = data;
     }
 
@@ -231,7 +231,7 @@ public class Node implements Serializable{
      *
      * @param message
      */
-    public void setMessage(Message message) {
+    public void setMessage(final Message message) {
         this.message = message;
     }
 

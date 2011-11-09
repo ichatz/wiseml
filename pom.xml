@@ -441,7 +441,6 @@
                         <ruleset>rulesets/design.xml</ruleset>
                         <ruleset>rulesets/finalizers.xml</ruleset>
                         <ruleset>rulesets/imports.xml</ruleset>
-                        <ruleset>rulesets/j2ee.xml</ruleset>
                         <ruleset>rulesets/javabeans.xml</ruleset>
                         <ruleset>rulesets/junit.xml</ruleset>
                         <ruleset>rulesets/logging-jakarta-commons.xml</ruleset>

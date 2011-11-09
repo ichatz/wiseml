@@ -11,7 +11,7 @@ public class ServerConnection {
         return address;
     }
 
-    public final void setAddress(String address) {
+    public final void setAddress(final String address) {
         this.address = address;
     }
 
@@ -19,7 +19,7 @@ public class ServerConnection {
         return type;
     }
 
-    public final void setType(String type) {
+    public final void setType(final String type) {
         this.type = type;
     }
 }

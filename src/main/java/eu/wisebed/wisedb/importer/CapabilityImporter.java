@@ -29,34 +29,27 @@ public class CapabilityImporter extends AbstractImporter<Capability> {
 
         // retrieve records from controllers InputStream
         final WiseMLController cnt = new WiseMLController();
-        WiseML root = cnt.loadWiseMLFromFile(getWiseMlStream());
-        List<Node> nodeList = null;
-        List<Link> linkList = null;
-        if (root.getSetup() != null) {
-            nodeList = root.getSetup().getNodes();
-            linkList = root.getSetup().getLink();
-        }
-
+        final WiseML root = cnt.loadWiseMLFromFile(getWiseMlStream());
+        final List<Node> nodeList = (root.getSetup() != null) ? root.getSetup().getNodes() : null;
+        final List<Link> linkList = (root.getSetup() != null) ? root.getSetup().getLink() : null;
 
         // accumulate all capability records in the set bellow
         Set<Capability> capabilitySet = new HashSet<Capability>();
         if (nodeList != null) {
             for (Node node : nodeList) {
-                Iterator<Capability> capabilityIterator = node.getCapabilities().iterator();
-                capabilityIterator.next().setNodes(null);
-                capabilityIterator.next().setNodes(null);
-                while (capabilityIterator.hasNext()) {
-                    capabilitySet.add(capabilityIterator.next());
+                final Iterator<Capability> capIt = node.getCapabilities().iterator();
+                capIt.next().setNodes(null);
+                while (capIt.hasNext()) {
+                    capabilitySet.add(capIt.next());
                 }
             }
         }
         if (linkList != null) {
             for (Link link : linkList) {
-                Iterator<Capability> capabilityIterator = link.getCapabilities().iterator();
-                capabilityIterator.next().setLinks(null);
-                capabilityIterator.next().setLinks(null);
-                while (capabilityIterator.hasNext()) {
-                    capabilitySet.add(capabilityIterator.next());
+                final Iterator<Capability> capIt = link.getCapabilities().iterator();
+                capIt.next().setLinks(null);
+                while (capIt.hasNext()) {
+                    capabilitySet.add(capIt.next());
                 }
             }
         }

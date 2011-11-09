@@ -13,7 +13,7 @@ public class WsnDevice {
         return urn;
     }
 
-    public final void setUrn(String urn) {
+    public final void setUrn(final String urn) {
         this.urn = urn;
     }
 
@@ -21,7 +21,7 @@ public class WsnDevice {
         return type;
     }
 
-    public final void setType(String type) {
+    public final void setType(final String type) {
         this.type = type;
     }
 
@@ -29,7 +29,7 @@ public class WsnDevice {
         return serialinterface;
     }
 
-    public final void setSerialinterface(String serialinterface) {
+    public final void setSerialinterface(final String serialinterface) {
         this.serialinterface = serialinterface;
     }
 
@@ -37,7 +37,7 @@ public class WsnDevice {
         return usbchipid;
     }
 
-    public final void setUsbchipid(String usbchipid) {
+    public final void setUsbchipid(final String usbchipid) {
         this.usbchipid = usbchipid;
     }
 }

@@ -123,7 +123,7 @@ public class LinkReading implements Serializable {
         return link;
     }
 
-    public void setLink(Link link) {
+    public void setLink(final Link link) {
         this.link = link;
     }
 
@@ -131,7 +131,7 @@ public class LinkReading implements Serializable {
         return capability;
     }
 
-    public void setCapability(Capability capability) {
+    public void setCapability(final Capability capability) {
         this.capability = capability;
     }
 

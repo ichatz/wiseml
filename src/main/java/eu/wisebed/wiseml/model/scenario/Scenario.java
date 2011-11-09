@@ -73,7 +73,7 @@ public class Scenario {
      *
      * @param id scenario id
      */
-    public void setId(int id) {
+    public void setId(final int id) {
         this.id = id;
     }
 
@@ -91,7 +91,7 @@ public class Scenario {
      *
      * @param timestamp
      */
-    public void setTimestamp(List<Timestamp> timestamp) {
+    public void setTimestamp(final List<Timestamp> timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -109,7 +109,7 @@ public class Scenario {
      *
      * @param data
      */
-    public void setData(Data data) {
+    public void setData(final Data data) {
         this.data = data;
     }
 }

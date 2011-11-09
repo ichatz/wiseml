@@ -47,7 +47,7 @@ public class Position implements Serializable{
      *
      * @param x
      */
-    public void setX(float x) {
+    public void setX(final float x) {
         this.x = x;
     }
 
@@ -65,7 +65,7 @@ public class Position implements Serializable{
      *
      * @param y
      */
-    public void setY(float y) {
+    public void setY(final float y) {
         this.y = y;
     }
 
@@ -83,7 +83,7 @@ public class Position implements Serializable{
      *
      * @param z
      */
-    public void setZ(float z) {
+    public void setZ(final float z) {
         this.z = z;
     }
 
@@ -101,7 +101,7 @@ public class Position implements Serializable{
      *
      * @param phi
      */
-    public void setPhi(int phi) {
+    public void setPhi(final int phi) {
         this.phi = phi;
     }
 
@@ -119,7 +119,7 @@ public class Position implements Serializable{
      *
      * @param theta
      */
-    public void setTheta(int theta) {
+    public void setTheta(final int theta) {
         this.theta = theta;
     }
 }

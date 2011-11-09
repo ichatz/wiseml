@@ -25,6 +25,14 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      */
     private static LinkReadingController ourInstance = null;
 
+    private static final String DESCRIPTION = "DESCRIPTION"; // todo provide those ?
+    private static final String PROGRAM_DETAILS = "program details"; // todo provide those ?
+    private static final String UNIT = "unit"; // todo provide those ?
+    private static final String ZERO = "0.0"; // todo provide those ?
+    private static final String DATATYPE = "datatype"; // todo provide those ?
+    private static final String DEFAULT_VALUE = "default value"; // todo provide those ?
+    private static final String LINK ="link";
+
     /**
      * Public constructor .
      */
@@ -74,12 +82,9 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      *
      * @param testbed , a testbed instance.
      * @param nodeId  , a node id.
-     *
      * @return returns the inserted node instance.
-    */
+     */
     private Node prepareInsertNode(final Testbed testbed, final String nodeId) {
-        final String DESCRIPTION = "DESCRIPTION"; // todo provide those ?
-        final String PROGRAM_DETAILS = "program details"; // todo provide those ?
 
         final Node node = new Node();
         node.setId(nodeId);
@@ -95,7 +100,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
     }
 
     /**
-     * Prepares and inserts a link to the testbed's setup  with the provided ids as source and target.
+     * Prepares and inserts a link to the testbed setup  with the provided ids as source and target.
      *
      * @param testbed  , a testbed instance.
      * @param sourceId , a source node id.
@@ -103,9 +108,6 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      * @return returns the inserted link instance.
      */
     private Link prepareInsertLink(final Testbed testbed, final String sourceId, final String targetId) {
-        final String DATATYPE = "datatype"; // todo provide those ?
-        final String UNIT = "unit"; // todo provide those ?
-        final String ZERO = "0.0"; // todo provide those ?
 
         final Rssi rssi = new Rssi();
         rssi.setDatatype(DATATYPE);
@@ -134,10 +136,6 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      */
     private Capability prepareInsertCapability(final String capabilityName) {
         final Capability capability = new Capability();
-
-        final String DATATYPE = "datatype"; // todo provide those ?
-        final String UNIT = "unit"; // todo provide those ?
-        final String DEFAULT_VALUE = "default value"; // todo provide those ?
 
         capability.setName(capabilityName);
         capability.setDatatype(DATATYPE);
@@ -246,7 +244,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
     public Long getLinkReadingsCount(final Link link) {
         final org.hibernate.Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(LinkReading.class);
-        criteria.createAlias("link", "id");
+        criteria.createAlias(LINK, "id");
         criteria.add(Restrictions.eq("id.source", link.getSource()));
         criteria.add(Restrictions.eq("id.target", link.getTarget()));
         criteria.setProjection(Projections.count("id"));

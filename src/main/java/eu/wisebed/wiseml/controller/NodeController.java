@@ -19,7 +19,7 @@ public class NodeController {
 
     private static final Logger LOGGER = Logger.getLogger(NodeController.class);
 
-    public Node load(FileInputStream file) throws JiBXException {
+    public Node load(final FileInputStream file) throws JiBXException {
 
         try {
             // unmarshal node information from file...
@@ -33,7 +33,7 @@ public class NodeController {
         }
     }
 
-    public Node load(String stup) throws JiBXException{
+    public Node load(final String stup) throws JiBXException{
 
         final ByteArrayInputStream buffer = new ByteArrayInputStream(stup.getBytes());
         try {
@@ -46,7 +46,7 @@ public class NodeController {
         }
     }
 
-    public Node write(Node node, File file) throws JiBXException, FileNotFoundException {
+    public Node write(final Node node, final File file) throws JiBXException, FileNotFoundException {
 
         try {
             // marshal object back out to file (with nice indentation, as UTF-8)...

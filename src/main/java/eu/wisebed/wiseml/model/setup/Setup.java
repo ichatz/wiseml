@@ -98,7 +98,7 @@ public class Setup implements Serializable{
      *
      * @param nodes the nodes list
      */
-    public void setNodes(List<Node> nodes) {
+    public void setNodes(final List<Node> nodes) {
         this.nodes = nodes;
     }
 
@@ -116,7 +116,7 @@ public class Setup implements Serializable{
      *
      * @param origin the nodes origin
      */
-    public void setOrigin(Origin origin) {
+    public void setOrigin(final Origin origin) {
         this.origin = origin;
     }
 
@@ -134,7 +134,7 @@ public class Setup implements Serializable{
      *
      * @param timeinfo the time information
      */
-    public void setTimeinfo(TimeInfo timeinfo) {
+    public void setTimeinfo(final TimeInfo timeinfo) {
         this.timeinfo = timeinfo;
     }
 
@@ -152,7 +152,7 @@ public class Setup implements Serializable{
      *
      * @param interpolation the mobility interpolation
      */
-    public void setInterpolation(String interpolation) {
+    public void setInterpolation(final String interpolation) {
         this.interpolation = interpolation;
     }
 
@@ -170,7 +170,7 @@ public class Setup implements Serializable{
      *
      * @param description the experiment description
      */
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 
@@ -188,7 +188,7 @@ public class Setup implements Serializable{
      *
      * @param description the coordinate type
      */
-    public void setCoordinateType(String description) {
+    public void setCoordinateType(final String description) {
         this.coordinateType = description;
     }
 
@@ -206,7 +206,7 @@ public class Setup implements Serializable{
      *
      * @param link the links list information
      */
-    public void setLink(List<Link> link) {
+    public void setLink(final List<Link> link) {
         this.link = link;
     }
 
@@ -224,7 +224,7 @@ public class Setup implements Serializable{
      *
      * @param defaults the wiseml defaults.
      */
-    public void setDefaults(Defaults defaults) {
+    public void setDefaults(final Defaults defaults) {
         this.defaults = defaults;
     }
 

@@ -73,7 +73,7 @@ public class Link implements Serializable{
      *
      * @param source the source of the link.
      */
-    public void setSource(String source) {
+    public void setSource(final String source) {
         this.source = source;
     }
 
@@ -91,7 +91,7 @@ public class Link implements Serializable{
      *
      * @param target the target of the link.
      */
-    public void setTarget(String target) {
+    public void setTarget(final String target) {
         this.target = target;
     }
 
@@ -109,7 +109,7 @@ public class Link implements Serializable{
      *
      * @param encrypted the encrypted of the link.
      */
-    public void setEncrypted(boolean encrypted) {
+    public void setEncrypted(final boolean encrypted) {
         this.encrypted = encrypted;
     }
 
@@ -127,7 +127,7 @@ public class Link implements Serializable{
      *
      * @param virtual the virtual of the link.
      */
-    public void setVirtual(boolean virtual) {
+    public void setVirtual(final boolean virtual) {
         this.virtual = virtual;
     }
 
@@ -145,7 +145,7 @@ public class Link implements Serializable{
      *
      * @param capabilities the list of capabilities.
      */
-    public void setCapabilities(List<Capability> capabilities) {
+    public void setCapabilities(final List<Capability> capabilities) {
         this.capabilities = capabilities;
     }
 
@@ -163,7 +163,7 @@ public class Link implements Serializable{
      *
      * @param rssi the rssi of the link.
      */
-    public void setRssi(Rssi rssi) {
+    public void setRssi(final Rssi rssi) {
         this.rssi = rssi;
     }
 
@@ -171,7 +171,7 @@ public class Link implements Serializable{
         return data;
     }
 
-    public void setData(List<Data> data) {
+    public void setData(final List<Data> data) {
         this.data = data;
     }
 
@@ -207,7 +207,7 @@ public class Link implements Serializable{
      *
      * @param readings , a set of capabiliteis readings for this link.
      */
-    public void setReadings(Set<LinkReading> readings) {
+    public void setReadings(final Set<LinkReading> readings) {
         this.readings = readings;
     }
 

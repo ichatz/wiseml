@@ -45,7 +45,7 @@ public class Data implements Serializable{
      * @param key data key
      */
 
-    public void setKey(String key) {
+    public void setKey(final String key) {
         this.key = key;
     }
 
@@ -63,7 +63,7 @@ public class Data implements Serializable{
      *
      * @param message
      */
-    public void setMessage(Message message) {
+    public void setMessage(final Message message) {
         this.message = message;
     }
 
@@ -81,7 +81,7 @@ public class Data implements Serializable{
      *
      * @param value
      */
-    public void setValue(String value) {
+    public void setValue(final String value) {
         this.value = value;
     }
 }

@@ -49,7 +49,7 @@ public class Trace {
      *
      * @return
      */
-    public void setChildren(List l) {
+    public void setChildren(final List l) {
         children = l;
     }
 
@@ -67,7 +67,7 @@ public class Trace {
      *
      * @param id scenario id
      */
-    public void setId(int id) {
+    public void setId(final int id) {
         this.id = id;
     }
 
@@ -85,7 +85,7 @@ public class Trace {
      *
      * @param timestamp
      */
-    public void setTimestamp(List<Timestamp> timestamp) {
+    public void setTimestamp(final List<Timestamp> timestamp) {
         this.timestamp = timestamp;
     }
 

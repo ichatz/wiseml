@@ -63,7 +63,7 @@ public class Timestamp {
      *
      * @param value
      */
-    public void setValue(String value) {
+    public void setValue(final String value) {
         this.value = value;
     }
 
@@ -81,7 +81,7 @@ public class Timestamp {
      *
      * @param enableNode the enabled node
      */
-    public void setEnableNode(EnableNode enableNode) {
+    public void setEnableNode(final EnableNode enableNode) {
         this.enableNode = enableNode;
     }
 
@@ -99,7 +99,7 @@ public class Timestamp {
      *
      * @param disableNode the disable node
      */
-    public void setDisableNode(DisableNode disableNode) {
+    public void setDisableNode(final DisableNode disableNode) {
         this.disableNode = disableNode;
     }
 
@@ -117,7 +117,7 @@ public class Timestamp {
      *
      * @param enableLink the enabled link
      */
-    public void setEnableLink(EnableLink enableLink) {
+    public void setEnableLink(final EnableLink enableLink) {
         this.enableLink = enableLink;
     }
 
@@ -135,7 +135,7 @@ public class Timestamp {
      *
      * @param disableLink the disabled link
      */
-    public void setDisableLink(DisableLink disableLink) {
+    public void setDisableLink(final DisableLink disableLink) {
         this.disableLink = disableLink;
     }
 
@@ -153,7 +153,7 @@ public class Timestamp {
      *
      * @param node the scenario node
      */
-    public void setNode(List<Node> node) {
+    public void setNode(final List<Node> node) {
         this.node = node;
     }
 
@@ -171,7 +171,7 @@ public class Timestamp {
      *
      * @param message
      */
-    public void setMessage(List<Message> message) {
+    public void setMessage(final List<Message> message) {
         this.message = message;
     }
 
@@ -179,7 +179,7 @@ public class Timestamp {
         return link;
     }
 
-    public void setLink(List<Link> link) {
+    public void setLink(final List<Link> link) {
         this.link = link;
     }
 }

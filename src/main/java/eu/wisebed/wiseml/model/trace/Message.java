@@ -32,7 +32,7 @@ public class Message {
      *
      * @param timestamp
      */
-    public void setTimestamp(long timestamp) {
+    public void setTimestamp(final long timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -50,7 +50,7 @@ public class Message {
      *
      * @param id
      */
-    public void setId(String id) {
+    public void setId(final String id) {
         this.id = id;
     }
 
@@ -68,7 +68,7 @@ public class Message {
      *
      * @param data
      */
-    public void setData(String data) {
+    public void setData(final String data) {
         this.data = data;
     }
 }

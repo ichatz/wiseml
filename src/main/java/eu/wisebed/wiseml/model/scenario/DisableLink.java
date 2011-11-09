@@ -32,7 +32,7 @@ public class DisableLink {
      *
      * @param source String source
      */
-    public void setSource(String source) {
+    public void setSource(final String source) {
         this.source = source;
     }
 
@@ -50,7 +50,7 @@ public class DisableLink {
      *
      * @param target String target
      */
-    public void setTarget(String target) {
+    public void setTarget(final String target) {
         this.target = target;
     }
 }

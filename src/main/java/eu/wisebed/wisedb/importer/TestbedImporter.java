@@ -73,7 +73,7 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     /**
      * @param name
      */
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -87,7 +87,7 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     /**
      * @param urnPrefix
      */
-    public void setUrnPrefix(String urnPrefix) {
+    public void setUrnPrefix(final String urnPrefix) {
         this.urnPrefix = urnPrefix;
     }
 
@@ -145,7 +145,7 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     /**
      * @param snaaUrl
      */
-    public void setSnaaUrl(String snaaUrl) {
+    public void setSnaaUrl(final String snaaUrl) {
         this.snaaUrl = snaaUrl;
     }
 
@@ -159,7 +159,7 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     /**
      * @param rsUrl
      */
-    public void setRsUrl(String rsUrl) {
+    public void setRsUrl(final String rsUrl) {
         this.rsUrl = rsUrl;
     }
 
@@ -173,7 +173,7 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     /**
      * @param sessionUrl
      */
-    public void setSessionUrl(String sessionUrl) {
+    public void setSessionUrl(final String sessionUrl) {
         this.sessionUrl = sessionUrl;
     }
 
