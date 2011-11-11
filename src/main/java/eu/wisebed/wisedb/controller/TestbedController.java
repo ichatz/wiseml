@@ -22,6 +22,11 @@ public class TestbedController extends AbstractController<Testbed> {
      */
     private static TestbedController ourInstance = null;
 
+    private final static String TESTBED_ID = "id";
+    private final static String URN_PREFIX = "urnPrefix";
+    private final static String SETUP = "setup";
+    private static final String SOURCE = "source";
+
     /**
      * Public constructor .
      */
@@ -85,8 +90,8 @@ public class TestbedController extends AbstractController<Testbed> {
     public Testbed getByUrnPrefix(final String urnPrefix) {
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Testbed.class);
-        criteria.add(Restrictions.like("urnPrefix", urnPrefix, MatchMode.START));
-        criteria.addOrder(Order.asc("urnPrefix"));
+        criteria.add(Restrictions.like(URN_PREFIX, urnPrefix, MatchMode.START));
+        criteria.addOrder(Order.asc(URN_PREFIX));
         criteria.setMaxResults(1);
         return (Testbed) criteria.uniqueResult();
     }
@@ -105,8 +110,8 @@ public class TestbedController extends AbstractController<Testbed> {
         final Setup setup = testbed.getSetup();
 
         final Criteria criteria = session.createCriteria(Node.class);
-        criteria.add(Restrictions.eq("setup", setup));
-        criteria.addOrder(Order.asc("id"));
+        criteria.add(Restrictions.eq(SETUP, setup));
+        criteria.addOrder(Order.asc(TESTBED_ID));
         return (List<Node>) criteria.list();
     }
 
@@ -124,8 +129,8 @@ public class TestbedController extends AbstractController<Testbed> {
 
         final Criteria criteria;
         criteria = session.createCriteria(Link.class);
-        criteria.add(Restrictions.eq("setup", setup));
-        criteria.addOrder(Order.asc("source"));
+        criteria.add(Restrictions.eq(SETUP, setup));
+        criteria.addOrder(Order.asc(SOURCE));
         return (List<Link>) criteria.list();
 
     }

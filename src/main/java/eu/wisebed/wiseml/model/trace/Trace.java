@@ -30,7 +30,7 @@ public class Trace {
      *
      * @return a new list instance.
      */
-    private static List listFactory() {
+    public static List listFactory() {
         return new LinkedList();
     }
 
@@ -88,5 +88,4 @@ public class Trace {
     public void setTimestamp(final List<Timestamp> timestamp) {
         this.timestamp = timestamp;
     }
-
 }

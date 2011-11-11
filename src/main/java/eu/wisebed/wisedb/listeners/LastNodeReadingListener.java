@@ -13,6 +13,7 @@ public class LastNodeReadingListener extends DefaultSaveOrUpdateEventListener {
     /**
      * Static logger.
      */
+    @SuppressWarnings({"UnusedDeclaration"})
     private static final Logger LOGGER = Logger.getLogger(LastNodeReadingListener.class);
 
     /**

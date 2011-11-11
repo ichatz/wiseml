@@ -34,7 +34,7 @@ public class CapabilityImporter extends AbstractImporter<Capability> {
         final List<Link> linkList = (root.getSetup() != null) ? root.getSetup().getLink() : null;
 
         // accumulate all capability records in the set bellow
-        Set<Capability> capabilitySet = new HashSet<Capability>();
+        final Set<Capability> capabilitySet = new HashSet<Capability>();
         if (nodeList != null) {
             for (Node node : nodeList) {
                 final Iterator<Capability> capIt = node.getCapabilities().iterator();

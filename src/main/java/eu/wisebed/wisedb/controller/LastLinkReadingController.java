@@ -24,19 +24,8 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
      */
     private static LastLinkReadingController ourInstance = null;
 
-    /**
-     * Link literal
-     */
     private final static String LINK = "link";
-
-    /**
-     * Capability literal
-     */
     private final static String CAPABILITY = "capability";
-
-    /**
-     * Timestamp literal
-     */
     private final static String TIMESTAMP = "timestamp";
 
     /**

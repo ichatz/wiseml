@@ -31,6 +31,16 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      */
     private static NodeReadingController ourInstance = null;
 
+    private static final String DESCRIPTION = "DESCRIPTION";
+    private static final String PROGRAM_DETAILS = "program details";
+    private static final String UNIT = "unit";
+    private static final String DATATYPE = "datatype";
+    private static final String DEFAULT_VALUE = "default value";
+    private static final String NODE = " node";
+    private static final String CAPABILITY = "capability";
+    private static final String TIMESTAMP = "timestamp";
+    private static final String READING = "reading";
+
     /**
      * Public constructor .
      */
@@ -75,6 +85,50 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     }
 
     /**
+     * Prepares and inserts a node to the testbed's setup with the id provided.
+     *
+     * @param testbed , a testbed instance.
+     * @param nodeId  , a node id.
+     * @return returns the inserted node instance.
+     */
+    private Node prepareInsertNode(final Testbed testbed, final String nodeId) {
+
+        final Node node = new Node();
+        node.setId(nodeId);
+        node.setDescription(DESCRIPTION);
+        node.setProgramDetails(PROGRAM_DETAILS);
+        node.setGateway("false");
+        node.setReadings(new HashSet<NodeReading>());
+        node.setCapabilities(new ArrayList<Capability>());
+        node.setSetup(testbed.getSetup());
+        NodeController.getInstance().add(node);
+
+        return node;
+    }
+
+    /**
+     * Prepares and inserts a capability to the persistnce with the provided capability name.
+     *
+     * @param capabilityName , a capability name.
+     * @return returns the inserted capability instance.
+     */
+    private Capability prepareInsertCapability(final String capabilityName) {
+        final Capability capability = new Capability();
+
+        capability.setName(capabilityName);
+        capability.setDatatype(DATATYPE);
+        capability.setDefaultvalue(DEFAULT_VALUE);
+        capability.setUnit(UNIT);
+        capability.setNodes(new HashSet<Node>());
+        capability.setNodeReadings(new HashSet<NodeReading>());
+        capability.setLinks(new HashSet<Link>());
+        capability.setLinkReadings(new HashSet<LinkReading>());
+        CapabilityController.getInstance().add(capability);
+
+        return capability;
+    }
+
+    /**
      * Insert a node's reading from it's capabilities and make the appropriate relations
      * such as Node-Reading , Capability-reading
      *
@@ -98,32 +152,13 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         // get node if not found create one
         Node node = NodeController.getInstance().getByID(nodeId);
         if (node == null) {
-            // if node not found in db make it and store it
-            node = new Node();
-            node.setId(nodeId);
-            node.setDescription("description"); // todo provide those ?
-            node.setGateway("false");
-            node.setProgramDetails("program details");
-            node.setSetup(testbed.getSetup());
-            node.setCapabilities(new ArrayList<Capability>());
-            node.setReadings(new HashSet<NodeReading>());
-            NodeController.getInstance().add(node);
+            node = prepareInsertNode(testbed, nodeId);
         }
 
         // get capability if not found create one
         Capability capability = CapabilityController.getInstance().getByID(capabilityName);
         if (capability == null) {
-            // if capability not found in db make it and store it
-            capability = new Capability();
-            capability.setName(capabilityName);
-            capability.setDatatype("datatype"); // todo provide those ?
-            capability.setDefaultvalue("default value");
-            capability.setUnit("unit");
-            capability.setNodes(new HashSet<Node>());
-            capability.setNodeReadings(new HashSet<NodeReading>());
-            capability.setLinks(new HashSet<Link>());
-            capability.setLinkReadings(new HashSet<LinkReading>());
-            CapabilityController.getInstance().add(capability);
+            capability = prepareInsertCapability(capabilityName);
         }
 
         // associate capability node
@@ -169,9 +204,9 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     public List<NodeReading> listNodeReadings(final Node node, final Capability capability) {
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq("node", node));
-        criteria.add(Restrictions.eq("capability", capability));
-        criteria.addOrder(Order.asc("timestamp"));
+        criteria.add(Restrictions.eq(NODE, node));
+        criteria.add(Restrictions.eq(CAPABILITY, capability));
+        criteria.addOrder(Order.asc(TIMESTAMP));
         return (List<NodeReading>) criteria.list();
     }
 
@@ -200,11 +235,11 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     public Map<Capability, Long> getNodeReadingsCountMap(final Node node) {
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq("node", node));
+        criteria.add(Restrictions.eq(NODE, node));
         criteria.setProjection(Projections.projectionList()
                 .add(Projections.rowCount())
-                .add(Projections.property("capability"))
-                .add(Projections.groupProperty("capability"))
+                .add(Projections.property(CAPABILITY))
+                .add(Projections.groupProperty(CAPABILITY))
         );
         final HashMap<Capability, Long> resultMap = new HashMap<Capability, Long>();
         final List<Object> results = criteria.list();
@@ -227,12 +262,12 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         // get max/min reading for a node
         final Criteria criteria = session.createCriteria(NodeReading.class);
         criteria.setProjection(Projections.projectionList()
-                .add(Projections.groupProperty("node"))
-                .add(Projections.max("reading"))
-                .add(Projections.min("reading"))
+                .add(Projections.groupProperty(NODE))
+                .add(Projections.max(READING))
+                .add(Projections.min(READING))
                 .add(Projections.rowCount())
         );
-        List<Object> results = (criteria.list() != null) ? criteria.list() : (new ArrayList<Object>());
+        final List<Object> results = (criteria.list() != null) ? criteria.list() : (new ArrayList<Object>());
 
         // parsing the result array to a node reading stat array
         final NodeReadingStat[] statsArray = new NodeReadingStat[results.size()];
@@ -272,14 +307,14 @@ public class NodeReadingController extends AbstractController<NodeReading> {
 
         // get max/min reading for a node
         final Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.in("node", setup.getNodes()));
+        criteria.add(Restrictions.in(NODE, setup.getNodes()));
         criteria.setProjection(Projections.projectionList()
-                .add(Projections.groupProperty("node"))
-                .add(Projections.max("reading"))
-                .add(Projections.min("reading"))
+                .add(Projections.groupProperty(NODE))
+                .add(Projections.max(READING))
+                .add(Projections.min(READING))
                 .add(Projections.rowCount())
         );
-        List<Object> results = (criteria.list() != null) ? criteria.list() : (new ArrayList<Object>());
+        final List<Object> results = (criteria.list() != null) ? criteria.list() : (new ArrayList<Object>());
 
 
         // parsing the result array to a node reading stat array
@@ -315,11 +350,11 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         final Session session = getSessionFactory().getCurrentSession();
 
         final Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq("node", node));
+        criteria.add(Restrictions.eq(NODE, node));
         criteria.setProjection(Projections.projectionList()
-                .add(Projections.groupProperty("node"))
-                .add(Projections.max("reading"))
-                .add(Projections.min("reading"))
+                .add(Projections.groupProperty(NODE))
+                .add(Projections.max(READING))
+                .add(Projections.min(READING))
                 .add(Projections.rowCount())
         );
 

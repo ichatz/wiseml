@@ -38,7 +38,7 @@ public class Scenario {
      *
      * @return a new list instance.
      */
-    private static List listFactory() {
+    public static List listFactory() {
         return new LinkedList();
     }
 

@@ -24,7 +24,6 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
      */
     private static LastNodeReadingController ourInstance = null;
 
-
     private final static String NODE = "node";
     private final static String CAPABILITY = "capability";
     private final static String TIMESTAMP = "timestamp";

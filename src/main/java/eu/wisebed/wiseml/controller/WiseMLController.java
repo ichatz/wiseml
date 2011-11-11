@@ -76,7 +76,6 @@ public class WiseMLController {
      * @return setup
      */
     public Setup loadSetupFromFile(final InputStream file) throws JiBXException {
-        Setup setup = new Setup();
         try {
             // unmarshal setup information from file...
             final IBindingFactory bfact = BindingDirectory.getFactory(Setup.class);
