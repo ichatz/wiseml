@@ -132,11 +132,7 @@ public abstract class AbstractImporter<E> {
      *
      * @throws NullPointerException exception
      */
-    public void connect() throws NullPointerException {
-
-        if (getEndpointUrl() == null) {
-            throw new NullPointerException("Remote Session Management Service endpoint is null");
-        }
+    public void connect() {
 
         // set session managementService
         setSessionManagement(WSNServiceHelper.getSessionManagementService(getEndpointUrl()));
@@ -154,7 +150,7 @@ public abstract class AbstractImporter<E> {
      * @param url , session managment service URL
      * @throws Exception exception
      */
-    public void connect(final String url) throws NullPointerException {
+    public void connect(final String url) {
 
         // set endpoint url
         setEndpointUrl(url);
@@ -187,7 +183,7 @@ public abstract class AbstractImporter<E> {
      * Abstract declaration of the convert method. Sub-classes must implement this method.
      * @throws NullPointerException , an exception
      */
-    public abstract void convert() throws JiBXException,NullPointerException;
+    public abstract void convert() throws JiBXException;
 
     /**
      * Abstract declareation of the convertCollection method. Sub-class must implement this metnod
@@ -195,5 +191,5 @@ public abstract class AbstractImporter<E> {
      * @param records , a collection of E instances.
      * @throws NullPointerException , an exception
      */
-    public abstract void convertCollection(final Collection<E> records) throws JiBXException,NullPointerException;
+    public abstract void convertCollection(final Collection<E> records) throws JiBXException;
 }

@@ -72,7 +72,7 @@ public class SetupImporter extends AbstractImporter<Setup> {
     /**
      * Convert the WiseML setup to a WiseDB setup record.
      */
-    public void convert() throws JiBXException,NullPointerException {
+    public void convert() throws JiBXException {
 
         // retrieve setup record record from controllers InputStream
         final WiseMLController cnt = new WiseMLController();
@@ -86,14 +86,9 @@ public class SetupImporter extends AbstractImporter<Setup> {
     /**
      * Convert the WiseML setup to a WiseDB setup record.
      * @param setup , a setup instance.
-     * @throws NullPointerException , an exception
+     * @throws org.jibx.runtime.JiBXException
      */
-    public void convert(final Setup setup) throws JiBXException,NullPointerException {
-
-        if (setup == null) {
-            LOGGER.fatal("Setup cannot be null");
-            throw new NullPointerException("Setup cannot be null");
-        }
+    public void convert(final Setup setup) throws JiBXException {
 
         // call convertCollection(list of setups)
         convertCollection(Arrays.asList(setup));
@@ -104,12 +99,7 @@ public class SetupImporter extends AbstractImporter<Setup> {
      *
      * @param collection , collection of setup entries.
      */
-    public void convertCollection(final Collection<Setup> collection) throws JiBXException,NullPointerException {
-
-        if (collection == null) {
-            LOGGER.fatal("Collection cannot be null");
-            throw new NullPointerException("Collection cannot be null");
-        }
+    public void convertCollection(final Collection<Setup> collection) throws JiBXException {
 
         // set entity collection
         setEntities(collection);

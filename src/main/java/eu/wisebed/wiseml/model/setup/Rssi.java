@@ -22,12 +22,19 @@ public class Rssi implements Serializable{
      */
     private String unit;
 
-
+    /**
+     *
+     * @return
+     */
     public String getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    /**
+     *
+     * @param value
+     */
+    public void setValue(final String value) {
         this.value = value;
     }
 

@@ -30,8 +30,8 @@ public class CapabilityImporter extends AbstractImporter<Capability> {
         // retrieve records from controllers InputStream
         final WiseMLController cnt = new WiseMLController();
         final WiseML root = cnt.loadWiseMLFromFile(getWiseMlStream());
-        final List<Node> nodeList = (root.getSetup() != null) ? root.getSetup().getNodes() : null;
-        final List<Link> linkList = (root.getSetup() != null) ? root.getSetup().getLink() : null;
+        final List<Node> nodeList = (root.getSetup() == null) ? null : root.getSetup().getNodes();
+        final List<Link> linkList = (root.getSetup() == null) ? null : root.getSetup().getLink();
 
         // accumulate all capability records in the set bellow
         final Set<Capability> capabilitySet = new HashSet<Capability>();

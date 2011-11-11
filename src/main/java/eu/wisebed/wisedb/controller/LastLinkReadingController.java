@@ -74,7 +74,6 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
      * @param link , a link.
      * @return a list of last reading rows for each capability.
      */
-    @SuppressWarnings({"unchecked"})
     public List<LastLinkReading> getByLink(final Link link) {
         final Session session = this.getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(LastLinkReading.class);
@@ -88,7 +87,6 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
      * @param testbed , a testbed instance.
      * @return a list last node readings from a testbed's nodes
      */
-    @SuppressWarnings({"unchecked"})
     public List<LastLinkReading> getByTestbed(final Testbed testbed) {
 
         // retrieve testbed setup
@@ -106,7 +104,6 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
      * @param capability , a capability.
      * @return a list of last reading rows for each capability.
      */
-    @SuppressWarnings({"unchecked"})
     public List<LastLinkReading> getByCapability(final Capability capability) {
         final Session session = this.getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(LastLinkReading.class);
@@ -121,7 +118,6 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
      * @param capability , a capability.
      * @return a list of last reading rows for each capability.
      */
-    @SuppressWarnings({"unchecked"})
     public List<LastLinkReading> getByCapability(final Testbed testbed, final Capability capability) {
 
         // retrieve testbed setup

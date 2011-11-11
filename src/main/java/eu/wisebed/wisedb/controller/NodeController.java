@@ -94,7 +94,6 @@ public class NodeController extends AbstractController<Node> {
      * @param testbed , a selected testbed.
      * @return a list of testbed links.
      */
-    @SuppressWarnings({"unchecked"})
     public List<Node> list(final Testbed testbed) {
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Node.class);
@@ -109,7 +108,6 @@ public class NodeController extends AbstractController<Node> {
      * @param capability , a capability.
      * @return a list of nodes that share the given capability.
      */
-    @SuppressWarnings({"unchecked"})
     public List<Node> listCapabilityNodes(final Capability capability) {
         final org.hibernate.Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Node.class);
@@ -126,7 +124,6 @@ public class NodeController extends AbstractController<Node> {
      * @param testbed     , a testbed.
      * @return a list of nodes that share the given capability belonging to the same testbed.
      */
-    @SuppressWarnings({"unchecked"})
     public List<Node> listCapabilityNodes(final Capability capability, final Testbed testbed) {
         final org.hibernate.Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Node.class);

@@ -74,7 +74,6 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
      * @param testbed , a testbed.
      * @return a list last node readings from a testbed's nodes
      */
-    @SuppressWarnings({"unchecked"})
     public List<LastNodeReading> getByTestbed(final Testbed testbed) {
 
         // retrieve testbed setup
@@ -92,7 +91,6 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
      * @param node , a node.
      * @return a list of last reading rows for each capability.
      */
-    @SuppressWarnings({"unchecked"})
     public List<LastNodeReading> getByNode(final Node node) {
         final Session session = this.getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(LastNodeReading.class);
@@ -106,7 +104,6 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
      * @param capability , a capability.
      * @return a list of last reading rows for each capability.
      */
-    @SuppressWarnings({"unchecked"})
     public List<LastNodeReading> getByCapability(final Capability capability) {
         final Session session = this.getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(LastNodeReading.class);
@@ -121,7 +118,6 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
      * @param capability , a capability.
      * @return a list of last node reading rows for each capability. Nodes belong to a specific testbed.
      */
-    @SuppressWarnings({"unchecked"})
     public List<LastNodeReading> getByCapability(final Testbed testbed, final Capability capability) {
 
         // retrieve testbed setup
