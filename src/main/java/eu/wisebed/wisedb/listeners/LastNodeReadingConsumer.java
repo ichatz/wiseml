@@ -91,9 +91,8 @@ public final class LastNodeReadingConsumer {
      *
      * @param nodeId       the Node ID
      * @param capabilityID the Capability ID
-     * @param listener     the listener
      */
-    public void removeListener(final String nodeId, final String capabilityID, final AbstractNodeReadingListener listener) {
+    public void removeListener(final String nodeId, final String capabilityID) {
         synchronized (lock) {
             if (listeners.containsKey(nodeId)) {
                 listeners.get(nodeId).remove(capabilityID);
