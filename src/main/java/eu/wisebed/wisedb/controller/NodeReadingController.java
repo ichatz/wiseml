@@ -36,7 +36,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     private static final String UNIT = "unit";
     private static final String DATATYPE = "datatype";
     private static final String DEFAULT_VALUE = "default value";
-    private static final String NODE = " node";
+    private static final String NODE = "node";
     private static final String CAPABILITY = "capability";
     private static final String TIMESTAMP = "timestamp";
     private static final String READING = "reading";
@@ -219,8 +219,8 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     public Long getNodeReadingsCount(final Node node) {
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq("node", node));
-        criteria.setProjection(Projections.count("node"));
+        criteria.add(Restrictions.eq(NODE, node));
+        criteria.setProjection(Projections.count(NODE));
         criteria.setMaxResults(1);
         return (Long) criteria.uniqueResult();
     }
