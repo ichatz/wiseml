@@ -17,7 +17,6 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -211,6 +210,25 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     }
 
     /**
+     * Return a limited list of readings for a selected node and capability.
+     *
+     * @param node       , node of a testbed.
+     * @param capability , capability of a node
+     * @param limit , an integer that express the number of records to be returned.
+     * @return a list with nodereadings for a node/capability combination
+     */
+    @SuppressWarnings("unchecked")
+    public List<NodeReading> listNodeReadings(final Node node, final Capability capability, final int limit) {
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.eq(NODE, node));
+        criteria.add(Restrictions.eq(CAPABILITY, capability));
+        criteria.addOrder(Order.asc(TIMESTAMP));
+        criteria.setMaxResults(limit);
+        return (List<NodeReading>) criteria.list();
+    }
+
+    /**
      * Returns the readings count for a node.
      *
      * @param node , a node .
@@ -270,9 +288,9 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         final List<Object> results = (criteria.list() == null) ? (new ArrayList<Object>()) : criteria.list();
 
         // parsing the result array to a node reading stat array
-        final NodeReadingStat[] statsArray = new NodeReadingStat[results.size()];
+        final List<NodeReadingStat> nodeReadingStats = new ArrayList<NodeReadingStat>();
         int index = 0;
-        for (Object obj : criteria.list()) {
+        for (Object obj : results) {
             final Object[] row = (Object[]) obj;
             final Node node = (Node) row[0];
             final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(node);
@@ -281,15 +299,16 @@ public class NodeReadingController extends AbstractController<NodeReading> {
             final Double maxReading = (Double) row[1];
             final Double minReading = (Double) row[2];
             final Long totalCount = (Long) row[3];
-            statsArray[index].setNode(node);
-            statsArray[index].setLastTimestamp(lastTimestamp);
-            statsArray[index].setLastReading(lastReading);
-            statsArray[index].setMaxReading(maxReading);
-            statsArray[index].setMinReading(minReading);
-            statsArray[index].setTotalCount(totalCount);
-            index++;
+            NodeReadingStat nodeReadingStat = new NodeReadingStat();
+            nodeReadingStat.setNode(node);
+            nodeReadingStat.setLastTimestamp(lastTimestamp);
+            nodeReadingStat.setLastReading(lastReading);
+            nodeReadingStat.setMaxReading(maxReading);
+            nodeReadingStat.setMinReading(minReading);
+            nodeReadingStat.setTotalCount(totalCount);
+            nodeReadingStats.add(nodeReadingStat);
         }
-        return Arrays.asList(statsArray);
+        return nodeReadingStats;
     }
 
     /**
@@ -317,7 +336,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         final List<Object> results = (criteria.list() == null) ? (new ArrayList<Object>()) : criteria.list();
 
         // parsing the result array to a node reading stat array
-        final NodeReadingStat[] statsArray = new NodeReadingStat[results.size()];
+        final List<NodeReadingStat> nodeReadingStats = new ArrayList<NodeReadingStat>();
         int index = 0;
         for (Object obj : results) {
             final Object[] row = (Object[]) obj;
@@ -328,15 +347,16 @@ public class NodeReadingController extends AbstractController<NodeReading> {
             final Double maxReading = (Double) row[1];
             final Double minReading = (Double) row[2];
             final Long totalCount = (Long) row[3];
-            statsArray[index].setNode(node);
-            statsArray[index].setLastTimestamp(lastTimestamp);
-            statsArray[index].setLastReading(lastReading);
-            statsArray[index].setMaxReading(maxReading);
-            statsArray[index].setMinReading(minReading);
-            statsArray[index].setTotalCount(totalCount);
-            index++;
+            NodeReadingStat nodeReadingStat = new NodeReadingStat();
+            nodeReadingStat.setNode(node);
+            nodeReadingStat.setLastTimestamp(lastTimestamp);
+            nodeReadingStat.setLastReading(lastReading);
+            nodeReadingStat.setMaxReading(maxReading);
+            nodeReadingStat.setMinReading(minReading);
+            nodeReadingStat.setTotalCount(totalCount);
+            nodeReadingStats.add(nodeReadingStat);
         }
-        return Arrays.asList(statsArray);
+        return nodeReadingStats;
     }
 
     /**
@@ -363,9 +383,9 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(node);
         final Date lastTimestamp = (lnr == null) ? null : lnr.getTimestamp();
         final Double lastReading = (lnr == null) ? null : lnr.getReading();
-        final Double maxReading = (Double) row[3];
-        final Double minReading = (Double) row[4];
-        final Long totalCount = (Long) row[5];
+        final Double maxReading = (Double) row[1];
+        final Double minReading = (Double) row[2];
+        final Long totalCount = (Long) row[3];
 
         return new NodeReadingStat(nodeQ, lastTimestamp, lastReading, maxReading, minReading, totalCount);
     }
