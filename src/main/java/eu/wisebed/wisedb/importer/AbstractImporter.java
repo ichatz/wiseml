@@ -10,20 +10,28 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
 
+/**
+ * This class implements an abstract manager which is responsible for all the
+ * basic unmarshaling and importing from a wiseml document into the database. Other
+ * sub-classes inherit from this one. This means that every sub-class can use
+ * all the methods that are implemented here and consequently.
+ *
+ * @param <E> Generic type of AbstractImporter
+ */
 public abstract class AbstractImporter<E> {
 
     /**
-     * Entities collection to import
+     * Entities collection to import.
      */
     private Collection<E> entities;
 
     /**
-     * The URL of the Session Managment Service endpoint.
+     * The URL of the Session Management Service endpoint.
      */
     private String endpointUrl;
 
     /**
-     * The Session Managment Service endpoint.
+     * The Session Management Service endpoint.
      */
     private SessionManagement sessionManagement;
 
@@ -33,7 +41,7 @@ public abstract class AbstractImporter<E> {
     private InputStream wiseMlStream;
 
     /**
-     * a path of a WiseML document
+     * a path of a WiseML document.
      */
     private String wiseMlPath;
 
@@ -42,7 +50,7 @@ public abstract class AbstractImporter<E> {
      *
      * @return entities
      */
-    public Collection<E> getEntities() {
+    public final Collection<E> getEntities() {
         return entities;
     }
 
@@ -51,7 +59,7 @@ public abstract class AbstractImporter<E> {
      *
      * @param entities , collection of E instances.
      */
-    public void setEntities(final Collection<E> entities) {
+    public final void setEntities(final Collection<E> entities) {
         this.entities = entities;
     }
 
@@ -60,7 +68,7 @@ public abstract class AbstractImporter<E> {
      *
      * @return  returns endpoint URL.
      */
-    public String getEndpointUrl() {
+    public final String getEndpointUrl() {
         return endpointUrl;
     }
 
@@ -69,7 +77,7 @@ public abstract class AbstractImporter<E> {
      *
      * @param endpointUrl , Session managment service endpoint url
      */
-    public void setEndpointUrl(final String endpointUrl) {
+    public final void setEndpointUrl(final String endpointUrl) {
         this.endpointUrl = endpointUrl;
     }
 
@@ -78,7 +86,7 @@ public abstract class AbstractImporter<E> {
      *
      * @return a Session Managment Service instance
      */
-    public SessionManagement getSessionManagement() {
+    public final SessionManagement getSessionManagement() {
         return sessionManagement;
     }
 
@@ -87,7 +95,7 @@ public abstract class AbstractImporter<E> {
      *
      * @param sessionManagement , session managment service instance
      */
-    public void setSessionManagement(final SessionManagement sessionManagement) {
+    public final void setSessionManagement(final SessionManagement sessionManagement) {
         this.sessionManagement = sessionManagement;
     }
 
@@ -96,17 +104,17 @@ public abstract class AbstractImporter<E> {
      *
      * @return a wiseml input stream instance
      */
-    public InputStream getWiseMlStream() {
+    public final InputStream getWiseMlStream() {
         return wiseMlStream;
     }
 
     /**
      * Sets the WiseMl InputStream instance.
      *
-     * @param wiseMlStream , an input stream.
+     * @param value , an input stream.
      */
-    public void setWiseMlStream(final InputStream wiseMlStream) {
-        this.wiseMlStream = wiseMlStream;
+    public final void setWiseMlStream(final InputStream value) {
+        this.wiseMlStream = value;
     }
 
     /**
@@ -114,7 +122,7 @@ public abstract class AbstractImporter<E> {
      *
      * @return the path of the WiseML document.
      */
-    public String getWiseMlPath() {
+    public final String getWiseMlPath() {
         return wiseMlPath;
     }
 
@@ -123,16 +131,14 @@ public abstract class AbstractImporter<E> {
      *
      * @param wiseMlPath , the path of the WiseML document.
      */
-    public void setWiseMlPath(final String wiseMlPath) {
+    public final void setWiseMlPath(final String wiseMlPath) {
         this.wiseMlPath = wiseMlPath;
     }
 
     /**
      * Connect to the remote Session Managment Service.
-     *
-     * @throws NullPointerException exception
-     */
-    public void connect() {
+     * */
+    public final void connect() {
 
         // set session managementService
         setSessionManagement(WSNServiceHelper.getSessionManagementService(getEndpointUrl()));
@@ -148,9 +154,8 @@ public abstract class AbstractImporter<E> {
      * Connect to the remote Session Managment Service via the URL in params.
      *
      * @param url , session managment service URL
-     * @throws Exception exception
      */
-    public void connect(final String url) {
+    public final void connect(final String url) {
 
         // set endpoint url
         setEndpointUrl(url);
@@ -160,10 +165,10 @@ public abstract class AbstractImporter<E> {
     /**
      * Open local WiseML document file in the path.
      *
-     * @param path, a path to a WiseML document file.
+     * @param path a path to a WiseML document file.
      * @throws IOException exception
      */
-    public void open(final String path) throws IOException {
+    public final void open(final String path) throws IOException {
 
         // set path to open
         setWiseMlPath(path);
@@ -175,13 +180,13 @@ public abstract class AbstractImporter<E> {
      *
      * @throws IOException exception
      */
-    public void open() throws IOException {
+    public final void open() throws IOException {
         wiseMlStream = new FileInputStream(getWiseMlPath());
     }
 
     /**
      * Abstract declaration of the convert method. Sub-classes must implement this method.
-     * @throws NullPointerException , an exception
+     * @throws JiBXException an exception
      */
     public abstract void convert() throws JiBXException;
 
@@ -189,7 +194,7 @@ public abstract class AbstractImporter<E> {
      * Abstract declareation of the convertCollection method. Sub-class must implement this metnod
      *
      * @param records , a collection of E instances.
-     * @throws NullPointerException , an exception
+     * @throws JiBXException an exception
      */
     public abstract void convertCollection(final Collection<E> records) throws JiBXException;
 }

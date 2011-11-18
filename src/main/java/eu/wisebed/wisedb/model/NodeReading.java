@@ -6,8 +6,14 @@ import eu.wisebed.wiseml.model.setup.Node;
 import java.io.Serializable;
 import java.util.Date;
 
-public class NodeReading implements Serializable {
+/**
+ * NodeReading wisedb model.
+ */
+public final class NodeReading implements Serializable {
 
+    /**
+     * Serial Version Unique ID.
+     */
     private static final long serialVersionUID = -1984083831602799368L;
 
     /**
@@ -42,10 +48,18 @@ public class NodeReading implements Serializable {
         // empty constructor
     }
 
+    /**
+     *
+     * @return
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(final int id) {
         this.id = id;
     }

@@ -18,20 +18,44 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
-public class LinkReadingController extends AbstractController<LinkReading> {
+/**
+ * CRUD operations for LinkReading entities.
+ */
+@SuppressWarnings("unchecked")
+public final class LinkReadingController extends AbstractController<LinkReading> {
 
     /**
      * static instance(ourInstance) initialized as null.
      */
     private static LinkReadingController ourInstance = null;
-
-    private static final String DESCRIPTION = "DESCRIPTION"; // todo provide those ?
-    private static final String PROGRAM_DETAILS = "program details"; // todo provide those ?
-    private static final String UNIT = "unit"; // todo provide those ?
-    private static final String ZERO = "0.0"; // todo provide those ?
-    private static final String DATATYPE = "datatype"; // todo provide those ?
-    private static final String DEFAULT_VALUE = "default value"; // todo provide those ?
-    private static final String LINK ="link";
+    /**
+     * Description literal.
+     */
+    private static final String DESCRIPTION = "DESCRIPTION";
+    /**
+     * Program details literal.
+     */
+    private static final String PROGRAM_DETAILS = "program details";
+    /**
+     * Unit literal.
+     */
+    private static final String UNIT = "unit";
+    /**
+     * Zero literal.
+     */
+    private static final String ZERO = "0.0";
+    /**
+     * Datatype literal.
+     */
+    private static final String DATATYPE = "datatype";
+    /**
+     * Default value literal.
+     */
+    private static final String DEFAULT_VALUE = "default value";
+    /**
+     * Link value literal.
+     */
+    private static final String LINK = "link";
 
     /**
      * Public constructor .
@@ -152,8 +176,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
 
 
     /**
-     * Insert a links's reading from it's capabilities and make the appropriate relations
-     * such as Link-Reading , Capability-reading
+     * Insert a links's reading from it's capabilities and make the appropriate  associations.
      *
      * @param sourceId       , link's source id.
      * @param targetId       , target's source id.
@@ -162,8 +185,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      * @param rssiValue      , the RSSI value of the link.
      * @param readingValue   , value of a sensor reading.
      * @param timestamp      , a timestamp.
-     * @throws eu.wisebed.wisedb.exception.UnknownTestbedException
-     *          , exception that occurs when the urnPrefix is unknown
+     * @throws eu.wisebed.wisedb.exception.UnknownTestbedException exception that occurs when the urnPrefix is unknown
      */
     public void insertReading(final String sourceId, final String targetId, final String capabilityName,
                               final String urnPrefix, final double readingValue, final double rssiValue,

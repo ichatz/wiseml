@@ -12,18 +12,27 @@ import java.util.List;
 
 
 /**
- * CRUD operations for Node objects.
+ * CRUD operations for Node entities.
  */
-
-public class NodeController extends AbstractController<Node> {
+@SuppressWarnings("unchecked")
+public final class NodeController extends AbstractController<Node> {
     /**
      * static instance(ourInstance) initialized as null.
      */
     private static NodeController ourInstance = null;
 
-    private final static String SETUP = "setup";
-    private final static String CAPABILITIES = "capabilities";
-    private final static String NODE_ID="id";
+    /**
+     * Setup literal.
+     */
+    private static final String SETUP = "setup";
+    /**
+     * Capabilities literal.
+     */
+    private static final String CAPABILITIES = "capabilities";
+    /**
+     * Node ID literal.
+     */
+    private static final String NODE_ID = "id";
 
 
     /**
@@ -120,8 +129,8 @@ public class NodeController extends AbstractController<Node> {
     /**
      * Listing all nodes that have the given capability.
      *
-     * @param capability, a capability.
-     * @param testbed     , a testbed.
+     * @param capability a capability.
+     * @param testbed a testbed.
      * @return a list of nodes that share the given capability belonging to the same testbed.
      */
     public List<Node> listCapabilityNodes(final Capability capability, final Testbed testbed) {

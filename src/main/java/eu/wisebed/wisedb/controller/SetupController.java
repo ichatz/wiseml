@@ -4,8 +4,14 @@ import eu.wisebed.wiseml.model.setup.Setup;
 
 import java.util.List;
 
-public class SetupController extends AbstractController<Setup> {
+/**
+ * CRUD operations for Setup entities.
+ */
+public final class SetupController extends AbstractController<Setup> {
 
+    /**
+     * static instance(ourInstance) initialized as null.
+     */
     private static SetupController ourInstance = null;
 
     /**

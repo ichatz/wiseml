@@ -2,11 +2,17 @@ package eu.wisebed.wisedb.model;
 
 import eu.wisebed.wiseml.model.setup.Setup;
 
-/**
- * Represents a WSN testbed.
- */
-public class Testbed {
+import java.io.Serializable;
 
+/**
+ * Testbed wisedb model.
+ */
+public final class Testbed implements Serializable {
+
+    /**
+     * Serial Version Unique ID.
+     */
+    private static final long serialVersionUID = -2786542310266504137L;
     /**
      * Identity of the network.
      */
@@ -53,7 +59,7 @@ public class Testbed {
     private boolean federated;
 
     /**
-     * Set of Setups belonging in Testbed
+     * Set of Setups belonging in Testbed.
      */
     private Setup setup;
 
@@ -67,12 +73,12 @@ public class Testbed {
     }
 
     /**
-     * Set the Identity of the testbed.
+     * Set the id of the testbed.
      *
-     * @param identity the new Identity of the testbed.
+     * @param id the new Identity of the testbed.
      */
-    public void setId(final int identity) {
-        this.id = identity;
+    public void setId(final int id) {
+        this.id = id;
     }
 
     /**
@@ -87,10 +93,10 @@ public class Testbed {
     /**
      * Set the Name of the testbed.
      *
-     * @param value the new Name of the testbed.
+     * @param name the new Name of the testbed.
      */
-    public void setName(final String value) {
-        this.name = value;
+    public void setName(final String name) {
+        this.name = name;
     }
 
     /**
@@ -105,10 +111,10 @@ public class Testbed {
     /**
      * Set the urn prefix of the testbed.
      *
-     * @param value the urn prefix of the testbed.
+     * @param urnPrefix the urn prefix of the testbed.
      */
-    public void setUrnPrefix(final String value) {
-        this.urnPrefix = value;
+    public void setUrnPrefix(final String urnPrefix) {
+        this.urnPrefix = urnPrefix;
     }
 
     /**
@@ -123,10 +129,10 @@ public class Testbed {
     /**
      * Set the Description of the testbed.
      *
-     * @param value the new Description of the testbed.
+     * @param description the new Description of the testbed.
      */
-    public void setDescription(final String value) {
-        this.description = value;
+    public void setDescription(final String description) {
+        this.description = description;
     }
 
     /**
@@ -141,10 +147,10 @@ public class Testbed {
     /**
      * Set the URL of the testbed.
      *
-     * @param value the URL of the testbed.
+     * @param url the URL of the testbed.
      */
-    public void setUrl(final String value) {
-        this.url = value;
+    public void setUrl(final String url) {
+        this.url = url;
     }
 
     /**
@@ -159,10 +165,10 @@ public class Testbed {
     /**
      * Set the URL of the SNAA endpoint.
      *
-     * @param value the URL of the SNAA endpoint.
+     * @param snaaUrl the URL of the SNAA endpoint.
      */
-    public void setSnaaUrl(final String value) {
-        this.snaaUrl = value;
+    public void setSnaaUrl(final String snaaUrl) {
+        this.snaaUrl = snaaUrl;
     }
 
     /**
@@ -177,10 +183,10 @@ public class Testbed {
     /**
      * Set the the URL of the Reservation endpoint.
      *
-     * @param value the URL of the Reservation endpoint.
+     * @param rsUrl the URL of the Reservation endpoint.
      */
-    public void setRsUrl(final String value) {
-        this.rsUrl = value;
+    public void setRsUrl(final String rsUrl) {
+        this.rsUrl = rsUrl;
     }
 
     /**
@@ -195,10 +201,10 @@ public class Testbed {
     /**
      * Set the URL of the Session Management endpoint.
      *
-     * @param value the URL of the Session Management endpoint.
+     * @param sessionUrl the URL of the Session Management endpoint.
      */
-    public void setSessionUrl(final String value) {
-        this.sessionUrl = value;
+    public void setSessionUrl(final String sessionUrl) {
+        this.sessionUrl = sessionUrl;
     }
 
     /**
@@ -213,10 +219,10 @@ public class Testbed {
     /**
      * Set if the testbed is federated.
      *
-     * @param value true if the testbed is federated.
+     * @param federated true if the testbed is federated.
      */
-    public void setFederated(final boolean value) {
-        federated = value;
+    public void setFederated(final boolean federated) {
+        this.federated = federated;
     }
 
     /**
@@ -229,12 +235,11 @@ public class Testbed {
     }
 
     /**
-     * Sets the testbed setup
+     * Sets the testbed setup.
      *
-     * @param setup , a setup instance
+     * @param setup , a setup instance.
      */
     public void setSetup(final Setup setup) {
         this.setup = setup;
     }
-
 }

@@ -23,21 +23,52 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
-public class NodeReadingController extends AbstractController<NodeReading> {
+/**
+ * CRUD operations for NodeReadings entities.
+ */
+@SuppressWarnings("unchecked")
+public final class NodeReadingController extends AbstractController<NodeReading> {
 
     /**
      * static instance(ourInstance) initialized as null.
      */
     private static NodeReadingController ourInstance = null;
 
+    /**
+     * Descriptions literal.
+     */
     private static final String DESCRIPTION = "DESCRIPTION";
+    /**
+     * Program details literal.
+     */
     private static final String PROGRAM_DETAILS = "program details";
+    /**
+     * Unit literal.
+     */
     private static final String UNIT = "unit";
+    /**
+     * Datatype literal.
+     */
     private static final String DATATYPE = "datatype";
+    /**
+     * Default value literal.
+     */
     private static final String DEFAULT_VALUE = "default value";
+    /**
+     * Node literal.
+     */
     private static final String NODE = "node";
+    /**
+     * Capability literal.
+     */
     private static final String CAPABILITY = "capability";
+    /**
+     * Timestamp literal.
+     */
     private static final String TIMESTAMP = "timestamp";
+    /**
+     * Reading literal.
+     */
     private static final String READING = "reading";
 
     /**
@@ -128,8 +159,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     }
 
     /**
-     * Insert a node's reading from it's capabilities and make the appropriate relations
-     * such as Node-Reading , Capability-reading
+     * Insert a node's reading from it's capabilities and make the appropriate associations.
      *
      * @param nodeId         , a node id.
      * @param capabilityName , a capability name.
@@ -214,7 +244,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      *
      * @param node       , node of a testbed.
      * @param capability , capability of a node
-     * @param limit , an integer that express the number of records to be returned.
+     * @param limit      , an integer that express the number of records to be returned.
      * @return a list with nodereadings for a node/capability combination
      */
     @SuppressWarnings("unchecked")
@@ -273,7 +303,6 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      *
      * @return a list of NodeReadingStat objects
      */
-    @SuppressWarnings({"unchecked"})
     public List<NodeReadingStat> getNodeReadingStats() {
         final Session session = getSessionFactory().getCurrentSession();
 
@@ -289,16 +318,16 @@ public class NodeReadingController extends AbstractController<NodeReading> {
 
         // parsing the result array to a node reading stat array
         final List<NodeReadingStat> nodeReadingStats = new ArrayList<NodeReadingStat>();
-        int index = 0;
         for (Object obj : results) {
             final Object[] row = (Object[]) obj;
             final Node node = (Node) row[0];
-            final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(node);
-            final Date lastTimestamp = (lnr == null) ? null : lnr.getTimestamp();
-            final Double lastReading = (lnr == null) ? null : lnr.getReading();
             final Double maxReading = (Double) row[1];
             final Double minReading = (Double) row[2];
             final Long totalCount = (Long) row[3];
+            final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(node);
+            final Date lastTimestamp = (lnr == null) ? null : lnr.getTimestamp();
+            final Double lastReading = (lnr == null) ? null : lnr.getReading();
+
             NodeReadingStat nodeReadingStat = new NodeReadingStat();
             nodeReadingStat.setNode(node);
             nodeReadingStat.setLastTimestamp(lastTimestamp);
@@ -317,7 +346,6 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @param testbed , a testbed instance
      * @return a list of NodeReadingStat objects
      */
-    @SuppressWarnings({"unchecked"})
     public List<NodeReadingStat> getNodeReadingStats(final Testbed testbed) {
         final Session session = getSessionFactory().getCurrentSession();
 
@@ -341,12 +369,12 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         for (Object obj : results) {
             final Object[] row = (Object[]) obj;
             final Node node = (Node) row[0];
-            final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(node);
-            final Date lastTimestamp = (lnr == null) ? null : lnr.getTimestamp();
-            final Double lastReading = (lnr == null) ? null : lnr.getReading();
             final Double maxReading = (Double) row[1];
             final Double minReading = (Double) row[2];
             final Long totalCount = (Long) row[3];
+            final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(node);
+            final Date lastTimestamp = (lnr == null) ? null : lnr.getTimestamp();
+            final Double lastReading = (lnr == null) ? null : lnr.getReading();
             NodeReadingStat nodeReadingStat = new NodeReadingStat();
             nodeReadingStat.setNode(node);
             nodeReadingStat.setLastTimestamp(lastTimestamp);
@@ -380,12 +408,12 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         criteria.setMaxResults(1);
         final Object[] row = (Object[]) criteria.uniqueResult();
         final Node nodeQ = (Node) row[0];
-        final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(node);
-        final Date lastTimestamp = (lnr == null) ? null : lnr.getTimestamp();
-        final Double lastReading = (lnr == null) ? null : lnr.getReading();
         final Double maxReading = (Double) row[1];
         final Double minReading = (Double) row[2];
         final Long totalCount = (Long) row[3];
+        final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(node);
+        final Date lastTimestamp = (lnr == null) ? null : lnr.getTimestamp();
+        final Double lastReading = (lnr == null) ? null : lnr.getReading();
 
         return new NodeReadingStat(nodeQ, lastTimestamp, lastReading, maxReading, minReading, totalCount);
     }

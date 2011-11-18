@@ -17,8 +17,10 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-
-public class SetupImporter extends AbstractImporter<Setup> {
+/**
+ * Imports setup entities from the wiseml document into the peristence store.
+ */
+public final class SetupImporter extends AbstractImporter<Setup> {
 
     /**
      * a log4j logger to print messages.
@@ -26,12 +28,12 @@ public class SetupImporter extends AbstractImporter<Setup> {
     private static final Logger LOGGER = Logger.getLogger(SetupImporter.class);
 
     /**
-     * the testbed this setup belongs to.
+     * the Testbed this setup belongs to.
      */
     private Testbed testbed;
 
     /**
-     * define set of all setup's CAPABILITIES (Nodes & Links) with no duplicate entries
+     * Define set of all setup's CAPABILITIES (Nodes & Links) with no duplicate entries.
      */
     private final static Set<Capability> CAPABILITIES = new HashSet<Capability>();
 
@@ -46,7 +48,7 @@ public class SetupImporter extends AbstractImporter<Setup> {
     /**
      * Sets the testbed instance and the endpoinurl to find the setup descriptions
      *
-     * @param testbed, a testbed instance.
+     * @param testbed a testbed instance.
      */
     public void setTestbed(final Testbed testbed) {
         this.testbed = testbed;
@@ -71,6 +73,8 @@ public class SetupImporter extends AbstractImporter<Setup> {
 
     /**
      * Convert the WiseML setup to a WiseDB setup record.
+     *
+     * @throws JiBXException a JiBXException exception.
      */
     public void convert() throws JiBXException {
 
@@ -85,8 +89,9 @@ public class SetupImporter extends AbstractImporter<Setup> {
 
     /**
      * Convert the WiseML setup to a WiseDB setup record.
+     *
      * @param setup , a setup instance.
-     * @throws org.jibx.runtime.JiBXException
+     * @throws JiBXException a JiBXException exception.
      */
     public void convert(final Setup setup) throws JiBXException {
 
@@ -98,6 +103,7 @@ public class SetupImporter extends AbstractImporter<Setup> {
      * Convert the WiseML setup entries collection to a WiseDB setup records.
      *
      * @param collection , collection of setup entries.
+     * @throws JiBXException a JiBXException exception.
      */
     public void convertCollection(final Collection<Setup> collection) throws JiBXException {
 
@@ -140,7 +146,7 @@ public class SetupImporter extends AbstractImporter<Setup> {
                 node.setSetup(setup);
 
                 // add this node capability to the CAPABILITIES set
-                for( Capability capability : node.getCapabilities()) {
+                for (Capability capability : node.getCapabilities()) {
                     CAPABILITIES.add(capability);
                 }
             }
@@ -153,7 +159,7 @@ public class SetupImporter extends AbstractImporter<Setup> {
                 link.setSetup(setup);
 
                 // add this link's CAPABILITIES to the CAPABILITIES set
-                for( Capability capability : link.getCapabilities()) {
+                for (Capability capability : link.getCapabilities()) {
                     CAPABILITIES.add(capability);
                 }
             }
@@ -164,23 +170,22 @@ public class SetupImporter extends AbstractImporter<Setup> {
      * Reset the CAPABILITIES for links and nodes in order to match the unique CAPABILITIES set of this importer.
      * @param setup , a setup instance
      */
-    public void resetNodeLinkCapabilities(final Setup setup){
+    public void resetNodeLinkCapabilities(final Setup setup) {
 
         // CAPABILITIES must be unique objects so nodes & links must point to the set's entities
-        for(Capability capability : CAPABILITIES){
-
-            if(setup.getNodes() != null){
-                for(Node node : setup.getNodes()) {
-                    if(node.getCapabilities() != null && node.getCapabilities().contains(capability)){
+        for (Capability capability : CAPABILITIES) {
+            if (setup.getNodes() != null) {
+                for (Node node : setup.getNodes()) {
+                    if (node.getCapabilities() != null && node.getCapabilities().contains(capability)) {
                         node.getCapabilities().remove(capability);
                         node.getCapabilities().add(capability);
                     }
                 }
             }
 
-            if(setup.getLink() != null){
-                for(Link link : setup.getLink()) {
-                    if(link.getCapabilities() != null && link.getCapabilities().contains(capability)){
+            if (setup.getLink() != null) {
+                for (Link link : setup.getLink()) {
+                    if (link.getCapabilities() != null && link.getCapabilities().contains(capability)) {
                         link.getCapabilities().remove(capability);
                         link.getCapabilities().add(capability);
                     }

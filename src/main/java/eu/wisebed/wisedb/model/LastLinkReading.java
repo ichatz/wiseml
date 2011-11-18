@@ -6,8 +6,14 @@ import eu.wisebed.wiseml.model.setup.Link;
 import java.io.Serializable;
 import java.util.Date;
 
-public class LastLinkReading implements Serializable {
+/**
+ * LastLinkReading wisedb model.
+ */
+public final class LastLinkReading implements Serializable {
 
+    /**
+     * Serial Version Unique ID.
+     */
     private static final long serialVersionUID = 8748551395278795210L;
 
     /**
@@ -38,18 +44,18 @@ public class LastLinkReading implements Serializable {
     }
 
     /**
-     * Returns links
+     * Returns links.
      *
-     * @return link
+     * @return last link reading's link
      */
     public Link getLink() {
         return link;
     }
 
     /**
-     * Sets link
+     * Sets link.
      *
-     * @param link , a link
+     * @param link last link reading's link.
      */
     public void setLink(final Link link) {
         this.link = link;
@@ -67,7 +73,7 @@ public class LastLinkReading implements Serializable {
     /**
      * Sets the capability that indicated this reading.
      *
-     * @param capability , must be persistent.
+     * @param capability last link reading's capability.
      */
     public void setCapability(final Capability capability) {
         this.capability = capability;
@@ -85,7 +91,7 @@ public class LastLinkReading implements Serializable {
     /**
      * Sets the timestamp that this reading occured.
      *
-     * @param timestamp , timestamp of the reading.
+     * @param timestamp last link reading's timestamp.
      */
     public void setTimestamp(final Date timestamp) {
         this.timestamp = timestamp;
@@ -103,7 +109,7 @@ public class LastLinkReading implements Serializable {
     /**
      * Sets this reading value.
      *
-     * @param reading , this reading value.
+     * @param reading last link reading's value.
      */
     public void setReading(final double reading) {
         this.reading = reading;

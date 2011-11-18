@@ -7,9 +7,9 @@ import org.apache.log4j.Logger;
 import java.util.Collection;
 
 /**
- * Retrieves testbed records from the Session management endpoint and imports them into the wisedb.
+ * Imports testbed entities into the peristence store.
  */
-public class TestbedImporter extends AbstractImporter<Testbed> {
+public final class TestbedImporter extends AbstractImporter<Testbed> {
 
     /**
      * a log4j logger to print messages.
@@ -64,56 +64,72 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     * @return
+     * Returns testbed name.
+     *
+     * @return testbed name.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * @param name
+     * Sets testbed name.
+     *
+     * @param name testbed name
      */
     public void setName(final String name) {
         this.name = name;
     }
 
     /**
-     * @return
+     * Returns testbed's urn prefix.
+     *
+     * @return testbed's urn prefix
      */
     public String getUrnPrefix() {
         return urnPrefix;
     }
 
     /**
-     * @param urnPrefix
+     * Sets urn prefix.
+     *
+     * @param urnPrefix  a urn prefix for testbed.
      */
     public void setUrnPrefix(final String urnPrefix) {
         this.urnPrefix = urnPrefix;
     }
 
     /**
-     * @return
+     * Returns web page url.
+     *
+     * @return web page url.
      */
     public String getWebPageUrl() {
         return webPageUrl;
     }
 
     /**
-     * @param webPageUrl
+     * Sets web page url.
+     *
+     * @param webPageUrl , a web page url
      */
     public void setWebPageUrl(final String webPageUrl) {
         this.webPageUrl = webPageUrl;
     }
 
     /**
-     * @return
+     * Returns decription.
+     *
+     * @return description.
      */
     public String getDescription() {
         return description;
     }
 
     /**
-     * @param description
+     * Sets description.
+     *
+     * @param description , a description.
      */
     public void setDescription(final String description) {
         this.description = description;
@@ -121,7 +137,8 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
 
     /**
      * Sets true/false whether the testbed is federated or not.
-     * @return
+     *
+     * @param federated boolean variable.
      */
     public void setFederated(final boolean federated) {
         this.federated = federated;
@@ -129,6 +146,7 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
 
     /**
      * Returns true if the testbed is federated or not.
+     *
      * @return true/false.
      */
     public boolean isFederated() {
@@ -136,42 +154,54 @@ public class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
-     * @return
+     * Returns SNAA url.
+     *
+     * @return SNAA url.
      */
     public String getSnaaUrl() {
         return snaaUrl;
     }
 
     /**
-     * @param snaaUrl
+     * Sets SNAA url.
+     *
+     * @param snaaUrl a SNAA url.
      */
     public void setSnaaUrl(final String snaaUrl) {
         this.snaaUrl = snaaUrl;
     }
 
     /**
-     * @return
+     * Returns RS url.
+     *
+     * @return rs url.
      */
     public String getRsUrl() {
         return rsUrl;
     }
 
     /**
-     * @param rsUrl
+     * Sets RS url.
+     *
+     * @param rsUrl a RS url
      */
     public void setRsUrl(final String rsUrl) {
         this.rsUrl = rsUrl;
     }
 
     /**
-     * @return
+     * Returns Session Management url.
+     *
+     * @return Session Management url.
      */
     public String getSessionUrl() {
         return sessionUrl;
     }
 
     /**
-     * @param sessionUrl
+     * Sets Session Management url.
+     *
+     * @param sessionUrl a Session Management url.
      */
     public void setSessionUrl(final String sessionUrl) {
         this.sessionUrl = sessionUrl;

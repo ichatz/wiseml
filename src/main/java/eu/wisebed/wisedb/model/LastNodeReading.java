@@ -6,8 +6,14 @@ import eu.wisebed.wiseml.model.setup.Node;
 import java.io.Serializable;
 import java.util.Date;
 
-public class LastNodeReading implements Serializable {
+/**
+ * LastNodeReading wisedb model.
+ */
+public final class LastNodeReading implements Serializable {
 
+    /**
+     * Serial Unique Version ID.
+     */
     private static final long serialVersionUID = 2824765230014359545L;
 
     /**
@@ -49,7 +55,7 @@ public class LastNodeReading implements Serializable {
     /**
      * Sets the node that indicated this reading.
      *
-     * @param node , must be persistent.
+     * @param node last node reading's node.
      */
     public void setNode(final Node node) {
         this.node = node;
@@ -67,7 +73,7 @@ public class LastNodeReading implements Serializable {
     /**
      * Sets the capability that indicated this reading.
      *
-     * @param capability , must be persistent.
+     * @param capability last node reading's node.
      */
     public void setCapability(final Capability capability) {
         this.capability = capability;
@@ -85,7 +91,7 @@ public class LastNodeReading implements Serializable {
     /**
      * Sets the timestamp that this reading occured.
      *
-     * @param timestamp , timestamp of the reading.
+     * @param timestamp last node reading's timestamp.
      */
     public void setTimestamp(final Date timestamp) {
         this.timestamp = timestamp;
@@ -103,7 +109,7 @@ public class LastNodeReading implements Serializable {
     /**
      * Sets this reading value.
      *
-     * @param reading , this reading value.
+     * @param reading last node reading's reading value.
      */
     public void setReading(final double reading) {
         this.reading = reading;

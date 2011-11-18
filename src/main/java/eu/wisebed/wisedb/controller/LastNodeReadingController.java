@@ -15,18 +15,27 @@ import org.hibernate.criterion.Restrictions;
 import java.util.List;
 
 /**
- * CRUD operations for LastNodeReading objects.
+ * CRUD operations for LastNodeReading entities.
  */
-public class LastNodeReadingController extends AbstractController<LastNodeReading> {
+@SuppressWarnings("unchecked")
+public final class LastNodeReadingController extends AbstractController<LastNodeReading> {
 
     /**
      * static instance(ourInstance) initialized as null.
      */
     private static LastNodeReadingController ourInstance = null;
-
-    private final static String NODE = "node";
-    private final static String CAPABILITY = "capability";
-    private final static String TIMESTAMP = "timestamp";
+    /**
+     * Node literal.
+     */
+    private static final String NODE = "node";
+    /**
+     * Capability literal.
+     */
+    private static final String CAPABILITY = "capability";
+    /**
+     * Timestamp literal.
+     */
+    private static final String TIMESTAMP = "timestamp";
 
     /**
      * Public constructor .
@@ -54,11 +63,11 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
 
 
     /**
-     * Returns the last reading row inserted in the persistence for a specific node & capability
+     * Returns the last reading row inserted in the persistence for a specific node & capability.
      *
-     * @param node       , a node.
-     * @param capability , a capability.
-     * @return the last node reading.
+     * @param node a node instance.
+     * @param capability a capability instance.
+     * @return the last node reading of a node for a capability.
      */
     public LastNodeReading getByID(final Node node, final Capability capability) {
         final Session session = this.getSessionFactory().getCurrentSession();
@@ -69,7 +78,7 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
     }
 
     /**
-     * Returns a list of last node reading entries for the nodes of a testbed
+     * Returns a list of last node reading entries for the nodes of a testbed.
      *
      * @param testbed , a testbed.
      * @return a list last node readings from a testbed's nodes
@@ -86,9 +95,9 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
     }
 
     /**
-     * Returns a list of last reading rows inserted in the persistence for a specific node
+     * Returns a list of last reading rows inserted in the persistence for a specific node.
      *
-     * @param node , a node.
+     * @param node a node.
      * @return a list of last reading rows for each capability.
      */
     public List<LastNodeReading> getByNode(final Node node) {
@@ -114,8 +123,8 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
     /**
      * Returns a list of last reading rows inserted in the persistence for a specific capability.
      *
-     * @param testbed    , a testbed
-     * @param capability , a capability.
+     * @param testbed a testbed
+     * @param capability a capability.
      * @return a list of last node reading rows for each capability. Nodes belong to a specific testbed.
      */
     public List<LastNodeReading> getByCapability(final Testbed testbed, final Capability capability) {
@@ -133,7 +142,7 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
     /**
      * Returns the latest node reading fo the LastNodeReadings of all capabilities.
      *
-     * @param node , a node.
+     * @param node a node.
      * @return a LastNodeReading entry
      */
     public LastNodeReading getLatestNodeReading(final Node node) {
@@ -155,7 +164,7 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
     /**
      * Returns the latest node reading fo the LastNodeReadings of all capabilities.
      *
-     * @param capability , a capability.
+     * @param capability a capability.
      * @return a last reading for a node.
      */
     public LastNodeReading getLatestNodeReading(final Capability capability) {
@@ -177,8 +186,8 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
     /**
      * Returns the latest node reading fo the LastNodeReadings of all capabilities
      *
-     * @param testbed    , a testbed.
-     * @param capability , a capability.
+     * @param testbed a testbed.
+     * @param capability a capability.
      * @return a last reading for a node belonging to a testbed.
      */
     public LastNodeReading getLatestNodeReading(final Testbed testbed, final Capability capability) {

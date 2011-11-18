@@ -13,18 +13,30 @@ import org.hibernate.criterion.Restrictions;
 import java.util.List;
 
 /**
- * CRUD operations for Testbed objects.
+ * CRUD operations for Testbed entities.
  */
-public class TestbedController extends AbstractController<Testbed> {
+public final class TestbedController extends AbstractController<Testbed> {
 
     /**
      * static instance(ourInstance) initialized as null.
      */
     private static TestbedController ourInstance = null;
 
-    private final static String TESTBED_ID = "id";
-    private final static String URN_PREFIX = "urnPrefix";
-    private final static String SETUP = "setup";
+    /**
+     * Testbed ID literal.
+     */
+    private static final String TESTBED_ID = "id";
+    /**
+     * UrnPrefix literal.
+     */
+    private static final String URN_PREFIX = "urnPrefix";
+    /**
+     * Setup literal.
+     */
+    private static final String SETUP = "setup";
+    /**
+     * Source literal.
+     */
     private static final String SOURCE = "source";
 
     /**

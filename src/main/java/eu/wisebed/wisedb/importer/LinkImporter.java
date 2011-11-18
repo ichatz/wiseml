@@ -9,7 +9,10 @@ import org.jibx.runtime.JiBXException;
 import java.util.Collection;
 import java.util.List;
 
-public class LinkImporter extends AbstractImporter<Link> {
+/**
+ * Imports link entities from the wiseml document into the peristence store.
+ */
+public final class LinkImporter extends AbstractImporter<Link> {
 
     /**
      * a log4j logger to print messages.
@@ -18,6 +21,8 @@ public class LinkImporter extends AbstractImporter<Link> {
 
     /**
      * Convert the WiseML setup to a WiseDB setup record.
+     *
+     * @throws JiBXException a JiBXException exception.
      */
     public void convert() throws JiBXException {
         // retrieve setup record record from controllers InputStream
@@ -37,8 +42,8 @@ public class LinkImporter extends AbstractImporter<Link> {
         // import records to db
         for (Link link : linkList) {
             LinkController.getInstance().add(link);
-            LOGGER.debug("Link (" + link.getSource() + " -> " + link.getTarget() + ") imported to db (" +
-                    linkList.size() + ")");
+            LOGGER.debug("Link (" + link.getSource() + " -> " + link.getTarget() + ") imported to db ("
+                    + linkList.size() + ")");
         }
         LOGGER.debug("Links imported to DB (" + linkList.size() + ").");
     }

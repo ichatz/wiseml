@@ -12,17 +12,29 @@ import java.util.List;
 
 
 /**
- * CRUD operations for Capability objects.
+ * CRUD operations for Capability entities.
  */
-public class CapabilityController extends AbstractController<Capability> {
+@SuppressWarnings("unchecked")
+public final class CapabilityController extends AbstractController<Capability> {
     /**
      * static instance(ourInstance) initialized as null.
      */
     private static CapabilityController ourInstance = null;
 
-    private final static String CAPABILITY_NAME = "name";
-    private final static String NODES = "nodes";
-    private final static String LINKS = "links";
+    /**
+     * Capability name literal.
+     */
+    private static final String CAPABILITY_NAME = "name";
+
+    /**
+     * Nodes literal.
+     */
+    private static final String NODES = "nodes";
+
+    /**
+     * Links literal.
+     */
+    private static final String LINKS = "links";
 
     /**
      * Public constructor .
@@ -51,7 +63,7 @@ public class CapabilityController extends AbstractController<Capability> {
     /**
      * Stores the capability provided in the parameters.
      *
-     * @param entity, a Capability object.
+     * @param entity a Capability object.
      */
     public void add(final Capability entity) {
         final Session session = getSessionFactory().getCurrentSession();
@@ -66,7 +78,7 @@ public class CapabilityController extends AbstractController<Capability> {
     /**
      * Retrieve the Capabilities from the database that corresponds to the input id.
      *
-     * @param entityID the id of the Entity object.
+     * @param entityID the id of the entity instance.
      * @return an Entity object.
      */
     public Capability getByID(final String entityID) {
@@ -104,7 +116,7 @@ public class CapabilityController extends AbstractController<Capability> {
     /**
      * Listing all the capabilities from the database belonging to a selected testbed.
      *
-     * @param testbed , a selected testbed.
+     * @param testbed a selected testbed instance.
      * @return a list of testbed capabilities.
      */
     public List<Capability> list(final Testbed testbed) {
@@ -119,10 +131,9 @@ public class CapabilityController extends AbstractController<Capability> {
     /**
      * Listing all the capabilities associated with nodes from the database belonging to a selected testbed.
      *
-     * @param testbed , a selected testbed.
+     * @param testbed a selected testbed instance.
      * @return a list of testbed nodes capabilities.
      */
-    @SuppressWarnings({"unchecked"})
     public List<Capability> listNodeCapabilities(final Testbed testbed) {
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Capability.class);
@@ -136,10 +147,9 @@ public class CapabilityController extends AbstractController<Capability> {
     /**
      * Listing all the link capabilities associated with nodes from the database belonging to a selected testbed.
      *
-     * @param testbed , a selected testbed.
+     * @param testbed a selected testbed instance.
      * @return a list of testbed link capabilities.
      */
-    @SuppressWarnings({"unchecked"})
     public List<Capability> listLinkCapabilities(final Testbed testbed) {
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Capability.class);

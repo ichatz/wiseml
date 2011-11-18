@@ -10,15 +10,29 @@ import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
 
-public class LinkController extends AbstractController<Link> {
+/**
+ * CRUD operations for Link entities.
+ */
+@SuppressWarnings("unchecked")
+public final class LinkController extends AbstractController<Link> {
+
     /**
      * static instance(ourInstance) initialized as null.
      */
     private static LinkController ourInstance = null;
 
-    private final static String SOURCE = "source";
-    private final static String SETUP = "setup";
-    private final static String CAPABILITIES = "capabilities";
+    /**
+     * Source literal.
+     */
+    private static final String SOURCE = "source";
+    /**
+     * Setup literal.
+     */
+    private static final String SETUP = "setup";
+    /**
+     * Capabilities literal.
+     */
+    private static final String CAPABILITIES = "capabilities";
 
     /**
      * Public constructor .
@@ -61,7 +75,7 @@ public class LinkController extends AbstractController<Link> {
     }
 
     /**
-     * Deleting a link entry from the database
+     * Deleting a link entry from the database.
      *
      * @param sourceId , The node id of the link's source.
      * @param targetId , The node id of the link's target.
@@ -86,10 +100,9 @@ public class LinkController extends AbstractController<Link> {
     /**
      * Listing all the links from the database belonging to a selected testbed.
      *
-     * @param testbed , a selected testbed.
+     * @param testbed a selected testbed.
      * @return a list of testbed links.
      */
-    @SuppressWarnings({"unchecked"})
     public List<Link> list(final Testbed testbed) {
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Link.class);
@@ -101,11 +114,10 @@ public class LinkController extends AbstractController<Link> {
     /**
      * Listing all links that have the given capability.
      *
-     * @param capability, a capability.
-     * @param testbed     , a testbed.
+     * @param capability a capability.
+     * @param testbed a testbed.
      * @return a list of links that share the given capability belonging to the same testbed.
      */
-    @SuppressWarnings({"unchecked"})
     public List<Link> listCapabilityLinks(final Capability capability, final Testbed testbed) {
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Link.class);

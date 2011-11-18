@@ -15,7 +15,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-public class CapabilityImporter extends AbstractImporter<Capability> {
+/**
+ * Imports capability entities from the wiseml document into the peristence store.
+ */
+public final class CapabilityImporter extends AbstractImporter<Capability> {
 
     /**
      * a log4j logger to print messages.
@@ -24,7 +27,9 @@ public class CapabilityImporter extends AbstractImporter<Capability> {
 
     /**
      * Convert the WiseML Capability entries to a WiseDB capability records.
+     * @throws JiBXException a JibException exception.
      */
+    @SuppressWarnings("NullableProblems")
     public void convert() throws JiBXException {
 
         // retrieve records from controllers InputStream
@@ -67,7 +72,7 @@ public class CapabilityImporter extends AbstractImporter<Capability> {
     /**
      * Convert the WiseML Capability entries collection to a WiseDB capability records.
      *
-     * @param collection , collection of capabilities
+     * @param collection , collection of capabilities.
      */
     public void convertCollection(final Collection<Capability> collection) {
 

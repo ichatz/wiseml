@@ -6,8 +6,14 @@ import eu.wisebed.wiseml.model.setup.Link;
 import java.io.Serializable;
 import java.util.Date;
 
-public class LinkReading implements Serializable {
+/**
+ * LinkReading wisedb model.
+ */
+public final class LinkReading implements Serializable {
 
+    /**
+     * Serial verison unique ID.
+     */
     private static final long serialVersionUID = -8617855105682730969L;
 
     /**

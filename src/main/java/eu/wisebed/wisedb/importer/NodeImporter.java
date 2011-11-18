@@ -9,7 +9,10 @@ import org.jibx.runtime.JiBXException;
 import java.util.Collection;
 import java.util.List;
 
-public class NodeImporter extends AbstractImporter<Node> {
+/**
+ * Imports node entities from the wiseml document into the peristence store.
+ */
+public final class NodeImporter extends AbstractImporter<Node> {
 
     /**
      * a log4j logger to print messages.
@@ -18,6 +21,8 @@ public class NodeImporter extends AbstractImporter<Node> {
 
     /**
      * Convert the WiseML setup to a WiseDB setup record.
+     *
+     * @throws JiBXException a JiBXException exception.
      */
     public void convert() throws JiBXException {
         // retrieve setup record record from controllers InputStream
@@ -44,6 +49,8 @@ public class NodeImporter extends AbstractImporter<Node> {
 
     /**
      * Update the WiseDB entries from the WiseML setup.
+     *
+     * @throws JiBXException a JiBXException exception.
      */
     public void update() throws JiBXException {
         // retrieve setup record record from controllers InputStream
@@ -70,7 +77,7 @@ public class NodeImporter extends AbstractImporter<Node> {
     /**
      * Convert the WiseML Node entries collection to a WiseDB node records.
      *
-     * @param collection , collection of nodes
+     * @param collection , collection of nodes.
      */
     public void convertCollection(final Collection<Node> collection) {
 

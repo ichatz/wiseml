@@ -15,18 +15,30 @@ import org.hibernate.criterion.Restrictions;
 import java.util.List;
 
 /**
- * CRUD operations for LastLinkReading objects.
+ * CRUD operations for LastLinkReading entities.
  */
-public class LastLinkReadingController extends AbstractController<LastLinkReading> {
+@SuppressWarnings("unchecked")
+public final class LastLinkReadingController extends AbstractController<LastLinkReading> {
 
     /**
      * static instance(ourInstance) initialized as null.
      */
     private static LastLinkReadingController ourInstance = null;
 
-    private final static String LINK = "link";
-    private final static String CAPABILITY = "capability";
-    private final static String TIMESTAMP = "timestamp";
+    /**
+     * Link literal.
+     */
+    private static final  String LINK = "link";
+
+    /**
+     * Capability literal.
+     */
+    private static final String CAPABILITY = "capability";
+
+    /**
+     * Timestamp literal.
+     */
+    private static final String TIMESTAMP = "timestamp";
 
     /**
      * Public constructor .

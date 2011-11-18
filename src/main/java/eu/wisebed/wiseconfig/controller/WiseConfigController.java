@@ -11,9 +11,14 @@ import org.jibx.runtime.JiBXException;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
-public class WiseConfigController {
-
-    private final static Logger LOGGER = Logger.getLogger(WiseConfigController.class);
+/**
+ * WiseConfigController class.
+ */
+public final class WiseConfigController {
+    /**
+     *
+     */
+    private static final Logger LOGGER = Logger.getLogger(WiseConfigController.class);
 
     /**
      * this method loads a wiseml from file.
@@ -22,7 +27,7 @@ public class WiseConfigController {
      * @return testbed configuration instance.
      * @throws org.jibx.runtime.JiBXException , JiBX Exception.
      */
-    public TestbedConfiguration loadWiseMLFromFile(final InputStream file) throws JiBXException{
+    public TestbedConfiguration loadWiseMLFromFile(final InputStream file) throws JiBXException {
         TestbedConfiguration config = new TestbedConfiguration();
         try {
             // unmarshal wiseml information from file...

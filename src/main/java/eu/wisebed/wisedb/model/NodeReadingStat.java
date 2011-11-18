@@ -2,9 +2,18 @@ package eu.wisebed.wisedb.model;
 
 import eu.wisebed.wiseml.model.setup.Node;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class NodeReadingStat {
+/**
+ * NodeREadingStat wisedb model.
+ */
+public final class NodeReadingStat implements Serializable {
+
+    /**
+     * Serial Version Unique ID.
+     */
+    private static final long serialVersionUID = 3416422837553729041L;
 
     private Node node;
     private Date lastTimestamp;

@@ -16,33 +16,34 @@ import java.util.List;
  *
  * @param <E> Generic type of AbstractController
  */
+@SuppressWarnings("unchecked")
 public class AbstractController<E> {
 
     /**
-     * the session factory which opens a new session.
+     * The SessionFactory which opens a new session to the persistence store.
      */
     private transient SessionFactory sessionFactory;
 
     /**
-     * a SessionFactory bean is injected by Spring.
+     * A SessionFactory bean is injected by Spring.
      *
-     * @param factory sessionFactory bean.
+     * @param factory a sessionFactory instance.
      */
-    public void setSessionFactory(final SessionFactory factory) {
+    public final void setSessionFactory(final SessionFactory factory) {
         this.sessionFactory = factory;
     }
 
     /**
-     * Returns the current Session factory.
+     * Returns the current SessionFactory.
      *
-     * @return the current Session Factory.
+     * @return the current SessionFactory instance.
      */
-    public SessionFactory getSessionFactory() {
+    public final SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 
     /**
-     * adding a new entry into the database, according to the input object it
+     * Inserting a new entry into the database, according to the input object it
      * receives.
      *
      * @param entity an Entity object that may be of every type of entity.
@@ -68,7 +69,7 @@ public class AbstractController<E> {
      * receives.
      *
      * @param entity   an Entity object that may be of every type of entity.
-     * @param entityID the (int) id of the Entity object.
+     * @param entityID the (int) id of the entity instance.
      */
     public void delete(final E entity, final int entityID) {
         final Session session = sessionFactory.getCurrentSession();
@@ -96,10 +97,9 @@ public class AbstractController<E> {
      *
      * @param entity an Entity object that may be of every type of entity.
      * @return a list of all the records(objects) that exist inside the table
-     *         related to the input Entity object.
+     *         related to the input entity instance.
      */
-    @SuppressWarnings("unchecked")
-    protected List<E> list(final E entity) {
+    public final List<E> list(final E entity) {
         final Session session = sessionFactory.getCurrentSession();
         final Criteria criteria = session.createCriteria(entity.getClass());
         return (List<E>) criteria.list();
@@ -108,12 +108,11 @@ public class AbstractController<E> {
     /**
      * Get the entry from the database that corresponds to the input id.
      *
-     * @param entity   an Entity object that may be of every type of entity.
+     * @param entity an Entity object that may be of every type of entity.
      * @param entityID the (int) id of the Entity object.
      * @return an Entity object.
      */
-    @SuppressWarnings("unchecked")
-    protected E getByID(final E entity, final int entityID) {
+    public E getByID(final E entity, final int entityID) {
         final Session session = sessionFactory.getCurrentSession();
         return (E)  session.get(entity.getClass(), entityID);
     }
@@ -125,8 +124,7 @@ public class AbstractController<E> {
      * @param entityID the (String) id of the Entity object.
      * @return an Entity object.
      */
-    @SuppressWarnings("unchecked")
-    protected E getByID(final E entity, final String entityID) {
+    public E getByID(final E entity, final String entityID) {
         final Session session = sessionFactory.getCurrentSession();
         return (E) session.get(entity.getClass(), entityID);
 
