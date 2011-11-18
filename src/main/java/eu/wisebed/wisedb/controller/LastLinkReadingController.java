@@ -18,7 +18,7 @@ import java.util.List;
  * CRUD operations for LastLinkReading entities.
  */
 @SuppressWarnings("unchecked")
-public final class LastLinkReadingController extends AbstractController<LastLinkReading> {
+public class LastLinkReadingController extends AbstractController<LastLinkReading> {
 
     /**
      * static instance(ourInstance) initialized as null.

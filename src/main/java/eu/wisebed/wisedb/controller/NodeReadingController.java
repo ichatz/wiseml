@@ -27,7 +27,7 @@ import java.util.Map;
  * CRUD operations for NodeReadings entities.
  */
 @SuppressWarnings("unchecked")
-public final class NodeReadingController extends AbstractController<NodeReading> {
+public class NodeReadingController extends AbstractController<NodeReading> {
 
     /**
      * static instance(ourInstance) initialized as null.

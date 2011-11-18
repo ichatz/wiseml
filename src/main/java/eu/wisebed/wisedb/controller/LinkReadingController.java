@@ -22,7 +22,7 @@ import java.util.List;
  * CRUD operations for LinkReading entities.
  */
 @SuppressWarnings("unchecked")
-public final class LinkReadingController extends AbstractController<LinkReading> {
+public class LinkReadingController extends AbstractController<LinkReading> {
 
     /**
      * static instance(ourInstance) initialized as null.

@@ -14,7 +14,7 @@ import java.util.List;
  * CRUD operations for Link entities.
  */
 @SuppressWarnings("unchecked")
-public final class LinkController extends AbstractController<Link> {
+public class LinkController extends AbstractController<Link> {
 
     /**
      * static instance(ourInstance) initialized as null.

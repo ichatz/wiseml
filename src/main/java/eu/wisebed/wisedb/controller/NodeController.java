@@ -15,7 +15,7 @@ import java.util.List;
  * CRUD operations for Node entities.
  */
 @SuppressWarnings("unchecked")
-public final class NodeController extends AbstractController<Node> {
+public class NodeController extends AbstractController<Node> {
     /**
      * static instance(ourInstance) initialized as null.
      */

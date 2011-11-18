@@ -18,7 +18,7 @@ import java.util.List;
  * CRUD operations for LastNodeReading entities.
  */
 @SuppressWarnings("unchecked")
-public final class LastNodeReadingController extends AbstractController<LastNodeReading> {
+public class LastNodeReadingController extends AbstractController<LastNodeReading> {
 
     /**
      * static instance(ourInstance) initialized as null.

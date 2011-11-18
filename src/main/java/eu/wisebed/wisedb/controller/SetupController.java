@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * CRUD operations for Setup entities.
  */
-public final class SetupController extends AbstractController<Setup> {
+public class SetupController extends AbstractController<Setup> {
 
     /**
      * static instance(ourInstance) initialized as null.
