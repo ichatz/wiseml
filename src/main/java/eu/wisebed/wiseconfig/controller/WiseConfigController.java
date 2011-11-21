@@ -15,7 +15,7 @@ import java.io.InputStream;
  * This is a a utility class for persisting and loading instances of classes to/from xml file so as to provide
  * configuration.
  */
-public class WiseConfigController {
+public final class WiseConfigController {
 
     /**
      * Logger instance.

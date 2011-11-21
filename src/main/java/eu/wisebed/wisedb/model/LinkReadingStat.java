@@ -14,6 +14,7 @@ public final class LinkReadingStat implements Serializable {
      * Serial Version Unique ID.
      */
     private static final long serialVersionUID = -1984083831602799368L;
+
     /**
      *
      */

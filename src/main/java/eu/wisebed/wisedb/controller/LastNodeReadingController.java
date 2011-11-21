@@ -184,7 +184,7 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
     }
 
     /**
-     * Returns the latest node reading fo the LastNodeReadings of all capabilities
+     * Returns the latest node reading fo the LastNodeReadings of all capabilities.
      *
      * @param testbed a testbed.
      * @param capability a capability.

@@ -235,7 +235,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         final Criteria criteria = session.createCriteria(NodeReading.class);
         criteria.add(Restrictions.eq(NODE, node));
         criteria.add(Restrictions.eq(CAPABILITY, capability));
-        criteria.addOrder(Order.asc(TIMESTAMP));
+        criteria.addOrder(Order.desc(TIMESTAMP));
         return (List<NodeReading>) criteria.list();
     }
 
@@ -253,7 +253,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         final Criteria criteria = session.createCriteria(NodeReading.class);
         criteria.add(Restrictions.eq(NODE, node));
         criteria.add(Restrictions.eq(CAPABILITY, capability));
-        criteria.addOrder(Order.asc(TIMESTAMP));
+        criteria.addOrder(Order.desc(TIMESTAMP));
         criteria.setMaxResults(limit);
         return (List<NodeReading>) criteria.list();
     }

@@ -125,18 +125,34 @@ public final class LinkReading implements Serializable {
         this.rssiValue = rssiValue;
     }
 
+    /**
+     *
+     * @return
+     */
     public Link getLink() {
         return link;
     }
 
+    /**
+     *
+     * @param link
+     */
     public void setLink(final Link link) {
         this.link = link;
     }
 
+    /**
+     *
+     * @return
+     */
     public Capability getCapability() {
         return capability;
     }
 
+    /**
+     *
+     * @param capability
+     */
     public void setCapability(final Capability capability) {
         this.capability = capability;
     }

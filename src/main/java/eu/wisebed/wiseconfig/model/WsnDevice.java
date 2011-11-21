@@ -52,7 +52,7 @@ public final class WsnDevice {
     }
 
     /**
-     * Sets type
+     * Sets wsn device type.
      * @param type a wsn device type.
      */
     public void setType(final String type) {

@@ -35,7 +35,7 @@ public final class SetupImporter extends AbstractImporter<Setup> {
     /**
      * Define set of all setup's CAPABILITIES (Nodes & Links) with no duplicate entries.
      */
-    private final static Set<Capability> CAPABILITIES = new HashSet<Capability>();
+    private static final Set<Capability> CAPABILITIES = new HashSet<Capability>();
 
 
     /**
@@ -46,7 +46,7 @@ public final class SetupImporter extends AbstractImporter<Setup> {
     }
 
     /**
-     * Sets the testbed instance and the endpoinurl to find the setup descriptions
+     * Sets the testbed instance and the endpoinurl to find the setup descriptions.
      *
      * @param testbed a testbed instance.
      */
@@ -64,7 +64,7 @@ public final class SetupImporter extends AbstractImporter<Setup> {
     }
 
     /**
-     * Returns CAPABILITIES set
+     * Returns CAPABILITIES set.
      * @return returns CAPABILITIES set.
      */
     public Set<Capability> getCapabilities() {

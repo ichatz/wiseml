@@ -27,7 +27,7 @@ public final class TestbedImporter extends AbstractImporter<Testbed> {
     private String urnPrefix;
 
     /**
-     * Web URL of Testbed
+     * Web URL of Testbed,
      */
     private String webPageUrl;
 

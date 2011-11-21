@@ -147,7 +147,7 @@ public final class WebService {
     }
 
     /**
-     * Sets WiseML filename
+     * Sets WiseML filename.
      * @param wisemlFilename a WiseML filename.
      */
     public void setWisemlfilename(final String wisemlFilename) {
