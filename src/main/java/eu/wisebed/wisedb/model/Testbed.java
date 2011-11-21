@@ -5,7 +5,9 @@ import eu.wisebed.wiseml.model.setup.Setup;
 import java.io.Serializable;
 
 /**
- * Testbed wisedb model.
+ * This is a persistent class for the object Testbed that has the
+ * properties of a wisedb entry. In the class there are
+ * getter and setter methods for the properties.
  */
 public final class Testbed implements Serializable {
 

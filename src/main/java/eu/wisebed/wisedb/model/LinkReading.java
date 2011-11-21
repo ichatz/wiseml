@@ -7,7 +7,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * LinkReading wisedb model.
+ * This is a persistent class for the object LinkReading that has the
+ * properties of a wisedb entry. In the class there are
+ * getter and setter methods for the properties.
  */
 public final class LinkReading implements Serializable {
 
@@ -22,22 +24,22 @@ public final class LinkReading implements Serializable {
     private int id;
 
     /**
-     * Link reference.
+     * Link association.
      */
     private Link link;
 
     /**
-     * Capability reference.
+     * Capability association.
      */
     private Capability capability;
 
     /**
-     * Timestamp
+     * Timestamp of the reading.
      */
     private Date timestamp;
 
     /**
-     * Numeric value of a reading.
+     * Numeric value of the reading.
      */
     private double reading;
 
@@ -117,7 +119,7 @@ public final class LinkReading implements Serializable {
     }
 
     /**
-     * Sets the rssi value
+     * Sets the rssi value.
      *
      * @param rssiValue , the rssi value
      */
@@ -126,32 +128,36 @@ public final class LinkReading implements Serializable {
     }
 
     /**
+     * Returns the link associated with this LinkReading.
      *
-     * @return
+     * @return the link associated with this LinkReading.
      */
     public Link getLink() {
         return link;
     }
 
     /**
+     * Sets the link associated with this LinkReading.
      *
-     * @param link
+     * @param link the associated link.
      */
     public void setLink(final Link link) {
         this.link = link;
     }
 
     /**
+     * Returns the capability associated with this LinkReading.
      *
-     * @return
+     * @return the capability associated with this LinkReading.
      */
     public Capability getCapability() {
         return capability;
     }
 
     /**
+     * Sets the capability associated with this LinkReading.
      *
-     * @param capability
+     * @param capability the associated capability.
      */
     public void setCapability(final Capability capability) {
         this.capability = capability;

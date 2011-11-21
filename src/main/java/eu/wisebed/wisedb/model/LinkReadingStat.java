@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * LinkReadingStat wisedb model.
+ * LinkReadingStat wisedb model. Utility class. This class is not persisted.
  */
 public final class LinkReadingStat implements Serializable {
 
@@ -53,13 +53,13 @@ public final class LinkReadingStat implements Serializable {
     }
 
     /**
-     *
-     * @param link
-     * @param lastTimestamp
-     * @param lastReading
-     * @param maxReading
-     * @param minReading
-     * @param totalCount
+     * Constructor.
+     * @param link a link instance.
+     * @param lastTimestamp the last reading's timestamp.
+     * @param lastReading the last reading's reading value.
+     * @param maxReading max reading for this link/capability.
+     * @param minReading min reading for this link/capability.
+     * @param totalCount total count of readings.
      */
     public LinkReadingStat(final Link link, final Date lastTimestamp, final Double lastReading,
                            final Double maxReading, final Double minReading, final Long totalCount) {
@@ -168,8 +168,8 @@ public final class LinkReadingStat implements Serializable {
     }
 
     /**
-     *
-     * @return
+     * Returns string representation of this stat.
+     * @return string representation of this stat.
      */
     public String toString() {
         return "[" + link.getSource() + "," + link.getTarget() + "] : " + lastTimestamp + " " + lastReading

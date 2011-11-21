@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * NodeREadingStat wisedb model.
+ * NodeReadingStat wisedb model. Utility class. This class is not persisted.
  */
 public final class NodeReadingStat implements Serializable {
 

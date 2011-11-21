@@ -7,7 +7,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * NodeReading wisedb model.
+ * This is a persistent class for the object NodeReading that has the
+ * properties of a wisedb entry. In the class there are
+ * getter and setter methods for the properties.
  */
 public final class NodeReading implements Serializable {
 
