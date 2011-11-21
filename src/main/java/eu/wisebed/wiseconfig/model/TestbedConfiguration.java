@@ -5,41 +5,40 @@ import java.util.List;
 
 /**
  * This is a persistent class for the object TestbedConfiguration that has the
- * properties of a TestbedConfiguration xml file. In the class there are
+ * properties of a testbed xml file. In the class there are
  * getter and setter methods for the properties.
  */
-public class TestbedConfiguration {
+public final class TestbedConfiguration {
 
     /**
-     * list of nodes of the testbed
+     * List of nodes of the testbed.
      */
     private List<Nodes> nodes;
 
     /**
-     * this method returns the list of nodes of the testbed
+     * This method returns the list of nodes of the testbed.
      *
      * @return nodes of the testbed configuration
      */
-    public final List<Nodes> getNodes() {
+    public List<Nodes> getNodes() {
         return nodes;
     }
 
     /**
-     * this method sets the list of nodes of the testbed
+     * this method sets the list of nodes of the testbed.
      *
      * @param nds of the testbed configuration
      */
-    public final void setNodes(final List<Nodes> nds) {
+    public void setNodes(final List<Nodes> nds) {
         this.nodes = nds;
     }
 
     /**
-     * this method add a node in the configuration
+     * This method add a node in the configuration.
      *
-     * @param nodes of the testbed configuration
+     * @param nodes of the testbed configuration.
      */
-
-    public final void addNodes(final Nodes nodes) {
+    public void addNodes(final Nodes nodes) {
         if (this.nodes == null) {
             this.nodes = new ArrayList<Nodes>();
         }

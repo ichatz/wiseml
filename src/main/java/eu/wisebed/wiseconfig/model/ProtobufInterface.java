@@ -1,25 +1,51 @@
 package eu.wisebed.wiseconfig.model;
 
+/**
+ * This is a persistent class for the object ProtobufInterface that has the
+ * properties of a node in the testbed xml file. In the class there are
+ * getter and setter methods for the properties.
+ */
+public final class ProtobufInterface {
 
-public class ProtobufInterface {
-
-
+    /**
+     * Address Port.
+     */
     private String port;
+
+    /**
+     * Address IP.
+     */
     private String ip;
 
-    public final String getPort() {
+    /**
+     * Return host port.
+     * @return host port.
+     */
+    public String getPort() {
         return port;
     }
 
-    public final void setPort(final String port) {
+    /**
+     * Sets address port.
+     * @param port address port.
+     */
+    public void setPort(final String port) {
         this.port = port;
     }
 
-    public final String getIp() {
+    /**
+     * Returns a ip address.
+     * @return ip address.
+     */
+    public String getIp() {
         return ip;
     }
 
-    public final void setIp(final String ip) {
+    /**
+     * Sets an ip address.
+     * @param ip an IP address.
+     */
+    public void setIp(final String ip) {
         this.ip = ip;
     }
 }

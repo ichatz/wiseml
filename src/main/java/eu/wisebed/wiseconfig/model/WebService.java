@@ -1,71 +1,156 @@
 package eu.wisebed.wiseconfig.model;
 
+/**
+ * This is a persistent class for the object WebService that has the
+ * properties of a node in the testbed xml file. In the class there are
+ * getter and setter methods for the properties.
+ */
+public final class WebService {
 
-public class WebService {
-
-
+    /**
+     * Unique Resource Name prefix.
+     */
     private String urnPrefix;
+
+    /**
+     * Session Management Endpoint URL.
+     */
     private String sessionManagementEndpointUrl;
+
+    /**
+     * WSN instance base URL.
+     */
     private String wsnInstancebaseUrl;
+
+    /**
+     * Reservation Endpoint URL.
+     */
     private String reservationEndpointUrl;
+
+    /**
+     * SNAA Endpoint URL.
+     */
     private String snaaEndpointUrl;
+
+    /**
+     * WiseML filename.
+     */
     private String wisemlfilename;
+
+    /**
+     * Protobuf Interface.
+     */
     private ProtobufInterface protobufINT;
 
-
-    public final String getUrnPrefix() {
+    /**
+     * Returns URN prefix.
+     * @return a urn prefix.
+     */
+    public String getUrnPrefix() {
         return urnPrefix;
     }
 
-    public final void setUrnPrefix(final String urnPrefix) {
+    /**
+     * Sets URN prefix.
+     * @param urnPrefix a urn prefix.
+     */
+    public void setUrnPrefix(final String urnPrefix) {
         this.urnPrefix = urnPrefix;
     }
 
-    public final String getSessionManagementEndpointUrl() {
+    /**
+     * Returns Session Management Endpoint URL.
+     * @return session management endpoint URL.
+     */
+    public String getSessionManagementEndpointUrl() {
         return sessionManagementEndpointUrl;
     }
 
-    public final void setSessionManagementEndpointUrl(final String sessionManagementEndpointUrl) {
+    /**
+     * Sets Session Management Endpoint URL.
+     * @param sessionManagementEndpointUrl a Session Manaagement Endpoint URL.
+     */
+    public void setSessionManagementEndpointUrl(final String sessionManagementEndpointUrl) {
         this.sessionManagementEndpointUrl = sessionManagementEndpointUrl;
     }
 
-    public final String getWsnInstancebaseUrl() {
+    /**
+     * Returns WSN instance base URL.
+     * @return WSN instance base URL.
+     */
+    public String getWsnInstancebaseUrl() {
         return wsnInstancebaseUrl;
     }
 
-    public final void setWsnInstancebaseUrl(final String wsnInstancebaseUrl) {
+    /**
+     * Sets WSN instance base URL.
+     * @param wsnInstancebaseUrl a wsn instance base URL.
+     */
+    public void setWsnInstancebaseUrl(final String wsnInstancebaseUrl) {
         this.wsnInstancebaseUrl = wsnInstancebaseUrl;
     }
 
-    public final String getReservationEndpointUrl() {
+    /**
+     * Returns RS endpoint URL.
+     * @return RS endpoint URL.
+     */
+    public String getReservationEndpointUrl() {
         return reservationEndpointUrl;
     }
 
-    public final void setReservationEndpointUrl(final String reservationEndpointUrl) {
+    /**
+     * Sets Reservation Endpoint URL.
+     * @param reservationEndpointUrl reservation endpoint URL.
+     */
+    public void setReservationEndpointUrl(final String reservationEndpointUrl) {
         this.reservationEndpointUrl = reservationEndpointUrl;
     }
 
-    public final String getSnaaEndpointUrl() {
+    /**
+     * Returns SNAA endpoint URL.
+     * @return SNAA endpoint URL.
+     */
+    public String getSnaaEndpointUrl() {
         return snaaEndpointUrl;
     }
 
-    public final void setSnaaEndpointUrl(final String snaaEndpointUrl) {
+    /**
+     * Sets SNAA endpoint URL.
+     * @param snaaEndpointUrl SNAA endpoint URL.
+     */
+    public void setSnaaEndpointUrl(final String snaaEndpointUrl) {
         this.snaaEndpointUrl = snaaEndpointUrl;
     }
 
-    public final ProtobufInterface getProtobufINT() {
+    /**
+     * Returns ProtobufInterface instance.
+     * @return ProtobufInterface instance.
+     */
+    public ProtobufInterface getProtobufINT() {
         return protobufINT;
     }
 
-    public final void setProtobufINT(final ProtobufInterface protobufINT) {
+    /**
+     * Sets ProtobufInterface instance.
+     * @param protobufINT instance.
+     */
+    public void setProtobufINT(final ProtobufInterface protobufINT) {
         this.protobufINT = protobufINT;
     }
 
-    public final String getWisemlfilename() {
+    /**
+     * Return WiseML filename.
+     * @return WiseML filename.
+     */
+    public String getWisemlfilename() {
         return wisemlfilename;
     }
 
-    public final void setWisemlfilename(final String wisemlFilename) {
+    /**
+     * Sets WiseML filename
+     * @param wisemlFilename a WiseML filename.
+     */
+    public void setWisemlfilename(final String wisemlFilename) {
         this.wisemlfilename = wisemlFilename;
     }
 }

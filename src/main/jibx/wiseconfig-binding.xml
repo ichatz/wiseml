@@ -18,7 +18,7 @@
 
     <mapping abstract="true" type-name="nodes" class="eu.wisebed.wiseconfig.model.Nodes" ordered="false">
         <namespace uri="http://itm.uniluebeck.de/tr/xml" prefix="ns2" default="elements"/>
-        <value style="attribute" name="ID" field="ID" usage="optional"/>
+        <value style="attribute" name="id" field="id" usage="optional"/>
         <collection field="names" usage="optional" create-type="java.util.ArrayList">
             <structure map-as="nodename" name="nodename"/>
         </collection>
