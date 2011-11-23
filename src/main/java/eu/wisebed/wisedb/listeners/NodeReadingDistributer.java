@@ -52,8 +52,10 @@ public final class NodeReadingDistributer extends Thread {
             try {
                 final NodeReading lastReading = queue.take();
                 LOGGER.info("New Reading: " + lastReading.toString());
-                if (LastNodeReadingConsumer.getInstance().listenersContains(lastReading.getNode().getId(), lastReading.getCapability().getName())) {
-                    LastNodeReadingConsumer.getInstance().getListener(lastReading.getNode().getId(), lastReading.getCapability().getName()).update(lastReading);
+                if (LastNodeReadingConsumer.getInstance().listenersContains(lastReading.getNode().getId(),
+                        lastReading.getCapability().getName())) {
+                    LastNodeReadingConsumer.getInstance().getListener(lastReading.getNode().getId(),
+                            lastReading.getCapability().getName()).update(lastReading);
                     LOGGER.info("Updating.... : " + lastReading.toString());
                 }
             } catch (final InterruptedException e) {

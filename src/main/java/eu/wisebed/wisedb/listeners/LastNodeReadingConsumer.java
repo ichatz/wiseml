@@ -62,7 +62,8 @@ public final class LastNodeReadingConsumer {
      * @param capabilityID the capability ID
      * @param listener     the new Listener
      */
-    public void registerListener(final String nodeId, final String capabilityID, final AbstractNodeReadingListener listener) {
+    public void registerListener(final String nodeId, final String capabilityID,
+                                 final AbstractNodeReadingListener listener) {
         synchronized (lock) {
             if (listeners.containsKey(nodeId)) {
                 if (!listeners.get(nodeId).containsKey(capabilityID)) {

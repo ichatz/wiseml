@@ -1,7 +1,6 @@
 package eu.wisebed.wisedb.listeners;
 
 import eu.wisebed.wisedb.model.NodeReading;
-import org.apache.log4j.Logger;
 import org.hibernate.event.SaveOrUpdateEvent;
 import org.hibernate.event.def.DefaultSaveOrUpdateEventListener;
 
@@ -11,10 +10,9 @@ import org.hibernate.event.def.DefaultSaveOrUpdateEventListener;
 public final class LastNodeReadingListener extends DefaultSaveOrUpdateEventListener {
 
     /**
-     * Static logger.
+     * Serial Version Unique ID.
      */
-    @SuppressWarnings({"UnusedDeclaration"})
-    private static final Logger LOGGER = Logger.getLogger(LastNodeReadingListener.class);
+    private static final long serialVersionUID = -7505906126363179257L;
 
     /**
      * Handle the given update event.
