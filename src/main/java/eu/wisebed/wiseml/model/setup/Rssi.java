@@ -8,8 +8,11 @@ import java.io.Serializable;
  * getter and setter methods for the properties.
  */
 
-public class Rssi implements Serializable{
+public final class Rssi implements Serializable {
 
+    /**
+     * Serial Version Unique ID.
+     */
     private static final long serialVersionUID = -756196992494151059L;
 
     /**
@@ -23,7 +26,7 @@ public class Rssi implements Serializable{
     private String unit;
 
     /**
-     *
+     * Return RSSI value
      * @return
      */
     public String getValue() {

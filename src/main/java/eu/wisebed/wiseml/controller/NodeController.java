@@ -16,20 +16,21 @@ import java.io.FileOutputStream;
 
 
 /**
- *
+ *  NodeController utility class for marshaling/unmarshaling Node entities to/from xml.
  */
 public final class NodeController {
 
     /**
-     * Logger
+     * Logger.
      */
     private static final Logger LOGGER = Logger.getLogger(NodeController.class);
 
     /**
+     * Loads a node from input file.
      *
-     * @param file
-     * @return
-     * @throws JiBXException
+     * @param file a FileInputStream instance.
+     * @return a Node instance.
+     * @throws JiBXException a JiBXException exception.
      */
     public Node load(final FileInputStream file) throws JiBXException {
 
@@ -46,12 +47,13 @@ public final class NodeController {
     }
 
     /**
+     * Loads a node from a marshaled string.
      *
-     * @param stup
-     * @return
-     * @throws JiBXException
+     * @param stup a String instance.
+     * @return a Node instance.
+     * @throws JiBXException a JiBXException exception.
      */
-    public Node load(final String stup) throws JiBXException{
+    public Node load(final String stup) throws JiBXException {
         try {
             final IBindingFactory bfact = BindingDirectory.getFactory(Node.class);
             final IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
@@ -64,14 +66,15 @@ public final class NodeController {
     }
 
     /**
+     * Writes a node to a file.
      *
-     * @param node
-     * @param file
-     * @return
-     * @throws JiBXException
-     * @throws FileNotFoundException
+     * @param node a node instance.
+     * @param file a file instance.
+     * @return returns node instance given as input.
+     * @throws JiBXException a JiBXException exception.
+     * @throws FileNotFoundException a FileNotFoundException exception.
      */
-    public Node write(final Node node, final File file) throws JiBXException, FileNotFoundException {
+    public Node write(final Node node, final File file) throws JiBXException , FileNotFoundException {
         try {
             // marshal object back out to file (with nice indentation, as UTF-8)...
             final IBindingFactory bfact = BindingDirectory.getFactory(Node.class);
@@ -80,7 +83,7 @@ public final class NodeController {
             final FileOutputStream output = new FileOutputStream(file);
             mctx.setOutput(output, null);
             mctx.marshalDocument(node);
-
+            return node;
         } catch (FileNotFoundException e) {
             LOGGER.fatal(e);
             throw e;
@@ -88,6 +91,5 @@ public final class NodeController {
             LOGGER.fatal(e);
             throw e;
         }
-        return node;
     }
 }

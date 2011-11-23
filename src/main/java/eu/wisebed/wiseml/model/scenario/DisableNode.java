@@ -5,7 +5,7 @@ package eu.wisebed.wiseml.model.scenario;
  * properties of a disableNode. In the class there are
  * getter and setter methods for the properties.
  */
-public class DisableNode {
+public final class DisableNode {
 
     /**
      * id for object disableNode.

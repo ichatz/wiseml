@@ -12,9 +12,11 @@ import java.util.Set;
  * properties of a node. In the class there are
  * getter and setter methods for the properties.
  */
+public final class Node implements Serializable {
 
-public class Node implements Serializable{
-
+    /**
+     * Serial Version Unique ID.
+     */
     private static final long serialVersionUID = -5422125775653598399L;
 
     /**
@@ -229,7 +231,7 @@ public class Node implements Serializable{
     /**
      * this method sets the node message.
      *
-     * @param message
+     * @param message message.
      */
     public void setMessage(final Message message) {
         this.message = message;
@@ -238,7 +240,7 @@ public class Node implements Serializable{
     /**
      * returns the setup this node belongs to.
      *
-     * @return
+     * @return  the setup this node belongs to.
      */
     public Setup getSetup() {
         return setup;
@@ -247,7 +249,7 @@ public class Node implements Serializable{
     /**
      * sets the setup this node belongs to.
      *
-     * @param setup
+     * @param setup setup instance.
      */
     public void setSetup(final Setup setup) {
         this.setup = setup;
@@ -256,7 +258,7 @@ public class Node implements Serializable{
     /**
      * Returns a set of capability readings for this node.
      *
-     * @return
+     * @return node readings.
      */
     public Set<NodeReading> getReadings() {
         return readings;

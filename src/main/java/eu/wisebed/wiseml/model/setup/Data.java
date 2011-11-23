@@ -9,9 +9,11 @@ import java.io.Serializable;
  * properties of a data. In the class there are
  * getter and setter methods for the properties.
  */
+public final class Data implements Serializable {
 
-public class Data implements Serializable{
-
+    /**
+     * Serial Unique Version ID.
+     */
     private static final long serialVersionUID = 8036404050506823239L;
 
     /**
@@ -59,9 +61,9 @@ public class Data implements Serializable{
     }
 
     /**
-     * this method sets node message.
+     * This method sets node message.
      *
-     * @param message
+     * @param message a message.
      */
     public void setMessage(final Message message) {
         this.message = message;
@@ -79,7 +81,7 @@ public class Data implements Serializable{
     /**
      * this method sets data value.
      *
-     * @param value
+     * @param value a value.
      */
     public void setValue(final String value) {
         this.value = value;

@@ -18,17 +18,22 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
-public class WiseMLController {
+/**
+ * WiseMLController utility class for marshaling/unmarshaling WiseML entities to/from xml.
+ */
+public final class WiseMLController {
 
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = Logger.getLogger(WiseMLController.class);
-
 
     /**
      * This method loads a wiseml from file.
      *
-     * @param data , a Reader instance.
-     * @return wiseml , returns a WiseML instance
-     * @throws JiBXException exception
+     * @param data a Reader instance.
+     * @return a WiseML instance.
+     * @throws JiBXException a JiBXException exception.
      */
     public WiseML loadWiseML(final Reader data) throws JiBXException {
 
@@ -40,21 +45,22 @@ public class WiseMLController {
     }
 
     /**
-     * this method loads a wiseml from file.
+     * This method loads a wiseml from file.
      *
-     * @param file
-     * @return wiseml
-     * @throws JiBXException
+     * @param file a file InputStream instance.
+     * @return wiseml a WiseML instance.
+     * @throws JiBXException a JiBXException exception.
      */
     public WiseML loadWiseML(final InputStream file) throws JiBXException {
         return loadWiseML(new InputStreamReader(file));
     }
 
     /**
-     * this method loads a wiseml from file.
+     * This method loads a wiseml from file.
      *
-     * @param file
-     * @return wiseml
+     * @param file a file InputStream instance.
+     * @return the loaded wiseml.
+     * @throws JiBXException a JiBXException exception.
      */
     public WiseML loadWiseMLFromFile(final InputStream file) throws JiBXException {
         try {
@@ -70,10 +76,11 @@ public class WiseMLController {
     }
 
     /**
-     * this method loads setup from file.
+     * This method loads setup from file.
      *
-     * @param file
-     * @return setup
+     * @param file a file InputStream instance.
+     * @return a setup instance.
+     * @throws JiBXException a JiBXException exception.
      */
     public Setup loadSetupFromFile(final InputStream file) throws JiBXException {
         try {
@@ -91,8 +98,10 @@ public class WiseMLController {
     /**
      * this method writes wiseml in a file.
      *
-     * @param wiseml
-     * @param file
+     * @param wiseml a WiseML instance.
+     * @param file a File instance.
+     * @throws FileNotFoundException a FileNotFoundException exception.
+     * @throws JiBXException a JibXException exception.
      */
     public void writeWiseMLAsFile(final WiseML wiseml,final File file) throws FileNotFoundException, JiBXException {
         try {
@@ -117,8 +126,10 @@ public class WiseMLController {
     /**
      * this method writes setup in a file.
      *
-     * @param setup
-     * @param file
+     * @param setup a setup instance.
+     * @param file a File instance.
+     * @throws FileNotFoundException a FileNotFoundException exception.
+     * @throws JiBXException a JibXException exception.
      */
     public void writeSetupAsFile(final Setup setup,final File file) throws FileNotFoundException, JiBXException {
 
@@ -144,8 +155,9 @@ public class WiseMLController {
     /**
      * this method writes wiseml as a string.
      *
-     * @param wiseml
-     * @return string of wiseml data
+     * @param wiseml a WiseML instance.
+     * @return string of wiseml data.
+     * @throws JiBXException a JibXException exception.
      */
     public String writeWiseMLAsSTring(final WiseML wiseml) throws JiBXException {
 
@@ -169,10 +181,11 @@ public class WiseMLController {
     }
 
     /**
-     * this method writes setup as a string.
+     * This method writes setup as a string.
      *
-     * @param setup
+     * @param setup a setup instance.
      * @return string of setup data
+     * @throws JiBXException a JibXException exception.
      */
     public String writeSetupAsString(final Setup setup) throws JiBXException {
 
@@ -199,10 +212,11 @@ public class WiseMLController {
     }
 
     /**
-     * this method loads setup from a string.
+     * This method loads wiseml setup from a string and returns it's setup.
      *
-     * @param stup
-     * @return setup
+     * @param stup a string instance.
+     * @return a setup instance.
+     * @throws JiBXException a JiBXException exception.
      */
     public Setup loadSetupFromString(final String stup) throws JiBXException {
         try {
@@ -218,10 +232,11 @@ public class WiseMLController {
     }
 
     /**
-     * this method loads wiseml setup from a string.
+     * This method loads wiseml setup from a string and returns it's setup.
      *
-     * @param wiseml
-     * @return setup
+     * @param wiseml a wiseml instance.
+     * @return a setup instance.
+     * @throws JiBXException a JiBXException exception.
      */
     public Setup loadSetupFromWiseMLString(final String wiseml) throws JiBXException {
         try {

@@ -7,27 +7,33 @@ import java.io.Serializable;
  * properties of a position. In the class there are
  * getter and setter methods for the properties.
  */
+public final class Position implements Serializable {
 
-public class Position implements Serializable{
-
+    /**
+     * Serial Version Unique ID.
+     */
     private static final long serialVersionUID = -3009012883407990409L;
 
     /**
      * point x in the position.
      */
     private float x;
+
     /**
      * point y in the position.
      */
     private float y;
+
     /**
      * point z in the position.
      */
     private float z;
+
     /**
      * angle phi in the position.
      */
     private int phi;
+
     /**
      * angle theta in the position.
      */
@@ -45,7 +51,7 @@ public class Position implements Serializable{
     /**
      * this method sets the point x.
      *
-     * @param x
+     * @param x x point
      */
     public void setX(final float x) {
         this.x = x;
@@ -63,7 +69,7 @@ public class Position implements Serializable{
     /**
      * this method sets the point y.
      *
-     * @param y
+     * @param y y point
      */
     public void setY(final float y) {
         this.y = y;
@@ -81,7 +87,7 @@ public class Position implements Serializable{
     /**
      * this method sets the point z.
      *
-     * @param z
+     * @param z z point
      */
     public void setZ(final float z) {
         this.z = z;
@@ -99,7 +105,7 @@ public class Position implements Serializable{
     /**
      * this method sets the angle phi.
      *
-     * @param phi
+     * @param phi phi angle.
      */
     public void setPhi(final int phi) {
         this.phi = phi;
@@ -117,7 +123,7 @@ public class Position implements Serializable{
     /**
      * this method sets the angle theta.
      *
-     * @param theta
+     * @param theta theta angle
      */
     public void setTheta(final int theta) {
         this.theta = theta;

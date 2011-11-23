@@ -2,10 +2,7 @@ package eu.wisebed.wisedb.listeners;
 
 import eu.wisebed.wisedb.model.NodeReading;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -20,14 +17,9 @@ public final class LastNodeReadingConsumer {
     private static LastNodeReadingConsumer ourInstance = null;
 
     /**
-     * The queue.
+     * The QUEUE.
      */
-    private static final BlockingQueue<NodeReading> queue = new LinkedBlockingQueue<NodeReading>();
-
-    /**
-     * The Distributer Thread.
-     */
-    private final NodeReadingDistributer nodeReadingDistributer;
+    private static final BlockingQueue<NodeReading> QUEUE = new LinkedBlockingQueue<NodeReading>();
 
     /**
      * Listeners double HashMap<NodeID, <CapabilityID, Listener>>.
@@ -43,7 +35,7 @@ public final class LastNodeReadingConsumer {
      * Private constructor suppresses generation of a (public) default constructor.
      */
     private LastNodeReadingConsumer() {
-        nodeReadingDistributer = new NodeReadingDistributer(queue);
+        NodeReadingDistributer nodeReadingDistributer = new NodeReadingDistributer(QUEUE);
         nodeReadingDistributer.start();
         listeners = new HashMap<String, HashMap<String, AbstractNodeReadingListener>>();
     }
@@ -73,13 +65,12 @@ public final class LastNodeReadingConsumer {
     public void registerListener(final String nodeId, final String capabilityID, final AbstractNodeReadingListener listener) {
         synchronized (lock) {
             if (listeners.containsKey(nodeId)) {
-                if (listeners.get(nodeId).containsKey(capabilityID)) {
-                    //Already registered
-                } else {
+                if (!listeners.get(nodeId).containsKey(capabilityID)) {
                     listeners.get(nodeId).put(capabilityID, listener);
                 }
             } else {
-                final HashMap<String, AbstractNodeReadingListener> newCapability = new HashMap<String, AbstractNodeReadingListener>();
+                final HashMap<String, AbstractNodeReadingListener> newCapability;
+                newCapability = new HashMap<String, AbstractNodeReadingListener>();
                 newCapability.put(capabilityID, listener);
                 listeners.put(nodeId, newCapability);
             }
@@ -108,7 +99,7 @@ public final class LastNodeReadingConsumer {
      * @return true if the map contains the key
      */
     protected boolean listenersContains(final String nodeID, final String capabilityID) {
-        return listeners.containsKey(nodeID) ? listeners.get(nodeID).containsKey(capabilityID) : false;
+        return listeners.containsKey(nodeID) && listeners.get(nodeID).containsKey(capabilityID);
 
     }
 
@@ -130,7 +121,7 @@ public final class LastNodeReadingConsumer {
      * @param thisReading the NodeReading
      */
     public void addNodeReading(final NodeReading thisReading) {
-        queue.offer(thisReading);
+        QUEUE.offer(thisReading);
     }
 }
 

@@ -7,9 +7,11 @@ import java.io.Serializable;
  * properties of defaults. In the class there are
  * getter and setter methods for the properties.
  */
+public final class Defaults implements Serializable {
 
-public class Defaults implements Serializable{
-
+    /**
+     * Serial Unique Version ID.
+     */
     private static final long serialVersionUID = -4369100001687471041L;
 
     /**

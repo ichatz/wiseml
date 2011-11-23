@@ -51,16 +51,18 @@ public final class NodeReading implements Serializable {
     }
 
     /**
+     * Returns NodeReading's id.
      *
-     * @return
+     * @return NodeReading's id.
      */
     public int getId() {
         return id;
     }
 
     /**
+     * Sets NodeReading's id.
      *
-     * @param id
+     * @param id , nodereading's id.
      */
     public void setId(final int id) {
         this.id = id;

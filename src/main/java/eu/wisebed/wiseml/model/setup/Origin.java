@@ -7,9 +7,11 @@ import java.io.Serializable;
  * properties of an origin. In the class there are
  * getter and setter methods for the properties.
  */
+public final class Origin implements Serializable {
 
-public class Origin implements Serializable{
-
+    /**
+     * Serial Version Unique ID.
+     */
     private static final long serialVersionUID = -6275211639454458482L;
 
     /**
@@ -144,5 +146,4 @@ public class Origin implements Serializable{
     public void setTheta(final int theta) {
         this.theta = theta;
     }
-
 }

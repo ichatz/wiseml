@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * CRUD operations for Testbed entities.
  */
-public final class TestbedController extends AbstractController<Testbed> {
+public class TestbedController extends AbstractController<Testbed> {
 
     /**
      * static instance(ourInstance) initialized as null.

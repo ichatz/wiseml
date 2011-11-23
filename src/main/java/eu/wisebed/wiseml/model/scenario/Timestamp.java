@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Timestamp class.
  */
-public class Timestamp {
+public final class Timestamp {
 
     /**
      * timestamp value.
@@ -177,10 +177,18 @@ public class Timestamp {
         this.message = message;
     }
 
+    /**
+     * Returns link.
+     * @return link.
+     */
     public List<Link> getLink() {
         return link;
     }
 
+    /**
+     * Sets link.
+     * @param link link.
+     */
     public void setLink(final List<Link> link) {
         this.link = link;
     }

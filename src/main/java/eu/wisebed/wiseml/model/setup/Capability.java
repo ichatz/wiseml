@@ -11,9 +11,11 @@ import java.util.Set;
  * properties of a capability. In the class there are
  * getter and setter methods for the properties.
  */
+public final class Capability implements Serializable {
 
-public class Capability implements Serializable{
-
+    /**
+     * Serial Unique Version ID.
+     */
     private static final long serialVersionUID = -3419203591130581062L;
 
     /**
@@ -111,7 +113,7 @@ public class Capability implements Serializable{
     }
 
     /**
-     * Returns default value
+     * Returns default value.
      * @return default value.
      */
     public String getDefaultvalue() {
@@ -138,7 +140,7 @@ public class Capability implements Serializable{
     /**
      * Sets the node collection that has this capability.
      *
-     * @param nodes, a node collection.
+     * @param nodes a node collection.
      */
     public void setNodes(final Set<Node> nodes) {
         this.nodes = nodes;
@@ -156,7 +158,7 @@ public class Capability implements Serializable{
     /**
      * Sets the link collection that has this capability.
      *
-     * @param links, a link collection.
+     * @param links a link collection.
      */
     public void setLinks(final Set<Link> links) {
         this.links = links;
@@ -208,16 +210,16 @@ public class Capability implements Serializable{
     public boolean equals(final Object obj) {
 
         // if null return false
-        if (obj == null){
+        if (obj == null) {
             return false;
         }
 
-        if (!(obj instanceof Capability)){
+        if (!(obj instanceof Capability)) {
             return false;
         }
 
         // if same reference return true;
-        if (this == obj){
+        if (this == obj) {
             return true;
         }
 

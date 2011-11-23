@@ -17,18 +17,32 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class TraceController {
+/**
+ * TraceController utility class for marshaling/unmarshaling Trace entities to/from xml.
+ */
+public final class TraceController {
 
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = Logger.getLogger(TraceController.class);
 
-
-    public Trace writeTraceAsFile(final Trace trace,final File file) throws FileNotFoundException, JiBXException {
+    /**
+     * Write trace as file method.
+     *
+     * @param trace a trace instance.
+     * @param file  a file instance.
+     * @return Trace instance given.
+     * @throws FileNotFoundException a FileNotFoundException exception.
+     * @throws JiBXException a JibXExcetpion exception.
+     */
+    public Trace writeTraceAsFile(final Trace trace, final File file) throws FileNotFoundException, JiBXException {
 
 
         final HashMap<Integer, Set<String>> mapTr = new HashMap<Integer, Set<String>>();
         final HashMap<String, HashMap<Integer, Set<String>>> map = new HashMap<String, HashMap<Integer, Set<String>>>();
-        final Set<String> messages = new TreeSet<String>();
 
+//        final Set<String> messages = new TreeSet<String>();
 //        for (String message : messages) {
 //            messages.add(trace.getNode().getMessage().getReading());
 //        }

@@ -8,7 +8,7 @@ import org.hibernate.event.def.DefaultSaveOrUpdateEventListener;
 /**
  * Extends the Default SaveOrUpdate Listener used by Hibernate for handling save-update events.
  */
-public class LastNodeReadingListener extends DefaultSaveOrUpdateEventListener {
+public final class LastNodeReadingListener extends DefaultSaveOrUpdateEventListener {
 
     /**
      * Static logger.

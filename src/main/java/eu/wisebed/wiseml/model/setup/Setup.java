@@ -11,8 +11,11 @@ import java.util.List;
  * getter and setter methods for the properties.
  */
 
-public class Setup implements Serializable{
+public final class Setup implements Serializable {
 
+    /**
+     * Serial Version Unique ID.
+     */
     private static final long serialVersionUID = -8742610512262219055L;
 
     /**
@@ -78,7 +81,7 @@ public class Setup implements Serializable{
     /**
      * this method sets the id of the setup.
      *
-     * @param id
+     * @param id the id.
      */
     public void setId(final int id) {
         this.id = id;
@@ -231,7 +234,7 @@ public class Setup implements Serializable{
     /**
      * Sets the testbed attribute.
      *
-     * @param testbed
+     * @param testbed testbed instance.
      */
     public void setTestbed(final Testbed testbed) {
         this.testbed = testbed;

@@ -9,7 +9,7 @@ import eu.wisebed.wiseml.model.trace.Trace;
  * properties of a wiseml. In the class there are
  * getter and setter methods for the properties.
  */
-public class WiseML {
+public final class WiseML {
 
     /**
      * the version of the wiseml file.

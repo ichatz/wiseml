@@ -10,7 +10,7 @@ import java.util.List;
  * properties of a scenario. In the class there are
  * getter and setter methods for the properties.
  */
-public class Scenario {
+public final class Scenario {
 
     /**
      * id for object scenario.
@@ -43,16 +43,16 @@ public class Scenario {
 
     /**
      * Sets the children list.
-     * @param children
+     * @param children a list.
      */
-    public void setChildren(final List children){
+    public void setChildren(final List children) {
         this.children = children;
     }
 
     /**
      * returns a LinkedList of objects nested in the scenario section.
      *
-     * @return
+     * @return linkedlist.
      */
     public List getChildren() {
         return children;
@@ -88,7 +88,7 @@ public class Scenario {
     /**
      * this method sets a list of timestamps.
      *
-     * @param timestamp
+     * @param timestamp timestamp.
      */
     public void setTimestamp(final List<Timestamp> timestamp) {
         this.timestamp = timestamp;
@@ -106,7 +106,7 @@ public class Scenario {
     /**
      * this method sets data.
      *
-     * @param data
+     * @param data data.
      */
     public void setData(final Data data) {
         this.data = data;

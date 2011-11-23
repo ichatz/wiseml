@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Represents a trace element with tree of timestamps.
  */
-public class Trace {
+public final class Trace {
 
     /**
      * id for object scenario.
@@ -37,7 +37,7 @@ public class Trace {
     /**
      * returns a LinkedList of objects nested in the trace section.
      *
-     * @return
+     * @return a LinkedList of objects nested in the trace section.
      */
     public List getChildren() {
         return children;
@@ -47,10 +47,10 @@ public class Trace {
     /**
      * sets a LinkedList of objects nested in the trace section.
      *
-     * @return
+     * @param list a linked list.
      */
-    public void setChildren(final List l) {
-        children = l;
+    public void setChildren(final List list) {
+        children = list;
     }
 
     /**
@@ -83,7 +83,7 @@ public class Trace {
     /**
      * this method sets a list of timestamp.
      *
-     * @param timestamp
+     * @param timestamp a timestamp list.
      */
     public void setTimestamp(final List<Timestamp> timestamp) {
         this.timestamp = timestamp;

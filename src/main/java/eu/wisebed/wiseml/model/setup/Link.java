@@ -11,8 +11,11 @@ import java.util.Set;
  * properties of a link. In the class there are
  * getter and setter methods for the properties.
  */
-public class Link implements Serializable{
+public final class Link implements Serializable {
 
+    /**
+     * Serial Unique Version ID.
+     */
     private static final long serialVersionUID = -393203811928650579L;
 
     /**
@@ -167,10 +170,18 @@ public class Link implements Serializable{
         this.rssi = rssi;
     }
 
+    /**
+     * Returns data.
+     * @return data.
+     */
     public List<Data> getData() {
         return data;
     }
 
+    /**
+     * Sets data.
+     * @param data list of data.
+     */
     public void setData(final List<Data> data) {
         this.data = data;
     }
@@ -212,7 +223,7 @@ public class Link implements Serializable{
     }
 
     /**
-     * Override of Object's equals() method
+     * Override of Object's equals() method.
      *
      * @param obj , an object instance
      * @return true or false on whether the objects are equal.
@@ -221,16 +232,16 @@ public class Link implements Serializable{
     public boolean equals(final Object obj) {
 
         // if null return false
-        if (obj == null){
+        if (obj == null) {
             return false;
         }
 
-        if (!(obj instanceof Link)){
+        if (!(obj instanceof Link)) {
             return false;
         }
 
         // if same reference return true;
-        if (this == obj){
+        if (this == obj) {
             return true;
         }
 
@@ -240,7 +251,7 @@ public class Link implements Serializable{
     }
 
     /**
-     * Override of Object's hashCode() method
+     * Override of Object's hashCode() method.
      *
      * @return hascode value
      */

@@ -6,13 +6,9 @@ import org.apache.log4j.Logger;
 import java.util.concurrent.BlockingQueue;
 
 /**
- * Created by IntelliJ IDEA.
- * User: akribopo
- * Date: 11/8/11
- * Time: 11:53 PM
- * To change this template use File | Settings | File Templates.
+ * NodeReadingDistributer class.
  */
-public class NodeReadingDistributer extends Thread {
+public final class NodeReadingDistributer extends Thread {
 
     /**
      * Static logger.
@@ -51,7 +47,6 @@ public class NodeReadingDistributer extends Thread {
      * @see #stop()
      * @see Thread#Thread(ThreadGroup, Runnable, String)
      */
-    @Override
     public void run() {
         while (isEnabled) {
             try {

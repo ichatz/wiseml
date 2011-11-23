@@ -1,7 +1,9 @@
 package eu.wisebed.wiseml.model.trace;
 
-
-public class Message {
+/**
+ * Message class
+ */
+public final class Message {
 
     /**
      * timestamp.
@@ -30,7 +32,7 @@ public class Message {
     /**
      * this method sets the timestamp.
      *
-     * @param timestamp
+     * @param timestamp timestamp.
      */
     public void setTimestamp(final long timestamp) {
         this.timestamp = timestamp;
@@ -48,7 +50,7 @@ public class Message {
     /**
      * this method sets the id.
      *
-     * @param id
+     * @param id id.
      */
     public void setId(final String id) {
         this.id = id;
@@ -66,7 +68,7 @@ public class Message {
     /**
      * this method sets data.
      *
-     * @param data
+     * @param data data.
      */
     public void setData(final String data) {
         this.data = data;
