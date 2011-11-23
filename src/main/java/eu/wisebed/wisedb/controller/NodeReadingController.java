@@ -4,12 +4,10 @@ import eu.wisebed.wisedb.exception.UnknownTestbedException;
 import eu.wisebed.wisedb.model.LastNodeReading;
 import eu.wisebed.wisedb.model.LinkReading;
 import eu.wisebed.wisedb.model.NodeReading;
-import eu.wisebed.wisedb.model.NodeReadingStat;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
-import eu.wisebed.wiseml.model.setup.Setup;
 import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Order;
@@ -296,125 +294,5 @@ public class NodeReadingController extends AbstractController<NodeReading> {
             resultMap.put((Capability) row[1], (Long) row[0]);
         }
         return resultMap;
-    }
-
-    /**
-     * Returns node reading stats of any node persisted.
-     *
-     * @return a list of NodeReadingStat objects
-     */
-    public List<NodeReadingStat> getNodeReadingStats() {
-        final Session session = getSessionFactory().getCurrentSession();
-
-        // get max/min reading for a node
-        final Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.setProjection(Projections.projectionList()
-                .add(Projections.groupProperty(NODE))
-                .add(Projections.max(READING))
-                .add(Projections.min(READING))
-                .add(Projections.rowCount())
-        );
-        final List<Object> results = (criteria.list() == null) ? (new ArrayList<Object>()) : criteria.list();
-
-        // parsing the result array to a node reading stat array
-        final List<NodeReadingStat> nodeReadingStats = new ArrayList<NodeReadingStat>();
-        for (Object obj : results) {
-            final Object[] row = (Object[]) obj;
-            final Node node = (Node) row[0];
-            final Double maxReading = (Double) row[1];
-            final Double minReading = (Double) row[2];
-            final Long totalCount = (Long) row[3];
-            final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(node);
-            final Date lastTimestamp = (lnr == null) ? null : lnr.getTimestamp();
-            final Double lastReading = (lnr == null) ? null : lnr.getReading();
-
-            NodeReadingStat nodeReadingStat = new NodeReadingStat();
-            nodeReadingStat.setNode(node);
-            nodeReadingStat.setLastTimestamp(lastTimestamp);
-            nodeReadingStat.setLastReading(lastReading);
-            nodeReadingStat.setMaxReading(maxReading);
-            nodeReadingStat.setMinReading(minReading);
-            nodeReadingStat.setTotalCount(totalCount);
-            nodeReadingStats.add(nodeReadingStat);
-        }
-        return nodeReadingStats;
-    }
-
-    /**
-     * Returns node reading stats of any node belonging to the given testbed.
-     *
-     * @param testbed , a testbed instance
-     * @return a list of NodeReadingStat objects
-     */
-    public List<NodeReadingStat> getNodeReadingStats(final Testbed testbed) {
-        final Session session = getSessionFactory().getCurrentSession();
-
-        // retrieve testbed setup
-        final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
-
-        // get max/min reading for a node
-        final Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.in(NODE, setup.getNodes()));
-        criteria.setProjection(Projections.projectionList()
-                .add(Projections.groupProperty(NODE))
-                .add(Projections.max(READING))
-                .add(Projections.min(READING))
-                .add(Projections.rowCount())
-        );
-        final List<Object> results = (criteria.list() == null) ? (new ArrayList<Object>()) : criteria.list();
-
-        // parsing the result array to a node reading stat array
-        final List<NodeReadingStat> nodeReadingStats = new ArrayList<NodeReadingStat>();
-        int index = 0;
-        for (Object obj : results) {
-            final Object[] row = (Object[]) obj;
-            final Node node = (Node) row[0];
-            final Double maxReading = (Double) row[1];
-            final Double minReading = (Double) row[2];
-            final Long totalCount = (Long) row[3];
-            final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(node);
-            final Date lastTimestamp = (lnr == null) ? null : lnr.getTimestamp();
-            final Double lastReading = (lnr == null) ? null : lnr.getReading();
-            NodeReadingStat nodeReadingStat = new NodeReadingStat();
-            nodeReadingStat.setNode(node);
-            nodeReadingStat.setLastTimestamp(lastTimestamp);
-            nodeReadingStat.setLastReading(lastReading);
-            nodeReadingStat.setMaxReading(maxReading);
-            nodeReadingStat.setMinReading(minReading);
-            nodeReadingStat.setTotalCount(totalCount);
-            nodeReadingStats.add(nodeReadingStat);
-        }
-        return nodeReadingStats;
-    }
-
-    /**
-     * Returns node reading stats for the given node.
-     *
-     * @param node , a node
-     * @return a NodeReadingStat instance.
-     */
-    public NodeReadingStat getNodeReadingStats(final Node node) {
-        final Session session = getSessionFactory().getCurrentSession();
-
-        final Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq(NODE, node));
-        criteria.setProjection(Projections.projectionList()
-                .add(Projections.groupProperty(NODE))
-                .add(Projections.max(READING))
-                .add(Projections.min(READING))
-                .add(Projections.rowCount())
-        );
-
-        criteria.setMaxResults(1);
-        final Object[] row = (Object[]) criteria.uniqueResult();
-        final Node nodeQ = (Node) row[0];
-        final Double maxReading = (Double) row[1];
-        final Double minReading = (Double) row[2];
-        final Long totalCount = (Long) row[3];
-        final LastNodeReading lnr = LastNodeReadingController.getInstance().getLatestNodeReading(node);
-        final Date lastTimestamp = (lnr == null) ? null : lnr.getTimestamp();
-        final Double lastReading = (lnr == null) ? null : lnr.getReading();
-
-        return new NodeReadingStat(nodeQ, lastTimestamp, lastReading, maxReading, minReading, totalCount);
     }
 }

@@ -15,7 +15,7 @@ import java.util.List;
  * CRUD operations for Capability entities.
  */
 @SuppressWarnings("unchecked")
-public class CapabilityController extends AbstractController<Capability> {
+public final class CapabilityController extends AbstractController<Capability> {
     /**
      * static instance(ourInstance) initialized as null.
      */

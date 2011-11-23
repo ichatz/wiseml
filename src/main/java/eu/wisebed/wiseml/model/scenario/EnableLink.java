@@ -5,7 +5,6 @@ package eu.wisebed.wiseml.model.scenario;
  * properties of an enableLink. In the class there are
  * getter and setter methods for the properties.
  */
-
 public class EnableLink {
 
     /**

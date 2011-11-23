@@ -6,7 +6,9 @@ import eu.wisebed.wiseml.model.trace.Message;
 
 import java.util.List;
 
-
+/**
+ * Timestamp class.
+ */
 public class Timestamp {
 
     /**
@@ -61,7 +63,7 @@ public class Timestamp {
     /**
      * this method sets value.
      *
-     * @param value
+     * @param value string value.
      */
     public void setValue(final String value) {
         this.value = value;
@@ -169,7 +171,7 @@ public class Timestamp {
     /**
      * this method sets a list of message.
      *
-     * @param message
+     * @param message List of messages
      */
     public void setMessage(final List<Message> message) {
         this.message = message;

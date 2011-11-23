@@ -29,12 +29,12 @@ public class TraceController {
         final HashMap<String, HashMap<Integer, Set<String>>> map = new HashMap<String, HashMap<Integer, Set<String>>>();
         final Set<String> messages = new TreeSet<String>();
 
-        for (String message : messages) {
-            //messages.add(trace.getNode().getMessage().getReading());
-        }
-
-        //mapTr.put(trace.getTimestamp(), messages);
-        //map.put(trace.getNode().getId(), mapTr);
+//        for (String message : messages) {
+//            messages.add(trace.getNode().getMessage().getReading());
+//        }
+//
+//        mapTr.put(trace.getTimestamp(), messages);
+//        map.put(trace.getNode().getId(), mapTr);
 
         final List<Integer> listTimestmps = new ArrayList<Integer>();
         listTimestmps.addAll(mapTr.keySet());
@@ -64,6 +64,4 @@ public class TraceController {
 
         return trace;
     }
-
-
 }

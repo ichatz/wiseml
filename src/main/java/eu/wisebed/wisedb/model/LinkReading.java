@@ -24,12 +24,12 @@ public final class LinkReading implements Serializable {
     private int id;
 
     /**
-     * Link association.
+     * Link.
      */
     private Link link;
 
     /**
-     * Capability association.
+     * Capability.
      */
     private Capability capability;
 
@@ -162,5 +162,4 @@ public final class LinkReading implements Serializable {
     public void setCapability(final Capability capability) {
         this.capability = capability;
     }
-
 }

@@ -15,10 +15,22 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 
-public class NodeController {
+/**
+ *
+ */
+public final class NodeController {
 
+    /**
+     * Logger
+     */
     private static final Logger LOGGER = Logger.getLogger(NodeController.class);
 
+    /**
+     *
+     * @param file
+     * @return
+     * @throws JiBXException
+     */
     public Node load(final FileInputStream file) throws JiBXException {
 
         try {
@@ -33,12 +45,17 @@ public class NodeController {
         }
     }
 
+    /**
+     *
+     * @param stup
+     * @return
+     * @throws JiBXException
+     */
     public Node load(final String stup) throws JiBXException{
-
-        final ByteArrayInputStream buffer = new ByteArrayInputStream(stup.getBytes());
         try {
             final IBindingFactory bfact = BindingDirectory.getFactory(Node.class);
             final IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
+            final ByteArrayInputStream buffer = new ByteArrayInputStream(stup.getBytes());
             return (Node) uctx.unmarshalDocument(buffer, null);
         } catch (JiBXException e) {
             LOGGER.fatal(e);
@@ -46,8 +63,15 @@ public class NodeController {
         }
     }
 
+    /**
+     *
+     * @param node
+     * @param file
+     * @return
+     * @throws JiBXException
+     * @throws FileNotFoundException
+     */
     public Node write(final Node node, final File file) throws JiBXException, FileNotFoundException {
-
         try {
             // marshal object back out to file (with nice indentation, as UTF-8)...
             final IBindingFactory bfact = BindingDirectory.getFactory(Node.class);
@@ -66,5 +90,4 @@ public class NodeController {
         }
         return node;
     }
-
 }
