@@ -7,7 +7,7 @@ import java.io.Serializable;
  * properties of a timeinfo. In the class there are
  * getter and setter methods for the properties.
  */
-public final class TimeInfo implements Serializable {
+public class TimeInfo implements Serializable {
 
     /**
      *  Serial Version Unique ID.

@@ -12,7 +12,7 @@ import java.util.Set;
  * properties of a node. In the class there are
  * getter and setter methods for the properties.
  */
-public final class Node implements Serializable {
+public class Node implements Serializable {
 
     /**
      * Serial Version Unique ID.

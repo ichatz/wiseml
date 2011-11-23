@@ -9,7 +9,7 @@ import java.io.Serializable;
  * properties of a data. In the class there are
  * getter and setter methods for the properties.
  */
-public final class Data implements Serializable {
+public class Data implements Serializable {
 
     /**
      * Serial Unique Version ID.

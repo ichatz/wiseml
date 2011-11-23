@@ -8,7 +8,7 @@ import java.io.Serializable;
  * getter and setter methods for the properties.
  */
 
-public final class Rssi implements Serializable {
+public class Rssi implements Serializable {
 
     /**
      * Serial Version Unique ID.

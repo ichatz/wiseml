@@ -10,7 +10,7 @@ import java.util.List;
  * properties of a scenario. In the class there are
  * getter and setter methods for the properties.
  */
-public final class Scenario {
+public class Scenario {
 
     /**
      * id for object scenario.

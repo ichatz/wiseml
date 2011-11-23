@@ -7,7 +7,7 @@ import java.io.Serializable;
  * properties of an origin. In the class there are
  * getter and setter methods for the properties.
  */
-public final class Origin implements Serializable {
+public class Origin implements Serializable {
 
     /**
      * Serial Version Unique ID.

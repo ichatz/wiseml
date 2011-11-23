@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Timestamp class.
  */
-public final class Timestamp {
+public class Timestamp {
 
     /**
      * timestamp value.

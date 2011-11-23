@@ -11,7 +11,7 @@ import java.util.Set;
  * properties of a capability. In the class there are
  * getter and setter methods for the properties.
  */
-public final class Capability implements Serializable {
+public class Capability implements Serializable {
 
     /**
      * Serial Unique Version ID.

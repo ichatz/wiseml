@@ -7,7 +7,7 @@ import java.io.Serializable;
  * properties of a position. In the class there are
  * getter and setter methods for the properties.
  */
-public final class Position implements Serializable {
+public class Position implements Serializable {
 
     /**
      * Serial Version Unique ID.

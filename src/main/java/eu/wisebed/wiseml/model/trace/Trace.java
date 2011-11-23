@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Represents a trace element with tree of timestamps.
  */
-public final class Trace {
+public class Trace {
 
     /**
      * id for object scenario.

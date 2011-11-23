@@ -11,7 +11,7 @@ import java.util.Set;
  * properties of a link. In the class there are
  * getter and setter methods for the properties.
  */
-public final class Link implements Serializable {
+public class Link implements Serializable {
 
     /**
      * Serial Unique Version ID.

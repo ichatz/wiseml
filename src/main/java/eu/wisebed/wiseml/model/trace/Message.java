@@ -3,7 +3,7 @@ package eu.wisebed.wiseml.model.trace;
 /**
  * Message class
  */
-public final class Message {
+public class Message {
 
     /**
      * timestamp.

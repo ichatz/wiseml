@@ -11,7 +11,7 @@ import java.util.List;
  * getter and setter methods for the properties.
  */
 
-public final class Setup implements Serializable {
+public class Setup implements Serializable {
 
     /**
      * Serial Version Unique ID.
