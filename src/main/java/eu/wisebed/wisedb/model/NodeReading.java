@@ -144,8 +144,8 @@ public final class NodeReading implements Serializable {
     public String toString() {
         return "NodeReading{" +
                 "id=" + id +
-                ", node=" + node +
-                ", capability=" + capability +
+                ", node=" + node.getId() +
+                ", capability=" + capability.getName() +
                 ", timestamp=" + timestamp +
                 ", reading=" + reading +
                 '}';
