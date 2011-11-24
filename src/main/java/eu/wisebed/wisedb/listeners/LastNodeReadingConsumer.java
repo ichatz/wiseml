@@ -1,6 +1,7 @@
 package eu.wisebed.wisedb.listeners;
 
 import eu.wisebed.wisedb.model.NodeReading;
+import org.apache.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.concurrent.BlockingQueue;
@@ -10,6 +11,11 @@ import java.util.concurrent.LinkedBlockingQueue;
  * Notifies observers with the last NodeReading.
  */
 public final class LastNodeReadingConsumer {
+
+    /**
+     * Static logger.
+     */
+    private static final Logger LOGGER = Logger.getLogger(LastNodeReadingConsumer.class);
 
     /**
      * static instance(ourInstance) initialized as null.
@@ -64,6 +70,8 @@ public final class LastNodeReadingConsumer {
      */
     public void registerListener(final String nodeId, final String capabilityID,
                                  final AbstractNodeReadingListener listener) {
+
+        LOGGER.info(nodeId + "@" + capabilityID);
         synchronized (lock) {
             if (listeners.containsKey(nodeId)) {
                 if (!listeners.get(nodeId).containsKey(capabilityID)) {
@@ -74,6 +82,7 @@ public final class LastNodeReadingConsumer {
                 newCapability = new HashMap<String, AbstractNodeReadingListener>();
                 newCapability.put(capabilityID, listener);
                 listeners.put(nodeId, newCapability);
+                LOGGER.info(listenersContains(nodeId, capabilityID));
             }
         }
     }
@@ -100,6 +109,13 @@ public final class LastNodeReadingConsumer {
      * @return true if the map contains the key
      */
     protected boolean listenersContains(final String nodeID, final String capabilityID) {
+        try {
+            LOGGER.info("listenersContains: " + nodeID + "@" + capabilityID);
+            LOGGER.info("nodeID: " + listeners.containsKey(nodeID));
+            LOGGER.info("capabilityID: " + listeners.get(nodeID).containsKey(capabilityID));
+        } catch (Exception e) {
+            LOGGER.error(e);
+        }
         return listeners.containsKey(nodeID) && listeners.get(nodeID).containsKey(capabilityID);
 
     }
