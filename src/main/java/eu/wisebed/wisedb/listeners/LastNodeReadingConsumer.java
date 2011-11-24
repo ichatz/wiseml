@@ -41,7 +41,7 @@ public final class LastNodeReadingConsumer {
      * Private constructor suppresses generation of a (public) default constructor.
      */
     private LastNodeReadingConsumer() {
-        NodeReadingDistributer nodeReadingDistributer = new NodeReadingDistributer(QUEUE);
+        final NodeReadingDistributer nodeReadingDistributer = new NodeReadingDistributer(QUEUE);
         nodeReadingDistributer.start();
         listeners = new HashMap<String, HashMap<String, AbstractNodeReadingListener>>();
     }
@@ -70,8 +70,6 @@ public final class LastNodeReadingConsumer {
      */
     public void registerListener(final String nodeId, final String capabilityID,
                                  final AbstractNodeReadingListener listener) {
-
-        LOGGER.info(nodeId + "@" + capabilityID);
         synchronized (lock) {
             if (listeners.containsKey(nodeId)) {
                 if (!listeners.get(nodeId).containsKey(capabilityID)) {
@@ -94,7 +92,6 @@ public final class LastNodeReadingConsumer {
      * @param capabilityID the Capability ID
      */
     public void removeListener(final String nodeId, final String capabilityID) {
-        LOGGER.info("removeListener" + nodeId);
         synchronized (lock) {
             if (listeners.containsKey(nodeId)) {
                 listeners.get(nodeId).remove(capabilityID);
@@ -110,18 +107,6 @@ public final class LastNodeReadingConsumer {
      * @return true if the map contains the key
      */
     protected boolean listenersContains(final String nodeID, final String capabilityID) {
-        if (nodeID.equals("urn:ctinetwork:black")) {
-            for (String s : listeners.keySet()) {
-                LOGGER.info(s);
-            }
-            LOGGER.info("listenersContains: " + nodeID + "@" + capabilityID);
-            LOGGER.info("nodeID: " + listeners.containsKey(nodeID));
-            if (listeners.containsKey(nodeID)) {
-                LOGGER.info("capabilityID: " + listeners.get(nodeID).containsKey(capabilityID));
-            }
-        }
-
-
         return listeners.containsKey(nodeID) && listeners.get(nodeID).containsKey(capabilityID);
 
     }
