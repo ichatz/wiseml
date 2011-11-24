@@ -109,12 +109,10 @@ public final class LastNodeReadingConsumer {
      * @return true if the map contains the key
      */
     protected boolean listenersContains(final String nodeID, final String capabilityID) {
-        try {
-            LOGGER.info("listenersContains: " + nodeID + "@" + capabilityID);
-            LOGGER.info("nodeID: " + listeners.containsKey(nodeID));
+        LOGGER.info("listenersContains: " + nodeID + "@" + capabilityID);
+        LOGGER.info("nodeID: " + listeners.containsKey(nodeID));
+        if (listeners.containsKey(nodeID)) {
             LOGGER.info("capabilityID: " + listeners.get(nodeID).containsKey(capabilityID));
-        } catch (Exception e) {
-            LOGGER.error(e);
         }
         return listeners.containsKey(nodeID) && listeners.get(nodeID).containsKey(capabilityID);
 
