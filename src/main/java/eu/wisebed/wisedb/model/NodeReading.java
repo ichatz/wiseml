@@ -139,4 +139,15 @@ public final class NodeReading implements Serializable {
     public void setReading(final double reading) {
         this.reading = reading;
     }
+
+    @Override
+    public String toString() {
+        return "NodeReading{" +
+                "id=" + id +
+                ", node=" + node +
+                ", capability=" + capability +
+                ", timestamp=" + timestamp +
+                ", reading=" + reading +
+                '}';
+    }
 }
