@@ -101,12 +101,16 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
      */
     public List<LastLinkReading> getByTestbed(final Testbed testbed) {
 
-        // retrieve testbed setup
+        // retrieve testbed nodes from setup
         final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
+        List<Link> links = setup.getLink();
+        if (links == null || links.isEmpty()) {
+            return null;
+        }
 
         final Session session = this.getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(LastLinkReading.class);
-        criteria.add(Restrictions.in(LINK, setup.getLink()));
+        criteria.add(Restrictions.in(LINK, links));
         return (List<LastLinkReading>) criteria.list();
     }
 
@@ -132,12 +136,16 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
      */
     public List<LastLinkReading> getByCapability(final Testbed testbed, final Capability capability) {
 
-        // retrieve testbed setup
+        // retrieve testbed nodes from setup
         final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
+        List<Link> links = setup.getLink();
+        if (links == null || links.isEmpty()) {
+            return null;
+        }
 
         final Session session = this.getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(LastLinkReading.class);
-        criteria.add(Restrictions.in(LINK, setup.getLink()));
+        criteria.add(Restrictions.in(LINK, links));
         criteria.add(Restrictions.eq(CAPABILITY, capability));
         return (List<LastLinkReading>) criteria.list();
     }
@@ -195,20 +203,24 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
      */
     public LastLinkReading getLatestLinkReading(final Testbed testbed, final Capability capability) {
 
-        // retrieve testbed setup
+        // retrieve testbed nodes from setup
         final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
+        List<Link> links = setup.getLink();
+        if (links == null || links.isEmpty()) {
+            return null;
+        }
 
         final Session session = this.getSessionFactory().getCurrentSession();
 
         // a detached criteria for max timestamp for last node readings in testbed and capability
         final DetachedCriteria maxTimestamp = DetachedCriteria.forClass(LastLinkReading.class)
-                .add(Restrictions.in(LINK, setup.getLink()))
+                .add(Restrictions.in(LINK, links))
                 .add(Restrictions.eq(CAPABILITY, capability))
                 .setProjection(Projections.max(TIMESTAMP));
 
         // get latest link reading by comparing it with max timestamp
         final Criteria criteria = session.createCriteria(LastLinkReading.class);
-        criteria.add(Restrictions.in(LINK, setup.getLink()));
+        criteria.add(Restrictions.in(LINK, links));
         criteria.add(Restrictions.eq(CAPABILITY, capability));
         criteria.add(Property.forName(TIMESTAMP).eq(maxTimestamp));
         criteria.setMaxResults(1);
