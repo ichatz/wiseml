@@ -28,6 +28,9 @@ public class AddLinkReading {
             // a valid urnPrefix for CTI's testbed
             final String urnPrefix = "urn:wisebed:ctitestbed:";
 
+            // a valid id for CTI's testbed
+            final int testbedId = 1;
+
             // source node id
             Iterator<Node> nodeIt = NodeController.getInstance().list().iterator();
             Node source = nodeIt.next();
@@ -54,7 +57,7 @@ public class AddLinkReading {
             LOGGER.debug("Capability for link : " + capabilityName);
 
             // insert reading
-            LinkReadingController.getInstance().insertReading(sourceId, targetId, capabilityName, urnPrefix, reading, rssi, timestamp);
+            LinkReadingController.getInstance().insertReading(sourceId, targetId, capabilityName, testbedId, reading, rssi, timestamp);
 
 
             tx.commit();

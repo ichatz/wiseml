@@ -15,6 +15,6 @@ public class UnknownTestbedException extends Exception {
      * @param testbedId a testbed id.
      */
     public UnknownTestbedException(final String testbedId) {
-        super("Unknown Testbed. Cannot find persisted testbed entity with id or urnPrefix : " + testbedId);
+        super("Unknown Testbed. Cannot find persisted testbed entity with id " + testbedId);
     }
 }

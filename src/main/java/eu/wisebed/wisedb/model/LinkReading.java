@@ -162,4 +162,16 @@ public final class LinkReading implements Serializable {
     public void setCapability(final Capability capability) {
         this.capability = capability;
     }
+
+    @Override
+    public String toString() {
+        return "LinkReading{"
+                + "id=" + id
+                + ", link=" + link
+                + ", capability=" + capability
+                + ", timestamp=" + timestamp
+                + ", reading=" + reading
+                + ", rssiValue=" + rssiValue
+                + '}';
+    }
 }

@@ -181,20 +181,20 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      * @param sourceId       , link's source id.
      * @param targetId       , target's source id.
      * @param capabilityName , capability's id.
-     * @param urnPrefix      , a testbed urn prefix.
+     * @param testbedId      , a testbed id.
      * @param rssiValue      , the RSSI value of the link.
      * @param readingValue   , value of a sensor reading.
      * @param timestamp      , a timestamp.
-     * @throws eu.wisebed.wisedb.exception.UnknownTestbedException exception that occurs when the urnPrefix is unknown
+     * @throws UnknownTestbedException exception that occurs when the urnPrefix is unknown
      */
     public void insertReading(final String sourceId, final String targetId, final String capabilityName,
-                              final String urnPrefix, final double readingValue, final double rssiValue,
+                              final int testbedId, final double readingValue, final double rssiValue,
                               final Date timestamp) throws UnknownTestbedException {
 
         // look for testbed
-        final Testbed testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
+        final Testbed testbed = TestbedController.getInstance().getByID(testbedId);
         if (testbed == null) {
-            throw new UnknownTestbedException(urnPrefix);
+            throw new UnknownTestbedException(Integer.toString(testbedId));
         }
         // look for node and target
         final Node source = NodeController.getInstance().getByID(sourceId);

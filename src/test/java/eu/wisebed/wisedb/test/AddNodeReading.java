@@ -28,6 +28,9 @@ public class AddNodeReading {
             // a valid urnPrefix for CTI's testbed
             final String urnPrefix = "urn:wisebed:ctitestbed:";
 
+            // valid id.
+            final int testbedId = 1;
+
             // a valid node id for cti's testbed
             final String nodeId = urnPrefix + "NODETEST1";
 
@@ -46,7 +49,7 @@ public class AddNodeReading {
             LOGGER.debug("Timestamp : " + timestamp.toGMTString());
 
             // insert reading
-            NodeReadingController.getInstance().insertReading(nodeId, capabilityName, urnPrefix, readingValue, timestamp);
+            NodeReadingController.getInstance().insertReading(nodeId, capabilityName, testbedId , readingValue, timestamp);
 
             tx.commit();
         } catch (Exception e) {

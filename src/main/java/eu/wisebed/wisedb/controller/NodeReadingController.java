@@ -161,19 +161,18 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      *
      * @param nodeId         , a node id.
      * @param capabilityName , a capability name.
-     * @param urnPrefix      , a testbed urn prefix.
+     * @param testbedId      , a testbed Id.
      * @param readingValue   , a reading value.
      * @param timestamp      , a timestamp.
-     * @throws eu.wisebed.wisedb.exception.UnknownTestbedException
-     *          , exception that occurs when the urnPrefix is unknown
+     * @throws UnknownTestbedException exception that occurs when the testbedId is unknown.
      */
-    public void insertReading(final String nodeId, final String capabilityName, final String urnPrefix,
+    public void insertReading(final String nodeId, final String capabilityName, final int testbedId,
                               final double readingValue, final Date timestamp) throws UnknownTestbedException {
 
         // Retrieve testbed by urn
-        final Testbed testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
+        final Testbed testbed = TestbedController.getInstance().getByID(testbedId);
         if (testbed == null) {
-            throw new UnknownTestbedException(urnPrefix);
+            throw new UnknownTestbedException(Integer.toString(testbedId));
         }
 
         // get node if not found create one
