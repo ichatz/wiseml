@@ -3,6 +3,7 @@ package eu.wisebed.wisedb.model;
 import eu.wisebed.wiseml.model.setup.Setup;
 
 import java.io.Serializable;
+import java.util.TimeZone;
 
 /**
  * This is a persistent class for the object Testbed that has the
@@ -64,6 +65,11 @@ public final class Testbed implements Serializable {
      * Set of Setups belonging in Testbed.
      */
     private Setup setup;
+
+    /**
+     * Testbed timezeon
+     */
+    private TimeZone timeZone;
 
     /**
      * Get the Identity of the testbed.
@@ -243,5 +249,21 @@ public final class Testbed implements Serializable {
      */
     public void setSetup(final Setup setup) {
         this.setup = setup;
+    }
+
+    /**
+     * Returns testbed's timezone.
+     * @return testbed's timezone.
+     */
+    public TimeZone getTimeZone() {
+        return timeZone;
+    }
+
+    /**
+     * Sets testbed's timezone.
+     * @param timeZone testbed's timezeone.
+     */
+    public void setTimeZone(final TimeZone timeZone) {
+        this.timeZone = timeZone;
     }
 }

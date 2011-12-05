@@ -16,11 +16,12 @@
         <property name="name" not-null="true"/>
         <property name="description"/>
         <property name="url"/>
-        <property name="urnPrefix"/>
+        <property name="urnPrefix" not-null="true"/>
         <property name="federated" type="boolean"/>
         <property name="snaaUrl"/>
         <property name="rsUrl"/>
         <property name="sessionUrl"/>
+        <property name="timeZone" type="timezone"/>
 
         <one-to-one name="setup" class="eu.wisebed.wiseml.model.setup.Setup" cascade="save-update"/>
     </class>
