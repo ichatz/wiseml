@@ -1,5 +1,6 @@
 package eu.wisebed.wisedb.listeners;
 
+import eu.uberdust.uberlogger.UberLogger;
 import eu.wisebed.wisedb.model.NodeReading;
 import org.apache.log4j.Logger;
 
@@ -54,9 +55,11 @@ public final class NodeReadingDistributer extends Thread {
                // LOGGER.info("New Reading: " + lastReading.toString());
                 if (LastNodeReadingConsumer.getInstance().listenersContains(lastReading.getNode().getId(),
                         lastReading.getCapability().getName())) {
+                    UberLogger.getInstance().LOG(lastReading, "T4");
                     LastNodeReadingConsumer.getInstance().getListener(lastReading.getNode().getId(),
                             lastReading.getCapability().getName()).update(lastReading);
                     LOGGER.info("Updating.... : " + lastReading.toString());
+                    UberLogger.getInstance().LOG(lastReading, "T41");
                 }
             } catch (final InterruptedException e) {
                 LOGGER.fatal("Interrupted Exception ", e);
