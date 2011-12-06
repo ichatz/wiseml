@@ -27,7 +27,9 @@ public final class LastNodeReadingListener extends DefaultSaveOrUpdateEventListe
         //Ignores all events which are not instances of the NodeReading class.
         if (event.getObject() instanceof NodeReading) {
 
+            // Log it using UberLogger
             UberLogger.getInstance().LOG((NodeReading) event.getObject(), "T3");
+
             //Forward the event to LastNodeReadingConsumer
             LastNodeReadingConsumer.getInstance().addNodeReading((NodeReading) event.getObject());
         }
