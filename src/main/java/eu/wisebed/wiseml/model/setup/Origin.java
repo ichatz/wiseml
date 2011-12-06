@@ -17,34 +17,34 @@ public class Origin implements Serializable {
     /**
      * the global position x in the local system.
      */
-    private float x;
+    private Float x;
 
     /**
      * the global position y in the local system.
      */
-    private float y;
+    private Float y;
 
     /**
      * the global position z in the local system.
      */
-    private float z;
+    private Float z;
 
     /**
      * the angle phi of system rotation.
      */
-    private float phi;
+    private Float phi;
 
     /**
      * the angle theta of system rotation.
      */
-    private float theta;
+    private Float theta;
 
     /**
      * this method returns the position x.
      *
      * @return the x position.
      */
-    public float getX() {
+    public Float getX() {
         return x;
     }
 
@@ -53,7 +53,7 @@ public class Origin implements Serializable {
      *
      * @param x the position x.
      */
-    public void setX(final float x) {
+    public void setX(final Float x) {
         this.x = x;
     }
 
@@ -62,7 +62,7 @@ public class Origin implements Serializable {
      *
      * @return the y position.
      */
-    public float getY() {
+    public Float getY() {
         return y;
     }
 
@@ -71,7 +71,7 @@ public class Origin implements Serializable {
      *
      * @param y the position y.
      */
-    public void setY(final float y) {
+    public void setY(final Float y) {
         this.y = y;
     }
 
@@ -80,7 +80,7 @@ public class Origin implements Serializable {
      *
      * @return the z position.
      */
-    public float getZ() {
+    public Float getZ() {
         return z;
     }
 
@@ -89,7 +89,7 @@ public class Origin implements Serializable {
      *
      * @param z the position z.
      */
-    public void setZ(final float z) {
+    public void setZ(final Float z) {
         this.z = z;
     }
 
@@ -98,7 +98,7 @@ public class Origin implements Serializable {
      *
      * @return the phi angle.
      */
-    public float getPhi() {
+    public Float getPhi() {
         return phi;
     }
 
@@ -107,16 +107,7 @@ public class Origin implements Serializable {
      *
      * @param phi the phi angle.
      */
-    public void setPhi(final float phi) {
-        this.phi = phi;
-    }
-
-    /**
-     * this method sets the angle phi.
-     *
-     * @param phi the phi angle.
-     */
-    public void setPhi(final int phi) {
+    public void setPhi(final Float phi) {
         this.phi = phi;
     }
 
@@ -125,7 +116,7 @@ public class Origin implements Serializable {
      *
      * @return the theta angle.
      */
-    public float getTheta() {
+    public Float getTheta() {
         return theta;
     }
 
@@ -134,16 +125,7 @@ public class Origin implements Serializable {
      *
      * @param theta the theta angle.
      */
-    public void setTheta(final float theta) {
-        this.theta = theta;
-    }
-
-    /**
-     * this method sets the angle theta.
-     *
-     * @param theta the theta angle.
-     */
-    public void setTheta(final int theta) {
+    public void setTheta(final Float theta) {
         this.theta = theta;
     }
 }

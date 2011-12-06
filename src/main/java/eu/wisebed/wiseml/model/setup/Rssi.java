@@ -26,22 +26,6 @@ public class Rssi implements Serializable {
     private String unit;
 
     /**
-     * Return RSSI value
-     * @return
-     */
-    public String getValue() {
-        return value;
-    }
-
-    /**
-     *
-     * @param value
-     */
-    public void setValue(final String value) {
-        this.value = value;
-    }
-
-    /**
      * the unit of the object Rssi.
      */
     private String value;
@@ -81,5 +65,21 @@ public class Rssi implements Serializable {
      */
     public void setUnit(final String unit) {
         this.unit = unit;
+    }
+
+    /**
+     * Returns RSSI value.
+     * @return  rssi value.
+     */
+    public String getValue() {
+        return value;
+    }
+
+    /**
+     * Sets RSSI value.
+     * @param value rssi value.
+     */
+    public void setValue(final String value) {
+        this.value = value;
     }
 }

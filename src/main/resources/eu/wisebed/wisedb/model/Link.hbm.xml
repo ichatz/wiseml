@@ -14,11 +14,11 @@
             <key-property name="target" column="link_target"/>
         </composite-id>
 
-        <property name="encrypted">
+        <property name="encrypted" type="java.lang.Boolean">
             <column name="encrypted" sql-type="BOOLEAN"/>
         </property>
 
-        <property name="virtual">
+        <property name="virtual" type="java.lang.Boolean">
             <column name="virtual" sql-type="BOOLEAN"/>
         </property>
 

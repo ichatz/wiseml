@@ -59,7 +59,7 @@ public final class Testbed implements Serializable {
     /**
      * If the testbed is federated.
      */
-    private boolean federated;
+    private Boolean federated;
 
     /**
      * Set of Setups belonging in Testbed.
@@ -67,7 +67,7 @@ public final class Testbed implements Serializable {
     private Setup setup;
 
     /**
-     * Testbed timezeon
+     * Testbed timezone.
      */
     private TimeZone timeZone;
 
@@ -220,7 +220,7 @@ public final class Testbed implements Serializable {
      *
      * @return true if the testbed is federated.
      */
-    public boolean getFederated() {
+    public Boolean getFederated() {
         return federated;
     }
 
@@ -229,7 +229,7 @@ public final class Testbed implements Serializable {
      *
      * @param federated true if the testbed is federated.
      */
-    public void setFederated(final boolean federated) {
+    public void setFederated(final Boolean federated) {
         this.federated = federated;
     }
 

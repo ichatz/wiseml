@@ -9,7 +9,7 @@
            dynamic-insert="true" dynamic-update="true">
         <cache usage="read-write"/>
 
-        <id name="id" column="testbed_id">
+        <id name="id" column="testbed_id" type="int">
             <generator class="native"/>
         </id>
 
@@ -17,7 +17,7 @@
         <property name="description"/>
         <property name="url"/>
         <property name="urnPrefix" not-null="true"/>
-        <property name="federated" type="boolean"/>
+        <property name="federated" type="java.lang.Boolean"/>
         <property name="snaaUrl"/>
         <property name="rsUrl"/>
         <property name="sessionUrl"/>

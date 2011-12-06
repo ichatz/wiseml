@@ -8,31 +8,31 @@
            dynamic-update="true" dynamic-insert="true">
         <cache usage="read-write"/>
 
-        <id name="id" type="java.lang.Integer">
+        <id name="id" type="int">
             <column name="setup_id"/>
             <generator class="foreign">
                 <param name="property">testbed</param>
             </generator>
         </id>
 
-        <one-to-one name="testbed" class="eu.wisebed.wisedb.model.Testbed"
-                    constrained="true"></one-to-one>
+        <one-to-one name="testbed" class="eu.wisebed.wisedb.model.Testbed" constrained="true"/>
 
         <component name="origin" class="eu.wisebed.wiseml.model.setup.Origin">
-            <property name="x" column="position_x"/>
-            <property name="y" column="position_y"/>
-            <property name="z" column="position_z"/>
-            <property name="phi" column="position_phi"/>
-            <property name="theta" column="position_theta"/>
+            <property name="x" column="position_x" type="java.lang.Float"/>
+            <property name="y" column="position_y" type="java.lang.Float"/>
+            <property name="z" column="position_z" type="java.lang.Float"/>
+            <property name="phi" column="position_phi" type="java.lang.Integer"/>
+            <property name="theta" column="position_theta" type="java.lang.Integer"/>
         </component>
+
         <component name="timeinfo" class="eu.wisebed.wiseml.model.setup.TimeInfo">
             <property name="start" column="timeinfo_start"/>
             <property name="end" column="timeinfo_end"/>
-            <property name="duration" column="timeinfo_duration"/>
+            <property name="duration" column="timeinfo_duration" type="java.lang.Integer"/>
             <property name="unit" column="timeinfo_unit"/>
         </component>
 
-        <property name="description" type="text"/>
+        <property name="description"/>
         <property name="coordinateType"/>
 
 

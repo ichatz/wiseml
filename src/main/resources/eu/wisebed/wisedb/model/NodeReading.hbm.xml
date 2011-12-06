@@ -13,11 +13,12 @@
         </id>
 
         <property name="timestamp" type="timestamp"/>
-        <property name="reading"/>
+        <property name="reading" type="java.lang.Double"/>
 
         <many-to-one name="node" class="eu.wisebed.wiseml.model.setup.Node">
             <column name="node_id" not-null="true"/>
         </many-to-one>
+
         <many-to-one name="capability" class="eu.wisebed.wiseml.model.setup.Capability">
             <column name="capability_id" not-null="true"/>
         </many-to-one>

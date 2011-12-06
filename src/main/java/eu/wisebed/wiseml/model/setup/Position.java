@@ -17,34 +17,34 @@ public class Position implements Serializable {
     /**
      * point x in the position.
      */
-    private float x;
+    private Float x;
 
     /**
      * point y in the position.
      */
-    private float y;
+    private Float y;
 
     /**
      * point z in the position.
      */
-    private float z;
+    private Float z;
 
     /**
      * angle phi in the position.
      */
-    private int phi;
+    private Integer phi;
 
     /**
      * angle theta in the position.
      */
-    private int theta;
+    private Integer theta;
 
     /**
      * this method returns the point x.
      *
      * @return x
      */
-    public float getX() {
+    public Float getX() {
         return x;
     }
 
@@ -53,7 +53,7 @@ public class Position implements Serializable {
      *
      * @param x x point
      */
-    public void setX(final float x) {
+    public void setX(final Float x) {
         this.x = x;
     }
 
@@ -62,7 +62,7 @@ public class Position implements Serializable {
      *
      * @return y
      */
-    public float getY() {
+    public Float getY() {
         return y;
     }
 
@@ -71,7 +71,7 @@ public class Position implements Serializable {
      *
      * @param y y point
      */
-    public void setY(final float y) {
+    public void setY(final Float y) {
         this.y = y;
     }
 
@@ -80,7 +80,7 @@ public class Position implements Serializable {
      *
      * @return z
      */
-    public float getZ() {
+    public Float getZ() {
         return z;
     }
 
@@ -89,7 +89,7 @@ public class Position implements Serializable {
      *
      * @param z z point
      */
-    public void setZ(final float z) {
+    public void setZ(final Float z) {
         this.z = z;
     }
 
@@ -98,7 +98,7 @@ public class Position implements Serializable {
      *
      * @return phi
      */
-    public int getPhi() {
+    public Integer getPhi() {
         return phi;
     }
 
@@ -107,7 +107,7 @@ public class Position implements Serializable {
      *
      * @param phi phi angle.
      */
-    public void setPhi(final int phi) {
+    public void setPhi(final Integer phi) {
         this.phi = phi;
     }
 

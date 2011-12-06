@@ -63,11 +63,11 @@ public class ReadFileAsScenario {
 
         // create new origin...
         Origin origin1 = new Origin();
-        origin1.setX(0f);
-        origin1.setY(0f);
-        origin1.setZ(0f);
-        origin1.setPhi(0);
-        origin1.setTheta(0);
+        origin1.setX((float)0);
+        origin1.setY((float)0);
+        origin1.setZ((float)0);
+        origin1.setPhi((float)0);
+        origin1.setTheta((float)0);
 
         // create new timeinfo...
         TimeInfo timeInfo = new TimeInfo();
@@ -78,9 +78,9 @@ public class ReadFileAsScenario {
 
         // create new position...
         Position position = new Position();
-        position.setX(0);
-        position.setY(0);
-        position.setZ(0);
+        position.setX((float)0);
+        position.setY((float)0);
+        position.setZ((float)0);
         position.setPhi(0);
         position.setTheta(0);
 

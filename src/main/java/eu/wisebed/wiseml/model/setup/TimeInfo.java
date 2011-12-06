@@ -27,7 +27,7 @@ public class TimeInfo implements Serializable {
     /**
      * duration of the experiment.
      */
-    private int duration;
+    private Integer duration;
 
     /**
      * the unit information.
@@ -94,7 +94,7 @@ public class TimeInfo implements Serializable {
      *
      * @return the duration of the experiment.
      */
-    public int getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
@@ -103,7 +103,7 @@ public class TimeInfo implements Serializable {
      *
      * @param duration the experiment duration.
      */
-    public void setDuration(final int duration) {
+    public void setDuration(final Integer duration) {
         this.duration = duration;
     }
 }

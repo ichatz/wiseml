@@ -41,7 +41,7 @@ public final class NodeReading implements Serializable {
     /**
      * Capability reading value for this node.
      */
-    private double reading;
+    private Double reading;
 
     /**
      * Constructor.
@@ -127,7 +127,7 @@ public final class NodeReading implements Serializable {
      *
      * @return this reading value.
      */
-    public double getReading() {
+    public Double getReading() {
         return reading;
     }
 
@@ -136,7 +136,7 @@ public final class NodeReading implements Serializable {
      *
      * @param reading , this reading value.
      */
-    public void setReading(final double reading) {
+    public void setReading(final Double reading) {
         this.reading = reading;
     }
 

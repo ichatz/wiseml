@@ -31,12 +31,12 @@ public class Link implements Serializable {
     /**
      * a boolean value indicating if the link is encrypted or not.
      */
-    private boolean encrypted;
+    private Boolean encrypted;
 
     /**
      * a boolean value if the link is virtual or not.
      */
-    private boolean virtual;
+    private Boolean virtual;
 
     /**
      * a list of capabilities to add to the link.
@@ -103,8 +103,17 @@ public class Link implements Serializable {
      *
      * @return the encrypted of the link.
      */
-    public boolean isEncrypted() {
+    public Boolean isEncrypted() {
         return encrypted;
+    }
+
+    /**
+     * this method returns the boolean value encrypted of the link.
+     *
+     * @return the encrypted of the link.
+     */
+    public Boolean getEncrypted() {
+        return isEncrypted();
     }
 
     /**
@@ -112,7 +121,7 @@ public class Link implements Serializable {
      *
      * @param encrypted the encrypted of the link.
      */
-    public void setEncrypted(final boolean encrypted) {
+    public void setEncrypted(final Boolean encrypted) {
         this.encrypted = encrypted;
     }
 
@@ -121,8 +130,17 @@ public class Link implements Serializable {
      *
      * @return the virtual of the link.
      */
-    public boolean isVirtual() {
+    public Boolean isVirtual() {
         return virtual;
+    }
+
+    /**
+     * this method returns the boolean value virtual of the link.
+     *
+     * @return the virtual of the link.
+     */
+    public Boolean getVirtual() {
+        return isVirtual();
     }
 
     /**
@@ -130,7 +148,7 @@ public class Link implements Serializable {
      *
      * @param virtual the virtual of the link.
      */
-    public void setVirtual(final boolean virtual) {
+    public void setVirtual(final Boolean virtual) {
         this.virtual = virtual;
     }
 
@@ -172,6 +190,7 @@ public class Link implements Serializable {
 
     /**
      * Returns data.
+     *
      * @return data.
      */
     public List<Data> getData() {
@@ -180,6 +199,7 @@ public class Link implements Serializable {
 
     /**
      * Sets data.
+     *
      * @param data list of data.
      */
     public void setData(final List<Data> data) {
@@ -189,7 +209,7 @@ public class Link implements Serializable {
     /**
      * Returns a collection of setups.
      *
-     * @return  the related setup instance
+     * @return the related setup instance
      */
     public Setup getSetup() {
         return setup;

@@ -13,7 +13,7 @@
 
         <property name="timestamp" type="timestamp"/>
 
-        <property name="reading"/>
+        <property name="reading" type="java.lang.Double"/>
 
     </class>
 </hibernate-mapping>

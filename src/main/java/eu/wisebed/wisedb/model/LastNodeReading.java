@@ -36,7 +36,7 @@ public final class LastNodeReading implements Serializable {
     /**
      * Capability reading value for this node.
      */
-    private double reading;
+    private Double reading;
 
     /**
      * Constructor.

@@ -72,17 +72,17 @@ public class ReadFileVolt {
 
         // create setup origin...
         Origin origin = new Origin();
-        origin.setX(0f);
-        origin.setY(0f);
-        origin.setZ(0f);
-        origin.setPhi(0);
-        origin.setTheta(0);
+        origin.setX((float)0);
+        origin.setY((float)0);
+        origin.setZ((float)0);
+        origin.setPhi((float)0);
+        origin.setTheta((float)0);
 
         // create node position...
         Position position = new Position();
-        position.setX(0);
-        position.setY(0);
-        position.setZ(0);
+        position.setX((float)0);
+        position.setY((float)0);
+        position.setZ((float)0);
         position.setPhi(0);
         position.setTheta(0);
 

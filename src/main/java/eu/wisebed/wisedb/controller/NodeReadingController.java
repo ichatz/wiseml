@@ -39,19 +39,19 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     /**
      * Program details literal.
      */
-    private static final String PROGRAM_DETAILS = "program details";
+    private static final String PROGRAM_DETAILS = "PROGRAM_DETAILS";
     /**
      * Unit literal.
      */
-    private static final String UNIT = "unit";
+    private static final String UNIT = "UNIT";
     /**
      * Datatype literal.
      */
-    private static final String DATATYPE = "datatype";
+    private static final String DATATYPE = "DATATYPE";
     /**
      * Default value literal.
      */
-    private static final String DEFAULT_VALUE = "default value";
+    private static final String DEFAULT_VALUE = "DEFAULT_VALUE";
     /**
      * Node literal.
      */

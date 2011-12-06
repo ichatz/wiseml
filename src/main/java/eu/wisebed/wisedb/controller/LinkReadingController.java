@@ -35,11 +35,11 @@ public class LinkReadingController extends AbstractController<LinkReading> {
     /**
      * Program details literal.
      */
-    private static final String PROGRAM_DETAILS = "program details";
+    private static final String PROGRAM_DETAILS = "PROGRAM_DETAILS";
     /**
      * Unit literal.
      */
-    private static final String UNIT = "unit";
+    private static final String UNIT = "UNIT";
     /**
      * Zero literal.
      */
@@ -47,11 +47,11 @@ public class LinkReadingController extends AbstractController<LinkReading> {
     /**
      * Datatype literal.
      */
-    private static final String DATATYPE = "datatype";
+    private static final String DATATYPE = "DATATYPE";
     /**
      * Default value literal.
      */
-    private static final String DEFAULT_VALUE = "default value";
+    private static final String DEFAULT_VALUE = "DEFAULT_VALUE";
     /**
      * Link value literal.
      */
@@ -254,6 +254,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         lastLinkReading.setTimestamp(timestamp);
         lastLinkReading.setLink(link);
         lastLinkReading.setCapability(capability);
+        lastLinkReading.setRssiValue(rssiValue);
         LastLinkReadingController.getInstance().add(lastLinkReading);
     }
 

@@ -41,12 +41,12 @@ public final class LinkReading implements Serializable {
     /**
      * Numeric value of the reading.
      */
-    private double reading;
+    private Double reading;
 
     /**
      * Numeric value of the current RSSI of the link.
      */
-    private double rssiValue;
+    private Double rssiValue;
 
     /**
      * Constructor.
@@ -114,7 +114,7 @@ public final class LinkReading implements Serializable {
      *
      * @return rssi value of the link.
      */
-    public double getRssiValue() {
+    public Double getRssiValue() {
         return rssiValue;
     }
 
@@ -123,7 +123,7 @@ public final class LinkReading implements Serializable {
      *
      * @param rssiValue , the rssi value
      */
-    public void setRssiValue(final double rssiValue) {
+    public void setRssiValue(final Double rssiValue) {
         this.rssiValue = rssiValue;
     }
 

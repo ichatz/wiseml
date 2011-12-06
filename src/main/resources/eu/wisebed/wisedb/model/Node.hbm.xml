@@ -11,16 +11,16 @@
         <id name="id" column="node_id"/>
 
         <component name="position" class="eu.wisebed.wiseml.model.setup.Position">
-            <property name="x" column="position_x"/>
-            <property name="y" column="position_y"/>
-            <property name="z" column="position_z"/>
-            <property name="phi" column="position_phi"/>
-            <property name="theta" column="position_theta"/>
+            <property name="x" column="position_x" type="java.lang.Float"/>
+            <property name="y" column="position_y" type="java.lang.Float"/>
+            <property name="z" column="position_z" type="java.lang.Float"/>
+            <property name="phi" column="position_phi" type="java.lang.Integer"/>
+            <property name="theta" column="position_theta" type="java.lang.Integer"/>
         </component>
 
         <property name="nodeType"/>
-        <property name="description" type="string"/>
-        <property name="gateway" type="string"/>
+        <property name="description"/>
+        <property name="gateway"/>
         <property name="programDetails"/>
 
         <list name="capabilities" table="node_capabilities" cascade="save-update" lazy="true">

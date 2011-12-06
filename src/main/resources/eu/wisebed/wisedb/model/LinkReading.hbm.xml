@@ -13,13 +13,14 @@
         </id>
 
         <property name="timestamp" type="timestamp"/>
-        <property name="reading" type="double"/>
-        <property name="rssiValue" type="double"/>
+        <property name="reading" type="java.lang.Double"/>
+        <property name="rssiValue" type="java.lang.Double"/>
 
         <many-to-one name="link" class="eu.wisebed.wiseml.model.setup.Link">
             <column name="link_source" not-null="true"/>
             <column name="link_target" not-null="true"/>
         </many-to-one>
+
         <many-to-one name="capability" class="eu.wisebed.wiseml.model.setup.Capability">
             <column name="capability_id" not-null="true"/>
         </many-to-one>

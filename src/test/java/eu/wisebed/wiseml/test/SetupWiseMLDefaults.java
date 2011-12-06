@@ -28,9 +28,9 @@ public class SetupWiseMLDefaults {
 
             //set the position values for node...
             Position position = new Position();
-            position.setX(0);
-            position.setY(0);
-            position.setZ(6);
+            position.setX((float) 0);
+            position.setY((float) 0);
+            position.setZ((float) 6);
             position.setPhi(12);
             position.setTheta(0);
 

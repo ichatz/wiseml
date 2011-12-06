@@ -43,11 +43,11 @@ public class SetupNewNode {
 
             //set the origin values for setup...
             Origin origin1 = new Origin();
-            origin1.setX(0f);
-            origin1.setY(0f);
-            origin1.setZ(0f);
-            origin1.setPhi(5);
-            origin1.setTheta(2);
+            origin1.setX((float)0);
+            origin1.setY((float)0);
+            origin1.setZ((float)0);
+            origin1.setPhi((float)5);
+            origin1.setTheta((float)2);
 
             //set the timeinfo values for setup...
             TimeInfo timeInfo1 = new TimeInfo();
@@ -59,16 +59,16 @@ public class SetupNewNode {
 
             //set the position values for nodes...
             Position position = new Position();
-            position.setX(0);
-            position.setY(0);
-            position.setZ(6);
+            position.setX((float)0);
+            position.setY((float)0);
+            position.setZ((float)6);
             position.setPhi(12);
             position.setTheta(0);
 
             Position positionDef = new Position();
-            positionDef.setX(1.0f);
-            positionDef.setY(2);
-            positionDef.setZ(1.879f);
+            positionDef.setX((float)1.0);
+            positionDef.setY((float)2);
+            positionDef.setZ((float)1.879);
             positionDef.setPhi(32);
             positionDef.setTheta(90);
 
@@ -252,9 +252,9 @@ public class SetupNewNode {
             setup.setDefaults(defaults);
 
             Position positionTr = new Position();
-            positionTr.setX(2);
-            positionTr.setY(4);
-            positionTr.setZ(6);
+            positionTr.setX((float)2);
+            positionTr.setY((float)4);
+            positionTr.setZ((float)6);
             positionTr.setPhi(0);
             positionTr.setTheta(6);
 
