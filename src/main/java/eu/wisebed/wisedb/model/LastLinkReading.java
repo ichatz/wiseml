@@ -141,21 +141,6 @@ public final class LastLinkReading implements Serializable {
     public void setRssiValue(final Double rssiValue) {
         this.rssiValue = rssiValue;
     }
-
-    /**
-     * Override of toString().
-     * @return toString().
-     */
-    @Override
-    public String toString() {
-        return "LastLinkReading{" +
-                "link=" + link +
-                ", capability=" + capability +
-                ", timestamp=" + timestamp +
-                ", reading=" + reading +
-                ", rssiValue=" + rssiValue +
-                '}';
-    }
 }
 
 

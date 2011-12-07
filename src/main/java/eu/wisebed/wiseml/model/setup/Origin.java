@@ -128,19 +128,4 @@ public class Origin implements Serializable {
     public void setTheta(final Float theta) {
         this.theta = theta;
     }
-
-    /**
-     * Override of toString().
-     * @return toString().
-     */
-    @Override
-    public String toString() {
-        return "Origin{" +
-                "x=" + x +
-                ", y=" + y +
-                ", z=" + z +
-                ", phi=" + phi +
-                ", theta=" + theta +
-                '}';
-    }
 }

@@ -237,22 +237,4 @@ public class Capability implements Serializable {
     public int hashCode() {
         return (name == null) ? (System.identityHashCode(this)) : (name.hashCode());
     }
-
-    /**
-     * Override of toString().
-     * @return toString().
-     */
-    @Override
-    public String toString() {
-        return "Capability{" +
-                "name='" + name + '\'' +
-                ", datatype='" + datatype + '\'' +
-                ", unit='" + unit + '\'' +
-                ", defaultvalue='" + defaultvalue + '\'' +
-                ", nodes=" + nodes +
-                ", links=" + links +
-                ", nodeReadings=" + nodeReadings +
-                ", linkReadings=" + linkReadings +
-                '}';
-    }
 }

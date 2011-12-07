@@ -248,24 +248,4 @@ public class Setup implements Serializable {
     public Testbed getTestbed() {
         return testbed;
     }
-
-    /**
-     * Override of toString().
-     * @return toString().
-     */
-    @Override
-    public String toString() {
-        return "Setup{" +
-                "id=" + id +
-                ", origin=" + origin +
-                ", timeinfo=" + timeinfo +
-                ", interpolation='" + interpolation + '\'' +
-                ", description='" + description + '\'' +
-                ", coordinateType='" + coordinateType + '\'' +
-                ", defaults=" + defaults +
-                ", nodes=" + nodes +
-                ", link=" + link +
-                ", testbed=" + testbed +
-                '}';
-    }
 }

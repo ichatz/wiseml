@@ -116,18 +116,4 @@ public final class LastNodeReading implements Serializable {
     public void setReading(final double reading) {
         this.reading = reading;
     }
-
-    /**
-     * Override of toString().
-     * @return toString().
-     */
-    @Override
-    public String toString() {
-        return "LastNodeReading{" +
-                "node=" + node +
-                ", capability=" + capability +
-                ", timestamp=" + timestamp +
-                ", reading=" + reading +
-                '}';
-    }
 }

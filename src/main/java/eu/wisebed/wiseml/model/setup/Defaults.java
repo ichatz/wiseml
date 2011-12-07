@@ -59,16 +59,4 @@ public class Defaults implements Serializable {
     public void setLink(final Link link) {
         this.link = link;
     }
-
-    /**
-     * Override of toString().
-     * @return toString().
-     */
-    @Override
-    public String toString() {
-        return "Defaults{" +
-                "node=" + node +
-                ", link=" + link +
-                '}';
-    }
 }

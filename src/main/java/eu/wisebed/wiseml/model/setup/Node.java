@@ -272,25 +272,4 @@ public class Node implements Serializable {
     public void setReadings(final Set<NodeReading> readings) {
         this.readings = readings;
     }
-
-    /**
-     * Override of toString().
-     * @return toString().
-     */
-    @Override
-    public String toString() {
-        return "Node{" +
-                "id='" + id + '\'' +
-                ", capabilities=" + capabilities +
-                ", position=" + position +
-                ", nodeType='" + nodeType + '\'' +
-                ", description='" + description + '\'' +
-                ", gateway='" + gateway + '\'' +
-                ", programDetails='" + programDetails + '\'' +
-                ", data=" + data +
-                ", message=" + message +
-                ", readings=" + readings +
-                ", setup=" + setup +
-                '}';
-    }
 }
