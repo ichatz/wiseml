@@ -116,7 +116,7 @@ public class NodeController extends AbstractController<Node> {
      * @return a list of testbed links.
      */
     public List<Node> list(final Testbed testbed) {
-        LOGGER.info("list(" + testbed +")");
+        LOGGER.info("list(" + testbed + ")");
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Node.class);
         criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
