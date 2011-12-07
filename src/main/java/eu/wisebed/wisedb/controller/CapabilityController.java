@@ -2,6 +2,7 @@ package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
@@ -37,6 +38,11 @@ public class CapabilityController extends AbstractController<Capability> {
     private static final String LINKS = "links";
 
     /**
+     * Logger.
+     */
+    private static final Logger LOGGER = Logger.getLogger(CapabilityController.class);
+
+    /**
      * Public constructor .
      */
     public CapabilityController() {
@@ -66,6 +72,7 @@ public class CapabilityController extends AbstractController<Capability> {
      * @param entity a Capability object.
      */
     public void add(final Capability entity) {
+        LOGGER.info("add(" + entity + ")");
         final Session session = getSessionFactory().getCurrentSession();
         final Capability entity2 = (Capability) session.get(Capability.class, entity.getName());
         if (entity2 == null) {
@@ -82,6 +89,7 @@ public class CapabilityController extends AbstractController<Capability> {
      * @return an Entity object.
      */
     public Capability getByID(final String entityID) {
+        LOGGER.info("getByID(" + entityID + ")");
         return super.getByID(new Capability(), entityID);
     }
 
@@ -91,6 +99,7 @@ public class CapabilityController extends AbstractController<Capability> {
      * @param value the Capability tha we want to delete
      */
     public void delete(final Capability value) {
+        LOGGER.info("delete(" + value+ ")");
         super.delete(value, value.getName());
     }
 
@@ -100,6 +109,7 @@ public class CapabilityController extends AbstractController<Capability> {
      * @param entityID the id of the Entity object.
      */
     public void delete(final String entityID) {
+        LOGGER.info("delete(" + entityID + ")");
         super.delete(new Capability(), entityID);
     }
 
@@ -109,6 +119,7 @@ public class CapabilityController extends AbstractController<Capability> {
      * @return a list of all capabilities persisted.
      */
     public List<Capability> list() {
+        LOGGER.info("list()");
         return super.list(new Capability());
     }
 
@@ -120,6 +131,7 @@ public class CapabilityController extends AbstractController<Capability> {
      * @return a list of testbed capabilities.
      */
     public List<Capability> list(final Testbed testbed) {
+        LOGGER.info("list(" + testbed +")");
         final List<Capability> capabilities = new ArrayList<Capability>();
         final List<Capability> nodeCapabilities = listNodeCapabilities(testbed);
         final List<Capability> linkCapabilities = listLinkCapabilities(testbed);
@@ -135,6 +147,7 @@ public class CapabilityController extends AbstractController<Capability> {
      * @return a list of testbed nodes capabilities.
      */
     public List<Capability> listNodeCapabilities(final Testbed testbed) {
+        LOGGER.info("listNodeCapabilities(" + testbed + ")");
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Capability.class);
         criteria.createAlias(NODES, "ns");
@@ -151,6 +164,7 @@ public class CapabilityController extends AbstractController<Capability> {
      * @return a list of testbed link capabilities.
      */
     public List<Capability> listLinkCapabilities(final Testbed testbed) {
+        LOGGER.info("listLinkCapabilities(" + testbed + ")");
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Capability.class);
         criteria.createAlias(LINKS, "ls");

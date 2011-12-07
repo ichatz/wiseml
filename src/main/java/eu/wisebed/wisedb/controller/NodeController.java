@@ -3,6 +3,7 @@ package eu.wisebed.wisedb.controller;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Node;
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Order;
@@ -25,14 +26,21 @@ public class NodeController extends AbstractController<Node> {
      * Setup literal.
      */
     private static final String SETUP = "setup";
+
     /**
      * Capabilities literal.
      */
     private static final String CAPABILITIES = "capabilities";
+
     /**
      * Node ID literal.
      */
     private static final String NODE_ID = "id";
+
+    /**
+     * Logger.
+     */
+    private static final Logger LOGGER = Logger.getLogger(NodeController.class);
 
 
     /**
@@ -67,6 +75,7 @@ public class NodeController extends AbstractController<Node> {
      * @return an Entity object.
      */
     public Node getByID(final String entityID) {
+        LOGGER.info("getByID(" + entityID +")");
         return super.getByID(new Node(), entityID);
     }
 
@@ -76,6 +85,7 @@ public class NodeController extends AbstractController<Node> {
      * @param node the Node tha we want to delete
      */
     public void delete(final Node node) {
+        LOGGER.info("delete(" + node +")");
         super.delete(node, node.getId());
     }
 
@@ -85,6 +95,7 @@ public class NodeController extends AbstractController<Node> {
      * @param nodeId the id of the node tha we want to delete
      */
     public void delete(final String nodeId) {
+        LOGGER.info("delete(" + nodeId +")");
         super.delete(new Node(), nodeId);
     }
 
@@ -94,6 +105,7 @@ public class NodeController extends AbstractController<Node> {
      * @return a list of all the entries that exist inside the table Node.
      */
     public List<Node> list() {
+        LOGGER.info("list()");
         return super.list(new Node());
     }
 
@@ -104,6 +116,7 @@ public class NodeController extends AbstractController<Node> {
      * @return a list of testbed links.
      */
     public List<Node> list(final Testbed testbed) {
+        LOGGER.info("list(" + testbed +")");
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Node.class);
         criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
@@ -118,6 +131,7 @@ public class NodeController extends AbstractController<Node> {
      * @return a list of nodes that share the given capability.
      */
     public List<Node> listCapabilityNodes(final Capability capability) {
+        LOGGER.info("listCapabilityNodes(" + capability +")");
         final org.hibernate.Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Node.class);
         criteria.createAlias(CAPABILITIES, "caps")
@@ -134,6 +148,7 @@ public class NodeController extends AbstractController<Node> {
      * @return a list of nodes that share the given capability belonging to the same testbed.
      */
     public List<Node> listCapabilityNodes(final Capability capability, final Testbed testbed) {
+        LOGGER.info("listCapabilityNodes(" + capability + "," + testbed +")");
         final org.hibernate.Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Node.class);
         criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));

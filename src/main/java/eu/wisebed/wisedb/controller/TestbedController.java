@@ -1,9 +1,7 @@
 package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.model.Testbed;
-import eu.wisebed.wiseml.model.setup.Link;
-import eu.wisebed.wiseml.model.setup.Node;
-import eu.wisebed.wiseml.model.setup.Setup;
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
@@ -23,21 +21,14 @@ public class TestbedController extends AbstractController<Testbed> {
     private static TestbedController ourInstance = null;
 
     /**
-     * Testbed ID literal.
-     */
-    private static final String TESTBED_ID = "id";
-    /**
      * UrnPrefix literal.
      */
     private static final String URN_PREFIX = "urnPrefix";
+
     /**
-     * Setup literal.
+     * Logger.
      */
-    private static final String SETUP = "setup";
-    /**
-     * Source literal.
-     */
-    private static final String SOURCE = "source";
+    private static final Logger LOGGER = Logger.getLogger(TestbedController.class);
 
     /**
      * Public constructor .
@@ -71,6 +62,7 @@ public class TestbedController extends AbstractController<Testbed> {
      * @return an Entity object.
      */
     public Testbed getByID(final int entityID) {
+        LOGGER.info("getByID(" + entityID + ")");
         return super.getByID(new Testbed(), entityID);
     }
 
@@ -80,6 +72,7 @@ public class TestbedController extends AbstractController<Testbed> {
      * @param value the Testbed tha we want to delete
      */
     public void delete(final Testbed value) {
+        LOGGER.info("delete(" + value + ")");
         super.delete(value, value.getId());
     }
 
@@ -89,6 +82,7 @@ public class TestbedController extends AbstractController<Testbed> {
      * @return a list of all the entries that exist inside the table Testbed.
      */
     public List<Testbed> list() {
+        LOGGER.info("list()");
         return super.list(new Testbed());
     }
 
@@ -100,6 +94,7 @@ public class TestbedController extends AbstractController<Testbed> {
      */
     @SuppressWarnings("unchecked")
     public Testbed getByUrnPrefix(final String urnPrefix) {
+        LOGGER.info("getByUrnPrefix(" + urnPrefix + ")");
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Testbed.class);
         criteria.add(Restrictions.like(URN_PREFIX, urnPrefix, MatchMode.START));
@@ -108,42 +103,4 @@ public class TestbedController extends AbstractController<Testbed> {
         return (Testbed) criteria.uniqueResult();
     }
 
-    /**
-     * Listing all the Nodes belonging to a testbed.
-     *
-     * @param testbed , a testbed instance.
-     * @return a list of all the entries that much the criterias
-     */
-    @SuppressWarnings("unchecked")
-    public List<Node> listTestbedNodes(final Testbed testbed) {
-        final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
-
-        // get testbed only setup
-        final Setup setup = testbed.getSetup();
-
-        final Criteria criteria = session.createCriteria(Node.class);
-        criteria.add(Restrictions.eq(SETUP, setup));
-        criteria.addOrder(Order.asc(TESTBED_ID));
-        return (List<Node>) criteria.list();
-    }
-
-    /**
-     * Listing all the Nodes belonging to a testbed.
-     *
-     * @param testbed , a testbed instance.
-     * @return a list of all the entries that much the criterias
-     */
-    @SuppressWarnings("unchecked")
-    public List<Link> listTestbedLinks(final Testbed testbed) {
-        final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
-        // get testbed only setup
-        final Setup setup = testbed.getSetup();
-
-        final Criteria criteria;
-        criteria = session.createCriteria(Link.class);
-        criteria.add(Restrictions.eq(SETUP, setup));
-        criteria.addOrder(Order.asc(SOURCE));
-        return (List<Link>) criteria.list();
-
-    }
 }

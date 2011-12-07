@@ -279,4 +279,23 @@ public class Link implements Serializable {
     public int hashCode() {
         return (source == null) ? System.identityHashCode(this) : source.hashCode();
     }
+
+    /**
+     * Override of toString().
+     * @return toString().
+     */
+    @Override
+    public String toString() {
+        return "Link{" +
+                "source='" + source + '\'' +
+                ", target='" + target + '\'' +
+                ", encrypted=" + encrypted +
+                ", virtual=" + virtual +
+                ", capabilities=" + capabilities +
+                ", readings=" + readings +
+                ", rssi=" + rssi +
+                ", data=" + data +
+                ", setup=" + setup +
+                '}';
+    }
 }

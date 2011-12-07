@@ -266,4 +266,25 @@ public final class Testbed implements Serializable {
     public void setTimeZone(final TimeZone timeZone) {
         this.timeZone = timeZone;
     }
+
+    /**
+     * Override of toString().
+     * @return toString().
+     */
+    @Override
+    public String toString() {
+        return "Testbed{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", url='" + url + '\'' +
+                ", urnPrefix='" + urnPrefix + '\'' +
+                ", snaaUrl='" + snaaUrl + '\'' +
+                ", rsUrl='" + rsUrl + '\'' +
+                ", sessionUrl='" + sessionUrl + '\'' +
+                ", federated=" + federated +
+                ", setup=" + setup +
+                ", timeZone=" + timeZone +
+                '}';
+    }
 }

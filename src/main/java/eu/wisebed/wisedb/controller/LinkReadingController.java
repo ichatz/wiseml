@@ -9,6 +9,7 @@ import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Rssi;
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -48,14 +49,21 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      * Datatype literal.
      */
     private static final String DATATYPE = "DATATYPE";
+
     /**
      * Default value literal.
      */
     private static final String DEFAULT_VALUE = "DEFAULT_VALUE";
+
     /**
      * Link value literal.
      */
     private static final String LINK = "link";
+
+    /**
+     * Logger.
+     */
+    private static final Logger LOGGER = Logger.getLogger(LinkReadingController.class);
 
     /**
      * Public constructor .
@@ -88,6 +96,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      * @return a list of all the entries that exist inside the table LinkReadings.
      */
     public List<LinkReading> list() {
+        LOGGER.info("list()");
         return super.list(new LinkReading());
     }
 
@@ -97,6 +106,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      * @param readingId , id of a reading entry
      */
     public void delete(final int readingId) {
+        LOGGER.info("delete(" + readingId + ")");
         super.delete(new LinkReading(), readingId);
     }
 
@@ -109,7 +119,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      * @return returns the inserted node instance.
      */
     private Node prepareInsertNode(final Testbed testbed, final String nodeId) {
-
+        LOGGER.info("prepareInsertNode(" + testbed + "," + nodeId + ")");
         final Node node = new Node();
         node.setId(nodeId);
         node.setDescription(DESCRIPTION);
@@ -132,6 +142,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      * @return returns the inserted link instance.
      */
     private Link prepareInsertLink(final Testbed testbed, final String sourceId, final String targetId) {
+        LOGGER.info("prepareInsertLink(" + testbed + "," + sourceId + "," + targetId +")");
 
         final Rssi rssi = new Rssi();
         rssi.setDatatype(DATATYPE);
@@ -159,6 +170,8 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      * @return returns the inserted capability instance.
      */
     private Capability prepareInsertCapability(final String capabilityName) {
+        LOGGER.info("prepareInsertCapability(" + capabilityName + ")");
+
         final Capability capability = new Capability();
 
         capability.setName(capabilityName);
@@ -191,6 +204,8 @@ public class LinkReadingController extends AbstractController<LinkReading> {
                               final int testbedId, final double readingValue, final double rssiValue,
                               final Date timestamp) throws UnknownTestbedException {
 
+        LOGGER.info("insertReading(" + sourceId + "," + targetId + "," + capabilityName + "," + testbedId
+                + "," + readingValue + "," + rssiValue + "," + timestamp +")");
         // look for testbed
         final Testbed testbed = TestbedController.getInstance().getByID(testbedId);
         if (testbed == null) {
@@ -265,6 +280,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      * @return the count of this link.
      */
     public Long getLinkReadingsCount(final Link link) {
+        LOGGER.info("getLinkReadingsCount(" + link + ")");
         final org.hibernate.Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(LinkReading.class);
         criteria.createAlias(LINK, "id");

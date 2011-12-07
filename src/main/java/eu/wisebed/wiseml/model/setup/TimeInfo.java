@@ -106,4 +106,18 @@ public class TimeInfo implements Serializable {
     public void setDuration(final Integer duration) {
         this.duration = duration;
     }
+
+    /**
+     * Override of toString().
+     * @return toString().
+     */
+    @Override
+    public String toString() {
+        return "TimeInfo{" +
+                "start='" + start + '\'' +
+                ", end='" + end + '\'' +
+                ", duration=" + duration +
+                ", unit='" + unit + '\'' +
+                '}';
+    }
 }

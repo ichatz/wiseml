@@ -8,6 +8,7 @@ import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Order;
@@ -36,38 +37,43 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * Descriptions literal.
      */
     private static final String DESCRIPTION = "DESCRIPTION";
+
     /**
      * Program details literal.
      */
     private static final String PROGRAM_DETAILS = "PROGRAM_DETAILS";
+
     /**
      * Unit literal.
      */
     private static final String UNIT = "UNIT";
+
     /**
      * Datatype literal.
      */
     private static final String DATATYPE = "DATATYPE";
+
     /**
      * Default value literal.
      */
     private static final String DEFAULT_VALUE = "DEFAULT_VALUE";
+
     /**
      * Node literal.
      */
     private static final String NODE = "node";
+
     /**
      * Capability literal.
      */
     private static final String CAPABILITY = "capability";
+
     /**
      * Timestamp literal.
      */
     private static final String TIMESTAMP = "timestamp";
-    /**
-     * Reading literal.
-     */
-    private static final String READING = "reading";
+
+    private static final Logger LOGGER = Logger.getLogger(NodeReadingController.class);
 
     /**
      * Public constructor .
@@ -100,6 +106,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @return a list of all the entries that exist inside the table NodeReadings.
      */
     public List<NodeReading> list() {
+        LOGGER.info("list()");
         return super.list(new NodeReading());
     }
 
@@ -109,6 +116,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @param readingId the id of the node tha we want to delete
      */
     public void delete(final String readingId) {
+        LOGGER.info("delete(" + readingId + ")");
         super.delete(new NodeReading(), readingId);
     }
 
@@ -120,7 +128,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @return returns the inserted node instance.
      */
     private Node prepareInsertNode(final Testbed testbed, final String nodeId) {
-
+        LOGGER.info("prepareInsertNode(" + testbed + "," + nodeId + ")");
         final Node node = new Node();
         node.setId(nodeId);
         node.setDescription(DESCRIPTION);
@@ -141,6 +149,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @return returns the inserted capability instance.
      */
     private Capability prepareInsertCapability(final String capabilityName) {
+        LOGGER.info("prepareInsertCapability(" + capabilityName + ")");
         final Capability capability = new Capability();
 
         capability.setName(capabilityName);
@@ -168,6 +177,8 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      */
     public void insertReading(final String nodeId, final String capabilityName, final int testbedId,
                               final double readingValue, final Date timestamp) throws UnknownTestbedException {
+        LOGGER.info("insertReading(" + nodeId + "," + capabilityName + "," + testbedId + "," + readingValue
+                + "," + timestamp +")");
 
         // Retrieve testbed by urn
         final Testbed testbed = TestbedController.getInstance().getByID(testbedId);
@@ -228,6 +239,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      */
     @SuppressWarnings("unchecked")
     public List<NodeReading> listNodeReadings(final Node node, final Capability capability) {
+        LOGGER.info("listNodeReadings(" + node + "," + capability + ")");
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(NodeReading.class);
         criteria.add(Restrictions.eq(NODE, node));
@@ -246,6 +258,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      */
     @SuppressWarnings("unchecked")
     public List<NodeReading> listNodeReadings(final Node node, final Capability capability, final int limit) {
+        LOGGER.info("listNodeReadings(" + node + "," + capability + "," + limit + ")");
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(NodeReading.class);
         criteria.add(Restrictions.eq(NODE, node));
@@ -262,6 +275,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @return the count of this node.
      */
     public Long getNodeReadingsCount(final Node node) {
+        LOGGER.info("getNodeReadingsCount(" + node + ")");
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(NodeReading.class);
         criteria.add(Restrictions.eq(NODE, node));
@@ -278,6 +292,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      */
     @SuppressWarnings("unchecked")
     public Map<Capability, Long> getNodeReadingsCountMap(final Node node) {
+        LOGGER.info("getNodeReadingsCountMap(" + node + ")");
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(NodeReading.class);
         criteria.add(Restrictions.eq(NODE, node));

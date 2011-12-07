@@ -86,4 +86,17 @@ public class Data implements Serializable {
     public void setValue(final String value) {
         this.value = value;
     }
+
+    /**
+     * Override of toString().
+     * @return toString().
+     */
+    @Override
+    public String toString() {
+        return "Data{" +
+                "key='" + key + '\'' +
+                ", value='" + value + '\'' +
+                ", message=" + message +
+                '}';
+    }
 }

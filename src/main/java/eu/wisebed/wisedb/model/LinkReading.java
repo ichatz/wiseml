@@ -163,15 +163,19 @@ public final class LinkReading implements Serializable {
         this.capability = capability;
     }
 
+    /**
+     * Override of toString().
+     * @return toString().
+     */
     @Override
     public String toString() {
-        return "LinkReading{"
-                + "id=" + id
-                + ", link=" + link
-                + ", capability=" + capability
-                + ", timestamp=" + timestamp
-                + ", reading=" + reading
-                + ", rssiValue=" + rssiValue
-                + '}';
+        return "LinkReading{" +
+                "id=" + id +
+                ", link=" + link +
+                ", capability=" + capability +
+                ", timestamp=" + timestamp +
+                ", reading=" + reading +
+                ", rssiValue=" + rssiValue +
+                '}';
     }
 }

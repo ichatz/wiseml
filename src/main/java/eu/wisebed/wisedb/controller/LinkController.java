@@ -3,6 +3,7 @@ package eu.wisebed.wisedb.controller;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
@@ -29,10 +30,16 @@ public class LinkController extends AbstractController<Link> {
      * Setup literal.
      */
     private static final String SETUP = "setup";
+
     /**
      * Capabilities literal.
      */
     private static final String CAPABILITIES = "capabilities";
+
+    /**
+     * Logger.
+     */
+    private static final Logger LOGGER = Logger.getLogger(LinkController.class);
 
     /**
      * Public constructor .
@@ -67,6 +74,9 @@ public class LinkController extends AbstractController<Link> {
      * @return the link object persisted with the specific id
      */
     public Link getByID(final String sourceId, final String targetId) {
+
+        LOGGER.info("getByID(" + sourceId + "," + targetId + ")");
+
         final Session session = this.getSessionFactory().getCurrentSession();
         final Link linkWithId = new Link();
         linkWithId.setSource(sourceId);
@@ -81,6 +91,9 @@ public class LinkController extends AbstractController<Link> {
      * @param targetId , The node id of the link's target.
      */
     public void delete(final String sourceId, final String targetId) {
+
+        LOGGER.info("delete(" + sourceId + "," + targetId + ")");
+
         final Session session = this.getSessionFactory().getCurrentSession();
         final Link linkWithId = new Link();
         linkWithId.setSource(sourceId);
@@ -94,6 +107,7 @@ public class LinkController extends AbstractController<Link> {
      * @return a list of all the entries that exist inside the table Link.
      */
     public List<Link> list() {
+        LOGGER.info("list()");
         return super.list(new Link());
     }
 
@@ -104,6 +118,7 @@ public class LinkController extends AbstractController<Link> {
      * @return a list of testbed links.
      */
     public List<Link> list(final Testbed testbed) {
+        LOGGER.info("list(" + testbed  + ")");
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Link.class);
         criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
@@ -119,6 +134,7 @@ public class LinkController extends AbstractController<Link> {
      * @return a list of links that share the given capability belonging to the same testbed.
      */
     public List<Link> listCapabilityLinks(final Capability capability, final Testbed testbed) {
+        LOGGER.info("listCapabilityLinks(" + capability + "," + testbed + ")");
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Link.class);
         criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
