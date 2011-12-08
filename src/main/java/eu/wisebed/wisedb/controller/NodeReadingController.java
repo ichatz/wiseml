@@ -1,7 +1,5 @@
 package eu.wisebed.wisedb.controller;
 
-import eu.wisebed.wisedb.exception.UnknownCapabilityException;
-import eu.wisebed.wisedb.exception.UnknownNodeException;
 import eu.wisebed.wisedb.exception.UnknownTestbedException;
 import eu.wisebed.wisedb.model.LastNodeReading;
 import eu.wisebed.wisedb.model.LinkReading;
@@ -175,13 +173,10 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @param testbedId      , a testbed Id.
      * @param readingValue   , a reading value.
      * @param timestamp      , a timestamp.
-     * @throws UnknownTestbedException    exception that occurs when the testbedId is unknown.
-     * @throws UnknownCapabilityException exception that occurs when the capabilityId is unknown.
-     * @throws UnknownNodeException       exception that occurs when the nodeId is unknown.
+     * @throws UnknownTestbedException exception that occurs when the testbedId is unknown.
      */
     public void insertReading(final String nodeId, final String capabilityName, final int testbedId,
-                              final double readingValue, final Date timestamp) throws UnknownTestbedException,
-            UnknownNodeException, UnknownCapabilityException {
+                              final double readingValue, final Date timestamp) throws UnknownTestbedException {
         LOGGER.info("insertReading(" + nodeId + "," + capabilityName + "," + testbedId + "," + readingValue
                 + "," + timestamp + ")");
 
@@ -192,18 +187,36 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         }
 
         // get node if not found create one
-        final Node node = NodeController.getInstance().getByID(nodeId);
+        Node node = NodeController.getInstance().getByID(nodeId);
+        // get capability if not found create one
+        Capability capability = CapabilityController.getInstance().getByID(capabilityName);
+
         if (node == null) {
-            //node = prepareInsertNode(testbed, nodeId);
-            throw new UnknownNodeException(nodeId);
+            node = prepareInsertNode(testbed, nodeId);
+            if (capability == null) {
+                capability = prepareInsertCapability(capabilityName);
+                node.getCapabilities().add(capability);
+                NodeController.getInstance().update(node);
+            } else {
+                node.getCapabilities().add(capability);
+                NodeController.getInstance().update(node);
+            }
+//            throw new UnknownNodeException(nodeId);
+        } else {
+            if (capability == null) {
+                capability = prepareInsertCapability(capabilityName);
+                node.getCapabilities().add(capability);
+                NodeController.getInstance().update(node);
+//            throw new UnknownCapabilityException(capabilityName);
+            } else {
+//                LOGGER.info("isAssociated " + NodeController.getInstance().isAssociated(capability, testbed, node));
+                if (!NodeController.getInstance().isAssociated(capability, testbed, node)) {
+                    node.getCapabilities().add(capability);
+                    NodeController.getInstance().update(node);
+                }
+            }
         }
 
-        // get capability if not found create one
-        final Capability capability = CapabilityController.getInstance().getByID(capabilityName);
-        if (capability == null) {
-            //capability = prepareInsertCapability(capabilityName);
-            throw new UnknownCapabilityException(capabilityName);
-        }
 
         /* // associate capability node
         if (!node.getCapabilities().contains(capability)) {

@@ -75,7 +75,7 @@ public class NodeController extends AbstractController<Node> {
      * @return an Entity object.
      */
     public Node getByID(final String entityID) {
-        LOGGER.info("getByID(" + entityID +")");
+        LOGGER.info("getByID(" + entityID + ")");
         return super.getByID(new Node(), entityID);
     }
 
@@ -85,7 +85,7 @@ public class NodeController extends AbstractController<Node> {
      * @param node the Node tha we want to delete
      */
     public void delete(final Node node) {
-        LOGGER.info("delete(" + node +")");
+        LOGGER.info("delete(" + node + ")");
         super.delete(node, node.getId());
     }
 
@@ -95,7 +95,7 @@ public class NodeController extends AbstractController<Node> {
      * @param nodeId the id of the node tha we want to delete
      */
     public void delete(final String nodeId) {
-        LOGGER.info("delete(" + nodeId +")");
+        LOGGER.info("delete(" + nodeId + ")");
         super.delete(new Node(), nodeId);
     }
 
@@ -131,7 +131,7 @@ public class NodeController extends AbstractController<Node> {
      * @return a list of nodes that share the given capability.
      */
     public List<Node> listCapabilityNodes(final Capability capability) {
-        LOGGER.info("listCapabilityNodes(" + capability +")");
+        LOGGER.info("listCapabilityNodes(" + capability + ")");
         final org.hibernate.Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Node.class);
         criteria.createAlias(CAPABILITIES, "caps")
@@ -144,11 +144,11 @@ public class NodeController extends AbstractController<Node> {
      * Listing all nodes that have the given capability.
      *
      * @param capability a capability.
-     * @param testbed a testbed.
+     * @param testbed    a testbed.
      * @return a list of nodes that share the given capability belonging to the same testbed.
      */
     public List<Node> listCapabilityNodes(final Capability capability, final Testbed testbed) {
-        LOGGER.info("listCapabilityNodes(" + capability + "," + testbed +")");
+        LOGGER.info("listCapabilityNodes(" + capability + "," + testbed + ")");
         final org.hibernate.Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Node.class);
         criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
@@ -156,5 +156,20 @@ public class NodeController extends AbstractController<Node> {
                 .add(Restrictions.eq("caps.name", capability.getName()));
         criteria.addOrder(Order.asc(NODE_ID));
         return (List<Node>) criteria.list();
+    }
+
+    /**
+     * @param capability
+     * @param testbed
+     * @param node
+     * @return
+     */
+    public boolean isAssociated(final Capability capability, final Testbed testbed, final Node node) {
+        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(Node.class);
+        criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
+        criteria.createAlias(CAPABILITIES, "caps").add(Restrictions.eq("caps.name", capability.getName()));
+        criteria.add(Restrictions.eq(NODE_ID, node.getId()));
+        return criteria.list().size() > 0;
     }
 }

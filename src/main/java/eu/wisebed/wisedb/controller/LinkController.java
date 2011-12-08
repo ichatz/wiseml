@@ -27,6 +27,10 @@ public class LinkController extends AbstractController<Link> {
      */
     private static final String SOURCE = "source";
     /**
+     * Target literal.
+     */
+    private static final String TARGET = "target";
+    /**
      * Setup literal.
      */
     private static final String SETUP = "setup";
@@ -40,6 +44,7 @@ public class LinkController extends AbstractController<Link> {
      * Logger.
      */
     private static final Logger LOGGER = Logger.getLogger(LinkController.class);
+
 
     /**
      * Public constructor .
@@ -118,7 +123,7 @@ public class LinkController extends AbstractController<Link> {
      * @return a list of testbed links.
      */
     public List<Link> list(final Testbed testbed) {
-        LOGGER.info("list(" + testbed  + ")");
+        LOGGER.info("list(" + testbed + ")");
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Link.class);
         criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
@@ -130,7 +135,7 @@ public class LinkController extends AbstractController<Link> {
      * Listing all links that have the given capability.
      *
      * @param capability a capability.
-     * @param testbed a testbed.
+     * @param testbed    a testbed.
      * @return a list of links that share the given capability belonging to the same testbed.
      */
     public List<Link> listCapabilityLinks(final Capability capability, final Testbed testbed) {
@@ -142,5 +147,15 @@ public class LinkController extends AbstractController<Link> {
                 .add(Restrictions.eq("caps.name", capability.getName()));
         criteria.addOrder(Order.asc(SOURCE));
         return (List<Link>) criteria.list();
+    }
+
+    public boolean isAssociated(Capability capability, Testbed testbed, Link link) {
+        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(Link.class);
+        criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
+        criteria.createAlias(CAPABILITIES, "caps").add(Restrictions.eq("caps.name", capability.getName()));
+        criteria.add(Restrictions.eq(SOURCE, link.getSource()));
+        criteria.add(Restrictions.eq(TARGET, link.getTarget()));
+        return criteria.list().size() > 0;
     }
 }

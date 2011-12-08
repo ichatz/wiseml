@@ -142,7 +142,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      * @return returns the inserted link instance.
      */
     private Link prepareInsertLink(final Testbed testbed, final String sourceId, final String targetId) {
-        LOGGER.info("prepareInsertLink(" + testbed + "," + sourceId + "," + targetId +")");
+        LOGGER.info("prepareInsertLink(" + testbed + "," + sourceId + "," + targetId + ")");
 
         final Rssi rssi = new Rssi();
         rssi.setDatatype(DATATYPE);
@@ -205,7 +205,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
                               final Date timestamp) throws UnknownTestbedException {
 
         LOGGER.info("insertReading(" + sourceId + "," + targetId + "," + capabilityName + "," + testbedId
-                + "," + readingValue + "," + rssiValue + "," + timestamp +")");
+                + "," + readingValue + "," + rssiValue + "," + timestamp + ")");
         // look for testbed
         final Testbed testbed = TestbedController.getInstance().getByID(testbedId);
         if (testbed == null) {
@@ -213,40 +213,69 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         }
         // look for node and target
         final Node source = NodeController.getInstance().getByID(sourceId);
+        final Node target = NodeController.getInstance().getByID(targetId);
+
+        // look for link
+        Link link = LinkController.getInstance().getByID(sourceId, targetId);
+
+        // look for capability
+        Capability capability = CapabilityController.getInstance().getByID(capabilityName);
+
         if (source == null) {
             // if source node not found in db make it and store it
             prepareInsertNode(testbed, sourceId);
         }
-        final Node target = NodeController.getInstance().getByID(targetId);
+
         if (target == null) {
             // if target node not found in db make it and store it
             prepareInsertNode(testbed, targetId);
         }
 
-        // look for link
-        Link link = LinkController.getInstance().getByID(sourceId, targetId);
+
+//        if (link == null) {
+//            // if link not found in db make it and store it
+//            link = prepareInsertLink(testbed, sourceId, targetId);
+//        }
+//
+//        if (capability == null) {
+//            capability = prepareInsertCapability(capabilityName);
+//        }
+
         if (link == null) {
-            // if link not found in db make it and store it
             link = prepareInsertLink(testbed, sourceId, targetId);
+            if (capability == null) {
+                capability = prepareInsertCapability(capabilityName);
+                link.getCapabilities().add(capability);
+                LinkController.getInstance().update(link);
+            } else {
+                link.getCapabilities().add(capability);
+                LinkController.getInstance().update(link);
+            }
+        } else {
+            if (capability == null) {
+                capability = prepareInsertCapability(capabilityName);
+                link.getCapabilities().add(capability);
+                LinkController.getInstance().update(link);
+            } else {
+                if (!LinkController.getInstance().isAssociated(capability, testbed, link)) {
+                    link.getCapabilities().add(capability);
+                    LinkController.getInstance().update(link);
+                }
+            }
         }
 
-        // look for capability
-        Capability capability = CapabilityController.getInstance().getByID(capabilityName);
-        if (capability == null) {
-            capability = prepareInsertCapability(capabilityName);
-        }
-
-        // associate Link with Capability
-        if (!link.getCapabilities().contains(capability)) {
-            // if link does not contain this capability add it
-            link.getCapabilities().add(capability);
-            LinkController.getInstance().update(link);
-        }
-        if (!capability.getLinks().contains(link)) {
-            // if capability contains this link add it
-            capability.getLinks().add(link);
-            CapabilityController.getInstance().update(capability);
-        }
+//
+//        // associate Link with Capability
+//        if (!link.getCapabilities().contains(capability)) {
+//            // if link does not contain this capability add it
+//            link.getCapabilities().add(capability);
+//            LinkController.getInstance().update(link);
+//        }
+//        if (!capability.getLinks().contains(link)) {
+//            // if capability contains this link add it
+//            capability.getLinks().add(link);
+//            CapabilityController.getInstance().update(capability);
+//        }
 
 
         // make a new link reading entity
