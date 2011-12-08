@@ -104,7 +104,7 @@ public final class LastNodeReading implements Serializable {
      *
      * @return this reading value.
      */
-    public double getReading() {
+    public Double getReading() {
         return reading;
     }
 
@@ -113,7 +113,7 @@ public final class LastNodeReading implements Serializable {
      *
      * @param reading last node reading's reading value.
      */
-    public void setReading(final double reading) {
+    public void setReading(final Double reading) {
         this.reading = reading;
     }
 }

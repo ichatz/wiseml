@@ -201,7 +201,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      * @throws UnknownTestbedException exception that occurs when the urnPrefix is unknown
      */
     public void insertReading(final String sourceId, final String targetId, final String capabilityName,
-                              final int testbedId, final double readingValue, final double rssiValue,
+                              final int testbedId, final Double readingValue, final Double rssiValue,
                               final Date timestamp) throws UnknownTestbedException {
 
         LOGGER.info("insertReading(" + sourceId + "," + targetId + "," + capabilityName + "," + testbedId

@@ -78,7 +78,7 @@ public final class LinkReading implements Serializable {
      *
      * @return Link's capability reading
      */
-    public double getReading() {
+    public Double getReading() {
         return reading;
     }
 
@@ -87,7 +87,7 @@ public final class LinkReading implements Serializable {
      *
      * @param reading , reading value.
      */
-    public void setReading(final double reading) {
+    public void setReading(final Double reading) {
         this.reading = reading;
     }
 
