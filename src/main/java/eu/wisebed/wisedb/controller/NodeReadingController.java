@@ -1,5 +1,7 @@
 package eu.wisebed.wisedb.controller;
 
+import eu.wisebed.wisedb.exception.UnknownCapabilityException;
+import eu.wisebed.wisedb.exception.UnknownNodeException;
 import eu.wisebed.wisedb.exception.UnknownTestbedException;
 import eu.wisebed.wisedb.model.LastNodeReading;
 import eu.wisebed.wisedb.model.LinkReading;
@@ -173,12 +175,15 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @param testbedId      , a testbed Id.
      * @param readingValue   , a reading value.
      * @param timestamp      , a timestamp.
-     * @throws UnknownTestbedException exception that occurs when the testbedId is unknown.
+     * @throws UnknownTestbedException    exception that occurs when the testbedId is unknown.
+     * @throws UnknownCapabilityException exception that occurs when the capabilityId is unknown.
+     * @throws UnknownNodeException       exception that occurs when the nodeId is unknown.
      */
     public void insertReading(final String nodeId, final String capabilityName, final int testbedId,
-                              final double readingValue, final Date timestamp) throws UnknownTestbedException {
+                              final double readingValue, final Date timestamp) throws UnknownTestbedException,
+            UnknownNodeException, UnknownCapabilityException {
         LOGGER.info("insertReading(" + nodeId + "," + capabilityName + "," + testbedId + "," + readingValue
-                + "," + timestamp +")");
+                + "," + timestamp + ")");
 
         // Retrieve testbed by urn
         final Testbed testbed = TestbedController.getInstance().getByID(testbedId);
@@ -187,18 +192,20 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         }
 
         // get node if not found create one
-        Node node = NodeController.getInstance().getByID(nodeId);
+        final Node node = NodeController.getInstance().getByID(nodeId);
         if (node == null) {
-            node = prepareInsertNode(testbed, nodeId);
+            //node = prepareInsertNode(testbed, nodeId);
+            throw new UnknownNodeException(nodeId);
         }
 
         // get capability if not found create one
-        Capability capability = CapabilityController.getInstance().getByID(capabilityName);
+        final Capability capability = CapabilityController.getInstance().getByID(capabilityName);
         if (capability == null) {
-            capability = prepareInsertCapability(capabilityName);
+            //capability = prepareInsertCapability(capabilityName);
+            throw new UnknownCapabilityException(capabilityName);
         }
 
-        // associate capability node
+        /* // associate capability node
         if (!node.getCapabilities().contains(capability)) {
             node.getCapabilities().add(capability);
             NodeController.getInstance().update(node);
@@ -206,7 +213,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         if (!capability.getNodes().contains(node)) {
             capability.getNodes().add(node);
             CapabilityController.getInstance().update(capability);
-        }
+        }*/
 
         // make a new node reading entity
         final NodeReading reading = new NodeReading();
