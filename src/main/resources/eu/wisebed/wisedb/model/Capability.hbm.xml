@@ -14,6 +14,7 @@
         <property name="datatype"/>
         <property name="unit"/>
         <property name="defaultvalue"/>
+        <property name="description"/>
 
         <set name="nodes" table="node_capabilities" inverse="true" lazy="true" order-by="lower(node_id) asc">
             <key column="capability_id" not-null="true"/>

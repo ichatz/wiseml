@@ -18,11 +18,13 @@ public class SetTimeZones {
             final Testbed testbedWisebedCTI = TestbedController.getInstance().getByID(1);
             final Testbed testbedSantander = TestbedController.getInstance().getByID(2);
             final Testbed testbedCTINetwork = TestbedController.getInstance().getByID(3);
+            final Testbed testbedCTIBuilding = TestbedController.getInstance().getByID(4);
 
             // set their timezone
             testbedCTINetwork.setTimeZone(TimeZone.getTimeZone("GMT+2"));
             testbedWisebedCTI.setTimeZone(TimeZone.getTimeZone("GMT+2"));
             testbedSantander.setTimeZone(TimeZone.getTimeZone("GMT+1"));
+            testbedCTIBuilding.setTimeZone(TimeZone.getTimeZone("GMT+2"));
 
             trans.commit();
         } catch (Exception e) {

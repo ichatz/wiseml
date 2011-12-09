@@ -59,6 +59,11 @@ public class Capability implements Serializable {
     private Set<LinkReading> linkReadings;
 
     /**
+     * Description.
+     */
+    private String description;
+
+    /**
      * this method returns the name of the capability.
      *
      * @return the name of the capability.
@@ -198,6 +203,24 @@ public class Capability implements Serializable {
      */
     public void setLinkReadings(final Set<LinkReading> linkReadings) {
         this.linkReadings = linkReadings;
+    }
+
+    /**
+     * Returns this capability's description.
+     *
+     * @return this capability's description.
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Set this capability's description.
+     *
+     * @param description description.
+     */
+    public void setDescription(final String description) {
+        this.description = description;
     }
 
     /**
