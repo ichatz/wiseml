@@ -141,6 +141,44 @@ public final class LastLinkReading implements Serializable {
     public void setRssiValue(final Double rssiValue) {
         this.rssiValue = rssiValue;
     }
+
+    /**
+     * Override of Object's equals() method.
+     *
+     * @param obj , an object instance
+     * @return true or false on whether the objects are equal.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+
+        // if null return false
+        if (obj == null) {
+            return false;
+        }
+
+        if (!(obj instanceof LastLinkReading)) {
+            return false;
+        }
+
+        // if same reference return true;
+        if (this == obj) {
+            return true;
+        }
+
+        // equility against name
+        final LastLinkReading test = (LastLinkReading) obj;
+        return link.equals(test.getLink()) && capability.equals(test.getCapability());
+    }
+
+    /**
+     * Override of Object's hashCode() method.
+     *
+     * @return hascode value
+     */
+    @Override
+    public int hashCode() {
+        return (link == null) ? System.identityHashCode(this) : link.hashCode();
+    }
 }
 
 

@@ -116,4 +116,42 @@ public final class LastNodeReading implements Serializable {
     public void setReading(final Double reading) {
         this.reading = reading;
     }
+
+    /**
+     * Override of Object's equals() method.
+     *
+     * @param obj , an object instance
+     * @return true or false on whether the objects are equal.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+
+        // if null return false
+        if (obj == null) {
+            return false;
+        }
+
+        if (!(obj instanceof LastNodeReading)) {
+            return false;
+        }
+
+        // if same reference return true;
+        if (this == obj) {
+            return true;
+        }
+
+        // equility against name
+        final LastNodeReading test = (LastNodeReading) obj;
+        return node.equals(test.getNode()) && capability.equals(test.getCapability());
+    }
+
+    /**
+     * Override of Object's hashCode() method.
+     *
+     * @return hascode value
+     */
+    @Override
+    public int hashCode() {
+        return (node == null) ? System.identityHashCode(this) : node.hashCode();
+    }
 }

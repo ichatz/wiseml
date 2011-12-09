@@ -206,64 +206,76 @@ public class LinkReadingController extends AbstractController<LinkReading> {
 
         LOGGER.info("insertReading(" + sourceId + "," + targetId + "," + capabilityName + "," + testbedId
                 + "," + readingValue + "," + rssiValue + "," + timestamp + ")");
+
         // look for testbed
         final Testbed testbed = TestbedController.getInstance().getByID(testbedId);
         if (testbed == null) {
             throw new UnknownTestbedException(Integer.toString(testbedId));
         }
-        // look for node and target
+
+        // look for source
         final Node source = NodeController.getInstance().getByID(sourceId);
-        final Node target = NodeController.getInstance().getByID(targetId);
-
-        // look for link
-        Link link = LinkController.getInstance().getByID(sourceId, targetId);
-
-        // look for capability
-        Capability capability = CapabilityController.getInstance().getByID(capabilityName);
-
         if (source == null) {
             // if source node not found in db make it and store it
+            LOGGER.info("Node [" + sourceId + "] was not found in db . Storing it");
             prepareInsertNode(testbed, sourceId);
         }
 
+        // look for source
+        final Node target = NodeController.getInstance().getByID(targetId);
         if (target == null) {
             // if target node not found in db make it and store it
+            LOGGER.info("Node [" + targetId + "] was not found in db . Storing it");
             prepareInsertNode(testbed, targetId);
         }
 
-
-//        if (link == null) {
-//            // if link not found in db make it and store it
-//            link = prepareInsertLink(testbed, sourceId, targetId);
-//        }
-//
-//        if (capability == null) {
-//            capability = prepareInsertCapability(capabilityName);
-//        }
-
+        // look for link
+        Link link = LinkController.getInstance().getByID(sourceId, targetId);
         if (link == null) {
+            // if link was not found in db make it and store it
+            LOGGER.info("Link [" + sourceId + "," + targetId + "] was not found in db . Storing it");
             link = prepareInsertLink(testbed, sourceId, targetId);
-            if (capability == null) {
-                capability = prepareInsertCapability(capabilityName);
-                link.getCapabilities().add(capability);
-                LinkController.getInstance().update(link);
-            } else {
-                link.getCapabilities().add(capability);
-                LinkController.getInstance().update(link);
-            }
-        } else {
-            if (capability == null) {
-                capability = prepareInsertCapability(capabilityName);
-                link.getCapabilities().add(capability);
-                LinkController.getInstance().update(link);
-            } else {
-                if (!LinkController.getInstance().isAssociated(capability, testbed, link)) {
-                    link.getCapabilities().add(capability);
-                    LinkController.getInstance().update(link);
-                }
-            }
         }
 
+        // look for capability
+        Capability capability = CapabilityController.getInstance().getByID(capabilityName);
+        if (capability == null) {
+            // if capability not found found in db make it and store it.
+            LOGGER.info("Capability [" + sourceId + "," + targetId + "] was not found in db . Storing it");
+            capability = prepareInsertCapability(capabilityName);
+        }
+
+        // check and make associations with link and capability.
+        final boolean isAssociated = LinkController.getInstance().isAssociated(capability, testbed, link);
+        if (!isAssociated) {
+            LOGGER.info("Associate Link[" + sourceId + "," + targetId + "] Capability [" + capabilityName + "] ");
+            // if link and capability are not associated , associate them
+            link.getCapabilities().add(capability);
+            LinkController.getInstance().update(link);
+        }
+
+//        if (link == null) {
+//            link = prepareInsertLink(testbed, sourceId, targetId);
+//            if (capability == null) {
+//                capability = prepareInsertCapability(capabilityName);
+//                link.getCapabilities().add(capability);
+//                LinkController.getInstance().update(link);
+//            } else {
+//                link.getCapabilities().add(capability);
+//                LinkController.getInstance().update(link);
+//            }
+//        } else {
+//            if (capability == null) {
+//                capability = prepareInsertCapability(capabilityName);
+//                link.getCapabilities().add(capability);
+//                LinkController.getInstance().update(link);
+//            } else {
+//                if (!LinkController.getInstance().isAssociated(capability, testbed, link)) {
+//                    link.getCapabilities().add(capability);
+//                    LinkController.getInstance().update(link);
+//                }
+//            }
+//        }
 //
 //        // associate Link with Capability
 //        if (!link.getCapabilities().contains(capability)) {
@@ -292,6 +304,9 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         // get last link reading for link and capability if not found create one
         LastLinkReading lastLinkReading = LastLinkReadingController.getInstance().getByID(link, capability);
         if (lastLinkReading == null) {
+            // if last link reading was not found
+            LOGGER.info("Last link reading for Link[" + sourceId + "," + targetId
+                    + "] Capability [" + capabilityName + "] created");
             lastLinkReading = new LastLinkReading();
         }
         lastLinkReading.setReading(readingValue);
