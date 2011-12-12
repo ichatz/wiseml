@@ -251,6 +251,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
             lastNodeReading = new LastNodeReading();
         }
         lastNodeReading.setReading(readingValue);
+        lastNodeReading.setStringReading(null);
         lastNodeReading.setTimestamp(timestamp);
         lastNodeReading.setNode(node);
         lastNodeReading.setCapability(capability);
@@ -342,6 +343,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
             LOGGER.info("Last node reading for Node [" + nodeId + "] Capability [" + capabilityName + "] created");
             lastNodeReading = new LastNodeReading();
         }
+        lastNodeReading.setReading(null);
         lastNodeReading.setStringReading(readingValue);
         lastNodeReading.setTimestamp(timestamp);
         lastNodeReading.setNode(node);

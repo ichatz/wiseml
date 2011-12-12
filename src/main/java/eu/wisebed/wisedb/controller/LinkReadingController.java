@@ -308,6 +308,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
                     + "] Capability [" + capabilityName + "] created");
             lastLinkReading = new LastLinkReading();
         }
+        lastLinkReading.setReading(null);
         lastLinkReading.setStringReading(readingValue);
         lastLinkReading.setTimestamp(timestamp);
         lastLinkReading.setLink(link);
@@ -437,6 +438,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
                     + "] Capability [" + capabilityName + "] created");
             lastLinkReading = new LastLinkReading();
         }
+        lastLinkReading.setStringReading(null);
         lastLinkReading.setReading(readingValue);
         lastLinkReading.setTimestamp(timestamp);
         lastLinkReading.setLink(link);
