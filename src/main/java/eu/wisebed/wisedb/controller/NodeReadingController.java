@@ -258,6 +258,98 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     }
 
     /**
+     * Insert a node's reading from it's capabilities and make the appropriate associations.
+     *
+     * @param nodeId         , a node id.
+     * @param capabilityName , a capability name.
+     * @param testbedId      , a testbed Id.
+     * @param readingValue   , a reading value.
+     * @param timestamp      , a timestamp.
+     * @throws UnknownTestbedException exception that occurs when the testbedId is unknown.
+     */
+    public void insertReading(final String nodeId, final String capabilityName, final int testbedId,
+                              final String readingValue, final Date timestamp) throws UnknownTestbedException {
+        LOGGER.info("insertReading(" + nodeId + "," + capabilityName + "," + testbedId + "," + readingValue
+                + "," + timestamp + ")");
+
+        // Retrieve testbed by urn
+        final Testbed testbed = TestbedController.getInstance().getByID(testbedId);
+        if (testbed == null) {
+            throw new UnknownTestbedException(Integer.toString(testbedId));
+        }
+
+        // get node if not found create one
+        Node node = NodeController.getInstance().getByID(nodeId);
+        if (node == null) {
+            LOGGER.info("Node [" + nodeId + "] was not found in db . Storing it");
+            node = prepareInsertNode(testbed, nodeId);
+        }
+
+        // get capability if not found create one
+        Capability capability = CapabilityController.getInstance().getByID(capabilityName);
+        if (capability == null) {
+            LOGGER.info("Capability [" + capabilityName + "] was not found in db. Storing it");
+            capability = prepareInsertCapability(capabilityName);
+        }
+
+        // if the given node and capability are not associated
+        final boolean isAssociated = NodeController.getInstance().isAssociated(capability, testbed, node);
+        if (!isAssociated) {
+            LOGGER.info("Associate Node[" + nodeId + "] Capability[" + capabilityName + "] ");
+            node.getCapabilities().add(capability);
+            NodeController.getInstance().update(node);
+        }
+
+//        if (node == null) {
+//            node = prepareInsertNode(testbed, nodeId);
+//            if (capability == null) {
+//                capability = prepareInsertCapability(capabilityName);
+//                node.getCapabilities().add(capability);
+//                NodeController.getInstance().update(node);
+//            } else {
+//                node.getCapabilities().add(capability);
+//                NodeController.getInstance().update(node);
+//            }
+////            throw new UnknownNodeException(nodeId);
+//        } else {
+//            if (capability == null) {
+//                capability = prepareInsertCapability(capabilityName);
+//                node.getCapabilities().add(capability);
+//                NodeController.getInstance().update(node);
+////            throw new UnknownCapabilityException(capabilityName);
+//            } else {
+////                LOGGER.info("isAssociated " + NodeController.getInstance().isAssociated(capability, testbed, node));
+//                if (!NodeController.getInstance().isAssociated(capability, testbed, node)) {
+//                    node.getCapabilities().add(capability);
+//                    NodeController.getInstance().update(node);
+//                }
+//            }
+//        }
+
+        // make a new node reading entity
+        final NodeReading reading = new NodeReading();
+        reading.setStringReading(readingValue);
+        reading.setTimestamp(timestamp);
+        reading.setNode(node);
+        reading.setCapability(capability);
+
+        // add reading
+        add(reading);
+
+        // get lastNodeReading if not found create one
+        LastNodeReading lastNodeReading = LastNodeReadingController.getInstance().getByID(node, capability);
+        if (lastNodeReading == null) {
+            LOGGER.info("Last node reading for Node [" + nodeId + "] Capability [" + capabilityName + "] created");
+            lastNodeReading = new LastNodeReading();
+        }
+        lastNodeReading.setStringReading(readingValue);
+        lastNodeReading.setTimestamp(timestamp);
+        lastNodeReading.setNode(node);
+        lastNodeReading.setCapability(capability);
+        LastNodeReadingController.getInstance().add(lastNodeReading);
+    }
+
+    /**
      * Return list of readings for a selected node and capability.
      *
      * @param node       , node of a testbed.

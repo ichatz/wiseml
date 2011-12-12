@@ -38,12 +38,15 @@ public final class LastLinkReading implements Serializable {
      */
     private Double reading;
 
-
     /**
      * Numeric value of the current RSSI of the link.
      */
     private Double rssiValue;
 
+    /**
+     * String reading value.
+     */
+    private String stringReading;
 
     /**
      * Constructor.
@@ -140,6 +143,24 @@ public final class LastLinkReading implements Serializable {
      */
     public void setRssiValue(final Double rssiValue) {
         this.rssiValue = rssiValue;
+    }
+
+    /**
+     * Returns string reading.
+     *
+     * @return string reading.
+     */
+    public String getStringReading() {
+        return stringReading;
+    }
+
+    /**
+     * Sets string reading.
+     *
+     * @param stringReading string reading.
+     */
+    public void setStringReading(final String stringReading) {
+        this.stringReading = stringReading;
     }
 
     /**

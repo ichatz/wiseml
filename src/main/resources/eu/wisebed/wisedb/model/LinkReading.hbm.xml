@@ -15,6 +15,7 @@
         <property name="timestamp" type="timestamp"/>
         <property name="reading" type="java.lang.Double"/>
         <property name="rssiValue" type="java.lang.Double"/>
+        <property name="stringReading" length="10000"/>
 
         <many-to-one name="link" class="eu.wisebed.wiseml.model.setup.Link">
             <column name="link_source" not-null="true"/>

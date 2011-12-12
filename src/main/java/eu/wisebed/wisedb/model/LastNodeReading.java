@@ -39,6 +39,11 @@ public final class LastNodeReading implements Serializable {
     private Double reading;
 
     /**
+     * String reading value.
+     */
+    private String stringReading;
+
+    /**
      * Constructor.
      */
     public LastNodeReading() {
@@ -115,6 +120,24 @@ public final class LastNodeReading implements Serializable {
      */
     public void setReading(final Double reading) {
         this.reading = reading;
+    }
+
+    /**
+     * Returns string reading.
+     *
+     * @return string reading.
+     */
+    public String getStringReading() {
+        return stringReading;
+    }
+
+    /**
+     * Sets string reading.
+     *
+     * @param stringReading string reading.
+     */
+    public void setStringReading(final String stringReading) {
+        this.stringReading = stringReading;
     }
 
     /**

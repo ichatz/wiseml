@@ -15,5 +15,7 @@
 
         <property name="reading" type="java.lang.Double"/>
 
+        <property name="stringReading" length="10000"/>
+
     </class>
 </hibernate-mapping>

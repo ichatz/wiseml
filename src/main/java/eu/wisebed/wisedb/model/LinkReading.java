@@ -49,6 +49,11 @@ public final class LinkReading implements Serializable {
     private Double rssiValue;
 
     /**
+     * String value of the reading.
+     */
+    private String stringReading;
+
+    /**
      * Constructor.
      */
     public LinkReading() {
@@ -161,5 +166,23 @@ public final class LinkReading implements Serializable {
      */
     public void setCapability(final Capability capability) {
         this.capability = capability;
+    }
+
+    /**
+     * Returns string reading.
+     *
+     * @return string reading.
+     */
+    public String getStringReading() {
+        return stringReading;
+    }
+
+    /**
+     * Sets string reading.
+     *
+     * @param stringReading string reading.
+     */
+    public void setStringReading(final String stringReading) {
+        this.stringReading = stringReading;
     }
 }
