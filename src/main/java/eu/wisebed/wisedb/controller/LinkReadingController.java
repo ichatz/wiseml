@@ -446,6 +446,138 @@ public class LinkReadingController extends AbstractController<LinkReading> {
     }
 
     /**
+     * Insert a links's reading from it's capabilities and make the appropriate  associations.
+     *
+     * @param sourceId       , link's source id.
+     * @param targetId       , target's source id.
+     * @param capabilityName , capability's id.
+     * @param testbedId      , a testbed id.
+     * @param rssiValue      , the RSSI value of the link.
+     * @param stringReading , value of a string reading.
+     * @param doubleReading   , value of a sensor reading.
+     * @param timestamp      , a timestamp.
+     * @throws UnknownTestbedException exception that occurs when the urnPrefix is unknown
+     */
+    public void insertReading(final String sourceId, final String targetId, final String capabilityName,
+                              final int testbedId, final Double doubleReading, final String stringReading,
+                              final Double rssiValue, final Date timestamp) throws UnknownTestbedException {
+
+        LOGGER.info("insertReading(" + sourceId + "," + targetId + "," + capabilityName + "," + testbedId
+                + "," + doubleReading + "," + stringReading + "," + rssiValue + "," + timestamp + ")");
+
+        // look for testbed
+        final Testbed testbed = TestbedController.getInstance().getByID(testbedId);
+        if (testbed == null) {
+            throw new UnknownTestbedException(Integer.toString(testbedId));
+        }
+
+        // look for source
+        final Node source = NodeController.getInstance().getByID(sourceId);
+        if (source == null) {
+            // if source node not found in db make it and store it
+            LOGGER.info("Node [" + sourceId + "] was not found in db . Storing it");
+            prepareInsertNode(testbed, sourceId);
+        }
+
+        // look for source
+        final Node target = NodeController.getInstance().getByID(targetId);
+        if (target == null) {
+            // if target node not found in db make it and store it
+            LOGGER.info("Node [" + targetId + "] was not found in db . Storing it");
+            prepareInsertNode(testbed, targetId);
+        }
+
+        // look for link
+        Link link = LinkController.getInstance().getByID(sourceId, targetId);
+        if (link == null) {
+            // if link was not found in db make it and store it
+            LOGGER.info("Link [" + sourceId + "," + targetId + "] was not found in db . Storing it");
+            link = prepareInsertLink(testbed, sourceId, targetId);
+        }
+
+        // look for capability
+        Capability capability = CapabilityController.getInstance().getByID(capabilityName);
+        if (capability == null) {
+            // if capability not found found in db make it and store it.
+            LOGGER.info("Capability [" + sourceId + "," + targetId + "] was not found in db . Storing it");
+            capability = prepareInsertCapability(capabilityName);
+        }
+
+        // check and make associations with link and capability.
+        final boolean isAssociated = LinkController.getInstance().isAssociated(capability, testbed, link);
+        if (!isAssociated) {
+            LOGGER.info("Associate Link[" + sourceId + "," + targetId + "] Capability [" + capabilityName + "] ");
+            // if link and capability are not associated , associate them
+            link.getCapabilities().add(capability);
+            LinkController.getInstance().update(link);
+        }
+
+//        if (link == null) {
+//            link = prepareInsertLink(testbed, sourceId, targetId);
+//            if (capability == null) {
+//                capability = prepareInsertCapability(capabilityName);
+//                link.getCapabilities().add(capability);
+//                LinkController.getInstance().update(link);
+//            } else {
+//                link.getCapabilities().add(capability);
+//                LinkController.getInstance().update(link);
+//            }
+//        } else {
+//            if (capability == null) {
+//                capability = prepareInsertCapability(capabilityName);
+//                link.getCapabilities().add(capability);
+//                LinkController.getInstance().update(link);
+//            } else {
+//                if (!LinkController.getInstance().isAssociated(capability, testbed, link)) {
+//                    link.getCapabilities().add(capability);
+//                    LinkController.getInstance().update(link);
+//                }
+//            }
+//        }
+//
+//        // associate Link with Capability
+//        if (!link.getCapabilities().contains(capability)) {
+//            // if link does not contain this capability add it
+//            link.getCapabilities().add(capability);
+//            LinkController.getInstance().update(link);
+//        }
+//        if (!capability.getLinks().contains(link)) {
+//            // if capability contains this link add it
+//            capability.getLinks().add(link);
+//            CapabilityController.getInstance().update(capability);
+//        }
+
+
+        // make a new link reading entity
+        final LinkReading reading = new LinkReading();
+        reading.setLink(link);
+        reading.setCapability(capability);
+        reading.setReading(doubleReading);
+        reading.setStringReading(stringReading);
+        reading.setRssiValue(rssiValue);
+        reading.setTimestamp(timestamp);
+
+        // add reading
+        add(reading);
+
+        // get last link reading for link and capability if not found create one
+        LastLinkReading lastLinkReading = LastLinkReadingController.getInstance().getByID(link, capability);
+        if (lastLinkReading == null) {
+            // if last link reading was not found
+            LOGGER.info("Last link reading for Link[" + sourceId + "," + targetId
+                    + "] Capability [" + capabilityName + "] created");
+            lastLinkReading = new LastLinkReading();
+        }
+        lastLinkReading.setReading(doubleReading);
+        lastLinkReading.setStringReading(stringReading);
+        lastLinkReading.setTimestamp(timestamp);
+        lastLinkReading.setLink(link);
+        lastLinkReading.setCapability(capability);
+        lastLinkReading.setRssiValue(rssiValue);
+        LastLinkReadingController.getInstance().add(lastLinkReading);
+    }
+
+    /**
      * Returns the readings count for a link.
      *
      * @param link , a link .
