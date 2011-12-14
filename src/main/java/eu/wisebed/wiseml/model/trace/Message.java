@@ -1,9 +1,16 @@
 package eu.wisebed.wiseml.model.trace;
 
+import java.io.Serializable;
+
 /**
- * Message class
+ * Message class.
  */
-public class Message {
+public class Message implements Serializable {
+
+    /**
+     * Serial version unique ID.
+     */
+    private static final long serialVersionUID = -1028564077315177787L;
 
     /**
      * timestamp.

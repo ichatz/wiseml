@@ -24,8 +24,8 @@
         <!-- Auto reconnect when losing connections -->
         <property name="hibernate.connection.autoReconnect">true</property>
 
-        <!-- Update on schema creatation . Should be removed in production -->
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <!-- Update on schema creation . Should be removed in production -->
+        <property name="hibernate.hbm2ddl.auto">${wisedb.hibernate.hbm2ddl.auto}</property>
 
         <!-- thread level sessions -->
         <property name="current_session_context_class">thread</property>
