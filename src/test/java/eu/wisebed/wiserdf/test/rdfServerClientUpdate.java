@@ -1,4 +1,4 @@
-package eu.wisebed.rdf;
+package eu.wisebed.wiserdf.test;
 
 
 import com.hp.hpl.jena.query.QueryExecution;

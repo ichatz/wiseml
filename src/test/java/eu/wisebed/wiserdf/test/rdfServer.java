@@ -1,5 +1,4 @@
-package eu.wisebed.rdf;
-
+package eu.wisebed.wiserdf.test;
 
 import com.hp.hpl.jena.query.Dataset;
 import com.hp.hpl.jena.query.QueryExecution;
@@ -9,6 +8,7 @@ import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.sparql.core.DatasetGraph;
 import com.hp.hpl.jena.sparql.core.DatasetImpl;
+import eu.wisebed.wiserdf.RDFExporter;
 import org.openjena.atlas.logging.Log;
 import org.openjena.fuseki.Fuseki;
 import org.openjena.fuseki.server.SPARQLServer;

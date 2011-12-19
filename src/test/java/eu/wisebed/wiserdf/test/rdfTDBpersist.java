@@ -1,4 +1,4 @@
-package eu.wisebed.rdf;
+package eu.wisebed.wiserdf.test;
 
 
 import com.hp.hpl.jena.query.Dataset;
@@ -11,6 +11,7 @@ import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.tdb.TDB;
 import com.hp.hpl.jena.tdb.TDBFactory;
+import eu.wisebed.wiserdf.RDFExporter;
 
 
 public class rdfTDBpersist {

@@ -1,4 +1,4 @@
-package eu.wisebed.rdf;
+package eu.wisebed.wiserdf;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
