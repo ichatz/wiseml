@@ -212,6 +212,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             throw new UnknownTestbedException(Integer.toString(testbedId));
         }
 
+        LOGGER.info("testbed == null");
         // look for source
         final Node source = NodeController.getInstance().getByID(sourceId);
         if (source == null) {
@@ -220,6 +221,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             prepareInsertNode(testbed, sourceId);
         }
 
+        LOGGER.info("source == null");
         // look for source
         final Node target = NodeController.getInstance().getByID(targetId);
         if (target == null) {
@@ -228,6 +230,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             prepareInsertNode(testbed, targetId);
         }
 
+        LOGGER.info("target == null");
         // look for link
         Link link = LinkController.getInstance().getByID(sourceId, targetId);
         if (link == null) {
@@ -235,6 +238,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             LOGGER.info("Link [" + sourceId + "," + targetId + "] was not found in db . Storing it");
             link = prepareInsertLink(testbed, sourceId, targetId);
         }
+        LOGGER.info("link == null");
 
         // look for capability
         Capability capability = CapabilityController.getInstance().getByID(capabilityName);
@@ -243,6 +247,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             LOGGER.info("Capability [" + sourceId + "," + targetId + "] was not found in db . Storing it");
             capability = prepareInsertCapability(capabilityName);
         }
+        LOGGER.info("capability == null");
 
         // check and make associations with link and capability.
         final boolean isAssociated = LinkController.getInstance().isAssociated(capability, testbed, link);
@@ -252,6 +257,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             link.getCapabilities().add(capability);
             LinkController.getInstance().update(link);
         }
+        LOGGER.info("isAssociated " + isAssociated);
 
 //        if (link == null) {
 //            link = prepareInsertLink(testbed, sourceId, targetId);
@@ -297,9 +303,11 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         reading.setRssiValue(rssiValue);
         reading.setTimestamp(timestamp);
 
+        LOGGER.info("new LinkReading");
         // add reading
         add(reading);
 
+        LOGGER.info("add(reading)");
         // get last link reading for link and capability if not found create one
         LastLinkReading lastLinkReading = LastLinkReadingController.getInstance().getByID(link, capability);
         if (lastLinkReading == null) {
@@ -315,7 +323,10 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         lastLinkReading.setCapability(capability);
         lastLinkReading.setRssiValue(rssiValue);
         LastLinkReadingController.getInstance().add(lastLinkReading);
+
+        LOGGER.info("add(lastLinkReading)");
     }
+
 
     /**
      * Insert a links's reading from it's capabilities and make the appropriate  associations.
@@ -341,6 +352,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         if (testbed == null) {
             throw new UnknownTestbedException(Integer.toString(testbedId));
         }
+        LOGGER.info("testbed == null");
 
         // look for source
         final Node source = NodeController.getInstance().getByID(sourceId);
@@ -349,6 +361,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             LOGGER.info("Node [" + sourceId + "] was not found in db . Storing it");
             prepareInsertNode(testbed, sourceId);
         }
+        LOGGER.info("source == null");
 
         // look for source
         final Node target = NodeController.getInstance().getByID(targetId);
@@ -357,6 +370,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             LOGGER.info("Node [" + targetId + "] was not found in db . Storing it");
             prepareInsertNode(testbed, targetId);
         }
+        LOGGER.info("target == null");
 
         // look for link
         Link link = LinkController.getInstance().getByID(sourceId, targetId);
@@ -365,6 +379,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             LOGGER.info("Link [" + sourceId + "," + targetId + "] was not found in db . Storing it");
             link = prepareInsertLink(testbed, sourceId, targetId);
         }
+        LOGGER.info("link == null");
 
         // look for capability
         Capability capability = CapabilityController.getInstance().getByID(capabilityName);
@@ -373,6 +388,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             LOGGER.info("Capability [" + sourceId + "," + targetId + "] was not found in db . Storing it");
             capability = prepareInsertCapability(capabilityName);
         }
+        LOGGER.info("capability == null");
 
         // check and make associations with link and capability.
         final boolean isAssociated = LinkController.getInstance().isAssociated(capability, testbed, link);
@@ -382,7 +398,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             link.getCapabilities().add(capability);
             LinkController.getInstance().update(link);
         }
-
+        LOGGER.info("isAssociated " + isAssociated);
 //        if (link == null) {
 //            link = prepareInsertLink(testbed, sourceId, targetId);
 //            if (capability == null) {
@@ -430,6 +446,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         // add reading
         add(reading);
 
+        LOGGER.info("add(reading");
         // get last link reading for link and capability if not found create one
         LastLinkReading lastLinkReading = LastLinkReadingController.getInstance().getByID(link, capability);
         if (lastLinkReading == null) {
@@ -445,6 +462,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         lastLinkReading.setCapability(capability);
         lastLinkReading.setRssiValue(rssiValue);
         LastLinkReadingController.getInstance().add(lastLinkReading);
+        LOGGER.info("add(lastLinkReading)");
     }
 
     /**
@@ -455,8 +473,8 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      * @param capabilityName , capability's id.
      * @param testbedId      , a testbed id.
      * @param rssiValue      , the RSSI value of the link.
-     * @param stringReading , value of a string reading.
-     * @param doubleReading   , value of a sensor reading.
+     * @param stringReading  , value of a string reading.
+     * @param doubleReading  , value of a sensor reading.
      * @param timestamp      , a timestamp.
      * @throws UnknownTestbedException exception that occurs when the urnPrefix is unknown
      */
@@ -467,12 +485,14 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         LOGGER.info("insertReading(" + sourceId + "," + targetId + "," + capabilityName + "," + testbedId
                 + "," + doubleReading + "," + stringReading + "," + rssiValue + "," + timestamp + ")");
 
+        int count = 0;
         // look for testbed
         final Testbed testbed = TestbedController.getInstance().getByID(testbedId);
         if (testbed == null) {
             throw new UnknownTestbedException(Integer.toString(testbedId));
         }
 
+        LOGGER.info("" + (count++));
         // look for source
         final Node source = NodeController.getInstance().getByID(sourceId);
         if (source == null) {
@@ -480,6 +500,9 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             LOGGER.info("Node [" + sourceId + "] was not found in db . Storing it");
             prepareInsertNode(testbed, sourceId);
         }
+
+        LOGGER.info("" + (count++));
+
 
         // look for source
         final Node target = NodeController.getInstance().getByID(targetId);
@@ -489,6 +512,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             prepareInsertNode(testbed, targetId);
         }
 
+        LOGGER.info("" + (count++));
         // look for link
         Link link = LinkController.getInstance().getByID(sourceId, targetId);
         if (link == null) {
@@ -496,6 +520,9 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             LOGGER.info("Link [" + sourceId + "," + targetId + "] was not found in db . Storing it");
             link = prepareInsertLink(testbed, sourceId, targetId);
         }
+
+        LOGGER.info("" + (count++));
+
 
         // look for capability
         Capability capability = CapabilityController.getInstance().getByID(capabilityName);
@@ -513,7 +540,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             link.getCapabilities().add(capability);
             LinkController.getInstance().update(link);
         }
-
+        LOGGER.info("" + (count++));
 //        if (link == null) {
 //            link = prepareInsertLink(testbed, sourceId, targetId);
 //            if (capability == null) {
@@ -549,6 +576,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
 //            CapabilityController.getInstance().update(capability);
 //        }
 
+        LOGGER.info("" + (count++));
 
         // make a new link reading entity
         final LinkReading reading = new LinkReading();
@@ -561,7 +589,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
 
         // add reading
         add(reading);
-
+        LOGGER.info("" + (count++));
         // get last link reading for link and capability if not found create one
         LastLinkReading lastLinkReading = LastLinkReadingController.getInstance().getByID(link, capability);
         if (lastLinkReading == null) {
@@ -577,6 +605,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         lastLinkReading.setCapability(capability);
         lastLinkReading.setRssiValue(rssiValue);
         LastLinkReadingController.getInstance().add(lastLinkReading);
+        LOGGER.info("" + (count++));
     }
 
     /**
