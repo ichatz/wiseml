@@ -48,8 +48,9 @@ public class AddNodeReading {
             LOGGER.debug("Reading : " + readingValue);
             LOGGER.debug("Timestamp : " + timestamp.toGMTString());
 
+
             // insert reading
-            NodeReadingController.getInstance().insertReading(nodeId, capabilityName, testbedId , readingValue, timestamp);
+            NodeReadingController.getInstance().insertReading(nodeId, capabilityName, testbedId, readingValue, timestamp);
 
             tx.commit();
         } catch (Exception e) {
