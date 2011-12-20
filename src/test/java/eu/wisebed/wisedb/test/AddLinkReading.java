@@ -57,7 +57,7 @@ public class AddLinkReading {
             LOGGER.debug("Capability for link : " + capabilityName);
 
             // insert reading
-            LinkReadingController.getInstance().insertReading(sourceId, targetId, capabilityName, testbedId, reading, rssi, timestamp);
+            LinkReadingController.getInstance().insertReading(sourceId, targetId, capabilityName, testbedId, reading, null, rssi, timestamp);
 
 
             tx.commit();

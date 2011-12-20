@@ -50,7 +50,7 @@ public class AddNodeReading {
 
 
             // insert reading
-            NodeReadingController.getInstance().insertReading(nodeId, capabilityName, testbedId, readingValue, timestamp);
+            NodeReadingController.getInstance().insertReading(nodeId, capabilityName, testbedId, readingValue,null, timestamp);
 
             tx.commit();
         } catch (Exception e) {
