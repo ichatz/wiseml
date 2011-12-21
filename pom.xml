@@ -26,7 +26,7 @@
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
         <mysql.connector.version>5.1.16</mysql.connector.version>
         <hibernate.version>3.5.6-Final</hibernate.version>
-        <slf4j.version>1.5.8</slf4j.version>
+        <slf4j.version>1.6.0</slf4j.version>
         <ehcache.version>2.4.6</ehcache.version>
     </properties>
 
@@ -195,6 +195,13 @@
             <version>${hibernate.version}</version>
         </dependency>
 
+        <!-- Hibernate c3p0 connection pool -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-c3p0</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>javassist</groupId>
             <artifactId>javassist</artifactId>
@@ -209,21 +216,9 @@
 
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-jdk14</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-
 
         <dependency>
             <groupId>mysql</groupId>

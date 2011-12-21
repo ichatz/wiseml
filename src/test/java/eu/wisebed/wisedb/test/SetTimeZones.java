@@ -29,7 +29,6 @@ public class SetTimeZones {
             trans.commit();
         } catch (Exception e) {
             trans.rollback();
-            e.printStackTrace();
             System.exit(-1);
         } finally {
             // always close session

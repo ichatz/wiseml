@@ -23,7 +23,7 @@ public class ImportTestbedEntries {
 
         try {
 
-            // Constructe a TestbedImporter
+            // Construct a TestbedImporter
             final TestbedImporter tImp = new TestbedImporter();
 
             // must set attributes before importing to db

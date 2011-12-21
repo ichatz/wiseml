@@ -35,7 +35,6 @@ public class LoadWriteTrace {
         try {
             fileIn = new FileInputStream(file);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
             System.exit(1);
         }
 

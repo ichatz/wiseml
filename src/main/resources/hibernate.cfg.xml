@@ -68,8 +68,10 @@
         <mapping resource="eu/wisebed/wisedb/model/LastNodeReading.hbm.xml"/>
         <mapping resource="eu/wisebed/wisedb/model/LastLinkReading.hbm.xml"/>
 
+        <!-- Event listeners -->
         <event type="save-update">
             <listener class="eu.wisebed.wisedb.listeners.LastNodeReadingListener"/>
         </event>
+
     </session-factory>
 </hibernate-configuration>

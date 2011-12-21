@@ -78,7 +78,6 @@ public class ListTestbedCapabilities {
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
-            e.printStackTrace();
             LOGGER.fatal(e);
             System.exit(-1);
         } finally {

@@ -25,8 +25,7 @@ public class ImportSetupEntriesFromFile {
             try {
                 sImp.open("/Developer/whantana.Projects/github/wiseml/src/test/resources/telosB_short.wiseml");
             } catch (Exception e) {
-                LOGGER.fatal(e);
-                System.err.println(e.getMessage());
+                LOGGER.error(e);
                 System.exit(-1);
             }
 
