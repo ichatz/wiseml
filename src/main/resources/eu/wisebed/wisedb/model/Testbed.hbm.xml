@@ -14,7 +14,7 @@
         </id>
 
         <property name="name" not-null="true"/>
-        <property name="description"/>
+        <property name="description" type="text"/>
         <property name="url"/>
         <property name="urnPrefix" not-null="true"/>
         <property name="federated" type="java.lang.Boolean"/>

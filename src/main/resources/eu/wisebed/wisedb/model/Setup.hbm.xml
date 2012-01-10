@@ -32,7 +32,7 @@
             <property name="unit" column="timeinfo_unit"/>
         </component>
 
-        <property name="description"/>
+        <property name="description" type="text"/>
         <property name="coordinateType"/>
 
 
