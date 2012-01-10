@@ -116,7 +116,7 @@ public class Position implements Serializable {
      *
      * @return theta
      */
-    public int getTheta() {
+    public Integer getTheta() {
         return theta;
     }
 
@@ -125,7 +125,7 @@ public class Position implements Serializable {
      *
      * @param theta theta angle
      */
-    public void setTheta(final int theta) {
+    public void setTheta(final Integer theta) {
         this.theta = theta;
     }
 }
