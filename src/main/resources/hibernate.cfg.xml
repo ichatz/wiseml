@@ -23,6 +23,7 @@
 
         <!-- Auto reconnect when losing connections -->
         <property name="hibernate.connection.autoReconnect">true</property>
+        <property name="hibernate.connection.release_mode">after_transaction</property>
 
         <!-- Update on schema creation . Should be removed in production -->
         <property name="hibernate.hbm2ddl.auto">${wisedb.hibernate.hbm2ddl.auto}</property>
@@ -46,6 +47,8 @@
         <!-- Force Hibernate to use instances of Ehcache CacheManage -->
         <property name="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory
         </property>
+
+
 
         <!-- C3P0 configuration -->
         <property name="hibernate.c3p0.acquire_increment">3</property>
