@@ -191,53 +191,55 @@ public class NodeReadingController extends AbstractController<NodeReading> {
             throw new UnknownTestbedException(Integer.toString(testbedId));
         }
 
-        // get node if not found create one
-        Node node = NodeController.getInstance().getByID(nodeId);
-        if (node == null) {
-            LOGGER.info("Node [" + nodeId + "] was not found in db . Storing it");
-            node = prepareInsertNode(testbed, nodeId);
-        }
-
-        // get capability if not found create one
-        Capability capability = CapabilityController.getInstance().getByID(capabilityName);
-        if (capability == null) {
-            LOGGER.info("Capability [" + capabilityName + "] was not found in db. Storing it");
-            capability = prepareInsertCapability(capabilityName);
-        }
-
-        // if the given node and capability are not associated
-        final boolean isAssociated = NodeController.getInstance().isAssociated(capability, testbed, node);
-        if (!isAssociated) {
-            LOGGER.info("Associate Node[" + nodeId + "] Capability[" + capabilityName + "] ");
-            node.getCapabilities().add(capability);
-            NodeController.getInstance().update(node);
-        }
-
+//        // get node if not found create one
+//        Node node = NodeController.getInstance().getByID(nodeId);
 //        if (node == null) {
+//            LOGGER.info("Node [" + nodeId + "] was not found in db . Storing it");
 //            node = prepareInsertNode(testbed, nodeId);
-//            if (capability == null) {
-//                capability = prepareInsertCapability(capabilityName);
-//                node.getCapabilities().add(capability);
-//                NodeController.getInstance().update(node);
-//            } else {
-//                node.getCapabilities().add(capability);
-//                NodeController.getInstance().update(node);
-//            }
-////            throw new UnknownNodeException(nodeId);
-//        } else {
-//            if (capability == null) {
-//                capability = prepareInsertCapability(capabilityName);
-//                node.getCapabilities().add(capability);
-//                NodeController.getInstance().update(node);
-////            throw new UnknownCapabilityException(capabilityName);
-//            } else {
-////                LOGGER.info("isAssociated " + NodeController.getInstance().isAssociated(capability, testbed, node));
-//                if (!NodeController.getInstance().isAssociated(capability, testbed, node)) {
-//                    node.getCapabilities().add(capability);
-//                    NodeController.getInstance().update(node);
-//                }
-//            }
 //        }
+//
+//        // get capability if not found create one
+//        Capability capability = CapabilityController.getInstance().getByID(capabilityName);
+//        if (capability == null) {
+//            LOGGER.info("Capability [" + capabilityName + "] was not found in db. Storing it");
+//            capability = prepareInsertCapability(capabilityName);
+//        }
+//
+//        // if the given node and capability are not associated
+//        final boolean isAssociated = NodeController.getInstance().isAssociated(capability, testbed, node);
+//        if (!isAssociated) {
+//            LOGGER.info("Associate Node[" + nodeId + "] Capability[" + capabilityName + "] ");
+//            node.getCapabilities().add(capability);
+//            NodeController.getInstance().update(node);
+//        }
+
+        Node node = NodeController.getInstance().getByID(nodeId);
+        Capability capability = CapabilityController.getInstance().getByID(capabilityName);
+        if (node == null) {
+            node = prepareInsertNode(testbed, nodeId);
+            if (capability == null) {
+                capability = prepareInsertCapability(capabilityName);
+                node.getCapabilities().add(capability);
+                NodeController.getInstance().update(node);
+            } else {
+                node.getCapabilities().add(capability);
+                NodeController.getInstance().update(node);
+            }
+//            throw new UnknownNodeException(nodeId);
+        } else {
+            if (capability == null) {
+                capability = prepareInsertCapability(capabilityName);
+                node.getCapabilities().add(capability);
+                NodeController.getInstance().update(node);
+//            throw new UnknownCapabilityException(capabilityName);
+            } else {
+                LOGGER.info("isAssociated " + NodeController.getInstance().isAssociated(capability, testbed, node));
+                if (!NodeController.getInstance().isAssociated(capability, testbed, node)) {
+                    node.getCapabilities().add(capability);
+                    NodeController.getInstance().update(node);
+                }
+            }
+        }
 
         // make a new node reading entity
         final NodeReading reading = new NodeReading();

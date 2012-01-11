@@ -207,14 +207,12 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         LOGGER.info("insertReading(" + sourceId + "," + targetId + "," + capabilityName + "," + testbedId
                 + "," + doubleReading + "," + stringReading + "," + rssiValue + "," + timestamp + ")");
 
-        int count = 0;
         // look for testbed
         final Testbed testbed = TestbedController.getInstance().getByID(testbedId);
         if (testbed == null) {
             throw new UnknownTestbedException(Integer.toString(testbedId));
         }
 
-        LOGGER.info("" + (count++));
         // look for source
         final Node source = NodeController.getInstance().getByID(sourceId);
         if (source == null) {
@@ -223,48 +221,63 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             prepareInsertNode(testbed, sourceId);
         }
 
-        LOGGER.info("" + (count++));
-
-
-        // look for source
+        // look for target
         final Node target = NodeController.getInstance().getByID(targetId);
         if (target == null) {
             // if target node not found in db make it and store it
             LOGGER.info("Node [" + targetId + "] was not found in db . Storing it");
             prepareInsertNode(testbed, targetId);
         }
+//
+//        // look for link
+//        Link link = LinkController.getInstance().getByID(sourceId, targetId);
+//        if (link == null) {
+//            // if link was not found in db make it and store it
+//            LOGGER.info("Link [" + sourceId + "," + targetId + "] was not found in db . Storing it");
+//            link = prepareInsertLink(testbed, sourceId, targetId);
+//        }
+//
+//        // look for capability
+//        Capability capability = CapabilityController.getInstance().getByID(capabilityName);
+//        if (capability == null) {
+//            // if capability not found found in db make it and store it.
+//            LOGGER.info("Capability [" + sourceId + "," + targetId + "] was not found in db . Storing it");
+//            capability = prepareInsertCapability(capabilityName);
+//        }
+//
+//        // check and make associations with link and capability.
+//        final boolean isAssociated = LinkController.getInstance().isAssociated(capability, testbed, link);
+//        if (!isAssociated) {
+//            LOGGER.info("Associate Link[" + sourceId + "," + targetId + "] Capability [" + capabilityName + "] ");
+//            // if link and capability are not associated , associate them
+//            link.getCapabilities().add(capability);
+//            LinkController.getInstance().update(link);
+//        }
 
-        LOGGER.info("" + (count++));
-        // look for link
         Link link = LinkController.getInstance().getByID(sourceId, targetId);
-        if (link == null) {
-            // if link was not found in db make it and store it
-            LOGGER.info("Link [" + sourceId + "," + targetId + "] was not found in db . Storing it");
-            link = prepareInsertLink(testbed, sourceId, targetId);
-        }
-
-        LOGGER.info("" + (count++));
-
-
-        // look for capability
         Capability capability = CapabilityController.getInstance().getByID(capabilityName);
-        if (capability == null) {
-            // if capability not found found in db make it and store it.
-            LOGGER.info("Capability [" + sourceId + "," + targetId + "] was not found in db . Storing it");
-            capability = prepareInsertCapability(capabilityName);
+        if (link == null) {
+            link = prepareInsertLink(testbed, sourceId, targetId);
+            if (capability == null) {
+                capability = prepareInsertCapability(capabilityName);
+                link.getCapabilities().add(capability);
+                LinkController.getInstance().update(link);
+            } else {
+                link.getCapabilities().add(capability);
+                LinkController.getInstance().update(link);
+            }
+        } else {
+            if (capability == null) {
+                capability = prepareInsertCapability(capabilityName);
+                link.getCapabilities().add(capability);
+                LinkController.getInstance().update(link);
+            } else {
+                if (!LinkController.getInstance().isAssociated(capability, testbed, link)) {
+                    link.getCapabilities().add(capability);
+                    LinkController.getInstance().update(link);
+                }
+            }
         }
-
-        // check and make associations with link and capability.
-        final boolean isAssociated = LinkController.getInstance().isAssociated(capability, testbed, link);
-        if (!isAssociated) {
-            LOGGER.info("Associate Link[" + sourceId + "," + targetId + "] Capability [" + capabilityName + "] ");
-            // if link and capability are not associated , associate them
-            link.getCapabilities().add(capability);
-            LinkController.getInstance().update(link);
-        }
-        LOGGER.info("" + (count++));
-
-        LOGGER.info("" + (count++));
 
         // make a new link reading entity
         final LinkReading reading = new LinkReading();
@@ -277,7 +290,6 @@ public class LinkReadingController extends AbstractController<LinkReading> {
 
         // add reading
         add(reading);
-        LOGGER.info("" + (count++));
         // get last link reading for link and capability if not found create one
         LastLinkReading lastLinkReading = LastLinkReadingController.getInstance().getByID(link, capability);
         if (lastLinkReading == null) {
@@ -293,7 +305,6 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         lastLinkReading.setCapability(capability);
         lastLinkReading.setRssiValue(rssiValue);
         LastLinkReadingController.getInstance().add(lastLinkReading);
-        LOGGER.info("" + (count++));
     }
 
     /**

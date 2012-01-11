@@ -132,7 +132,7 @@ public class NodeController extends AbstractController<Node> {
      */
     public List<Node> listCapabilityNodes(final Capability capability) {
         LOGGER.info("listCapabilityNodes(" + capability + ")");
-        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+        final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Node.class);
         criteria.createAlias(CAPABILITIES, "caps")
                 .add(Restrictions.eq("caps.name", capability.getName()));
@@ -149,7 +149,7 @@ public class NodeController extends AbstractController<Node> {
      */
     public List<Node> listCapabilityNodes(final Capability capability, final Testbed testbed) {
         LOGGER.info("listCapabilityNodes(" + capability + "," + testbed + ")");
-        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+        final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Node.class);
         criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
         criteria.createAlias(CAPABILITIES, "caps")
@@ -159,13 +159,15 @@ public class NodeController extends AbstractController<Node> {
     }
 
     /**
-     * @param capability
-     * @param testbed
-     * @param node
+     * Checks if a capability and a node are associated.
+     *
+     * @param capability , capability.
+     * @param testbed , testbed.
+     * @param node , node .
      * @return
      */
     public boolean isAssociated(final Capability capability, final Testbed testbed, final Node node) {
-        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+        final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Node.class);
         criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
         criteria.createAlias(CAPABILITIES, "caps").add(Restrictions.eq("caps.name", capability.getName()));
