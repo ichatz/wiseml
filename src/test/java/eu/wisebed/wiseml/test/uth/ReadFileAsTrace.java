@@ -60,8 +60,8 @@ public class ReadFileAsTrace {
         origin1.setX((float)0);
         origin1.setY((float)0);
         origin1.setZ((float)0);
-        origin1.setPhi((float)0);
-        origin1.setTheta((float)0);
+        origin1.setPhi(0);
+        origin1.setTheta(0);
 
         // create new setup timeinfo..
         TimeInfo timeInfo = new TimeInfo();

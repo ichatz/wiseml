@@ -77,8 +77,8 @@ public class ReadFileGreenHouse {
         origin.setX((float)0);
         origin.setY((float)0);
         origin.setZ((float)0);
-        origin.setPhi((float)0);
-        origin.setTheta((float)0);
+        origin.setPhi(0);
+        origin.setTheta(0);
 
         // create node position...
         Position position = new Position();

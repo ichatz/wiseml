@@ -46,8 +46,8 @@ public class SetupNewNode {
             origin1.setX((float)0);
             origin1.setY((float)0);
             origin1.setZ((float)0);
-            origin1.setPhi((float)5);
-            origin1.setTheta((float)2);
+            origin1.setPhi(5);
+            origin1.setTheta(2);
 
             //set the timeinfo values for setup...
             TimeInfo timeInfo1 = new TimeInfo();
