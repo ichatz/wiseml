@@ -195,13 +195,6 @@
             <version>${hibernate.version}</version>
         </dependency>
 
-        <!-- Hibernate c3p0 connection pool -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-c3p0</artifactId>
-            <version>${hibernate.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>javassist</groupId>
             <artifactId>javassist</artifactId>
