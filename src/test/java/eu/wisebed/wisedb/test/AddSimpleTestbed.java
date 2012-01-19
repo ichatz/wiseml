@@ -5,6 +5,8 @@ import eu.wisebed.wisedb.controller.TestbedController;
 import eu.wisebed.wisedb.importer.SetupImporter;
 import eu.wisebed.wisedb.importer.TestbedImporter;
 import eu.wisebed.wisedb.model.Testbed;
+import eu.wisebed.wiseml.model.setup.Link;
+import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Setup;
 import org.apache.log4j.Logger;
 import org.hibernate.Transaction;
@@ -13,6 +15,7 @@ import org.jibx.runtime.JiBXException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 /**
  * Adds a simple Testbed (Not running testbed-runtime).
@@ -63,6 +66,10 @@ public class AddSimpleTestbed {
 
             // set the testbed of the setup to be imported
             Setup setup = new Setup();
+            setup.setLink(new ArrayList<Link>());
+            setup.setNodes(new ArrayList<Node>());
+            setup.setOrigin(null);
+            setup.setTimeinfo(null);
 
             // import by the convert method
             sImp.setTestbed(testbed);
