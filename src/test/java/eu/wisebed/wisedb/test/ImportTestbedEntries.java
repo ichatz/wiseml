@@ -28,7 +28,6 @@ public class ImportTestbedEntries {
 
             // must set attributes before importing to db
             tImp.setName("CTI main testbed");
-            tImp.setUrnPrefix("urn:wisebed:ctitestbed:");
             tImp.setDescription("This is the description WiseML file of the RACTI testbed in Patras Greece containing" +
                     " iSense telosB and xbee sensor nodes equiped with temperature light infrared humidity Wind Speed Wind " +
                     "Direction and Air Quality Sensors");

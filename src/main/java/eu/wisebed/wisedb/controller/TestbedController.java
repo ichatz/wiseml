@@ -26,6 +26,11 @@ public class TestbedController extends AbstractController<Testbed> {
     private static final String URN_PREFIX = "urnPrefix";
 
     /**
+     * Name literal.
+     */
+    private static final String NAME = "name";
+
+    /**
      * Logger.
      */
     private static final Logger LOGGER = Logger.getLogger(TestbedController.class);
@@ -51,7 +56,6 @@ public class TestbedController extends AbstractController<Testbed> {
                 ourInstance = new TestbedController();
             }
         }
-
         return ourInstance;
     }
 
@@ -103,4 +107,21 @@ public class TestbedController extends AbstractController<Testbed> {
         return (Testbed) criteria.uniqueResult();
     }
 
+
+    /**
+     * Return the Testbed from the database that has the given urn prefix.
+     *
+     * @param testbedName the name of a Testbed object.
+     * @return a Testbed object.
+     */
+    @SuppressWarnings("unchecked")
+    public Testbed getByName(final String testbedName) {
+        LOGGER.info("getByTestbedName(" + testbedName + ")");
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(Testbed.class);
+        criteria.add(Restrictions.like(NAME, testbedName, MatchMode.START));
+        criteria.addOrder(Order.asc(NAME));
+        criteria.setMaxResults(1);
+        return (Testbed) criteria.uniqueResult();
+    }
 }
