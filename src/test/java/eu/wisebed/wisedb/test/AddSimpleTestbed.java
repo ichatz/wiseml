@@ -68,6 +68,8 @@ public class AddSimpleTestbed {
             sImp.setTestbed(testbed);
             sImp.convert(setup);
 
+            tx.commit();
+
         } catch (JiBXException e) {
             e.printStackTrace();
         } finally {
