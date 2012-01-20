@@ -1,6 +1,7 @@
 package eu.wisebed.wiseml.model.setup;
 
 import eu.wisebed.wisedb.model.NodeReading;
+import eu.wisebed.wisedb.model.Slse;
 import eu.wisebed.wiseml.model.trace.Message;
 
 import java.io.Serializable;
@@ -59,6 +60,7 @@ public class Node implements Serializable {
      */
 
     private List<Data> data;
+    private Set<Slse> slses;
 
     /**
      * node message.
@@ -127,6 +129,14 @@ public class Node implements Serializable {
      */
     public void setProgramDetails(final String programDetails) {
         this.programDetails = programDetails;
+    }
+
+    public Set<Slse> getSlses() {
+        return slses;
+    }
+
+    public void setSlses(Set<Slse> slses) {
+        this.slses = slses;
     }
 
     /**
@@ -240,7 +250,7 @@ public class Node implements Serializable {
     /**
      * returns the setup this node belongs to.
      *
-     * @return  the setup this node belongs to.
+     * @return the setup this node belongs to.
      */
     public Setup getSetup() {
         return setup;

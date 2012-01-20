@@ -57,6 +57,7 @@
         <mapping resource="eu/wisebed/wisedb/model/LinkReading.hbm.xml"/>
         <mapping resource="eu/wisebed/wisedb/model/LastNodeReading.hbm.xml"/>
         <mapping resource="eu/wisebed/wisedb/model/LastLinkReading.hbm.xml"/>
+        <mapping resource="eu/wisebed/wisedb/model/Slse.hbm.xml"/>
 
         <!-- Event listeners -->
         <event type="save-update">
