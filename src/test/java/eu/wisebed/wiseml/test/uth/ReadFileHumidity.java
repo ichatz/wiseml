@@ -75,16 +75,16 @@ public class ReadFileHumidity {
         origin.setX((float)0);
         origin.setY((float)0);
         origin.setZ((float)0);
-        origin.setPhi(0);
-        origin.setTheta(0);
+        origin.setPhi((float)0);
+        origin.setTheta((float)0);
 
         // create node position...
         Position position = new Position();
         position.setX((float)0);
         position.setY((float)0);
         position.setZ((float)0);
-        position.setPhi(0);
-        position.setTheta(0);
+        position.setPhi((float)0);
+        position.setTheta((float)0);
 
         // create setup timeinfo..
         TimeInfo timeInfo = new TimeInfo();

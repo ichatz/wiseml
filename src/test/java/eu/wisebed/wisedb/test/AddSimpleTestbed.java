@@ -80,11 +80,11 @@ public class AddSimpleTestbed {
             setup.setLink(new ArrayList<Link>());
             setup.setNodes(new ArrayList<Node>());
             Origin origin = new Origin();
-            origin.setPhi(0);
-            origin.setTheta(0);
-            origin.setX((float) 0.0);
-            origin.setY((float) 0.0);
-            origin.setZ((float) 0.0);
+            origin.setPhi((float)0);
+            origin.setTheta((float)0);
+            origin.setX((float) 0);
+            origin.setY((float) 0);
+            origin.setZ((float) 0);
             setup.setOrigin(origin);
             setup.setTimeinfo(new TimeInfo());
             setup.setCoordinateType("Absolute");

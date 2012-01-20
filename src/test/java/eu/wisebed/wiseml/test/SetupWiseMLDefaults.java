@@ -31,8 +31,8 @@ public class SetupWiseMLDefaults {
             position.setX((float) 0);
             position.setY((float) 0);
             position.setZ((float) 6);
-            position.setPhi(12);
-            position.setTheta(0);
+            position.setPhi((float)12);
+            position.setTheta((float)0);
 
             //set capabilities for node...
             Capability capability = new Capability();

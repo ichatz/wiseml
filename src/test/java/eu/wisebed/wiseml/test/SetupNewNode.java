@@ -46,8 +46,8 @@ public class SetupNewNode {
             origin1.setX((float)0);
             origin1.setY((float)0);
             origin1.setZ((float)0);
-            origin1.setPhi(5);
-            origin1.setTheta(2);
+            origin1.setPhi((float)5);
+            origin1.setTheta((float)2);
 
             //set the timeinfo values for setup...
             TimeInfo timeInfo1 = new TimeInfo();
@@ -62,15 +62,15 @@ public class SetupNewNode {
             position.setX((float)0);
             position.setY((float)0);
             position.setZ((float)6);
-            position.setPhi(12);
-            position.setTheta(0);
+            position.setPhi((float)12);
+            position.setTheta((float)0);
 
             Position positionDef = new Position();
             positionDef.setX((float)1.0);
             positionDef.setY((float)2);
             positionDef.setZ((float)1.879);
-            positionDef.setPhi(32);
-            positionDef.setTheta(90);
+            positionDef.setPhi((float)32);
+            positionDef.setTheta((float)90);
 
             //set capabilities for nodes...
             Capability capability1 = new Capability();
@@ -255,8 +255,8 @@ public class SetupNewNode {
             positionTr.setX((float)2);
             positionTr.setY((float)4);
             positionTr.setZ((float)6);
-            positionTr.setPhi(0);
-            positionTr.setTheta(6);
+            positionTr.setPhi((float)0);
+            positionTr.setTheta((float)6);
 
             Node nodeTr = new Node();
             nodeTr.setPosition(positionTr);

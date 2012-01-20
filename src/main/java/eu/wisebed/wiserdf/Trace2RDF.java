@@ -52,8 +52,8 @@ public class Trace2RDF extends Trace {
             float defX = defs.getNode().getPosition().getX();
             float defY = defs.getNode().getPosition().getY();
             float defZ = defs.getNode().getPosition().getZ();
-            int defPhi = defs.getNode().getPosition().getPhi();
-            int defTheta = defs.getNode().getPosition().getTheta();
+            Float defPhi = defs.getNode().getPosition().getPhi();
+            Float defTheta = defs.getNode().getPosition().getTheta();
             Rssi defRssi = defs.getLink().getRssi();
             if (defRssi != null) {
                 String defRssiUnit = defRssi.getUnit();

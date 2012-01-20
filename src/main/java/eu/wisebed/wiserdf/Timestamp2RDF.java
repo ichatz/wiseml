@@ -70,8 +70,8 @@ public class Timestamp2RDF extends Timestamp {
         float defX = 0;
         float defY = 0;
         float defZ = 0;
-        int defPhi = 0;
-        int defTheta = 0;
+        Float defPhi = (float) 0;
+        Float defTheta = (float) 0;
         String defKey = null;
         String defValue = null;
         Defaults defs = theSetup.getDefaults();

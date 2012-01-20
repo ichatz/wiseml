@@ -66,8 +66,8 @@ public class ReadFileAsScenario {
         origin1.setX((float)0);
         origin1.setY((float)0);
         origin1.setZ((float)0);
-        origin1.setPhi(0);
-        origin1.setTheta(0);
+        origin1.setPhi((float)0);
+        origin1.setTheta((float)0);
 
         // create new timeinfo...
         TimeInfo timeInfo = new TimeInfo();
@@ -81,8 +81,8 @@ public class ReadFileAsScenario {
         position.setX((float)0);
         position.setY((float)0);
         position.setZ((float)0);
-        position.setPhi(0);
-        position.setTheta(0);
+        position.setPhi((float)0);
+        position.setTheta((float)0);
 
         // create new list of capabilities...
         List<Capability> list1 = new ArrayList<Capability>();

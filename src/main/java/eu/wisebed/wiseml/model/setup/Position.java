@@ -32,12 +32,12 @@ public class Position implements Serializable {
     /**
      * angle phi in the position.
      */
-    private Integer phi;
+    private Float phi;
 
     /**
      * angle theta in the position.
      */
-    private Integer theta;
+    private Float theta;
 
     /**
      * this method returns the point x.
@@ -98,7 +98,7 @@ public class Position implements Serializable {
      *
      * @return phi
      */
-    public Integer getPhi() {
+    public Float getPhi() {
         return phi;
     }
 
@@ -107,7 +107,7 @@ public class Position implements Serializable {
      *
      * @param phi phi angle.
      */
-    public void setPhi(final Integer phi) {
+    public void setPhi(final Float phi) {
         this.phi = phi;
     }
 
@@ -116,7 +116,7 @@ public class Position implements Serializable {
      *
      * @return theta
      */
-    public Integer getTheta() {
+    public Float getTheta() {
         return theta;
     }
 
@@ -125,7 +125,7 @@ public class Position implements Serializable {
      *
      * @param theta theta angle
      */
-    public void setTheta(final Integer theta) {
+    public void setTheta(final Float theta) {
         this.theta = theta;
     }
 }
