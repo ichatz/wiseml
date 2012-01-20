@@ -47,6 +47,10 @@ public class AddTRTestbed {
             final String testbedWebPageUrl = br.readLine();
             tImp.setWebPageUrl(testbedWebPageUrl);
 
+            LOGGER.info("Provide Testbed's urnPrefix");
+            final String urnPrefix = br.readLine();
+            tImp.setUrnPrefix(urnPrefix);
+
             LOGGER.info("Provide Testbed's SNAA URL");
             final String testbedSNAAUrl = br.readLine();
             tImp.setSnaaUrl(testbedSNAAUrl);
