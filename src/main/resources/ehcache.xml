@@ -2,26 +2,5 @@
 <ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd" updateCheck="false">
 
-    <defaultCache/>
-
-    <cache name="eu.wisebed.model.setup.Node"
-           maxElementsInMemory="500"
-           eternal="true"
-            />
-    <cache name="eu.wisebed.model.setup.Link"
-           maxElementsInMemory="1000"
-           eternal="true"
-            />
-    <cache name="eu.wisebed.model.setup.Capability"
-           maxElementsInMemory="100"
-           eternal="true"
-            />
-    <cache name="eu.wisebed.model.setup.Testbed"
-           maxElementsInMemory="20"
-           eternal="true"
-            />
-    <cache name="eu.wisebed.model.setup.Setup"
-           maxElementsInMemory="20"
-           eternal="true"
-            />
+    <defaultCache eternal="false" overflowToDisk="false"/>
 </ehcache>

@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
@@ -108,5 +109,23 @@ public class SlseController extends AbstractController<Slse> {
         criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
         criteria.addOrder(Order.asc(SLSE_ID));
         return (List<Slse>) criteria.list();
+    }
+
+
+    public int count() {
+        LOGGER.info("count()");
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(Slse.class);
+        criteria.setProjection(Projections.rowCount());
+        return (Integer) criteria.list().get(0);
+    }
+
+    public int count(final Testbed testbed) {
+        LOGGER.info("count(" + testbed + ")");
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(Slse.class);
+        criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
+        criteria.setProjection(Projections.rowCount());
+        return (Integer) criteria.list().get(0);
     }
 }

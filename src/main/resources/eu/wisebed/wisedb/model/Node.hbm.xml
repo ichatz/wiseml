@@ -6,6 +6,7 @@
 
     <class name="eu.wisebed.wiseml.model.setup.Node" table="nodes"
            dynamic-update="true" dynamic-insert="true">
+
         <cache usage="read-write"/>
 
         <id name="id" column="node_id"/>

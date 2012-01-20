@@ -1,5 +1,6 @@
 package eu.wisebed.wisedb.controller;
 
+import com.googlecode.ehcache.annotations.Cacheable;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Node;
@@ -7,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
@@ -115,6 +117,7 @@ public class NodeController extends AbstractController<Node> {
      * @param testbed , a selected testbed.
      * @return a list of testbed links.
      */
+    @Cacheable(cacheName = "nodeListsCache")
     public List<Node> list(final Testbed testbed) {
         LOGGER.info("list(" + testbed + ")");
         final Session session = getSessionFactory().getCurrentSession();
@@ -122,6 +125,21 @@ public class NodeController extends AbstractController<Node> {
         criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
         criteria.addOrder(Order.asc(NODE_ID));
         return (List<Node>) criteria.list();
+    }
+
+    /**
+     * Listing all the nodes from the database belonging to a selected testbed.
+     *
+     * @param testbed , a selected testbed.
+     * @return a list of testbed links.
+     */
+    public int count(final Testbed testbed) {
+        LOGGER.info("count(" + testbed + ")");
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(Node.class);
+        criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
+        criteria.setProjection(Projections.rowCount());
+        return (Integer) criteria.list().get(0);
     }
 
     /**
@@ -162,8 +180,8 @@ public class NodeController extends AbstractController<Node> {
      * Checks if a capability and a node are associated.
      *
      * @param capability , capability.
-     * @param testbed , testbed.
-     * @param node , node .
+     * @param testbed    , testbed.
+     * @param node       , node .
      * @return
      */
     public boolean isAssociated(final Capability capability, final Testbed testbed, final Node node) {
