@@ -28,7 +28,7 @@ public final class TestbedImporter extends AbstractImporter<Testbed> {
     private String urnPrefix;
 
     /**
-     * Web URL of Testbed
+     * Web URL of Testbed.
      */
     private String webPageUrl;
 
@@ -58,7 +58,7 @@ public final class TestbedImporter extends AbstractImporter<Testbed> {
     private String sessionUrl;
 
     /**
-     * TimeZone
+     * Testbed time zone.
      */
     private TimeZone timeZone;
 
@@ -237,7 +237,7 @@ public final class TestbedImporter extends AbstractImporter<Testbed> {
         // Setting up the testbed entity
         final Testbed testbed = new Testbed();
         testbed.setName(getName());
-        testbed.setUrnPrefix(getWebPageUrl());
+        testbed.setUrnPrefix(getUrnPrefix());
         testbed.setUrl(getWebPageUrl());
         testbed.setDescription(getDescription());
         testbed.setFederated(isFederated());

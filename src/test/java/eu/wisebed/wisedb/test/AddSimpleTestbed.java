@@ -9,6 +9,7 @@ import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Origin;
 import eu.wisebed.wiseml.model.setup.Setup;
+import eu.wisebed.wiseml.model.setup.TimeInfo;
 import org.apache.log4j.Logger;
 import org.hibernate.Transaction;
 
@@ -26,7 +27,7 @@ public class AddSimpleTestbed {
     /**
      * a log4j logger to print messages.
      */
-    private static final Logger LOGGER = Logger.getLogger(ImportTestbedEntries.class);
+    private static final Logger LOGGER = Logger.getLogger(AddSimpleTestbed.class);
 
 
     public static void main(final String[] args) throws IOException {
@@ -52,6 +53,7 @@ public class AddSimpleTestbed {
             final String testbedWebPageUrl = br.readLine();
             tImp.setWebPageUrl(testbedWebPageUrl);
 
+            LOGGER.info("Using your default TimeZone : "  + TimeZone.getDefault().getDisplayName());
             tImp.setTimeZone(TimeZone.getDefault());
 
             // Initialize hibernate and begin transaction
@@ -65,6 +67,7 @@ public class AddSimpleTestbed {
             tx.commit();
 
             // begin transaction
+            LOGGER.info("For testbed : " + testbedName + " the default setup will be added");
             tx = HibernateUtil.getInstance().getSession().beginTransaction();
             Testbed testbed = TestbedController.getInstance().getByName(testbedName);
 
@@ -75,11 +78,12 @@ public class AddSimpleTestbed {
             Origin origin = new Origin();
             origin.setPhi(0);
             origin.setTheta(0);
-            origin.setX((float) 1.0);
-            origin.setY((float) 2.0);
-            origin.setZ((float)3.0);
+            origin.setX((float) 0.0);
+            origin.setY((float) 0.0);
+            origin.setZ((float) 0.0);
             setup.setOrigin(origin);
-            setup.setTimeinfo(null);
+            setup.setTimeinfo(new TimeInfo());
+            setup.setCoordinateType("Absolute");
 
             // import by the convert method
             sImp.setTestbed(testbed);
