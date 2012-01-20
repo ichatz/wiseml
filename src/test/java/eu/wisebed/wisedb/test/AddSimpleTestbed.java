@@ -7,6 +7,7 @@ import eu.wisebed.wisedb.importer.TestbedImporter;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Link;
 import eu.wisebed.wiseml.model.setup.Node;
+import eu.wisebed.wiseml.model.setup.Origin;
 import eu.wisebed.wiseml.model.setup.Setup;
 import org.apache.log4j.Logger;
 import org.hibernate.Transaction;
@@ -68,7 +69,13 @@ public class AddSimpleTestbed {
             Setup setup = new Setup();
             setup.setLink(new ArrayList<Link>());
             setup.setNodes(new ArrayList<Node>());
-            setup.setOrigin(null);
+            Origin origin = new Origin();
+            origin.setPhi(0);
+            origin.setTheta(0);
+            origin.setX((float)1.0);
+            origin.setY((float)2.0);
+            origin.setZ((float)3.0);
+            setup.setOrigin(origin);
             setup.setTimeinfo(null);
 
             // import by the convert method
