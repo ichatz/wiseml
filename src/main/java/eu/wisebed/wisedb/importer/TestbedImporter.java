@@ -5,6 +5,7 @@ import eu.wisebed.wisedb.model.Testbed;
 import org.apache.log4j.Logger;
 
 import java.util.Collection;
+import java.util.TimeZone;
 
 /**
  * Imports testbed entities into the peristence store.
@@ -55,6 +56,11 @@ public final class TestbedImporter extends AbstractImporter<Testbed> {
      * SessionManagment URL of Testbed.
      */
     private String sessionUrl;
+
+    /**
+     * TimeZone
+     */
+    private TimeZone timeZone;
 
     /**
      * Default constructor.
@@ -208,6 +214,22 @@ public final class TestbedImporter extends AbstractImporter<Testbed> {
     }
 
     /**
+     * Returns testbed's timezone.
+     * @return get testbed's timezone.
+     */
+    public TimeZone getTimeZone() {
+        return timeZone;
+    }
+
+    /**
+     * Sets testbed's timezone.
+     * @param timeZone testbed's timezone
+     */
+    public void setTimeZone(final TimeZone timeZone) {
+        this.timeZone = timeZone;
+    }
+
+    /**
      * Convert the WiseML document describing the records of the testbed into wisedb records.
      */
     public void convert() {
@@ -222,6 +244,7 @@ public final class TestbedImporter extends AbstractImporter<Testbed> {
         testbed.setRsUrl(getRsUrl());
         testbed.setSnaaUrl(getSnaaUrl());
         testbed.setSessionUrl(getSessionUrl());
+        testbed.setTimeZone(getTimeZone());
 
         // persisting testbed
         TestbedController.getInstance().add(testbed);

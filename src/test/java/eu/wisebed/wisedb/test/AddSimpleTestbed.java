@@ -11,12 +11,12 @@ import eu.wisebed.wiseml.model.setup.Origin;
 import eu.wisebed.wiseml.model.setup.Setup;
 import org.apache.log4j.Logger;
 import org.hibernate.Transaction;
-import org.jibx.runtime.JiBXException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.TimeZone;
 
 /**
  * Adds a simple Testbed (Not running testbed-runtime).
@@ -38,6 +38,7 @@ public class AddSimpleTestbed {
         // read from keyboard.
         BufferedReader br;
         br = new BufferedReader(new InputStreamReader(System.in) );
+
         try{
             LOGGER.info("Provide Testbed Name");
             final String testbedName = br.readLine();
@@ -50,6 +51,8 @@ public class AddSimpleTestbed {
             LOGGER.info("Provide Testbed's web page URL");
             final String testbedWebPageUrl = br.readLine();
             tImp.setWebPageUrl(testbedWebPageUrl);
+
+            tImp.setTimeZone(TimeZone.getDefault());
 
             // Initialize hibernate and begin transaction
             HibernateUtil.connectEntityManagers();
@@ -72,8 +75,8 @@ public class AddSimpleTestbed {
             Origin origin = new Origin();
             origin.setPhi(0);
             origin.setTheta(0);
-            origin.setX((float)1.0);
-            origin.setY((float)2.0);
+            origin.setX((float) 1.0);
+            origin.setY((float) 2.0);
             origin.setZ((float)3.0);
             setup.setOrigin(origin);
             setup.setTimeinfo(null);
@@ -84,7 +87,7 @@ public class AddSimpleTestbed {
 
             tx.commit();
 
-        } catch (JiBXException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             // always close session
