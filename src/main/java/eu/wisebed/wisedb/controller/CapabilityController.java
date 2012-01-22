@@ -5,7 +5,7 @@ import eu.wisebed.wiseml.model.setup.Capability;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.ArrayList;
@@ -99,7 +99,7 @@ public class CapabilityController extends AbstractController<Capability> {
      * @param value the Capability tha we want to delete
      */
     public void delete(final Capability value) {
-        LOGGER.info("delete(" + value+ ")");
+        LOGGER.info("delete(" + value + ")");
         super.delete(value, value.getName());
     }
 
@@ -131,10 +131,20 @@ public class CapabilityController extends AbstractController<Capability> {
      * @return a list of testbed capabilities.
      */
     public List<Capability> list(final Testbed testbed) {
-        LOGGER.info("list(" + testbed +")");
+        LOGGER.info("list(" + testbed + ")");
         final List<Capability> capabilities = new ArrayList<Capability>();
         final List<Capability> nodeCapabilities = listNodeCapabilities(testbed);
         final List<Capability> linkCapabilities = listLinkCapabilities(testbed);
+        capabilities.addAll(nodeCapabilities);
+        capabilities.addAll(linkCapabilities);
+        return capabilities;
+    }
+
+    public List<String> listNames(final Testbed testbed) {
+        LOGGER.info("listNames(" + testbed + ")");
+        final List<String> capabilities = new ArrayList<String>();
+        final List<String> nodeCapabilities = listNodeCapabilitiesNames(testbed);
+        final List<String> linkCapabilities = listLinkCapabilitiesNames(testbed);
         capabilities.addAll(nodeCapabilities);
         capabilities.addAll(linkCapabilities);
         return capabilities;
@@ -153,9 +163,21 @@ public class CapabilityController extends AbstractController<Capability> {
         criteria.createAlias(NODES, "ns");
         criteria.add(Restrictions.eq("ns.setup", testbed.getSetup()));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-        criteria.addOrder(Order.asc(CAPABILITY_NAME));
+
         return (List<Capability>) criteria.list();
     }
+
+    public List<String> listNodeCapabilitiesNames(final Testbed testbed) {
+        LOGGER.info("listNodeCapabilitiesNames(" + testbed + ")");
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(Capability.class);
+        criteria.createAlias(NODES, "ns");
+        criteria.add(Restrictions.eq("ns.setup", testbed.getSetup()));
+        criteria.setProjection(Projections.property("name"));
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        return (List<String>) criteria.list();
+    }
+
 
     /**
      * Listing all the link capabilities associated with nodes from the database belonging to a selected testbed.
@@ -170,7 +192,18 @@ public class CapabilityController extends AbstractController<Capability> {
         criteria.createAlias(LINKS, "ls");
         criteria.add(Restrictions.eq("ls.setup", testbed.getSetup()));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-        criteria.addOrder(Order.asc(CAPABILITY_NAME));
+
         return (List<Capability>) criteria.list();
+    }
+
+    public List<String> listLinkCapabilitiesNames(final Testbed testbed) {
+        LOGGER.info("listLinkCapabilitiesNames(" + testbed + ")");
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(Capability.class);
+        criteria.createAlias(LINKS, "ls");
+        criteria.add(Restrictions.eq("ls.setup", testbed.getSetup()));
+        criteria.setProjection(Projections.property("name"));
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        return (List<String>) criteria.list();
     }
 }

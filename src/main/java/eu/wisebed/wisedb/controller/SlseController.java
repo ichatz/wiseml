@@ -5,7 +5,6 @@ import eu.wisebed.wisedb.model.Testbed;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -107,8 +106,15 @@ public class SlseController extends AbstractController<Slse> {
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Slse.class);
         criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
-        criteria.addOrder(Order.asc(SLSE_ID));
         return (List<Slse>) criteria.list();
+    }
+    public List<String> listNames(final Testbed testbed) {
+        LOGGER.info("list(" + testbed + ")");
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(Slse.class);
+        criteria.setProjection(Projections.property("name"));
+        criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
+        return (List<String>) criteria.list();
     }
 
 

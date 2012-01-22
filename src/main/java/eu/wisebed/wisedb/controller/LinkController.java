@@ -128,7 +128,6 @@ public class LinkController extends AbstractController<Link> {
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Link.class);
         criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
-        criteria.addOrder(Order.asc(SOURCE));
         return (List<Link>) criteria.list();
     }
 

@@ -133,6 +133,25 @@ public class NodeController extends AbstractController<Node> {
      * @param testbed , a selected testbed.
      * @return a list of testbed links.
      */
+    @Cacheable(cacheName = "nodeListsCache")
+    public List<String> listNames(final Testbed testbed) {
+        LOGGER.info("list(" + testbed + ")");
+        long millis = System.currentTimeMillis();
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(Node.class);
+        criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
+        criteria.setProjection(Projections.property("id"));
+        final List res = criteria.list();
+        LOGGER.info("return @ " + (System.currentTimeMillis() - millis));
+        return (List<String>) res;
+    }
+
+    /**
+     * Listing all the nodes from the database belonging to a selected testbed.
+     *
+     * @param testbed , a selected testbed.
+     * @return a list of testbed links.
+     */
     public int count(final Testbed testbed) {
         LOGGER.info("count(" + testbed + ")");
         final Session session = getSessionFactory().getCurrentSession();
