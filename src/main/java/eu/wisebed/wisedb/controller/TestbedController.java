@@ -1,14 +1,23 @@
 package eu.wisebed.wisedb.controller;
 
+import eu.wisebed.wisedb.model.Slse;
 import eu.wisebed.wisedb.model.Testbed;
+import eu.wisebed.wiseml.model.setup.Link;
+import eu.wisebed.wiseml.model.setup.Node;
+import eu.wisebed.wiseml.model.setup.Setup;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * CRUD operations for Testbed entities.
@@ -123,5 +132,103 @@ public class TestbedController extends AbstractController<Testbed> {
         criteria.addOrder(Order.asc(NAME));
         criteria.setMaxResults(1);
         return (Testbed) criteria.uniqueResult();
+    }
+
+    /**
+     * Returns the number of nodes in database for each setup
+     *
+     * @return map containing the setups and node count
+     */
+    public Map<String, Long> countNodes() {
+        LOGGER.info("countNodes()");
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(Node.class);
+        ProjectionList projList = Projections.projectionList();
+        projList.add(Projections.groupProperty("setup"));
+        projList.add(Projections.rowCount());
+        criteria.setProjection(projList);
+
+        List results = criteria.list();
+        Iterator iter = results.iterator();
+        if (!iter.hasNext()) {
+            LOGGER.debug("No objects to display.");
+            return null;
+        }
+        Map<String, Long> resultsMap = new HashMap<String, Long>();
+        while (iter.hasNext()) {
+
+            final Object[] obj = (Object[]) iter.next();
+            final Setup setup = (Setup) obj[0];
+            final long count = (Long) obj[1];
+            resultsMap.put(setup.getTestbed().getName(), count);
+
+        }
+
+        return resultsMap;
+    }
+
+    /**
+     * Returns the number of links in database for each setup
+     *
+     * @return map containing the setups and link count
+     */
+    public Map<String, Long> countLinks() {
+        LOGGER.info("countLinks()");
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(Link.class);
+        ProjectionList projList = Projections.projectionList();
+        projList.add(Projections.groupProperty("setup"));
+        projList.add(Projections.rowCount());
+        criteria.setProjection(projList);
+
+        List results = criteria.list();
+        Iterator iter = results.iterator();
+        if (!iter.hasNext()) {
+            LOGGER.debug("No objects to display.");
+            return null;
+        }
+        Map<String, Long> resultsMap = new HashMap<String, Long>();
+        while (iter.hasNext()) {
+
+            final Object[] obj = (Object[]) iter.next();
+            final Setup setup = (Setup) obj[0];
+            final long count = (Long) obj[1];
+            resultsMap.put(setup.getTestbed().getName(), count);
+
+        }
+
+        return resultsMap;
+    }
+
+    /**
+     * Returns the number of slses in database for each setup
+     * @return map containing the setups and slse count
+     */
+    public Map<String, Long> countSlses() {
+        LOGGER.info("countSlses()");
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(Slse.class);
+        ProjectionList projList = Projections.projectionList();
+        projList.add(Projections.groupProperty("setup"));
+        projList.add(Projections.rowCount());
+        criteria.setProjection(projList);
+
+        List results = criteria.list();
+        Iterator iter = results.iterator();
+        if (!iter.hasNext()) {
+            LOGGER.debug("No objects to display.");
+            return null;
+        }
+        Map<String, Long> resultsMap = new HashMap<String, Long>();
+        while (iter.hasNext()) {
+
+            final Object[] obj = (Object[]) iter.next();
+            final Setup setup = (Setup) obj[0];
+            final long count = (Long) obj[1];
+            resultsMap.put(setup.getTestbed().getName(), count);
+
+        }
+
+        return resultsMap;
     }
 }

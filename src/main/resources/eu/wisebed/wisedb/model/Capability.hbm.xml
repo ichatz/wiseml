@@ -6,7 +6,7 @@
 <hibernate-mapping>
 
     <class name="eu.wisebed.wiseml.model.setup.Capability" table="capabilities"
-           dynamic-insert="true" dynamic-update="false">
+           dynamic-insert="true" dynamic-update="true">
         <cache usage="read-write"/>
 
         <id name="name" column="capability_id"/>

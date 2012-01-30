@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
@@ -127,8 +128,22 @@ public class LinkController extends AbstractController<Link> {
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Link.class);
         criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
-        criteria.addOrder(Order.asc(SOURCE));
         return (List<Link>) criteria.list();
+    }
+
+    /**
+     * Count all the links from the database belonging to a selected testbed.
+     *
+     * @param testbed , a selected testbed.
+     * @return the number of links.
+     */
+    public int count(final Testbed testbed) {
+        LOGGER.info("count(" + testbed + ")");
+        final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(Link.class);
+        criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
+        criteria.setProjection(Projections.rowCount());
+        return (Integer) criteria.list().get(0);
     }
 
     /**

@@ -6,6 +6,7 @@
 
     <class name="eu.wisebed.wiseml.model.setup.Node" table="nodes"
            dynamic-update="true" dynamic-insert="true">
+
         <cache usage="read-write"/>
 
         <id name="id" column="node_id"/>
@@ -28,6 +29,11 @@
             <list-index column="capability_index"/>
             <many-to-many column="capability_id" class="eu.wisebed.wiseml.model.setup.Capability"/>
         </list>
+
+        <set name="slses" table="slse_nodes" inverse="true" lazy="true" order-by="lower(node_id) asc">
+            <key column="node_id" not-null="true"/>
+            <many-to-many column="slse_id" class="eu.wisebed.wisedb.model.Slse"/>
+        </set>
 
         <set name="readings" table="node_readings" inverse="true" lazy="extra" order-by="timestamp">
             <key column="node_id" not-null="true"/>
