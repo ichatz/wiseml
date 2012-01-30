@@ -9,7 +9,9 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -145,8 +147,16 @@ public class CapabilityController extends AbstractController<Capability> {
         final List<String> capabilities = new ArrayList<String>();
         final List<String> nodeCapabilities = listNodeCapabilitiesNames(testbed);
         final List<String> linkCapabilities = listLinkCapabilitiesNames(testbed);
-        capabilities.addAll(nodeCapabilities);
-        capabilities.addAll(linkCapabilities);
+        final Map namesMap = new HashMap<String, Boolean>();
+        for (String capability : nodeCapabilities) {
+            namesMap.put(capability, true);
+        }
+        for (String capability : linkCapabilities) {
+            namesMap.put(capability, true);
+        }
+        for (Object key : namesMap.keySet()) {
+            capabilities.add((String) key);
+        }
         return capabilities;
     }
 
@@ -163,7 +173,6 @@ public class CapabilityController extends AbstractController<Capability> {
         criteria.createAlias(NODES, "ns");
         criteria.add(Restrictions.eq("ns.setup", testbed.getSetup()));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-
         return (List<Capability>) criteria.list();
     }
 
@@ -173,8 +182,8 @@ public class CapabilityController extends AbstractController<Capability> {
         final Criteria criteria = session.createCriteria(Capability.class);
         criteria.createAlias(NODES, "ns");
         criteria.add(Restrictions.eq("ns.setup", testbed.getSetup()));
-        criteria.setProjection(Projections.property("name"));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        criteria.setProjection(Projections.property("name"));
         return (List<String>) criteria.list();
     }
 
@@ -192,7 +201,6 @@ public class CapabilityController extends AbstractController<Capability> {
         criteria.createAlias(LINKS, "ls");
         criteria.add(Restrictions.eq("ls.setup", testbed.getSetup()));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-
         return (List<Capability>) criteria.list();
     }
 
@@ -202,8 +210,8 @@ public class CapabilityController extends AbstractController<Capability> {
         final Criteria criteria = session.createCriteria(Capability.class);
         criteria.createAlias(LINKS, "ls");
         criteria.add(Restrictions.eq("ls.setup", testbed.getSetup()));
-        criteria.setProjection(Projections.property("name"));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        criteria.setProjection(Projections.property("name"));
         return (List<String>) criteria.list();
     }
 }
