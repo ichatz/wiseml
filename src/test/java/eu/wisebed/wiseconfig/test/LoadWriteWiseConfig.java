@@ -24,7 +24,8 @@ public class LoadWriteWiseConfig {
             fis = new FileInputStream(file);
             WiseConfigController cnt = new WiseConfigController();
             TestbedConfiguration stp = cnt.loadWiseMLFromFile(fis);
-            LOGGER.info(stp.getNodes().get(0).getApplications().size());
+            LOGGER.info(stp.getNodes().size());
+            //LOGGER.info(stp.getNodes().get(0).getApplications().size());
         } catch (FileNotFoundException e) {
             LOGGER.error(e);
         }

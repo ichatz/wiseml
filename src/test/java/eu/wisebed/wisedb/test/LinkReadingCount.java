@@ -24,7 +24,7 @@ public class LinkReadingCount {
         try {
             final String urnPrefix = "urn:wisebed:ctitestbed:";
             final Testbed testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
-            final Link link = LinkController.getInstance().list(testbed).iterator().next();
+            final Link link = (Link) LinkController.getInstance().list(testbed).iterator().next();
             LOGGER.info("Selected Link : [" + link.getSource() + "," + link.getTarget() + "]");
             Long readingsCount = LinkReadingController.getInstance().getLinkReadingsCount(link);
             LOGGER.info("Selected Link : [" + link.getSource() + "," + link.getTarget() + "] readings count :" + readingsCount.intValue());

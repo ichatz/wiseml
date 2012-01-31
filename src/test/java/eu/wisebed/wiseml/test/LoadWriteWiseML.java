@@ -78,7 +78,7 @@ public class LoadWriteWiseML {
     public void doAnotherTest() throws FileNotFoundException, JiBXException {
         FileInputStream fileML = null;
         try {
-            fileML = new FileInputStream("/home/evangelos/workspace/easysense/wiseml2rdf/WiseNew4/telosB_short.wiseml");
+            fileML = new FileInputStream("/home/theodori/workspace/easysense/wiseml2rdf/WiseNew4/telosB_short.wiseml");
         } catch (Exception e) {
             System.err.println(e);
         }
@@ -97,7 +97,7 @@ public class LoadWriteWiseML {
             } else if (item.getClass().equals(Node.class)) {
                 Node nd = (Node) item;
                 System.out.println("Node" + nd.getId());
-                System.out.println("Node" + nd.getData().get(0).getValue());
+                //System.out.println("Node" + nd.getData());
             } else if (item.getClass().equals(Link.class)) {
                 Link ln = (Link) item;
                 System.out.println("Link" + ln.getSource() + "-->" + ln.getTarget());

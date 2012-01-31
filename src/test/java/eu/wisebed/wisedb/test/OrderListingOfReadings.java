@@ -23,10 +23,11 @@ public class OrderListingOfReadings {
         Transaction trans = HibernateUtil.getInstance().getSession().beginTransaction();
 
         // get first node
-        Node thisNode = NodeController.getInstance().list().iterator().next();
+        Node thisNode = (Node) NodeController.getInstance().list().iterator().next();
 
         // get nodes capability
-        for (Capability thisCap : thisNode.getCapabilities()) {
+        for (Object thisC : thisNode.getCapabilities().toArray()) {
+            eu.wisebed.wiseml.model.setup.Capability thisCap= (eu.wisebed.wiseml.model.setup.Capability) thisC;
             LOGGER.debug("Node : " + thisNode.getId() + " Capability : " + thisCap.getName());
             // get node reading controller
             NodeReadingController nrc = NodeReadingController.getInstance();
