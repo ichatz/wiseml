@@ -3,7 +3,9 @@ package eu.wisebed.wisedb.model;
 
 import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Setup;
+import org.hibernate.annotations.Entity;
 
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +16,8 @@ import java.util.List;
  * Date: 1/19/12
  * Time: 3:08 PM
  */
+@Entity
+@Table(name="slses")
 public final class Slse implements Serializable {
 
 

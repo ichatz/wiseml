@@ -2,7 +2,9 @@ package eu.wisebed.wisedb.model;
 
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
+import org.hibernate.annotations.Entity;
 
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,6 +13,8 @@ import java.util.Date;
  * properties of a wisedb entry. In the class there are
  * getter and setter methods for the properties.
  */
+@Entity
+@Table(name = "link_readings")
 public final class LinkReading implements Serializable {
 
     /**

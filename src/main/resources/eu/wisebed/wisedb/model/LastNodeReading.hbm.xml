@@ -7,8 +7,8 @@
            dynamic-insert="true" dynamic-update="true">
 
         <composite-id>
-            <key-many-to-one name="node" column="node_id" class="eu.wisebed.wiseml.model.setup.Node"/>
-            <key-many-to-one name="capability" column="capability_id" class="eu.wisebed.wiseml.model.setup.Capability"/>
+            <key-many-to-one name="node" column="node_id" class="eu.wisebed.wisedb.model.Node"/>
+            <key-many-to-one name="capability" column="capability_id" class="eu.wisebed.wisedb.model.Capability"/>
         </composite-id>
 
         <property name="timestamp" type="timestamp"/>

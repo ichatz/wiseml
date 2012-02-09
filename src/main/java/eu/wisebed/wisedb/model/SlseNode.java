@@ -1,7 +1,9 @@
 package eu.wisebed.wisedb.model;
 
 import eu.wisebed.wiseml.model.setup.Node;
+import org.hibernate.annotations.Entity;
 
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
@@ -9,6 +11,8 @@ import java.io.Serializable;
  * properties of a wisedb entry. In the class there are
  * getter and setter methods for the properties.
  */
+@Entity
+@Table(name="slse_nodes")
 public final class SlseNode implements Serializable {
 
 

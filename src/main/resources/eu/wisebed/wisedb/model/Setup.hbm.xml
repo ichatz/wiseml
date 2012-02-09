@@ -4,7 +4,7 @@
 
 <hibernate-mapping>
 
-    <class name="eu.wisebed.wiseml.model.setup.Setup" table="setup"
+    <class name="eu.wisebed.wisedb.model.Setup" table="setup"
            dynamic-update="true" dynamic-insert="true">
         <cache usage="read-write"/>
 
@@ -17,7 +17,7 @@
 
         <one-to-one name="testbed" class="eu.wisebed.wisedb.model.Testbed" constrained="true"/>
 
-        <component name="origin" class="eu.wisebed.wiseml.model.setup.Origin">
+        <component name="origin" class="eu.wisebed.wisedb.model.Origin">
             <property name="x" column="position_x" type="java.lang.Float"/>
             <property name="y" column="position_y" type="java.lang.Float"/>
             <property name="z" column="position_z" type="java.lang.Float"/>
@@ -25,7 +25,7 @@
             <property name="theta" column="position_theta" type="java.lang.Float"/>
         </component>
 
-        <component name="timeinfo" class="eu.wisebed.wiseml.model.setup.TimeInfo">
+        <component name="timeinfo" class="eu.wisebed.wisedb.model.TimeInfo">
             <property name="start" column="timeinfo_start"/>
             <property name="end" column="timeinfo_end"/>
             <property name="duration" column="timeinfo_duration" type="java.lang.Integer"/>
@@ -38,13 +38,13 @@
 
         <bag name="nodes" table="nodes" lazy="true" inverse="true" cascade="save-update" order-by="lower(node_id) asc">
             <key column="setup_id" not-null="true"/>
-            <one-to-many class="eu.wisebed.wiseml.model.setup.Node"/>
+            <one-to-many class="eu.wisebed.wisedb.model.Node"/>
         </bag>
 
         <bag name="link" table="links" lazy="true" inverse="true" cascade="save-update"
              order-by="lower(link_source) asc">
             <key column="setup_id" not-null="true"/>
-            <one-to-many class="eu.wisebed.wiseml.model.setup.Link"/>
+            <one-to-many class="eu.wisebed.wisedb.model.Link"/>
         </bag>
 
     </class>

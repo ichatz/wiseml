@@ -17,15 +17,15 @@
         <list name="nodes" table="slse_nodes" cascade="save-update" lazy="true">
             <key column="slse_id" not-null="true"/>
             <list-index column="node_index"/>
-            <many-to-many column="node_id" class="eu.wisebed.wiseml.model.setup.Node"/>
+            <many-to-many column="node_id" class="eu.wisebed.wisedb.model.Node"/>
         </list>
 
         <!--<set name="nodes" table="slse_nodes" inverse="true" lazy="extra" order-by="timestamp">-->
         <!--<key column="slse_id" not-null="true"/>-->
-        <!--<many-to-many class="eu.wisebed.wiseml.model.setup.Node"/>-->
+        <!--<many-to-many class="eu.wisebed.wisedb.model.Node"/>-->
         <!--</set>-->
 
-        <many-to-one name="setup" column="setup_id" class="eu.wisebed.wiseml.model.setup.Setup" not-null="true"/>
+        <many-to-one name="setup" column="setup_id" class="eu.wisebed.wisedb.model.Setup" not-null="true"/>
 
     </class>
 </hibernate-mapping>

@@ -5,7 +5,7 @@
 
 <hibernate-mapping>
 
-    <class name="eu.wisebed.wiseml.model.setup.Capability" table="capabilities"
+    <class name="eu.wisebed.wisedb.model.Capability" table="capabilities"
            dynamic-insert="true" dynamic-update="true">
         <cache usage="read-write"/>
 
@@ -18,12 +18,12 @@
 
         <set name="nodes" table="node_capabilities" inverse="true" lazy="true" order-by="lower(node_id) asc">
             <key column="capability_id" not-null="true"/>
-            <many-to-many column="node_id" class="eu.wisebed.wiseml.model.setup.Node"/>
+            <many-to-many column="node_id" class="eu.wisebed.wisedb.model.Node"/>
         </set>
 
         <set name="links" table="link_capabilities" inverse="true" lazy="true" order-by="lower(link_source) asc">
             <key column="capability_id" not-null="true"/>
-            <many-to-many class="eu.wisebed.wiseml.model.setup.Link">
+            <many-to-many class="eu.wisebed.wisedb.model.Link">
                 <column name="link_source" not-null="true"/>
                 <column name="link_target" not-null="true"/>
             </many-to-many>

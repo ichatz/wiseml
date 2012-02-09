@@ -5,7 +5,7 @@
 
 <hibernate-mapping>
 
-    <class name="eu.wisebed.wiseml.model.setup.Link" table="links"
+    <class name="eu.wisebed.wisedb.model.Link" table="links"
            dynamic-insert="true" dynamic-update="true">
         <cache usage="read-write"/>
 
@@ -22,7 +22,7 @@
             <column name="virtual" sql-type="BOOLEAN"/>
         </property>
 
-        <component name="rssi" class="eu.wisebed.wiseml.model.setup.Rssi">
+        <component name="rssi" class="eu.wisebed.wisedb.model.Rssi">
             <property name="unit" column="rssi_unit"/>
             <property name="datatype" column="rssi_datatype"/>
         </component>
@@ -34,7 +34,7 @@
                 <column name="link_target" not-null="true"/>
             </key>
             <list-index column="capability_index"/>
-            <many-to-many column="capability_id" class="eu.wisebed.wiseml.model.setup.Capability"/>
+            <many-to-many column="capability_id" class="eu.wisebed.wisedb.model.Capability"/>
         </list>
 
         <set name="readings" table="link_readings" inverse="true" lazy="extra" order-by="timestamp asc">
@@ -45,6 +45,6 @@
             <one-to-many class="eu.wisebed.wisedb.model.LinkReading"/>
         </set>
 
-        <many-to-one name="setup" column="setup_id" class="eu.wisebed.wiseml.model.setup.Setup"/>
+        <many-to-one name="setup" column="setup_id" class="eu.wisebed.wisedb.model.Setup"/>
     </class>
 </hibernate-mapping>

@@ -1,6 +1,9 @@
 package eu.wisebed.wisedb.importer;
 
 import eu.wisebed.wisedb.controller.CapabilityController;
+import eu.wisebed.wisedb.controller.LinkCapabilitiesController;
+import eu.wisebed.wisedb.controller.LinkController;
+import eu.wisebed.wisedb.controller.NodeController;
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
 import eu.wisebed.wiseml.model.setup.Capability;
@@ -27,6 +30,7 @@ public final class CapabilityImporter extends AbstractImporter<Capability> {
 
     /**
      * Convert the WiseML Capability entries to a WiseDB capability records.
+     *
      * @throws JiBXException a JibException exception.
      */
     @SuppressWarnings("NullableProblems")
@@ -35,8 +39,8 @@ public final class CapabilityImporter extends AbstractImporter<Capability> {
         // retrieve records from controllers InputStream
         final WiseMLController cnt = new WiseMLController();
         final WiseML root = cnt.loadWiseMLFromFile(getWiseMlStream());
-        final List<Node> nodeList = (root.getSetup() == null) ? null : root.getSetup().getNodes();
-        final List<Link> linkList = (root.getSetup() == null) ? null : root.getSetup().getLink();
+        final List<Node> nodeList = (root.getSetup() == null) ? null : NodeController.getInstance().list(root.getSetup().getTestbed());
+        final List<Link> linkList = (root.getSetup() == null) ? null : LinkController.getInstance().list(root.getSetup().getTestbed());
 
         // accumulate all capability records in the set bellow
         final Set<Capability> capabilitySet = new HashSet<Capability>();
@@ -51,7 +55,7 @@ public final class CapabilityImporter extends AbstractImporter<Capability> {
         }
         if (linkList != null) {
             for (Link link : linkList) {
-                final Iterator<Capability> capIt = link.getCapabilities().iterator();
+                final Iterator<Capability> capIt = LinkCapabilitiesController.getInstance().list(link).iterator();
                 capIt.next().setLinks(null);
                 while (capIt.hasNext()) {
                     capabilitySet.add(capIt.next());

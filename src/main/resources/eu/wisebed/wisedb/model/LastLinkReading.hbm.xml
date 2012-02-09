@@ -7,11 +7,11 @@
            dynamic-insert="true" dynamic-update="true">
 
         <composite-id>
-            <key-many-to-one name="link" class="eu.wisebed.wiseml.model.setup.Link">
+            <key-many-to-one name="link" class="eu.wisebed.wisedb.model.Link">
                 <column name="link_source" not-null="true"/>
                 <column name="link_target" not-null="true"/>
             </key-many-to-one>
-            <key-many-to-one name="capability" column="capability_id" class="eu.wisebed.wiseml.model.setup.Capability"/>
+            <key-many-to-one name="capability" column="capability_id" class="eu.wisebed.wisedb.model.Capability"/>
         </composite-id>
 
         <property name="timestamp" type="timestamp"/>

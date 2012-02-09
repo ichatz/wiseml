@@ -23,6 +23,6 @@
         <property name="sessionUrl"/>
         <property name="timeZone" type="timezone"/>
 
-        <one-to-one name="setup" class="eu.wisebed.wiseml.model.setup.Setup" cascade="save-update"/>
+        <one-to-one name="setup" class="eu.wisebed.wisedb.model.Setup" cascade="save-update"/>
     </class>
 </hibernate-mapping>

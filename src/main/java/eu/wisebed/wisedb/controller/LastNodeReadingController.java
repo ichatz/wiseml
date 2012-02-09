@@ -92,7 +92,7 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
 
         // retrieve testbed nodes from setup
         final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
-        List<Node> nodes = setup.getNodes();
+        List<Node> nodes = NodeController.getInstance().list(setup.getTestbed());
         if (nodes == null || nodes.isEmpty()) {
             return null;
         }
@@ -116,7 +116,7 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
 
         // retrieve testbed nodes from setup
         final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
-        List<Node> nodes = setup.getNodes();
+        List<Node> nodes = NodeController.getInstance().list(setup.getTestbed());
         if (nodes == null || nodes.isEmpty()) {
             return null;
         }

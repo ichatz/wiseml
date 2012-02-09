@@ -1,5 +1,8 @@
 package eu.wisebed.wisedb.model;
 
+import org.hibernate.annotations.Entity;
+
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
@@ -9,6 +12,8 @@ import java.io.Serializable;
  * Time: 5:25 PM
  * To change this template use File | Settings | File Templates.
  */
+@Entity
+@Table(name="semantics")
 public class Semantic implements Serializable {
 
 

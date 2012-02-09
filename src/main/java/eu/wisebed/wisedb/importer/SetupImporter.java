@@ -1,5 +1,9 @@
 package eu.wisebed.wisedb.importer;
 
+import eu.wisebed.wisedb.controller.CapabilityController;
+import eu.wisebed.wisedb.controller.LinkCapabilitiesController;
+import eu.wisebed.wisedb.controller.LinkController;
+import eu.wisebed.wisedb.controller.NodeController;
 import eu.wisebed.wisedb.controller.SetupController;
 import eu.wisebed.wisedb.controller.TestbedController;
 import eu.wisebed.wisedb.model.Testbed;
@@ -15,6 +19,7 @@ import org.jibx.runtime.JiBXException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -57,6 +62,7 @@ public final class SetupImporter extends AbstractImporter<Setup> {
 
     /**
      * Returns testbed.
+     *
      * @return returns testbed.
      */
     public Testbed getTestbed() {
@@ -65,6 +71,7 @@ public final class SetupImporter extends AbstractImporter<Setup> {
 
     /**
      * Returns CAPABILITIES set.
+     *
      * @return returns CAPABILITIES set.
      */
     public Set<Capability> getCapabilities() {
@@ -135,12 +142,14 @@ public final class SetupImporter extends AbstractImporter<Setup> {
 
     /**
      * Sets setup for nodes and links.
+     *
      * @param setup , a setup instance.
      */
     public void setNodeLinkSetup(final Setup setup) {
 
-        if (setup.getNodes() != null) {
-            for (Node node : setup.getNodes()) {
+        final List<Node> nodes = NodeController.getInstance().list(setup.getTestbed());
+        if (nodes != null) {
+            for (Node node : nodes) {
 
                 // set setup for this node
                 node.setSetup(setup);
@@ -152,15 +161,16 @@ public final class SetupImporter extends AbstractImporter<Setup> {
             }
         }
 
-        if (setup.getLink() != null) {
-            for (Link link : setup.getLink()) {
+        final List<Link> links = LinkController.getInstance().list(setup.getTestbed());
+        if (links != null) {
+            for (Link link : links) {
 
                 // set setup for this link
                 link.setSetup(setup);
 
                 // add this link's CAPABILITIES to the CAPABILITIES set
-                for (Capability capability : link.getCapabilities()) {
-                    CAPABILITIES.add(capability);
+                for (String capabilityStr : LinkController.getInstance().listLinkCapabilities(link)) {
+                    CAPABILITIES.add(CapabilityController.getInstance().getByID(capabilityStr));
                 }
             }
         }
@@ -168,26 +178,29 @@ public final class SetupImporter extends AbstractImporter<Setup> {
 
     /**
      * Reset the CAPABILITIES for links and nodes in order to match the unique CAPABILITIES set of this importer.
+     *
      * @param setup , a setup instance
      */
     public void resetNodeLinkCapabilities(final Setup setup) {
 
         // CAPABILITIES must be unique objects so nodes & links must point to the set's entities
         for (Capability capability : CAPABILITIES) {
-            if (setup.getNodes() != null) {
-                for (Node node : setup.getNodes()) {
+            final List<Node> nodes = NodeController.getInstance().list(setup.getTestbed());
+            if (nodes != null) {
+                for (Node node : nodes) {
                     if (node.getCapabilities() != null && node.getCapabilities().contains(capability)) {
                         node.getCapabilities().remove(capability);
                         node.getCapabilities().add(capability);
                     }
                 }
             }
-
-            if (setup.getLink() != null) {
-                for (Link link : setup.getLink()) {
-                    if (link.getCapabilities() != null && link.getCapabilities().contains(capability)) {
-                        link.getCapabilities().remove(capability);
-                        link.getCapabilities().add(capability);
+            final List<Link> links = LinkController.getInstance().list(setup.getTestbed());
+            if (links != null) {
+                for (Link link : links) {
+                    List<String> capabilites = LinkController.getInstance().listLinkCapabilities(link);
+                    if (capabilites != null && capabilites.contains(capability.getName())) {
+                        LinkCapabilitiesController.getInstance().delete(link, capability);
+                        LinkCapabilitiesController.getInstance().add(link,capability);
                     }
                 }
             }

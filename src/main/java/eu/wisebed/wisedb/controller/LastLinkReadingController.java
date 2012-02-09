@@ -103,7 +103,7 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
         LOGGER.info("getByTestbed(" + testbed + ")");
         // retrieve testbed nodes from setup
         final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
-        List<Link> links = setup.getLink();
+        List<Link> links = LinkController.getInstance().list(setup.getTestbed());
         if (links == null || links.isEmpty()) {
             return null;
         }
@@ -125,7 +125,7 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
         LOGGER.info("getByCapability(" + testbed + "," + capability +")");
         // retrieve testbed nodes from setup
         final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
-        List<Link> links = setup.getLink();
+        List<Link> links = LinkController.getInstance().list(setup.getTestbed());
         if (links == null || links.isEmpty()) {
             return null;
         }

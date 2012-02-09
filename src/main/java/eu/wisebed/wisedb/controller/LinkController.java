@@ -1,5 +1,6 @@
 package eu.wisebed.wisedb.controller;
 
+import eu.wisebed.wisedb.model.LinkCapabilities;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Link;
@@ -172,5 +173,14 @@ public class LinkController extends AbstractController<Link> {
         criteria.add(Restrictions.eq(SOURCE, link.getSource()));
         criteria.add(Restrictions.eq(TARGET, link.getTarget()));
         return criteria.list().size() > 0;
+    }
+
+    public List<String> listLinkCapabilities(Link link) {
+        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(LinkCapabilities.class);
+        criteria.add(Restrictions.eq(SOURCE, link.getSource()));
+        criteria.add(Restrictions.eq(TARGET, link.getTarget()));
+        criteria.setProjection(Projections.property("capability_id"));
+        return criteria.list();
     }
 }

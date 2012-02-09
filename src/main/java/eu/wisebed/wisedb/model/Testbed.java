@@ -1,7 +1,14 @@
 package eu.wisebed.wisedb.model;
 
 import eu.wisebed.wiseml.model.setup.Setup;
+import org.hibernate.annotations.Entity;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.TimeZone;
 
@@ -10,6 +17,8 @@ import java.util.TimeZone;
  * properties of a wisedb entry. In the class there are
  * getter and setter methods for the properties.
  */
+@Entity
+@Table(name = "testbeds")
 public final class Testbed implements Serializable {
 
     /**
@@ -76,6 +85,10 @@ public final class Testbed implements Serializable {
      *
      * @return Identity of the testbed.
      */
+    @Id
+    @GeneratedValue
+    @Column(name = "testbed_id", unique = true, nullable = false)
+    @Basic(fetch = FetchType.LAZY)
     public int getId() {
         return id;
     }
@@ -94,6 +107,8 @@ public final class Testbed implements Serializable {
      *
      * @return Name of the testbed.
      */
+    @Column(name = "name", unique = true, nullable = false)
+    @Basic(fetch = FetchType.LAZY)
     public String getName() {
         return name;
     }
@@ -112,6 +127,9 @@ public final class Testbed implements Serializable {
      *
      * @return urn prefix of the testbed.
      */
+    @Column(name = "urnPrefix", unique = true, nullable = false)
+
+    @Basic(fetch = FetchType.LAZY)
     public String getUrnPrefix() {
         return urnPrefix;
     }
@@ -130,6 +148,8 @@ public final class Testbed implements Serializable {
      *
      * @return Description of the testbed.
      */
+    @Column(name = "description", unique = false, nullable = false)
+    @Basic(fetch = FetchType.LAZY)
     public String getDescription() {
         return description;
     }
@@ -148,6 +168,8 @@ public final class Testbed implements Serializable {
      *
      * @return the URL of the testbed.
      */
+    @Column(name = "url", unique = false, nullable = false)
+    @Basic(fetch = FetchType.LAZY)
     public String getUrl() {
         return url;
     }
@@ -166,6 +188,8 @@ public final class Testbed implements Serializable {
      *
      * @return the URL of the SNAA endpoint.
      */
+    @Column(name = "snaaUrl", unique = true, nullable = false)
+    @Basic(fetch = FetchType.LAZY)
     public String getSnaaUrl() {
         return snaaUrl;
     }
@@ -184,6 +208,8 @@ public final class Testbed implements Serializable {
      *
      * @return the URL of the Reservation endpoint.
      */
+    @Column(name = "rsUrl", unique = true, nullable = false)
+    @Basic(fetch = FetchType.LAZY)
     public String getRsUrl() {
         return rsUrl;
     }
@@ -202,6 +228,8 @@ public final class Testbed implements Serializable {
      *
      * @return the URL of the Session Management endpoint.
      */
+    @Column(name = "sessionUrl", unique = true, nullable = false)
+    @Basic(fetch = FetchType.LAZY)
     public String getSessionUrl() {
         return sessionUrl;
     }
@@ -220,6 +248,8 @@ public final class Testbed implements Serializable {
      *
      * @return true if the testbed is federated.
      */
+    @Column(name = "federated", unique = false, nullable = false)
+    @Basic(fetch = FetchType.LAZY)
     public Boolean getFederated() {
         return federated;
     }
@@ -238,6 +268,8 @@ public final class Testbed implements Serializable {
      *
      * @return the testbed setup.
      */
+    @Column(name = "setup", unique = true, nullable = false)
+    @Basic(fetch = FetchType.LAZY)
     public Setup getSetup() {
         return setup;
     }
@@ -253,14 +285,18 @@ public final class Testbed implements Serializable {
 
     /**
      * Returns testbed's timezone.
+     *
      * @return testbed's timezone.
      */
+    @Column(name = "timeZone", unique = false, nullable = false)
+    @Basic(fetch = FetchType.LAZY)
     public TimeZone getTimeZone() {
         return timeZone;
     }
 
     /**
      * Sets testbed's timezone.
+     *
      * @param timeZone testbed's timezeone.
      */
     public void setTimeZone(final TimeZone timeZone) {

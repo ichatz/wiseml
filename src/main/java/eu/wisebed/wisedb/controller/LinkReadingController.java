@@ -59,6 +59,14 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      * Link value literal.
      */
     private static final String LINK = "link";
+    /**
+     * Source literal.
+     */
+    private static final String SOURCE = "link_source";
+    /**
+     * Target literal.
+     */
+    private static final String TARGET = "link_target";
 
     /**
      * Logger.
@@ -98,6 +106,16 @@ public class LinkReadingController extends AbstractController<LinkReading> {
     public List<LinkReading> list() {
         LOGGER.info("list()");
         return super.list(new LinkReading());
+    }
+
+    public List<LinkReading> list(Link link) {
+        LOGGER.info("list(" + link.getSource() + "--" + link.getTarget() + ")");
+        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(LinkReading.class);
+        criteria.add(Restrictions.eq(SOURCE, link.getSource()));
+        criteria.add(Restrictions.eq(TARGET, link.getTarget()));
+        return criteria.list();
+
     }
 
     /**
@@ -154,9 +172,6 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         link.setTarget(targetId);
         link.setEncrypted(false);
         link.setVirtual(false);
-        link.setRssi(rssi);
-        link.setCapabilities(new ArrayList<Capability>());
-        link.setReadings(new HashSet<LinkReading>());
         link.setSetup(testbed.getSetup());
         LinkController.getInstance().add(link);
 
@@ -260,20 +275,20 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             link = prepareInsertLink(testbed, sourceId, targetId);
             if (capability == null) {
                 capability = prepareInsertCapability(capabilityName);
-                link.getCapabilities().add(capability);
+                LinkCapabilitiesController.getInstance().add(link,capability);
                 LinkController.getInstance().update(link);
             } else {
-                link.getCapabilities().add(capability);
+                LinkCapabilitiesController.getInstance().add(link,capability);
                 LinkController.getInstance().update(link);
             }
         } else {
             if (capability == null) {
                 capability = prepareInsertCapability(capabilityName);
-                link.getCapabilities().add(capability);
+                LinkCapabilitiesController.getInstance().add(link,capability);
                 LinkController.getInstance().update(link);
             } else {
                 if (!LinkController.getInstance().isAssociated(capability, testbed, link)) {
-                    link.getCapabilities().add(capability);
+                    LinkCapabilitiesController.getInstance().add(link,capability);
                     LinkController.getInstance().update(link);
                 }
             }

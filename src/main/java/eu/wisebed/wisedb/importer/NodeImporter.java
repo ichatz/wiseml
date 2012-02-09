@@ -28,7 +28,8 @@ public final class NodeImporter extends AbstractImporter<Node> {
         // retrieve setup record record from controllers InputStream
         final WiseMLController cnt = new WiseMLController();
         final WiseML root = cnt.loadWiseMLFromFile(getWiseMlStream());
-        final List<Node> nodeList = root.getSetup().getNodes();
+        final List<Node> nodeList = NodeController.getInstance().list(root.getSetup().getTestbed());
+
 
         // check for null entry
         if (nodeList == null) {
@@ -56,7 +57,7 @@ public final class NodeImporter extends AbstractImporter<Node> {
         // retrieve setup record record from controllers InputStream
         final WiseMLController cnt = new WiseMLController();
         final WiseML root = cnt.loadWiseMLFromFile(getWiseMlStream());
-        final List<Node> nodeList = root.getSetup().getNodes();
+        final List<Node> nodeList = NodeController.getInstance().list(root.getSetup().getTestbed());
 
         // check for null entry
         if (nodeList == null) {

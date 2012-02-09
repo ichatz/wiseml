@@ -5,8 +5,6 @@ import eu.wisebed.wisedb.controller.TestbedController;
 import eu.wisebed.wisedb.importer.SetupImporter;
 import eu.wisebed.wisedb.importer.TestbedImporter;
 import eu.wisebed.wisedb.model.Testbed;
-import eu.wisebed.wiseml.model.setup.Link;
-import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Origin;
 import eu.wisebed.wiseml.model.setup.Setup;
 import eu.wisebed.wiseml.model.setup.TimeInfo;
@@ -16,7 +14,6 @@ import org.hibernate.Transaction;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.TimeZone;
 
 /**
@@ -77,8 +74,8 @@ public class AddSimpleTestbed {
 
             // set the testbed of the setup to be imported
             Setup setup = new Setup();
-            setup.setLink(new ArrayList<Link>());
-            setup.setNodes(new ArrayList<Node>());
+//            setup.setLink(new ArrayList<Link>());
+//            setup.setNodes(new ArrayList<Node>());
             Origin origin = new Origin();
             origin.setPhi((float)0);
             origin.setTheta((float)0);

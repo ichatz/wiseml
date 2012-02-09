@@ -28,7 +28,7 @@ public final class LinkImporter extends AbstractImporter<Link> {
         // retrieve setup record record from controllers InputStream
         final WiseMLController cnt = new WiseMLController();
         final WiseML root = cnt.loadWiseMLFromFile(getWiseMlStream());
-        final List<Link> linkList = root.getSetup().getLink();
+        final List<Link> linkList = LinkController.getInstance().list(root.getSetup().getTestbed());
 
         // check for null entry
         if (linkList == null) {
