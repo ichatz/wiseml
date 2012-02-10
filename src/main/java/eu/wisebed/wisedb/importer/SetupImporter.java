@@ -1,18 +1,20 @@
 package eu.wisebed.wisedb.importer;
 
 import eu.wisebed.wisedb.controller.CapabilityController;
-import eu.wisebed.wisedb.controller.LinkCapabilitiesController;
+import eu.wisebed.wisedb.controller.LinkCapabilityController;
 import eu.wisebed.wisedb.controller.LinkController;
 import eu.wisebed.wisedb.controller.NodeController;
 import eu.wisebed.wisedb.controller.SetupController;
 import eu.wisebed.wisedb.controller.TestbedController;
+import eu.wisebed.wisedb.model.Link;
+import eu.wisebed.wisedb.model.Node;
+import eu.wisebed.wisedb.model.Origin;
+import eu.wisebed.wisedb.model.Setup;
 import eu.wisebed.wisedb.model.Testbed;
+import eu.wisebed.wisedb.model.TimeInfo;
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
 import eu.wisebed.wiseml.model.setup.Capability;
-import eu.wisebed.wiseml.model.setup.Link;
-import eu.wisebed.wiseml.model.setup.Node;
-import eu.wisebed.wiseml.model.setup.Setup;
 import org.apache.log4j.Logger;
 import org.jibx.runtime.JiBXException;
 
@@ -88,7 +90,24 @@ public final class SetupImporter extends AbstractImporter<Setup> {
         // retrieve setup record record from controllers InputStream
         final WiseMLController cnt = new WiseMLController();
         final WiseML root = cnt.loadWiseMLFromFile(getWiseMlStream());
-        final Setup setup = root.getSetup();
+        final eu.wisebed.wisedb.model.Setup setup = new Setup();
+        setup.setCoordinateType(root.getSetup().getCoordinateType());
+        setup.setDescription(root.getSetup().getDescription());
+        setup.setId(root.getSetup().getId());
+        final Origin origin = new Origin();
+        origin.setPhi(root.getSetup().getOrigin().getPhi());
+        origin.setTheta(root.getSetup().getOrigin().getTheta());
+        origin.setX(root.getSetup().getOrigin().getX());
+        origin.setY(root.getSetup().getOrigin().getY());
+        origin.setZ(root.getSetup().getOrigin().getZ());
+        setup.setOrigin(origin);
+        final TimeInfo timeInfo = new TimeInfo();
+        timeInfo.setDuration(root.getSetup().getTimeinfo().getDuration());
+        timeInfo.setEnd(root.getSetup().getTimeinfo().getEnd());
+        timeInfo.setStart(root.getSetup().getTimeinfo().getStart());
+        timeInfo.setUnit(root.getSetup().getTimeinfo().getUnit());
+        setup.setTimeinfo(timeInfo);
+
 
         // call convert(setup)
         convert(setup);
@@ -100,7 +119,7 @@ public final class SetupImporter extends AbstractImporter<Setup> {
      * @param setup , a setup instance.
      * @throws JiBXException a JiBXException exception.
      */
-    public void convert(final Setup setup) throws JiBXException {
+    public void convert(final eu.wisebed.wisedb.model.Setup setup) throws JiBXException {
 
         // call convertCollection(list of setups)
         convertCollection(Arrays.asList(setup));
@@ -112,13 +131,13 @@ public final class SetupImporter extends AbstractImporter<Setup> {
      * @param collection , collection of setup entries.
      * @throws JiBXException a JiBXException exception.
      */
-    public void convertCollection(final Collection<Setup> collection) throws JiBXException {
+    public void convertCollection(final Collection<eu.wisebed.wisedb.model.Setup> collection) throws JiBXException {
 
         // set entity collection
         setEntities(collection);
 
         // import records to db
-        for (Setup setup : getEntities()) {
+        for (eu.wisebed.wisedb.model.Setup setup : getEntities()) {
 
             // set link,node, CAPABILITIES and setup
             setNodeLinkSetup(setup);
@@ -128,7 +147,6 @@ public final class SetupImporter extends AbstractImporter<Setup> {
 
             // set the testbed setup relation
             testbed.setSetup(setup);
-            setup.setTestbed(testbed);
 
             // update testbed db
             TestbedController.getInstance().update(testbed);
@@ -147,7 +165,7 @@ public final class SetupImporter extends AbstractImporter<Setup> {
      */
     public void setNodeLinkSetup(final Setup setup) {
 
-        final List<Node> nodes = NodeController.getInstance().list(setup.getTestbed());
+        final List<Node> nodes = NodeController.getInstance().list(TestbedController.getInstance().getBySetup(setup));
         if (nodes != null) {
             for (Node node : nodes) {
 
@@ -155,13 +173,14 @@ public final class SetupImporter extends AbstractImporter<Setup> {
                 node.setSetup(setup);
 
                 // add this node capability to the CAPABILITIES set
-                for (Capability capability : node.getCapabilities()) {
-                    CAPABILITIES.add(capability);
-                }
+                //TODO
+//                for (Capability capability : node.getCapabilities()) {
+//                    CAPABILITIES.add(capability);
+//                }
             }
         }
 
-        final List<Link> links = LinkController.getInstance().list(setup.getTestbed());
+        final List<Link> links = LinkController.getInstance().list(TestbedController.getInstance().getBySetup(setup));
         if (links != null) {
             for (Link link : links) {
 
@@ -185,22 +204,22 @@ public final class SetupImporter extends AbstractImporter<Setup> {
 
         // CAPABILITIES must be unique objects so nodes & links must point to the set's entities
         for (Capability capability : CAPABILITIES) {
-            final List<Node> nodes = NodeController.getInstance().list(setup.getTestbed());
-            if (nodes != null) {
-                for (Node node : nodes) {
-                    if (node.getCapabilities() != null && node.getCapabilities().contains(capability)) {
-                        node.getCapabilities().remove(capability);
-                        node.getCapabilities().add(capability);
-                    }
-                }
-            }
-            final List<Link> links = LinkController.getInstance().list(setup.getTestbed());
+            final List<Node> nodes = NodeController.getInstance().list(TestbedController.getInstance().getBySetup(setup));
+//            if (nodes != null) {
+//                for (Node node : nodes) {
+//                    if (node.getCapabilities() != null && node.getCapabilities().contains(capability)) {
+//                        node.getCapabilities().remove(capability);
+//                        node.getCapabilities().add(capability);
+//                    }
+//                }
+//            }
+            final List<Link> links = LinkController.getInstance().list(TestbedController.getInstance().getBySetup(setup));
             if (links != null) {
                 for (Link link : links) {
                     List<String> capabilites = LinkController.getInstance().listLinkCapabilities(link);
                     if (capabilites != null && capabilites.contains(capability.getName())) {
-                        LinkCapabilitiesController.getInstance().delete(link, capability);
-                        LinkCapabilitiesController.getInstance().add(link,capability);
+                        LinkCapabilityController.getInstance().delete(link, capability);
+                        LinkCapabilityController.getInstance().add(link, capability);
                     }
                 }
             }

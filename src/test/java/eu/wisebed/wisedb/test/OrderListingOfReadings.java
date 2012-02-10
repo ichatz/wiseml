@@ -2,14 +2,9 @@ package eu.wisebed.wisedb.test;
 
 import eu.wisebed.wisedb.HibernateUtil;
 import eu.wisebed.wisedb.controller.NodeController;
-import eu.wisebed.wisedb.controller.NodeReadingController;
-import eu.wisebed.wisedb.model.NodeReading;
-import eu.wisebed.wiseml.model.setup.Capability;
-import eu.wisebed.wiseml.model.setup.Node;
+import eu.wisebed.wisedb.model.Node;
 import org.apache.log4j.Logger;
 import org.hibernate.Transaction;
-
-import java.util.List;
 
 public class OrderListingOfReadings {
 
@@ -26,17 +21,17 @@ public class OrderListingOfReadings {
         Node thisNode = (Node) NodeController.getInstance().list().iterator().next();
 
         // get nodes capability
-        for (Object thisC : thisNode.getCapabilities().toArray()) {
-            eu.wisebed.wiseml.model.setup.Capability thisCap= (eu.wisebed.wiseml.model.setup.Capability) thisC;
-            LOGGER.debug("Node : " + thisNode.getId() + " Capability : " + thisCap.getName());
-            // get node reading controller
-            NodeReadingController nrc = NodeReadingController.getInstance();
-
-            List<NodeReading> myReadings = nrc.listNodeReadings(thisNode, thisCap);
-            for (NodeReading myReading : myReadings) {
-                LOGGER.debug("\t" + myReading.getTimestamp() + "\t" + myReading.getReading());
-            }
-        }
+//        for (Object thisC : thisNode.getCapabilities().toArray()) {
+//            eu.wisebed.wiseml.model.setup.Capability thisCap= (eu.wisebed.wiseml.model.setup.Capability) thisC;
+//            LOGGER.debug("Node : " + thisNode.getId() + " Capability : " + thisCap.getName());
+//            // get node reading controller
+//            NodeReadingController nrc = NodeReadingController.getInstance();
+//
+//            List<NodeReading> myReadings = nrc.listNodeReadings(thisNode, thisCap);
+//            for (NodeReading myReading : myReadings) {
+//                LOGGER.debug("\t" + myReading.getTimestamp() + "\t" + myReading.getReading());
+//            }
+//        }
     }
 
 }

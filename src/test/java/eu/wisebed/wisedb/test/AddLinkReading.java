@@ -3,7 +3,7 @@ package eu.wisebed.wisedb.test;
 import eu.wisebed.wisedb.HibernateUtil;
 import eu.wisebed.wisedb.controller.LinkReadingController;
 import eu.wisebed.wisedb.controller.NodeController;
-import eu.wisebed.wiseml.model.setup.Node;
+import eu.wisebed.wisedb.model.Node;
 import org.apache.log4j.Logger;
 import org.hibernate.Transaction;
 

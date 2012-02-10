@@ -108,13 +108,13 @@ public class AbstractController<E> {
     /**
      * Get the entry from the database that corresponds to the input id.
      *
-     * @param entity an Entity object that may be of every type of entity.
+     * @param entity   an Entity object that may be of every type of entity.
      * @param entityID the (int) id of the Entity object.
      * @return an Entity object.
      */
     public E getByID(final E entity, final int entityID) {
         final Session session = sessionFactory.getCurrentSession();
-        return (E)  session.get(entity.getClass(), entityID);
+        return (E) session.get(entity.getClass(), entityID);
     }
 
     /**

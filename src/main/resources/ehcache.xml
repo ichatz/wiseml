@@ -4,24 +4,24 @@
 
     <defaultCache eternal="true" overflowToDisk="false"/>
 
-    <cache name="eu.wisebed.model.setup.Node"
-           maxElementsInMemory="500"
-           eternal="true"
-           overflowToDisk="false"/>
-    <cache name="eu.wisebed.model.setup.Link"
-           maxElementsInMemory="1000"
-           eternal="true"
-           overflowToDisk="false"/>
-    <cache name="eu.wisebed.model.setup.Capability"
-           maxElementsInMemory="100"
-           eternal="true"
-           overflowToDisk="false"/>
+    <!--<cache name="eu.wisebed.model.setup.Node"-->
+           <!--maxElementsInMemory="500"-->
+           <!--eternal="true"-->
+           <!--overflowToDisk="false"/>-->
+    <!--<cache name="eu.wisebed.model.setup.Link"-->
+           <!--maxElementsInMemory="1000"-->
+           <!--eternal="true"-->
+           <!--overflowToDisk="false"/>-->
+    <!--<cache name="eu.wisebed.model.setup.Capability"-->
+           <!--maxElementsInMemory="100"-->
+           <!--eternal="true"-->
+           <!--overflowToDisk="false"/>-->
     <cache name="eu.wisebed.model.setup.Testbed"
-           maxElementsInMemory="20"
+           maxElementsInMemory="5"
            eternal="true"
            overflowToDisk="false"/>
-    <cache name="eu.wisebed.model.setup.Setup"
-           maxElementsInMemory="20"
-           eternal="true"
-           overflowToDisk="false"/>
+    <!--<cache name="eu.wisebed.model.setup.Setup"-->
+           <!--maxElementsInMemory="20"-->
+           <!--eternal="true"-->
+           <!--overflowToDisk="false"/>-->
 </ehcache>

@@ -3,8 +3,8 @@ package eu.wisebed.wisedb.controller;
 import eu.wisebed.wisedb.model.LastNodeReading;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
-import eu.wisebed.wiseml.model.setup.Node;
-import eu.wisebed.wiseml.model.setup.Setup;
+import eu.wisebed.wisedb.model.Node;
+import eu.wisebed.wisedb.model.Setup;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -92,7 +92,7 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
 
         // retrieve testbed nodes from setup
         final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
-        List<Node> nodes = NodeController.getInstance().list(setup.getTestbed());
+        List<Node> nodes = NodeController.getInstance().list(TestbedController.getInstance().getBySetup(setup));
         if (nodes == null || nodes.isEmpty()) {
             return null;
         }
@@ -116,7 +116,7 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
 
         // retrieve testbed nodes from setup
         final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
-        List<Node> nodes = NodeController.getInstance().list(setup.getTestbed());
+        List<Node> nodes = NodeController.getInstance().list(TestbedController.getInstance().getBySetup(setup));
         if (nodes == null || nodes.isEmpty()) {
             return null;
         }

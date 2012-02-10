@@ -2,19 +2,18 @@ package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.exception.UnknownTestbedException;
 import eu.wisebed.wisedb.model.LastLinkReading;
+import eu.wisebed.wisedb.model.Link;
 import eu.wisebed.wisedb.model.LinkReading;
+import eu.wisebed.wisedb.model.Node;
 import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
-import eu.wisebed.wiseml.model.setup.Link;
-import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiseml.model.setup.Rssi;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -140,11 +139,10 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         LOGGER.info("prepareInsertNode(" + testbed + "," + nodeId + ")");
         final Node node = new Node();
         node.setId(nodeId);
-        node.setDescription(DESCRIPTION);
-        node.setProgramDetails(PROGRAM_DETAILS);
-        node.setGateway("false");
-        node.setReadings(new HashSet<NodeReading>());
-        node.setCapabilities(new ArrayList<Capability>());
+        //TODO
+//        node.setDescription(DESCRIPTION);
+//        node.setProgramDetails(PROGRAM_DETAILS);
+//        node.setGateway("false");
         node.setSetup(testbed.getSetup());
         NodeController.getInstance().add(node);
 
@@ -170,8 +168,9 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         final Link link = new Link();
         link.setSource(sourceId);
         link.setTarget(targetId);
-        link.setEncrypted(false);
-        link.setVirtual(false);
+        //TODO
+//        link.setEncrypted(false);
+//        link.setVirtual(false);
         link.setSetup(testbed.getSetup());
         LinkController.getInstance().add(link);
 
@@ -193,9 +192,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         capability.setDatatype(DATATYPE);
         capability.setDefaultvalue(DEFAULT_VALUE);
         capability.setUnit(UNIT);
-        capability.setNodes(new HashSet<Node>());
         capability.setNodeReadings(new HashSet<NodeReading>());
-        capability.setLinks(new HashSet<Link>());
         capability.setLinkReadings(new HashSet<LinkReading>());
         CapabilityController.getInstance().add(capability);
 
@@ -275,20 +272,20 @@ public class LinkReadingController extends AbstractController<LinkReading> {
             link = prepareInsertLink(testbed, sourceId, targetId);
             if (capability == null) {
                 capability = prepareInsertCapability(capabilityName);
-                LinkCapabilitiesController.getInstance().add(link,capability);
+                LinkCapabilityController.getInstance().add(link, capability);
                 LinkController.getInstance().update(link);
             } else {
-                LinkCapabilitiesController.getInstance().add(link,capability);
+                LinkCapabilityController.getInstance().add(link, capability);
                 LinkController.getInstance().update(link);
             }
         } else {
             if (capability == null) {
                 capability = prepareInsertCapability(capabilityName);
-                LinkCapabilitiesController.getInstance().add(link,capability);
+                LinkCapabilityController.getInstance().add(link, capability);
                 LinkController.getInstance().update(link);
             } else {
                 if (!LinkController.getInstance().isAssociated(capability, testbed, link)) {
-                    LinkCapabilitiesController.getInstance().add(link,capability);
+                    LinkCapabilityController.getInstance().add(link, capability);
                     LinkController.getInstance().update(link);
                 }
             }

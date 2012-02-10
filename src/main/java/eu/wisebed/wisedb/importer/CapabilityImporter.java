@@ -1,14 +1,14 @@
 package eu.wisebed.wisedb.importer;
 
 import eu.wisebed.wisedb.controller.CapabilityController;
-import eu.wisebed.wisedb.controller.LinkCapabilitiesController;
+import eu.wisebed.wisedb.controller.LinkCapabilityController;
 import eu.wisebed.wisedb.controller.LinkController;
 import eu.wisebed.wisedb.controller.NodeController;
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
 import eu.wisebed.wiseml.model.setup.Capability;
-import eu.wisebed.wiseml.model.setup.Link;
-import eu.wisebed.wiseml.model.setup.Node;
+import eu.wisebed.wisedb.model.Link;
+import eu.wisebed.wisedb.model.Node;
 import org.apache.log4j.Logger;
 import org.jibx.runtime.JiBXException;
 
@@ -46,16 +46,16 @@ public final class CapabilityImporter extends AbstractImporter<Capability> {
         final Set<Capability> capabilitySet = new HashSet<Capability>();
         if (nodeList != null) {
             for (Node node : nodeList) {
-                final Iterator<Capability> capIt = node.getCapabilities().iterator();
-                capIt.next().setNodes(null);
-                while (capIt.hasNext()) {
-                    capabilitySet.add(capIt.next());
-                }
+//                final Iterator<Capability> capIt = node.getCapabilities().iterator();
+//                capIt.next().setNodes(null);
+//                while (capIt.hasNext()) {
+//                    capabilitySet.add(capIt.next());
+//                }
             }
         }
         if (linkList != null) {
             for (Link link : linkList) {
-                final Iterator<Capability> capIt = LinkCapabilitiesController.getInstance().list(link).iterator();
+                final Iterator<Capability> capIt = LinkCapabilityController.getInstance().list(link).iterator();
                 capIt.next().setLinks(null);
                 while (capIt.hasNext()) {
                     capabilitySet.add(capIt.next());

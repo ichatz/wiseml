@@ -2,9 +2,9 @@ package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.model.Slse;
 import eu.wisebed.wisedb.model.Testbed;
-import eu.wisebed.wiseml.model.setup.Link;
-import eu.wisebed.wiseml.model.setup.Node;
-import eu.wisebed.wiseml.model.setup.Setup;
+import eu.wisebed.wisedb.model.Link;
+import eu.wisebed.wisedb.model.Node;
+import eu.wisebed.wisedb.model.Setup;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -96,7 +96,11 @@ public class TestbedController extends AbstractController<Testbed> {
      */
     public List<Testbed> list() {
         LOGGER.info("list()");
-        return super.list(new Testbed());
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(Testbed.class);
+        List z = criteria.list();
+        System.out.println("size " + z.size());
+        return z;
     }
 
     /**
@@ -160,7 +164,7 @@ public class TestbedController extends AbstractController<Testbed> {
             final Object[] obj = (Object[]) iter.next();
             final Setup setup = (Setup) obj[0];
             final long count = (Long) obj[1];
-            resultsMap.put(setup.getTestbed().getName(), count);
+            resultsMap.put(getBySetup(setup).getName(), count);
 
         }
 
@@ -193,7 +197,7 @@ public class TestbedController extends AbstractController<Testbed> {
             final Object[] obj = (Object[]) iter.next();
             final Setup setup = (Setup) obj[0];
             final long count = (Long) obj[1];
-            resultsMap.put(setup.getTestbed().getName(), count);
+            resultsMap.put(getBySetup(setup).getName(), count);
 
         }
 
@@ -202,6 +206,7 @@ public class TestbedController extends AbstractController<Testbed> {
 
     /**
      * Returns the number of slses in database for each setup
+     *
      * @return map containing the setups and slse count
      */
     public Map<String, Long> countSlses() {
@@ -225,10 +230,19 @@ public class TestbedController extends AbstractController<Testbed> {
             final Object[] obj = (Object[]) iter.next();
             final Setup setup = (Setup) obj[0];
             final long count = (Long) obj[1];
-            resultsMap.put(setup.getTestbed().getName(), count);
+            resultsMap.put(getBySetup(setup).getName(), count);
 
         }
 
         return resultsMap;
+    }
+
+    public Testbed getBySetup(eu.wisebed.wisedb.model.Setup setup) {
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(Testbed.class);
+        criteria.add(Restrictions.eq("setup_id", setup.getId()));
+        criteria.setMaxResults(1);
+        return (Testbed) criteria.list().get(0);
+
     }
 }

@@ -1,9 +1,9 @@
 package eu.wisebed.wisedb.importer;
 
 import eu.wisebed.wisedb.controller.NodeController;
+import eu.wisebed.wisedb.model.Node;
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
-import eu.wisebed.wiseml.model.setup.Node;
 import org.jibx.runtime.JiBXException;
 
 import java.util.Collection;

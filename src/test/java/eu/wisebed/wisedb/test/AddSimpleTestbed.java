@@ -5,9 +5,9 @@ import eu.wisebed.wisedb.controller.TestbedController;
 import eu.wisebed.wisedb.importer.SetupImporter;
 import eu.wisebed.wisedb.importer.TestbedImporter;
 import eu.wisebed.wisedb.model.Testbed;
-import eu.wisebed.wiseml.model.setup.Origin;
-import eu.wisebed.wiseml.model.setup.Setup;
-import eu.wisebed.wiseml.model.setup.TimeInfo;
+import eu.wisebed.wisedb.model.Origin;
+import eu.wisebed.wisedb.model.Setup;
+import eu.wisebed.wisedb.model.TimeInfo;
 import org.apache.log4j.Logger;
 import org.hibernate.Transaction;
 

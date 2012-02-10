@@ -1,8 +1,8 @@
 package eu.wisebed.wisedb.controller;
 
-import eu.wisebed.wisedb.model.LinkCapabilities;
+import eu.wisebed.wisedb.model.LinkCapability;
 import eu.wisebed.wiseml.model.setup.Capability;
-import eu.wisebed.wiseml.model.setup.Link;
+import eu.wisebed.wisedb.model.Link;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -15,13 +15,13 @@ import java.util.List;
  * CRUD operations for LinkCapabilites entities.
  */
 @SuppressWarnings("unchecked")
-public class LinkCapabilitiesController extends AbstractController<LinkCapabilities> {
+public class LinkCapabilityController extends AbstractController<LinkCapability> {
 
 
     /**
      * static instance(ourInstance) initialized as null.
      */
-    private static LinkCapabilitiesController ourInstance = null;
+    private static LinkCapabilityController ourInstance = null;
 
     /**
      * Source literal.
@@ -40,13 +40,13 @@ public class LinkCapabilitiesController extends AbstractController<LinkCapabilit
     /**
      * Logger.
      */
-    private static final Logger LOGGER = Logger.getLogger(LinkCapabilitiesController.class);
+    private static final Logger LOGGER = Logger.getLogger(LinkCapabilityController.class);
 
 
     /**
      * Public constructor .
      */
-    public LinkCapabilitiesController() {
+    public LinkCapabilityController() {
         // Does nothing
         super();
     }
@@ -58,10 +58,10 @@ public class LinkCapabilitiesController extends AbstractController<LinkCapabilit
      *
      * @return ourInstance
      */
-    public static LinkCapabilitiesController getInstance() {
-        synchronized (LinkCapabilitiesController.class) {
+    public static LinkCapabilityController getInstance() {
+        synchronized (LinkCapabilityController.class) {
             if (ourInstance == null) {
-                ourInstance = new LinkCapabilitiesController();
+                ourInstance = new LinkCapabilityController();
             }
         }
 
@@ -73,7 +73,7 @@ public class LinkCapabilitiesController extends AbstractController<LinkCapabilit
         LOGGER.info("delete(" + link.getSource() + "--" + link.getTarget() + "," + capability.getName() + ")");
 
         final Session session = this.getSessionFactory().getCurrentSession();
-        final LinkCapabilities linkCapabilities = new LinkCapabilities();
+        final LinkCapability linkCapabilities = new LinkCapability();
         linkCapabilities.setCapabilityId(capability.getName());
         linkCapabilities.setSource(link.getSource());
         linkCapabilities.setTarget(link.getTarget());
@@ -85,7 +85,7 @@ public class LinkCapabilitiesController extends AbstractController<LinkCapabilit
         LOGGER.info("add(" + link.getSource() + "--" + link.getTarget() + "," + capability.getName() + ")");
 
         final Session session = this.getSessionFactory().getCurrentSession();
-        final LinkCapabilities linkCapabilities = new LinkCapabilities();
+        final LinkCapability linkCapabilities = new LinkCapability();
         linkCapabilities.setCapabilityId(capability.getName());
         linkCapabilities.setSource(link.getSource());
         linkCapabilities.setTarget(link.getTarget());
@@ -95,7 +95,7 @@ public class LinkCapabilitiesController extends AbstractController<LinkCapabilit
     public List<Capability> list(Link link) {
         LOGGER.info("list(" + link.getSource() + "--" + link.getTarget() + ")");
         final Session session = getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(LinkCapabilities.class);
+        final Criteria criteria = session.createCriteria(LinkCapability.class);
         criteria.add(Restrictions.eq(SOURCE, link.getSource()));
         criteria.add(Restrictions.eq(TARGET, link.getTarget()));
         List<Capability> capabilities = new ArrayList<Capability>();

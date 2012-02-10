@@ -1,10 +1,10 @@
 package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.model.LastLinkReading;
+import eu.wisebed.wisedb.model.Link;
+import eu.wisebed.wisedb.model.Setup;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
-import eu.wisebed.wiseml.model.setup.Link;
-import eu.wisebed.wiseml.model.setup.Setup;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -26,7 +26,7 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
     /**
      * Link literal.
      */
-    private static final  String LINK = "link";
+    private static final String LINK = "link";
 
     /**
      * Capability literal.
@@ -103,7 +103,7 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
         LOGGER.info("getByTestbed(" + testbed + ")");
         // retrieve testbed nodes from setup
         final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
-        List<Link> links = LinkController.getInstance().list(setup.getTestbed());
+        List<Link> links = LinkController.getInstance().list(TestbedController.getInstance().getBySetup(setup));
         if (links == null || links.isEmpty()) {
             return null;
         }
@@ -122,10 +122,10 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
      * @return a list of last reading rows for each capability.
      */
     public List<LastLinkReading> getByCapability(final Testbed testbed, final Capability capability) {
-        LOGGER.info("getByCapability(" + testbed + "," + capability +")");
+        LOGGER.info("getByCapability(" + testbed + "," + capability + ")");
         // retrieve testbed nodes from setup
         final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
-        List<Link> links = LinkController.getInstance().list(setup.getTestbed());
+        List<Link> links = LinkController.getInstance().list(TestbedController.getInstance().getBySetup(setup));
         if (links == null || links.isEmpty()) {
             return null;
         }

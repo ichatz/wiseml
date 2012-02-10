@@ -2,7 +2,10 @@ package eu.wisebed.wisedb.model;
 
 import org.hibernate.annotations.Entity;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -15,6 +18,64 @@ import java.io.Serializable;
 @Entity
 @Table(name = "link_capabilities")
 public class LinkCapability implements Serializable {
+    /**
+     * Serial Unique Version ID.
+     */
+
+    private static final long serialVersionUID = -3419203591130581062L;
+
+    @Id
+    @GeneratedValue
+    @Column(name = "id", nullable = false)
+    @Basic(fetch = FetchType.LAZY)
+    private int id;
+
+    /**
+     * the name of the object Capability.
+     */
+    @Column(name = "capability_id")
+    @Basic(fetch = FetchType.LAZY)
+    private String capabilityId;
+    /**
+     * the name of the object source.
+     */
+    @Column(name = "source_id")
+    @Basic(fetch = FetchType.LAZY)
+    private String source;
+    /**
+     * the name of the object target.
+     */
+    @Column(name = "target_id")
+    @Basic(fetch = FetchType.LAZY)
+    private String target;
+    /**
+     * the datatype of the capability.
+     */
+    @Column(name = "datatype")
+    @Basic(fetch = FetchType.LAZY)
+    private String datatype;
+
+    /**
+     * the unit of the capability.
+     */
+    @Column(name = "unit")
+    @Basic(fetch = FetchType.LAZY)
+    private String unit;
+
+    /**
+     * the unit of the capability.
+     */
+    @Column(name = "defaultvalue")
+    @Basic(fetch = FetchType.LAZY)
+    private String defaultvalue;
+
+    /**
+     * Description.
+     */
+    @Column(name = "description")
+    @Basic(fetch = FetchType.LAZY)
+    private String description;
+
 
     public int getId() {
         return id;
@@ -24,88 +85,38 @@ public class LinkCapability implements Serializable {
         this.id = id;
     }
 
-    public String getSource_id() {
-        return source_id;
+    public String getSource() {
+        return source;
     }
 
-    public void setSource_id(String source_id) {
-        this.source_id = source_id;
+    public void setSource(String source) {
+        this.source = source;
     }
 
-    public String getTarget_id() {
-        return target_id;
+    public String getTarget() {
+        return target;
     }
 
-    public void setTarget_id(String target_id) {
-        this.target_id = target_id;
+    public void setTarget(String target) {
+        this.target = target;
     }
-
-    /**
-     * Serial Unique Version ID.
-     */
-
-    private static final long serialVersionUID = -3419203591130581062L;
-
-    @Id
-    @Column(name = "id", nullable = false)
-    private int id;
-
-    /**
-     * the name of the object Capability.
-     */
-    @Column(name = "capability_id")
-    private String name;
-    /**
-     * the name of the object source.
-     */
-    @Column(name = "source_id")
-    private String source_id;
-    /**
-     * the name of the object target.
-     */
-    @Column(name = "target_id")
-    private String target_id;
-
-    /**
-     * the datatype of the capability.
-     */
-    @Column(name = "datatype")
-    private String datatype;
-
-    /**
-     * the unit of the capability.
-     */
-    @Column(name = "unit")
-    private String unit;
-
-    /**
-     * the unit of the capability.
-     */
-    @Column(name = "defaultvalue")
-    private String defaultvalue;
-
-    /**
-     * Description.
-     */
-    @Column(name = "description")
-    private String description;
 
     /**
      * this method returns the name of the capability.
      *
      * @return the name of the capability.
      */
-    public String getName() {
-        return name;
+    public String getCapabilityId() {
+        return capabilityId;
     }
 
     /**
      * this method sets the name of the capability.
      *
-     * @param name the name of the capability.
+     * @param capabilityId the name of the capability.
      */
-    public void setName(final String name) {
-        this.name = name;
+    public void setCapabilityId(final String capabilityId) {
+        this.capabilityId = capabilityId;
     }
 
     /**

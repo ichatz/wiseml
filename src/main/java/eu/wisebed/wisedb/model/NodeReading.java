@@ -1,7 +1,6 @@
 package eu.wisebed.wisedb.model;
 
 import eu.wisebed.wiseml.model.setup.Capability;
-import eu.wisebed.wiseml.model.setup.Node;
 import org.hibernate.annotations.Entity;
 
 import javax.persistence.Table;
@@ -14,7 +13,7 @@ import java.util.Date;
  * getter and setter methods for the properties.
  */
 @Entity
-@Table(name="node_readings")
+@Table(name = "node_readings")
 public final class NodeReading implements Serializable {
 
     /**

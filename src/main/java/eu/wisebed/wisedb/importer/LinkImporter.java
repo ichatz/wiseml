@@ -3,7 +3,7 @@ package eu.wisebed.wisedb.importer;
 import eu.wisebed.wisedb.controller.LinkController;
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
-import eu.wisebed.wiseml.model.setup.Link;
+import eu.wisebed.wisedb.model.Link;
 import org.jibx.runtime.JiBXException;
 
 import java.util.Collection;

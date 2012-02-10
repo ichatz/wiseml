@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-configuration PUBLIC
-        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
@@ -41,26 +41,33 @@
         <property name="hibernate.cache.use_second_level_cache">true</property>
 
         <!-- Disable Query caching -->
-        <property name="hibernate.cache.use_query_cache">false</property>
+        <property name="hibernate.cache.use_query_cache">true</property>
 
         <!-- Force Hibernate to use instances of Ehcache CacheManage -->
         <property name="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory
         </property>
 
         <!-- Mapping files for read-only tables -->
-        <!--<mapping resource="eu/wisebed/wisedb/model/Testbed.hbm.xml"/>-->
-        <mapping class="eu.wisebed.wisedb.model.Testbed"/>
-        <mapping class="eu.wisebed.wisedb.model.Setup"/>
-        <mapping class="eu.wisebed.wisedb.model.Link"/>
-        <!--<mapping resource="eu/wisebed/wisedb/model/Setup.hbm.xml"/>-->
+        <!--<mapping class="eu.wisebed.wisedb.model.Testbed"/>-->
+        <!--<mapping class="eu.wisebed.wisedb.model.Setup"/>-->
+        <!--<mapping class="eu.wisebed.wisedb.model.Node"/>-->
+        <!--<mapping class="eu.wisebed.wisedb.model.NodeCapability"/>-->
+        <!--<mapping class="eu.wisebed.wisedb.model.NodeReading"/>-->
+        <!--<mapping class="eu.wisebed.wisedb.model.Link"/>-->
+        <!--<mapping class="eu.wisebed.wisedb.model.LinkCapability"/>-->
+        <!--<mapping class="eu.wisebed.wisedb.model.LinkReading"/>-->
+
+        <mapping resource="eu/wisebed/wisedb/model/Testbed.hbm.xml"/>
+        <mapping resource="eu/wisebed/wisedb/model/Setup.hbm.xml"/>
         <mapping resource="eu/wisebed/wisedb/model/Node.hbm.xml"/>
-        <mapping resource="eu/wisebed/wisedb/model/Capability.hbm.xml"/>
-        <mapping resource="eu/wisebed/wisedb/model/NodeReading.hbm.xml"/>
-        <mapping resource="eu/wisebed/wisedb/model/LinkReading.hbm.xml"/>
-        <mapping resource="eu/wisebed/wisedb/model/LastNodeReading.hbm.xml"/>
-        <mapping resource="eu/wisebed/wisedb/model/LastLinkReading.hbm.xml"/>
-        <mapping resource="eu/wisebed/wisedb/model/Slse.hbm.xml"/>
-        <mapping resource="eu/wisebed/wisedb/model/Semantic.hbm.xml"/>
+        <mapping resource="eu/wisebed/wisedb/model/Link.hbm.xml"/>
+        <!--<mapping resource="eu/wisebed/wisedb/model/Capability.hbm.xml"/>-->
+        <!--<mapping resource="eu/wisebed/wisedb/model/NodeReading.hbm.xml"/>-->
+        <!--<mapping resource="eu/wisebed/wisedb/model/LinkReading.hbm.xml"/>-->
+        <!--<mapping resource="eu/wisebed/wisedb/model/LastNodeReading.hbm.xml"/>-->
+        <!--<mapping resource="eu/wisebed/wisedb/model/LastLinkReading.hbm.xml"/>-->
+        <!--<mapping resource="eu/wisebed/wisedb/model/Slse.hbm.xml"/>-->
+        <!--<mapping resource="eu/wisebed/wisedb/model/Semantic.hbm.xml"/>-->
 
         <!-- Event listeners -->
         <event type="save-update">

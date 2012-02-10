@@ -3,11 +3,10 @@ package eu.wisebed.wisedb.controller;
 import eu.wisebed.wisedb.exception.UnknownTestbedException;
 import eu.wisebed.wisedb.model.LastNodeReading;
 import eu.wisebed.wisedb.model.LinkReading;
+import eu.wisebed.wisedb.model.Node;
 import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
-import eu.wisebed.wiseml.model.setup.Link;
-import eu.wisebed.wiseml.model.setup.Node;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
@@ -15,7 +14,6 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -134,11 +132,10 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         LOGGER.info("prepareInsertNode(" + testbed + "," + nodeId + ")");
         final Node node = new Node();
         node.setId(nodeId);
-        node.setDescription(DESCRIPTION);
-        node.setProgramDetails(PROGRAM_DETAILS);
-        node.setGateway("false");
-        node.setReadings(new HashSet<NodeReading>());
-        node.setCapabilities(new ArrayList<Capability>());
+        //TODO
+//        node.setDescription(DESCRIPTION);
+//        node.setProgramDetails(PROGRAM_DETAILS);
+//        node.setGateway("false");
         node.setSetup(testbed.getSetup());
         NodeController.getInstance().add(node);
 
@@ -159,9 +156,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         capability.setDatatype(DATATYPE);
         capability.setDefaultvalue(DEFAULT_VALUE);
         capability.setUnit(UNIT);
-        capability.setNodes(new HashSet<Node>());
         capability.setNodeReadings(new HashSet<NodeReading>());
-        capability.setLinks(new HashSet<Link>());
         capability.setLinkReadings(new HashSet<LinkReading>());
         CapabilityController.getInstance().add(capability);
 
@@ -174,8 +169,8 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @param nodeId         , a node id.
      * @param capabilityName , a capability name.
      * @param testbedId      , a testbed Id.
-     * @param doubleReading , a reading value (double).
-     * @param stringReading   , a reading value (string).
+     * @param doubleReading  , a reading value (double).
+     * @param stringReading  , a reading value (string).
      * @param timestamp      , a timestamp.
      * @throws UnknownTestbedException exception that occurs when the testbedId is unknown.
      */
@@ -219,23 +214,19 @@ public class NodeReadingController extends AbstractController<NodeReading> {
             node = prepareInsertNode(testbed, nodeId);
             if (capability == null) {
                 capability = prepareInsertCapability(capabilityName);
-                node.getCapabilities().add(capability);
                 NodeController.getInstance().update(node);
             } else {
-                node.getCapabilities().add(capability);
                 NodeController.getInstance().update(node);
             }
 //            throw new UnknownNodeException(nodeId);
         } else {
             if (capability == null) {
                 capability = prepareInsertCapability(capabilityName);
-                node.getCapabilities().add(capability);
                 NodeController.getInstance().update(node);
 //            throw new UnknownCapabilityException(capabilityName);
             } else {
                 LOGGER.info("isAssociated " + NodeController.getInstance().isAssociated(capability, testbed, node));
                 if (!NodeController.getInstance().isAssociated(capability, testbed, node)) {
-                    node.getCapabilities().add(capability);
                     NodeController.getInstance().update(node);
                 }
             }

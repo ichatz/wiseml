@@ -1,6 +1,6 @@
 package eu.wisebed.wisedb.controller;
 
-import eu.wisebed.wiseml.model.setup.Setup;
+import eu.wisebed.wisedb.model.Setup;
 import org.apache.log4j.Logger;
 
 import java.util.List;

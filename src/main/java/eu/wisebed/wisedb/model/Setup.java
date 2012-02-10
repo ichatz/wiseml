@@ -1,6 +1,5 @@
 package eu.wisebed.wisedb.model;
 
-import eu.wisebed.wiseml.model.setup.Defaults;
 import org.hibernate.annotations.Entity;
 
 import javax.persistence.Basic;
@@ -29,38 +28,46 @@ public class Setup implements Serializable {
     /**
      * id of setup.
      */
+    @Id
+    @GeneratedValue
+    @Column(name = "setup_id", unique = true, nullable = false)
     private int id;
 
     /**
      * the origin of node.
      */
+    @Embedded
     private Origin origin;
 
     /**
      * the information of time used in the experiment.
      */
+    @Embedded
     private TimeInfo timeinfo;
-
-    /**
-     * the type of interpolation that used for description of mobility.
-     */
-    private String interpolation;
 
     /**
      * the description of the experiment.
      */
+    @Column(name = "description", unique = true, nullable = false)
+    @Basic(fetch = FetchType.LAZY)
     private String description;
 
     /**
      * the type of the coordinate system.
      */
+    @Column(name = "coordinateType", unique = true, nullable = false)
+    @Basic(fetch = FetchType.LAZY)
     private String coordinateType;
 
-    /**
-     * defaults for object Wiseml.
-     */
-    private Defaults defaults;
+    private Testbed testbed;
 
+    public Testbed getTestbed() {
+        return testbed;
+    }
+
+    public void setTestbed(Testbed testbed) {
+        this.testbed = testbed;
+    }
     /**
      * a list of objects Node.
      */
@@ -72,20 +79,10 @@ public class Setup implements Serializable {
 //    private List<Link> link;
 
     /**
-     * The testbed this setup belongs to.
-     */
-    private Testbed testbed;
-
-
-    /**
      * this method returns the id of the setup.
      *
      * @return the id of the setup.
      */
-    @Id
-    @GeneratedValue
-    @Column(name = "setup_id", unique = true, nullable = false)
-    @Basic(fetch = FetchType.LAZY)
     public int getId() {
         return id;
     }
@@ -104,7 +101,6 @@ public class Setup implements Serializable {
      *
      * @return the nodes origin
      */
-    @Embedded
     public Origin getOrigin() {
         return origin;
     }
@@ -123,7 +119,6 @@ public class Setup implements Serializable {
      *
      * @return the information time
      */
-    @Embedded
     public TimeInfo getTimeinfo() {
         return timeinfo;
     }
@@ -138,30 +133,10 @@ public class Setup implements Serializable {
     }
 
     /**
-     * this method returns the interpolation that used for description of mobility.
-     *
-     * @return the interpolation
-     */
-    public String getInterpolation() {
-        return interpolation;
-    }
-
-    /**
-     * this method sets the interpolation that used for description of mobility.
-     *
-     * @param interpolation the mobility interpolation
-     */
-    public void setInterpolation(final String interpolation) {
-        this.interpolation = interpolation;
-    }
-
-    /**
      * this method returns the description of the experiment.
      *
      * @return the description
      */
-    @Column(name = "description", unique = true, nullable = false)
-    @Basic(fetch = FetchType.LAZY)
     public String getDescription() {
         return description;
     }
@@ -180,8 +155,6 @@ public class Setup implements Serializable {
      *
      * @return the coordinate type
      */
-    @Column(name = "coordinateType", unique = true, nullable = false)
-    @Basic(fetch = FetchType.LAZY)
     public String getCoordinateType() {
         return coordinateType;
     }
@@ -193,41 +166,5 @@ public class Setup implements Serializable {
      */
     public void setCoordinateType(final String description) {
         this.coordinateType = description;
-    }
-
-    /**
-     * this method returns the defaults of a wiseml.
-     *
-     * @return the defaults of the wiseml.
-     */
-    public Defaults getDefaults() {
-        return defaults;
-    }
-
-    /**
-     * this method sets defaults of a wiseml.
-     *
-     * @param defaults the wiseml defaults.
-     */
-    public void setDefaults(final Defaults defaults) {
-        this.defaults = defaults;
-    }
-
-    /**
-     * Sets the testbed attribute.
-     *
-     * @param testbed testbed instance.
-     */
-    public void setTestbed(final Testbed testbed) {
-        this.testbed = testbed;
-    }
-
-    /**
-     * Returns the testbed this setup belongs to.
-     *
-     * @return the testbed this setup belongs to.
-     */
-    public Testbed getTestbed() {
-        return testbed;
     }
 }

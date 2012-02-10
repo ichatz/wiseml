@@ -1,9 +1,10 @@
 package eu.wisebed.wisedb.controller;
 
-import eu.wisebed.wisedb.model.LinkCapabilities;
+import eu.wisebed.wisedb.model.Link;
+import eu.wisebed.wisedb.model.LinkCapability;
+import eu.wisebed.wisedb.model.Setup;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
-import eu.wisebed.wiseml.model.setup.Link;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -132,6 +133,14 @@ public class LinkController extends AbstractController<Link> {
         return (List<Link>) criteria.list();
     }
 
+    public List<Link> list(Setup setup) {
+        LOGGER.info("list(" + setup + ")");
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(Link.class);
+        criteria.add(Restrictions.eq(SETUP, setup));
+        return (List<Link>) criteria.list();
+    }
+
     /**
      * Count all the links from the database belonging to a selected testbed.
      *
@@ -177,7 +186,7 @@ public class LinkController extends AbstractController<Link> {
 
     public List<String> listLinkCapabilities(Link link) {
         final org.hibernate.Session session = getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(LinkCapabilities.class);
+        final Criteria criteria = session.createCriteria(LinkCapability.class);
         criteria.add(Restrictions.eq(SOURCE, link.getSource()));
         criteria.add(Restrictions.eq(TARGET, link.getTarget()));
         criteria.setProjection(Projections.property("capability_id"));

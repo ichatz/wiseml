@@ -1,9 +1,10 @@
 package eu.wisebed.wisedb.controller;
 
 import com.googlecode.ehcache.annotations.Cacheable;
+import eu.wisebed.wisedb.model.Node;
+import eu.wisebed.wisedb.model.Setup;
 import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wiseml.model.setup.Capability;
-import eu.wisebed.wiseml.model.setup.Node;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
@@ -33,6 +34,7 @@ public class NodeController extends AbstractController<Node> {
      * Capabilities literal.
      */
     private static final String CAPABILITIES = "capabilities";
+    private static final String CAPABILITY = "capability";
 
     /**
      * Node ID literal.
@@ -127,6 +129,15 @@ public class NodeController extends AbstractController<Node> {
         return (List<Node>) criteria.list();
     }
 
+    public List<Node> list(Setup setup) {
+        LOGGER.info("list(" + setup + ")");
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(Node.class);
+        criteria.add(Restrictions.eq(SETUP, setup));
+        criteria.addOrder(Order.asc(NODE_ID));
+        return (List<Node>) criteria.list();
+    }
+
     /**
      * Listing all the nodes from the database belonging to a selected testbed.
      *
@@ -210,5 +221,14 @@ public class NodeController extends AbstractController<Node> {
         criteria.createAlias(CAPABILITIES, "caps").add(Restrictions.eq("caps.name", capability.getName()));
         criteria.add(Restrictions.eq(NODE_ID, node.getId()));
         return criteria.list().size() > 0;
+    }
+
+    public String getDescription(Node node) {
+//        final Session session = getSessionFactory().getCurrentSession();
+//        final Criteria criteria = session.createCriteria(NodeReading.class);
+//        criteria.add(Restrictions.eq(NODE_ID, node.getId()));
+//        NodeReading reading = (NodeReading) criteria.list().get(0);
+        return "desc:todo";
+
     }
 }

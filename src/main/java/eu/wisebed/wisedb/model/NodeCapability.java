@@ -2,8 +2,11 @@ package eu.wisebed.wisedb.model;
 
 import org.hibernate.annotations.Entity;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 
@@ -23,41 +26,49 @@ public class NodeCapability implements Serializable {
 
     @Id
     @Column(name = "id", nullable = false)
+    @Basic(fetch = FetchType.LAZY)
     private int id;
 
     /**
      * the name of the object Capability.
      */
     @Column(name = "capability_id")
-    private String name;
+    @Basic(fetch = FetchType.LAZY)
+    private String capabilityId;
     /**
      * the name of the object node.
      */
     @Column(name = "node_id")
+    @ManyToOne(targetEntity = Node.class)
+    @Basic(fetch = FetchType.LAZY)
     private String node;
 
     /**
      * the datatype of the capability.
      */
     @Column(name = "datatype")
+    @Basic(fetch = FetchType.LAZY)
     private String datatype;
 
     /**
      * the unit of the capability.
      */
     @Column(name = "unit")
+    @Basic(fetch = FetchType.LAZY)
     private String unit;
 
     /**
      * the unit of the capability.
      */
     @Column(name = "defaultvalue")
+    @Basic(fetch = FetchType.LAZY)
     private String defaultvalue;
 
     /**
      * Description.
      */
     @Column(name = "description")
+    @Basic(fetch = FetchType.LAZY)
     private String description;
 
     /**
@@ -65,17 +76,17 @@ public class NodeCapability implements Serializable {
      *
      * @return the name of the capability.
      */
-    public String getName() {
-        return name;
+    public String getCapabilityId() {
+        return capabilityId;
     }
 
     /**
      * this method sets the name of the capability.
      *
-     * @param name the name of the capability.
+     * @param capabilityId the name of the capability.
      */
-    public void setName(final String name) {
-        this.name = name;
+    public void setCapabilityId(final String capabilityId) {
+        this.capabilityId = capabilityId;
     }
 
     /**

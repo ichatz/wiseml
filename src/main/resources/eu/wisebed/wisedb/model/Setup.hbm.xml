@@ -15,7 +15,7 @@
             </generator>
         </id>
 
-        <one-to-one name="testbed" class="eu.wisebed.wisedb.model.Testbed" constrained="true"/>
+        <!--<one-to-one name="testbed" class="eu.wisebed.wisedb.model.Testbed" constrained="true"/>-->
 
         <component name="origin" class="eu.wisebed.wisedb.model.Origin">
             <property name="x" column="position_x" type="java.lang.Float"/>
@@ -34,18 +34,6 @@
 
         <property name="description" type="text"/>
         <property name="coordinateType"/>
-
-
-        <bag name="nodes" table="nodes" lazy="true" inverse="true" cascade="save-update" order-by="lower(node_id) asc">
-            <key column="setup_id" not-null="true"/>
-            <one-to-many class="eu.wisebed.wisedb.model.Node"/>
-        </bag>
-
-        <bag name="link" table="links" lazy="true" inverse="true" cascade="save-update"
-             order-by="lower(link_source) asc">
-            <key column="setup_id" not-null="true"/>
-            <one-to-many class="eu.wisebed.wisedb.model.Link"/>
-        </bag>
 
     </class>
 </hibernate-mapping>
