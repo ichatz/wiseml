@@ -61,11 +61,13 @@
         <mapping resource="eu/wisebed/wisedb/model/Setup.hbm.xml"/>
         <mapping resource="eu/wisebed/wisedb/model/Node.hbm.xml"/>
         <mapping resource="eu/wisebed/wisedb/model/Link.hbm.xml"/>
-        <!--<mapping resource="eu/wisebed/wisedb/model/Capability.hbm.xml"/>-->
-        <!--<mapping resource="eu/wisebed/wisedb/model/NodeReading.hbm.xml"/>-->
-        <!--<mapping resource="eu/wisebed/wisedb/model/LinkReading.hbm.xml"/>-->
-        <!--<mapping resource="eu/wisebed/wisedb/model/LastNodeReading.hbm.xml"/>-->
-        <!--<mapping resource="eu/wisebed/wisedb/model/LastLinkReading.hbm.xml"/>-->
+        <mapping resource="eu/wisebed/wisedb/model/Capability.hbm.xml"/>
+        <mapping resource="eu/wisebed/wisedb/model/NodeCapability.hbm.xml"/>
+        <mapping resource="eu/wisebed/wisedb/model/LinkCapability.hbm.xml"/>
+        <mapping resource="eu/wisebed/wisedb/model/NodeReading.hbm.xml"/>
+        <mapping resource="eu/wisebed/wisedb/model/LinkReading.hbm.xml"/>
+        <mapping resource="eu/wisebed/wisedb/model/LastNodeReading.hbm.xml"/>
+        <mapping resource="eu/wisebed/wisedb/model/LastLinkReading.hbm.xml"/>
         <!--<mapping resource="eu/wisebed/wisedb/model/Slse.hbm.xml"/>-->
         <!--<mapping resource="eu/wisebed/wisedb/model/Semantic.hbm.xml"/>-->
 

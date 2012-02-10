@@ -15,8 +15,6 @@
             </generator>
         </id>
 
-        <!--<one-to-one name="testbed" class="eu.wisebed.wisedb.model.Testbed" constrained="true"/>-->
-
         <component name="origin" class="eu.wisebed.wisedb.model.Origin">
             <property name="x" column="position_x" type="java.lang.Float"/>
             <property name="y" column="position_y" type="java.lang.Float"/>

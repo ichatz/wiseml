@@ -31,10 +31,10 @@
         <property name="current_session_context_class">thread</property>
 
         <!-- Print SQL -->
-        <property name="show_sql">true</property>
+        <property name="show_sql">false</property>
 
         <!-- Print "pretty" SQL statements -->
-        <property name="use_sql_comments">true</property>
+        <property name="use_sql_comments">false</property>
         <property name="format_sql">true</property>
 
         <!-- Enable second level cache -->
@@ -62,11 +62,13 @@
         <mapping resource="eu/wisebed/wisedb/model/Setup.hbm.xml"/>
         <mapping resource="eu/wisebed/wisedb/model/Node.hbm.xml"/>
         <mapping resource="eu/wisebed/wisedb/model/Link.hbm.xml"/>
-        <!--<mapping resource="eu/wisebed/wisedb/model/Capability.hbm.xml"/>-->
-        <!--<mapping resource="eu/wisebed/wisedb/model/NodeReading.hbm.xml"/>-->
-        <!--<mapping resource="eu/wisebed/wisedb/model/LinkReading.hbm.xml"/>-->
-        <!--<mapping resource="eu/wisebed/wisedb/model/LastNodeReading.hbm.xml"/>-->
-        <!--<mapping resource="eu/wisebed/wisedb/model/LastLinkReading.hbm.xml"/>-->
+        <mapping resource="eu/wisebed/wisedb/model/Capability.hbm.xml"/>
+        <mapping resource="eu/wisebed/wisedb/model/LinkCapability.hbm.xml"/>
+        <mapping resource="eu/wisebed/wisedb/model/NodeCapability.hbm.xml"/>
+        <mapping resource="eu/wisebed/wisedb/model/NodeReading.hbm.xml"/>
+        <mapping resource="eu/wisebed/wisedb/model/LinkReading.hbm.xml"/>
+        <mapping resource="eu/wisebed/wisedb/model/LastNodeReading.hbm.xml"/>
+        <mapping resource="eu/wisebed/wisedb/model/LastLinkReading.hbm.xml"/>
         <!--<mapping resource="eu/wisebed/wisedb/model/Slse.hbm.xml"/>-->
         <!--<mapping resource="eu/wisebed/wisedb/model/Semantic.hbm.xml"/>-->
 

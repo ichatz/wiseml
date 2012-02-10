@@ -1,6 +1,5 @@
 package eu.wisebed.wisedb.model;
 
-import eu.wisebed.wiseml.model.setup.Capability;
 import org.hibernate.annotations.Entity;
 
 import javax.persistence.Table;
@@ -13,7 +12,7 @@ import java.util.Date;
  * getter and setter methods for the properties.
  */
 @Entity
-@Table(name = "node_readings")
+@Table(name = "nodeReadings")
 public final class NodeReading implements Serializable {
 
     /**
@@ -27,14 +26,9 @@ public final class NodeReading implements Serializable {
     private int id;
 
     /**
-     * Node reference.
-     */
-    private Node node;
-
-    /**
      * Capability reference.
      */
-    private Capability capability;
+    private NodeCapability capability;
 
     /**
      * Timestamp.
@@ -77,29 +71,11 @@ public final class NodeReading implements Serializable {
     }
 
     /**
-     * Returns the node that indicated this reading.
-     *
-     * @return node persistent object.
-     */
-    public Node getNode() {
-        return node;
-    }
-
-    /**
-     * Sets the node that indicated this reading.
-     *
-     * @param node , must be persistent.
-     */
-    public void setNode(final Node node) {
-        this.node = node;
-    }
-
-    /**
      * Returns the capability that indicated this reading.
      *
      * @return capability persistent object.
      */
-    public Capability getCapability() {
+    public NodeCapability getCapability() {
         return capability;
     }
 
@@ -108,7 +84,7 @@ public final class NodeReading implements Serializable {
      *
      * @param capability , must be persistent.
      */
-    public void setCapability(final Capability capability) {
+    public void setCapability(final NodeCapability capability) {
         this.capability = capability;
     }
 

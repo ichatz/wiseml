@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.TimeZone;
@@ -258,8 +256,6 @@ public final class Testbed implements Serializable {
      *
      * @return the testbed setup.
      */
-    @OneToOne
-    @JoinColumn(name = "setup_id")
     public Setup getSetup() {
         return setup;
     }

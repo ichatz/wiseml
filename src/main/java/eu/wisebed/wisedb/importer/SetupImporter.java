@@ -14,7 +14,7 @@ import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wisedb.model.TimeInfo;
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
-import eu.wisebed.wiseml.model.setup.Capability;
+import eu.wisebed.wisedb.model.Capability;
 import org.apache.log4j.Logger;
 import org.jibx.runtime.JiBXException;
 

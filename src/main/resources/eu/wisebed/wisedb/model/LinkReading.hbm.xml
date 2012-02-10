@@ -5,7 +5,7 @@
 
 <hibernate-mapping>
 
-    <class name="eu.wisebed.wisedb.model.LinkReading" table="link_readings"
+    <class name="eu.wisebed.wisedb.model.LinkReading" table="linkReadings"
            dynamic-update="true" dynamic-insert="true">
 
         <id name="id" column="reading_id">
@@ -14,15 +14,9 @@
 
         <property name="timestamp" type="timestamp"/>
         <property name="reading" type="java.lang.Double"/>
-        <property name="rssiValue" type="java.lang.Double"/>
         <property name="stringReading" length="10000"/>
 
-        <many-to-one name="link" class="eu.wisebed.wisedb.model.Link">
-            <column name="link_source" not-null="true"/>
-            <column name="link_target" not-null="true"/>
-        </many-to-one>
-
-        <many-to-one name="capability" class="eu.wisebed.wisedb.model.Capability">
+        <many-to-one name="capability" class="eu.wisebed.wisedb.model.LinkCapability">
             <column name="capability_id" not-null="true"/>
         </many-to-one>
 

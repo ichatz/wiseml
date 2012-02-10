@@ -25,7 +25,7 @@
         <!--<many-to-many class="eu.wisebed.wisedb.model.Node"/>-->
         <!--</set>-->
 
-        <many-to-one name="setup" column="setup_id" class="eu.wisebed.wisedb.model.Setup" not-null="true"/>
+        <many-to-one name="setup" column="setup" class="eu.wisebed.wisedb.model.Setup" not-null="true"/>
 
     </class>
 </hibernate-mapping>

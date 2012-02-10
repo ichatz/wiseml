@@ -1,10 +1,12 @@
 package eu.wisebed.wisedb.controller;
 
 import com.googlecode.ehcache.annotations.Cacheable;
+import eu.wisebed.wisedb.model.Capability;
 import eu.wisebed.wisedb.model.Node;
+import eu.wisebed.wisedb.model.Origin;
 import eu.wisebed.wisedb.model.Setup;
 import eu.wisebed.wisedb.model.Testbed;
-import eu.wisebed.wiseml.model.setup.Capability;
+import eu.wisebed.wiseml.model.setup.Position;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
@@ -230,5 +232,21 @@ public class NodeController extends AbstractController<Node> {
 //        NodeReading reading = (NodeReading) criteria.list().get(0);
         return "desc:todo";
 
+    }
+
+    public Position getPosition(Node node) {
+//        final Session session = getSessionFactory().getCurrentSession();
+//        final Criteria criteria = session.createCriteria(NodeReading.class);
+//        criteria.add(Restrictions.eq(NODE_ID, node.getId()));
+//        NodeReading reading = (NodeReading) criteria.list().get(0);
+        return new Position();
+    }
+
+    public Origin getOrigin(Node node) {
+//        final Session session = getSessionFactory().getCurrentSession();
+//        final Criteria criteria = session.createCriteria(NodeReading.class);
+//        criteria.add(Restrictions.eq(NODE_ID, node.getId()));
+//        NodeReading reading = (NodeReading) criteria.list().get(0);
+        return new Origin();
     }
 }

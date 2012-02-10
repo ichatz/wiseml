@@ -1,22 +1,21 @@
 package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.exception.UnknownTestbedException;
+import eu.wisebed.wisedb.model.Capability;
 import eu.wisebed.wisedb.model.LastNodeReading;
-import eu.wisebed.wisedb.model.LinkReading;
 import eu.wisebed.wisedb.model.Node;
+import eu.wisebed.wisedb.model.NodeCapability;
 import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wisedb.model.Testbed;
-import eu.wisebed.wiseml.model.setup.Capability;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
-import org.hibernate.classic.Session;
+import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -71,6 +70,8 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      */
     private static final String TIMESTAMP = "timestamp";
 
+    private static final String ID = "id";
+
     /**
      * Logger.
      */
@@ -111,6 +112,20 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         return super.list(new NodeReading());
     }
 
+    public Long count() {
+        LOGGER.info("count()");
+        Criteria criteria = null;
+        try {
+            final Session session = getSessionFactory().getCurrentSession();
+            criteria = session.createCriteria(NodeReading.class);
+            criteria.setProjection(Projections.rowCount());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (Long) criteria.list().get(0);
+
+    }
+
     /**
      * Delete the node reading from the database.
      *
@@ -149,19 +164,39 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @return returns the inserted capability instance.
      */
     private Capability prepareInsertCapability(final String capabilityName) {
+
         LOGGER.info("prepareInsertCapability(" + capabilityName + ")");
         final Capability capability = new Capability();
-
         capability.setName(capabilityName);
         capability.setDatatype(DATATYPE);
         capability.setDefaultvalue(DEFAULT_VALUE);
         capability.setUnit(UNIT);
-        capability.setNodeReadings(new HashSet<NodeReading>());
-        capability.setLinkReadings(new HashSet<LinkReading>());
         CapabilityController.getInstance().add(capability);
 
         return capability;
     }
+
+    /**
+     * Prepares and inserts a capability to the persistence with the provided capability name.
+     *
+     * @param capabilityName , a capability name.
+     * @return returns the inserted capability instance.
+     */
+    private NodeCapability prepareInsertNodeCapability(final String capabilityName, final String nodeId) {
+        LOGGER.info("prepareInsertNodeCapability(" + capabilityName + "," + nodeId + ")");
+
+        final Capability capability = CapabilityController.getInstance().getByID(capabilityName);
+        final Node node = NodeController.getInstance().getByID(nodeId);
+
+        final NodeCapability nodeCapability = new NodeCapability();
+
+        nodeCapability.setCapability(capability);
+        nodeCapability.setNode(node);
+        NodeCapabilityController.getInstance().add(nodeCapability);
+
+        return nodeCapability;
+    }
+
 
     /**
      * Insert a node's reading from it's capabilities and make the appropriate associations.
@@ -193,42 +228,42 @@ public class NodeReadingController extends AbstractController<NodeReading> {
 //            node = prepareInsertNode(testbed, nodeId);
 //        }
 //
-//        // get capability if not found create one
-//        Capability capability = CapabilityController.getInstance().getByID(capabilityName);
-//        if (capability == null) {
+//        // get nodeCapability if not found create one
+//        Capability nodeCapability = CapabilityController.getInstance().getByID(capabilityName);
+//        if (nodeCapability == null) {
 //            LOGGER.info("Capability [" + capabilityName + "] was not found in db. Storing it");
-//            capability = prepareInsertCapability(capabilityName);
+//            nodeCapability = prepareInsertCapability(capabilityName);
 //        }
 //
-//        // if the given node and capability are not associated
-//        final boolean isAssociated = NodeController.getInstance().isAssociated(capability, testbed, node);
+//        // if the given node and nodeCapability are not associated
+//        final boolean isAssociated = NodeController.getInstance().isAssociated(nodeCapability, testbed, node);
 //        if (!isAssociated) {
 //            LOGGER.info("Associate Node[" + nodeId + "] Capability[" + capabilityName + "] ");
-//            node.getCapabilities().add(capability);
+//            node.getCapabilities().add(nodeCapability);
 //            NodeController.getInstance().update(node);
 //        }
 
         Node node = NodeController.getInstance().getByID(nodeId);
-        Capability capability = CapabilityController.getInstance().getByID(capabilityName);
+        NodeCapability nodeCapability = NodeCapabilityController.getInstance().getByID(node, capabilityName);
         if (node == null) {
             node = prepareInsertNode(testbed, nodeId);
-            if (capability == null) {
-                capability = prepareInsertCapability(capabilityName);
+            if (nodeCapability == null) {
+                nodeCapability = prepareInsertNodeCapability(capabilityName,node.getId());
                 NodeController.getInstance().update(node);
             } else {
                 NodeController.getInstance().update(node);
             }
 //            throw new UnknownNodeException(nodeId);
         } else {
-            if (capability == null) {
-                capability = prepareInsertCapability(capabilityName);
+            if (nodeCapability == null) {
+                nodeCapability = prepareInsertNodeCapability(capabilityName,node.getId());
                 NodeController.getInstance().update(node);
 //            throw new UnknownCapabilityException(capabilityName);
             } else {
-                LOGGER.info("isAssociated " + NodeController.getInstance().isAssociated(capability, testbed, node));
-                if (!NodeController.getInstance().isAssociated(capability, testbed, node)) {
-                    NodeController.getInstance().update(node);
-                }
+//                LOGGER.info("isAssociated " + NodeController.getInstance().isAssociated(nodeCapability, testbed, node));
+//                if (!NodeController.getInstance().isAssociated(nodeCapability, testbed, node)) {
+//                    NodeController.getInstance().update(node);
+//                }
             }
         }
 
@@ -237,14 +272,13 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         reading.setReading(doubleReading);
         reading.setStringReading(stringReading);
         reading.setTimestamp(timestamp);
-        reading.setNode(node);
-        reading.setCapability(capability);
+        reading.setCapability(nodeCapability);
 
         // add reading
         add(reading);
 
         // get lastNodeReading if not found create one
-        LastNodeReading lastNodeReading = LastNodeReadingController.getInstance().getByID(node, capability);
+        LastNodeReading lastNodeReading = LastNodeReadingController.getInstance().getByID(node, nodeCapability.getCapability());
         if (lastNodeReading == null) {
             LOGGER.info("Last node reading for Node [" + nodeId + "] Capability [" + capabilityName + "] created");
             lastNodeReading = new LastNodeReading();
@@ -253,7 +287,7 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         lastNodeReading.setStringReading(stringReading);
         lastNodeReading.setTimestamp(timestamp);
         lastNodeReading.setNode(node);
-        lastNodeReading.setCapability(capability);
+        lastNodeReading.setCapability(nodeCapability.getCapability());
         LastNodeReadingController.getInstance().add(lastNodeReading);
     }
 
@@ -302,13 +336,20 @@ public class NodeReadingController extends AbstractController<NodeReading> {
      * @return the count of this node.
      */
     public Long getNodeReadingsCount(final Node node) {
-        LOGGER.info("getNodeReadingsCount(" + node + ")");
-        final Session session = getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq(NODE, node));
-        criteria.setProjection(Projections.count(NODE));
-        criteria.setMaxResults(1);
-        return (Long) criteria.uniqueResult();
+        try {
+            LOGGER.info("getNodeReadingsCount(" + node + ")");
+            final Session session = getSessionFactory().getCurrentSession();
+            final Criteria criteria = session.createCriteria(NodeReading.class);
+            criteria.add(Restrictions.eq(NODE, node));
+            criteria.setProjection(Projections.rowCount());
+            criteria.setMaxResults(1);
+            return (Long) criteria.list().get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        long zero = 0;
+        return zero;
+
     }
 
     /**
@@ -332,8 +373,25 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         final List<Object> results = criteria.list();
         for (Object result : results) {
             final Object[] row = (Object[]) result;
-            resultMap.put((Capability) row[1], (Long) row[0]);
+            NodeCapability ncap = (NodeCapability) row[1];
+            Capability cap = ncap.getCapability();
+
+            resultMap.put((Capability) cap, (Long) row[0]);
         }
         return resultMap;
+    }
+
+    public NodeReading getByID(int id) {
+        Criteria criteria = null;
+        try {
+            LOGGER.info("getByID(" + id + ")");
+            final Session session = getSessionFactory().getCurrentSession();
+            criteria = session.createCriteria(NodeReading.class);
+            criteria.add(Restrictions.eq(ID, id));
+            criteria.setMaxResults(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (NodeReading) criteria.list().get(0);
     }
 }

@@ -1,6 +1,5 @@
 package eu.wisebed.wisedb.model;
 
-import eu.wisebed.wiseml.model.setup.Capability;
 import org.hibernate.annotations.Entity;
 
 import javax.persistence.Table;
@@ -13,7 +12,7 @@ import java.util.Date;
  * getter and setter methods for the properties.
  */
 @Entity
-@Table(name = "link_readings")
+@Table(name = "linkReadings")
 public final class LinkReading implements Serializable {
 
     /**
@@ -27,14 +26,9 @@ public final class LinkReading implements Serializable {
     private int id;
 
     /**
-     * Link.
-     */
-    private Link link;
-
-    /**
      * Capability.
      */
-    private Capability capability;
+    private LinkCapability  capability;
 
     /**
      * Timestamp of the reading.
@@ -46,10 +40,6 @@ public final class LinkReading implements Serializable {
      */
     private Double reading;
 
-    /**
-     * Numeric value of the current RSSI of the link.
-     */
-    private Double rssiValue;
 
     /**
      * String value of the reading.
@@ -118,47 +108,11 @@ public final class LinkReading implements Serializable {
     }
 
     /**
-     * Returns the rssi value of the link.
-     *
-     * @return rssi value of the link.
-     */
-    public Double getRssiValue() {
-        return rssiValue;
-    }
-
-    /**
-     * Sets the rssi value.
-     *
-     * @param rssiValue , the rssi value
-     */
-    public void setRssiValue(final Double rssiValue) {
-        this.rssiValue = rssiValue;
-    }
-
-    /**
-     * Returns the link associated with this LinkReading.
-     *
-     * @return the link associated with this LinkReading.
-     */
-    public Link getLink() {
-        return link;
-    }
-
-    /**
-     * Sets the link associated with this LinkReading.
-     *
-     * @param link the associated link.
-     */
-    public void setLink(final Link link) {
-        this.link = link;
-    }
-
-    /**
      * Returns the capability associated with this LinkReading.
      *
      * @return the capability associated with this LinkReading.
      */
-    public Capability getCapability() {
+    public LinkCapability getCapability() {
         return capability;
     }
 
@@ -167,7 +121,7 @@ public final class LinkReading implements Serializable {
      *
      * @param capability the associated capability.
      */
-    public void setCapability(final Capability capability) {
+    public void setCapability(final LinkCapability capability) {
         this.capability = capability;
     }
 

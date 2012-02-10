@@ -6,7 +6,7 @@ import eu.wisebed.wisedb.controller.NodeController;
 import eu.wisebed.wisedb.controller.NodeReadingController;
 import eu.wisebed.wisedb.controller.TestbedController;
 import eu.wisebed.wisedb.model.Testbed;
-import eu.wisebed.wiseml.model.setup.Capability;
+import eu.wisebed.wisedb.model.Capability;
 import eu.wisebed.wisedb.model.Node;
 import org.apache.log4j.Logger;
 import org.hibernate.Transaction;
@@ -27,7 +27,7 @@ public class NodeReadingCount {
         try {
             final String urnPrefix = "urn:wisebed:ctitestbed:";
             final Testbed testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
-            final Node node = NodeController.getInstance().getByID(urnPrefix + "0x99c");
+            final Node node = NodeController.getInstance().getByID(urnPrefix + "0x498");
             LOGGER.info("Selected Node : " + node.getId());
             long now1 = System.currentTimeMillis();
             Long readingsCount = NodeReadingController.getInstance().getNodeReadingsCount(node);

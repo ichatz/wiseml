@@ -6,7 +6,7 @@ import eu.wisebed.wisedb.controller.LinkController;
 import eu.wisebed.wisedb.controller.NodeController;
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
-import eu.wisebed.wiseml.model.setup.Capability;
+import eu.wisebed.wisedb.model.Capability;
 import eu.wisebed.wisedb.model.Link;
 import eu.wisebed.wisedb.model.Node;
 import org.apache.log4j.Logger;
@@ -56,7 +56,6 @@ public final class CapabilityImporter extends AbstractImporter<Capability> {
         if (linkList != null) {
             for (Link link : linkList) {
                 final Iterator<Capability> capIt = LinkCapabilityController.getInstance().list(link).iterator();
-                capIt.next().setLinks(null);
                 while (capIt.hasNext()) {
                     capabilitySet.add(capIt.next());
                 }

@@ -41,7 +41,6 @@ public final class NodeReadingDistributer extends Thread {
      * <code>Runnable</code> run object, then that
      * <code>Runnable</code> object's <code>run</code> method is called;
      * otherwise, this method does nothing and returns.
-     * <p/>
      * Subclasses of <code>Thread</code> should override this method.
      *
      * @see #start()
@@ -52,12 +51,13 @@ public final class NodeReadingDistributer extends Thread {
         while (isEnabled) {
             try {
                 final NodeReading lastReading = queue.take();
-               // LOGGER.info("New Reading: " + lastReading.toString());
-                if (LastNodeReadingConsumer.getInstance().listenersContains(lastReading.getNode().getId(),
-                        lastReading.getCapability().getName())) {
+                // LOGGER.info("New Reading: " + lastReading.toString());
+
+                if (LastNodeReadingConsumer.getInstance().listenersContains(lastReading.getCapability().getNode().getId(),
+                        lastReading.getCapability().getCapability().getName())) {
                     UberLogger.getInstance().log(lastReading, "T4");
-                    LastNodeReadingConsumer.getInstance().getListener(lastReading.getNode().getId(),
-                            lastReading.getCapability().getName()).update(lastReading);
+                    LastNodeReadingConsumer.getInstance().getListener(lastReading.getCapability().getNode().getId(),
+                            lastReading.getCapability().getCapability().getName()).update(lastReading);
                     LOGGER.info("Updating.... : " + lastReading.toString());
                     UberLogger.getInstance().log(lastReading, "T41");
                 }

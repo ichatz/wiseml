@@ -1,6 +1,5 @@
 package eu.wisebed.wisedb.model;
 
-import eu.wisebed.wiseml.model.setup.Capability;
 import org.hibernate.annotations.Entity;
 
 import javax.persistence.Table;

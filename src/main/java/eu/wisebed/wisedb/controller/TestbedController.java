@@ -1,10 +1,10 @@
 package eu.wisebed.wisedb.controller;
 
-import eu.wisebed.wisedb.model.Slse;
-import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wisedb.model.Link;
 import eu.wisebed.wisedb.model.Node;
 import eu.wisebed.wisedb.model.Setup;
+import eu.wisebed.wisedb.model.Slse;
+import eu.wisebed.wisedb.model.Testbed;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -230,17 +230,17 @@ public class TestbedController extends AbstractController<Testbed> {
             final Object[] obj = (Object[]) iter.next();
             final Setup setup = (Setup) obj[0];
             final long count = (Long) obj[1];
-            resultsMap.put(getBySetup(setup).getName(), count);
+            resultsMap.put(setup.getTestbed().getName(), count);
 
         }
 
         return resultsMap;
     }
 
-    public Testbed getBySetup(eu.wisebed.wisedb.model.Setup setup) {
+    public Testbed getBySetup(Setup setup) {
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Testbed.class);
-        criteria.add(Restrictions.eq("setup_id", setup.getId()));
+        criteria.add(Restrictions.eq("id", setup.getId()));
         criteria.setMaxResults(1);
         return (Testbed) criteria.list().get(0);
 

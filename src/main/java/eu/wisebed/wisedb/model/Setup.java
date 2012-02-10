@@ -6,8 +6,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
@@ -28,9 +26,9 @@ public class Setup implements Serializable {
     /**
      * id of setup.
      */
-    @Id
-    @GeneratedValue
-    @Column(name = "setup_id", unique = true, nullable = false)
+//    @Id
+//    @GeneratedValue
+//    @Column(name = "setup_id", unique = true, nullable = false)
     private int id;
 
     /**

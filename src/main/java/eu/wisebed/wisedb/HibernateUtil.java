@@ -1,14 +1,6 @@
 package eu.wisebed.wisedb;
 
-import eu.wisebed.wisedb.controller.CapabilityController;
-import eu.wisebed.wisedb.controller.LastLinkReadingController;
-import eu.wisebed.wisedb.controller.LastNodeReadingController;
-import eu.wisebed.wisedb.controller.LinkController;
-import eu.wisebed.wisedb.controller.LinkReadingController;
-import eu.wisebed.wisedb.controller.NodeController;
-import eu.wisebed.wisedb.controller.NodeReadingController;
-import eu.wisebed.wisedb.controller.SetupController;
-import eu.wisebed.wisedb.controller.TestbedController;
+import eu.wisebed.wisedb.controller.*;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -137,12 +129,21 @@ public final class HibernateUtil {
 
         // main controllers
         TestbedController.getInstance().setSessionFactory(thisFactory);
+
         SetupController.getInstance().setSessionFactory(thisFactory);
+
         NodeController.getInstance().setSessionFactory(thisFactory);
         LinkController.getInstance().setSessionFactory(thisFactory);
+
         CapabilityController.getInstance().setSessionFactory(thisFactory);
+
+        NodeCapabilityController.getInstance().setSessionFactory(thisFactory);
+        LinkCapabilityController.getInstance().setSessionFactory(thisFactory);
+
+
         NodeReadingController.getInstance().setSessionFactory(thisFactory);
         LinkReadingController.getInstance().setSessionFactory(thisFactory);
+
         LastNodeReadingController.getInstance().setSessionFactory(thisFactory);
         LastLinkReadingController.getInstance().setSessionFactory(thisFactory);
     }

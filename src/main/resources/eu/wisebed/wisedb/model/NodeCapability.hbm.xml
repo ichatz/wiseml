@@ -5,20 +5,22 @@
 
 <hibernate-mapping>
 
-    <class name="eu.wisebed.wisedb.model.NodeReading" table="nodeReadings"
+    <class name="eu.wisebed.wisedb.model.NodeCapability" table="node_capabilities"
            dynamic-update="true" dynamic-insert="true">
 
-        <id name="id" column="reading_id">
+        <id name="id" column="id">
             <generator class="native"/>
         </id>
 
-        <property name="timestamp" type="timestamp"/>
-        <property name="reading" type="java.lang.Double"/>
-        <property name="stringReading" length="10000"/>
+        <many-to-one name="node" class="eu.wisebed.wisedb.model.Node">
+            <column name="node_id" not-null="true"/>
+        </many-to-one>
 
-        <many-to-one name="capability" class="eu.wisebed.wisedb.model.NodeCapability">
+        <many-to-one name="capability" class="eu.wisebed.wisedb.model.Capability">
             <column name="capability_id" not-null="true"/>
         </many-to-one>
+
+
     </class>
 
 </hibernate-mapping>

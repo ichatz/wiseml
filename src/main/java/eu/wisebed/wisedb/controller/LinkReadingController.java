@@ -1,13 +1,12 @@
 package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.exception.UnknownTestbedException;
+import eu.wisebed.wisedb.model.Capability;
 import eu.wisebed.wisedb.model.LastLinkReading;
 import eu.wisebed.wisedb.model.Link;
 import eu.wisebed.wisedb.model.LinkReading;
 import eu.wisebed.wisedb.model.Node;
-import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wisedb.model.Testbed;
-import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Rssi;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
@@ -15,7 +14,6 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -192,8 +190,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         capability.setDatatype(DATATYPE);
         capability.setDefaultvalue(DEFAULT_VALUE);
         capability.setUnit(UNIT);
-        capability.setNodeReadings(new HashSet<NodeReading>());
-        capability.setLinkReadings(new HashSet<LinkReading>());
+
         CapabilityController.getInstance().add(capability);
 
         return capability;
@@ -293,11 +290,10 @@ public class LinkReadingController extends AbstractController<LinkReading> {
 
         // make a new link reading entity
         final LinkReading reading = new LinkReading();
-        reading.setLink(link);
-        reading.setCapability(capability);
+//        reading.setLink(link);
+//        reading.setCapability(capability);
         reading.setReading(doubleReading);
         reading.setStringReading(stringReading);
-        reading.setRssiValue(rssiValue);
         reading.setTimestamp(timestamp);
 
         // add reading
