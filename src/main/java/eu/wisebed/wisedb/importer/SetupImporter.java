@@ -6,6 +6,7 @@ import eu.wisebed.wisedb.controller.LinkController;
 import eu.wisebed.wisedb.controller.NodeController;
 import eu.wisebed.wisedb.controller.SetupController;
 import eu.wisebed.wisedb.controller.TestbedController;
+import eu.wisebed.wisedb.model.Capability;
 import eu.wisebed.wisedb.model.Link;
 import eu.wisebed.wisedb.model.Node;
 import eu.wisebed.wisedb.model.Origin;
@@ -14,7 +15,6 @@ import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wisedb.model.TimeInfo;
 import eu.wisebed.wiseml.controller.WiseMLController;
 import eu.wisebed.wiseml.model.WiseML;
-import eu.wisebed.wisedb.model.Capability;
 import org.apache.log4j.Logger;
 import org.jibx.runtime.JiBXException;
 
@@ -119,7 +119,7 @@ public final class SetupImporter extends AbstractImporter<Setup> {
      * @param setup , a setup instance.
      * @throws JiBXException a JiBXException exception.
      */
-    public void convert(final eu.wisebed.wisedb.model.Setup setup) throws JiBXException {
+    public void convert(final Setup setup) throws JiBXException {
 
         // call convertCollection(list of setups)
         convertCollection(Arrays.asList(setup));
@@ -131,13 +131,17 @@ public final class SetupImporter extends AbstractImporter<Setup> {
      * @param collection , collection of setup entries.
      * @throws JiBXException a JiBXException exception.
      */
-    public void convertCollection(final Collection<eu.wisebed.wisedb.model.Setup> collection) throws JiBXException {
+    public void convertCollection(final Collection<Setup> collection) throws JiBXException {
 
         // set entity collection
         setEntities(collection);
 
         // import records to db
-        for (eu.wisebed.wisedb.model.Setup setup : getEntities()) {
+        for (Setup setup : getEntities()) {
+
+            // import setup
+            SetupController.getInstance().add(setup);
+            LOGGER.debug("Setup imported to DB.");
 
             // set link,node, CAPABILITIES and setup
             setNodeLinkSetup(setup);
@@ -146,15 +150,12 @@ public final class SetupImporter extends AbstractImporter<Setup> {
             resetNodeLinkCapabilities(setup);
 
             // set the testbed setup relation
-            testbed.setSetup(setup);
+//            testbed.setSetup(setup);
+//
+//            // update testbed db
+//            TestbedController.getInstance().update(testbed);
+//            LOGGER.debug("Testbed updated");
 
-            // update testbed db
-            TestbedController.getInstance().update(testbed);
-            LOGGER.debug("Testbed updated");
-
-            // import setup
-            SetupController.getInstance().add(setup);
-            LOGGER.debug("Setup imported to DB.");
         }
     }
 

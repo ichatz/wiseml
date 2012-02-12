@@ -10,6 +10,12 @@ import org.hibernate.Transaction;
 import java.util.Date;
 import java.util.Iterator;
 
+/**
+ * Adds a new Link Reading to the database.
+ * If the Link does not exist it is generated.
+ * If the Capability does not exist it is generated.
+ * If the LinkCapability does not exist it is generated.
+ */
 public class AddLinkReading {
 
     /**
@@ -17,37 +23,31 @@ public class AddLinkReading {
      */
     private static final Logger LOGGER = org.apache.log4j.Logger.getLogger(AddLinkReading.class);
 
-    public static void main(String args[]) {
+    public static void main(final String args[]) {
 
         // Initialize hibernate
         HibernateUtil.connectEntityManagers();
-        Transaction tx = HibernateUtil.getInstance().getSession().beginTransaction();
+        final Transaction tx = HibernateUtil.getInstance().getSession().beginTransaction();
 
         try {
 
-            // a valid urnPrefix for CTI's testbed
-            final String urnPrefix = "urn:wisebed:ctitestbed:";
-
-            // a valid id for CTI's testbed
-            final int testbedId = 1;
+            // an id for testbed
+            final int testbedId = 18;
 
             // source node id
-            Iterator<Node> nodeIt = NodeController.getInstance().list().iterator();
-            Node source = nodeIt.next();
+            final Iterator<Node> nodeIt = NodeController.getInstance().list().iterator();
+            final Node source = nodeIt.next();
             final String sourceId = source.getId();
 
             // target node id
-            Node target = nodeIt.next();
+            final Node target = nodeIt.next();
             final String targetId = target.getId();
 
             // link capability name
-            final String capabilityName = "status1";
+            final String capabilityName = "blah3";
 
             // reading value
-            final double reading = -11.0;
-
-            // rssi
-            final double rssi = 0.0;
+            final double reading = 7.0;
 
             // timestamp
             final Date timestamp = new Date();
@@ -57,13 +57,13 @@ public class AddLinkReading {
             LOGGER.debug("Capability for link : " + capabilityName);
 
             // insert reading
-            LinkReadingController.getInstance().insertReading(sourceId, targetId, capabilityName, testbedId, reading, null, rssi, timestamp);
-
+            LinkReadingController.getInstance().insertReading(sourceId, targetId, capabilityName, testbedId, reading, null, timestamp);
 
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
             LOGGER.fatal(e);
+            e.printStackTrace();
             System.exit(-1);
         } finally {
             // always close session

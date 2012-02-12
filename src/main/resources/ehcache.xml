@@ -16,10 +16,10 @@
            <!--maxElementsInMemory="100"-->
            <!--eternal="true"-->
            <!--overflowToDisk="false"/>-->
-    <cache name="eu.wisebed.model.setup.Testbed"
-           maxElementsInMemory="5"
-           eternal="true"
-           overflowToDisk="false"/>
+    <!--<cache name="eu.wisebed.model.setup.Testbed"-->
+           <!--maxElementsInMemory="5"-->
+           <!--eternal="true"-->
+           <!--overflowToDisk="false"/>-->
     <!--<cache name="eu.wisebed.model.setup.Setup"-->
            <!--maxElementsInMemory="20"-->
            <!--eternal="true"-->

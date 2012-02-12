@@ -6,10 +6,14 @@
     <class name="eu.wisebed.wisedb.model.LastNodeReading" table="last_node_capability_readings"
            dynamic-insert="true" dynamic-update="true">
 
-        <composite-id>
-            <key-many-to-one name="node" column="node_id" class="eu.wisebed.wisedb.model.Node"/>
-            <key-many-to-one name="capability" column="capability_id" class="eu.wisebed.wisedb.model.Capability"/>
-        </composite-id>
+        <id name="id" type="int">
+            <column name="node_capability"/>
+            <generator class="foreign">
+                <param name="property">nodeCapability</param>
+            </generator>
+        </id>
+
+        <one-to-one name="nodeCapability" constrained="true"/>
 
         <property name="timestamp" type="timestamp"/>
 

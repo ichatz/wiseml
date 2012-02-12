@@ -1,6 +1,5 @@
 package eu.wisebed.wisedb.model;
 
-import eu.wisebed.wisedb.model.Capability;
 import org.hibernate.annotations.Entity;
 
 import javax.persistence.Table;
@@ -13,7 +12,7 @@ import java.util.Date;
  * getter and setter methods for the properties.
  */
 @Entity
-@Table(name="last_link_capability_readings")
+@Table(name = "last_link_capability_readings")
 public final class LastLinkReading implements Serializable {
 
     /**
@@ -21,15 +20,7 @@ public final class LastLinkReading implements Serializable {
      */
     private static final long serialVersionUID = 8748551395278795210L;
 
-    /**
-     * Link reference.
-     */
-    private Link link;
-
-    /**
-     * Capability reference.
-     */
-    private Capability capability;
+    private int id;
 
     /**
      * Timestamp.
@@ -42,14 +33,11 @@ public final class LastLinkReading implements Serializable {
     private Double reading;
 
     /**
-     * Numeric value of the current RSSI of the link.
-     */
-    private Double rssiValue;
-
-    /**
      * String reading value.
      */
     private String stringReading;
+
+    private LinkCapability linkCapability;
 
     /**
      * Constructor.
@@ -58,40 +46,20 @@ public final class LastLinkReading implements Serializable {
         // empty constructor
     }
 
-    /**
-     * Returns links.
-     *
-     * @return last link reading's link
-     */
-    public Link getLink() {
-        return link;
+    public LinkCapability getLinkCapability() {
+        return linkCapability;
     }
 
-    /**
-     * Sets link.
-     *
-     * @param link last link reading's link.
-     */
-    public void setLink(final Link link) {
-        this.link = link;
+    public void setLinkCapability(LinkCapability linkCapability) {
+        this.linkCapability = linkCapability;
     }
 
-    /**
-     * Returns the capability that indicated this reading.
-     *
-     * @return capability persistent object.
-     */
-    public Capability getCapability() {
-        return capability;
+    public int getId() {
+        return id;
     }
 
-    /**
-     * Sets the capability that indicated this reading.
-     *
-     * @param capability last link reading's capability.
-     */
-    public void setCapability(final Capability capability) {
-        this.capability = capability;
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
@@ -131,24 +99,6 @@ public final class LastLinkReading implements Serializable {
     }
 
     /**
-     * Returns the rssi value of the link.
-     *
-     * @return rssi value of the link.
-     */
-    public Double getRssiValue() {
-        return rssiValue;
-    }
-
-    /**
-     * Sets the rssi value.
-     *
-     * @param rssiValue , the rssi value
-     */
-    public void setRssiValue(final Double rssiValue) {
-        this.rssiValue = rssiValue;
-    }
-
-    /**
      * Returns string reading.
      *
      * @return string reading.
@@ -166,42 +116,21 @@ public final class LastLinkReading implements Serializable {
         this.stringReading = stringReading;
     }
 
-    /**
-     * Override of Object's equals() method.
-     *
-     * @param obj , an object instance
-     * @return true or false on whether the objects are equal.
-     */
     @Override
-    public boolean equals(final Object obj) {
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        // if null return false
-        if (obj == null) {
-            return false;
-        }
+        LastLinkReading that = (LastLinkReading) o;
 
-        if (!(obj instanceof LastLinkReading)) {
-            return false;
-        }
+        if (id != that.id) return false;
 
-        // if same reference return true;
-        if (this == obj) {
-            return true;
-        }
-
-        // equility against name
-        final LastLinkReading test = (LastLinkReading) obj;
-        return link.equals(test.getLink()) && capability.equals(test.getCapability());
+        return true;
     }
 
-    /**
-     * Override of Object's hashCode() method.
-     *
-     * @return hascode value
-     */
     @Override
     public int hashCode() {
-        return (link == null) ? System.identityHashCode(this) : link.hashCode();
+        return id;
     }
 }
 

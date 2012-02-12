@@ -20,15 +20,7 @@ public final class LastNodeReading implements Serializable {
      */
     private static final long serialVersionUID = 2824765230014359545L;
 
-    /**
-     * Node reference.
-     */
-    private Node node;
-
-    /**
-     * Capability reference.
-     */
-    private Capability capability;
+    private int id;
 
     /**
      * Timestamp.
@@ -45,6 +37,16 @@ public final class LastNodeReading implements Serializable {
      */
     private String stringReading;
 
+    private NodeCapability nodeCapability;
+
+    public NodeCapability getNodeCapability() {
+        return nodeCapability;
+    }
+
+    public void setNodeCapability(NodeCapability nodeCapability) {
+        this.nodeCapability = nodeCapability;
+    }
+
     /**
      * Constructor.
      */
@@ -52,40 +54,12 @@ public final class LastNodeReading implements Serializable {
         // empty constructor
     }
 
-    /**
-     * Returns the node that indicated this reading.
-     *
-     * @return node persistent object.
-     */
-    public Node getNode() {
-        return node;
+    public int getId() {
+        return id;
     }
 
-    /**
-     * Sets the node that indicated this reading.
-     *
-     * @param node last node reading's node.
-     */
-    public void setNode(final Node node) {
-        this.node = node;
-    }
-
-    /**
-     * Returns the capability that indicated this reading.
-     *
-     * @return capability persistent object.
-     */
-    public Capability getCapability() {
-        return capability;
-    }
-
-    /**
-     * Sets the capability that indicated this reading.
-     *
-     * @param capability last node reading's node.
-     */
-    public void setCapability(final Capability capability) {
-        this.capability = capability;
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
@@ -142,41 +116,28 @@ public final class LastNodeReading implements Serializable {
         this.stringReading = stringReading;
     }
 
-    /**
-     * Override of Object's equals() method.
-     *
-     * @param obj , an object instance
-     * @return true or false on whether the objects are equal.
-     */
     @Override
-    public boolean equals(final Object obj) {
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        // if null return false
-        if (obj == null) {
+        LastNodeReading that = (LastNodeReading) o;
+
+        if (id != that.id) return false;
+        if (reading != null ? !reading.equals(that.reading) : that.reading != null) return false;
+        if (stringReading != null ? !stringReading.equals(that.stringReading) : that.stringReading != null)
             return false;
-        }
+        if (timestamp != null ? !timestamp.equals(that.timestamp) : that.timestamp != null) return false;
 
-        if (!(obj instanceof LastNodeReading)) {
-            return false;
-        }
-
-        // if same reference return true;
-        if (this == obj) {
-            return true;
-        }
-
-        // equility against name
-        final LastNodeReading test = (LastNodeReading) obj;
-        return node.equals(test.getNode()) && capability.equals(test.getCapability());
+        return true;
     }
 
-    /**
-     * Override of Object's hashCode() method.
-     *
-     * @return hascode value
-     */
     @Override
     public int hashCode() {
-        return (node == null) ? System.identityHashCode(this) : node.hashCode();
+        int result = id;
+        result = 31 * result + (timestamp != null ? timestamp.hashCode() : 0);
+        result = 31 * result + (reading != null ? reading.hashCode() : 0);
+        result = 31 * result + (stringReading != null ? stringReading.hashCode() : 0);
+        return result;
     }
 }

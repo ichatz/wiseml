@@ -15,17 +15,16 @@ import org.hibernate.Transaction;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.TimeZone;
 
 /**
  * Adds a simple Testbed (Not running testbed-runtime).
  */
-public class AddSimpleTestbed {
+public class AddTestbedSetup {
 
     /**
      * a log4j logger to print messages.
      */
-    private static final Logger LOGGER = Logger.getLogger(AddSimpleTestbed.class);
+    private static final Logger LOGGER = Logger.getLogger(AddTestbedSetup.class);
 
 
     public static void main(final String[] args) throws IOException {
@@ -39,43 +38,19 @@ public class AddSimpleTestbed {
         br = new BufferedReader(new InputStreamReader(System.in));
 
         try {
-            LOGGER.info("Provide Testbed Name");
-            final String testbedName = br.readLine();
-            tImp.setName(testbedName);
-
-            LOGGER.info("Provide Testbed Description");
-            final String testbedDescription = br.readLine();
-            tImp.setDescription(testbedDescription);
-
-            LOGGER.info("Provide Testbed's web page URL");
-            final String testbedWebPageUrl = br.readLine();
-            tImp.setWebPageUrl(testbedWebPageUrl);
-
-            LOGGER.info("Provide Testbed's urnPrefix");
-            final String urnPrefix = br.readLine();
-            tImp.setUrnPrefix(urnPrefix);
-
-            LOGGER.info("Using your default TimeZone : " + TimeZone.getDefault().getDisplayName());
-            tImp.setTimeZone(TimeZone.getDefault());
 
             // Initialize hibernate and begin transaction
             HibernateUtil.connectEntityManagers();
             Transaction tx = HibernateUtil.getInstance().getSession().beginTransaction();
-
-            // import to db
-            tImp.convert();
-
-            // commmit transaction
-            tx.commit();
-
-
+            final String testbedName = "testbed";
             // begin transaction
             LOGGER.info("For testbed : " + testbedName + " the default setup will be added");
             tx = HibernateUtil.getInstance().getSession().beginTransaction();
-            Testbed testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
+            Testbed testbed = TestbedController.getInstance().getByName(testbedName);
 
             // set the testbed of the setup to be imported
             Setup setup = new Setup();
+            setup.setId(testbed.getId());
             Origin origin = new Origin();
             origin.setPhi((float) 0);
             origin.setTheta((float) 0);
@@ -85,11 +60,7 @@ public class AddSimpleTestbed {
             setup.setOrigin(origin);
             setup.setTimeinfo(new TimeInfo());
             setup.setCoordinateType("Absolute");
-            setup.setDescription("description");
-            setup.setTestbed(testbed);
-            testbed.setSetup(setup);
-            //update testbed
-            TestbedController.getInstance().update(testbed);
+            setup.setDescription("My testbed setup");
             // import by the convert method
             SetupController.getInstance().add(setup);
 

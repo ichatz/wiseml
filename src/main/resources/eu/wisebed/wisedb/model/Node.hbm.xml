@@ -11,35 +11,6 @@
 
         <id name="id" column="node_id"/>
 
-        <!--<component name="position" class="eu.wisebed.wisedb.model.Position">-->
-            <!--<property name="x" column="position_x" type="java.lang.Float"/>-->
-            <!--<property name="y" column="position_y" type="java.lang.Float"/>-->
-            <!--<property name="z" column="position_z" type="java.lang.Float"/>-->
-            <!--<property name="phi" column="position_phi" type="java.lang.Float"/>-->
-            <!--<property name="theta" column="position_theta" type="java.lang.Float"/>-->
-        <!--</component>-->
-
-        <!--<property name="nodeType"/>-->
-        <!--<property name="description" type="text"/>-->
-        <!--<property name="gateway"/>-->
-        <!--<property name="programDetails"/>-->
-
-        <!--<list name="capabilities" table="node_capabilities" cascade="save-update" lazy="true">-->
-            <!--<key column="node_id" not-null="true"/>-->
-            <!--<list-index column="capability_index"/>-->
-            <!--<many-to-many column="capability_id" class="eu.wisebed.wisedb.model.Capability"/>-->
-        <!--</list>-->
-
-        <!--<set name="slses" table="slse_nodes" inverse="true" lazy="true" order-by="lower(node_id) asc">-->
-            <!--<key column="node_id" not-null="true"/>-->
-            <!--<many-to-many column="slse_id" class="eu.wisebed.wisedb.model.Slse"/>-->
-        <!--</set>-->
-
-        <!--<set name="readings" table="node_readings" inverse="true" lazy="extra" order-by="timestamp">-->
-            <!--<key column="node_id" not-null="true"/>-->
-            <!--<one-to-many class="eu.wisebed.wisedb.model.NodeReading"/>-->
-        <!--</set>-->
-
         <many-to-one name="setup" column="setup_id" class="eu.wisebed.wisedb.model.Setup" not-null="true"/>
 
     </class>

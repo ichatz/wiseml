@@ -5,8 +5,8 @@ import eu.wisebed.wisedb.HibernateUtil;
 import eu.wisebed.wisedb.controller.LinkController;
 import eu.wisebed.wisedb.controller.LinkReadingController;
 import eu.wisebed.wisedb.controller.TestbedController;
-import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wisedb.model.Link;
+import eu.wisebed.wisedb.model.Testbed;
 import org.apache.log4j.Logger;
 import org.hibernate.Transaction;
 
@@ -22,12 +22,12 @@ public class LinkReadingCount {
         HibernateUtil.connectEntityManagers();
         Transaction tx = HibernateUtil.getInstance().getSession().beginTransaction();
         try {
-            final String urnPrefix = "urn:wisebed:ctitestbed:";
+            final String urnPrefix = "urn:prefix:";
             final Testbed testbed = TestbedController.getInstance().getByUrnPrefix(urnPrefix);
-            final Link link = (Link) LinkController.getInstance().list(testbed).iterator().next();
+            final Link link = LinkController.getInstance().list(testbed).iterator().next();
             LOGGER.info("Selected Link : [" + link.getSource() + "," + link.getTarget() + "]");
-            Long readingsCount = LinkReadingController.getInstance().getLinkReadingsCount(link);
-            LOGGER.info("Selected Link : [" + link.getSource() + "," + link.getTarget() + "] readings count :" + readingsCount.intValue());
+            int readingsCount = LinkReadingController.getInstance().getLinkReadingsCount(link);
+            LOGGER.info("Selected Link : [" + link.getSource() + "," + link.getTarget() + "] readings count :" + readingsCount);
             tx.commit();
         } catch (Exception e) {
             tx.rollback();

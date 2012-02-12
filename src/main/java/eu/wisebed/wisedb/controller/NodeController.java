@@ -3,6 +3,8 @@ package eu.wisebed.wisedb.controller;
 import com.googlecode.ehcache.annotations.Cacheable;
 import eu.wisebed.wisedb.model.Capability;
 import eu.wisebed.wisedb.model.Node;
+import eu.wisebed.wisedb.model.NodeCapability;
+import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wisedb.model.Origin;
 import eu.wisebed.wisedb.model.Setup;
 import eu.wisebed.wisedb.model.Testbed;
@@ -47,6 +49,7 @@ public class NodeController extends AbstractController<Node> {
      * Logger.
      */
     private static final Logger LOGGER = Logger.getLogger(NodeController.class);
+    private String NODE_CAPABILITY = "capability";
 
 
     /**
@@ -72,6 +75,23 @@ public class NodeController extends AbstractController<Node> {
         }
 
         return ourInstance;
+    }
+
+    /**
+     * Prepares and inserts a node to the testbed's setup with the id provided.
+     *
+     * @param testbed , a testbed instance.
+     * @param nodeId  , a node id.
+     * @return returns the inserted node instance.
+     */
+    Node prepareInsertNode(final Testbed testbed, final String nodeId) {
+        LOGGER.info("prepareInsertNode(" + testbed + "," + nodeId + ")");
+        final Node node = new Node();
+        node.setId(nodeId);
+        node.setSetup(testbed.getSetup());
+        NodeController.getInstance().add(node);
+
+        return node;
     }
 
     /**
@@ -132,7 +152,7 @@ public class NodeController extends AbstractController<Node> {
     }
 
     public List<Node> list(Setup setup) {
-        LOGGER.info("list(" + setup + ")");
+        LOGGER.debug("list(" + setup + ")");
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Node.class);
         criteria.add(Restrictions.eq(SETUP, setup));
@@ -162,16 +182,17 @@ public class NodeController extends AbstractController<Node> {
     /**
      * Listing all the nodes from the database belonging to a selected testbed.
      *
+     *
      * @param testbed , a selected testbed.
      * @return a list of testbed links.
      */
-    public int count(final Testbed testbed) {
-        LOGGER.info("count(" + testbed + ")");
+    public Long count(final Testbed testbed) {
+        LOGGER.debug("count(" + testbed + ")");
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Node.class);
         criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
         criteria.setProjection(Projections.rowCount());
-        return (Integer) criteria.list().get(0);
+        return (Long) criteria.uniqueResult();
     }
 
     /**
@@ -226,12 +247,21 @@ public class NodeController extends AbstractController<Node> {
     }
 
     public String getDescription(Node node) {
-//        final Session session = getSessionFactory().getCurrentSession();
-//        final Criteria criteria = session.createCriteria(NodeReading.class);
-//        criteria.add(Restrictions.eq(NODE_ID, node.getId()));
-//        NodeReading reading = (NodeReading) criteria.list().get(0);
-        return "desc:todo";
+        final NodeCapability nodeCapability = NodeCapabilityController.getInstance().getByID(node, "description");
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.eq(NODE_CAPABILITY, nodeCapability));
+        try {
+            Object obj = criteria.list().get(0);
 
+            if (obj instanceof NodeReading) {
+                NodeReading reading = (NodeReading) obj;
+                return reading.getStringReading();
+            }
+        } catch (IndexOutOfBoundsException e) {
+            return "";
+        }
+        return "";
     }
 
     public Position getPosition(Node node) {

@@ -1,6 +1,7 @@
 package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.model.Capability;
+import eu.wisebed.wisedb.model.LastNodeReading;
 import eu.wisebed.wisedb.model.Node;
 import eu.wisebed.wisedb.model.NodeCapability;
 import org.apache.log4j.Logger;
@@ -32,7 +33,7 @@ public class NodeCapabilityController extends AbstractController<NodeCapability>
     /**
      * Capabilities literal.
      */
-    private static final String CAPABILITY = "capabilityId";
+    private static final String CAPABILITY = "capability";
     /**
      * Id literal.
      */
@@ -66,6 +67,42 @@ public class NodeCapabilityController extends AbstractController<NodeCapability>
         }
 
         return ourInstance;
+    }
+
+    /**
+     * Prepares and inserts a capability to the persistence with the provided capability name.
+     *
+     * @param capabilityName , a capability name.
+     * @return returns the inserted capability instance.
+     */
+    NodeCapability prepareInsertNodeCapability(final String capabilityName, final String nodeId) {
+        LOGGER.info("prepareInsertNodeCapability(" + capabilityName + "," + nodeId + ")");
+
+        Capability capability = CapabilityController.getInstance().getByID(capabilityName);
+        if (capability == null) {
+            capability = CapabilityController.getInstance().prepareInsertCapability(capabilityName);
+        }
+
+        final Node node = NodeController.getInstance().getByID(nodeId);
+
+        final NodeCapability nodeCapability = new NodeCapability();
+
+        nodeCapability.setCapability(capability);
+        nodeCapability.setNode(node);
+
+        final LastNodeReading lastNodeReading = new LastNodeReading();
+        lastNodeReading.setNodeCapability(nodeCapability);
+
+        nodeCapability.setLastNodeReading(lastNodeReading);
+
+        NodeCapabilityController.getInstance().add(nodeCapability);
+
+//        NodeCapabilityController.getInstance().update(nodeCapability);
+
+        LastNodeReadingController.getInstance().add(lastNodeReading);
+
+
+        return nodeCapability;
     }
 
 
@@ -111,39 +148,27 @@ public class NodeCapabilityController extends AbstractController<NodeCapability>
         return null;
     }
 
-    public NodeCapability getByID(Node node, String capabilityName) {
+    public NodeCapability getByID(final Node node, final String capabilityName) {
         final Capability capability = CapabilityController.getInstance().getByID(capabilityName);
-        LOGGER.info("getByID(" + node + "," + capabilityName + ")");
+        LOGGER.debug("getByID(" + node.getId() + "," + capabilityName + ")");
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(NodeCapability.class);
         criteria.add(Restrictions.eq(NODE, node));
         criteria.add(Restrictions.eq(CAPABILITY, capability));
-        Object obj = criteria.list().get(0);
-
-        if (obj instanceof NodeCapability) {
-
-            return (NodeCapability) obj;
-        }
-
-        return null;
+        return (NodeCapability) criteria.uniqueResult();
     }
 
 
-    public List<Capability> list(Node node) {
-        LOGGER.info("list(" + node.getId() + ")");
+    public List<NodeCapability> list(final Node node) {
+        LOGGER.debug("list(" + node.getId() + ")");
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(NodeCapability.class);
         criteria.add(Restrictions.eq(NODE, node));
-        List<Capability> capabilities = new ArrayList<Capability>();
+        List<NodeCapability> capabilities = new ArrayList<NodeCapability>();
         List list = criteria.list();
         for (Object obj : criteria.list()) {
             if (obj instanceof NodeCapability) {
-                final NodeCapability cap = (NodeCapability) obj;
-                final Capability capability = new Capability();
-                capability.setName(cap.getCapability().getName());
-                if (capability != null) {
-                    capabilities.add(capability);
-                }
+                capabilities.add((NodeCapability) obj);
             }
         }
         return capabilities;

@@ -1,14 +1,13 @@
 package eu.wisebed.wisedb.importer;
 
 import eu.wisebed.wisedb.controller.CapabilityController;
-import eu.wisebed.wisedb.controller.LinkCapabilityController;
 import eu.wisebed.wisedb.controller.LinkController;
 import eu.wisebed.wisedb.controller.NodeController;
-import eu.wisebed.wiseml.controller.WiseMLController;
-import eu.wisebed.wiseml.model.WiseML;
 import eu.wisebed.wisedb.model.Capability;
 import eu.wisebed.wisedb.model.Link;
 import eu.wisebed.wisedb.model.Node;
+import eu.wisebed.wiseml.controller.WiseMLController;
+import eu.wisebed.wiseml.model.WiseML;
 import org.apache.log4j.Logger;
 import org.jibx.runtime.JiBXException;
 
@@ -55,7 +54,7 @@ public final class CapabilityImporter extends AbstractImporter<Capability> {
         }
         if (linkList != null) {
             for (Link link : linkList) {
-                final Iterator<Capability> capIt = LinkCapabilityController.getInstance().list(link).iterator();
+                final Iterator<Capability> capIt = CapabilityController.getInstance().list(link).iterator();
                 while (capIt.hasNext()) {
                     capabilitySet.add(capIt.next());
                 }

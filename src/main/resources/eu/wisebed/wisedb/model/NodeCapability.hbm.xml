@@ -21,6 +21,9 @@
         </many-to-one>
 
 
+        <one-to-one name="lastNodeReading" class="eu.wisebed.wisedb.model.LastNodeReading" constrained="true"/>
+
+
     </class>
 
 </hibernate-mapping>

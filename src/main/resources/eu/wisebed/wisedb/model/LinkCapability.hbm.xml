@@ -18,8 +18,11 @@
         </many-to-one>
 
         <many-to-one name="capability" class="eu.wisebed.wisedb.model.Capability">
-        <column name="capability_id" not-null="true"/>
+            <column name="capability_id" not-null="true"/>
         </many-to-one>
+
+        <one-to-one name="lastLinkReading" class="eu.wisebed.wisedb.model.LastLinkReading" constrained="true"/>
+
 
     </class>
 

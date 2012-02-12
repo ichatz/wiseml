@@ -127,15 +127,16 @@ public class TestbedController extends AbstractController<Testbed> {
      * @param testbedName the name of a Testbed object.
      * @return a Testbed object.
      */
-    @SuppressWarnings("unchecked")
     public Testbed getByName(final String testbedName) {
-        LOGGER.info("getByTestbedName(" + testbedName + ")");
+        LOGGER.info("getByName(" + testbedName + ")");
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Testbed.class);
-        criteria.add(Restrictions.like(NAME, testbedName, MatchMode.START));
-        criteria.addOrder(Order.asc(NAME));
-        criteria.setMaxResults(1);
-        return (Testbed) criteria.uniqueResult();
+        criteria.add(Restrictions.eq(NAME, testbedName));
+        Object obj = criteria.uniqueResult();
+        return (Testbed) obj;
+//        if (obj != null) {
+//            return (Testbed) criteria.list().get(0);
+//        }
     }
 
     /**
@@ -230,7 +231,7 @@ public class TestbedController extends AbstractController<Testbed> {
             final Object[] obj = (Object[]) iter.next();
             final Setup setup = (Setup) obj[0];
             final long count = (Long) obj[1];
-            resultsMap.put(setup.getTestbed().getName(), count);
+            resultsMap.put(TestbedController.getInstance().getBySetup(setup).getName(), count);
 
         }
 

@@ -17,7 +17,6 @@ public class AddNodeReading {
      */
     private static final Logger LOGGER = org.apache.log4j.Logger.getLogger(AddNodeReading.class);
 
-    @SuppressWarnings({"deprecation"})
     public static void main(String args[]) {
 
         // Initialize hibernate
@@ -25,37 +24,39 @@ public class AddNodeReading {
         Transaction tx = HibernateUtil.getInstance().getSession().beginTransaction();
         try {
 
-            // a valid urnPrefix for CTI's testbed
-            final String urnPrefix = "urn:wisebed:ctitestbed:";
+            // a valid urnPrefix for the testbed
+            final String urnPrefix = "urn:prefix:";
 
-            // valid id.
-            final int testbedId = 1;
-
-            // a valid node id for cti's testbed
+            final int testbedId = 18;
+            // a node id for the testbed
             final String nodeId = urnPrefix + "NODETEST1";
 
             // get that nodes capability name
-            final String capabilityName = urnPrefix + "CAPATEST";
+            final String capabilityName = "temp";
 
             // reading value
-            final double readingValue = -1337.0;
+            final double readingValue = 24.0;
+            // string reading value
+            final String stringReading = null;
 
             // Occured time
-            final Date timestamp = new Date(10);
+            final Date timestamp = new Date();
 
-            LOGGER.debug("Node : " + nodeId);
-            LOGGER.debug("Capability : " + capabilityName);
-            LOGGER.debug("Reading : " + readingValue);
-            LOGGER.debug("Timestamp : " + timestamp.toGMTString());
-
+            LOGGER.info("Node : " + nodeId);
+            LOGGER.info("Capability : " + capabilityName);
+            LOGGER.info("Reading : " + readingValue);
+            LOGGER.info("StringReading : " + stringReading);
+            LOGGER.info("Timestamp : " + timestamp.toString());
 
             // insert reading
-            NodeReadingController.getInstance().insertReading(nodeId, capabilityName, testbedId, readingValue,null, timestamp);
+            NodeReadingController.getInstance().insertReading(nodeId, capabilityName, testbedId, readingValue, stringReading, timestamp);
+
 
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
             LOGGER.fatal(e);
+            e.printStackTrace();
             System.exit(-1);
         } finally {
             // always close session

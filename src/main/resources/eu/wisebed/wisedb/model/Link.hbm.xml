@@ -15,34 +15,34 @@
         </composite-id>
 
         <!--<property name="encrypted" type="java.lang.Boolean">-->
-            <!--<column name="encrypted" sql-type="BOOLEAN"/>-->
+        <!--<column name="encrypted" sql-type="BOOLEAN"/>-->
         <!--</property>-->
 
         <!--<property name="virtual" type="java.lang.Boolean">-->
-            <!--<column name="virtual" sql-type="BOOLEAN"/>-->
+        <!--<column name="virtual" sql-type="BOOLEAN"/>-->
         <!--</property>-->
 
         <!--<component name="rssi" class="eu.wisebed.wisedb.model.Rssi">-->
-            <!--<property name="unit" column="rssi_unit"/>-->
-            <!--<property name="datatype" column="rssi_datatype"/>-->
+        <!--<property name="unit" column="rssi_unit"/>-->
+        <!--<property name="datatype" column="rssi_datatype"/>-->
         <!--</component>-->
 
 
         <!--<list name="capabilities" table="link_capabilities" cascade="save-update" lazy="true">-->
-            <!--<key>-->
-                <!--<column name="link_source" not-null="true"/>-->
-                <!--<column name="link_target" not-null="true"/>-->
-            <!--</key>-->
-            <!--<list-index column="capability_index"/>-->
-            <!--<many-to-many column="capability_id" class="eu.wisebed.wisedb.model.Capability"/>-->
+        <!--<key>-->
+        <!--<column name="link_source" not-null="true"/>-->
+        <!--<column name="link_target" not-null="true"/>-->
+        <!--</key>-->
+        <!--<list-index column="capability_index"/>-->
+        <!--<many-to-many column="capability_id" class="eu.wisebed.wisedb.model.Capability"/>-->
         <!--</list>-->
 
         <!--<set name="readings" table="link_readings" inverse="true" lazy="extra" order-by="timestamp asc">-->
-            <!--<key>-->
-                <!--<column name="link_source" not-null="true"/>-->
-                <!--<column name="link_target" not-null="true"/>-->
-            <!--</key>-->
-            <!--<one-to-many class="eu.wisebed.wisedb.model.LinkReading"/>-->
+        <!--<key>-->
+        <!--<column name="link_source" not-null="true"/>-->
+        <!--<column name="link_target" not-null="true"/>-->
+        <!--</key>-->
+        <!--<one-to-many class="eu.wisebed.wisedb.model.LinkReading"/>-->
         <!--</set>-->
 
         <many-to-one name="setup" column="setup_id" class="eu.wisebed.wisedb.model.Setup"/>

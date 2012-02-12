@@ -99,7 +99,7 @@ public final class TestbedImporter extends AbstractImporter<Testbed> {
     /**
      * Sets urn prefix.
      *
-     * @param urnPrefix  a urn prefix for testbed.
+     * @param urnPrefix a urn prefix for testbed.
      */
     public void setUrnPrefix(final String urnPrefix) {
         this.urnPrefix = urnPrefix;
@@ -215,6 +215,7 @@ public final class TestbedImporter extends AbstractImporter<Testbed> {
 
     /**
      * Returns testbed's timezone.
+     *
      * @return get testbed's timezone.
      */
     public TimeZone getTimeZone() {
@@ -223,6 +224,7 @@ public final class TestbedImporter extends AbstractImporter<Testbed> {
 
     /**
      * Sets testbed's timezone.
+     *
      * @param timeZone testbed's timezone
      */
     public void setTimeZone(final TimeZone timeZone) {
@@ -248,7 +250,7 @@ public final class TestbedImporter extends AbstractImporter<Testbed> {
 
         // persisting testbed
         TestbedController.getInstance().add(testbed);
-        LOGGER.debug("Testbed imported to DB (1)");
+        LOGGER.debug("Testbed '" + testbed.getName() + "' imported to DB (1)");
     }
 
 

@@ -1,6 +1,7 @@
 package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.model.Capability;
+import eu.wisebed.wisedb.model.LastLinkReading;
 import eu.wisebed.wisedb.model.Link;
 import eu.wisebed.wisedb.model.LinkCapability;
 import org.apache.log4j.Logger;
@@ -36,7 +37,7 @@ public class LinkCapabilityController extends AbstractController<LinkCapability>
     /**
      * Capabilities literal.
      */
-    private static final String CAPABILITY = "capabilityId";
+    private static final String CAPABILITY = "capability";
     private static final String ID = "id";
 
     /**
@@ -70,6 +71,38 @@ public class LinkCapabilityController extends AbstractController<LinkCapability>
 
         return ourInstance;
     }
+
+    /**
+     * Prepares and inserts a capability to the persistnce with the provided capability name.
+     *
+     * @param capabilityName , a capability name.
+     * @return returns the inserted capability instance.
+     */
+    LinkCapability prepareInsertLinkCapability(final Link link, final String capabilityName) {
+        LOGGER.info("prepareInsertLinkCapability(" + capabilityName + ")");
+
+        Capability capability = CapabilityController.getInstance().getByID(capabilityName);
+        if (capability == null) {
+            capability = CapabilityController.getInstance().prepareInsertCapability(capabilityName);
+        }
+
+        final LinkCapability linkCapability = new LinkCapability();
+
+        linkCapability.setCapability(capability);
+        linkCapability.setLink(link);
+
+        final LastLinkReading lastLinkReading = new LastLinkReading();
+        lastLinkReading.setLinkCapability(linkCapability);
+
+        linkCapability.setLastLinkReading(lastLinkReading);
+
+        LinkCapabilityController.getInstance().add(linkCapability);
+
+        LastLinkReadingController.getInstance().add(lastLinkReading);
+
+        return linkCapability;
+    }
+
 
     public void delete(final Link link, final Capability capability) {
 
@@ -144,21 +177,26 @@ public class LinkCapabilityController extends AbstractController<LinkCapability>
         return null;
     }
 
-    public List<Capability> list(Link link) {
-        LOGGER.info("list(" + link.getSource() + "--" + link.getTarget() + ")");
+    public LinkCapability getByID(final Link link, final String capabilityName) {
+        final Capability capability = CapabilityController.getInstance().getByID(capabilityName);
+        LOGGER.debug("getByID(" + link + "," + capabilityName + ")");
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(LinkCapability.class);
         criteria.add(Restrictions.eq(LINK, link));
-        List<Capability> capabilities = new ArrayList<Capability>();
-        List list = criteria.list();
-        LOGGER.info(list.size());
+        criteria.add(Restrictions.eq(CAPABILITY, capability));
+        return (LinkCapability) criteria.uniqueResult();
+    }
+
+    public List<LinkCapability> list(final Link link) {
+        LOGGER.debug("list(" + link.getSource() + "--" + link.getTarget() + ")");
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(LinkCapability.class);
+        criteria.add(Restrictions.eq(LINK, link));
+        final List<LinkCapability> capabilities = new ArrayList<LinkCapability>();
+        final List list = criteria.list();
         for (Object obj : criteria.list()) {
             if (obj instanceof LinkCapability) {
-                final LinkCapability cap = (LinkCapability) obj;
-                final Capability capability = cap.getCapability();
-                if (capability != null) {
-                    capabilities.add(capability);
-                }
+                capabilities.add((LinkCapability) obj);
             }
         }
         return capabilities;

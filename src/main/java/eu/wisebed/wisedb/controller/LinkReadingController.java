@@ -1,15 +1,15 @@
 package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.exception.UnknownTestbedException;
-import eu.wisebed.wisedb.model.Capability;
 import eu.wisebed.wisedb.model.LastLinkReading;
 import eu.wisebed.wisedb.model.Link;
+import eu.wisebed.wisedb.model.LinkCapability;
 import eu.wisebed.wisedb.model.LinkReading;
 import eu.wisebed.wisedb.model.Node;
 import eu.wisebed.wisedb.model.Testbed;
-import eu.wisebed.wiseml.model.setup.Rssi;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -69,6 +69,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      * Logger.
      */
     private static final Logger LOGGER = Logger.getLogger(LinkReadingController.class);
+    private static final String CAPABILITY = "capability";
 
     /**
      * Public constructor .
@@ -127,83 +128,12 @@ public class LinkReadingController extends AbstractController<LinkReading> {
 
 
     /**
-     * Prepares and inserts a node to the testbed's setup with the id provided.
-     *
-     * @param testbed , a testbed instance.
-     * @param nodeId  , a node id.
-     * @return returns the inserted node instance.
-     */
-    private Node prepareInsertNode(final Testbed testbed, final String nodeId) {
-        LOGGER.info("prepareInsertNode(" + testbed + "," + nodeId + ")");
-        final Node node = new Node();
-        node.setId(nodeId);
-        //TODO
-//        node.setDescription(DESCRIPTION);
-//        node.setProgramDetails(PROGRAM_DETAILS);
-//        node.setGateway("false");
-        node.setSetup(testbed.getSetup());
-        NodeController.getInstance().add(node);
-
-        return node;
-    }
-
-    /**
-     * Prepares and inserts a link to the testbed setup  with the provided ids as source and target.
-     *
-     * @param testbed  , a testbed instance.
-     * @param sourceId , a source node id.
-     * @param targetId , a target node id.
-     * @return returns the inserted link instance.
-     */
-    private Link prepareInsertLink(final Testbed testbed, final String sourceId, final String targetId) {
-        LOGGER.info("prepareInsertLink(" + testbed + "," + sourceId + "," + targetId + ")");
-
-        final Rssi rssi = new Rssi();
-        rssi.setDatatype(DATATYPE);
-        rssi.setUnit(UNIT);
-        rssi.setValue(ZERO);
-
-        final Link link = new Link();
-        link.setSource(sourceId);
-        link.setTarget(targetId);
-        //TODO
-//        link.setEncrypted(false);
-//        link.setVirtual(false);
-        link.setSetup(testbed.getSetup());
-        LinkController.getInstance().add(link);
-
-        return link;
-    }
-
-    /**
-     * Prepares and inserts a capability to the persistnce with the provided capability name.
-     *
-     * @param capabilityName , a capability name.
-     * @return returns the inserted capability instance.
-     */
-    private Capability prepareInsertCapability(final String capabilityName) {
-        LOGGER.info("prepareInsertCapability(" + capabilityName + ")");
-
-        final Capability capability = new Capability();
-
-        capability.setName(capabilityName);
-        capability.setDatatype(DATATYPE);
-        capability.setDefaultvalue(DEFAULT_VALUE);
-        capability.setUnit(UNIT);
-
-        CapabilityController.getInstance().add(capability);
-
-        return capability;
-    }
-
-    /**
      * Insert a links's reading from it's capabilities and make the appropriate  associations.
      *
      * @param sourceId       , link's source id.
      * @param targetId       , target's source id.
      * @param capabilityName , capability's id.
      * @param testbedId      , a testbed id.
-     * @param rssiValue      , the RSSI value of the link.
      * @param stringReading  , value of a string reading.
      * @param doubleReading  , value of a sensor reading.
      * @param timestamp      , a timestamp.
@@ -211,10 +141,10 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      */
     public void insertReading(final String sourceId, final String targetId, final String capabilityName,
                               final int testbedId, final Double doubleReading, final String stringReading,
-                              final Double rssiValue, final Date timestamp) throws UnknownTestbedException {
+                              final Date timestamp) throws UnknownTestbedException {
 
         LOGGER.info("insertReading(" + sourceId + "," + targetId + "," + capabilityName + "," + testbedId
-                + "," + doubleReading + "," + stringReading + "," + rssiValue + "," + timestamp + ")");
+                + "," + doubleReading + "," + stringReading + "," + timestamp + ")");
 
         // look for testbed
         final Testbed testbed = TestbedController.getInstance().getByID(testbedId);
@@ -227,7 +157,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         if (source == null) {
             // if source node not found in db make it and store it
             LOGGER.info("Node [" + sourceId + "] was not found in db . Storing it");
-            prepareInsertNode(testbed, sourceId);
+            NodeController.getInstance().prepareInsertNode(testbed, sourceId);
         }
 
         // look for target
@@ -235,7 +165,7 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         if (target == null) {
             // if target node not found in db make it and store it
             LOGGER.info("Node [" + targetId + "] was not found in db . Storing it");
-            prepareInsertNode(testbed, targetId);
+            NodeController.getInstance().prepareInsertNode(testbed, targetId);
         }
 //
 //        // look for link
@@ -264,55 +194,45 @@ public class LinkReadingController extends AbstractController<LinkReading> {
 //        }
 
         Link link = LinkController.getInstance().getByID(sourceId, targetId);
-        Capability capability = CapabilityController.getInstance().getByID(capabilityName);
+        LinkCapability linkCapability;
         if (link == null) {
-            link = prepareInsertLink(testbed, sourceId, targetId);
-            if (capability == null) {
-                capability = prepareInsertCapability(capabilityName);
-                LinkCapabilityController.getInstance().add(link, capability);
-                LinkController.getInstance().update(link);
-            } else {
-                LinkCapabilityController.getInstance().add(link, capability);
-                LinkController.getInstance().update(link);
-            }
+            LOGGER.debug("link==null");
+            link = LinkController.getInstance().prepareInsertLink(testbed, sourceId, targetId);
+            linkCapability = LinkCapabilityController.getInstance().prepareInsertLinkCapability(link, capabilityName);
         } else {
-            if (capability == null) {
-                capability = prepareInsertCapability(capabilityName);
-                LinkCapabilityController.getInstance().add(link, capability);
+            linkCapability = LinkCapabilityController.getInstance().getByID(link, capabilityName);
+            if (linkCapability == null) {
+                linkCapability = LinkCapabilityController.getInstance().prepareInsertLinkCapability(link, capabilityName);
                 LinkController.getInstance().update(link);
-            } else {
-                if (!LinkController.getInstance().isAssociated(capability, testbed, link)) {
-                    LinkCapabilityController.getInstance().add(link, capability);
-                    LinkController.getInstance().update(link);
-                }
             }
         }
 
         // make a new link reading entity
         final LinkReading reading = new LinkReading();
-//        reading.setLink(link);
-//        reading.setCapability(capability);
+        reading.setCapability(linkCapability);
         reading.setReading(doubleReading);
         reading.setStringReading(stringReading);
         reading.setTimestamp(timestamp);
 
         // add reading
         add(reading);
+
+
         // get last link reading for link and capability if not found create one
-        LastLinkReading lastLinkReading = LastLinkReadingController.getInstance().getByID(link, capability);
+        LastLinkReading lastLinkReading = linkCapability.getLastLinkReading();
         if (lastLinkReading == null) {
             // if last link reading was not found
-            LOGGER.info("Last link reading for Link[" + sourceId + "," + targetId
-                    + "] Capability [" + capabilityName + "] created");
+            LOGGER.info("Last link reading for LinkCapability [" + linkCapability.toString() + "] created");
             lastLinkReading = new LastLinkReading();
         }
         lastLinkReading.setReading(doubleReading);
         lastLinkReading.setStringReading(stringReading);
         lastLinkReading.setTimestamp(timestamp);
-        lastLinkReading.setLink(link);
-        lastLinkReading.setCapability(capability);
-        lastLinkReading.setRssiValue(rssiValue);
-        LastLinkReadingController.getInstance().add(lastLinkReading);
+        lastLinkReading.setId(linkCapability.getId());
+
+        linkCapability.setLastLinkReading(lastLinkReading);
+
+        LinkCapabilityController.getInstance().update(linkCapability);
     }
 
     /**
@@ -321,15 +241,29 @@ public class LinkReadingController extends AbstractController<LinkReading> {
      * @param link , a link .
      * @return the count of this link.
      */
-    public Long getLinkReadingsCount(final Link link) {
+    public int getLinkReadingsCount(final Link link) {
         LOGGER.info("getLinkReadingsCount(" + link + ")");
-        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(LinkReading.class);
-        criteria.createAlias(LINK, "id");
-        criteria.add(Restrictions.eq("id.source", link.getSource()));
-        criteria.add(Restrictions.eq("id.target", link.getTarget()));
-        criteria.setProjection(Projections.count("id"));
-        criteria.setMaxResults(1);
+        final List<LinkCapability> linkCapabilities = LinkCapabilityController.getInstance().list(link);
+        Integer result = 0;
+        for (LinkCapability linkCapability : linkCapabilities) {
+            final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+            final Criteria criteria = session.createCriteria(LinkReading.class);
+            criteria.add(Restrictions.eq(CAPABILITY, linkCapability));
+            criteria.setProjection(Projections.rowCount());
+            final Long count = (Long) criteria.uniqueResult();
+            result += count.intValue();
+        }
+
+        return result.intValue();
+
+    }
+
+    public Long count() {
+        LOGGER.info("count()");
+        Criteria criteria = null;
+        final Session session = getSessionFactory().getCurrentSession();
+        criteria = session.createCriteria(LinkReading.class);
+        criteria.setProjection(Projections.rowCount());
         return (Long) criteria.uniqueResult();
     }
 }

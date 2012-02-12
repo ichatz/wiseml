@@ -6,19 +6,18 @@
     <class name="eu.wisebed.wisedb.model.LastLinkReading" table="last_link_capability_readings"
            dynamic-insert="true" dynamic-update="true">
 
-        <composite-id>
-            <key-many-to-one name="link" class="eu.wisebed.wisedb.model.Link">
-                <column name="link_source" not-null="true"/>
-                <column name="link_target" not-null="true"/>
-            </key-many-to-one>
-            <key-many-to-one name="capability" column="capability_id" class="eu.wisebed.wisedb.model.Capability"/>
-        </composite-id>
+        <id name="id" type="int">
+            <column name="link_capability"/>
+            <generator class="foreign">
+                <param name="property">linkCapability</param>
+            </generator>
+        </id>
+
+        <one-to-one name="linkCapability" constrained="true"/>
 
         <property name="timestamp" type="timestamp"/>
 
         <property name="reading" type="java.lang.Double"/>
-
-        <property name="rssiValue" type="java.lang.Double" />
 
         <property name="stringReading" length="10000"/>
 

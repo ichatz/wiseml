@@ -1,10 +1,10 @@
 package eu.wisebed.wisedb.controller;
 
+import eu.wisebed.wisedb.model.Capability;
 import eu.wisebed.wisedb.model.Link;
 import eu.wisebed.wisedb.model.LinkCapability;
 import eu.wisebed.wisedb.model.Setup;
 import eu.wisebed.wisedb.model.Testbed;
-import eu.wisebed.wisedb.model.Capability;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -75,6 +75,29 @@ public class LinkController extends AbstractController<Link> {
     }
 
     /**
+     * Prepares and inserts a link to the testbed setup  with the provided ids as source and target.
+     *
+     * @param testbed  , a testbed instance.
+     * @param sourceId , a source node id.
+     * @param targetId , a target node id.
+     * @return returns the inserted link instance.
+     */
+    Link prepareInsertLink(final Testbed testbed, final String sourceId, final String targetId) {
+        LOGGER.info("prepareInsertLink(" + testbed + "," + sourceId + "," + targetId + ")");
+
+        final Link link = new Link();
+        link.setSource(sourceId);
+        link.setTarget(targetId);
+        //TODO
+//        link.setEncrypted(false);
+//        link.setVirtual(false);
+        link.setSetup(testbed.getSetup());
+        LinkController.getInstance().add(link);
+
+        return link;
+    }
+
+    /**
      * Get the entry from the link that corresponds to the input id, Source & Target node ids.
      *
      * @param sourceId , The node id of the link's source.
@@ -134,7 +157,7 @@ public class LinkController extends AbstractController<Link> {
     }
 
     public List<Link> list(Setup setup) {
-        LOGGER.info("list(" + setup + ")");
+        LOGGER.debug("list(" + setup + ")");
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Link.class);
         criteria.add(Restrictions.eq(SETUP, setup));
@@ -144,16 +167,17 @@ public class LinkController extends AbstractController<Link> {
     /**
      * Count all the links from the database belonging to a selected testbed.
      *
+     *
      * @param testbed , a selected testbed.
      * @return the number of links.
      */
-    public int count(final Testbed testbed) {
-        LOGGER.info("count(" + testbed + ")");
+    public Long count(final Testbed testbed) {
+        LOGGER.debug("count(" + testbed + ")");
         final org.hibernate.classic.Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Link.class);
         criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
         criteria.setProjection(Projections.rowCount());
-        return (Integer) criteria.list().get(0);
+        return (Long) criteria.uniqueResult();
     }
 
     /**

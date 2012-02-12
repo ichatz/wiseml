@@ -48,8 +48,16 @@ public class NodeCapability implements Serializable {
 
     private Node node;
 
+    private LastNodeReading lastNodeReading;
 
-//    /**
+    public LastNodeReading getLastNodeReading() {
+        return lastNodeReading;
+    }
+
+    public void setLastNodeReading(LastNodeReading lastNodeReading) {
+        this.lastNodeReading = lastNodeReading;
+    }
+    //    /**
 //     * the datatype of the capability.
 //     */
 //    @Column(name = "datatype")
@@ -94,7 +102,7 @@ public class NodeCapability implements Serializable {
         this.node = node;
     }
 
-//    /**
+    //    /**
 //     * this method returns the datatype of the capability.
 //     *
 //     * @return the datatype of the capability.
@@ -167,5 +175,12 @@ public class NodeCapability implements Serializable {
 //    public void setDescription(final String description) {
 //        this.description = description;
 //    }
+    @Override
+    public String toString() {
+        return "NodeCapability{" +
+                "capability=" + capability +
+                ", node=" + node +
+                '}';
+    }
 
 }

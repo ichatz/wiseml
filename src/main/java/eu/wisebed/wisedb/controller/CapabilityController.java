@@ -1,7 +1,8 @@
 package eu.wisebed.wisedb.controller;
 
-import eu.wisebed.wisedb.model.Testbed;
 import eu.wisebed.wisedb.model.Capability;
+import eu.wisebed.wisedb.model.Link;
+import eu.wisebed.wisedb.model.Testbed;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -19,6 +20,20 @@ import java.util.Map;
  */
 @SuppressWarnings("unchecked")
 public class CapabilityController extends AbstractController<Capability> {
+    /**
+     * Unit literal.
+     */
+    private static final String UNIT = "UNIT";
+
+    /**
+     * Datatype literal.
+     */
+    private static final String DATATYPE = "DATATYPE";
+
+    /**
+     * Default value literal.
+     */
+    private static final String DEFAULT_VALUE = "DEFAULT_VALUE";
     /**
      * static instance(ourInstance) initialized as null.
      */
@@ -69,6 +84,25 @@ public class CapabilityController extends AbstractController<Capability> {
     }
 
     /**
+     * Prepares and inserts a capability to the persistence with the provided capability name.
+     *
+     * @param capabilityName , a capability name.
+     * @return returns the inserted capability instance.
+     */
+    Capability prepareInsertCapability(final String capabilityName) {
+
+        LOGGER.info("prepareInsertCapability(" + capabilityName + ")");
+        final Capability capability = new Capability();
+        capability.setName(capabilityName);
+        capability.setDatatype(DATATYPE);
+        capability.setDefaultvalue(DEFAULT_VALUE);
+        capability.setUnit(UNIT);
+        CapabilityController.getInstance().add(capability);
+
+        return capability;
+    }
+
+    /**
      * Stores the capability provided in the parameters.
      *
      * @param entity a Capability object.
@@ -91,8 +125,16 @@ public class CapabilityController extends AbstractController<Capability> {
      * @return an Entity object.
      */
     public Capability getByID(final String entityID) {
-        LOGGER.info("getByID(" + entityID + ")");
-        return super.getByID(new Capability(), entityID);
+        LOGGER.debug("getByID(" + entityID + ")");
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(Capability.class);
+        criteria.add(Restrictions.eq("name", entityID));
+
+        final List list = criteria.list();
+        if (list.size() > 0) {
+            return (Capability) list.get(0);
+        }
+        return null;
     }
 
     /**
@@ -213,5 +255,9 @@ public class CapabilityController extends AbstractController<Capability> {
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         criteria.setProjection(Projections.property("name"));
         return (List<String>) criteria.list();
+    }
+
+    public List<Capability> list(Link link) {
+        return new ArrayList<Capability>();
     }
 }

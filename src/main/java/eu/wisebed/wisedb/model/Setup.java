@@ -57,6 +57,7 @@ public class Setup implements Serializable {
     @Basic(fetch = FetchType.LAZY)
     private String coordinateType;
 
+
     private Testbed testbed;
 
     public Testbed getTestbed() {
@@ -101,6 +102,13 @@ public class Setup implements Serializable {
      */
     public Origin getOrigin() {
         return origin;
+    }
+
+    @Override
+    public String toString() {
+        return "Setup{" +
+                "id=" + id +
+                '}';
     }
 
     /**

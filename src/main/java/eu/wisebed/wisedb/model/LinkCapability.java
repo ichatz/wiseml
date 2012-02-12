@@ -63,7 +63,16 @@ public class LinkCapability implements Serializable {
 
     private Link link;
 
-//    /**
+    private LastLinkReading lastLinkReading;
+
+    public LastLinkReading getLastLinkReading() {
+        return lastLinkReading;
+    }
+
+    public void setLastLinkReading(LastLinkReading lastLinkReading) {
+        this.lastLinkReading = lastLinkReading;
+    }
+    //    /**
 //     * the datatype of the capability.
 //     */
 //    @Column(name = "datatype")
@@ -190,4 +199,10 @@ public class LinkCapability implements Serializable {
 //        this.description = description;
 //    }
 
+    @Override
+    public String toString() {
+        return "LinkCapability{" +
+                "id=" + id +
+                '}';
+    }
 }

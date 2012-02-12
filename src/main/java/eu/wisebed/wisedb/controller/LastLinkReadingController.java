@@ -1,14 +1,11 @@
 package eu.wisebed.wisedb.controller;
 
+import com.mysql.jdbc.NotImplemented;
 import eu.wisebed.wisedb.model.LastLinkReading;
-import eu.wisebed.wisedb.model.Link;
-import eu.wisebed.wisedb.model.Setup;
+import eu.wisebed.wisedb.model.LinkCapability;
 import eu.wisebed.wisedb.model.Testbed;
-import eu.wisebed.wisedb.model.Capability;
 import org.apache.log4j.Logger;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
 
@@ -24,14 +21,9 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
     private static LastLinkReadingController ourInstance = null;
 
     /**
-     * Link literal.
-     */
-    private static final String LINK = "link";
-
-    /**
      * Capability literal.
      */
-    private static final String CAPABILITY = "capability";
+    private static final String CAPABILITY = "id";
 
     /**
      * Logger.
@@ -66,31 +58,15 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
     /**
      * Returns the last reading inserted in the persistence for a specific link & capability.
      *
-     * @param link       , a link.
-     * @param capability , a capability.
+     * @param linkCapability , a link capability.
      * @return the last node reading.
      */
-    public LastLinkReading getByID(final Link link, final Capability capability) {
-        LOGGER.info("add(" + link + "," + capability + ")");
+    public LastLinkReading getByID(final LinkCapability linkCapability) {
+        LOGGER.info("add(" + linkCapability + ")");
         final Session session = this.getSessionFactory().getCurrentSession();
         final LastLinkReading lastLinkReading = new LastLinkReading();
-        lastLinkReading.setLink(link);
-        lastLinkReading.setCapability(capability);
+        lastLinkReading.setLinkCapability(linkCapability);
         return (LastLinkReading) session.get(LastLinkReading.class, lastLinkReading);
-    }
-
-    /**
-     * Returns a list of last reading rows inserted in the persistence for a specific link.
-     *
-     * @param link , a link.
-     * @return a list of last reading rows for each capability.
-     */
-    public List<LastLinkReading> getByLink(final Link link) {
-        LOGGER.info("getByLink(" + link + ")");
-        final Session session = this.getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(LastLinkReading.class);
-        criteria.add(Restrictions.eq(LINK, link));
-        return (List<LastLinkReading>) criteria.list();
     }
 
     /**
@@ -99,42 +75,43 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
      * @param testbed , a testbed instance.
      * @return a list last node readings from a testbed's nodes
      */
-    public List<LastLinkReading> getByTestbed(final Testbed testbed) {
+    public List<LastLinkReading> getByTestbed(final Testbed testbed) throws NotImplemented {
         LOGGER.info("getByTestbed(" + testbed + ")");
-        // retrieve testbed nodes from setup
-        final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
-        List<Link> links = LinkController.getInstance().list(TestbedController.getInstance().getBySetup(setup));
-        if (links == null || links.isEmpty()) {
-            return null;
-        }
-
-        final Session session = this.getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(LastLinkReading.class);
-        criteria.add(Restrictions.in(LINK, links));
-        return (List<LastLinkReading>) criteria.list();
+        throw new NotImplemented();
+//        // retrieve testbed nodes from setup
+//        final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
+//        List<Link> links = LinkController.getInstance().list(TestbedController.getInstance().getBySetup(setup));
+//        if (links == null || links.isEmpty()) {
+//            return null;
+//        }
+//
+//        final Session session = this.getSessionFactory().getCurrentSession();
+//        final Criteria criteria = session.createCriteria(LastLinkReading.class);
+//        criteria.add(Restrictions.in(LINK, links));
+//        return (List<LastLinkReading>) criteria.list();
     }
-
-    /**
-     * Returns a list of last reading rows inserted in the persistence for a specific capability.
-     *
-     * @param testbed    ,  a testbed.
-     * @param capability , a capability.
-     * @return a list of last reading rows for each capability.
-     */
-    public List<LastLinkReading> getByCapability(final Testbed testbed, final Capability capability) {
-        LOGGER.info("getByCapability(" + testbed + "," + capability + ")");
-        // retrieve testbed nodes from setup
-        final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
-        List<Link> links = LinkController.getInstance().list(TestbedController.getInstance().getBySetup(setup));
-        if (links == null || links.isEmpty()) {
-            return null;
-        }
-
-        final Session session = this.getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(LastLinkReading.class);
-        criteria.add(Restrictions.in(LINK, links));
-        criteria.add(Restrictions.eq(CAPABILITY, capability));
-        return (List<LastLinkReading>) criteria.list();
-    }
+//
+//    /**
+//     * Returns a list of last reading rows inserted in the persistence for a specific capability.
+//     *
+//     * @param testbed    ,  a testbed.
+//     * @param capability , a capability.
+//     * @return a list of last reading rows for each capability.
+//     */
+//    public List<LastLinkReading> getByCapability(final Testbed testbed, final Capability capability) {
+//        LOGGER.info("getByCapability(" + testbed + "," + capability + ")");
+//        // retrieve testbed nodes from setup
+//        final Setup setup = SetupController.getInstance().getByID(testbed.getSetup().getId());
+//        List<Link> links = LinkController.getInstance().list(TestbedController.getInstance().getBySetup(setup));
+//        if (links == null || links.isEmpty()) {
+//            return null;
+//        }
+//
+//        final Session session = this.getSessionFactory().getCurrentSession();
+//        final Criteria criteria = session.createCriteria(LastLinkReading.class);
+//        criteria.add(Restrictions.in(LINK, links));
+//        criteria.add(Restrictions.eq(CAPABILITY, capability));
+//        return (List<LastLinkReading>) criteria.list();
+//    }
 
 }

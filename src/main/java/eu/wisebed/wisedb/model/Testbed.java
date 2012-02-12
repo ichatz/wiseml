@@ -288,4 +288,12 @@ public final class Testbed implements Serializable {
     public void setTimeZone(final TimeZone timeZone) {
         this.timeZone = timeZone;
     }
+
+    @Override
+    public String toString() {
+        return "Testbed{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
