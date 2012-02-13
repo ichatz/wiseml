@@ -86,7 +86,7 @@ public class AddSimpleTestbed {
             setup.setTimeinfo(new TimeInfo());
             setup.setCoordinateType("Absolute");
             setup.setDescription("description");
-            setup.setTestbed(testbed);
+//            setup.setTestbed(testbed);
             testbed.setSetup(setup);
             //update testbed
             TestbedController.getInstance().update(testbed);

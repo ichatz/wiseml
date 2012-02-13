@@ -1,11 +1,15 @@
 package eu.wisebed.wisedb.model;
 
-import org.hibernate.annotations.Entity;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
@@ -26,38 +30,43 @@ public class Setup implements Serializable {
     /**
      * id of setup.
      */
-//    @Id
-//    @GeneratedValue
-//    @Column(name = "setup_id", unique = true, nullable = false)
+    @Id
+    @Column(name = "setup_id")
     private int id;
 
     /**
      * the origin of node.
      */
+    @Basic(fetch = FetchType.LAZY)
     @Embedded
     private Origin origin;
 
     /**
      * the information of time used in the experiment.
      */
+    @Basic(fetch = FetchType.LAZY)
     @Embedded
     private TimeInfo timeinfo;
 
     /**
      * the description of the experiment.
      */
-    @Column(name = "description", unique = true, nullable = false)
     @Basic(fetch = FetchType.LAZY)
+    @Column(name = "description", unique = true, nullable = false)
     private String description;
 
     /**
      * the type of the coordinate system.
      */
-    @Column(name = "coordinateType", unique = true, nullable = false)
     @Basic(fetch = FetchType.LAZY)
+    @Column(name = "coordinateType", unique = true, nullable = false)
     private String coordinateType;
 
-
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name="testbed_id")
+    @GeneratedValue(generator = "foreign")
+    @GenericGenerator(name = "foreign", strategy = "foreign", parameters = {
+            @Parameter(name = "property", value = "testbed_id")})
     private Testbed testbed;
 
     public Testbed getTestbed() {

@@ -1,12 +1,6 @@
 package eu.wisebed.wisedb.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.TimeZone;
 
@@ -26,56 +20,79 @@ public final class Testbed implements Serializable {
     /**
      * Identity of the network.
      */
+    @Id
+    @GeneratedValue
+    @Column(name = "testbed_id", unique = true, nullable = false)
     private int id;
 
     /**
      * Name of the testbed.
      */
+    @Basic
+    @Column(name = "name", unique = true, nullable = false)
     private String name;
 
     /**
      * Description of the testbed.
      */
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "description", unique = false, nullable = false)
     private String description;
 
     /**
      * Testbed url.
      */
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "url", unique = false, nullable = false)
     private String url;
 
     /**
      * URN prefix.
      */
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "urnPrefix", unique = true, nullable = false)
     private String urnPrefix;
 
     /**
      * URL for SNAA endpoint.
      */
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "snaaUrl", unique = true, nullable = false)
     private String snaaUrl;
 
     /**
      * URL for RS endpoint.
      */
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "rsUrl", unique = true, nullable = false)
     private String rsUrl;
 
     /**
      * URL for Session Management endpoint.
      */
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "sessionUrl", unique = true, nullable = false)
     private String sessionUrl;
 
     /**
      * If the testbed is federated.
      */
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "federated", unique = false, nullable = false)
     private Boolean federated;
 
     /**
      * Set of Setups belonging in Testbed.
      */
-    private Setup setup;
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private transient Setup setup;
 
     /**
      * Testbed timezone.
      */
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "timeZone", unique = false, nullable = false)
     private TimeZone timeZone;
 
     /**
@@ -83,9 +100,6 @@ public final class Testbed implements Serializable {
      *
      * @return Identity of the testbed.
      */
-    @Id
-    @GeneratedValue
-    @Column(name = "testbed_id", unique = true, nullable = false)
     public int getId() {
         return id;
     }
@@ -104,7 +118,7 @@ public final class Testbed implements Serializable {
      *
      * @return Name of the testbed.
      */
-    @Column(name = "name", unique = true, nullable = false)
+
     public String getName() {
         return name;
     }
@@ -123,7 +137,6 @@ public final class Testbed implements Serializable {
      *
      * @return urn prefix of the testbed.
      */
-    @Column(name = "urnPrefix", unique = true, nullable = false)
     public String getUrnPrefix() {
         return urnPrefix;
     }
@@ -142,7 +155,7 @@ public final class Testbed implements Serializable {
      *
      * @return Description of the testbed.
      */
-    @Column(name = "description", unique = false, nullable = false)
+
     public String getDescription() {
         return description;
     }
@@ -161,7 +174,6 @@ public final class Testbed implements Serializable {
      *
      * @return the URL of the testbed.
      */
-    @Column(name = "url", unique = false, nullable = false)
     public String getUrl() {
         return url;
     }
@@ -180,7 +192,6 @@ public final class Testbed implements Serializable {
      *
      * @return the URL of the SNAA endpoint.
      */
-    @Column(name = "snaaUrl", unique = true, nullable = false)
     public String getSnaaUrl() {
         return snaaUrl;
     }
@@ -199,7 +210,6 @@ public final class Testbed implements Serializable {
      *
      * @return the URL of the Reservation endpoint.
      */
-    @Column(name = "rsUrl", unique = true, nullable = false)
     public String getRsUrl() {
         return rsUrl;
     }
@@ -218,7 +228,6 @@ public final class Testbed implements Serializable {
      *
      * @return the URL of the Session Management endpoint.
      */
-    @Column(name = "sessionUrl", unique = true, nullable = false)
     public String getSessionUrl() {
         return sessionUrl;
     }
@@ -237,7 +246,6 @@ public final class Testbed implements Serializable {
      *
      * @return true if the testbed is federated.
      */
-    @Column(name = "federated", unique = false, nullable = false)
     public Boolean getFederated() {
         return federated;
     }
@@ -274,8 +282,6 @@ public final class Testbed implements Serializable {
      *
      * @return testbed's timezone.
      */
-    @Column(name = "timeZone", unique = false, nullable = false)
-    @Basic(fetch = FetchType.LAZY)
     public TimeZone getTimeZone() {
         return timeZone;
     }

@@ -39,17 +39,15 @@
 
         <!-- Enable second level cache -->
         <property name="hibernate.cache.use_second_level_cache">true</property>
-
-        <!-- Disable Query caching -->
         <property name="hibernate.cache.use_query_cache">true</property>
-
-        <!-- Force Hibernate to use instances of Ehcache CacheManage -->
-        <property name="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory
-        </property>
+        <property name="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory</property>
 
         <!-- Mapping files for read-only tables -->
-        <!--<mapping class="eu.wisebed.wisedb.model.Testbed"/>-->
+        <!--<mapping package="eu.wisebed.wisedb.model"/>-->
         <!--<mapping class="eu.wisebed.wisedb.model.Setup"/>-->
+        <!--<mapping class="eu.wisebed.wisedb.model.Testbed"/>-->
+        <!--<mapping class="eu.wisebed.wisedb.model.Origin"/>-->
+        <!--<mapping class="eu.wisebed.wisedb.model.TimeInfo"/>-->
         <!--<mapping class="eu.wisebed.wisedb.model.Node"/>-->
         <!--<mapping class="eu.wisebed.wisedb.model.NodeCapability"/>-->
         <!--<mapping class="eu.wisebed.wisedb.model.NodeReading"/>-->

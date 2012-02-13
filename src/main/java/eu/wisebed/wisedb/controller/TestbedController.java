@@ -1,5 +1,6 @@
 package eu.wisebed.wisedb.controller;
 
+import com.googlecode.ehcache.annotations.Cacheable;
 import eu.wisebed.wisedb.model.Link;
 import eu.wisebed.wisedb.model.Node;
 import eu.wisebed.wisedb.model.Setup;
@@ -74,6 +75,7 @@ public class TestbedController extends AbstractController<Testbed> {
      * @param entityID the id of the Entity object.
      * @return an Entity object.
      */
+    @Cacheable(cacheName="getById")
     public Testbed getByID(final int entityID) {
         LOGGER.info("getByID(" + entityID + ")");
         return super.getByID(new Testbed(), entityID);
@@ -110,6 +112,7 @@ public class TestbedController extends AbstractController<Testbed> {
      * @return a Testbed object.
      */
     @SuppressWarnings("unchecked")
+    @Cacheable(cacheName="testbedbyprefix")
     public Testbed getByUrnPrefix(final String urnPrefix) {
         LOGGER.info("getByUrnPrefix(" + urnPrefix + ")");
         final Session session = getSessionFactory().getCurrentSession();

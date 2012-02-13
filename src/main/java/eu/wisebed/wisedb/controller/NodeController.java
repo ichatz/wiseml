@@ -1,6 +1,8 @@
 package eu.wisebed.wisedb.controller;
 
 import com.googlecode.ehcache.annotations.Cacheable;
+import com.googlecode.ehcache.annotations.TriggersRemove;
+import com.googlecode.ehcache.annotations.When;
 import eu.wisebed.wisedb.model.Capability;
 import eu.wisebed.wisedb.model.Node;
 import eu.wisebed.wisedb.model.NodeCapability;
@@ -115,6 +117,7 @@ public class NodeController extends AbstractController<Node> {
      *
      * @param nodeId the id of the node tha we want to delete
      */
+    @TriggersRemove(cacheName = "nodeListsCache", when = When.AFTER_METHOD_INVOCATION, removeAll = true)
     public void delete(final String nodeId) {
         LOGGER.info("delete(" + nodeId + ")");
         super.delete(new Node(), nodeId);
@@ -136,7 +139,6 @@ public class NodeController extends AbstractController<Node> {
      * @param testbed , a selected testbed.
      * @return a list of testbed links.
      */
-    @Cacheable(cacheName = "nodeListsCache")
     public List<Node> list(final Testbed testbed) {
         LOGGER.info("list(" + testbed + ")");
         final Session session = getSessionFactory().getCurrentSession();
@@ -161,7 +163,6 @@ public class NodeController extends AbstractController<Node> {
      * @param testbed , a selected testbed.
      * @return a list of testbed links.
      */
-    @Cacheable(cacheName = "nodeListsCache")
     public List<String> listNames(final Testbed testbed) {
         LOGGER.info("list(" + testbed + ")");
         long millis = System.currentTimeMillis();
@@ -173,6 +174,33 @@ public class NodeController extends AbstractController<Node> {
         LOGGER.info("return @ " + (System.currentTimeMillis() - millis));
         return (List<String>) res;
     }
+
+    @Cacheable(cacheName = "nodeListsCache")
+    public List<String> listNames(final int id) {
+        final Testbed testbed = TestbedController.getInstance().getByID(id);
+        LOGGER.info("list(" + testbed + ")");
+        long millis = System.currentTimeMillis();
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(Node.class);
+        criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
+        criteria.setProjection(Projections.property("id"));
+        final List res = criteria.list();
+        LOGGER.info("return @ " + (System.currentTimeMillis() - millis));
+        return (List<String>) res;
+    }
+
+    @Cacheable(cacheName = "testCache")
+    public Node test(final int id) {
+        final Testbed testbed = TestbedController.getInstance().getByID(id);
+        LOGGER.info("list(" + testbed + ")");
+        long millis = System.currentTimeMillis();
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(Node.class);
+        criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
+        criteria.setMaxResults(1);
+        return (Node) criteria.uniqueResult();
+    }
+
 
     /**
      * Listing all the nodes from the database belonging to a selected testbed.
