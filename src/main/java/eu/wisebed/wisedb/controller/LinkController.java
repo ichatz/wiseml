@@ -12,6 +12,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -167,7 +168,6 @@ public class LinkController extends AbstractController<Link> {
     /**
      * Count all the links from the database belonging to a selected testbed.
      *
-     *
      * @param testbed , a selected testbed.
      * @return the number of links.
      */
@@ -215,5 +215,17 @@ public class LinkController extends AbstractController<Link> {
         criteria.add(Restrictions.eq(TARGET, link.getTarget()));
         criteria.setProjection(Projections.property("capability_id"));
         return criteria.list();
+    }
+
+
+    public List<Link> list(final Testbed testbed, final Capability capability) {
+        final List<Link> links = LinkController.getInstance().list(testbed);
+        final List<Link> result = new ArrayList<Link>();
+        for (final Link link : links) {
+            if (LinkCapabilityController.getInstance().isAssociated(link, capability)) {
+                result.add(link);
+            }
+        }
+        return result;
     }
 }

@@ -2,11 +2,13 @@ package eu.wisebed.wisedb.controller;
 
 import eu.wisebed.wisedb.model.Capability;
 import eu.wisebed.wisedb.model.Link;
+import eu.wisebed.wisedb.model.LinkCapability;
+import eu.wisebed.wisedb.model.Node;
+import eu.wisebed.wisedb.model.NodeCapability;
 import eu.wisebed.wisedb.model.Testbed;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.ArrayList;
@@ -43,16 +45,6 @@ public class CapabilityController extends AbstractController<Capability> {
      * Capability name literal.
      */
     private static final String CAPABILITY_NAME = "name";
-
-    /**
-     * Nodes literal.
-     */
-    private static final String NODES = "nodes";
-
-    /**
-     * Links literal.
-     */
-    private static final String LINKS = "links";
 
     /**
      * Logger.
@@ -183,79 +175,139 @@ public class CapabilityController extends AbstractController<Capability> {
         capabilities.addAll(linkCapabilities);
         return capabilities;
     }
+//
+//    public List<String> listNames(final Testbed testbed) {
+//        LOGGER.info("listNames(" + testbed + ")");
+//        final List<String> capabilities = new ArrayList<String>();
+//        final List<String> nodeCapabilities = listNodeCapabilities(testbed);
+//        final List<String> linkCapabilities = listLinkCapabilitiesNames(testbed);
+//        final Map namesMap = new HashMap<String, Boolean>();
+//        for (String capability : nodeCapabilities) {
+//            namesMap.put(capability, true);
+//        }
+//        for (String capability : linkCapabilities) {
+//            namesMap.put(capability, true);
+//        }
+//        for (Object key : namesMap.keySet()) {
+//            capabilities.add((String) key);
+//        }
+//        return capabilities;
+//    }
 
-    public List<String> listNames(final Testbed testbed) {
-        LOGGER.info("listNames(" + testbed + ")");
-        final List<String> capabilities = new ArrayList<String>();
-        final List<String> nodeCapabilities = listNodeCapabilitiesNames(testbed);
-        final List<String> linkCapabilities = listLinkCapabilitiesNames(testbed);
-        final Map namesMap = new HashMap<String, Boolean>();
-        for (String capability : nodeCapabilities) {
-            namesMap.put(capability, true);
-        }
-        for (String capability : linkCapabilities) {
-            namesMap.put(capability, true);
-        }
-        for (Object key : namesMap.keySet()) {
-            capabilities.add((String) key);
-        }
-        return capabilities;
-    }
-
-    /**
-     * Listing all the capabilities associated with nodes from the database belonging to a selected testbed.
-     *
-     * @param testbed a selected testbed instance.
-     * @return a list of testbed nodes capabilities.
-     */
     public List<Capability> listNodeCapabilities(final Testbed testbed) {
         LOGGER.info("listNodeCapabilities(" + testbed + ")");
-        final Session session = getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(Capability.class);
-        criteria.createAlias(NODES, "ns");
-        criteria.add(Restrictions.eq("ns.setup", testbed.getSetup()));
-        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-        return (List<Capability>) criteria.list();
+        List<Node> nodes = NodeController.getInstance().list(testbed.getSetup());
+        final Map<Capability, Integer> result = new HashMap<Capability, Integer>();
+        for (final Node node : nodes) {
+
+            final Session session = getSessionFactory().getCurrentSession();
+            final Criteria criteria = session.createCriteria(NodeCapability.class);
+            criteria.add(Restrictions.eq("node", node));
+            final List resList = criteria.list();
+            for (Object item : resList) {
+                if (item instanceof NodeCapability) {
+                    result.put(CapabilityController.getInstance().getByID(((NodeCapability) item).getCapability().getName()), 1);
+                }
+            }
+        }
+        final List<Capability> res = new ArrayList<Capability>();
+        for (final Capability item : result.keySet()) {
+            res.add(item);
+        }
+        return res;
     }
 
-    public List<String> listNodeCapabilitiesNames(final Testbed testbed) {
-        LOGGER.info("listNodeCapabilitiesNames(" + testbed + ")");
-        final Session session = getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(Capability.class);
-        criteria.createAlias(NODES, "ns");
-        criteria.add(Restrictions.eq("ns.setup", testbed.getSetup()));
-        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-        criteria.setProjection(Projections.property("name"));
-        return (List<String>) criteria.list();
-    }
-
-
-    /**
-     * Listing all the link capabilities associated with nodes from the database belonging to a selected testbed.
-     *
-     * @param testbed a selected testbed instance.
-     * @return a list of testbed link capabilities.
-     */
     public List<Capability> listLinkCapabilities(final Testbed testbed) {
         LOGGER.info("listLinkCapabilities(" + testbed + ")");
-        final Session session = getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(Capability.class);
-        criteria.createAlias(LINKS, "ls");
-        criteria.add(Restrictions.eq("ls.setup", testbed.getSetup()));
-        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-        return (List<Capability>) criteria.list();
+        List<Link> links = LinkController.getInstance().list(testbed.getSetup());
+        final Map<Capability, Integer> result = new HashMap<Capability, Integer>();
+        for (final Link link : links) {
+
+            final Session session = getSessionFactory().getCurrentSession();
+            final Criteria criteria = session.createCriteria(LinkCapability.class);
+            criteria.add(Restrictions.eq("link", link));
+            final List resList = criteria.list();
+            for (Object item : resList) {
+                if (item instanceof LinkCapability) {
+                    result.put(CapabilityController.getInstance().getByID(((LinkCapability) item).getCapability().getName()), 1);
+                }
+            }
+        }
+        final List<Capability> res = new ArrayList<Capability>();
+        for (final Capability item : result.keySet()) {
+            res.add(item);
+        }
+        return res;
     }
 
-    public List<String> listLinkCapabilitiesNames(final Testbed testbed) {
-        LOGGER.info("listLinkCapabilitiesNames(" + testbed + ")");
-        final Session session = getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(Capability.class);
-        criteria.createAlias(LINKS, "ls");
-        criteria.add(Restrictions.eq("ls.setup", testbed.getSetup()));
-        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-        criteria.setProjection(Projections.property("name"));
-        return (List<String>) criteria.list();
+    public List<NodeCapability> listNodeCapabilities(final Testbed testbed, final Capability capability) {
+        LOGGER.info("listNodeCapabilities(" + testbed + "," + capability + ")");
+        List<Node> nodes = NodeController.getInstance().list(testbed.getSetup());
+        final List<NodeCapability> result = new ArrayList<NodeCapability>();
+        for (final Node node : nodes) {
+
+            final Session session = getSessionFactory().getCurrentSession();
+            final Criteria criteria = session.createCriteria(NodeCapability.class);
+            criteria.add(Restrictions.eq("node", node));
+            criteria.add(Restrictions.eq("capability", capability));
+            final List resList = criteria.list();
+            for (Object item : resList) {
+                if (item instanceof NodeCapability) {
+                    result.add((NodeCapability) item);
+                }
+            }
+        }
+        return result;
     }
+//
+//    /**
+//     * Listing all the link capabilities associated with nodes from the database belonging to a selected testbed.
+//     *
+//     * @param testbed a selected testbed instance.
+//     * @return a list of testbed link capabilities.
+//     */
+//    public List<Capability> listLinkCapabilities(final Testbed testbed) {
+//        LOGGER.info("listLinkCapabilities(" + testbed + ")");
+//        final Session session = getSessionFactory().getCurrentSession();
+//        final Criteria criteria = session.createCriteria(Capability.class);
+//        criteria.createAlias(LINKS, "ls");
+//        criteria.add(Restrictions.eq("ls.setup", testbed.getSetup()));
+//        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+//        return (List<Capability>) criteria.list();
+//    }
+
+//    public List<String> listLinkCapabilitiesNames(final Testbed testbed) {
+//        LOGGER.info("listLinkCapabilitiesNames(" + testbed + ")");
+//        final Session session = getSessionFactory().getCurrentSession();
+//        final Criteria criteria = session.createCriteria(Capability.class);
+//        criteria.createAlias(LINKS, "ls");
+//        criteria.add(Restrictions.eq("ls.setup", testbed.getSetup()));
+//        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+//        criteria.setProjection(Projections.property("name"));
+//        return (List<String>) criteria.list();
+//    }
+
+    public List<LinkCapability> listLinkCapabilities(final Testbed testbed, final Capability capability) {
+        LOGGER.info("listLinkCapabilities(" + testbed + "," + capability + ")");
+        List<Link> links = LinkController.getInstance().list(testbed.getSetup());
+        final List<LinkCapability> result = new ArrayList<LinkCapability>();
+        for (final Link link : links) {
+
+            final Session session = getSessionFactory().getCurrentSession();
+            final Criteria criteria = session.createCriteria(LinkCapability.class);
+            criteria.add(Restrictions.eq("link", link));
+
+            criteria.add(Restrictions.eq("capability", capability));
+            final List resList = criteria.list();
+            for (Object item : resList) {
+                if (item instanceof LinkCapability) {
+                    result.add((LinkCapability) item);
+                }
+            }
+        }
+        return result;
+    }
+
 
     public List<Capability> list(Link link) {
         return new ArrayList<Capability>();

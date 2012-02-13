@@ -1,6 +1,7 @@
 package eu.wisebed.wisedb.controller;
 
 import com.mysql.jdbc.NotImplemented;
+import eu.wisebed.wisedb.model.Capability;
 import eu.wisebed.wisedb.model.LastNodeReading;
 import eu.wisebed.wisedb.model.NodeCapability;
 import eu.wisebed.wisedb.model.NodeReading;
@@ -10,6 +11,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -72,6 +74,21 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
         criteria.add(Restrictions.eq(CAPABILITY, nodeCapability.getId()));
         return (LastNodeReading) criteria.uniqueResult();
     }
+
+    public List<LastNodeReading> getByCapability(final Testbed testbed, final Capability capability) {
+
+        LOGGER.info("getByCapability(" + testbed + "," + capability + ")");
+
+        final List<NodeCapability> nodeCapabilities = CapabilityController.getInstance().listNodeCapabilities(testbed, capability);
+
+        List<LastNodeReading> result = new ArrayList<LastNodeReading>();
+
+        for (final NodeCapability nodeCapability : nodeCapabilities) {
+            result.add(nodeCapability.getLastNodeReading());
+        }
+        return result;
+    }
+
 
     /**
      * Returns a list of last node reading entries for the nodes of a testbed.

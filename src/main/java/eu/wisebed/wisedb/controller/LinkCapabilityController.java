@@ -4,6 +4,7 @@ import eu.wisebed.wisedb.model.Capability;
 import eu.wisebed.wisedb.model.LastLinkReading;
 import eu.wisebed.wisedb.model.Link;
 import eu.wisebed.wisedb.model.LinkCapability;
+import eu.wisebed.wisedb.model.Testbed;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -104,6 +105,20 @@ public class LinkCapabilityController extends AbstractController<LinkCapability>
     }
 
 
+    public boolean isAssociated(final Link link, final Capability capability) {
+        LOGGER.debug("isAssociated(" + link + "," + capability + ")");
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(LinkCapability.class);
+        criteria.add(Restrictions.eq(LINK, link));
+        criteria.add(Restrictions.eq(CAPABILITY, capability));
+        criteria.setProjection(Projections.rowCount());
+        if ((Long) criteria.uniqueResult() > 0) {
+            return true;
+        }
+        return false;
+
+    }
+
     public void delete(final Link link, final Capability capability) {
 
         LOGGER.info("delete(" + link.getSource() + "--" + link.getTarget() + "," + capability.getName() + ")");
@@ -177,6 +192,15 @@ public class LinkCapabilityController extends AbstractController<LinkCapability>
         return null;
     }
 
+    public LinkCapability getByID(final Link link, final Capability capability) {
+        LOGGER.info("getByID(" + link + "," + capability + ")");
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(LinkCapability.class);
+        criteria.add(Restrictions.eq(LINK, link));
+        criteria.add(Restrictions.eq(CAPABILITY, capability));
+        return (LinkCapability) criteria.uniqueResult();
+    }
+
     public LinkCapability getByID(final Link link, final String capabilityName) {
         final Capability capability = CapabilityController.getInstance().getByID(capabilityName);
         LOGGER.debug("getByID(" + link + "," + capabilityName + ")");
@@ -202,5 +226,24 @@ public class LinkCapabilityController extends AbstractController<LinkCapability>
         return capabilities;
     }
 
+
+    public List<LinkCapability> list(final Testbed testbed) {
+        LOGGER.debug("list(" + testbed + ")");
+        final List<Link> links = LinkController.getInstance().list(testbed.getSetup());
+        final List<LinkCapability> capabilities = new ArrayList<LinkCapability>();
+
+        for (final Link link : links) {
+            final Session session = getSessionFactory().getCurrentSession();
+            final Criteria criteria = session.createCriteria(LinkCapability.class);
+            criteria.add(Restrictions.eq(LINK, link));
+            List list = criteria.list();
+            for (Object obj : criteria.list()) {
+                if (obj instanceof LinkCapability) {
+                    capabilities.add((LinkCapability) obj);
+                }
+            }
+        }
+        return capabilities;
+    }
 
 }

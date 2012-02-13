@@ -4,6 +4,7 @@ import eu.wisebed.wisedb.model.Capability;
 import eu.wisebed.wisedb.model.LastNodeReading;
 import eu.wisebed.wisedb.model.Node;
 import eu.wisebed.wisedb.model.NodeCapability;
+import eu.wisebed.wisedb.model.Testbed;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -158,6 +159,29 @@ public class NodeCapabilityController extends AbstractController<NodeCapability>
         return (NodeCapability) criteria.uniqueResult();
     }
 
+    public NodeCapability getByID(final Node node, final Capability capability) {
+        LOGGER.debug("getByID(" + node.getId() + "," + capability + ")");
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(NodeCapability.class);
+        criteria.add(Restrictions.eq(NODE, node));
+        criteria.add(Restrictions.eq(CAPABILITY, capability));
+        return (NodeCapability) criteria.uniqueResult();
+    }
+
+    public boolean isAssociated(final Node node, final Capability capability) {
+        LOGGER.debug("isAssociated(" + node.getId() + "," + capability + ")");
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(NodeCapability.class);
+        criteria.add(Restrictions.eq(NODE, node));
+        criteria.add(Restrictions.eq(CAPABILITY, capability));
+        criteria.setProjection(Projections.rowCount());
+        if ((Long) criteria.uniqueResult() > 0) {
+            return true;
+        }
+        return false;
+
+    }
+
 
     public List<NodeCapability> list(final Node node) {
         LOGGER.debug("list(" + node.getId() + ")");
@@ -174,5 +198,23 @@ public class NodeCapabilityController extends AbstractController<NodeCapability>
         return capabilities;
     }
 
+    public List<NodeCapability> list(final Testbed testbed) {
+        LOGGER.debug("list(" + testbed + ")");
+        final List<Node> nodes = NodeController.getInstance().list(testbed.getSetup());
+        final List<NodeCapability> capabilities = new ArrayList<NodeCapability>();
+
+        for (final Node node : nodes) {
+            final Session session = getSessionFactory().getCurrentSession();
+            final Criteria criteria = session.createCriteria(NodeCapability.class);
+            criteria.add(Restrictions.eq(NODE, node));
+            List list = criteria.list();
+            for (Object obj : criteria.list()) {
+                if (obj instanceof NodeCapability) {
+                    capabilities.add((NodeCapability) obj);
+                }
+            }
+        }
+        return capabilities;
+    }
 
 }

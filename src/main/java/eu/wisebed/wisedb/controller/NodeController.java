@@ -16,6 +16,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,12 +34,6 @@ public class NodeController extends AbstractController<Node> {
      * Setup literal.
      */
     private static final String SETUP = "setup";
-
-    /**
-     * Capabilities literal.
-     */
-    private static final String CAPABILITIES = "capabilities";
-    private static final String CAPABILITY = "capability";
 
     /**
      * Node ID literal.
@@ -182,7 +177,6 @@ public class NodeController extends AbstractController<Node> {
     /**
      * Listing all the nodes from the database belonging to a selected testbed.
      *
-     *
      * @param testbed , a selected testbed.
      * @return a list of testbed links.
      */
@@ -194,56 +188,67 @@ public class NodeController extends AbstractController<Node> {
         criteria.setProjection(Projections.rowCount());
         return (Long) criteria.uniqueResult();
     }
+//
+//    /**
+//     * Listing all nodes that have the given capability.
+//     *
+//     * @param capability , a capability.
+//     * @return a list of nodes that share the given capability.
+//     */
+//    public List<Node> listCapabilityNodes(final Capability capability) {
+//        LOGGER.info("listCapabilityNodes(" + capability + ")");
+//        final Session session = getSessionFactory().getCurrentSession();
+//        final Criteria criteria = session.createCriteria(Node.class);
+//        criteria.createAlias(CAPABILITIES, "caps")
+//                .add(Restrictions.eq("caps.name", capability.getName()));
+//        criteria.addOrder(Order.asc(NODE_ID));
+//        return (List<Node>) criteria.list();
+//    }
 
-    /**
-     * Listing all nodes that have the given capability.
-     *
-     * @param capability , a capability.
-     * @return a list of nodes that share the given capability.
-     */
-    public List<Node> listCapabilityNodes(final Capability capability) {
-        LOGGER.info("listCapabilityNodes(" + capability + ")");
-        final Session session = getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(Node.class);
-        criteria.createAlias(CAPABILITIES, "caps")
-                .add(Restrictions.eq("caps.name", capability.getName()));
-        criteria.addOrder(Order.asc(NODE_ID));
-        return (List<Node>) criteria.list();
-    }
+//    /**
+//     * Listing all nodes that have the given capability.
+//     *
+//     * @param capability a capability.
+//     * @param testbed    a testbed.
+//     * @return a list of nodes that share the given capability belonging to the same testbed.
+//     */
+//    public List<Node> listCapabilityNodes(final Capability capability, final Testbed testbed) {
+//        LOGGER.info("listCapabilityNodes(" + capability + "," + testbed + ")");
+//        final Session session = getSessionFactory().getCurrentSession();
+//        final Criteria criteria = session.createCriteria(Node.class);
+//        criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
+//        criteria.createAlias(CAPABILITIES, "caps")
+//                .add(Restrictions.eq("caps.name", capability.getName()));
+//        criteria.addOrder(Order.asc(NODE_ID));
+//        return (List<Node>) criteria.list();
+//    }
 
-    /**
-     * Listing all nodes that have the given capability.
-     *
-     * @param capability a capability.
-     * @param testbed    a testbed.
-     * @return a list of nodes that share the given capability belonging to the same testbed.
-     */
-    public List<Node> listCapabilityNodes(final Capability capability, final Testbed testbed) {
-        LOGGER.info("listCapabilityNodes(" + capability + "," + testbed + ")");
-        final Session session = getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(Node.class);
-        criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
-        criteria.createAlias(CAPABILITIES, "caps")
-                .add(Restrictions.eq("caps.name", capability.getName()));
-        criteria.addOrder(Order.asc(NODE_ID));
-        return (List<Node>) criteria.list();
-    }
+//    /**
+//     * Checks if a capability and a node are associated.
+//     *
+//     * @param capability , capability.
+//     * @param testbed    , testbed.
+//     * @param node       , node .
+//     * @return
+//     */
+//    public boolean isAssociated(final Capability capability, final Testbed testbed, final Node node) {
+//        final Session session = getSessionFactory().getCurrentSession();
+//        final Criteria criteria = session.createCriteria(Node.class);
+//        criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
+//        criteria.createAlias(CAPABILITIES, "caps").add(Restrictions.eq("caps.name", capability.getName()));
+//        criteria.add(Restrictions.eq(NODE_ID, node.getId()));
+//        return criteria.list().size() > 0;
+//    }
 
-    /**
-     * Checks if a capability and a node are associated.
-     *
-     * @param capability , capability.
-     * @param testbed    , testbed.
-     * @param node       , node .
-     * @return
-     */
-    public boolean isAssociated(final Capability capability, final Testbed testbed, final Node node) {
-        final Session session = getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(Node.class);
-        criteria.add(Restrictions.eq(SETUP, testbed.getSetup()));
-        criteria.createAlias(CAPABILITIES, "caps").add(Restrictions.eq("caps.name", capability.getName()));
-        criteria.add(Restrictions.eq(NODE_ID, node.getId()));
-        return criteria.list().size() > 0;
+    public List<Node> list(final Testbed testbed, final Capability capability) {
+        final List<Node> nodes = NodeController.getInstance().list(testbed);
+        final List<Node> result = new ArrayList<Node>();
+        for (final Node node : nodes) {
+            if (NodeCapabilityController.getInstance().isAssociated(node, capability)) {
+                result.add(node);
+            }
+        }
+        return result;
     }
 
     public String getDescription(Node node) {

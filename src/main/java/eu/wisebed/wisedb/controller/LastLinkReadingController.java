@@ -1,12 +1,14 @@
 package eu.wisebed.wisedb.controller;
 
 import com.mysql.jdbc.NotImplemented;
+import eu.wisebed.wisedb.model.Capability;
 import eu.wisebed.wisedb.model.LastLinkReading;
 import eu.wisebed.wisedb.model.LinkCapability;
 import eu.wisebed.wisedb.model.Testbed;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -114,4 +116,16 @@ public class LastLinkReadingController extends AbstractController<LastLinkReadin
 //        return (List<LastLinkReading>) criteria.list();
 //    }
 
+    public List<LastLinkReading> getByCapability(Testbed testbed, Capability capability) {
+        LOGGER.info("getByCapability(" + testbed + "," + capability + ")");
+
+        final List<LinkCapability> linkCapabilities = CapabilityController.getInstance().listLinkCapabilities(testbed, capability);
+
+        List<LastLinkReading> result = new ArrayList<LastLinkReading>();
+
+        for (final LinkCapability linkCapability : linkCapabilities) {
+            result.add(linkCapability.getLastLinkReading());
+        }
+        return result;
+    }
 }

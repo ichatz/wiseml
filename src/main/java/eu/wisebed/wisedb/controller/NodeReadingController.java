@@ -192,10 +192,11 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     @SuppressWarnings("unchecked")
     public List<NodeReading> listNodeReadings(final Node node, final Capability capability) {
         LOGGER.info("listNodeReadings(" + node + "," + capability + ")");
+        final NodeCapability nodeCapability = NodeCapabilityController.getInstance().getByID(node, capability);
+
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq(NODE, node));
-        criteria.add(Restrictions.eq(CAPABILITY, capability));
+        criteria.add(Restrictions.eq(CAPABILITY, nodeCapability));
         criteria.addOrder(Order.desc(TIMESTAMP));
         return (List<NodeReading>) criteria.list();
     }
@@ -211,10 +212,11 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     @SuppressWarnings("unchecked")
     public List<NodeReading> listNodeReadings(final Node node, final Capability capability, final int limit) {
         LOGGER.info("listNodeReadings(" + node + "," + capability + "," + limit + ")");
+        final NodeCapability nodeCapability = NodeCapabilityController.getInstance().getByID(node, capability);
+
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.eq(NODE, node));
-        criteria.add(Restrictions.eq(CAPABILITY, capability));
+        criteria.add(Restrictions.eq(CAPABILITY, nodeCapability));
         criteria.addOrder(Order.desc(TIMESTAMP));
         criteria.setMaxResults(limit);
         return (List<NodeReading>) criteria.list();

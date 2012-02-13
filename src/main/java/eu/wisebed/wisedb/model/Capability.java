@@ -167,4 +167,11 @@ public class Capability implements Serializable {
     public int hashCode() {
         return (name == null) ? (System.identityHashCode(this)) : (name.hashCode());
     }
+
+    @Override
+    public String toString() {
+        return "Capability{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }
