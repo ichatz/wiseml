@@ -3,6 +3,17 @@ package eu.wisebed.wisedb.controller;
 import com.googlecode.ehcache.annotations.Cacheable;
 import com.googlecode.ehcache.annotations.TriggersRemove;
 import com.googlecode.ehcache.annotations.When;
+import com.sun.syndication.feed.module.georss.GeoRSSModule;
+import com.sun.syndication.feed.module.georss.SimpleModuleImpl;
+import com.sun.syndication.feed.synd.SyndContent;
+import com.sun.syndication.feed.synd.SyndContentImpl;
+import com.sun.syndication.feed.synd.SyndEntry;
+import com.sun.syndication.feed.synd.SyndEntryImpl;
+import com.sun.syndication.feed.synd.SyndFeed;
+import com.sun.syndication.feed.synd.SyndFeedImpl;
+import com.sun.syndication.io.FeedException;
+import com.sun.syndication.io.SyndFeedOutput;
+import eu.wisebed.wisedb.Coordinate;
 import eu.wisebed.wisedb.model.Capability;
 import eu.wisebed.wisedb.model.Node;
 import eu.wisebed.wisedb.model.NodeCapability;
@@ -18,7 +29,10 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
+import java.io.IOException;
+import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -319,5 +333,89 @@ public class NodeController extends AbstractController<Node> {
         origin.setPhi(LastNodeReadingController.getInstance().getLast(node, "phi").getReading().floatValue());
 
         return origin;
+    }
+
+
+    public String getGeooRssFeed(final Node node, final String syndFeedLink, final String syndEntryLink) {
+
+        final Testbed testbed = node.getSetup().getTestbed();
+
+        // set up feed and entries
+        final SyndFeed feed = new SyndFeedImpl();
+
+        feed.setFeedType("rss_2.0");
+        feed.setTitle(node.getId() + " GeoRSS feed");
+        feed.setDescription(testbed.getDescription());
+        feed.setLink(syndFeedLink);
+        final List<SyndEntry> entries = new ArrayList<SyndEntry>();
+
+        // set entry's title,link and publishing date
+        final SyndEntry entry = new SyndEntryImpl();
+        entry.setTitle(node.getId());
+        entry.setLink(syndEntryLink);
+        entry.setPublishedDate(new Date());
+
+        // set entry's description (HTML list)
+        final SyndContent description = new SyndContentImpl();
+        final StringBuilder descriptionBuffer = new StringBuilder();
+        descriptionBuffer.append("<p>").append(NodeController.getInstance().getDescription(node)).append("</p>");
+        descriptionBuffer.append("<ul>");
+        for (NodeCapability capability : NodeCapabilityController.getInstance().list(node)) {
+            descriptionBuffer.append("<li>").append(capability.getCapability().getName())
+                    .append(capability.getCapability().getName()).append("</li>");
+        }
+        descriptionBuffer.append("</ul>");
+        description.setType("text/html");
+        description.setValue(descriptionBuffer.toString());
+        entry.setDescription(description);
+
+        eu.wisebed.wiseml.model.setup.Position nodePos = NodeController.getInstance().getPosition(node);
+
+        // set the GeoRSS module and add it
+        final GeoRSSModule geoRSSModule = new SimpleModuleImpl();
+        if (testbed.getSetup().getCoordinateType().equals("Absolute")) {
+            com.sun.syndication.feed.module.georss.geometries.Position position =
+                    new com.sun.syndication.feed.module.georss.geometries.Position();
+
+            position.setLatitude(nodePos.getX());
+            position.setLongitude(nodePos.getY());
+            geoRSSModule.setPosition(position);
+        } else {
+
+            // convert testbed origin from long/lat position to xyz if needed
+            final Origin origin = testbed.getSetup().getOrigin();
+
+            final Coordinate originCoordinate = new Coordinate((double) origin.getX(), (double) origin.getY(),
+                    (double) origin.getZ(), (double) origin.getPhi(), (double) origin.getTheta());
+            final Coordinate properOrigin = Coordinate.blh2xyz(originCoordinate);
+
+            // convert node position from xyz to long/lat
+
+            final Coordinate nodeCoordinate = new Coordinate((double) nodePos.getX(),
+                    (double) nodePos.getY(), (double) nodePos.getZ());
+            final Coordinate rotated = Coordinate.rotate(nodeCoordinate, properOrigin.getPhi());
+            final Coordinate absolute = Coordinate.absolute(properOrigin, rotated);
+            final Coordinate coordinate = Coordinate.xyz2blh(absolute);
+            geoRSSModule.setPosition(new com.sun.syndication.feed.module.georss.geometries.Position(coordinate.getX(), coordinate.getY()));
+
+        }
+        entry.getModules().add(geoRSSModule);
+        entries.add(entry);
+
+        // add entries to feed
+        feed.setEntries(entries);
+
+        // the feed output goes to response            
+        final SyndFeedOutput output = new SyndFeedOutput();
+        StringWriter writer = new StringWriter();
+        try {
+            output.output(feed, writer);
+        } catch (IOException e) {
+            LOGGER.error(e);
+        } catch (FeedException e) {
+            LOGGER.error(e);
+        }
+        return writer.toString();
+
     }
 }
