@@ -30,22 +30,6 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     private static NodeReadingController ourInstance = null;
 
     /**
-     * Descriptions literal.
-     */
-    private static final String DESCRIPTION = "DESCRIPTION";
-
-    /**
-     * Program details literal.
-     */
-    private static final String PROGRAM_DETAILS = "PROGRAM_DETAILS";
-
-
-    /**
-     * Node literal.
-     */
-    private static final String NODE = "node";
-
-    /**
      * Capability literal.
      */
     private static final String CAPABILITY = "capability";
@@ -231,18 +215,16 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     public Long getNodeReadingsCount(final Node node) {
         LOGGER.info("getNodeReadingsCount(" + node + ")");
         final List<NodeCapability> nodeCapabilities = NodeCapabilityController.getInstance().list(node);
+
         Integer result = 0;
-        for (NodeCapability nodeCapability : nodeCapabilities) {
-            final Session session = getSessionFactory().getCurrentSession();
-            final Criteria criteria = session.createCriteria(NodeReading.class);
-            criteria.add(Restrictions.eq(CAPABILITY, nodeCapability));
-            criteria.setProjection(Projections.rowCount());
-            final Long count = (Long) criteria.uniqueResult();
-            result += count.intValue();
-        }
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.in(CAPABILITY, nodeCapabilities));
+        criteria.setProjection(Projections.rowCount());
+        final Long count = (Long) criteria.uniqueResult();
 
+        result += count.intValue();
         return result.longValue();
-
     }
 
     /**
@@ -254,11 +236,9 @@ public class NodeReadingController extends AbstractController<NodeReading> {
     @SuppressWarnings("unchecked")
     public HashMap<Capability, Integer> getNodeReadingsCountMap(final Node node) {
         LOGGER.info("getNodeReadingsCountMap(" + node + ")");
-
         final HashMap<Capability, Integer> resultMap = new HashMap<Capability, Integer>();
 
-        List<NodeCapability> nodeCapabilities = NodeCapabilityController.getInstance().list(node);
-
+        final List<NodeCapability> nodeCapabilities = NodeCapabilityController.getInstance().list(node);
         for (NodeCapability nodeCapability : nodeCapabilities) {
             final Session session = getSessionFactory().getCurrentSession();
             final Criteria criteria = session.createCriteria(NodeReading.class);
@@ -269,22 +249,16 @@ public class NodeReadingController extends AbstractController<NodeReading> {
             final Long count = (Long) criteria.uniqueResult();
             resultMap.put(nodeCapability.getCapability(), count.intValue());
         }
-
         return resultMap;
     }
 
-    public NodeReading getByID(int id) {
-        Criteria criteria = null;
-        try {
-            LOGGER.info("getByID(" + id + ")");
-            final Session session = getSessionFactory().getCurrentSession();
-            criteria = session.createCriteria(NodeReading.class);
-            criteria.add(Restrictions.eq(ID, id));
-            criteria.setMaxResults(1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return (NodeReading) criteria.list().get(0);
-    }
+    public NodeReading getByID(final int id) {
 
+        LOGGER.info("getByID(" + id + ")");
+        final Session session = getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(NodeReading.class);
+        criteria.add(Restrictions.eq(ID, id));
+        criteria.setMaxResults(1);
+        return (NodeReading) criteria.uniqueResult();
+    }
 }

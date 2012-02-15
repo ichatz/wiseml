@@ -297,19 +297,27 @@ public class NodeController extends AbstractController<Node> {
         return "";
     }
 
-    public Position getPosition(Node node) {
-//        final Session session = getSessionFactory().getCurrentSession();
-//        final Criteria criteria = session.createCriteria(NodeReading.class);
-//        criteria.add(Restrictions.eq(NODE_ID, node.getId()));
-//        NodeReading reading = (NodeReading) criteria.list().get(0);
-        return new Position();
+    public Position getPosition(final Node node) {
+        final Position position = new Position();
+
+        position.setX(LastNodeReadingController.getInstance().getLast(node, "x").getReading().floatValue());
+        position.setY(LastNodeReadingController.getInstance().getLast(node, "y").getReading().floatValue());
+        position.setZ(LastNodeReadingController.getInstance().getLast(node, "z").getReading().floatValue());
+        position.setTheta(LastNodeReadingController.getInstance().getLast(node, "theta").getReading().floatValue());
+        position.setPhi(LastNodeReadingController.getInstance().getLast(node, "phi").getReading().floatValue());
+
+        return position;
     }
 
-    public Origin getOrigin(Node node) {
-//        final Session session = getSessionFactory().getCurrentSession();
-//        final Criteria criteria = session.createCriteria(NodeReading.class);
-//        criteria.add(Restrictions.eq(NODE_ID, node.getId()));
-//        NodeReading reading = (NodeReading) criteria.list().get(0);
-        return new Origin();
+    public Origin getOrigin(final Node node) {
+        final Origin origin = new Origin();
+
+        origin.setX(LastNodeReadingController.getInstance().getLast(node, "x").getReading().floatValue());
+        origin.setY(LastNodeReadingController.getInstance().getLast(node, "y").getReading().floatValue());
+        origin.setZ(LastNodeReadingController.getInstance().getLast(node, "z").getReading().floatValue());
+        origin.setTheta(LastNodeReadingController.getInstance().getLast(node, "theta").getReading().floatValue());
+        origin.setPhi(LastNodeReadingController.getInstance().getLast(node, "phi").getReading().floatValue());
+
+        return origin;
     }
 }

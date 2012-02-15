@@ -1,12 +1,18 @@
 package eu.wisebed.wisedb.test;
 
 import eu.wisebed.wisedb.HibernateUtil;
+import eu.wisebed.wisedb.controller.CapabilityController;
 import eu.wisebed.wisedb.controller.LinkCapabilityController;
 import eu.wisebed.wisedb.controller.NodeCapabilityController;
-import eu.wisebed.wisedb.controller.NodeController;
-import eu.wisebed.wisedb.model.Node;
+import eu.wisebed.wisedb.controller.TestbedController;
+import eu.wisebed.wisedb.model.Capability;
+import eu.wisebed.wisedb.model.LinkCapability;
+import eu.wisebed.wisedb.model.NodeCapability;
+import eu.wisebed.wisedb.model.Testbed;
 import org.apache.log4j.Logger;
 import org.hibernate.Transaction;
+
+import java.util.List;
 
 public class ListTestbedCapabilities {
 
@@ -23,15 +29,22 @@ public class ListTestbedCapabilities {
         Transaction tx = HibernateUtil.getInstance().getSession().beginTransaction();
 
         try {
-//            List<Capability> nodeCapabilities = NodeCapabilityController.getInstance().list();
-            LOGGER.info("Total Node Capabilities :" + NodeCapabilityController.getInstance().count());
-            LOGGER.info("Node Capability 1 :" + NodeCapabilityController.getInstance().getByID(1).getCapability().getName());
-            LOGGER.info("Total Node Capabilities :" + NodeCapabilityController.getInstance().list().size());
-            Node node = NodeController.getInstance().getByID("urn:wisebed:ctitestbed:0x9979");
-            LOGGER.info("Node "+node.getId() + " Capabilities :" + NodeCapabilityController.getInstance().list(node).size());
-//            List<Capability> linkCapabilities = LinkCapabilityController.getInstance().list();
-            LOGGER.info("Total Link Capabilities :" + LinkCapabilityController.getInstance().count());
-
+            {
+                long start = System.currentTimeMillis();
+                final Testbed testbed = TestbedController.getInstance().getByID(1);
+                LOGGER.info("testbed @ " + (System.currentTimeMillis() - start));
+                final List<Capability> capabilities = CapabilityController.getInstance().list(testbed);
+                LOGGER.info("capabilities @ " + (System.currentTimeMillis() - start));
+            }
+            {
+                long start = System.currentTimeMillis();
+                final Testbed testbed = TestbedController.getInstance().getByID(1);
+                LOGGER.info("testbed @ " + (System.currentTimeMillis() - start));
+                final List<NodeCapability> nodeCapabilities = NodeCapabilityController.getInstance().list(testbed);
+                LOGGER.info("nodeCapabilities @ " + (System.currentTimeMillis() - start));
+                final List<LinkCapability> linkCapabilities = LinkCapabilityController.getInstance().list(testbed);
+                LOGGER.info("linkCapabilities @ " + (System.currentTimeMillis() - start));
+            }
 
             tx.commit();
         } catch (Exception e) {

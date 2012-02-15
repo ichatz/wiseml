@@ -3,6 +3,7 @@ package eu.wisebed.wisedb.controller;
 import com.mysql.jdbc.NotImplemented;
 import eu.wisebed.wisedb.model.Capability;
 import eu.wisebed.wisedb.model.LastNodeReading;
+import eu.wisebed.wisedb.model.Node;
 import eu.wisebed.wisedb.model.NodeCapability;
 import eu.wisebed.wisedb.model.NodeReading;
 import eu.wisebed.wisedb.model.Testbed;
@@ -100,5 +101,10 @@ public class LastNodeReadingController extends AbstractController<LastNodeReadin
 
         LOGGER.info("getByTestbed(" + testbed + ")");
         throw new NotImplemented();
+    }
+
+    public LastNodeReading getLast(final Node node, final String capabilityName) {
+        final NodeCapability nodeCapability = NodeCapabilityController.getInstance().getByID(node, capabilityName);
+        return nodeCapability.getLastNodeReading();
     }
 }

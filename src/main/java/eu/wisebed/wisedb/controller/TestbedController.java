@@ -4,7 +4,6 @@ import com.googlecode.ehcache.annotations.Cacheable;
 import eu.wisebed.wisedb.model.Link;
 import eu.wisebed.wisedb.model.Node;
 import eu.wisebed.wisedb.model.Setup;
-import eu.wisebed.wisedb.model.Slse;
 import eu.wisebed.wisedb.model.Testbed;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
@@ -39,11 +38,16 @@ public class TestbedController extends AbstractController<Testbed> {
      * Name literal.
      */
     private static final String NAME = "name";
+    /**
+     * Setup literal.
+     */
+    private static final String SETUP = "setup";
 
     /**
      * Logger.
      */
     private static final Logger LOGGER = Logger.getLogger(TestbedController.class);
+
 
     /**
      * Public constructor .
@@ -75,7 +79,7 @@ public class TestbedController extends AbstractController<Testbed> {
      * @param entityID the id of the Entity object.
      * @return an Entity object.
      */
-    @Cacheable(cacheName="getById")
+    @Cacheable(cacheName = "getById")
     public Testbed getByID(final int entityID) {
         LOGGER.info("getByID(" + entityID + ")");
         return super.getByID(new Testbed(), entityID);
@@ -100,8 +104,7 @@ public class TestbedController extends AbstractController<Testbed> {
         LOGGER.info("list()");
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Testbed.class);
-        List z = criteria.list();
-        System.out.println("size " + z.size());
+        final List z = criteria.list();
         return z;
     }
 
@@ -112,7 +115,7 @@ public class TestbedController extends AbstractController<Testbed> {
      * @return a Testbed object.
      */
     @SuppressWarnings("unchecked")
-    @Cacheable(cacheName="testbedbyprefix")
+    @Cacheable(cacheName = "testbedbyprefix")
     public Testbed getByUrnPrefix(final String urnPrefix) {
         LOGGER.info("getByUrnPrefix(" + urnPrefix + ")");
         final Session session = getSessionFactory().getCurrentSession();
@@ -137,9 +140,6 @@ public class TestbedController extends AbstractController<Testbed> {
         criteria.add(Restrictions.eq(NAME, testbedName));
         Object obj = criteria.uniqueResult();
         return (Testbed) obj;
-//        if (obj != null) {
-//            return (Testbed) criteria.list().get(0);
-//        }
     }
 
     /**
@@ -151,18 +151,18 @@ public class TestbedController extends AbstractController<Testbed> {
         LOGGER.info("countNodes()");
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Node.class);
-        ProjectionList projList = Projections.projectionList();
-        projList.add(Projections.groupProperty("setup"));
+        final ProjectionList projList = Projections.projectionList();
+        projList.add(Projections.groupProperty(SETUP));
         projList.add(Projections.rowCount());
         criteria.setProjection(projList);
 
-        List results = criteria.list();
-        Iterator iter = results.iterator();
+        final List results = criteria.list();
+        final Iterator iter = results.iterator();
         if (!iter.hasNext()) {
             LOGGER.debug("No objects to display.");
             return null;
         }
-        Map<String, Long> resultsMap = new HashMap<String, Long>();
+        final Map<String, Long> resultsMap = new HashMap<String, Long>();
         while (iter.hasNext()) {
 
             final Object[] obj = (Object[]) iter.next();
@@ -185,17 +185,17 @@ public class TestbedController extends AbstractController<Testbed> {
         final Session session = getSessionFactory().getCurrentSession();
         final Criteria criteria = session.createCriteria(Link.class);
         ProjectionList projList = Projections.projectionList();
-        projList.add(Projections.groupProperty("setup"));
+        projList.add(Projections.groupProperty(SETUP));
         projList.add(Projections.rowCount());
         criteria.setProjection(projList);
 
-        List results = criteria.list();
-        Iterator iter = results.iterator();
+        final List results = criteria.list();
+        final Iterator iter = results.iterator();
         if (!iter.hasNext()) {
             LOGGER.debug("No objects to display.");
             return null;
         }
-        Map<String, Long> resultsMap = new HashMap<String, Long>();
+        final Map<String, Long> resultsMap = new HashMap<String, Long>();
         while (iter.hasNext()) {
 
             final Object[] obj = (Object[]) iter.next();
@@ -209,44 +209,12 @@ public class TestbedController extends AbstractController<Testbed> {
     }
 
     /**
-     * Returns the number of slses in database for each setup
+     * Get the testbed related to the given setup.
      *
-     * @return map containing the setups and slse count
+     * @param setup the setup in question.
+     * @return the testbed requested.
      */
-    public Map<String, Long> countSlses() {
-        LOGGER.info("countSlses()");
-        final Session session = getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(Slse.class);
-        ProjectionList projList = Projections.projectionList();
-        projList.add(Projections.groupProperty("setup"));
-        projList.add(Projections.rowCount());
-        criteria.setProjection(projList);
-
-        List results = criteria.list();
-        Iterator iter = results.iterator();
-        if (!iter.hasNext()) {
-            LOGGER.debug("No objects to display.");
-            return null;
-        }
-        Map<String, Long> resultsMap = new HashMap<String, Long>();
-        while (iter.hasNext()) {
-
-            final Object[] obj = (Object[]) iter.next();
-            final Setup setup = (Setup) obj[0];
-            final long count = (Long) obj[1];
-            resultsMap.put(TestbedController.getInstance().getBySetup(setup).getName(), count);
-
-        }
-
-        return resultsMap;
-    }
-
-    public Testbed getBySetup(Setup setup) {
-        final Session session = getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(Testbed.class);
-        criteria.add(Restrictions.eq("id", setup.getId()));
-        criteria.setMaxResults(1);
-        return (Testbed) criteria.list().get(0);
-
+    public Testbed getBySetup(final Setup setup) {
+        return setup.getTestbed();
     }
 }
