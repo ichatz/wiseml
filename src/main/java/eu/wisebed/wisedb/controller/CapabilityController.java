@@ -245,13 +245,15 @@ public class CapabilityController extends AbstractController<Capability> {
         List<Node> nodes = NodeController.getInstance().list(testbed.getSetup());
         final Map<Capability, Integer> result = new HashMap<Capability, Integer>();
 
-        final Session session = getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(NodeCapability.class);
-        criteria.add(Restrictions.in(NODE, nodes));
-        final List resList = criteria.list();
-        for (Object item : resList) {
-            if (item instanceof NodeCapability) {
-                result.put(((NodeCapability) item).getCapability(), 1);
+        if (nodes.size()>0) {
+            final Session session = getSessionFactory().getCurrentSession();
+            final Criteria criteria = session.createCriteria(NodeCapability.class);
+            criteria.add(Restrictions.in(NODE, nodes));
+            final List resList = criteria.list();
+            for (Object item : resList) {
+                if (item instanceof NodeCapability) {
+                    result.put(((NodeCapability) item).getCapability(), 1);
+                }
             }
         }
         final List<Capability> res = new ArrayList<Capability>();
@@ -271,18 +273,18 @@ public class CapabilityController extends AbstractController<Capability> {
         LOGGER.info("listLinkCapabilities(" + testbed + ")");
         final List<Link> links = LinkController.getInstance().list(testbed.getSetup());
         final Map<Capability, Integer> result = new HashMap<Capability, Integer>();
+        if (links.size()>0) {
+            final Session session = getSessionFactory().getCurrentSession();
+            final Criteria criteria = session.createCriteria(LinkCapability.class);
+            criteria.add(Restrictions.in(LINK, links));
+            final List resList = criteria.list();
+            for (Object item : resList) {
+                if (item instanceof LinkCapability) {
 
-        final Session session = getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(LinkCapability.class);
-        criteria.add(Restrictions.in(LINK, links));
-        final List resList = criteria.list();
-        for (Object item : resList) {
-            if (item instanceof LinkCapability) {
-
-                result.put(((LinkCapability) item).getCapability(), 1);
+                    result.put(((LinkCapability) item).getCapability(), 1);
+                }
             }
         }
-
         final List<Capability> res = new ArrayList<Capability>();
         for (final Capability item : result.keySet()) {
             res.add(item);
@@ -301,18 +303,18 @@ public class CapabilityController extends AbstractController<Capability> {
         List<Node> nodes = NodeController.getInstance().list(testbed.getSetup());
         final List<NodeCapability> result = new ArrayList<NodeCapability>();
 
-
-        final Session session = getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(NodeCapability.class);
-        criteria.add(Restrictions.in(NODE, nodes));
-        criteria.add(Restrictions.eq(CAPABILITY, capability));
-        final List resList = criteria.list();
-        for (Object item : resList) {
-            if (item instanceof NodeCapability) {
-                result.add((NodeCapability) item);
+        if (nodes.size()>0) {
+            final Session session = getSessionFactory().getCurrentSession();
+            final Criteria criteria = session.createCriteria(NodeCapability.class);
+            criteria.add(Restrictions.in(NODE, nodes));
+            criteria.add(Restrictions.eq(CAPABILITY, capability));
+            final List resList = criteria.list();
+            for (Object item : resList) {
+                if (item instanceof NodeCapability) {
+                    result.add((NodeCapability) item);
+                }
             }
         }
-
         return result;
     }
 

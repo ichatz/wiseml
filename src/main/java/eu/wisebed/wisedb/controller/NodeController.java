@@ -361,8 +361,14 @@ public class NodeController extends AbstractController<Node> {
         descriptionBuffer.append("<p>").append(NodeController.getInstance().getDescription(node)).append("</p>");
         descriptionBuffer.append("<ul>");
         for (NodeCapability capability : NodeCapabilityController.getInstance().list(node)) {
-            descriptionBuffer.append("<li>").append(capability.getCapability().getName())
-                    .append(capability.getCapability().getName()).append("</li>");
+            descriptionBuffer.append("<li>").append(capability.getCapability().getName()).append(":");
+            if (capability.getLastNodeReading().getStringReading() != null) {
+                descriptionBuffer.append(capability.getLastNodeReading().getReading()).append(",")
+                        .append(capability.getLastNodeReading().getStringReading());
+            } else {
+                descriptionBuffer.append(capability.getLastNodeReading().getReading());
+            }
+            descriptionBuffer.append("</li>");
         }
         descriptionBuffer.append("</ul>");
         description.setType("text/html");

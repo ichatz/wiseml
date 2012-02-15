@@ -231,14 +231,15 @@ public class LinkCapabilityController extends AbstractController<LinkCapability>
         LOGGER.debug("list(" + testbed + ")");
         final List<Link> links = LinkController.getInstance().list(testbed.getSetup());
         final List<LinkCapability> capabilities = new ArrayList<LinkCapability>();
-
-        final Session session = getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(LinkCapability.class);
-        criteria.add(Restrictions.in(LINK, links));
-        List list = criteria.list();
-        for (Object obj : criteria.list()) {
-            if (obj instanceof LinkCapability) {
-                capabilities.add((LinkCapability) obj);
+        if (links.size()>0) {
+            final Session session = getSessionFactory().getCurrentSession();
+            final Criteria criteria = session.createCriteria(LinkCapability.class);
+            criteria.add(Restrictions.in(LINK, links));
+            List list = criteria.list();
+            for (Object obj : criteria.list()) {
+                if (obj instanceof LinkCapability) {
+                    capabilities.add((LinkCapability) obj);
+                }
             }
         }
 

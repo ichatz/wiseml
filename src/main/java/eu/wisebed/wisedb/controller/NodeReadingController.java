@@ -217,13 +217,14 @@ public class NodeReadingController extends AbstractController<NodeReading> {
         final List<NodeCapability> nodeCapabilities = NodeCapabilityController.getInstance().list(node);
 
         Integer result = 0;
-        final Session session = getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(NodeReading.class);
-        criteria.add(Restrictions.in(CAPABILITY, nodeCapabilities));
-        criteria.setProjection(Projections.rowCount());
-        final Long count = (Long) criteria.uniqueResult();
-
-        result += count.intValue();
+        if (nodeCapabilities.size()>0) {
+            final Session session = getSessionFactory().getCurrentSession();
+            final Criteria criteria = session.createCriteria(NodeReading.class);
+            criteria.add(Restrictions.in(CAPABILITY, nodeCapabilities));
+            criteria.setProjection(Projections.rowCount());
+            final Long count = (Long) criteria.uniqueResult();
+            result += count.intValue();
+        }
         return result.longValue();
     }
 

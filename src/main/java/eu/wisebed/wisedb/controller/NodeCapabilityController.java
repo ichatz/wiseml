@@ -202,17 +202,17 @@ public class NodeCapabilityController extends AbstractController<NodeCapability>
         LOGGER.debug("list(" + testbed + ")");
         final List<Node> nodes = NodeController.getInstance().list(testbed.getSetup());
         final List<NodeCapability> capabilities = new ArrayList<NodeCapability>();
-
-        final Session session = getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(NodeCapability.class);
-        criteria.add(Restrictions.in(NODE, nodes));
-        List list = criteria.list();
-        for (Object obj : criteria.list()) {
-            if (obj instanceof NodeCapability) {
-                capabilities.add((NodeCapability) obj);
+        if (nodes.size()>0) {
+            final Session session = getSessionFactory().getCurrentSession();
+            final Criteria criteria = session.createCriteria(NodeCapability.class);
+            criteria.add(Restrictions.in(NODE, nodes));
+            List list = criteria.list();
+            for (Object obj : criteria.list()) {
+                if (obj instanceof NodeCapability) {
+                    capabilities.add((NodeCapability) obj);
+                }
             }
         }
-
         return capabilities;
     }
 

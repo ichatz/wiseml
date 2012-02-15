@@ -245,13 +245,14 @@ public class LinkReadingController extends AbstractController<LinkReading> {
         LOGGER.info("getLinkReadingsCount(" + link + ")");
         final List<LinkCapability> linkCapabilities = LinkCapabilityController.getInstance().list(link);
         Integer result = 0;
-
-        final org.hibernate.Session session = getSessionFactory().getCurrentSession();
-        final Criteria criteria = session.createCriteria(LinkReading.class);
-        criteria.add(Restrictions.in(CAPABILITY, linkCapabilities));
-        criteria.setProjection(Projections.rowCount());
-        final Long count = (Long) criteria.uniqueResult();
-        result += count.intValue();
+        if (linkCapabilities.size()>0) {
+            final org.hibernate.Session session = getSessionFactory().getCurrentSession();
+            final Criteria criteria = session.createCriteria(LinkReading.class);
+            criteria.add(Restrictions.in(CAPABILITY, linkCapabilities));
+            criteria.setProjection(Projections.rowCount());
+            final Long count = (Long) criteria.uniqueResult();
+            result += count.intValue();
+        }
 
         return result.intValue();
 
