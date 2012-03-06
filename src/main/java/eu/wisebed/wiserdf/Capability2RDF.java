@@ -13,10 +13,8 @@ public class Capability2RDF extends Capability {
     public Capability2RDF(Capability ca) {
         this.setDatatype(ca.getDatatype());
         this.setDefaultvalue(ca.getDefaultvalue());
-        this.setLinkReadings(ca.getLinkReadings());
         this.setLinks(ca.getLinks());
         this.setName(ca.getName());
-        this.setNodeReadings(ca.getNodeReadings());
         this.setNodes(ca.getNodes());
         this.setUnit(ca.getUnit());
     }

@@ -1,7 +1,5 @@
 package eu.wisebed.wiseml.model.setup;
 
-import eu.wisebed.wisedb.model.Testbed;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -63,10 +61,6 @@ public class Setup implements Serializable {
      */
     private List<Link> link;
 
-    /**
-     * The testbed this setup belongs to.
-     */
-    private Testbed testbed;
 
 
     /**
@@ -229,23 +223,5 @@ public class Setup implements Serializable {
      */
     public void setDefaults(final Defaults defaults) {
         this.defaults = defaults;
-    }
-
-    /**
-     * Sets the testbed attribute.
-     *
-     * @param testbed testbed instance.
-     */
-    public void setTestbed(final Testbed testbed) {
-        this.testbed = testbed;
-    }
-
-    /**
-     * Returns the testbed this setup belongs to.
-     *
-     * @return the testbed this setup belongs to.
-     */
-    public Testbed getTestbed() {
-        return testbed;
     }
 }
