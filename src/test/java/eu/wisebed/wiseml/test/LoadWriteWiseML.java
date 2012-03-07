@@ -78,7 +78,7 @@ public class LoadWriteWiseML {
     public void doAnotherTest() throws FileNotFoundException, JiBXException {
         FileInputStream fileML = null;
         try {
-            fileML = new FileInputStream("/home/amaxilatis/repositories/wiseml/src/test/resources/telosB_short.wiseml");
+            fileML = new FileInputStream("/home/theodori/workspace/uberdust/wiseml/src/test/resources/telosB_short.wiseml");
         } catch (Exception e) {
             System.err.println(e);
         }

@@ -27,18 +27,9 @@ public class LoadWriteTrace {
         node.setId("urn:wisebed:node:tud:M4A�P100V");
         node.setMessage(message);
 
-        File file = new File("data.xml");
-
         FileInputStream fileIn = null;
+        System.out.println(traceC.writeTraceAsString(trace));
 
-
-        try {
-            fileIn = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            System.exit(1);
-        }
-
-        traceC.writeTraceAsFile(trace, file);
 
     }
 }
