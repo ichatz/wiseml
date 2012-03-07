@@ -39,8 +39,16 @@
                 <structure map-as="message" name="message" usage="optional" ordered="false" allow-repeats="true"/>
             </collection>
         </structure>
-        <structure field="trace" usage="optional" name="trace">
-            <value style="attribute" name="id" field="id" usage="optional"/>
+        <structure map-as="trace" field="trace" usage="optional" name="trace"/>
+    </mapping>
+
+    <mapping class="eu.wisebed.wiseml.model.WiseML" name="wiseml">
+        <structure map-as="wiseML"/>
+        <value style="attribute" name="version" field="version" usage="optional" ordered="false"/>
+    </mapping>
+
+        <mapping abstract="true" type-name="trace" class="eu.wisebed.wiseml.model.trace.Trace" ordered="false">
+                <value style="attribute" name="id" field="id" usage="optional"/>
             <!--            <collection field="timestamp" usage="optional" create-type="java.util.ArrayList">
                 <structure map-as="timestamp" name="timestamp"/>
             </collection>
@@ -73,12 +81,12 @@
                 </structure>
                 <structure map-as="message" name="message" usage="optional" ordered="false" allow-repeats="true"/>
             </collection>
-        </structure>
+        </mapping>
+
+    <mapping class="eu.wisebed.wiseml.model.trace.Trace" name="trace" ordered="false">
+        <structure map-as="trace"/>
     </mapping>
-    <mapping class="eu.wisebed.wiseml.model.WiseML" name="wiseml">
-        <structure map-as="wiseML"/>
-        <value style="attribute" name="version" field="version" usage="optional" ordered="false"/>
-    </mapping>
+
     <mapping abstract="true" type-name="setup" class="eu.wisebed.wiseml.model.setup.Setup" ordered="false">
         <structure map-as="origin" field="origin" usage="optional" name="origin" ordered="false"/>
         <structure map-as="timeInfo" field="timeinfo" usage="optional" name="timeinfo" ordered="false"/>
@@ -93,9 +101,11 @@
             <structure map-as="link" name="link"/>
         </collection>
     </mapping>
+
     <mapping class="eu.wisebed.wiseml.model.setup.Setup" name="setup" ordered="false">
         <structure map-as="setup"/>
     </mapping>
+
     <mapping abstract="true" type-name="timeInfo" class="eu.wisebed.wiseml.model.setup.TimeInfo" ordered="false">
         <value style="element" name="start" field="start" usage="optional" ordered="false"/>
         <value style="element" name="end" field="end" usage="optional" ordered="false"/>
