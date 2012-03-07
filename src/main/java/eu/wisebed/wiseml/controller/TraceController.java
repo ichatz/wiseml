@@ -32,7 +32,7 @@ public final class TraceController {
      * @param file  a file instance.
      * @return Trace instance given.
      * @throws FileNotFoundException a FileNotFoundException exception.
-     * @throws JiBXException a JibXExcetpion exception.
+     * @throws JiBXException         a JibXExcetpion exception.
      */
     public Trace writeTraceAsFile(final Trace trace, final File file) throws FileNotFoundException, JiBXException {
 
@@ -77,20 +77,11 @@ public final class TraceController {
         return trace;
     }
 
-    public String writeTraceAsString(final Trace trace) throws FileNotFoundException, JiBXException {
+    public String writeTraceAsString(final Trace trace) throws JiBXException {
 
 
         final HashMap<Integer, Set<String>> mapTr = new HashMap<Integer, Set<String>>();
         final HashMap<String, HashMap<Integer, Set<String>>> map = new HashMap<String, HashMap<Integer, Set<String>>>();
-
-//        final Set<String> messages = new TreeSet<String>();
-//        for (String message : messages) {
-//            messages.add(trace.getNode().getMessage().getReading());
-//        }
-//
-//        mapTr.put(trace.getTimestamp(), messages);
-//        map.put(trace.getNode().getId(), mapTr);
-
         final List<Integer> listTimestmps = new ArrayList<Integer>();
         listTimestmps.addAll(mapTr.keySet());
         Collections.sort(listTimestmps);
@@ -98,7 +89,7 @@ public final class TraceController {
         final List<String> finalList = new ArrayList<String>();
         finalList.addAll(map.keySet());
         Collections.sort(finalList);
-        String answer="";
+        String answer = "";
 
         try {
             // marshal object back out to file (with nice indentation, as UTF-8)...
@@ -108,7 +99,7 @@ public final class TraceController {
             final OutputStream output = new ByteArrayOutputStream();
             mctx.setOutput(output, null);
             mctx.marshalDocument(trace);
-            answer=output.toString();
+            answer = output.toString();
 
         } catch (JiBXException e) {
             LOGGER.fatal(e);
