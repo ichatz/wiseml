@@ -1,10 +1,7 @@
 package eu.wisebed.wiseml.model.setup;
 
-import eu.wisebed.wisedb.model.LinkReading;
-
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 /**
  * This is a persistant class for the object link that has the
@@ -42,10 +39,6 @@ public class Link implements Serializable {
      * a list of capabilities to add to the link.
      */
     private List<Capability> capabilities;
-    /**
-     * Set of readings for this link.
-     */
-    private Set<LinkReading> readings;
 
     /**
      * the Rssi value of the link.
@@ -222,24 +215,6 @@ public class Link implements Serializable {
      */
     public void setSetup(final Setup setup) {
         this.setup = setup;
-    }
-
-    /**
-     * Returns all the capability readings for this link.
-     *
-     * @return readings , all capabilities readings for this link.
-     */
-    public Set<LinkReading> getReadings() {
-        return readings;
-    }
-
-    /**
-     * Sets the set of readings for all capability.
-     *
-     * @param readings , a set of capabiliteis readings for this link.
-     */
-    public void setReadings(final Set<LinkReading> readings) {
-        this.readings = readings;
     }
 
     /**

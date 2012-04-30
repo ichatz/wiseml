@@ -34,7 +34,6 @@ public class Node2RDF extends Node {
         this.setNodeType(nd.getNodeType());
         this.setPosition(nd.getPosition());
         this.setProgramDetails(nd.getProgramDetails());
-        this.setReadings(nd.getReadings());
         this.setSetup(nd.getSetup());
     }
 

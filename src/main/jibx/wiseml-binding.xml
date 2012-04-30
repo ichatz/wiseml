@@ -39,46 +39,55 @@
                 <structure map-as="message" name="message" usage="optional" ordered="false" allow-repeats="true"/>
             </collection>
         </structure>
-        <structure field="trace" usage="optional" name="trace">
-            <value style="attribute" name="id" field="id" usage="optional"/>
-            <!--            <collection field="timestamp" usage="optional" create-type="java.util.ArrayList">
-                <structure map-as="timestamp" name="timestamp"/>
-            </collection>
-            -->
-            <collection field="children" usage="optional" factory="eu.wisebed.wiseml.model.trace.Trace.listFactory"
-                        allow-repeats="true" ordered="false">
-                <structure type="eu.wisebed.wiseml.model.scenario.Timestamp" usage="optional" name="timestamp">
-                    <!-- <value name="value" field="value" ordered="false" usage="optional"/> -->
-                    <value style="text" field="value" ordered="true"/>
-                </structure>
-                <structure map-as="node" name="node" usage="optional" ordered="false" allow-repeats="true"/>
-                <structure type="eu.wisebed.wiseml.model.scenario.EnableNode" usage="optional" name="enableNode"
-                           ordered="false" allow-repeats="true">
-                    <value style="attribute" name="id" field="id" ordered="false"/>
-                </structure>
-                <structure type="eu.wisebed.wiseml.model.scenario.DisableNode" usage="optional" name="disableNode"
-                           ordered="false" allow-repeats="true">
-                    <value style="attribute" name="id" field="id" usage="optional" ordered="false"/>
-                </structure>
-                <structure map-as="link" name="link" usage="optional" ordered="false" allow-repeats="true"/>
-                <structure type="eu.wisebed.wiseml.model.scenario.EnableLink" usage="optional" name="enableLink"
-                           ordered="false" allow-repeats="true">
-                    <value style="attribute" name="source" field="source" usage="optional" ordered="false"/>
-                    <value style="attribute" name="target" field="target" usage="optional" ordered="false"/>
-                </structure>
-                <structure type="eu.wisebed.wiseml.model.scenario.DisableLink" usage="optional" name="disableLink"
-                           ordered="false">
-                    <value style="attribute" name="source" field="source" usage="optional" ordered="false"/>
-                    <value style="attribute" name="target" field="target" usage="optional" ordered="false"/>
-                </structure>
-                <structure map-as="message" name="message" usage="optional" ordered="false" allow-repeats="true"/>
-            </collection>
-        </structure>
+        <structure map-as="trace" field="trace" usage="optional" name="trace"/>
     </mapping>
+
     <mapping class="eu.wisebed.wiseml.model.WiseML" name="wiseml">
         <structure map-as="wiseML"/>
         <value style="attribute" name="version" field="version" usage="optional" ordered="false"/>
     </mapping>
+
+    <mapping abstract="true" type-name="trace" class="eu.wisebed.wiseml.model.trace.Trace" ordered="false">
+        <value style="attribute" name="id" field="id" usage="optional"/>
+        <!--            <collection field="timestamp" usage="optional" create-type="java.util.ArrayList">
+            <structure map-as="timestamp" name="timestamp"/>
+        </collection>
+        -->
+        <collection field="children" usage="optional" factory="eu.wisebed.wiseml.model.trace.Trace.listFactory"
+                    allow-repeats="true" ordered="false">
+            <structure type="eu.wisebed.wiseml.model.scenario.Timestamp" usage="optional" name="timestamp">
+                <!-- <value name="value" field="value" ordered="false" usage="optional"/> -->
+                <value style="text" field="value" ordered="true"/>
+            </structure>
+            <structure map-as="node" name="node" usage="optional" ordered="false" allow-repeats="true"/>
+            <structure type="eu.wisebed.wiseml.model.scenario.EnableNode" usage="optional" name="enableNode"
+                       ordered="false" allow-repeats="true">
+                <value style="attribute" name="id" field="id" ordered="false"/>
+            </structure>
+            <structure type="eu.wisebed.wiseml.model.scenario.DisableNode" usage="optional" name="disableNode"
+                       ordered="false" allow-repeats="true">
+                <value style="attribute" name="id" field="id" usage="optional" ordered="false"/>
+            </structure>
+            <structure map-as="link" name="link" usage="optional" ordered="false" allow-repeats="true"/>
+            <structure type="eu.wisebed.wiseml.model.scenario.EnableLink" usage="optional" name="enableLink"
+                       ordered="false" allow-repeats="true">
+                <value style="attribute" name="source" field="source" usage="optional" ordered="false"/>
+                <value style="attribute" name="target" field="target" usage="optional" ordered="false"/>
+            </structure>
+            <structure type="eu.wisebed.wiseml.model.scenario.DisableLink" usage="optional" name="disableLink"
+                       ordered="false">
+                <value style="attribute" name="source" field="source" usage="optional" ordered="false"/>
+                <value style="attribute" name="target" field="target" usage="optional" ordered="false"/>
+            </structure>
+            <structure map-as="message" name="message" usage="optional" ordered="false" allow-repeats="true"/>
+            <structure map-as="data" name="data" usage="optional" ordered="false" allow-repeats="true"/>
+        </collection>
+    </mapping>
+
+    <mapping class="eu.wisebed.wiseml.model.trace.Trace" name="trace" ordered="false">
+        <structure map-as="trace"/>
+    </mapping>
+
     <mapping abstract="true" type-name="setup" class="eu.wisebed.wiseml.model.setup.Setup" ordered="false">
         <structure map-as="origin" field="origin" usage="optional" name="origin" ordered="false"/>
         <structure map-as="timeInfo" field="timeinfo" usage="optional" name="timeinfo" ordered="false"/>
@@ -93,9 +102,11 @@
             <structure map-as="link" name="link"/>
         </collection>
     </mapping>
+
     <mapping class="eu.wisebed.wiseml.model.setup.Setup" name="setup" ordered="false">
         <structure map-as="setup"/>
     </mapping>
+
     <mapping abstract="true" type-name="timeInfo" class="eu.wisebed.wiseml.model.setup.TimeInfo" ordered="false">
         <value style="element" name="start" field="start" usage="optional" ordered="false"/>
         <value style="element" name="end" field="end" usage="optional" ordered="false"/>
@@ -195,8 +206,7 @@
         </collection>
         <structure map-as="message" field="message" usage="optional" name="message" ordered="false"/>
     </mapping>
-    <mapping abstract="true" type-name="data" class="eu.wisebed.wiseml.model.setup.Data" usage="optional"
-            >
+    <mapping abstract="true" type-name="data" class="eu.wisebed.wiseml.model.setup.Data" usage="optional">
         <value style="attribute" name="key" field="key" usage="optional" ordered="false"/>
         <value style="text" field="value" ordered="true"/>
         <!-- <value style="element" name="value" field="value" usage="optional" ordered="false"/> -->

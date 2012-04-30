@@ -7,9 +7,7 @@ import org.jibx.runtime.IBindingFactory;
 import org.jibx.runtime.IMarshallingContext;
 import org.jibx.runtime.JiBXException;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -34,7 +32,7 @@ public final class TraceController {
      * @param file  a file instance.
      * @return Trace instance given.
      * @throws FileNotFoundException a FileNotFoundException exception.
-     * @throws JiBXException a JibXExcetpion exception.
+     * @throws JiBXException         a JibXExcetpion exception.
      */
     public Trace writeTraceAsFile(final Trace trace, final File file) throws FileNotFoundException, JiBXException {
 
@@ -78,4 +76,37 @@ public final class TraceController {
 
         return trace;
     }
+
+    public String writeTraceAsString(final Trace trace) throws JiBXException {
+
+
+        final HashMap<Integer, Set<String>> mapTr = new HashMap<Integer, Set<String>>();
+        final HashMap<String, HashMap<Integer, Set<String>>> map = new HashMap<String, HashMap<Integer, Set<String>>>();
+        final List<Integer> listTimestmps = new ArrayList<Integer>();
+        listTimestmps.addAll(mapTr.keySet());
+        Collections.sort(listTimestmps);
+
+        final List<String> finalList = new ArrayList<String>();
+        finalList.addAll(map.keySet());
+        Collections.sort(finalList);
+        String answer = "";
+
+        try {
+            // marshal object back out to file (with nice indentation, as UTF-8)...
+            final IBindingFactory bfact = BindingDirectory.getFactory(Trace.class);
+            final IMarshallingContext mctx = bfact.createMarshallingContext();
+            mctx.setIndent(5);
+            final OutputStream output = new ByteArrayOutputStream();
+            mctx.setOutput(output, null);
+            mctx.marshalDocument(trace);
+            answer = output.toString();
+
+        } catch (JiBXException e) {
+            LOGGER.fatal(e);
+            throw e;
+        }
+
+        return answer;
+    }
+
 }

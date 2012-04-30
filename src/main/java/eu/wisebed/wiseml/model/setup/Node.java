@@ -1,12 +1,9 @@
 package eu.wisebed.wiseml.model.setup;
 
-import eu.wisebed.wisedb.model.NodeReading;
-import eu.wisebed.wisedb.model.Slse;
 import eu.wisebed.wiseml.model.trace.Message;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 /**
  * This is a persistant class for the object node that has the
@@ -60,17 +57,11 @@ public class Node implements Serializable {
      */
 
     private List<Data> data;
-    private Set<Slse> slses;
 
     /**
      * node message.
      */
     private Message message;
-
-    /**
-     * Set of capabilities readings for this Node.
-     */
-    private Set<NodeReading> readings;
 
     /**
      * this node belongs to a setup.
@@ -129,14 +120,6 @@ public class Node implements Serializable {
      */
     public void setProgramDetails(final String programDetails) {
         this.programDetails = programDetails;
-    }
-
-    public Set<Slse> getSlses() {
-        return slses;
-    }
-
-    public void setSlses(Set<Slse> slses) {
-        this.slses = slses;
     }
 
     /**
@@ -263,23 +246,5 @@ public class Node implements Serializable {
      */
     public void setSetup(final Setup setup) {
         this.setup = setup;
-    }
-
-    /**
-     * Returns a set of capability readings for this node.
-     *
-     * @return node readings.
-     */
-    public Set<NodeReading> getReadings() {
-        return readings;
-    }
-
-    /**
-     * Set capability readings for this node.
-     *
-     * @param readings , set
-     */
-    public void setReadings(final Set<NodeReading> readings) {
-        this.readings = readings;
     }
 }

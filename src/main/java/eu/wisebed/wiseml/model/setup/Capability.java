@@ -1,8 +1,5 @@
 package eu.wisebed.wiseml.model.setup;
 
-import eu.wisebed.wisedb.model.LinkReading;
-import eu.wisebed.wisedb.model.NodeReading;
-
 import java.io.Serializable;
 import java.util.Set;
 
@@ -47,16 +44,6 @@ public class Capability implements Serializable {
      * set of links that have this capability.
      */
     private Set<Link> links;
-
-    /**
-     * Set of node readings for this capability.
-     */
-    private Set<NodeReading> nodeReadings;
-
-    /**
-     * Set of link readings for this capability.
-     */
-    private Set<LinkReading> linkReadings;
 
     /**
      * Description.
@@ -167,42 +154,6 @@ public class Capability implements Serializable {
      */
     public void setLinks(final Set<Link> links) {
         this.links = links;
-    }
-
-    /**
-     * Returns the set of node readings for this capability.
-     *
-     * @return nodeReadings
-     */
-    public Set<NodeReading> getNodeReadings() {
-        return nodeReadings;
-    }
-
-    /**
-     * Sets the set of node readings for this capability.
-     *
-     * @param nodeReadings , set of node readings
-     */
-    public void setNodeReadings(final Set<NodeReading> nodeReadings) {
-        this.nodeReadings = nodeReadings;
-    }
-
-    /**
-     * Returns the set of link readings for this capability.
-     *
-     * @return linkReadings , set of link readings.
-     */
-    public Set<LinkReading> getLinkReadings() {
-        return linkReadings;
-    }
-
-    /**
-     * Returns the set of link readings for this capability.
-     *
-     * @param linkReadings , set of link readings.
-     */
-    public void setLinkReadings(final Set<LinkReading> linkReadings) {
-        this.linkReadings = linkReadings;
     }
 
     /**
