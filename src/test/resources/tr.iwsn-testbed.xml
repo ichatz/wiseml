@@ -90,7 +90,7 @@
             </ns4:wsnDevice>
         </application>
     </applications>
-    <nodes>
+    </nodes>
     <nodes id="alix-8">
         <names>
             <nodename name="urn:wisebed:ctitestbed:0x0498"/>

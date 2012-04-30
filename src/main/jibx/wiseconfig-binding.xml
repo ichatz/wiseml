@@ -3,11 +3,7 @@
 
     <mapping class="eu.wisebed.wiseconfig.model.TestbedConfiguration" name="testbed">
         <namespace uri="http://itm.uniluebeck.de/tr/xml" prefix="ns2" default="elements"/>
-        <!--        <structure map-as="nodes"/> -->
-    </mapping>
-
-    <mapping abstract="true" type-name="tbed" class="eu.wisebed.wiseconfig.model.TestbedConfiguration">
-        <collection field="nodes" usage="optional" create-type="java.util.ArrayList">
+                 <collection field="nodes" usage="optional" create-type="java.util.ArrayList">
             <structure map-as="nodes" name="nodes"/>
         </collection>
     </mapping>
