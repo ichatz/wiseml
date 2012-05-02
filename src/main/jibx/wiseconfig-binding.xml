@@ -2,27 +2,24 @@
 <binding name="binding" package="eu.wisebed.wiseconfig.model">
 
     <mapping class="eu.wisebed.wiseconfig.model.TestbedConfiguration" name="testbed">
-        <namespace uri="http://itm.uniluebeck.de/tr/xml" prefix="ns2" default="elements"/>
-                 <collection field="nodes" usage="optional" create-type="java.util.ArrayList">
+        <!--<namespace uri="http://itm.uniluebeck.de/tr/xml" prefix="ns2" default="elements"/> -->
+        <collection field="nodes" usage="optional" create-type="java.util.ArrayList">
             <structure map-as="nodes" name="nodes"/>
         </collection>
     </mapping>
 
-    <mapping class="eu.wisebed.wiseconfig.model.Nodes" name="nodes">
-        <structure map-as="nodes"/>
-    </mapping>
-
     <mapping abstract="true" type-name="nodes" class="eu.wisebed.wiseconfig.model.Nodes" ordered="false">
-        <namespace uri="http://itm.uniluebeck.de/tr/xml" prefix="ns2" default="elements"/>
+        <!--<namespace uri="http://itm.uniluebeck.de/tr/xml" prefix="ns2" default="elements"/> -->
         <value style="attribute" name="id" field="id" usage="optional"/>
-        <collection field="names" usage="optional" create-type="java.util.ArrayList">
+        <collection name="names" field="names" usage="optional" create-type="java.util.ArrayList">
             <structure map-as="nodename" name="nodename"/>
         </collection>
-        <collection field="applications" usage="optional" create-type="java.util.ArrayList">
-            <structure map-as="application" name="application"/>
-        </collection>
-        <collection field="serverConnections" usage="optional" create-type="java.util.ArrayList">
+        <collection name="serverconnections" field="serverConnections" usage="optional"
+                    create-type="java.util.ArrayList">
             <structure map-as="serverConnection" name="serverConnection"/>
+        </collection>
+        <collection name="applications" field="applications" usage="optional" create-type="java.util.ArrayList">
+            <structure map-as="application" name="application"/>
         </collection>
     </mapping>
 
@@ -56,7 +53,7 @@
 
 
     <mapping class="eu.wisebed.wiseconfig.model.PortalApp" name="portalApp">
-        <namespace uri="http://itm.uniluebeck.de/tr/runtime/portalapp/xml" prefix="ns3" default="all"/>
+        <namespace uri="http://itm.uniluebeck.de/tr/runtime/portalapp/xml" prefix="portal" default="all"/>
         <structure map-as="portalApp"/>
     </mapping>
 
@@ -98,6 +95,14 @@
         <value style="element" name="urn" field="urn" usage="optional"/>
         <value style="element" name="type" field="type" usage="optional"/>
         <value style="element" name="serialinterface" field="serialinterface" usage="optional"/>
+        <collection field="configurationValues" usage="optional" create-type="java.util.ArrayList">
+            <structure map-as="configuration" name="configuration"/>
+        </collection>
+    </mapping>
+
+    <mapping abstract="true" type-name="configuration" class="eu.wisebed.wiseconfig.model.Configuration">
+        <value style="attribute" name="key" field="key" usage="optional"/>
+        <value style="attribute" name="value" field="value" usage="optional"/>
     </mapping>
 
     <mapping class="eu.wisebed.wiseconfig.model.WsnDevice" name="wsndevice">

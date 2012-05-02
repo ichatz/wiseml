@@ -1,5 +1,9 @@
 package eu.wisebed.wiseconfig.model;
 
+import javax.servlet.jsp.jstl.core.Config;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This is a persistent class for the object WebService that has the
  * properties of a node in the testbed xml file. In the class there are
@@ -42,8 +46,12 @@ public final class WebService {
      */
     private ProtobufInterface protobufINT;
 
+
+
+
     /**
      * Returns URN prefix.
+     *
      * @return a urn prefix.
      */
     public String getUrnPrefix() {
@@ -52,6 +60,7 @@ public final class WebService {
 
     /**
      * Sets URN prefix.
+     *
      * @param urnPrefix a urn prefix.
      */
     public void setUrnPrefix(final String urnPrefix) {
@@ -60,6 +69,7 @@ public final class WebService {
 
     /**
      * Returns Session Management Endpoint URL.
+     *
      * @return session management endpoint URL.
      */
     public String getSessionManagementEndpointUrl() {
@@ -68,6 +78,7 @@ public final class WebService {
 
     /**
      * Sets Session Management Endpoint URL.
+     *
      * @param sessionManagementEndpointUrl a Session Manaagement Endpoint URL.
      */
     public void setSessionManagementEndpointUrl(final String sessionManagementEndpointUrl) {
@@ -76,6 +87,7 @@ public final class WebService {
 
     /**
      * Returns WSN instance base URL.
+     *
      * @return WSN instance base URL.
      */
     public String getWsnInstancebaseUrl() {
@@ -84,6 +96,7 @@ public final class WebService {
 
     /**
      * Sets WSN instance base URL.
+     *
      * @param wsnInstancebaseUrl a wsn instance base URL.
      */
     public void setWsnInstancebaseUrl(final String wsnInstancebaseUrl) {
@@ -92,6 +105,7 @@ public final class WebService {
 
     /**
      * Returns RS endpoint URL.
+     *
      * @return RS endpoint URL.
      */
     public String getReservationEndpointUrl() {
@@ -100,6 +114,7 @@ public final class WebService {
 
     /**
      * Sets Reservation Endpoint URL.
+     *
      * @param reservationEndpointUrl reservation endpoint URL.
      */
     public void setReservationEndpointUrl(final String reservationEndpointUrl) {
@@ -108,6 +123,7 @@ public final class WebService {
 
     /**
      * Returns SNAA endpoint URL.
+     *
      * @return SNAA endpoint URL.
      */
     public String getSnaaEndpointUrl() {
@@ -116,6 +132,7 @@ public final class WebService {
 
     /**
      * Sets SNAA endpoint URL.
+     *
      * @param snaaEndpointUrl SNAA endpoint URL.
      */
     public void setSnaaEndpointUrl(final String snaaEndpointUrl) {
@@ -124,6 +141,7 @@ public final class WebService {
 
     /**
      * Returns ProtobufInterface instance.
+     *
      * @return ProtobufInterface instance.
      */
     public ProtobufInterface getProtobufINT() {
@@ -132,6 +150,7 @@ public final class WebService {
 
     /**
      * Sets ProtobufInterface instance.
+     *
      * @param protobufINT instance.
      */
     public void setProtobufINT(final ProtobufInterface protobufINT) {
@@ -140,6 +159,7 @@ public final class WebService {
 
     /**
      * Return WiseML filename.
+     *
      * @return WiseML filename.
      */
     public String getWisemlfilename() {
@@ -148,9 +168,11 @@ public final class WebService {
 
     /**
      * Sets WiseML filename.
+     *
      * @param wisemlFilename a WiseML filename.
      */
     public void setWisemlfilename(final String wisemlFilename) {
         this.wisemlfilename = wisemlFilename;
     }
+
 }

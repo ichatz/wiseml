@@ -1,5 +1,8 @@
 package eu.wisebed.wiseconfig.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This is a persistent class for the object WsnDevice that has the
  * properties of a node in the testbed xml file. In the class there are
@@ -27,8 +30,15 @@ public final class WsnDevice {
      */
     private String usbchipid;
 
+
+    /**
+     * configurationValues Interface.
+     */
+    private List<Configuration> configurationValues = new ArrayList<Configuration>();
+
     /**
      * Returns URN.
+     *
      * @return urn.
      */
     public String getUrn() {
@@ -37,6 +47,7 @@ public final class WsnDevice {
 
     /**
      * Sets URN.
+     *
      * @param urn a urn instances.
      */
     public void setUrn(final String urn) {
@@ -45,6 +56,7 @@ public final class WsnDevice {
 
     /**
      * Returns type.
+     *
      * @return type.
      */
     public String getType() {
@@ -53,6 +65,7 @@ public final class WsnDevice {
 
     /**
      * Sets wsn device type.
+     *
      * @param type a wsn device type.
      */
     public void setType(final String type) {
@@ -61,6 +74,7 @@ public final class WsnDevice {
 
     /**
      * Returns serial interface.
+     *
      * @return serial interface.
      */
     public String getSerialinterface() {
@@ -69,6 +83,7 @@ public final class WsnDevice {
 
     /**
      * Sets serial interface.
+     *
      * @param serialinterface a serial interface instance.
      */
     public void setSerialinterface(final String serialinterface) {
@@ -77,6 +92,7 @@ public final class WsnDevice {
 
     /**
      * Returns USB chip ID.
+     *
      * @return USB chip ID.
      */
     public String getUsbchipid() {
@@ -85,9 +101,28 @@ public final class WsnDevice {
 
     /**
      * Sets USB chip ID.
+     *
      * @param usbchipid USB chip ID.
      */
     public void setUsbchipid(final String usbchipid) {
         this.usbchipid = usbchipid;
+    }
+
+    public List<Configuration> getConfigurationValues() {
+        return configurationValues;
+    }
+
+    public void setConfigurationValues(List<Configuration> configurationValues) {
+        this.configurationValues = configurationValues;
+    }
+
+    public void addConfiguration(String key, String value) {
+        if (this.configurationValues == null) {
+            this.configurationValues = new ArrayList<Configuration>();
+        }
+        Configuration c = new Configuration();
+        c.setKey(key);
+        c.setValue(value);
+        this.configurationValues.add(c);
     }
 }
