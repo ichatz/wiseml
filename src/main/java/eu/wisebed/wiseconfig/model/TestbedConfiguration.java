@@ -42,6 +42,32 @@ public final class TestbedConfiguration {
         if (this.nodes == null) {
             this.nodes = new ArrayList<Nodes>();
         }
-        this.nodes.add(nodes);
+        this.findUpdateNode(nodes);
+    }
+
+    private void findUpdateNode(final Nodes nodes) {
+        if (this.nodes == null) return;
+        boolean updated = false;
+        for (Object nd : this.nodes.toArray()) {
+            if (((Nodes) nd).getId().equals(nodes.getId()) == true) {
+                this.nodes.remove(nd);
+                this.nodes.add(nodes);
+                updated = true;
+                break;
+            }
+        }
+        if (updated == false) {
+            this.nodes.add(nodes);
+        }
+    }
+
+    public void deleteNodes(final Nodes nodes){
+        if (this.nodes == null) return;
+        for (Object nd : this.nodes.toArray()) {
+            if (((Nodes) nd).getId().equals(nodes.getId()) == true) {
+                this.nodes.remove(nd);
+                break;
+            }
+        }
     }
 }

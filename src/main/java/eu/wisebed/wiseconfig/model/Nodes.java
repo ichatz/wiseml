@@ -32,6 +32,7 @@ public final class Nodes {
 
     /**
      * Returns id.
+     *
      * @return id.
      */
     public String getId() {
@@ -40,6 +41,7 @@ public final class Nodes {
 
     /**
      * Sets id.
+     *
      * @param id an id.
      */
     public void setId(final String id) {
@@ -48,6 +50,7 @@ public final class Nodes {
 
     /**
      * Returns a list of Nodenames.
+     *
      * @return a list of Nodenames,
      */
     public List<Nodename> getNames() {
@@ -56,6 +59,7 @@ public final class Nodes {
 
     /**
      * Sets a list of Nodenames.
+     *
      * @param names a list of Nodenames.
      */
     public void setNames(final List<Nodename> names) {
@@ -64,6 +68,7 @@ public final class Nodes {
 
     /**
      * Returns a list of Applications.
+     *
      * @return a list of Applications.
      */
     public List<Application> getApplications() {
@@ -72,6 +77,7 @@ public final class Nodes {
 
     /**
      * Sets a list of Applications.
+     *
      * @param applications a Applications list.
      */
     public void setApplications(final List<Application> applications) {
@@ -80,6 +86,7 @@ public final class Nodes {
 
     /**
      * Returns a list of ServerConnections.
+     *
      * @return a list of ServerConnections.
      */
     public List<ServerConnection> getServerConnections() {
@@ -88,6 +95,7 @@ public final class Nodes {
 
     /**
      * Sets a list of ServerConnections.
+     *
      * @param serverConnections a list of ServerConnections.
      */
     public void setServerConnections(final List<ServerConnection> serverConnections) {
@@ -96,34 +104,106 @@ public final class Nodes {
 
     /**
      * Adds a Nodename to the Nodename list. If list does not exist, it is initialized.
+     *
      * @param nodename a Nodename instance.
      */
     public void addNodename(final Nodename nodename) {
         if (this.names == null) {
             this.names = new ArrayList<Nodename>();
         }
-        this.names.add(nodename);
+        this.findUpdateNodename(nodename);
     }
 
     /**
      * Adds an Application to the Application list. If list does not exist, it is initialized.
+     *
      * @param app an application instance.
      */
     public void addApplication(final Application app) {
         if (this.applications == null) {
             this.applications = new ArrayList<Application>();
         }
-        this.applications.add(app);
+        this.findUpdateApplication(app);
     }
 
     /**
      * Adds a ServerConnection to the ServerConnection list. If list does not exist, it is initialized.
+     *
      * @param con a ServerConnection instance.
      */
     public void addServerConnection(final ServerConnection con) {
         if (this.serverConnections == null) {
             this.serverConnections = new ArrayList<ServerConnection>();
         }
-        this.serverConnections.add(con);
+        this.findUpdateServerConnection(con);
+    }
+
+
+    private void findUpdateApplication(final Application app) {
+        if (this.applications == null) return;
+        boolean updated = false;
+        for (Object appIt : this.applications.toArray()) {
+            if (((Application) appIt).getWsnDev().getUrn().equals(app.getWsnDev().getUrn()) == true) {
+                this.applications.remove(appIt);
+                this.applications.add(app);
+                updated = true;
+                break;
+            }
+        }
+        if (updated == false) {
+            this.applications.add(app);
+        }
+    }
+
+    private void findUpdateNodename(final Nodename nodename) {
+        if (this.names == null) return;
+        boolean updated = false;
+        for (Object ndname : this.names.toArray()) {
+            if (((Nodename) ndname).getName().equals(nodename.getName()) == true) {
+                this.names.remove(ndname);
+                this.names.add(nodename);
+                updated = true;
+                break;
+            }
+        }
+        if (updated == false) {
+            this.names.add(nodename);
+        }
+    }
+
+    private void findUpdateServerConnection(final ServerConnection con) {
+        if (this.serverConnections == null) return;
+        boolean updated = false;
+        for (Object scon : this.serverConnections.toArray()) {
+            if (((ServerConnection) scon).getAddress().equals(con.getAddress()) == true) {
+                this.serverConnections.remove(scon);
+                this.serverConnections.add(con);
+                updated = true;
+                break;
+            }
+        }
+        if (updated == false) {
+            this.serverConnections.add(con);
+        }
+    }
+
+    public void deleteApplication(final Application app) {
+        if (this.applications == null) return;
+        for (Object appIt : this.applications.toArray()) {
+            if (((Application) appIt).getWsnDev().getUrn().equals(app.getWsnDev().getUrn()) == true) {
+                this.applications.remove(appIt);
+                break;
+            }
+        }
+    }
+
+    public void deleteNodename(final Nodename nodename) {
+        if (this.names == null) return;
+        for (Object ndname : this.names.toArray()) {
+            if (((Nodename) ndname).getName().equals(nodename.getName()) == true) {
+                this.names.remove(ndname);
+                break;
+            }
+        }
     }
 }
