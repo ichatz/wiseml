@@ -187,20 +187,20 @@ public final class Nodes {
         }
     }
 
-    public void deleteApplication(final Application app) {
+    public void deleteApplication(final String node_id) {
         if (this.applications == null) return;
         for (Object appIt : this.applications.toArray()) {
-            if (((Application) appIt).getWsnDev().getUrn().equals(app.getWsnDev().getUrn()) == true) {
+            if (((Application) appIt).getWsnDev().getUrn().equals(node_id) == true) {
                 this.applications.remove(appIt);
                 break;
             }
         }
     }
 
-    public void deleteNodename(final Nodename nodename) {
+    public void deleteNodename(final String node_id) {
         if (this.names == null) return;
         for (Object ndname : this.names.toArray()) {
-            if (((Nodename) ndname).getName().equals(nodename.getName()) == true) {
+            if (((Nodename) ndname).getName().equals(node_id) == true) {
                 this.names.remove(ndname);
                 break;
             }
