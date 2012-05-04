@@ -61,7 +61,7 @@ public final class TestbedConfiguration {
         }
     }
 
-    public void deleteNodes(final String node_id){
+    public void deleteNodes(final String node_id) {
         if (this.nodes == null) return;
         for (Object nd : this.nodes.toArray()) {
             if (((Nodes) nd).getId().equals(node_id) == true) {

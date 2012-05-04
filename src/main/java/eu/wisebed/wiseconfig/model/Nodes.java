@@ -143,7 +143,14 @@ public final class Nodes {
         if (this.applications == null) return;
         boolean updated = false;
         for (Object appIt : this.applications.toArray()) {
-            if (((Application) appIt).getWsnDev().getUrn().equals(app.getWsnDev().getUrn()) == true) {
+            try {
+                if (((Application) appIt).getWsnDev().getUrn().equals(app.getWsnDev().getUrn()) == true) {
+                    this.applications.remove(appIt);
+                    this.applications.add(app);
+                    updated = true;
+                    break;
+                }
+            } catch (Exception ex) {
                 this.applications.remove(appIt);
                 this.applications.add(app);
                 updated = true;

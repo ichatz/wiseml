@@ -1,26 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <name>WiseML implementation using JiBX</name>
     <groupId>ichatz</groupId>
     <artifactId>wiseml</artifactId>
-
     <packaging>jar</packaging>
     <version>1.2-SNAPSHOT</version>
-
     <url>http://www.wisebed.eu</url>
-
     <issueManagement>
         <system>GitHub</system>
         <url>http://github.com/ichatz/wiseml</url>
     </issueManagement>
-
     <ciManagement>
         <system>Hudson</system>
         <url>http://ru1.cti.gr/hudson/job/wiseml/</url>
     </ciManagement>
-
     <properties>
         <!--Properties needed for the Project-->
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
@@ -31,7 +25,6 @@
         <slf4j.version>1.6.4</slf4j.version>
         <ehcache.version>2.4.6</ehcache.version>
     </properties>
-
     <pluginRepositories>
         <pluginRepository>
             <id>jibx.sf.net</id>
@@ -44,7 +37,6 @@
                 <enabled>false</enabled>
             </snapshots>
         </pluginRepository>
-
         <pluginRepository>
             <id>jboss-public-repository-group</id>
             <name>JBoss Public Repository Group</name>
@@ -56,12 +48,6 @@
                 <enabled>true</enabled>
             </snapshots>
         </pluginRepository>
-
-        <pluginRepository>
-            <id>itm-maven-repository-releases</id>
-            <url>http://www.itm.uni-luebeck.de/projects/maven/releases/</url>
-        </pluginRepository>
-
     </pluginRepositories>
 
     <repositories>
@@ -89,8 +75,6 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
-
-
         <repository>
             <id>jboss-public-repository-group</id>
             <name>JBoss Public Repository Group</name>
@@ -105,40 +89,6 @@
                 <updatePolicy>never</updatePolicy>
             </snapshots>
         </repository>
-
-        <repository>
-            <id>terracotta-releases</id>
-            <url>http://www.terracotta.org/download/reflector/releases</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-
-        <repository>
-            <id>itm-maven-repository-releases</id>
-            <url>http://www.itm.uni-luebeck.de/projects/maven/releases/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-
-        <repository>
-            <id>itm-maven-repository-snapshots</id>
-            <url>http://www.itm.uni-luebeck.de/projects/maven/snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-
         <repository>
             <id>repo-jena</id>
             <name>Jena Maven - Repository</name>
@@ -148,73 +98,50 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
-
     </repositories>
 
     <dependencies>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
             <version>2.4</version>
         </dependency>
-
         <dependency>
             <groupId>org.jibx</groupId>
             <artifactId>jibx-run</artifactId>
             <version>1.2.3</version>
         </dependency>
-
         <dependency>
             <groupId>com.hp.hpl.jena</groupId>
             <artifactId>jena</artifactId>
             <version>2.5.5</version>
         </dependency>
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
-        </dependency>
-
-
-        <!-- testbed-runtime dependencies -->
-        <dependency>
-            <groupId>de.uniluebeck.itm</groupId>
-            <artifactId>tr.snaa-api</artifactId>
-            <version>[0.8,)</version>
-        </dependency>
-        <dependency>
-            <groupId>de.uniluebeck.itm</groupId>
-            <artifactId>tr.wsn-api</artifactId>
-            <version>[0.8,)</version>
         </dependency>
         <dependency>
             <groupId>org.openjena</groupId>
             <artifactId>fuseki</artifactId>
             <version>0.1.0</version>
         </dependency>
-
         <dependency>
             <groupId>com.hp.hpl.jena</groupId>
             <artifactId>arq</artifactId>
             <version>2.8.8</version>
         </dependency>
-
-
     </dependencies>
 
     <build>
@@ -310,24 +237,7 @@
                     <show>private</show>
                 </configuration>
             </plugin>
-
-            <!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>exec-maven-plugin</artifactId> <version>1.1</version> <executions>
-         <execution> <phase>test</phase> <goals> <goal>java</goal> </goals> <configuration> <mainClass>wiseml.test.SetupNewNode</mainClass>
-         &lt;!&ndash;<workingDirectory>/tmp</workingDirectory>&ndash;&gt; <arguments> <argument>marshal</argument> </arguments> </configuration>
-         </execution> </executions> </plugin> -->
-
         </plugins>
-
-        <!--  <extensions>
-
-            <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-ssh-external</artifactId>
-                <version>1.0-beta-6</version>
-            </extension>
-
-        </extensions>-->
-
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
