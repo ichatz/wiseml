@@ -8,6 +8,7 @@ import com.hp.hpl.jena.vocabulary.RDFS;
 import eu.wisebed.wiseml.model.WiseML;
 import org.apache.log4j.Logger;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -69,7 +70,6 @@ public class WiseML2RDF extends WiseML {
         String dumpFileName = wisemlFile;
         try {
             model.write(new PrintWriter(new PrintStream(new FileOutputStream(wisemlFile))), "N-TRIPLE");
-
             LOGGER.info("File dumped succesfully, filename: " + wisemlFile);
         } catch (Exception e) {
             LOGGER.info("Error in dumping to rdf file: " + e);
@@ -78,5 +78,18 @@ public class WiseML2RDF extends WiseML {
         return wisemlFile;
     }
 
+    public String print() {
+        String answer="";
+        try {
+            ByteArrayOutputStream bos=new ByteArrayOutputStream();
+            model.write(bos, "N-TRIPLE");
+            answer=bos.toString();
+            System.out.println(answer);
+        } catch (Exception e) {
+            LOGGER.info("Error in dumping to rdf file: " + e);
+        }
+
+        return answer;
+    }
 
 }

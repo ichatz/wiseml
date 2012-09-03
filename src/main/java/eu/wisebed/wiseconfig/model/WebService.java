@@ -1,8 +1,6 @@
 package eu.wisebed.wiseconfig.model;
 
-import javax.servlet.jsp.jstl.core.Config;
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * This is a persistent class for the object WebService that has the

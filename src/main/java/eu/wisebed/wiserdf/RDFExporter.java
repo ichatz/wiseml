@@ -36,7 +36,7 @@ public class RDFExporter {
             WiseML wml = wmlcontroller.loadWiseMLFromFile(fileML);
             WiseML2RDF wmll = new WiseML2RDF(wml);
             wmll.exportRDF(wiseModel, uri);
-            wmll.dump(outrdf);
+            wmll.print();
         } catch (Exception e) {
             LOGGER.error(e);
         }
