@@ -14,11 +14,8 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 
 public class WiseML2RDF extends WiseML {
-
-
     private Model model;
     private static Logger LOGGER = Logger.getLogger(WiseML2RDF.class);
-
 
     public WiseML2RDF(WiseML wml) {
         this.setSetup(wml.getSetup());
@@ -28,7 +25,6 @@ public class WiseML2RDF extends WiseML {
 
     public Resource exportRDF(Model theModel, String uri) {
         model = theModel;
-
 
         // initialize resource and propertiesProperty hasScenario = model.createProperty(uri + "hasScenario");
         Resource resWISEML = model.createResource(uri + "WISEML");
@@ -42,8 +38,7 @@ public class WiseML2RDF extends WiseML {
 
         Resource newWISEML = model.createResource(uri + "WISEML" + "/" + this.getVersion().replace(" ", "_")); //this.getXmlns().replace(" ", "_"));
 
-
-        //newWISEML.addProperty(theXmlns, this.getXmlns());
+       //newWISEML.addProperty(theXmlns, this.getXmlns());
         newWISEML.addProperty(theVersion, this.getVersion());
 
         // need to communicate the nodes of the experiment between the setup
