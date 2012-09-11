@@ -6,13 +6,13 @@ import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Data;
+
 import eu.wisebed.wiseml.model.setup.Node;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.util.HashMap;
+
 
 
 public class rdfNodeExporter {
@@ -28,7 +28,7 @@ public class rdfNodeExporter {
     }
 
 
-    public String exportNode(Node node, Data reading, DateTime tstamp, String location) {
+    public Model exportNode(Node node, Data reading, DateTime tstamp, String location) {
         Resource resNode = model.createResource(uri + "/sensor");
         Property nodeLocation = model.createProperty(uri + "/hasLocation");
         Property dataValue = model.createProperty(uri + "/hasValue");
@@ -44,7 +44,7 @@ public class rdfNodeExporter {
             sensor.addProperty(dataUnits, cap.getUnit().toString());
             sensor.addProperty(timeStamp, tstamp.toString(),XSDDatatype.XSDdate );
         }
-        return this.print();
+        return this.model;
     }
 
     public String print() {
