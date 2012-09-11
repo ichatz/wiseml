@@ -40,7 +40,7 @@ public class rdfNodeExporter {
         model.add(resNode, RDF.type, RDFS.Class);
         for (Capability cap : node.getCapabilities()) {
             if (reading.getKey().equals(cap.getDescription()) == false) continue;
-            Resource sensor = model.createResource(uri + "/node/" + node.getId() + "/capability/" + cap.getName() + "/rdf/xml");
+            Resource sensor = model.createResource(uri + "/node/" + node.getId() + "/capability/" + cap.getName() + "/rdf/rdf-xml/limit/1");
             model.add(sensor, RDF.type, resNode);
 //            sensor.addProperty(nodeLocation, location);
             sensor.addProperty(dataValue, reading.getValue(), XSDDatatype.XSDfloat);
