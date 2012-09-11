@@ -7,6 +7,7 @@ import eu.wisebed.wiseml.model.setup.Node;
 import eu.wisebed.wiserdf.rdfNodeExporter;
 import org.joda.time.DateTime;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +42,9 @@ public class rdfTest2 {
         d = new Data();
         d.setKey("urn:wisebed:node:capability:temperature");
         d.setValue("13.2");
-        ndf.exportNode(nd, d, new DateTime(), "OII3");
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+
+        ndf.exportNode(nd, d, new DateTime(), "OII3").write(bos, "RDF/XML-ABBREV");
+        System.out.println(bos.toString());
     }
 }
