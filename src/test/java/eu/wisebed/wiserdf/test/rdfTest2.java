@@ -24,7 +24,8 @@ public class rdfTest2 {
         nd.setPosition(pos);
         List<Capability> caps = new ArrayList<Capability>();
         Capability cap = new Capability();
-        cap.setName("urn:wisebed:node:capability:temperature");
+        cap.setName("temperature");
+        cap.setDescription("urn:wisebed:node:capability:temperature");
         cap.setUnit("C");
         caps.add(cap);
         cap.setName("urn:wisebed:node:capability:room");

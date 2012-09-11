@@ -1,13 +1,14 @@
 package eu.wisebed.wiserdf;
 
-import com.hp.hpl.jena.datatypes.RDFDatatype;
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
-import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
 import eu.wisebed.wiseml.model.setup.Capability;
 import eu.wisebed.wiseml.model.setup.Data;
-
 import eu.wisebed.wiseml.model.setup.Node;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
@@ -38,10 +39,10 @@ public class rdfNodeExporter {
 
         model.add(resNode, RDF.type, RDFS.Class);
         for (Capability cap : node.getCapabilities()) {
-            if (reading.getKey().equals(cap.getName()) == false) continue;
+            if (reading.getKey().equals(cap.getDescription()) == false) continue;
             Resource sensor = model.createResource(uri + "/node/" + node.getId() + "/capability/" + cap.getName() + "/rdf/xml");
             model.add(sensor, RDF.type, resNode);
-            sensor.addProperty(nodeLocation, location);
+//            sensor.addProperty(nodeLocation, location);
             sensor.addProperty(dataValue, reading.getValue(), XSDDatatype.XSDfloat);
             sensor.addProperty(timeStamp, tstamp.toString(), XSDDatatype.XSDdate);
             Resource ref;
@@ -51,6 +52,8 @@ public class rdfNodeExporter {
                 ref = model.createResource("http://" + cap.getUnit().toString());
             sensor.addProperty(dataUnits, ref);
 
+            Resource ref1 = model.createResource(uri +"/"+ location);
+            sensor.addProperty(nodeLocation, ref1);
 
         }
         return this.model;
