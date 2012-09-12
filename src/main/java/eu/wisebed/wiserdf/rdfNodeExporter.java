@@ -30,7 +30,8 @@ public class rdfNodeExporter {
 
 
     public Model exportNode(Node node, Data reading, DateTime tstamp, String location) {
-        Resource resNode = model.createResource(uri + "/sensor");
+//        Resource resNode = model.createResource(uri + "/sensor");
+        Resource resNode = model.createResource("http://purl.oclc.org/NET/ssnx/ssn#Sensor");
         Property nodeLocation = model.createProperty(uri + "/hasLocation");
         Property dataValue = model.createProperty(uri + "/hasValue");
         Property timeStamp = model.createProperty(uri + "/date");
@@ -47,12 +48,12 @@ public class rdfNodeExporter {
             sensor.addProperty(timeStamp, tstamp.toString(), XSDDatatype.XSDdate);
             Resource ref;
             if (cap.getUnit().toString().startsWith("http"))
-                ref = model.createResource( cap.getUnit().toString());
+                ref = model.createResource(cap.getUnit().toString());
             else
                 ref = model.createResource("http://" + cap.getUnit().toString());
             sensor.addProperty(dataUnits, ref);
 
-            Resource ref1 = model.createResource(uri +"/"+ location);
+            Resource ref1 = model.createResource(uri + "/" + location);
             sensor.addProperty(nodeLocation, ref1);
 
         }
